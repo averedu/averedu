@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="_popup" width="570" height="450" titletext="New Form">
+    <Layouts>
+      <Layout height="450" mobileorientation="landscape" width="570">
+        <Edit id="edtSearch" taborder="0" left="70" top="40" width="344" height="35" autoselect="true" font="normal 15pt/normal &quot;Arial&quot;" imemode="hangul" onkeydown="edtSearch_onkeydown"/>
+        <Button id="btnSearch" taborder="1" text="검색" top="40" width="80" height="35" font="normal 15pt/normal &quot;Arial&quot;" right="70" onclick="btnSearch_onclick"/>
+        <Grid id="grdList" taborder="2" left="20" top="114" height="306" binddataset="dsJuso" right="20" oncelldblclick="grdList_oncelldblclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="65"/>
+                <Column size="220"/>
+                <Column size="240"/>
+              </Columns>
+              <Rows>
+                <Row size="36" band="head"/>
+                <Row size="36"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="우편번호"/>
+                <Cell col="1" text="도로명주소"/>
+                <Cell col="2" text="지번주소"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:postcode"/>
+                <Cell col="1" text="bind:roadaddress" wordWrap="char"/>
+                <Cell col="2" text="bind:jibunaddress" wordWrap="char"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="staTip" taborder="3" text="예시 : 도로명(반포대로 58), 건물명(독립기념관), 지번(삼성동 25)" left="70" top="80" width="430" height="33"/>
+        <Button id="btnClose" taborder="4" text="X" left="522" top="2" width="45" height="26" font="normal 17pt/normal &quot;Arial&quot;" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsJuso">
+        <ColumnInfo>
+          <Column id="postcode" type="STRING" size="256"/>
+          <Column id="roadaddress" type="STRING" size="256"/>
+          <Column id="jibunaddress" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[//transaction
+this.fn_transaction = function()
+{
+	var sText = "'"+this.edtSearch.value+"'";
+		
+	var strSvcID = "selectJuso";
+	var strURL = "http://localhost:8080/playnexacro_nana/service/juso/jusoopenapisearch.jsp"
+	var strInDatasets = "";
+	var strOutDatasets = "dsJuso=dsjuso";
+	var strCallbackFunc = "fn_callback";
+	var strArgument = "currentPage=" + 1;
+		strArgument += " countPerPage=" + 100;
+		strArgument += " keyword=" + sText;
+	this.transaction(strSvcID,strURL,strInDatasets,strOutDatasets,strArgument,strCallbackFunc);
+};
+
+//call back
+this.fn_callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode < 0)
+	{
+		trace("sErrorCode :: " + sErrorCode);
+		return;
+	}
+	
+	if(strSvcID == "selectJuso")
+	{
+		//한 페이지에 최대 100 row 조회 가능 : 도로명 오픈 API 규정사항
+		//다량 데이터 필요시 페이징처리
+		if(this.dsJuso.getRowCount()>99)
+		{
+			alert("검색 결과가 너무 많습니다(100건 이상)\n검색어 예를 참조하여 검색하시기 바랍니다.");
+			this.edtSearch.setFocus();
+		}
+	}
+};
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//주소 입력 후 검색버튼 클릭
+	this.fn_transaction();
+}
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//우편번호 검색화면 닫기
+	this.close();
+};
+
+this.grdList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sPostcode = this.dsJuso.getColumn(e.row,"postcode");
+	var sAddress = this.dsJuso.getColumn(e.row,"roadaddress");
+	var sJibunAddress = this.dsJuso.getColumn(e.row,"jibunaddress");
+	
+	//"우편번호,도로명주소,지번주소" 순으로 문자열 생성 (팝업API 화면과 동일한 문자열 구조 생성)
+	var strData = sPostcode + "," + sAddress + "," + sJibunAddress;
+	
+	//선택된 주소 결과 전달 및 검색화면 종료
+	this.close(strData);
+};
+
+this.edtSearch_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_transaction();
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

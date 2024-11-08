@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="HideShowFrame" width="16" height="990" titletext="LEFT메뉴접기펼치기" scrolltype="none" onload="HideShowFrame_onload" onsize="HideShowFrame_onsize" onclose="HideShowFrame_onclose" scrollbartype="none">
+    <Layouts>
+      <Layout height="990" mobileorientation="landscape" width="16">
+        <Static id="Static01" taborder="1" top="0" width="15" background="#c1e9ff" left="0" bottom="0"/>
+        <Static id="Static00" taborder="0" top="0" width="1" bottom="0" background="#b5b6ba" right="0"/>
+        <Button id="btnHideShow" taborder="2" left="0" top="0" width="15" height="61" onclick="btnHideShow_onclick" cursor="pointer" text="◀" background="#c1e9ff" color="#598abe"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명) : HideShowFrame.xfdl(LEFT MENU 접기 펼치기)
+* 작 성         일 명 : jiback
+* 작 성         일 자 : 2018/08/25
+* 변 경         일 자 :
+* 변 경         자 명 :
+* 변경 및 수정 로 그 : 일자별로 변경자 및 변경사항을 간략히 기술
+************************************************************************/
+/**********************************************************************
+	01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+	03. 폼 로드 및 언로드 선언
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.HideShowFrame_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_setFormOnSize(e.cx, e.cy); // 폼로드시 버튼 중앙정렬
+	this.btnHideShow.toggle = "HIDE";  // 사용자 정의 변수(toggle)에 HIDE저장(컴포넌트에 스크립트로 사용자 정의 변수선언)
+	this.btnHideShow.set_text("◀");   // 초기에 보여주는 접기 표시
+};
+/**
+ * 기능 : 폼 언로드(닫기전 셋팅)  Setting
+ */
+this.HideShowFrame_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 마스터 코드 선언 
+***********************************************************************/
+/**********************************************************************
+	05. 콜백 함수 선언
+***********************************************************************/
+/**********************************************************************
+	06. 조회 함수 선언
+***********************************************************************/
+/**********************************************************************
+	07. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+	08. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+	09. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+	10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+	11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+	12. ExcelUpLoad 엑셀업로드
+***********************************************************************/
+/**********************************************************************
+	13. Get, Set Method
+***********************************************************************/
+/*
+ * 폼에 접기펼치기 버튼을 가운데에 정열한다(리사이즈시도 자동정렬)	
+ */
+this.fn_setFormOnSize = function(nWidth, nHeight)
+{
+   	var nLeft	= (objApp.gv_appHideShowFrame.width / 2) - Math.round((this.btnHideShow.getOffsetWidth()) / 2);
+  	var nTop    = (objApp.gv_appHideShowFrame.height / 2) - Math.round((this.btnHideShow.getOffsetHeight()) / 2);
+
+	if(nLeft <= 0)
+	{
+		this.btnHideShow.setOffsetLeft(0);
+	
+	}else
+	{
+		this.btnHideShow.setOffsetLeft(nLeft);
+	}
+	
+	if(nTop <= 0)
+	{
+		this.btnHideShow.setOffsetTop(0);
+	
+	}else
+	{
+		this.btnHideShow.setOffsetTop(nTop);
+	}
+};
+/*
+ * 버튼으로 클릭시 자동으로 토글기능처리(TOP메뉴시에도 호출을 함)	
+ */
+this.fn_setClickToggle = function()
+{
+	if(this.btnHideShow.toggle == "HIDE") 
+	{
+		objApp.gv_appHFrameSet.set_separatesize("0,15,*");
+		this.btnHideShow.set_text("▶");
+		this.btnHideShow.toggle = "SHOW";
+	}else
+	{
+		objApp.gv_appHFrameSet.set_separatesize("225,15,*");
+		this.btnHideShow.set_text("◀");
+		this.btnHideShow.toggle = "HIDE";
+	}
+};
+
+/**********************************************************************
+	14. 기타 Control Event
+***********************************************************************/
+/*
+ *	토클버튼 클릭시 이벤트처리
+ */
+this.btnHideShow_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+	this.fn_setClickToggle();
+
+};
+/*
+ * 리사이즈시 자동으로 버튼을 가운데에 정렬	
+ */
+this.HideShowFrame_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.fn_setFormOnSize(e.cx, e.cy);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

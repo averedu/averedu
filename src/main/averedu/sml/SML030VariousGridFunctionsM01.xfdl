@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="form" width="1640" height="800" titletext="각종GRID편리한 기능들" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Static id="Static00" taborder="0" text="1.Cell 포커스 셋팅 및 이동(setCellPos(index)/Grid.showEditor( bShow ))" left="8" top="191" width="458" height="18" font="bold 10pt &quot;맑은 고딕&quot;" cssclass="sta_WF_Title01"/>
+        <Static id="Static05" taborder="1" text="그리드에서 사용하는 각종기능들" top="4" width="1622" height="23" textAlign="center" background="#f80626" right="6" font="bold 12px/normal &quot;Gulim&quot;" color="#ffffff"/>
+        <Static id="Static03" taborder="2" text="※ Grid 에서 편집이 가능한 Cell 이 선택되었을 때 편집모드용 컨트롤이 활성화 되는 방법을 설정하는 속성입니다.&#13;&#10;예) this.Grid00.set_autoenter( &quot;select&quot; ); 바로 포커스가 cell편집가능 함.&#13;&#10;※ Grid 에 스크롤 없이 전체 Column이 표시되도록 Column의 너비를 자동조절할지 설정하는 속성입니다.  &#13;&#10;예) this.Grid00.set_autofittype( &quot;col&quot; );&#13;&#10;※ Cell 이 Combo 또는 Calendar 형식일 때 팝업창으로 선택된 값이 DataSet 에 적용되는 시점을 설정하는 속성입니다.&#13;&#10;예) this.Grid00.set_autoupdatetype( &quot;itemselect&quot;);&#13;&#10; =&gt; Cell 에서 팝업창(Combo 리스트 또는 팝업달력)으로 값을 선택하는 즉시 DataSet 에 반영됩니다.&#13;&#10;※ 특정 Cell에 정규식으로 한글만 입력가능하게 막는다&#13;&#10;참조) this.grdMaster_oninput = function(obj:nexacro.Grid,e:nexacro.InputEventInfo)&#13;&#10;          obj.setEditValue(inputKeyString.replace(/[^\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &quot;&quot;));&#13;&#10;" top="29" height="164" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="12" onclick="Static03_onclick" verticalAlign="top" width="838"/>
+        <Grid id="grdMaster" taborder="3" left="7" top="242" width="462" height="262" binddataset="ds_list" autofittype="col" autoenter="select" oninput="grdMaster_oninput">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="ID"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="DESCRIPTION"/>
+                <Cell col="3" text="USE_YN"/>
+                <Cell col="4" text="REG_USER"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ID" edittype="text"/>
+                <Cell col="1" text="bind:NAME" edittype="text"/>
+                <Cell col="2" text="bind:DESCRIPTION" edittype="text"/>
+                <Cell col="3" text="bind:USE_YN" edittype="text"/>
+                <Cell col="4" text="bind:REG_USER" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cmbCell" taborder="4" left="375" top="214" width="93" height="24" onitemchanged="cmbCell_onitemchanged" innerdataset="dsCellNum" codecolumn="CODE" datacolumn="NAME" index="0" text="0"/>
+        <MaskEdit id="mskRowNum" taborder="5" left="123" top="214" width="104" height="24" format="0"/>
+        <Static id="staSubTitle01" taborder="6" text=" 그리드(Row)행" left="14" top="215" width="103" height="22" cssclass="sta_WF_SearchLbl"/>
+        <Static id="staSubTitle00" taborder="7" text=" 그리드(Column)열Cell" left="225" top="215" width="146" height="22" cssclass="sta_WF_SearchLbl"/>
+        <Button id="btnCreate" taborder="8" text="GridCreate" left="7" top="540" width="87" height="28" onclick="btnCreate_onclick"/>
+        <Static id="Static01" taborder="9" text="4.그리드 동적으로 생성및 삭제" left="7" top="511" width="458" height="18" font="bold 10pt &quot;맑은 고딕&quot;" cssclass="sta_WF_Title01"/>
+        <Grid id="grdList" taborder="10" left="491" top="216" binddataset="ds_list" autofittype="col" cellclickbound="cell" selectchangetype="down" oncellclick="grdList_oncellclick" width="359" bottom="40">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2" text="ID"/>
+                <Cell col="3" text="NAME"/>
+                <Cell col="4" text="DESCRIPTION"/>
+                <Cell col="5" text="USE_YN"/>
+                <Cell col="6" text="REG_USER"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="2" text="bind:ID"/>
+                <Cell col="3" text="bind:NAME"/>
+                <Cell col="4" text="bind:DESCRIPTION"/>
+                <Cell col="5" text="bind:USE_YN"/>
+                <Cell col="6" text="bind:REG_USER"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="11" text="2.그리드 라디오버튼처럼사용하기" left="491" top="191" width="358" height="18" font="bold 10pt &quot;맑은 고딕&quot;" cssclass="sta_WF_Title01"/>
+        <Grid id="grdList2" taborder="12" left="870" top="219" binddataset="ds_list2" autofittype="none" cellclickbound="cell" right="20" bottom="40" selectscrollmode="select" fastvscrolltype="default" onheadclick="grdList2_onheadclick" onexpandup="grdList2_onexpandup" onheaddblclick="grdList2_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="65"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="2" text="전체권한" expandshow="show" expandsize="26" expandimage="URL(&quot;theme://images/chk_WF_Box.png&quot;)"/>
+                <Cell col="3" text="NO"/>
+                <Cell col="4" text="ROWTYPE"/>
+                <Cell col="5" text="ID"/>
+                <Cell col="6" text="NAME"/>
+                <Cell col="7" text="DESCRIPTION"/>
+                <Cell col="8" text="USE_YN"/>
+                <Cell col="9" text="ID_0"/>
+                <Cell col="10" text="NAME_0"/>
+                <Cell col="11" text="DESCRIPTION_0"/>
+                <Cell col="12" text="USE_YN_0"/>
+                <Cell col="13" text="REG_USER_0"/>
+                <Cell col="14" text="ID_1"/>
+                <Cell col="15" text="NAME_1"/>
+                <Cell col="16" text="DESCRIPTION_1"/>
+                <Cell col="17" text="USE_YN_1"/>
+                <Cell col="18" text="REG_USER_1"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CHK2" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="2" text="bind:CHK3" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="3" expr="currow+1" textAlign="center"/>
+                <Cell col="4" expr="dataset.getRowType(currow)"/>
+                <Cell col="5" text="bind:ID"/>
+                <Cell col="6" text="bind:NAME"/>
+                <Cell col="7" text="bind:DESCRIPTION"/>
+                <Cell col="8" text="bind:USE_YN"/>
+                <Cell col="9" text="bind:ID_0"/>
+                <Cell col="10" text="bind:NAME_0"/>
+                <Cell col="11" text="bind:DESCRIPTION_0"/>
+                <Cell col="12" text="bind:USE_YN_0"/>
+                <Cell col="13" text="bind:REG_USER_0"/>
+                <Cell col="14" text="bind:ID_1"/>
+                <Cell col="15" text="bind:NAME_1"/>
+                <Cell col="16" text="bind:DESCRIPTION_1"/>
+                <Cell col="17" text="bind:USE_YN_1"/>
+                <Cell col="18" text="bind:REG_USER_1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="13" text="3.체크박스(타입변경/타입변경없음),이미지체크/멀티소팅" left="871" top="191" width="398" height="18" font="bold 10pt &quot;맑은 고딕&quot;" cssclass="sta_WF_Title01"/>
+        <Static id="Static06" taborder="14" text="※ Grid 해드를 클릭시 올체크를 한다 ROWTYPE변경됨.&#13;&#10;예) this.gfn_checkAll(obj, e,true);&#13;&#10;※ Grid 해드를 클릭시 올체크를 하지만 ROWTYPE변경않됨.&#13;&#10;예) this.gfn_checkAll(obj, e);&#13;&#10;※  Grid 해드를 클릭시 올체크를 한다 ROWTYPE변경됨 이름이들어가 이미지체크.&#13;&#10;예) this.gfn_setExpandCheckAll(obj,e);&#13;&#10;※ 체크박스 제외한 모든 해드를 더블클릭시 소팅(SORTING) &#13;&#10;참조) this.gfn_gridSort(obj,e);&#13;&#10;한번더클릭:▲      두번더클릭: ▼    세번더클릭:일반" top="29" height="164" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="872" onclick="Static03_onclick" verticalAlign="top" width="758"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="DESCRIPTION" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REG_USER" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="USE_YN"/>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="USE_YN"/>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="USE_YN"/>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="USE_YN"/>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="USE_YN"/>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCellNum">
+        <ColumnInfo>
+          <Column id="CODE" type="BIGDECIMAL" size="256"/>
+          <Column id="NAME" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">0</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">1</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">2</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">3</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_test1" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false"/>
+      <Dataset id="ds_list2">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="DESCRIPTION" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REG_USER" type="STRING" size="256"/>
+          <Column id="ID_0" type="STRING" size="256"/>
+          <Column id="NAME_0" type="STRING" size="256"/>
+          <Column id="DESCRIPTION_0" type="STRING" size="256"/>
+          <Column id="USE_YN_0" type="STRING" size="256"/>
+          <Column id="REG_USER_0" type="STRING" size="256"/>
+          <Column id="ID_1" type="STRING" size="256"/>
+          <Column id="NAME_1" type="STRING" size="256"/>
+          <Column id="DESCRIPTION_1" type="STRING" size="256"/>
+          <Column id="USE_YN_1" type="STRING" size="256"/>
+          <Column id="REG_USER_1" type="STRING" size="256"/>
+          <Column id="CHK2" type="STRING" size="256"/>
+          <Column id="CHK3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">A-01</Col>
+            <Col id="NAME_0">jiback</Col>
+            <Col id="DESCRIPTION_0">123</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">한글</Col>
+            <Col id="ID_1">A-01</Col>
+            <Col id="NAME_1">jiback</Col>
+            <Col id="DESCRIPTION_1">123</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">한글</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="USE_YN">N</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">A-02</Col>
+            <Col id="NAME_0">홍통합</Col>
+            <Col id="DESCRIPTION_0">456</Col>
+            <Col id="USE_YN_0">N</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">A-02</Col>
+            <Col id="NAME_1">홍통합</Col>
+            <Col id="DESCRIPTION_1">456</Col>
+            <Col id="USE_YN_1">N</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">B-01</Col>
+            <Col id="NAME_0">홍문서</Col>
+            <Col id="DESCRIPTION_0">789</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">B-01</Col>
+            <Col id="NAME_1">홍문서</Col>
+            <Col id="DESCRIPTION_1">789</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">B-02</Col>
+            <Col id="NAME_0">홍고딕</Col>
+            <Col id="DESCRIPTION_0">987</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">한글</Col>
+            <Col id="ID_1">B-02</Col>
+            <Col id="NAME_1">홍고딕</Col>
+            <Col id="DESCRIPTION_1">987</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">한글</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="USE_YN">N</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">C-01</Col>
+            <Col id="NAME_0">김수식</Col>
+            <Col id="DESCRIPTION_0">765</Col>
+            <Col id="USE_YN_0">N</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">C-01</Col>
+            <Col id="NAME_1">김수식</Col>
+            <Col id="DESCRIPTION_1">765</Col>
+            <Col id="USE_YN_1">N</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-01</Col>
+            <Col id="NAME">jiback</Col>
+            <Col id="DESCRIPTION">123</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">A-01</Col>
+            <Col id="NAME_0">jiback</Col>
+            <Col id="DESCRIPTION_0">123</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">한글</Col>
+            <Col id="ID_1">A-01</Col>
+            <Col id="NAME_1">jiback</Col>
+            <Col id="DESCRIPTION_1">123</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">한글</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">A-02</Col>
+            <Col id="NAME">홍통합</Col>
+            <Col id="DESCRIPTION">456</Col>
+            <Col id="USE_YN">N</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">A-02</Col>
+            <Col id="NAME_0">홍통합</Col>
+            <Col id="DESCRIPTION_0">456</Col>
+            <Col id="USE_YN_0">N</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">A-02</Col>
+            <Col id="NAME_1">홍통합</Col>
+            <Col id="DESCRIPTION_1">456</Col>
+            <Col id="USE_YN_1">N</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-01</Col>
+            <Col id="NAME">홍문서</Col>
+            <Col id="DESCRIPTION">789</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">B-01</Col>
+            <Col id="NAME_0">홍문서</Col>
+            <Col id="DESCRIPTION_0">789</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">B-01</Col>
+            <Col id="NAME_1">홍문서</Col>
+            <Col id="DESCRIPTION_1">789</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">B-02</Col>
+            <Col id="NAME">홍고딕</Col>
+            <Col id="DESCRIPTION">987</Col>
+            <Col id="USE_YN">Y</Col>
+            <Col id="REG_USER">한글</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">B-02</Col>
+            <Col id="NAME_0">홍고딕</Col>
+            <Col id="DESCRIPTION_0">987</Col>
+            <Col id="USE_YN_0">Y</Col>
+            <Col id="REG_USER_0">한글</Col>
+            <Col id="ID_1">B-02</Col>
+            <Col id="NAME_1">홍고딕</Col>
+            <Col id="DESCRIPTION_1">987</Col>
+            <Col id="USE_YN_1">Y</Col>
+            <Col id="REG_USER_1">한글</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+          <Row>
+            <Col id="ID">C-01</Col>
+            <Col id="NAME">김수식</Col>
+            <Col id="DESCRIPTION">765</Col>
+            <Col id="USE_YN">N</Col>
+            <Col id="REG_USER">영문</Col>
+            <Col id="CHK">0</Col>
+            <Col id="ID_0">C-01</Col>
+            <Col id="NAME_0">김수식</Col>
+            <Col id="DESCRIPTION_0">765</Col>
+            <Col id="USE_YN_0">N</Col>
+            <Col id="REG_USER_0">영문</Col>
+            <Col id="ID_1">C-01</Col>
+            <Col id="NAME_1">김수식</Col>
+            <Col id="DESCRIPTION_1">765</Col>
+            <Col id="USE_YN_1">N</Col>
+            <Col id="REG_USER_1">영문</Col>
+            <Col id="CHK2">0</Col>
+            <Col id="CHK3">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): SML030VariousGridFunctionsM01.xfdl(각종GRID편리한 기능들)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2018/09/13
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+	this.fn_formInit();
+};
+ 
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/*
+ * 화면편집모드를 셋팅하는 화면
+ */
+this.fn_formInit = function()
+{
+	if(this.gfn_isNull(this.mskRowNum.value))
+	{
+		this.mskRowNum.set_value(0);
+	}
+	
+	this.cmbCell.set_index(0);
+
+	this.ds_list.set_rowposition(this.mskRowNum.value);
+	this.grdMaster.setCellPos(3);									
+	this.grdMaster.showEditor(true);									
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg,"에러정보","","error");
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.postformInit();
+				break;
+			case "Search":
+			    this.postSearch();
+			  	break;
+			case "Save":
+			    this.postSave();
+				break;
+			case "Add":
+				this.postAdd();
+				break;
+			case "Del":
+				this.postDel();
+				break;
+			default:
+				break;
+		}
+	}
+};
+
+this.cmbCell_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	
+	this.ds_list.set_rowposition(this.mskRowNum.value);
+	this.grdMaster.setCellPos(e.postvalue);									
+	this.grdMaster.showEditor(true);		
+	
+};
+
+
+this.btnCreate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// Remove Object form Parent Form  
+	if (this.isValidObject("Grid02"))
+	{
+		this.Grid02.destroy(); 
+		this.removeChild("Grid02"); 
+    }
+	
+	var objGrid = new Grid();
+	objGrid.init("Grid02", this.btnCreate.getOffsetLeft(),  this.btnCreate.getOffsetBottom(), 462, 200,null,null);
+
+	// Add Object to Parent Form
+	this.addChild("Grid02", objGrid);
+	objGrid.set_autofittype( "col" );
+	objGrid.createFormat();
+	// Show Object 
+	objGrid.show();
+	//trace(objGrid.name);
+	//trace(this.GridNm.name);
+	// Create dataset 
+	var objDs = new Dataset();
+	objDs.set_name("ds_test");
+
+	objDs.addColumn("no", "string");
+	objDs.addColumn("name", "string");
+	objDs.addColumn("age", "int");
+
+	// Dataset Data Input
+	for (var i = 0; i < 5; i++) 
+	{
+		var nRow = objDs.addRow();
+
+		objDs.setColumn(nRow, "no", i);
+		objDs.setColumn(nRow, "name", 'employ_' + i);
+		objDs.setColumn(nRow, "age", (10 + i));
+	}
+	
+	//objGrid.set_binddataset("ds_test");
+    objGrid.set_binddataset(objDs);
+
+	objGrid.appendContentsRow("head");
+	objGrid.appendContentsRow("body");
+	objGrid.appendContentsRow("summ");
+
+	// Col Generation
+	// Append one column by default from  appendContentsRow()
+	objGrid.appendContentsCol();
+	objGrid.appendContentsCol();
+
+	// Col Size Setting
+	objGrid.setFormatColProperty(0, "size", 100);
+	objGrid.setFormatColProperty(1, "size", 100);
+	objGrid.setFormatColProperty(2, "size", 100);
+
+	// band setting by cell properties
+	for (var r = 0; r < objDs.getColCount(); r++) 
+	{
+		var colinfo = objDs.getColumnInfo(r);
+		objGrid.setCellProperty("head", r, "text", colinfo.name);
+		objGrid.setCellProperty("body", r, "text", "bind:" + colinfo.name);
+		if (r == 2) 
+		{
+			objGrid.setCellProperty("summ", r, "text", "expr:dataset.getSum('" + colinfo.name + "')");
+		}
+		else if(r == 1)
+		{
+			objGrid.setCellProperty("summ", r, "text", "total");
+		}
+	}
+};
+/************************************************************************
+ * 특정셀에 한글만 입력가능하게 하는기능 
+ ************************************************************************/
+this.grdMaster_oninput = function(obj:nexacro.Grid,e:nexacro.InputEventInfo)
+{
+	if(obj.getCellPos() == obj.getBindCellIndex("body","USE_YN"))
+	{
+		var inputKeyString =  obj.getEditText(); 
+		if(inputKeyString)
+		{
+			obj.setEditValue(inputKeyString.replace(/[^\ㄱ-ㅎㅏ-ㅣ가-힣]/g, ""));
+		}
+	}	
+};
+
+this.grdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == obj.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_setGridCheckSingle(obj,e);
+	}
+};
+
+
+this.grdList2_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == obj.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	
+	}else if(e.cell == obj.getBindCellIndex("body","CHK2"))
+	{
+		this.gfn_checkAll(obj, e);
+	}
+};
+
+this.grdList2_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell != obj.getBindCellIndex("body","CHK") && e.cell != obj.getBindCellIndex("body","CHK2") && e.cell != obj.getBindCellIndex("body","CHK3"))
+	{
+		this.gfn_gridSort(obj,e);
+	}	
+};
+
+this.grdList2_onexpandup = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	if(e.col == obj.getBindCellIndex("body","CHK3"))
+	{
+		this.gfn_setExpandCheckAll(obj,e);
+	}
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsDetail);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

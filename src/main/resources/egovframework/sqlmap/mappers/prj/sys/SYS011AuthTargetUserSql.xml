@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS011AuthTargetUserDAO">									                            
+
+    <!-- SYS011AuthTargetUserDAO.retrieveAuthTargetUserList 권한부여대상자 조회 -->	                                 
+    <select id="SYS011AuthTargetUserDAO.retrieveAuthTargetUserList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.AUTH_TRGET_ID                 /*권한대상ID*/             
+                 , A.AUTH_TRGET_NM                 /*권한대상명*/                         
+                 , A.SQL_CN                        /*SQL내용*/             
+                 , A.REG_ID                        /*등록자*/             
+                 , A.REG_DT                        /*등록일*/             
+                 , A.MOD_ID                        /*수정자*/             
+                 , A.MOD_DT                        /*수정일*/             
+              FROM COMM.XBT_AUTH_TRGET A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="AUTH_TRGET_NM != null and AUTH_TRGET_NM != ''">    
+            <![CDATA[                                         							                         
+               AND (A.AUTH_TRGET_ID LIKE '%' || #{AUTH_TRGET_NM} || '%' OR A.AUTH_TRGET_NM LIKE  '%' || #{AUTH_TRGET_NM} || '%')
+            ]]>                                           													
+        </if>                                                                                                   
+    </select> 	                                                        													 
+
+    <!-- SYS011AuthTargetUserDAO.retrieveAuthTargetUserListPKey 권한부여대상자 PK 조회 -->				             
+    <select id="SYS011AuthTargetUserDAO.retrieveAuthTargetUserListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   LPAD(NVL(MAX(TO_NUMBER(AUTH_TRGET_ID))+1,'1'),5,'0') AS KEY_CODE        								     
+              FROM COMM.XBT_AUTH_TRGET                                             								 
+             WHERE 1=1
+        ]]>                                                      												             
+    </select> 	                                                        													     
+
+    <!-- SYS011AuthTargetUserDAO.retrieveAuthTargetUserListKey 권한부여대상자 중복 조회 -->
+    <select id="SYS011AuthTargetUserDAO.retrieveAuthTargetUserListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_AUTH_TRGET
+             WHERE 1=1
+               AND AUTH_TRGET_ID        = #{AUTH_TRGET_ID}
+        ]]>
+    </select>
+
+    <!-- SYS011AuthTargetUserDAO.insertAuthTargetUserList 권한부여대상자 저장 -->	
+    <insert id="SYS011AuthTargetUserDAO.insertAuthTargetUserList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_TRGET                                       										  
+            (                                       																	  
+                   AUTH_TRGET_ID                 /*권한대상ID*/ 
+                 , AUTH_TRGET_NM                 /*권한대상명*/ 
+                 , SQL_CN                        /*SQL내용*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_TRGET_ID} 
+                 , #{AUTH_TRGET_NM}   
+                 , #{SQL_CN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    </insert>                                                           					
+
+    <!-- SYS011AuthTargetUserDAO.updateAuthTargetUserList 권한부여대상자 수정 -->								
+    <update id="SYS011AuthTargetUserDAO.updateAuthTargetUserList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_TRGET                                			        
+               SET                                                      				
+                   AUTH_TRGET_ID                  = #{AUTH_TRGET_ID}                 /*권한대상ID*/  
+                 , AUTH_TRGET_NM                  = #{AUTH_TRGET_NM}                 /*권한대상명*/   
+                 , SQL_CN                         = #{SQL_CN}                        /*SQL내용*/  
+                 , REG_ID                         = #{REG_ID}                        /*등록자*/  
+                 , REG_DT                         = SYSDATE                          /*등록일*/  
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_TRGET_ID        = #{AUTH_TRGET_ID}  
+        ]]>  	                                   							                            				
+    </update>                                                           												
+
+    <!-- SYS011AuthTargetUserDAO.mergeAuthTargetUserList 권한부여대상자 저장/수정 -->							  
+    <update id="SYS011AuthTargetUserDAO.mergeAuthTargetUserList" parameterType="map"> 
+        <![CDATA[                                                				 
+            MERGE INTO COMM.XBT_AUTH_TRGET A                               
+                 USING DUAL                                                 
+                    ON (                                                 	 
+                           AND A.AUTH_TRGET_ID      = #{AUTH_TRGET_ID}        		
+                       )                                                 	 
+                  WHEN MATCHED THEN                                                    
+                        UPDATE SET                               													
+                               A.AUTH_TRGET_ID                  = #{AUTH_TRGET_ID}                 /*권한대상ID*/  
+                             , A.AUTH_TRGET_NM                  = #{AUTH_TRGET_NM}                 /*권한대상명*/    
+                             , A.SQL_CN                         = #{SQL_CN}                        /*SQL내용*/  
+                             , A.REG_ID                         = #{REG_ID}                        /*등록자*/  
+                             , A.REG_DT                         = SYSDATE                          /*등록일*/  
+                             , A.MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                             , A.MOD_DT                         = SYSDATE                          /*수정일*/  
+                  WHEN NOT MATCHED THEN                                                  
+                            INSERT                                        				 
+                            (                                       					 
+                                   A.AUTH_TRGET_ID                 
+                                 , A.AUTH_TRGET_NM                                 
+                                 , A.SQL_CN                 
+                                 , A.REG_ID                 
+                                 , A.REG_DT                 
+                                 , A.MOD_ID                 
+                                 , A.MOD_DT                 
+                             )VALUES                                                  														
+                             (                                                        														
+                                   #{AUTH_TRGET_ID}  
+                                 , #{AUTH_TRGET_NM}                                                                      
+                                 , #{SQL_CN}                                   
+                                 , #{REG_ID}                                   
+                                 , SYSDATE                                   
+                                 , #{MOD_ID}                                   
+                                 , SYSDATE                                   
+                             )	                                                      									  
+        ]]>  	                                   							                            			  
+    </update>                                                           													  
+
+    <!-- SYS011AuthTargetUserDAO.deleteAuthTargetUserList 권한부여대상자 삭제 -->								       
+    <delete id="SYS011AuthTargetUserDAO.deleteAuthTargetUserList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_TRGET                                                  							      
+             WHERE 1=1
+               AND AUTH_TRGET_ID        = #{AUTH_TRGET_ID}  
+        ]]>
+    </delete>	                                                          													   
+</mapper>                                                                 													   
+    

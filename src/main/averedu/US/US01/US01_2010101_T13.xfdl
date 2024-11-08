@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="도서연체정보" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="도서연체정보" height="800" mobileorientation="landscape" width="1640">
+        <Static id="stc_09_00" taborder="3" left="7" top="12" height="22" text="연체정보" width="330" cssclass="sta_WF_Title02"/>
+        <Static id="stc_13_06" taborder="4" left="9" top="36" height="28" cssclass="sta_WF_DetailBg" width="772"/>
+        <Static id="stc_12_06" taborder="5" text="연체정보" left="10" top="36" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <Static id="stc_12_06_00_00" taborder="6" text="대출유무" left="193" top="36" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <CheckBox id="chk_03" taborder="0" left="168" top="39" width="45" height="22" tooltiptype="hover" enable="false"/>
+        <CheckBox id="chk_03_00" taborder="1" left="353" top="39" width="45" height="22" tooltiptype="hover" enable="false"/>
+        <Static id="stc_12_06_00_00_00" taborder="7" text="대출권수" left="378" top="36" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <Edit id="edt_02_06_00_00" taborder="2" left="531" top="39" height="22" width="246" enable="false"/>
+        <Static id="Static01_02_00_00_00_00" taborder="8" text="10" left="0" top="-1" width="10" height="477" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01" taborder="9" text="↑&#13;&#10;35&#13;&#10;↓" left="733" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="DELY_AMTN" type="BIGDECIMAL" size="22"/>
+          <Column id="DELY_NUMB" type="BIGDECIMAL" size="22"/>
+          <Column id="DELY_YORN" type="STRING" size="1"/>
+          <Column id="LEND_YORN" type="STRING" size="1"/>
+          <Column id="STOP_YORN" type="STRING" size="1"/>
+          <Column id="LEND_NUMB" type="BIGDECIMAL" size="22"/>
+          <Column id="STAT_CODE" type="STRING" size="50"/>
+          <Column id="STNT_NUMB" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): US01_2010101_T13.xfdl(도서관시스템연계 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/09/08
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function(hakbeon)
+{
+	this.ds_input.setColumn(0, "HAKBEON", hakbeon);
+	
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T13.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+
+};]]></Script>
+    <Bind>
+      <BindItem id="item14" compid="cboJuya00" propid="value" datasetid="ds_input" columnid="DAEHAK_CD"/>
+      <BindItem id="item0" compid="chk_03" propid="value" datasetid="dsMaster" columnid="DELY_YORN"/>
+      <BindItem id="item1" compid="Tab.TabPage12.form.chk_03_00" propid="value" datasetid="dsDoseo" columnid="LEND_YORN"/>
+      <BindItem id="item2" compid="chk_03_00" propid="value" datasetid="dsMaster" columnid="LEND_YORN"/>
+      <BindItem id="item3" compid="edt_02_06_00_00" propid="value" datasetid="dsMaster" columnid="LEND_NUMB"/>
+    </Bind>
+  </Form>
+</FDL>

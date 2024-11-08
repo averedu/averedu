@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P12_DAO">									                            
+
+    <select id="COM_P12_DAO.retrieve_P12" parameterType="map" resultType="egovMap"> 
+			SELECT ESI.JANGHAKDAESANG_GBCD
+			     , ESI.IPSI_YYYY
+			     , ESI.MOJIP_GBCD
+			     , ESI.SUHEOM_NO
+				 , ESI.GYEYEOL_CD
+			     , ESI.HAKGWA_CD
+			     , ESI.JEONGONG_CD
+			     , ESI.HAKGWA_JEONGONG_CD
+			     , ESI.JUYA_GBCD
+			     , ESI.JEONHYEONG_GBCD
+			     , ESI.SEBUJEONHYEONG_GBCD
+			     , ESI.SUHEOMSAENG_NM
+			     , ESI.HAKNYEON
+			     , ESI.BIRTHDAY
+			     , ESI.GENDER
+			     , ESI.CHONGDEUNGGEUP
+			     , ESI.SEOKCHA
+			     , ESI.HAPGYEOK_GBCD
+			     , ESI.IPHAK_AMT
+			     , ESI.SUEOP_AMT
+			  FROM (
+			        SELECT '01' AS JANGHAKDAESANG_GBCD /* 신입 장학생 구분코드 */
+			             , EJS.IPSI_YYYY
+			             , EJS.MOJIP_GBCD
+			             , EJS.SUHEOM_NO
+			        	 , (SELECT UP_DEPT_CD FROM COMM.SC_DEPT_S WHERE JOJIK_GBCD = '20' AND DEPT_CD = (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EJS.HAKGWA_CD)) AS GYEYEOL_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EJS.HAKGWA_CD) AS HAKGWA_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EJS.JEONGONG_CD) AS JEONGONG_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = NVL(EJS.JEONGONG_CD, EJS.HAKGWA_CD)) AS HAKGWA_JEONGONG_CD
+			             , EJS.JUYA_GBCD
+			             , EJS.JEONHYEONG_GBCD
+			             , EJS.SEBUJEONHYEONG_GBCD
+			             , EJS.SUHEOMSAENG_NM
+			             , '1' AS HAKNYEON
+			             , EJS.BIRTHDAY
+			             , EJS.GENDER
+			             , EJS.CHONGDEUNGGEUP
+			             , EJS.JEONHYEONGBYEOL_SEOKCHA AS SEOKCHA
+			             , EJS.HAPGYEOK_GBCD
+			             , UHD.IPHAK_AMT
+			             , UHD.SUEOP_AMT
+			          FROM ENTR.EN_JEOPSU_M EJS
+			         INNER JOIN UNIV.UR_HAKGWABYEOL_DEUNGROKGEUM_V UHD
+			            ON EJS.IPSI_YYYY = UHD.DEUNGROK_YYYY
+			           AND '11' = UHD.HAKGI
+			           AND '1' = UHD.HAKNYEON_GBCD
+			           AND EJS.HAKGWA_CD = UHD.IPSI_HAKGWA_CD
+			         WHERE 1 = 1
+			         	<choose>
+			         		<when test='DEUNGROK_YN != "1"'>
+			         			AND EJS.HAPGYEOK_GBCD IN ('01', '02', '10')
+			         		</when>
+			         		<otherwise>
+			         			<if test='MOJIP_GBCD == "3"'>
+			         				AND EJS.HAPGYEOK_GBCD IN ('01', '02')
+			         			</if>
+			         			<if test='MOJIP_GBCD == "4"'>
+			         				AND EJS.HAPGYEOK_GBCD IN ('01', '02')
+			         			</if>
+			         			<if test='MOJIP_GBCD == "5"'>
+			         				AND EJS.HAPGYEOK_GBCD IN ('01', '02')
+			         			</if>
+			         			<if test='MOJIP_GBCD == "6"'>
+			         				AND EJS.HAPGYEOK_GBCD IN ('01', '02')
+			         			</if>
+			         		</otherwise>
+			         	</choose>
+			           AND DELETE_YN != 'Y'
+			         UNION ALL  
+			        SELECT '01' AS JANGHAKDAESANG_GBCD /* 9월 입학 장학생 구분코드 */
+			             , ESJ.IPSI_YYYY
+			             , ESJ.MOJIP_GBCD
+			             , ESJ.SUHEOM_NO
+			             , (SELECT UP_DEPT_CD FROM COMM.SC_DEPT_S WHERE JOJIK_GBCD = '20' AND DEPT_CD = (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = ESJ.HAKGWA_CD)) AS GYEYEOL_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = ESJ.HAKGWA_CD) AS HAKGWA_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = ESJ.JEONGONG_CD) AS JEONGONG_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = NVL(ESJ.JEONGONG_CD, ESJ.HAKGWA_CD)) AS HAKGWA_JEONGONG_CD
+			             , ESJ.JUYA_GBCD
+			             , ESJ.JEONHYEONG_GBCD AS JEONHYEONG_GBCD
+			             , ESJ.SEBUJEONHYEONG_GBCD AS SEBUJEONHYEONG_GBCD
+			             , ESJ.SUHEOMSAENG_NM
+			             , '1' AS HAKNYEON
+			             , ESJ.BIRTHDAY
+			             , ESJ.GENDER
+			             , '' AS CHONGDEUNGGEUP
+			             , TO_NUMBER('') AS SEOKCHA
+			             , DECODE(ESJ.HAPGYEOK_YN, 'Y', '01', '99') AS HAPGYEOK_GBCD
+			             , UHD.IPHAK_AMT
+			             , UHD.SUEOP_AMT
+			          FROM ENTR.ES_SEPT_JEOPSU_M ESJ /* 9월 입학 */
+			         INNER JOIN UNIV.UR_HAKGWABYEOL_DEUNGROKGEUM_V UHD
+			            ON UHD.DEUNGROK_YYYY = ESJ.IPSI_YYYY
+			           AND UHD.HAKGI = '11' /* 9월 입학 1학기 */
+			           AND UHD.IPSI_HAKGWA_CD = ESJ.HAKGWA_CD
+			           AND UHD.HAKNYEON_GBCD = '1'
+			         WHERE ESJ.HAPGYEOK_YN = 'Y' /* 합격구분 */   
+			         UNION ALL
+			        SELECT '02' AS JANGHAKDAESANG_GBCD /* 편입 장학생구분코드 */
+			             , EPJ.PYEONIP_YYYY AS IPSI_YYYY
+			             , EPJ.PYEONIP_MOJIP_GBCD AS MOJIP_GBCD
+			             , EPJ.SUHEOM_NO
+			             , (SELECT UP_DEPT_CD FROM COMM.SC_DEPT_S WHERE JOJIK_GBCD = '20' AND DEPT_CD = (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EPJ.JIWONHAKGWA_CD)) AS GYEYEOL_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EPJ.JIWONHAKGWA_CD) AS HAKGWA_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = EPJ.JEONGONG_CD) AS JEONGONG_CD
+			             , (SELECT DEPT_CD FROM COMM.SC_DEPT_M WHERE IPSI_DEPT_CD = NVL(EPJ.JEONGONG_CD, EPJ.JIWONHAKGWA_CD)) AS HAKGWA_JEONGONG_CD
+			             , EPJ.JUYA_GBCD
+			             , '' AS JEONHYEONG_GBCD
+			             , '' AS SEBUJEONHYEONG_GBCD
+			             , EPJ.SUHEOMSAENG_NM
+			             , EPJ.PYEONIP_HAKNYEON AS HAKNYEON
+			             , EPJ.BIRTHDAY
+			             , EPJ.GENDER
+			             , '' AS CHONGDEUNGGEUP /* 총등급(평점) */
+			             , EPJ.HAKGWABYEOL_SEOKCHA AS SEOKCHA
+			             , EPJ.HAPGYEOK_GBCD
+			             , UHD.IPHAK_AMT
+			             , UHD.SUEOP_AMT
+			          FROM ENTR.ET_PYEONIP_JEOPSU_M EPJ /* 편입 접수 */
+			         INNER JOIN UNIV.UR_HAKGWABYEOL_DEUNGROKGEUM_V UHD
+			            ON UHD.DEUNGROK_YYYY = EPJ.PYEONIP_YYYY
+			           AND UHD.HAKGI = '11'
+			           AND UHD.IPSI_HAKGWA_CD = EPJ.JIWONHAKGWA_CD
+			           AND UHD.HAKNYEON_GBCD = EPJ.PYEONIP_HAKNYEON
+			         WHERE EPJ.HAPGYEOK_GBCD IN ('01', '02', '10')
+			        ) ESI /* 입시, 9월입학, 편입 */
+			 WHERE ESI.IPSI_YYYY = #{IPSI_YYYY}
+			<if test="MOJIP_GBCD != null and MOJIP_GBCD != ''">
+			 	AND ESI.MOJIP_GBCD = #{MOJIP_GBCD}
+			 	<if test='MOJIP_GBCD == "1"'>
+			 		<if test="JEONHYEONG_GBCD != null and JEONHYEONG_GBCD != ''">
+			 			AND ESI.JEONHYEONG_GBCD = #{JEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="SEBUJEONHYEONG_GBCD != null and SEBUJEONHYEONG_GBCD != ''">
+			 			AND ESI.SEBUJEONHYEONG_GBCD = #{SEBUJEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			 			AND ESI.HAKGWA_JEONGONG_CD = #{HAKGWA_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "2"'>
+			 		<if test="JEONHYEONG_GBCD != null and JEONHYEONG_GBCD != ''">
+			 			AND ESI.JEONHYEONG_GBCD = #{JEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="SEBUJEONHYEONG_GBCD != null and SEBUJEONHYEONG_GBCD != ''">
+			 			AND ESI.SEBUJEONHYEONG_GBCD = #{SEBUJEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			 			AND ESI.HAKGWA_JEONGONG_CD = #{HAKGWA_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "3"'>
+			 		<if test="JEONHYEONG_GBCD != null and JEONHYEONG_GBCD != ''">
+			 			AND ESI.JEONHYEONG_GBCD = #{JEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="SEBUJEONHYEONG_GBCD != null and SEBUJEONHYEONG_GBCD != ''">
+			 			AND ESI.SEBUJEONHYEONG_GBCD = #{SEBUJEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			 			AND ESI.HAKGWA_JEONGONG_CD = #{HAKGWA_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "4"'>
+			 		<if test="JEONHYEONG_GBCD != null and JEONHYEONG_GBCD != ''">
+			 			AND ESI.JEONHYEONG_GBCD = #{JEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="SEBUJEONHYEONG_GBCD != null and SEBUJEONHYEONG_GBCD != ''">
+			 			AND ESI.SEBUJEONHYEONG_GBCD = #{SEBUJEONHYEONG_GBCD}
+			 		</if>
+			 		<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			 			AND ESI.HAKGWA_JEONGONG_CD = #{HAKGWA_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "7"'>
+			 		<if test="GYEYEOL_CD != null and GYEYEOL_CD != ''">
+			 			AND ESI.GYEYEOL_CD = #{GYEYEOL_CD}
+			 		</if>
+			 		<if test="HAKGWA_HAKBU_CD != null and HAKGWA_HAKBU_CD != ''">
+			 			AND ESI.HAKGWA_CD = #{HAKGWA_HAKBU_CD}
+			 		</if>
+			 		<if test="JEONGONG_CD != null and JEONGONG_CD != ''">
+			 			AND ESI.JEONGONG_CD = #{JEONGONG_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "8"'>
+			 		<if test="GYEYEOL_CD != null and GYEYEOL_CD != ''">
+			 			AND ESI.GYEYEOL_CD = #{GYEYEOL_CD}
+			 		</if>
+			 		<if test="HAKGWA_HAKBU_CD != null and HAKGWA_HAKBU_CD != ''">
+			 			AND ESI.HAKGWA_CD = #{HAKGWA_HAKBU_CD}
+			 		</if>
+			 		<if test="JEONGONG_CD != null and JEONGONG_CD != ''">
+			 			AND ESI.JEONGONG_CD = #{JEONGONG_CD}
+			 		</if>
+			 	</if>
+			 	<if test='MOJIP_GBCD == "9"'>
+			 		<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			 			AND ESI.HAKGWA_JEONGONG_CD = #{HAKGWA_CD}
+			 		</if>
+			 	</if>
+			</if>
+			<if test="JUYA_GBCD != null and JUYA_GBCD != ''">
+	 			AND ESI.JUYA_GBCD = #{JUYA_GBCD}
+	 		</if>
+	 		<if test="SUHEOM_NO != null and SUHEOM_NO != ''">
+	 			AND (ESI.SUHEOM_NO LIKE '%'||#{SUHEOM_NO}||'%' OR ESI.SUHEOMSAENG_NM LIKE '%'||#{SUHEOM_NO}||'%')
+	 		</if>
+	 		<if test='DEUNGROK_YN == "1"'>
+	 			AND EXISTS (
+						SELECT 1
+						  FROM UNIV.UR_DAESANGJA_SINIP_M DS
+						 INNER JOIN UNIV.UR_GONGJI_SINIP_M GS
+						    ON DS.DEUNGROK_YYYY = GS.DEUNGROK_YYYY
+						   AND DS.GONGJI_GBCD = GS.GONGJI_GBCD
+						   AND ( CASE WHEN DS.GONGJI_GBCD IN ('01', '02') THEN GS.HYEONJAE_CHASU_YN
+						   			   ELSE '1'
+						   	      END
+						   ) = '1'
+						   
+					 	 WHERE DS.DEUNGROK_YYYY = ESI.IPSI_YYYY
+			           	   AND DS.MOJIP_GBCD = ESI.MOJIP_GBCD
+			           	   AND DS.SUHEOM_NO = ESI.SUHEOM_NO
+			           	   AND DECODE(DS.DEUNGROK_STCD, '5','1',DS.NAPBU_STCD) = '1'
+						   AND DS.DEUNGROK_STCD IN ('1', '5')
+						   AND DS.HWANBUL_YN = '0'
+				        <if test='SINIP_CHK == "1"'>
+				           AND DS.GONGJI_GBCD IN ('01', '02', '09')
+				        </if>
+				        <if test='SINIP_CHK == "2"'>
+				           AND DS.GONGJI_GBCD = '05'
+				        </if>
+				        <if test="GONGJI_GBCD != null and GONGJI_GBCD != ''">
+				           AND DS.GONGJI_GBCD = #{GONGJI_GBCD}
+				        </if>
+			   		)
+	 		</if>
+			 ORDER BY ESI.IPSI_YYYY ASC, ESI.MOJIP_GBCD ASC, ESI.SUHEOM_NO ASC                                                                                              
+        /* COM_P12_DAO.retrieve_P12 입시접수정보 조회 */	                                 
+    </select> 	                                                        													 
+	                                                          													   
+</mapper>                                                                 													   
+                                                                 															   

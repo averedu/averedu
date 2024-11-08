@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="820" height="480" titletext="장학환수내역(신입생)" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="480" mobileorientation="landscape" width="820" description="장학환수내역(신입생)">
+        <Button id="btnClose" taborder="0" text="닫기" left="750" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10"/>
+        <Button id="btnHwansu" taborder="1" text="전액환수적용" left="645" width="100" height="25" cssclass="btn_WF_Crud" onclick="fn_Hwansu" bottom="10"/>
+        <Div id="divSearch" taborder="2" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" left="-14" top="9" width="118" height="22" cssclass="sta_WF_SearchLbl" text="수험번호/학번" textAlign="right"/>
+              <Edit id="edtSearchSuheomNo" taborder="1" left="114" top="9" height="22" width="90" autoselect="true" onkeydown="divSearch_edtSearchDancheCd_onkeydown" readonly="true"/>
+              <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="4" text="10" left="104" top="1" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="5" text="9" left="20" top="31" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Button id="btnSearch" taborder="6" text="조회" left="710" top="8" width="60" height="25" cssclass="btn_WF_Crud" onclick="fn_Ret"/>
+              <Static id="Static01_02_01_01" taborder="7" text="← 56 →" left="204" top="6" width="56" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_00" taborder="8" left="235" top="9" width="48" height="22" cssclass="sta_WF_SearchLbl" text="성명" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00" taborder="9" text="10" left="284" top="1" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Edit id="edtSearchHaksaengNm" taborder="10" left="294" top="9" height="22" width="90" autoselect="true" onkeydown="divSearch_edtSearchDancheCd_onkeydown" password="false" readonly="true"/>
+              <Static id="Static01_02_01_01_00" taborder="11" text="← 56 →" left="384" top="6" width="56" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_00_00" taborder="12" left="417" top="9" width="58" height="22" cssclass="sta_WF_SearchLbl" text="장학명" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="13" text="10" left="476" top="1" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Edit id="edtSearchJanghakNm" taborder="14" left="486" top="9" height="22" width="190" autoselect="true" onkeydown="divSearch_edtSearchDancheCd_onkeydown" password="false" readonly="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdMaster" taborder="3" left="10" top="98" right="10" bottom="172" binddataset="dsMaster" autofittype="col" fillareatype="none" onselectchanged="Div02_Grid00_onselectchanged">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="90"/>
+                <Column size="252"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="환수일자"/>
+                <Cell col="2" text="환수입학금"/>
+                <Cell col="3" text="환수수업료"/>
+                <Cell col="4" text="환수사유"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:HWANSU_DT" displaytype="date" combodataset="DS_BALRYEONG_GBCD" combocodecol="CD" combodatacol="LABEL" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="2" text="bind:HWANSU_IPHAK_AMT" displaytype="number" calendardateformat="yyyy-MM-dd" textAlign="right"/>
+                <Cell col="3" text="bind:HWANSU_SUEOP_AMT" displaytype="number" calendardateformat="yyyy-MM-dd" textAlign="right"/>
+                <Cell col="4" text="bind:HWANSU_SAYU" textAlign="left"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="합 계"/>
+                <Cell col="2" text="expr:dataset.getSum('HWANSU_IPHAK_AMT')" displaytype="number" textAlign="right"/>
+                <Cell col="3" text="expr:dataset.getSum('HWANSU_SUEOP_AMT')" displaytype="number" textAlign="right"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="4" text="↑&#13;&#10;45&#13;&#10;↓" left="210" top="52" width="100" height="45" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00" taborder="5" left="10" top="73" height="22" text="장학환수 목록" width="115" cssclass="sta_WF_Title02"/>
+        <Static id="staRowCnt" taborder="6" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="123" top="72" height="24" usedecorate="true" width="93"/>
+        <Static id="Static01_01_00_00" taborder="7" text="8" left="0" top="90" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Button id="btnSave" taborder="8" text="저장" top="65" width="55" height="25" cssclass="btn_WF_Crud" right="10" onclick="fn_Save"/>
+        <Static id="Static01_02_00_00_00_00" taborder="9" text="10" left="0" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="10" text="10" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0" right="0"/>
+        <Static id="Static01_01_00_00_00" taborder="11" text="10" left="0" top="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01_00_00_00_00" taborder="12" text="10" left="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0" bottom="0"/>
+        <Button id="btnCancel" taborder="13" text="취소" top="65" width="55" height="25" cssclass="btn_WF_Crud" right="70" onclick="fn_Cancel"/>
+        <Button id="btnDel" taborder="14" text="삭제" top="65" width="55" height="25" cssclass="btn_WF_Crud" right="130" onclick="fn_Del"/>
+        <Button id="btnNew" taborder="15" text="신규" top="65" width="55" height="25" cssclass="btn_WF_Crud" right="190" onclick="fn_New"/>
+        <Static id="stc_09_00_01" taborder="16" left="10" height="22" text="장학환수 상세정보" width="135" cssclass="sta_WF_Title02" bottom="140"/>
+        <Static id="Static01_01_00_00_01" taborder="17" text="8" left="0" top="335" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_00" taborder="18" text="↑&#13;&#10;35&#13;&#10;↓" left="210" top="308" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_13" taborder="19" height="28" cssclass="sta_WF_DetailBg" bottom="110" left="9" width="801"/>
+        <Static id="stc_12" taborder="20" text="잔여장학입학금" height="28" cssclass="sta_WF_DetailTi" width="110" bottom="110" left="10"/>
+        <Static id="stc_13_02" taborder="21" height="28" cssclass="sta_WF_DetailBg" bottom="82" left="9" width="801"/>
+        <Static id="stc_12_02" taborder="22" text="환수입학금" height="28" cssclass="sta_WF_DetailTi" width="110" bottom="82" left="10"/>
+        <Static id="stc_12_00_00_02_00_00" taborder="23" text="환수일자" height="28" cssclass="sta_WF_DetailTi" width="108" bottom="82" left="544"/>
+        <Static id="stc_13_02_00" taborder="24" height="28" cssclass="sta_WF_DetailBg" bottom="54" left="9" width="801"/>
+        <Static id="stc_12_02_00" taborder="25" text="환수사유" height="28" cssclass="sta_WF_DetailTi" width="110" bottom="54" left="10"/>
+        <Edit id="edtJigeupIpahkAmt" taborder="26" height="22" width="153" enable="false" readonly="false" textAlign="right" inputtype="number" left="122" bottom="113"/>
+        <Static id="stc_12_00_00_02_01_00_00" taborder="27" text="환수수업료" height="28" cssclass="sta_WF_DetailTi" width="110" bottom="82" left="277"/>
+        <Static id="stc_12_00_00_02_01_00_00_00" taborder="28" text="잔여장학수업료" height="28" cssclass="sta_WF_DetailTi" width="110" bottom="110" left="277"/>
+        <Edit id="edtHwansuIphakAmt" taborder="29" height="22" width="153" enable="true" readonly="false" textAlign="right" inputtype="number" left="122" bottom="85" cssclass="point" onchanged="edtHwansuIphakAmt_onchanged"/>
+        <Edit id="edtHwansuSayu" taborder="30" height="22" enable="true" readonly="false" left="122" bottom="57" right="13" cssclass="point"/>
+        <Edit id="edtJigeupSueopAmt" taborder="31" height="22" width="153" enable="false" readonly="false" textAlign="right" inputtype="number" left="389" bottom="113"/>
+        <Edit id="edtHwansuSueopAmt" taborder="32" height="22" width="153" enable="true" readonly="false" textAlign="right" inputtype="number" left="389" bottom="85" cssclass="point" onchanged="edtHwansuSueopAmt_onchanged"/>
+        <Calendar id="calHwansuDt" taborder="33" left="654" width="153" height="22" onkeydown="divSearch_calSearchBokhakFr_onkeydown" bottom="85" readonly="false" cssclass="point"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE04_2060401_P04.xfdl(장학환수내역(신입생))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/10
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "HWANSU_IPHAK_AMT$HWANSU_SUEOP_AMT$HWANSU_DT$HWANSU_SAYU";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "환수입학금$환수수업료$환수일자$환수사유";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	this.dsCheori.copyData(this.getOwnerFrame().dsCheori)
+	
+	var janghakNm = this.dsCheori.getColumn(0,"JANGHAK_NM");
+	var suheomNo = this.dsCheori.getColumn(0,"SUHEOM_NO");
+	var suheomsaengNm = this.dsCheori.getColumn(0,"SUHEOMSAENG_NM");
+	var jigeupIphakAmt = this.dsCheori.getColumn(0,"JIGEUP_IPHAK_AMT");
+	var jigeupSueopAmt = this.dsCheori.getColumn(0,"JIGEUP_SUEOP_AMT");
+	var totalHwansuIphakAmt = this.dsCheori.getColumn(0,"TOTAL_HWANSU_IPHAK_AMT");
+	var totalHwansuSueopAmt = this.dsCheori.getColumn(0,"TOTAL_HWANSU_SUEOP_AMT");
+	
+    jigeupIphakAmt = nexacro.toNumber(jigeupIphakAmt) - nexacro.toNumber(totalHwansuIphakAmt);
+	jigeupSueopAmt = nexacro.toNumber(jigeupSueopAmt) - nexacro.toNumber(totalHwansuSueopAmt);
+
+	this.divSearch.form.edtSearchSuheomNo.set_value(suheomNo);
+    this.divSearch.form.edtSearchHaksaengNm.set_value(suheomsaengNm);
+	this.divSearch.form.edtSearchJanghakNm.set_value(janghakNm);
+	this.edtJigeupIpahkAmt.set_value(jigeupIphakAmt);
+	this.edtJigeupSueopAmt.set_value(jigeupSueopAmt);
+
+	// 장학환수내역 조회
+	this.fn_Ret();
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            case "New":
+                    this.fn_PostNew();
+                break;
+            case "Del":
+                    this.fn_PostDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.dsCheori.getColumn(0, "IPSI_YYYY"));
+	this.ds_input.setColumn(0, "HAKGI", this.dsCheori.getColumn(0, "HAKGI"));
+	this.ds_input.setColumn(0, "JANGHAK_CD", this.dsCheori.getColumn(0, "JANGHAK_CD"));
+	this.ds_input.setColumn(0, "SEQ", this.dsCheori.getColumn(0, "SEQ"));
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UE/UE04/Retrieve_2060401_P04.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 추가 전 실행(기본체크사항)
+ */
+this.fn_PreNew = function()
+{
+	var jigeupIphakAmt = nexacro.toNumber(this.edtJigeupIpahkAmt.value); // 잔여장학입학금
+	var jigeupSueopAmt = nexacro.toNumber(this.edtJigeupSueopAmt.value); // 잔여장학수업료
+
+	if(jigeupIphakAmt == 0 && jigeupSueopAmt == 0) 
+	{
+	    this.alert("잔여장학입학금과 잔여장학수업료가 모두 0원일 경우 장학환수 목록을 추가할 수 없습니다.");
+		return false;
+	}
+
+    return true;
+};
+
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    if(!this.fn_PreNew())
+    {
+        return false;
+    }
+    var nRow = this.dsMaster.addRow();
+ 	this.dsMaster.setColumn(nRow, 'JANGHAK_YYYY', this.dsCheori.getColumn(0, "IPSI_YYYY"));
+ 	this.dsMaster.setColumn(nRow, 'HAKGI', this.dsCheori.getColumn(0, "HAKGI"));
+ 	this.dsMaster.setColumn(nRow, 'SUHEOM_NO', this.dsCheori.getColumn(0, "SUHEOM_NO"));
+ 	this.dsMaster.setColumn(nRow, 'JANGHAK_CD', this.dsCheori.getColumn(0, "JANGHAK_CD"));
+ 	this.dsMaster.setColumn(nRow, 'SEQ', this.dsCheori.getColumn(0, "SEQ"));
+ 	this.dsMaster.setColumn(nRow, 'HWANSU_IPHAK_AMT', 0);
+ 	this.dsMaster.setColumn(nRow, 'HWANSU_SUEOP_AMT', 0);
+ 	this.dsMaster.setColumn(nRow, 'HWANSU_DT', this.fn_Today());
+ 	this.dsMaster.setColumn(nRow, 'DEL_YN', 0);
+
+	// 목록에서 삭제된 장학환수일시 수정 못하도록 Enable false 처리
+    this.fn_ChkDeleteYn(nRow);
+};
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(this.dsMaster.getColumn(this.dsMaster.rowposition, 'DEL_YN') == '0') 
+	{
+		var hwansuIphakAmt = this.dsMaster.getColumn(this.dsMaster.rowposition, 'HWANSU_IPHAK_AMT');
+		var hwansuSueopAmt = this.dsMaster.getColumn(this.dsMaster.rowposition, 'HWANSU_SUEOP_AMT');
+		var jigeupIphakAmt = this.edtJigeupIpahkAmt.value;
+		var jigeupSueopAmt = this.edtJigeupSueopAmt.value;
+	    // 잔여장학금액 + 삭제된 환수금액
+		this.edtJigeupIpahkAmt.set_value(nexacro.toNumber(jigeupIphakAmt) + nexacro.toNumber(hwansuIphakAmt));
+		this.edtJigeupSueopAmt.set_value(nexacro.toNumber(jigeupSueopAmt) + nexacro.toNumber(hwansuSueopAmt));
+	}
+	
+	// 신규행일시 삭제처리
+    if(this.dsMaster.getRowType(this.dsMaster.rowposition) == '2') 
+	{ 
+	    this.dsMaster.deleteRow(this.dsMaster.rowposition);
+	}
+	else 
+	{ 
+        this.dsMaster.setColumn(this.dsMaster.rowposition, 'DEL_YN', '1');
+	}
+	
+	// 목록에서 삭제된 장학환수일시 수정 못하도록 Enable false 처리
+    this.fn_ChkDeleteYn(this.dsMaster.rowposition);
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = false;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, "", chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+	}
+
+	var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UE/UE04/Save_2060401_P04.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u ";
+		strInDs    += "ds_saveInput=ds_saveInput:a ";
+		strInDs    += "dsCheori=dsCheori";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 취소 함수 선언
+***********************************************************************/
+this.fn_Cancel = function()
+{
+	this.dsMaster.reset();
+	var jigeupIphakAmt = this.dsCheori.getColumn(0,"JIGEUP_IPHAK_AMT");
+	var jigeupSueopAmt = this.dsCheori.getColumn(0,"JIGEUP_SUEOP_AMT");
+    // 팝업 오픈시 잔여장학금액으로 셋팅
+	this.edtJigeupIpahkAmt.set_value(jigeupIphakAmt);
+	this.edtJigeupSueopAmt.set_value(jigeupSueopAmt);
+	
+	this.dsMaster.set_filterstr('');
+};
+
+/**********************************************************************
+        10. 전액환수적용
+***********************************************************************/
+this.fn_Hwansu = function()
+{
+	var cnt = this.dsMaster.rowcount;
+	if(cnt == 0) 
+	{
+	    this.alert("장학환수 목록의 행을 추가해주세요.");
+		return false;
+	}
+	
+	var jigeupIphakAmt = this.edtJigeupIpahkAmt.value; // 잔여장학입학금
+	var jigeupSueopAmt = this.edtJigeupSueopAmt.value; // 잔여장학수업료
+	var hwansuIphakAmt = this.dsMaster.getColumn(this.dsMaster.rowposition, 'HWANSU_IPHAK_AMT'); // 환수입학금
+	var hwansuSueopAmt = this.dsMaster.getColumn(this.dsMaster.rowposition, 'HWANSU_SUEOP_AMT'); // 환수수업료
+	
+	if(nexacro.toNumber(jigeupIphakAmt) == 0 && nexacro.toNumber(jigeupSueopAmt) == 0) 
+	{
+	    this.alert("잔여장학입학금과 잔여장학수업료가 모두 0원일 경우 장학금을 환수 할 수 없습니다.");
+	    return false;
+	}
+	
+	this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_IPHAK_AMT', nexacro.toNumber(jigeupIphakAmt) + nexacro.toNumber(hwansuIphakAmt));
+	this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_SUEOP_AMT', nexacro.toNumber(jigeupSueopAmt) + nexacro.toNumber(hwansuSueopAmt));
+	this.edtJigeupIpahkAmt.set_value(0);
+	this.edtJigeupSueopAmt.set_value(0);
+};
+
+/**********************************************************************
+        11. 각종함수
+***********************************************************************/
+// 오늘날짜
+this.fn_Today = function()
+{
+	var objDate = new nexacro.Date();
+	var mm = (objDate.getMonth()+1).toString().padLeft(2, "0");
+	var dd = objDate.getDate().toString().padLeft(2, "0");
+	var today = objDate.getYear() + mm + dd;
+	return today;
+};
+
+// 목록에서 삭제된 장학환수일시 수정 못하도록 Enable false 처리
+this.fn_ChkDeleteYn = function (row)
+{
+    // 1: 삭제O, 0:삭제X
+    var deleteYn = this.dsMaster.getColumn(row, 'DEL_YN');
+
+	if(deleteYn == '0') { // 삭제 X
+	    this.edtHwansuIphakAmt.set_enable(true); // mdt 환수입학금
+		this.edtHwansuSueopAmt.set_enable(true); // mdt 환수수업료
+		this.calHwansuDt.set_enable(true); // cal 환수일자
+		this.edtHwansuSayu.set_enable(true); // edt 환수사유
+		this.btnHwansu.set_enable(true); // btn 전액환수
+	}
+	else if(deleteYn == '1') { // 삭제 O
+	    this.edtHwansuIphakAmt.set_enable(false); // mdt 환수입학금
+		this.edtHwansuSueopAmt.set_enable(false); // mdt 환수수업료
+		this.calHwansuDt.set_enable(false); // cal 환수일자
+		this.edtHwansuSayu.set_enable(false); // edt 환수사유
+		this.btnHwansu.set_enable(false); // btn 전액환수
+	}
+};
+
+/**********************************************************************
+        12. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+// 환수입학금 변경시
+this.edtHwansuIphakAmt_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	var jigeupIphakAmt = this.edtJigeupIpahkAmt.value; // 잔여장학입학금
+	var hwansuIphakAmt = e.postvalue;
+	var preHansuIphakAmt = e.prevalue;
+	
+	if(nexacro.toNumber(jigeupIphakAmt) == 0 && nexacro.toNumber(preHansuIphakAmt) != 0) { // 전액환수했다가 환수입학금 변경시
+	    if(nexacro.toNumber(preHansuIphakAmt) - nexacro.toNumber(jigeupIphakAmt) > 0) {
+		    this.edtJigeupIpahkAmt.set_value(nexacro.toNumber(preHansuIphakAmt) - nexacro.toNumber(hwansuIphakAmt));
+        } else {
+		    this.alert("환수입학금은 잔여장학입학금보다 클 수 없습니다.");	
+			this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_IPHAK_AMT', preHansuIphakAmt);
+			return false;
+		}
+	}
+    else {
+		if(nexacro.toNumber(jigeupIphakAmt) < nexacro.toNumber(hwansuIphakAmt)) {
+			this.alert("환수입학금은 잔여장학입학금보다 클 수 없습니다.");	
+			this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_IPHAK_AMT', preHansuIphakAmt);
+			return false;
+		}
+		this.edtJigeupIpahkAmt.set_value(nexacro.toNumber(jigeupIphakAmt) + nexacro.toNumber(preHansuIphakAmt) - nexacro.toNumber(hwansuIphakAmt));
+    }
+};
+
+// 환수수업료 변경시
+this.edtHwansuSueopAmt_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	var jigeupSueopAmt = this.edtJigeupSueopAmt.value; // 잔여장학수업료
+	var hwansuSueopAmt = e.postvalue;
+	var preHwansuSueopAmt = e.prevalue;
+    
+	if(nexacro.toNumber(jigeupSueopAmt) == 0 && nexacro.toNumber(preHwansuSueopAmt) != 0) { // 전액환수했다가 환수수업료 변경시
+	    if(nexacro.toNumber(preHwansuSueopAmt) - nexacro.toNumber(hwansuSueopAmt) > 0) {
+	        this.edtJigeupSueopAmt.set_value(nexacro.toNumber(preHwansuSueopAmt) - nexacro.toNumber(jigeupSueopAmt));
+	    } else {
+		    this.alert("환수수업료는 잔여장학수업료보다 클 수 없습니다.");
+			this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_SUEOP_AMT', preHwansuSueopAmt);
+			return false;
+		}
+	} 
+    else {
+		if(nexacro.toNumber(jigeupSueopAmt) < nexacro.toNumber(hwansuSueopAmt)) {
+			this.alert("환수수업료는 잔여장학수업료보다 클 수 없습니다.");
+			this.dsMaster.setColumn(this.dsMaster.rowposition, 'HWANSU_SUEOP_AMT', preHwansuSueopAmt);
+			return;
+		}
+		this.edtJigeupSueopAmt.set_value(nexacro.toNumber(jigeupSueopAmt) + nexacro.toNumber(preHwansuSueopAmt) - nexacro.toNumber(hwansuSueopAmt));
+    }
+};
+
+// 행 변경시
+this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	// 목록에서 삭제된 장학환수일시 수정 못하도록 Enable false 처리
+    this.fn_ChkDeleteYn(this.dsMaster.rowposition);
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    return this.gfn_isUpdate(this.dsMaster);
+};
+
+// 종료버튼 클릭시
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="JANGHAK_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="SUHEOM_NO" type="STRING" size="10"/>
+          <Column id="JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="HWANSU_SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="HWANSU_DT" type="STRING" size="8"/>
+          <Column id="HWANSU_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="HWANSU_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="HWANSU_SAYU" type="STRING" size="100"/>
+          <Column id="DEL_YN" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="100"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="SUHEOM_NO" type="STRING" size="256"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="256"/>
+          <Column id="JANGHAK_CD" type="STRING" size="256"/>
+          <Column id="JANGHAK_NM" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsCheori" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="BIGDECIMAL" size="22"/>
+          <Column id="JANGHAKDAESANG_GBCD" type="STRING" size="2"/>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="JANGHAK_NM" type="STRING" size="100"/>
+          <Column id="USEON_SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="GYEYEOL_CD" type="STRING" size="10"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="HAKNYEON" type="STRING" size="1"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOM_NO" type="STRING" size="10"/>
+          <Column id="SUHEOMSAENG_NM" type="STRING" size="40"/>
+          <Column id="SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="SUHYE_GBCD" type="STRING" size="2"/>
+          <Column id="JIGEUP_SANGTAE_GBCD" type="STRING" size="2"/>
+          <Column id="IPHAKGEUM_JIGEUP_GBCD" type="STRING" size="2"/>
+          <Column id="SUEOPRYO_JIGEUP_GBCD" type="STRING" size="2"/>
+          <Column id="IPHAKGEUM_JIGEUP_PAMT" type="BIGDECIMAL" size="22"/>
+          <Column id="SUEOPRYO_JIGEUP_PAMT" type="BIGDECIMAL" size="22"/>
+          <Column id="IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_GANEUNG_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_GANEUNG_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUNGBOKSAKJE_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUNGBOKSAKJE_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_YN" type="STRING" size="1"/>
+          <Column id="JIGEUP_DT" type="STRING" size="8"/>
+          <Column id="TOTAL_HWANSU_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HWANSU_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="BIGO" type="STRING" size="200"/>
+          <Column id="JEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGDEUNGGEUP" type="STRING" size="10"/>
+          <Column id="DEUNGROK_MAGAM_DT" type="STRING" size="8"/>
+          <Column id="HWANSU_YN" type="STRING" size="1"/>
+          <Column id="GYEOLJE_YN" type="STRING" size="1"/>
+          <Column id="GYEOLJE_DT" type="STRING" size="8"/>
+          <Column id="RES_NO_1" type="STRING" size="6"/>
+          <Column id="DEUNGROK_YN" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_saveInput" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="JIGEUP_IPHAK_AMT" type="STRING" size="100"/>
+          <Column id="JIGEUP_SUEOP_AMT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtSearchSuheomNo" propid="value" datasetid="ds_input" columnid="SUHEOM_NO"/>
+      <BindItem id="item3" compid="edtHwansuIphakAmt" propid="value" datasetid="dsMaster" columnid="HWANSU_IPHAK_AMT"/>
+      <BindItem id="item4" compid="edtHwansuSayu" propid="value" datasetid="dsMaster" columnid="HWANSU_SAYU"/>
+      <BindItem id="item6" compid="edtHwansuSueopAmt" propid="value" datasetid="dsMaster" columnid="HWANSU_SUEOP_AMT"/>
+      <BindItem id="item7" compid="calHwansuDt" propid="value" datasetid="dsMaster" columnid="HWANSU_DT"/>
+      <BindItem id="item1" compid="divSearch.form.edtSearchJanghakNm" propid="value" datasetid="ds_input" columnid="JANGHAK_NM"/>
+      <BindItem id="item2" compid="divSearch.form.edtSearchHaksaengNm" propid="value" datasetid="ds_input" columnid="HAKSAENG_NM"/>
+      <BindItem id="item5" compid="edtJigeupIpahkAmt" propid="value" datasetid="ds_saveInput" columnid="JIGEUP_IPHAK_AMT"/>
+      <BindItem id="item8" compid="edtJigeupSueopAmt" propid="value" datasetid="ds_saveInput" columnid="JIGEUP_SUEOP_AMT"/>
+    </Bind>
+  </Form>
+</FDL>

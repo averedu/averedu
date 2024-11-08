@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="700" height="480" titletext="파일업로드" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="480" mobileorientation="landscape" width="700" description="파일업로드">
+        <Div id="Divbg" taborder="0" text="Divbg" left="10" top="10" cssclass="type02" right="10" bottom="10" background="white" border="2px solid">
+          <Layouts>
+            <Layout>
+              <FileUpload id="FileUpload" taborder="0" left="200" top="230" width="230" height="20" uploadurl="/event/comm/upload?upload_path=EN" onsuccess="Divbg_FileUpload_onsuccess" onerror="Divbg_FileUpload_onerror"/>
+              <Static id="Static00" taborder="1" text="파일 선택" left="140" top="230" width="60" height="20"/>
+              <Button id="btnUpload" taborder="2" text="업로드" left="440" top="230" width="60" height="20" onclick="Divbg_btnUpload_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN03_1010301_P01.xfdl(파일업로드)
+* 작 성         일 명: 백재인
+* 작 성         일 자: 2021/06/10
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	// 기본값 세팅
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.getOwnerFrame().IPSI_YYYY);
+	this.ds_input.setColumn(0, "GIJUN_YYYY", this.getOwnerFrame().GIJUN_YYYY);
+	this.ds_input.setColumn(0, "HYEONJAE_MOJIP", this.getOwnerFrame().HYEONJAE_MOJIP);
+	this.ds_input.setColumn(0, "CALL_POPUP", this.getOwnerFrame().CALL_POPUP);
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 파일업로드 버튼 클릭시
+***********************************************************************/
+this.Divbg_btnUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var fileIndex = this.Divbg.form.FileUpload.index;
+	if(fileIndex == -1)
+	{
+		this.alert("업로드할 파일을 선택해주세요.");
+	}
+	else
+	{
+		this.Divbg.form.FileUpload.upload();
+	}	
+};
+
+/**********************************************************************
+        06. 파일업로드 성공시
+***********************************************************************/
+this.Divbg_FileUpload_onsuccess = function(obj:nexacro.FileUpload,e:nexacro.FileUploadEventInfo)
+{
+	this.dsFileUpload.copyData(e.datasets[0]);
+	var HYEONJAE_MOJIP	= this.ds_input.getColumn(0, "HYEONJAE_MOJIP");
+	var CALL_POPUP = this.ds_input.getColumn(0, "CALL_POPUP");
+	var mojipGubun1 = "";
+	var mojipGubun2 = "";
+
+	// (1: 정시, 2: 수시, A: 1차, B: 2차, C: 3차)
+	if( HYEONJAE_MOJIP == "1" )
+	{
+		// 수시 1차
+		mojipGubun1 = "2";
+		mojipGubun2 = "A";
+	}
+	else if( HYEONJAE_MOJIP == "2" )
+	{
+		// 수시 2차
+		mojipGubun1 = "2";
+		mojipGubun2 = "B";
+	}
+	else if( HYEONJAE_MOJIP == "3" )
+	{
+		// 정시 1차
+		mojipGubun1 = "1";
+		mojipGubun2 = "A";
+	}
+	else if( HYEONJAE_MOJIP == "4" )
+	{
+		// 정시 2차
+		mojipGubun1 = "1";
+		mojipGubun2 = "B";
+	}
+	else
+	{
+		mojipGubun1 = "";
+		mojipGubun2 = "";
+	}
+		
+	//var param = 'IPSI_YYYY='+this.appObj.spn_ipsiYyyy.toString()+' MOJIP_GUBUN1='+mojipGubun1+' MOJIP_GUBUN2='+mojipGubun2+' GIJUN_YYYY='+this.appObj.GIJUN_YYYY.toString();
+	if(CALL_POPUP=="HAKSAENGBU")
+	{
+		// 학생부 성적이관
+		// - 엑셀업로드 보류
+// 		app.gfn_transaction({
+// 			FORM     : this
+// 			, ID       : 'EN03_1010301_M_01_T'
+// 			, URL      : '/en03_1010301_m_seongjeok_igwan_t'
+// 			, SEND_DS  : 'DS_FILE_UPLOAD=DS_FILE_UPLOAD'
+// 			, RECV_DS  : 'DS_UPLOAD_RESULT0=RESULT0 DS_ERROR=DS_ERROR'
+// 			, PARAM    : param
+// 			, CALLBACK : 'custom_callBack'
+// 			, ASYNC    : false
+// 		});
+	
+	}
+	else if(CALL_POPUP=="GEOMJEONG")
+	{
+		// 검정고시 성적이관
+		// - 엑셀업로드 보류
+// 		app.gfn_transaction({
+// 			FORM     : this
+// 			, ID       : 'EN03_1010303_M_01_C'
+// 			, URL      : '/en03_1010303_m_seongjeok_igwan'
+// 			, SEND_DS  : 'DS_FILE_UPLOAD=DS_FILE_UPLOAD'
+// 			, RECV_DS  : 'DS_UPLOAD_RESULT0=RESULT0 DS_ERROR=DS_ERROR'
+// 			, PARAM    : param
+// 			, CALLBACK : 'custom_callBack'
+// 			, ASYNC    : false
+// 		});
+	}	
+};
+
+/**********************************************************************
+        07. 파일업로드 실패시
+***********************************************************************/
+this.Divbg_FileUpload_onerror = function(obj:nexacro.FileUpload,e:nexacro.FileUploadErrorEventInfo)
+{
+	this.alert("업로드에 실패하였습니다.");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="100"/>
+          <Column id="GIJUN_YYYY" type="STRING" size="256"/>
+          <Column id="HYEONJAE_MOJIP" type="STRING" size="256"/>
+          <Column id="CALL_POPUP" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFileUpload">
+        <ColumnInfo>
+          <Column id="FILENAME" type="STRING" size="256"/>
+          <Column id="FILETYPE" type="STRING" size="256"/>
+          <Column id="FILESIZE" type="STRING" size="256"/>
+          <Column id="FILEPATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

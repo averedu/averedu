@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="생활관비 납입관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick" color="blue">
+    <Layouts>
+      <Layout description="생활관비 납입관리" height="800" mobileorientation="landscape" width="1640">
+        <Static id="Static01_00" taborder="0" text="↑&#13;&#10;35&#13;&#10;↓" left="520" top="69" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Button id="btnInput" taborder="1" text="은행자료입력" top="74" width="100" height="25" cssclass="btn_WF_Crud" right="3" onclick="btnInput_onclick"/>
+        <Div id="divSearch" taborder="2" left="0" top="0" height="69" cssclass="div_WF_SearchBox" text="" right="0" visible="true">
+          <Layouts>
+            <Layout>
+              <Static id="stc_01_02_00" taborder="1" left="0" top="36" height="22" text="학번" cssclass="sta_WF_SearchLbl" width="50" textAlign="right"/>
+              <Static id="stc_01_00_01_00" taborder="2" left="0" top="9" height="22" text="년도" cssclass="sta_WF_SearchLbl" width="50" textAlign="right"/>
+              <Spin id="spnSearchSchlYear" taborder="0" left="60" top="9" width="120" height="22" max="3000" min="0" value="" canchange="divSearch_spnSearchSchlYear_canchange" onkeydown="fn_onKeydown"/>
+              <Static id="stc_01_00_01_00_00" taborder="3" left="180" top="9" height="22" text="학기" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Edit id="edtSearchStntName" taborder="4" left="60" top="36" width="120" height="22" onkeydown="fn_onKeydown"/>
+              <Combo id="cboSearchSchlSmst" taborder="5" text="Combo" left="270" top="9" width="120" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsHakgi" canitemchange="divSearch_cboSearchSchlSmst_canitemchange" onkeydown="fn_onKeydown"/>
+              <Static id="Static01_02_00_00" taborder="6" text="27" left="0" top="0" width="27" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="7" text="9" left="19" top="0" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="-1"/>
+              <Static id="Static01_02_00_00_00_01" taborder="8" text="10" left="49" top="0" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_02_00" taborder="9" text="5" left="19" top="31" width="1570" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 6pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00_00" taborder="10" text="9" left="13" top="58" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;" right="-1"/>
+              <Static id="Static01_02_00_00_00_00_01" taborder="11" text="10" left="260" top="0" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_02_00_00" taborder="12" left="180" top="36" height="22" text="성명" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_01_00_01_00" taborder="13" text="← 56 →" left="180" top="0" width="56" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_00_00" taborder="14" left="390" top="9" height="22" text="학생구분" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Static id="stc_01_00_01_00_00_00_00" taborder="15" left="390" top="36" height="22" text="차수" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Static id="Static01_02_01_00_01_00_00" taborder="16" text="← 56 →" left="390" top="0" width="56" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_01_00" taborder="17" text="10" left="495" top="0" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchStntGubn" taborder="18" text="Combo" left="505" top="9" width="120" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" onkeydown="fn_onKeydown" canitemchange="divSearch2_cboSearchSchlSmst_canitemchange" innerdataset="dsStntGubn"/>
+              <Combo id="cboSearchDiffSequ" taborder="19" text="Combo" left="505" top="36" width="120" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsDiffSequ" onkeydown="fn_onKeydown"/>
+              <Static id="stc_01_00_01_00_00_00_01_00" taborder="20" left="625" top="9" height="22" text="학년" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_01_00_01_00_00_00_00" taborder="21" text="← 56 →" left="625" top="0" width="56" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_01_00_00_00" taborder="22" text="10" left="705" top="0" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchHaknyeon" taborder="23" text="Combo" left="715" top="9" width="120" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" onkeydown="fn_onKeydown" canitemchange="divSearch2_cboSearchSchlSmst_canitemchange" innerdataset="dsHaknyeon"/>
+              <Edit id="edtSearchStntName00" taborder="24" left="270" top="36" width="120" height="22" onkeydown="fn_onKeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09_00" taborder="3" left="1" top="74" height="31" text="생활관비 납입목록" cssclass="sta_WF_Title02" width="140"/>
+        <Static id="staRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="140" top="77" height="24" usedecorate="true" width="200"/>
+        <Static id="Static01_01_00_00_00" taborder="5" text="8" left="0" top="98" width="1640" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Grid id="grdMaster" taborder="6" binddataset="dsMaster" autoenter="select" autofittype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="106" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" oncellclick="grdMaster_oncellclick" onselectchanged="grdMaster_onselectchanged" right="0" onexpandup="grdMaster_onexpandup" onenterdown="grdMaster_onenterdown" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="150"/>
+                <Column size="50"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="차수"/>
+                <Cell col="2" text="학번"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="남/여"/>
+                <Cell col="5" text="학년"/>
+                <Cell col="6" text="학과"/>
+                <Cell col="7" text="인실"/>
+                <Cell col="8" text="생활관비"/>
+                <Cell col="9" text="식대"/>
+                <Cell col="10" text="실수납액"/>
+                <Cell col="11" text="수납일자"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:DIFF_SEQU" displaytype="combotext" combodataset="dsDiffSequ" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="2" text="bind:STNT_NUMB"/>
+                <Cell col="3" text="bind:STNT_KNAM"/>
+                <Cell col="4" text="bind:STNT_SEXC" displaytype="combotext" combodataset="dsGrdGender" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="5" text="bind:STNT_GRAD" displaytype="combotext" combodataset="dsGrdHaknyeon" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="6" text="bind:BLNG_DEPT" textAlign="left"/>
+                <Cell col="7" text="bind:ROOM_GUBN"/>
+                <Cell col="8" text="bind:AMNT_0001"/>
+                <Cell col="9" text="bind:AMNT_0002"/>
+                <Cell col="10" text="bind:SUM_AMNT"/>
+                <Cell col="11" text="bind:SCHL_DATE" displaytype="date" calendardateformat="yyyy-MM-dd "/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="STNT_NUMB" type="STRING" size="15"/>
+          <Column id="SCHL_DATE" type="STRING" size="8"/>
+          <Column id="SCHL_YEAR" type="STRING" size="4"/>
+          <Column id="SCHL_SMST" type="STRING" size="2"/>
+          <Column id="DIFF_SEQU" type="STRING" size="2"/>
+          <Column id="STNT_KNAM" type="STRING" size="50"/>
+          <Column id="STAT_GUBN" type="STRING" size="2"/>
+          <Column id="BLNG_DEPT" type="STRING" size="65532"/>
+          <Column id="ROOM_GUBN" type="STRING" size="26"/>
+          <Column id="AMNT_0001" type="BIGDECIMAL" size="22"/>
+          <Column id="AMNT_0002" type="BIGDECIMAL" size="22"/>
+          <Column id="SUM_AMNT" type="BIGDECIMAL" size="22"/>
+          <Column id="ACNT_NUMB2" type="STRING" size="20"/>
+          <Column id="STNT_SEXC" type="STRING" size="1"/>
+          <Column id="STNT_GRAD" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="STNT_GRAD" type="STRING" size="256"/>
+          <Column id="STNT_NUMB" type="STRING" size="256"/>
+          <Column id="STNT_KNAM" type="STRING" size="256"/>
+          <Column id="STNT_GUBN" type="STRING" size="256"/>
+          <Column id="DIFF_SEQU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSchl" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" onvaluechanged="dsMaster_onvaluechanged" canrowposchange="dsMaster_canrowposchange" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="DIFF_SEQU" type="STRING" size="256"/>
+          <Column id="STNT_GUBN" type="STRING" size="256"/>
+          <Column id="DATE_CODE" type="STRING" size="256"/>
+          <Column id="DATE_NAME" type="STRING" size="256"/>
+          <Column id="STRT_DATE" type="STRING" size="256"/>
+          <Column id="ENDD_DATE" type="STRING" size="256"/>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="CURR_GUBN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_inputSchl" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="STNT_GUBN" type="STRING" size="256"/>
+          <Column id="DATE_CODE" type="STRING" size="256"/>
+          <Column id="DIFF_SEQU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDiffSequ" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" onvaluechanged="dsMaster_onvaluechanged" canrowposchange="dsMaster_canrowposchange" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_inputDiffSequ" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="STNT_GUBN" type="STRING" size="256"/>
+          <Column id="DATE_CODE" type="STRING" size="256"/>
+          <Column id="DIFF_SEQU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHaknyeon">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsStntGubn">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrdDiffSequ" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" onvaluechanged="dsMaster_onvaluechanged" canrowposchange="dsMaster_canrowposchange" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrdGender">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrdHaknyeon">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): BH05_4080503_M.xfdl(생활관비 납입관리)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/10/13
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strDs    = "dsHakgi|dsHaknyeon|dsStntGubn";
+	    strDs   += "|dsGrdGender|dsGrdHaknyeon";
+    // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strLgcd  = "00022|00060|00743";
+	    strLgcd += "|00001|00060";
+	// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strComb  = "X|T|T";
+	    strComb += "|N|N";
+    var strOptn  = ""; // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+	
+	// 생활관 일정
+	this.fn_getSchl();
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "GetSchl":
+                    this.fn_PostGetSchl();
+                break;
+            case "GetDiffSequ":
+                    this.fn_PostGetDiffSequ();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/BH/BH05/Retrieve_4080503_MList.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+// 생활관 일정 조회
+this.fn_getSchl = function() {
+	this.ds_inputSchl.setColumn(0, "SCHL_YEAR", "");
+	this.ds_inputSchl.setColumn(0, "SCHL_SMST", "");
+	this.ds_inputSchl.setColumn(0, "STNT_GUBN", "");
+	this.ds_inputSchl.setColumn(0, "DATE_CODE", "2");
+	this.ds_inputSchl.setColumn(0, "DIFF_SEQU", "");
+
+	var strSvc      = "GetSchl";
+    var strUrl      = "/prj/BH/BH_COMMON/GET_SCHL.do";
+    var strInDs     = "ds_input=ds_inputSchl";
+    var strOutDs    = "dsSchl=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+}
+this.fn_PostGetSchl = function()
+{
+	this.ds_input.setColumn(0, "SCHL_YEAR", this.dsSchl.getColumn(0, "SCHL_YEAR"));
+	this.ds_input.setColumn(0, "SCHL_SMST", this.dsSchl.getColumn(0, "SCHL_SMST"));
+	this.fn_getDiffSequ();
+};
+
+// 일정차수조회
+this.fn_getDiffSequ = function() {
+	this.ds_inputDiffSequ.setColumn(0, "STNT_GUBN", "");
+	this.ds_inputDiffSequ.setColumn(0, "DATE_CODE", "2");
+	this.ds_inputDiffSequ.setColumn(0, "SCHL_YEAR", this.divSearch.form.spnSearchSchlYear.value);
+	this.ds_inputDiffSequ.setColumn(0, "SCHL_SMST", this.divSearch.form.cboSearchSchlSmst.value);
+	
+	var strSvc      = "GetDiffSequ";
+    var strUrl      = "/prj/BH/BH_COMMON/GET_DIFF_SEQU.do";
+    var strInDs     = "ds_input=ds_inputDiffSequ";
+    var strOutDs    = "dsDiffSequ=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+}
+this.fn_PostGetDiffSequ = function() {
+	var nRow = this.dsDiffSequ.insertRow(0);
+	this.dsDiffSequ.setColumn(nRow, "CODE", "");
+	this.dsDiffSequ.setColumn(nRow, "CODE_NM", "전체");
+	this.divSearch.form.cboSearchDiffSequ.set_index(0);
+};
+
+this.divSearch_spnSearchSchlYear_canchange = function(obj:nexacro.Spin,e:nexacro.ChangeEventInfo)
+{
+	this.divSearch_cboSearchSchlSmst_canitemchange();
+};
+
+this.divSearch_cboSearchSchlSmst_canitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.dsDiffSequ.clearData();
+	this.fn_getDiffSequ();
+};
+
+// 은행자료입력
+this.btnInput_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.alert("기능 개발 중....");
+	return;
+
+	var schlYear = this.ds_input.getColumn(0, "SCHL_YEAR");
+	var schlSmst = this.ds_input.getColumn(0, "SCHL_SMST");
+	var diffSequ = this.ds_input.getColumn(0, "DIFF_SEQU");
+	
+	if (this.gfn_isNull(schlYear)) {
+		this.alert("년도를 입력해주세요.");
+		return;
+	}
+	
+	if (this.gfn_isNull(schlSmst)) {
+		this.alert("학기를 선택해주세요.");
+		return;
+	}
+	
+	if (this.gfn_isNull(diffSequ)) {
+		this.alert("차수를 선택해주세요.");
+		return;
+	}
+	
+	var oArg = {schlYear:schlYear, schlSmst:schlSmst, diffSequ:diffSequ};
+	var oOption = {};	
+	var sPopupCallBack = "fn_popupCallback";
+	this.gfn_openPopup("popup","BH05::BH05_4080503_P01.xfdl",oArg,sPopupCallBack,oOption);
+};
+
+this.fn_onKeydown = function(obj, e) {
+	if (e.keycode == 13) {
+		this.divSearch_cboSearchSchlSmst_canitemchange();
+		this.fn_Ret();
+	}
+}
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.spnSearchSchlYear" propid="value" datasetid="ds_input" columnid="SCHL_YEAR"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchSchlSmst" propid="value" datasetid="ds_input" columnid="SCHL_SMST"/>
+      <BindItem id="item2" compid="divSearch.form.cboSearchStntGubn" propid="value" datasetid="ds_input" columnid="STNT_GUBN"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchHaknyeon" propid="value" datasetid="ds_input" columnid="STNT_GRAD"/>
+      <BindItem id="item4" compid="divSearch.form.edtSearchStntName" propid="value" datasetid="ds_input" columnid="STNT_NUMB"/>
+      <BindItem id="item5" compid="divSearch.form.edtSearchStntName00" propid="value" datasetid="ds_input" columnid="STNT_KNAM"/>
+      <BindItem id="item6" compid="divSearch.form.cboSearchDiffSequ" propid="value" datasetid="ds_input" columnid="DIFF_SEQU"/>
+    </Bind>
+  </Form>
+</FDL>

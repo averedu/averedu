@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppVariables version="2.0">
+  <Variables>
+    <Variable id="gv_userId" initval="admin" usecookie="false"/>
+    <Variable id="gv_openCnt" initval="15"/>
+    <Variable id="gv_binary" initval="false"/>
+    <Variable id="JSESSIONID" usecookie="true"/>
+    <Variable id="gv_Compress" initval="false"/>
+    <Variable id="gv_OpenArg"/>
+    <Variable id="gv_sessionid"/>
+    <Variable id="gv_cutPrgId"/>
+    <Variable id="gv_cutPrgNm"/>
+    <Variable id="gv_viewType" initval="login"/>
+    <Variable id="gv_activeWinId"/>
+    <Variable id="gv_Language" initval="ko"/>
+    <Variable id="gv_Flag" initval="false"/>
+    <Variable id="gv_runMode" initval="L"/>
+  </Variables>
+  <Datasets>
+    <Dataset id="gds_OpenMenu">
+      <ColumnInfo>
+        <Column id="MENU_ID" type="STRING" size="256"/>
+        <Column id="MENU_NM" type="STRING" size="256"/>
+        <Column id="WINID" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_userInfoDb">
+      <ColumnInfo>
+        <Column id="USER_ID" type="STRING" size="32"/>
+        <Column id="USER_NM" type="STRING" size="32"/>
+        <Column id="USER_PW" type="STRING" size="32"/>
+        <Column id="SC_USER_PW" type="STRING" size="32"/>
+        <Column id="DEPT" type="STRING" size="32"/>
+        <Column id="DEPT_NM" type="STRING" size="256"/>
+        <Column id="TEL_NO" type="STRING" size="32"/>
+        <Column id="HP_NO" type="STRING" size="32"/>
+        <Column id="EMAIL" type="STRING" size="32"/>
+        <Column id="FIRST_LOGIN" type="DATETIME" size="17"/>
+        <Column id="LAST_LOGIN" type="DATETIME" size="17"/>
+        <Column id="LOGIN_ERROR" type="STRING" size="32"/>
+        <Column id="PRE_PW" type="STRING" size="32"/>
+        <Column id="PW_CHANGE_DAY" type="STRING" size="32"/>
+        <Column id="PW_CHANGE_CYCLE" type="STRING" size="32"/>
+        <Column id="PW_CHANGE_PERIOD" type="STRING" size="32"/>
+        <Column id="USE_YN" type="STRING" size="32"/>
+        <Column id="REG_ID" type="STRING" size="32"/>
+        <Column id="REG_DT" type="DATETIME" size="17"/>
+        <Column id="MOD_ID" type="STRING" size="32"/>
+        <Column id="MOD_DT" type="DATETIME" size="17"/>
+        <Column id="AUTO_PLUS" type="STRING" size="32"/>
+        <Column id="CMP_CD" type="STRING" size="32"/>
+        <Column id="LANGUAGE" type="STRING" size="32"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_session">
+      <ColumnInfo>
+        <Column id="sessionId" type="STRING" size="256"/>
+        <Column id="usrNo" type="STRING" size="256"/>
+        <Column id="loinUsid" type="STRING" size="256"/>
+        <Column id="usrNm" type="STRING" size="256"/>
+        <Column id="usrEnm" type="STRING" size="256"/>
+        <Column id="orgCd" type="STRING" size="256"/>
+        <Column id="ctrCd" type="STRING" size="256"/>
+        <Column id="plcCd" type="STRING" size="256"/>
+        <Column id="areaCd" type="STRING" size="256"/>
+        <Column id="agtCd" type="STRING" size="256"/>
+        <Column id="agtEngAbnm" type="STRING" size="256"/>
+        <Column id="ctrCurCd" type="STRING" size="256"/>
+        <Column id="tmf" type="STRING" size="256"/>
+        <Column id="sysdate" type="STRING" size="256"/>
+        <Column id="localdate" type="STRING" size="256"/>
+        <Column id="location" type="STRING" size="256"/>
+        <Column id="ostype" type="STRING" size="256"/>
+        <Column id="jobroll" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row/>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_Message">
+      <ColumnInfo>
+        <Column id="MSG_CODE" type="STRING" size="32"/>
+        <Column id="MSG_NAME" type="STRING" size="32"/>
+        <Column id="MSG_TYPE" type="STRING" size="32"/>
+        <Column id="MSG_TYPE_NM" type="STRING" size="32"/>
+        <Column id="MSG_BTN" type="STRING" size="32"/>
+        <Column id="MSG_BTN_NM" type="STRING" size="32"/>
+        <Column id="MSG_YN" type="STRING" size="32"/>
+        <Column id="REG_ID" type="STRING" size="32"/>
+        <Column id="REG_DT" type="DATETIME" size="17"/>
+        <Column id="MOD_ID" type="STRING" size="32"/>
+        <Column id="MOD_DT" type="DATETIME" size="17"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="MSG_CODE">MSG00001</Col>
+          <Col id="MSG_NAME">메세지 입니다$1또는$2또는$3입니다.</Col>
+          <Col id="MSG_TYPE">4</Col>
+          <Col id="MSG_TYPE_NM">Information</Col>
+          <Col id="MSG_BTN">0</Col>
+          <Col id="MSG_BTN_NM">OK</Col>
+          <Col id="MSG_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180919021119000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180919021119000</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_CODE">MSG00002</Col>
+          <Col id="MSG_NAME">필수입력항목  [$1]을(를) 입력 하지 않으셨습니다. </Col>
+          <Col id="MSG_TYPE">1</Col>
+          <Col id="MSG_TYPE_NM">Error</Col>
+          <Col id="MSG_BTN">1</Col>
+          <Col id="MSG_BTN_NM">YES,NO</Col>
+          <Col id="MSG_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180919011751000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180919011751000</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_UserAuth">
+      <ColumnInfo>
+        <Column id="USER_ID" type="STRING" size="32"/>
+        <Column id="AUTH_CD" type="STRING" size="32"/>
+        <Column id="AUTH_CD_NM" type="STRING" size="32"/>
+        <Column id="AUTH_CD_DC" type="STRING" size="32"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="USER_ID">admin</Col>
+          <Col id="AUTH_CD">0001</Col>
+          <Col id="AUTH_CD_NM">테스트1</Col>
+          <Col id="AUTH_CD_DC">테스트1</Col>
+        </Row>
+        <Row>
+          <Col id="USER_ID">admin</Col>
+          <Col id="AUTH_CD">0002</Col>
+          <Col id="AUTH_CD_NM">테스트2</Col>
+          <Col id="AUTH_CD_DC">테스트2</Col>
+        </Row>
+        <Row>
+          <Col id="USER_ID">admin</Col>
+          <Col id="AUTH_CD">0003</Col>
+          <Col id="AUTH_CD_NM">테스트3</Col>
+          <Col id="AUTH_CD_DC">테스트3</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_SystemDate" useclientlayout="false">
+      <ColumnInfo>
+        <Column id="YYYY" type="STRING" size="32"/>
+        <Column id="YYYYMMDD" type="STRING" size="32"/>
+        <Column id="KOR_YYYYMMDD" type="STRING" size="32"/>
+        <Column id="YYYYMM" type="STRING" size="32"/>
+        <Column id="MMDD" type="STRING" size="32"/>
+        <Column id="MM" type="STRING" size="32"/>
+        <Column id="DD" type="STRING" size="32"/>
+        <Column id="MONTH_FIRST_DAY" type="STRING" size="32"/>
+        <Column id="MONTH_LAST_DAY" type="STRING" size="32"/>
+        <Column id="DAY_OF_WEEK" type="STRING" size="32"/>
+        <Column id="DAY_OF_KOR_WEEK" type="STRING" size="32"/>
+        <Column id="NOW_DATE_TIME" type="STRING" size="32"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="YYYY">2019</Col>
+          <Col id="YYYYMMDD">20190425</Col>
+          <Col id="KOR_YYYYMMDD">2019. 04. 25. Thu</Col>
+          <Col id="YYYYMM">201904</Col>
+          <Col id="MMDD">0425</Col>
+          <Col id="MM">04</Col>
+          <Col id="DD">25</Col>
+          <Col id="MONTH_FIRST_DAY">20190401</Col>
+          <Col id="MONTH_LAST_DAY">20190430</Col>
+          <Col id="DAY_OF_WEEK">5</Col>
+          <Col id="DAY_OF_KOR_WEEK">Thu</Col>
+          <Col id="NOW_DATE_TIME">20190425102906</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_Menu">
+      <ColumnInfo>
+        <Column id="LVL" type="BIGDECIMAL" size="16"/>
+        <Column id="MENU_ID" type="STRING" size="32"/>
+        <Column id="UP_MENU_ID" type="STRING" size="32"/>
+        <Column id="MENU_NM" type="STRING" size="32"/>
+        <Column id="MENU_DC" type="STRING" size="32"/>
+        <Column id="PROG_ID" type="STRING" size="32"/>
+        <Column id="FORM_PATH" type="STRING" size="32"/>
+        <Column id="FORM_ID" type="STRING" size="32"/>
+        <Column id="FORM_NM" type="STRING" size="32"/>
+        <Column id="MENU_LVL" type="BIGDECIMAL" size="16"/>
+        <Column id="MENU_DIV" type="STRING" size="32"/>
+        <Column id="LINK_YN" type="STRING" size="32"/>
+        <Column id="SORT" type="BIGDECIMAL" size="16"/>
+        <Column id="REG_ID" type="STRING" size="32"/>
+        <Column id="REG_DT" type="DATETIME" size="17"/>
+        <Column id="MOD_ID" type="STRING" size="32"/>
+        <Column id="MOD_DT" type="DATETIME" size="17"/>
+        <Column id="REG_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="PRT_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="DOWN_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="AUTH_CD" type="STRING" size="32"/>
+        <Column id="AUTH_NM" type="STRING" size="32"/>
+        <Column id="MENU_NM_PATH" type="STRING" size="32"/>
+        <Column id="IS_NEW" type="STRING" size="256"/>
+        <Column id="IS_RET" type="STRING" size="256"/>
+        <Column id="IS_SAVE" type="STRING" size="256"/>
+        <Column id="IS_DEL" type="STRING" size="256"/>
+        <Column id="IS_EXCEL" type="STRING" size="256"/>
+        <Column id="IS_PRINT" type="STRING" size="256"/>
+        <Column id="IS_CONFIRM" type="STRING" size="256"/>
+        <Column id="IS_TMP1" type="STRING" size="256"/>
+        <Column id="IS_TMP2" type="STRING" size="256"/>
+        <Column id="IS_TMP3" type="STRING" size="256"/>
+        <Column id="NEW_NAME" type="STRING" size="256"/>
+        <Column id="RET_NAME" type="STRING" size="256"/>
+        <Column id="SAVE_NAME" type="STRING" size="256"/>
+        <Column id="DEL_NAME" type="STRING" size="256"/>
+        <Column id="EXCEL_NAME" type="STRING" size="256"/>
+        <Column id="PRINT_NAME" type="STRING" size="256"/>
+        <Column id="CONFIRM_NAME" type="STRING" size="256"/>
+        <Column id="TMP1_NAME" type="STRING" size="256"/>
+        <Column id="TMP2_NAME" type="STRING" size="256"/>
+        <Column id="TMP3_NAME" type="STRING" size="256"/>
+        <Column id="PROG_FG" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_ExtOpenMenu">
+      <ColumnInfo>
+        <Column id="menuCd" type="STRING" size="256"/>
+        <Column id="menuNm" type="STRING" size="256"/>
+        <Column id="WINID" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_Component">
+      <ColumnInfo>
+        <Column id="COP_CODE" type="STRING" size="32"/>
+        <Column id="COP_NAME" type="STRING" size="32"/>
+        <Column id="COP_YN" type="STRING" size="32"/>
+        <Column id="REG_ID" type="STRING" size="32"/>
+        <Column id="REG_DT" type="DATETIME" size="17"/>
+        <Column id="MOD_ID" type="STRING" size="32"/>
+        <Column id="MOD_DT" type="DATETIME" size="17"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="COP_CODE">COP00021</Col>
+          <Col id="COP_NAME">로그인했습니다.</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180113011822000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180113011824000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00022</Col>
+          <Col id="COP_NAME">로그아웃</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180113012107000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180113012111000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00032</Col>
+          <Col id="COP_NAME">추가</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913133242000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913133242000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00033</Col>
+          <Col id="COP_NAME">삭제</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913133242000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913133242000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00034</Col>
+          <Col id="COP_NAME">저장</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913133242000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913133242000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00035</Col>
+          <Col id="COP_NAME">조회</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913133242000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913133242000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00036</Col>
+          <Col id="COP_NAME">엑셀다운로드</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913133612000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913133612000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00037</Col>
+          <Col id="COP_NAME">[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180913140716000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180913140716000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00030</Col>
+          <Col id="COP_NAME">설명</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180113012107000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180113012111000</Col>
+        </Row>
+        <Row>
+          <Col id="COP_CODE">COP00031</Col>
+          <Col id="COP_NAME">클래스</Col>
+          <Col id="COP_YN">1</Col>
+          <Col id="REG_ID">admin</Col>
+          <Col id="REG_DT">20180113012107000</Col>
+          <Col id="MOD_ID">admin</Col>
+          <Col id="MOD_DT">20180113012111000</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_PopRtn"/>
+    <Dataset id="gds_menuTabAuth">
+      <ColumnInfo>
+        <Column id="MENU_ID" type="STRING" size="256"/>
+        <Column id="TAB_ID" type="STRING" size="256"/>
+        <Column id="MAIN_TAB_YN" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage00</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage01</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage02</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage03</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage04</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSPO001008</Col>
+          <Col id="TAB_ID">tabpage05</Col>
+          <Col id="MAIN_TAB_YN">1</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage00</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage01</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage02</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage03</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage04</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_ID">MSSO000001</Col>
+          <Col id="TAB_ID">tabpage05</Col>
+          <Col id="MAIN_TAB_YN">0</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gds_MyMenu" useclientlayout="true">
+      <ColumnInfo>
+        <Column id="LVL" type="BIGDECIMAL" size="16"/>
+        <Column id="MENU_ID" type="STRING" size="32"/>
+        <Column id="USER_ID" type="STRING" size="32"/>
+        <Column id="UP_MENU_ID" type="STRING" size="32"/>
+        <Column id="MENU_NM" type="STRING" size="32"/>
+        <Column id="MENU_DC" type="STRING" size="32"/>
+        <Column id="PROG_ID" type="STRING" size="32"/>
+        <Column id="FORM_PATH" type="STRING" size="32"/>
+        <Column id="FORM_ID" type="STRING" size="32"/>
+        <Column id="FORM_NM" type="STRING" size="32"/>
+        <Column id="MENU_LVL" type="BIGDECIMAL" size="16"/>
+        <Column id="MENU_DIV" type="STRING" size="32"/>
+        <Column id="LINK_YN" type="STRING" size="32"/>
+        <Column id="SORT" type="BIGDECIMAL" size="16"/>
+        <Column id="REG_ID" type="STRING" size="32"/>
+        <Column id="REG_DT" type="DATETIME" size="17"/>
+        <Column id="MOD_ID" type="STRING" size="32"/>
+        <Column id="MOD_DT" type="DATETIME" size="17"/>
+        <Column id="REG_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="PRT_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="DOWN_YN" type="BIGDECIMAL" size="16"/>
+        <Column id="AUTH_CD" type="STRING" size="32"/>
+        <Column id="AUTH_NM" type="STRING" size="32"/>
+        <Column id="MENU_NM_PATH" type="STRING" size="32"/>
+        <Column id="IS_NEW" type="STRING" size="256"/>
+        <Column id="IS_RET" type="STRING" size="256"/>
+        <Column id="IS_SAVE" type="STRING" size="256"/>
+        <Column id="IS_DEL" type="STRING" size="256"/>
+        <Column id="IS_EXCEL" type="STRING" size="256"/>
+        <Column id="IS_PRINT" type="STRING" size="256"/>
+        <Column id="IS_CONFIRM" type="STRING" size="256"/>
+        <Column id="IS_TMP1" type="STRING" size="256"/>
+        <Column id="IS_TMP2" type="STRING" size="256"/>
+        <Column id="IS_TMP3" type="STRING" size="256"/>
+        <Column id="NEW_NAME" type="STRING" size="256"/>
+        <Column id="RET_NAME" type="STRING" size="256"/>
+        <Column id="SAVE_NAME" type="STRING" size="256"/>
+        <Column id="DEL_NAME" type="STRING" size="256"/>
+        <Column id="EXCEL_NAME" type="STRING" size="256"/>
+        <Column id="PRINT_NAME" type="STRING" size="256"/>
+        <Column id="CONFIRM_NAME" type="STRING" size="256"/>
+        <Column id="TMP1_NAME" type="STRING" size="256"/>
+        <Column id="TMP2_NAME" type="STRING" size="256"/>
+        <Column id="TMP3_NAME" type="STRING" size="256"/>
+        <Column id="PROG_FG" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gds_popupMenu">
+      <ColumnInfo>
+        <Column id="id" type="STRING" size="256"/>
+        <Column id="level" type="STRING" size="256"/>
+        <Column id="caption" type="STRING" size="256"/>
+        <Column id="enable" type="STRING" size="256"/>
+        <Column id="userData" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="id">shapeFix</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">틀고정 설정</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+        <Row>
+          <Col id="id">shapeFree</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">틀고정 해제</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+        <Row>
+          <Col id="id"/>
+          <Col id="level">0</Col>
+          <Col id="caption">-</Col>
+          <Col id="enable">0</Col>
+          <Col id="userData">0</Col>
+        </Row>
+        <Row>
+          <Col id="id">filter</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">그리드 필터</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+        <Row>
+          <Col id="id">filterfree</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">그리드 필터 해제</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+        <Row>
+          <Col id="level">0</Col>
+          <Col id="caption">-</Col>
+          <Col id="enable">0</Col>
+          <Col id="userData">0</Col>
+          <Col id="id"/>
+        </Row>
+        <Row>
+          <Col id="id">replace</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">찾기</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+        <Row>
+          <Col id="level">0</Col>
+          <Col id="caption">-</Col>
+          <Col id="enable">0</Col>
+          <Col id="userData">0</Col>
+          <Col id="id"/>
+        </Row>
+        <Row>
+          <Col id="id">formatInit</Col>
+          <Col id="level">0</Col>
+          <Col id="caption">초기상태로 복구</Col>
+          <Col id="enable">1</Col>
+          <Col id="userData">1</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+  </Datasets>
+  <DataObjects/>
+</AppVariables>

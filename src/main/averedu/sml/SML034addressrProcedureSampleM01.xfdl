@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="주소팝업및프로시저처리샘풀 " onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Static id="stc_24" taborder="0" left="16" top="90" height="32" cssclass="sta_WF_DetailBg" right="574"/>
+        <Static id="stc_25" taborder="1" text="우편번호" left="16" top="90" height="32" cssclass="sta_WF_DetailTi" width="100"/>
+        <Edit id="edtPostNo" taborder="2" left="121" top="93" width="74" height="25" textAlign="center" readonly="true"/>
+        <Edit id="edtAddr1" taborder="3" left="281" top="93" height="25" width="326" readonly="true"/>
+        <Button id="btnAddrPopup" taborder="4" text="주소검색" left="200" top="93" width="77" height="26" cssclass="btn_WF_Pop" onclick="btnAddrPopup_onclick"/>
+        <Edit id="edtAddr2" taborder="5" left="612" top="93" height="25" right="580" autoselect="true" maxlength="100"/>
+        <Grid id="Grid00" taborder="6" left="16" top="130" width="1053" height="50" binddataset="dsMaster" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="526"/>
+                <Column size="334"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="POST_NO"/>
+                <Cell col="1" text="ADDR1"/>
+                <Cell col="2" text="ADDR2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:POST_NO"/>
+                <Cell col="1" text="bind:ADDR1"/>
+                <Cell col="2" text="bind:ADDR2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static06" taborder="7" text="우편번호 팝업 및 프로시저 처리 호출" top="1" height="44" textAlign="center" background="#f80626" color="#ffffff" font="bold 18px/normal &quot;Gulim&quot;" left="0" right="1"/>
+        <Static id="Static04" taborder="8" text="- 우편번호 팝업 샘풀 -" top="49" width="166" height="35" textAlign="center" background="cadetblue" right="1459" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff"/>
+        <Static id="Static04_00" taborder="9" text="- 프로시저호출 -" top="189" width="166" height="35" textAlign="center" background="cadetblue" right="1459" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff"/>
+        <Button id="btnProceDure" taborder="10" text="프로시저 호출" left="23" top="317" width="107" height="26" cssclass="btn_WF_Pop" onclick="btnProceDure_onclick"/>
+        <Grid id="Grid01" taborder="11" left="17" top="259" width="473" height="53" binddataset="ds_input">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="129"/>
+                <Column size="105"/>
+                <Column size="228"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="PI_PARAM1"/>
+                <Cell col="1" text="PO_RET"/>
+                <Cell col="2" text="PO_ERRMSG"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PI_PARAM1"/>
+                <Cell col="1" text="bind:PO_RET"/>
+                <Cell col="2" text="bind:PO_ERRMSG"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="Edit00" taborder="12" left="16" top="226" width="130" height="28"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/************************************************************************************************
+ *  
+ * 테스트는 gds_menuTabAuth에 데이터를 추가하세요. MAIN_TAB_YN
+ *
+ * 조건: 중요탭을 제외한 기본탭이면서 탭 갯수가 최대 5개까지인 경우에만 사용 가능
+ * 
+************************************************************************************************/
+
+/***********************************************************************************************
+ *  FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+   	this.fn_formInit();
+};
+/**********************************************************************
+	공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+
+};
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+   
+    if(nErrorCode != 0)
+    {
+ 		this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            default:
+                break;
+        }
+    }
+};
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsDetail);
+};
+
+this.btnAddrPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfn_searchAddress("addressCallback");
+};
+
+//주소 검색 팝업 콜백 함수
+this.addressCallback = function(strId, strVal)
+{
+	//값이 있을 때만 값 셋팅 
+	//팝업에서 걍 닫기 누르면 아무값도 안 넘김
+	
+	if(objApp.gds_PopRtn.rowcount > 0)
+	{
+		this.dsMaster.setColumn(this.dsMaster.rowposition,"POST_NO", objApp.gds_PopRtn.getColumn(0,"ZIP_CODE"));		//우편번호(5자리 신규 우편번호)
+		this.dsMaster.setColumn(this.dsMaster.rowposition,"ADDR1", 	 objApp.gds_PopRtn.getColumn(0,"ADDRESS"));			//주소1
+		this.edtAddr2.setFocus();
+	}
+};
+
+this.btnProceDure_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Save();
+	
+};
+
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+     var result = this.gfn_confirm( "프로시처 처리 하시겠습니까?", "프로시저","", "question" );
+     if(result == 0)
+     {
+         return false;
+     }
+     return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+
+    var strSvc      = "Save";
+    var strUrl      = "/prj/sml/SaveProcedureSample.do";
+    var strInDs     = "ds_input=ds_input:a";
+    var strOutDs    = "ds_input=ds_input";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+   trace(this.ds_input.saveXML());
+};]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false" onrowposchanged="dsMaster_onrowposchanged" cancolumnchange="dsMaster_cancolumnchange">
+        <ColumnInfo>
+          <Column id="POST_NO" type="STRING" size="32"/>
+          <Column id="ADDR1" type="STRING" size="32"/>
+          <Column id="ADDR2" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="POST_NO"/>
+            <Col id="ADDR1"/>
+            <Col id="ADDR2"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="PI_PARAM1" type="STRING" size="256"/>
+          <Column id="PO_RET" type="STRING" size="256"/>
+          <Column id="PO_ERRMSG" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="PI_PARAM1">1</Col>
+            <Col id="PO_RET"/>
+            <Col id="PO_ERRMSG"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edtPostNo" propid="value" datasetid="dsMaster" columnid="POST_NO"/>
+      <BindItem id="item1" compid="edtAddr1" propid="value" datasetid="dsMaster" columnid="ADDR1"/>
+      <BindItem id="item2" compid="edtAddr2" propid="value" datasetid="dsMaster" columnid="ADDR2"/>
+      <BindItem id="item3" compid="Edit00" propid="value" datasetid="ds_input" columnid="PI_PARAM1"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P13_DAO">
+
+	<select id="COM_P13_DAO.retrieve_P13" parameterType="map" resultType="egovMap"> 
+			SELECT GYOGWAMOK_CD
+				 , GYOGWAMOK_NM
+				 , GYOGWAMOK_ENM
+				 , GYOGWAMOK_GAEYO
+				 , GYOGWAMOK_GAEYO_ENM
+				 , HAKJEOM
+				 , IRON_TM
+				 , SILSEUP_TM
+				 , TONGHAP_TM
+				 , IRON_SISU
+				 , SILSEUP_SISU
+				 , TONGHAP_SISU
+				 , ISU_GBCD
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00025', ISU_GBCD, '') FROM DUAL) AS ISU_GBNM
+				 , GWAMOK_GBCD
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00033', GWAMOK_GBCD, '') FROM DUAL) AS GWAMOK_GBNM
+				 , NCS_GBCD
+				 , NCS_NEUNGRYEOK_GBCD
+				 , PYEONGGA_GBCD
+				 , SEONGJEOK_BUYEO_GBCD
+				 , GANGUISIL_GBCD
+				 , SISU_HALF_GWAMOK_YN
+				 , GYOJIKGWAMOK_YN
+				 , GANGUIPYEONGGA_YN
+				 , PO_YN
+				 , GANGUIPYEONGGA_TYCD
+				 , CHOICHO_GAESEOL_YYYY
+				 , SINCHEONG_DT
+				 , PYEJI_DT
+				 , JUGWAN_DAEHAK_CD
+				 , COMM.SF_SC_GET_DEPT(JUGWAN_DAEHAK_CD, '') AS DAEHAK_NM
+				 , JUGWAN_HAKGWA_CD
+				 , COMM.SF_SC_GET_DEPT(JUGWAN_HAKGWA_CD, '') AS HAKGWA_NM
+				 , JUGWAN_JEONGONG_CD
+				 , COMM.SF_SC_GET_DEPT(JUGWAN_JEONGONG_CD, '') AS JEONGONG_NM
+				 , COMM.SF_SC_GET_DEPT(NVL(JUGWAN_JEONGONG_CD, NVL(JUGWAN_HAKGWA_CD, JUGWAN_DAEHAK_CD))) AS DEPT_NM
+				 , SEUNGIN_GBCD
+				 , SINCHEONGJA_ID
+				 , SEUNGINJA_ID
+				 , USE_YN
+				 , GU_SYS_GYOGWAMOK_CD
+				 , GYOYANG_GBCD
+			  FROM UNIV.UL_GIBONGWAMOK_C
+			 WHERE 1 = 1
+			<if test="GYOGWAMOK_CD_NM != null and GYOGWAMOK_CD_NM != ''">
+			   AND (GYOGWAMOK_CD = #{GYOGWAMOK_CD_NM} OR GYOGWAMOK_NM LIKE '%' || #{GYOGWAMOK_CD_NM} ||'%')
+			</if>
+			<if test="USE_YN != null and USE_YN != ''">
+			   AND NVL(USE_YN, 0) = #{USE_YN}
+			</if>
+			 ORDER BY JUGWAN_HAKGWA_CD, JUGWAN_JEONGONG_CD, GYOGWAMOK_NM, GYOGWAMOK_CD
+        /* COM_P13_DAO.retrieve_P13 교직과목리스트 조회 */	                                 
+    </select>
+</mapper>                                                                 													   

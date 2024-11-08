@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="700" height="480" titletext="부서" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="480" mobileorientation="landscape" width="700" description="부서">
+        <Grid id="grdMaster" taborder="0" left="10" top="70" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" oncelldblclick="grdMaster_oncelldblclick" autosizingtype="none" extendsizetype="row" right="10" bottom="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="139"/>
+                <Column size="404"/>
+                <Column size="61"/>
+                <Column size="64"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서코드"/>
+                <Cell col="1" text="부서명"/>
+                <Cell col="2" text="사용여부"/>
+                <Cell col="3" text="삭제여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="text" edittype="none" textAlign="center" text="bind:DEPT_CD" editmaxlength="10"/>
+                <Cell col="1" displaytype="text" edittype="none" textAlign="left" text="bind:DEPT_NM" editmaxlength="100"/>
+                <Cell col="2" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:USE_YN" editmaxlength="1"/>
+                <Cell col="3" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:DEL_YN" editmaxlength="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="1" text="닫기" left="630" width="60" cssclass="btn_WF_Crud" onclick="btnClose_onclick" height="25" bottom="10"/>
+        <Button id="btnChoice" taborder="2" text="선택" left="565" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnChoice_onclick" bottom="10"/>
+        <Div id="divSearch" taborder="3" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" left="-37" top="9" width="118" height="22" cssclass="sta_WF_SearchLbl" text="부서" textAlign="right"/>
+              <Edit id="edtSearchDeptCd" taborder="1" left="99" top="9" height="22" width="470" autoselect="true" onkeydown="divSearch_edtSearchDeptCd_onkeydown"/>
+              <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="4" text="10" left="89" top="-9" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="5" text="9" left="20" top="31" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Button id="btnSearch" taborder="6" text="조회" left="610" top="7" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="10" height="24" usedecorate="true" width="233" bottom="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): COM_01_P01.xfdl(부서 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/11/19
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().jojikGbcd)){
+		this.ds_input.setColumn(0, "JOJIK_GBCD", this.getOwnerFrame().jojikGbcd);
+	}
+	if( !this.gfn_isNull(this.getOwnerFrame().useYn)){
+		this.ds_input.setColumn(0, "USE_YN", this.getOwnerFrame().useYn);
+	}
+	if( !this.gfn_isNull(this.getOwnerFrame().deptLv)){
+		this.ds_input.setColumn(0, "DEPT_LV", this.getOwnerFrame().deptLv);
+	}
+	if( !this.gfn_isNull(this.getOwnerFrame().deptCdNm)){
+		this.ds_input.setColumn(0, "DEPT_CD_NM", this.getOwnerFrame().deptCdNm);
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Ret();
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/com/Retrieve_P01.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+this.btnChoice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objRtnArr = new Array(7);
+	objRtnArr[0] = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEPT_CD");
+	objRtnArr[1] = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEPT_NM");
+	objRtnArr[2] = this.dsMaster.getColumn(this.dsMaster.rowposition, "UP_DEPT_CD");
+	objRtnArr[3] = this.dsMaster.getColumn(this.dsMaster.rowposition, "UP_DEPT_NM");
+	objRtnArr[4] = this.dsMaster.getColumn(this.dsMaster.rowposition, "USE_YN");
+	objRtnArr[5] = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEL_YN");
+	objRtnArr[6] = this.dsMaster.getColumn(this.dsMaster.rowposition, "JOLEOP_HAKNYEON");
+	
+	this.close(objRtnArr.toString());
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.divSearch_edtSearchDeptCd_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	//13(Enter) 누르면 조회
+	if(e.keycode == 13)		
+	{
+        this.ds_input.setColumn(0,"DEPT_CD_NM",obj.value);
+		this.fn_Ret();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="DEPT_NM" type="STRING" size="100"/>
+          <Column id="UP_DEPT_CD" type="STRING" size="256"/>
+          <Column id="UP_DEPT_NM" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="1"/>
+          <Column id="DEL_YN" type="STRING" size="256"/>
+          <Column id="JOLEOP_HAKNYEON" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JOJIK_GBCD" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="DEPT_LV" type="STRING" size="256"/>
+          <Column id="DEPT_CD_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOutput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="10"/>
+          <Column id="DEPT_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_get" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DEPT_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtSearchDeptCd" propid="value" datasetid="ds_input" columnid="DEPT_CD_NM"/>
+    </Bind>
+  </Form>
+</FDL>

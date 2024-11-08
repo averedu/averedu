@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="ComponentGuide_01" width="1280" height="720" titletext="Grid" onclick="ComponentGuide_01_onclick">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="stc_00" taborder="0" left="0" top="0" height="200" right="0" background="#ccd6dc"/>
+        <Static id="stc_02" taborder="1" left="20" top="80" height="40" background="#0066b3" text="Component Guide 04" color="#ffffff" font="normal 20px/normal &quot;Malgun Gothic&quot;" letterSpacing="0px" padding="0px, 0px, 0px, 10px" width="260"/>
+        <Static id="stc_03" taborder="2" left="20" top="147" height="20" text="Grid" font="normal 14px/normal &quot;Malgun Gothic&quot;" width="260" color="#363636"/>
+        <Static id="stc_04" taborder="3" left="20" top="225" height="40" text="Grid" width="600" font="24px/normal &quot;Malgun Gothic&quot;" color="#000000"/>
+        <Static id="stc_05" taborder="4" left="20" top="277" height="20" text="- Grid 높이는 기본은 제공하는 Head height : 30px, body : 30px 꼭 확인 " width="490" font="11px/normal &quot;Malgun Gothic&quot;"/>
+        <Static id="stc_09" taborder="5" left="15" top="325" height="22" text="그리드 대 타이틀" width="330" cssclass="sta_WF_Title01"/>
+        <Button id="btn_02" taborder="6" text="행추가" top="326" width="56" height="22" right="73"/>
+        <Grid id="grd_00" taborder="7" left="15" top="350" height="304" right="15" binddataset="ds_grd" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="645"/>
+                <Column size="200"/>
+                <Column size="100"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="제목(Left)"/>
+                <Cell col="2" text="단위(Right)"/>
+                <Cell col="3" text="작성자"/>
+                <Cell col="4" text="작성일(Center)"/>
+                <Cell col="5" text="코드(Center)"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="text"/>
+                <Cell col="1" text="bind:Column1" cssclass="pointL" background="#fdffc4"/>
+                <Cell col="2" text="bind:Column2" displaytype="number" cssclass="pointR" background="#dcffe1"/>
+                <Cell col="3" text="bind:Column3" displaytype="text" background="#ffeae6"/>
+                <Cell col="4" text="bind:Column4" displaytype="date"/>
+                <Cell col="5" text="bind:Column5" displaytype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static10" taborder="8" text="7" left="15" top="343" width="488" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static22" taborder="9" text="3" top="347" height="3" cssclass="sta_GU_space" visible="false" left="780" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="15"/>
+        <Button id="btn_00" taborder="10" text="행삭제" top="326" height="22" right="15" width="56"/>
+        <Static id="Static00" taborder="11" text="30" left="530" top="320" width="100" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="12" text="10" left="15" top="320" width="488" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01" taborder="13" text="5" left="776" top="320" width="488" height="6" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Grid id="grd_02" taborder="14" left="15" top="775" height="303" binddataset="ds_type" autofittype="col" right="15">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="445"/>
+                <Column size="150"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="상태" cssclass="grd_State"/>
+                <Cell col="3" text="Edit"/>
+                <Cell col="4" text="Combo"/>
+                <Cell col="5" text="Expand"/>
+                <Cell col="6" text="link"/>
+                <Cell col="7" text="Mask" cssclass="point"/>
+                <Cell col="8" text="Button"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="123" displaytype="text"/>
+                <Cell col="2" text="bind:Column1" cssclass="grd_BgAdd"/>
+                <Cell col="3" text="bind:Column2" displaytype="editcontrol"/>
+                <Cell col="4" text="bind:Column3" displaytype="combocontrol"/>
+                <Cell col="5" text="bind:Column5" expandimage="bind:expandImg" expandshow="show" expandsize="30" displaytype="editcontrol" edittype="text"/>
+                <Cell col="6" text="bind:Column6" textDecoration="underline" cssclass="Link"/>
+                <Cell col="7" text="bind:Column7" displaytype="maskeditcontrol" edittype="mask" cssclass="pointR"/>
+                <Cell col="8" text="bind:Column8" displaytype="buttoncontrol" edittype="button"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="7" text="소계01" cssclass="Sum01"/>
+                <Cell col="7" colspan="2" text="1000000000" displaytype="number" cssclass="Sum01"/>
+                <Cell row="1" colspan="7" text="합계"/>
+                <Cell row="1" col="7" colspan="2" text="1000000000" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_06" taborder="15" left="15" top="1407" height="25" text="그리드 Head 항목명이 두 줄일 경우 (각각 30px)" width="330" cssclass="sta_WF_Title04"/>
+        <Grid id="grd_03" taborder="16" left="15" top="1435" height="124" binddataset="ds_type" autofittype="col" width="615">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="219"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" rowspan="2" text="No."/>
+                <Cell col="2" colspan="3" text="Component"/>
+                <Cell row="1" col="2" text="Edit"/>
+                <Cell row="1" col="3" text="combo"/>
+                <Cell row="1" col="4"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="123" displaytype="text"/>
+                <Cell col="2" text="bind:Column2" cssclass="pointL"/>
+                <Cell col="3" text="bind:Column3" displaytype="combocontrol"/>
+                <Cell col="4" cssclass="pointL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_07" taborder="17" left="650" top="1407" height="25" text="그리드 Head 1row 안에 텍스트가 두 줄이 들어갈 경우 (높이 50px)" width="390" cssclass="sta_WF_Title04"/>
+        <Grid id="grd_01" taborder="18" left="650" top="1435" height="124" binddataset="ds_type" autofittype="col" right="15">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="313"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="50" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="한 row안에&#13;&#10;두 줄 일때"/>
+                <Cell col="2" text="Combo"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column1"/>
+                <Cell col="1" text="bind:Column2" cssclass="pointL"/>
+                <Cell col="2" text="bind:Column3" displaytype="combocontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_08" taborder="19" left="15" top="1581" height="25" text="Tree Grid" width="330" cssclass="sta_WF_Title04"/>
+        <Grid id="grd_04" taborder="20" left="15" top="1610" height="190" binddataset="ds_Tree" autofittype="col" width="300" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_Tree" treeuseimage="false" treeuseline="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="30"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:lev" border="0px none"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_49" taborder="21" left="175" top="1581" height="24" text="cellclass: &lt;b v='true'&gt;grd_WF_Tree&lt;/b&gt;" width="138" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Grid id="grd_05" taborder="22" left="323" top="1610" height="189" binddataset="ds_Tree" autofittype="col" width="300" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_Tree02" treeuseimage="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="30"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:lev"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_10" taborder="23" left="483" top="1580" height="24" text="cellclass: &lt;b v='true'&gt;grd_WF_Tree02&lt;/b&gt;" width="138" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_12" taborder="24" left="0" top="1830" height="20" right="0" background="#ccd6dc" text=""/>
+        <Static id="stc_13" taborder="25" left="650" top="1580" height="25" text="Menu Grid" width="300" cssclass="sta_WF_Title04"/>
+        <Grid id="grd_06" taborder="26" left="650" top="1610" height="190" binddataset="ds_Tree" autofittype="col" width="300" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_MenuList" treeuseimage="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="30"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:lev"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_14" taborder="27" left="797" top="1580" height="24" text="cellclass: &lt;b v='true'&gt;grd_WF_MenuList&lt;/b&gt;" width="148" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_15" taborder="28" top="1580" height="22" text="cellclass: &lt;b v='true'&gt;grd_WF_MenuListX&lt;/b&gt;" width="149" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true" right="15"/>
+        <Grid id="grd_07" taborder="29" left="965" top="1610" height="188" binddataset="ds_Tree" autofittype="col" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_MenuListX" right="15">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="30"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:lev"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_08" taborder="30" left="15" top="1160" height="202" binddataset="ds_type" autofittype="col" right="15">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="170"/>
+                <Column size="170"/>
+                <Column size="170"/>
+                <Column size="170"/>
+                <Column size="170"/>
+                <Column size="170"/>
+                <Column size="189"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="기본"/>
+                <Cell col="3" text="타이틀컬러01" background="#72b1ff"/>
+                <Cell col="4" text="타이틀컬러02" background="#8dc0ff"/>
+                <Cell col="5" text="타이틀컬러03" background="#abd1ff"/>
+                <Cell col="6" text="타이틀컬러04" background="#c4deff"/>
+                <Cell col="7" text="타이틀컬러05" background="#d7e9ff"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="123" displaytype="text" background="#f3fffd"/>
+                <Cell col="2" background="#f3fff3"/>
+                <Cell col="3" background="#fff4f2"/>
+                <Cell col="4" background="#f2f5ff"/>
+                <Cell col="5" expandimage="bind:expandImg" expandshow="show" expandsize="30" displaytype="editcontrol" edittype="text" text="bind:Column5" background="#fffaf2"/>
+                <Cell col="6" textDecoration="underline" cssclass="Link" background="#fff1fd"/>
+                <Cell col="7" cssclass="pointR" background="#fffef1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_16" taborder="31" left="15" top="1132" height="25" text="그리드 컬러 가이드" width="331" cssclass="sta_WF_Title04"/>
+        <Static id="stc_01" taborder="32" left="20" top="20" height="60" background="#003876" text="한국공항공사(iFIS) UI" color="#ffffff" font="normal 36px/normal &quot;Malgun Gothic&quot;" letterSpacing="0px" padding="0px, 0px, 0px, 10px" width="390"/>
+        <Static id="stc_11" taborder="33" left="562" top="1088" height="24" text="cellclass: &lt;b v='true'&gt;Sum01&lt;/b&gt;" width="138" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_17" taborder="34" left="581" top="748" height="24" text="cellclass: &lt;b v='true'&gt;Link&lt;/b&gt;" width="139" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_18" taborder="35" left="60" top="747" height="24" text="cellclass: &lt;b v='true'&gt;grd_BgAdd&lt;/b&gt;" width="138" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_19" taborder="36" left="420" top="1126" height="24" text="&lt;b v='true'&gt;Background : #72b1ff&lt;/b&gt;" width="139" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_20" taborder="37" left="580" top="1125" height="25" text="&lt;b v='true'&gt;Background : #8dc0ff&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_21" taborder="38" left="745" top="1125" height="25" text="&lt;b v='true'&gt;Background : #abd1ff&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true" onclick="stc_21_onclick"/>
+        <Static id="stc_22" taborder="39" left="910" top="1125" height="25" text="&lt;b v='true'&gt;Background : #c4deff&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_23" taborder="40" left="1100" top="1125" height="25" text="&lt;b v='true'&gt;Background : #d7e9ff&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_34" taborder="41" left="120" top="761" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_24" taborder="42" left="620" top="768" width="1" height="50" background="#ff0000"/>
+        <Static id="stc_25" taborder="43" left="1070" top="768" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_26" taborder="44" left="1031" top="748" height="24" text="cellclass: &lt;b v='true'&gt;point&lt;/b&gt;" width="139" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_27" taborder="45" left="630" top="1038" width="1" height="50" background="#ff0000"/>
+        <Static id="stc_28" taborder="46" left="470" top="1148" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_29" taborder="47" left="640" top="1148" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_30" taborder="48" left="810" top="1148" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_31" taborder="49" left="980" top="1148" width="1" height="20" background="#ff0000"/>
+        <Static id="stc_32" taborder="50" left="1150" top="1148" width="1" height="20" background="#ff0000"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.tab_00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+
+this.ComponentGuide_01_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.stc_21_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column2">1,000,000</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">EKSSFK1532</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명003</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">ASDFA3456</Col>
+            <Col id="Column6">1</Col>
+            <Col id="Column7">코드명001</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">GZS36XCS1</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명002</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">4</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">DE453Z52S</Col>
+            <Col id="Column6">1</Col>
+            <Col id="Column7">코드명003</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">5</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">NM4SG51V</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명001</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">6</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">DFH34QTF</Col>
+            <Col id="Column6">1</Col>
+            <Col id="Column7">코드명002</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">7</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">S452FASD2</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명003</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">8</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">S47NBER2A</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명001</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">9</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">DE453Z52S</Col>
+            <Col id="Column6">0</Col>
+            <Col id="Column7">코드명002</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">10</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">NM4SG51V</Col>
+            <Col id="Column6">0</Col>
+          </Row>
+          <Row>
+            <Col id="Column2">1,000,000,000,001</Col>
+            <Col id="Column3">김한국</Col>
+            <Col id="Column0">999</Col>
+            <Col id="Column1">정확한 글자수제한은 시스템에 따라 달라질 수 있습니다</Col>
+            <Col id="Column4">20181128</Col>
+            <Col id="Column5">DFH34QTF</Col>
+            <Col id="Column6">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_type">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="순번" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="lev" type="STRING" size="256"/>
+          <Column id="expandImg" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="순번">1</Col>
+            <Col id="Column2">일</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="lev">0</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+          </Row>
+          <Row>
+            <Col id="순번">2</Col>
+            <Col id="Column2">일이</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="lev">0</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+          </Row>
+          <Row>
+            <Col id="순번">3</Col>
+            <Col id="Column2">일이삼</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="lev">0</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+          </Row>
+          <Row>
+            <Col id="순번">4</Col>
+            <Col id="Column2">일이삼사</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="lev">0</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+          </Row>
+          <Row>
+            <Col id="순번">5</Col>
+            <Col id="Column2">일이삼사오</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="lev">0</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+          </Row>
+          <Row>
+            <Col id="순번">6</Col>
+            <Col id="Column2">일이삼사오육</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="순번">7</Col>
+            <Col id="Column2">일이삼사오육칠</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="순번">8</Col>
+            <Col id="Column2">일이삼사오육칠팔</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="순번">9</Col>
+            <Col id="Column2">일이삼사오육칠팔구</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="순번">10</Col>
+            <Col id="Column2">일리삼사오육칠팔구십</Col>
+            <Col id="Column3">가나다라마</Col>
+            <Col id="Column5">expand</Col>
+            <Col id="Column6">www.link.com</Col>
+            <Col id="Column7">1234567890</Col>
+            <Col id="Column8">버튼</Col>
+            <Col id="expandImg">theme://images/btn_WF_PopSrch.png</Col>
+            <Col id="lev">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Tree">
+        <ColumnInfo>
+          <Column id="txt" type="STRING" size="256"/>
+          <Column id="lev" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

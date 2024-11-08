@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="성적사정" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Div id="DivBg" taborder="1" left="0" top="0" cssclass="type01" bottom="0" width="780" background="#e3ebff" text="">
+          <Layouts>
+            <Layout>
+              <Div id="divSearch" taborder="0" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+                <Layouts>
+                  <Layout>
+                    <Static id="stc_01" taborder="0" left="7" top="9" height="22" text="편입년도" cssclass="sta_WF_SearchLbl" width="98"/>
+                    <Static id="stc_01_00" taborder="1" left="225" top="9" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="80"/>
+                    <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                    <Static id="Static01_02_01" taborder="3" text="← 56 →" left="187" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                    <Static id="Static01_02_00_00" taborder="4" text="10" left="76" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                    <Static id="Static01_01_01" taborder="5" text="9" left="20" top="0" width="720" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+                    <Static id="Static01_01_00_00" taborder="6" text="9" left="20" top="31" width="720" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+                    <Static id="Static01_02_00_00_00" taborder="7" text="10" left="296" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                    <Static id="Static01_02_00_01" taborder="8" text="27" left="732" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                    <Spin id="spnPyeonipYyyy" taborder="9" left="86" top="9" width="101" height="22" onspin="pyeonipMojip" readonly="true" cssclass="point"/>
+                    <Combo id="cboPyeonipMojip" taborder="10" text="" left="306" top="9" width="120" height="22" innerdataset="ds_pyeonipMojip" codecolumn="PYEONIP_MOJIP_GBCD" datacolumn="PYEONIP_MOJIP_NM" index="0" value="1" readonly="true" cssclass="point"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="DivButton" taborder="1" left="10" top="61" height="50" background="white" right="10" border="1px solid #4c4b66" text="">
+                <Layouts>
+                  <Layout>
+                    <Button id="btnHabgyeok" taborder="0" text="성적산출 및 합격처리" top="11" width="179" cssclass="btn_WF_Crud" left="165" height="25" onclick="DivBg_DivButton_btnHabgyeok_onclick"/>
+                    <Button id="btnReset" taborder="1" text="성적산출 초기화" top="11" width="179" cssclass="btn_WF_Crud" left="395" height="25" onclick="DivBg_DivButton_btnHakjeokIgwan_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="Static01_00_01" taborder="2" text="10" left="330" top="52" width="100" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="DivBg.form.divSearch.form.spnPyeonipYyyy" propid="value" datasetid="ds_input" columnid="PYEONIP_YYYY"/>
+      <BindItem id="item2" compid="DivBg.form.divSearch.form.cboPyeonipMojip" propid="value" datasetid="ds_input" columnid="PYEONIP_MOJIP_GBCD"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): ET03_1020302_M.xfdl(성적사정)
+* 작 성         일 명: 박경민
+* 작 성         일 자: 2021/04/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 :
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	 //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "ds_Juya|dsMojipGbcd";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00003|01024";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "S|S";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+							  
+	this.fn_PyeonIpGijunYyyy();
+};
+
+// 편입기준년도 가져오기
+this.fn_PyeonIpGijunYyyy = function()
+{							  						  
+	var strSvc      = "PyeonIpGijunYyyy";
+    var strUrl      = "/prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+// 조회조건에 편입년도 설정
+this.fn_PostPyeonIpGijunYyyy = function()
+{
+	this.ds_input.setColumn(0, "PYEONIP_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.fn_PyeonIpMojip();
+}
+
+// 편입모집구분 가져오기
+this.fn_PyeonIpMojip = function()
+{
+	var strSvc      = "PyeonIpMojip";
+    var strUrl      = "/prj/ET/ET_COM/Retrieve_PYEONIP_MOJIP.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_pyeonipMojip=ds_pyeonipMojip";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+// 조회조건에 모집구분 설정
+this.fn_PostPyeonIpMojip = function()
+{
+	for(var i = 0; i < this.ds_pyeonipMojip.rowcount; i++)
+	{
+        if(this.ds_pyeonipMojip.getColumn(i, "HYEONJAE_MOJIP_YN") == 'Y')
+		{
+			this.ds_input.setColumn(0, "PYEONIP_MOJIP_GBCD", this.ds_pyeonipMojip.getColumn(i, "PYEONIP_MOJIP_GBCD"));
+        }
+    }
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "PyeonIpGijunYyyy":
+                    this.fn_PostPyeonIpGijunYyyy();
+                break;
+			case "PyeonIpMojip":
+                    this.fn_PostPyeonIpMojip();
+                break;
+			case "SeongJeok":
+					this.alert("처리되었습니다.");
+			    break;
+			case "SeongJeokReset":
+					this.alert("초기화 처리되었습니다.");
+			    break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 성적산출 및 합격처리
+***********************************************************************/
+this.DivBg_DivButton_btnHabgyeok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfn_confirm( "성적산출 및 합격 처리를 하시겠습니까?", "프로시저","", "question" )) 
+	{
+		return false;
+	}
+	
+	var strSvc      = "SeongJeok";
+    var strUrl      = "/prj/ET/ET03/Save_1020302_M_01.do";
+    var strInDs     = "ds_input=ds_input:a";
+    var strOutDs    = "ds_input=ds_input";
+    var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+	if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+	{
+		strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+	}
+	
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+};
+
+/**********************************************************************
+        06. 성적산출 초기화
+***********************************************************************/
+this.DivBg_DivButton_btnHakjeokIgwan_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfn_confirm( "성적산출 초기화를 하시겠습니까?", "프로시저","", "question" )) {
+		return false;
+	}
+	
+	var strSvc      = "SeongJeokReset";
+    var strUrl      = "/prj/ET/ET03/Save_1020302_M_02.do";
+    var strInDs     = "ds_input=ds_input:a";
+    var strOutDs    = "ds_input=ds_input";
+    var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+	if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+	{
+		strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+	}
+	
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);		
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="PYEONIP_YYYY" type="STRING" size="256"/>
+          <Column id="PYEONIP_MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="OUT_CODE" type="STRING" size="256"/>
+          <Column id="OUT_MSG" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="PYEONIP_YYYY" type="STRING" size="4"/>
+          <Column id="PYEONIP_MOJIP_GBCD" type="STRING" size="10"/>
+          <Column id="PYEONIP_MOJIP_NM" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="HAKGWA_NM" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_NM" type="STRING" size="256"/>
+          <Column id="PYEONIP_HAKNYEON" type="STRING" size="1"/>
+          <Column id="YEOSEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="CHASUIGWAN_YEOSEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="MYEONJEOP_YN" type="STRING" size="2"/>
+          <Column id="SILGI_YN" type="STRING" size="2"/>
+          <Column id="MYEONJEOP_DT" type="STRING" size="8"/>
+          <Column id="SILGI_DT" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_pyeonipMojip" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="PYEONIP_MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="PYEONIP_MOJIP_NM" type="STRING" size="256"/>
+          <Column id="HYEONJAE_MOJIP_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

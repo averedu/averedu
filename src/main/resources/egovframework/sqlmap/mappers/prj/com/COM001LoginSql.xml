@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="COM002LoginDAO">
+
+	<select id="retrieveLoginList" parameterType="map" resultType="egovMap">
+ 		/* COM002LoginDAO.retrieveLoginList  사용자 로긴온(USER) 정보 */
+ 		SELECT #{USERID} AS USER_ID      /* 사용자ID */
+ 		     , '관리자' AS USER_NM         /* 사용자명 */
+ 		     , #{PASSWORD} AS USER_PW    /* 패스워드 */
+ 		     , #{PASSWORD} AS SC_USER_PW /* 패스워드 */
+ 		  FROM DUAL
+    </select>
+
+	<select id="retrieveLoginList_1" parameterType="map" resultType="egovMap">
+			SELECT                                                  											
+			       A.USER_ID           AS USER_ID          /*사용자ID*/        
+			     , NVL(B.USER_NM, A.USER_NM)           AS USER_NM          /*사용자명*/        
+			     , A.PW       	       AS USER_PW          /*패스워드*/
+			     , (SELECT COMM.SF_ENCRYPTION('2', #{PASSWORD}) FROM DUAL) AS SC_USER_PW        
+			     , B.DEPT_CD           AS DEPT             /*부서*/          
+			     , (SELECT COMM.SF_SC_GET_DEPT(B.DEPT_CD, 'DEPT_NM') FROM DUAL)  AS DEPT_NM          /*부서명*/         
+			     , A.TEL_NO            AS TEL_NO           /*전화번호*/        
+			     , B.HP_NO             AS HP_NO            /*핸드폰번호*/        
+			     , B.EMAIL             AS EMAIL            /*이메일*/        
+			     , A.FIRST_LOGIN       AS FIRST_LOGIN      /*최초로그인*/        
+			     , A.LAST_LOGIN        AS LAST_LOGIN       /*최종로그인*/        
+			     , A.LOGIN_ERROR       AS LOGIN_ERROR      /*로그인에러*/        
+			     , A.PRE_PW            AS PRE_PW           /*이전비밀번호*/        
+			     , A.PW_CHANGE_DAY     AS PW_CHANGE_DAY    /*비밀번호변경일*/        
+			     , A.PW_CHANGE_CYCLE   AS PW_CHANGE_CYCLE  /*비밀번호변경주기*/        
+			     , A.PW_CHANGE_PERIOD  AS PW_CHANGE_PERIOD /*비밀번호변경기간*/        
+			     , A.USE_YN            AS USE_YN           /*사용여부*/        
+			     , A.REG_ID            AS REG_ID           /*등록자*/        
+			     , A.REG_DT            AS REG_DT           /*등록일시*/        
+			     , A.MOD_ID            AS MOD_ID           /*수정자*/        
+			     , A.MOD_DT            AS MOD_DT           /*수정일시*/        
+			     , A.AUTO_PLUS         AS AUTO_PLUS        /*자동증가*/        
+			     , A.CMP_CD            AS CMP_CD           /*회사코드*/ 
+			     , B.USER_GBCD							   /*사용자구분코드*/ 
+			     , B.JIKJONG_GBCD						   /*직종구분코드*/ 
+			     , B.JIKGEUP_GBCD      					   /*직급구분코드*/ 
+			FROM COMM.XBT_USER A
+			   , COMM.SC_USERINFO_V B                                             								 
+		   WHERE 1=1 
+		     AND A.USER_ID = B.USER_ID(+)                                            												 
+			 AND A.USER_ID = #{USERID}   
+			 AND A.PW 	   = (SELECT COMM.SF_ENCRYPTION('2', #{PASSWORD}) FROM DUAL)
+ 		/* COM002LoginDAO.retrieveLoginList_1  사용자 로긴온(USER) 정보 */
+	</select>
+	
+	<select id="retrieveLoginMenuData" parameterType="map" resultType="egovMap">
+	SELECT A.MENU_ID                      /* 메뉴ID */
+	     , A.UPPER_MENU_ID AS PMENU_ID    /* 상위메뉴ID */
+	     , A.MENU_NM                      /* 메뉴명 */
+	     , '1' AS MENU_LVL
+	  FROM COM.SSYS200 A  -- 메뉴마스터테이블
+	</select>
+	
+	<select id="retrieveLoginMenuData_1" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+            WITH VW_MAIN_MENU AS (
+                 SELECT                                                  											
+                        A.MENU_ID                                          AS MENU_ID 	 	     /*메뉴아이디*/         
+                      , A.PARENT_MENU_ID                                   AS PMENU_ID           /*상위메뉴아이디*/     
+                      , CASE WHEN #{LANGUAGE}=N'en' THEN A.MENU_ENG                        
+                             WHEN #{LANGUAGE}=N'ch' THEN A.MENU_CH                          
+                             WHEN #{LANGUAGE}=N'jp' THEN A.MENU_JP                          
+                             WHEN #{LANGUAGE}=N'ec' THEN A.MENU_ETC                         
+                        ELSE A.MENU_NM  END                                AS MENU_NM            /*메뉴명*/
+                      , A.MENU_ENG                                         AS MENU_EN            /*메뉴명(영어)*/       
+                      , A.MENU_CH                                          AS MENU_CH            /*메뉴명(중국어)*/     
+                      , A.MENU_JP                                          AS MENU_JP            /*메뉴명(일어)*/       
+                      , A.MENU_ETC                                         AS MENU_EC            /*메뉴명(기타언어)*/   
+                      , A.MENU_DC                                          AS MENU_DC            /*메뉴설명*/           
+                      , A.PROG_ID                                          AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                      , CASE WHEN A.PROG_ID IS NULL THEN '0' ELSE '1' END  AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                      , B.FORM_PATH                                        AS FORM_PATH          /*FORM위치명(PREFIX)*/           
+                      , B.FORM_ID                                          AS FORM_ID            /*FORMID(xfdl)*/            
+                      , B.FORM_NM                                          AS FORM_NM            /*FORM명(한글명)*/
+                      , A.MENU_LVL                                         AS MENU_LVL           /*메뉴레벨*/           
+                      , A.MENU_DIV                                         AS MENU_DIV           /*메뉴구분*/           
+                      , A.LINK_YN                                          AS LINK_YN            /*연결여부*/           
+                      , A.MENU_SORT                                        AS MENU_SORT          /*메뉴순서*/           
+                      , A.REG_ID                                           AS REG_ID             /*등록자*/             
+                      , A.REG_DT                                           AS REG_DT           /*등록일시*/           
+                      , A.MOD_ID                                           AS MOD_ID             /*수정자*/             
+                      , A.MOD_DT                                           AS MOD_DT           /*수정일시*/           
+                      , C.REG_YN                                           AS REG_YN             /*등록*/ 
+                      , C.OUTPUT_YN                                        AS PRT_YN             /*출력*/ 
+                      , C.DOWN_YN                                          AS DOWN_YN            /*다운로드*/
+                      , C.IS_NEW                                           AS IS_NEW             /*신규*/     
+                      , C.IS_RET                                           AS IS_RET             /*조회*/     
+                      , C.IS_SAVE                                          AS IS_SAVE            /*저장*/     
+                      , C.IS_DEL                                           AS IS_DEL             /*삭제*/     
+                      , C.IS_EXCEL                                         AS IS_EXCEL           /*엑셀*/     
+                      , C.IS_PRINT                                         AS IS_PRINT           /*출력*/     
+                      , C.IS_CONFIRM                                       AS IS_CONFIRM         /*확정*/     
+                      , C.IS_TMP1                                          AS IS_TMP1            /*임시1*/    
+                      , C.IS_TMP2                                          AS IS_TMP2            /*임시2*/    
+                      , C.IS_TMP3                                          AS IS_TMP3            /*임시3*/    
+                      , CASE WHEN C.IS_NEW     = '1' THEN '신규' ELSE '' END AS NEW_NAME          /*신규명*/ 
+                      , CASE WHEN C.IS_RET     = '1' THEN '조회' ELSE '' END AS RET_NAME          /*조회명*/
+                      , CASE WHEN C.IS_SAVE    = '1' THEN '저장' ELSE '' END AS SAVE_NAME         /*저장명*/
+                      , CASE WHEN C.IS_DEL     = '1' THEN '삭제' ELSE '' END AS DEL_NAME          /*삭제명*/
+                      , CASE WHEN C.IS_EXCEL   = '1' THEN '엑셀' ELSE '' END AS EXCEL_NAME        /*엑셀명*/
+                      , CASE WHEN C.IS_PRINT   = '1' THEN '출력' ELSE '' END AS PRINT_NAME        /*출력명*/
+                      , CASE WHEN C.IS_CONFIRM = '1' THEN '확정' ELSE '' END AS CONFIRM_NAME      /*확정명*/
+                      , C.TMP1_NAME                                        AS TMP1_NAME          /*입시이름1*/  
+                      , C.TMP2_NAME                                        AS TMP2_NAME          /*입시이름2*/  
+                      , C.TMP3_NAME                                        AS TMP3_NAME          /*입시이름3*/  
+                      , C.AUTH_CD                                          AS AUTH_CD            /*권한코드*/
+                      , C.AUTH_NM                                          AS AUTH_NM            /*권한명*/
+                      , CASE WHEN D.MENU_ID IS NULL THEN '0' ELSE '1' END  AS MY_MENU_FG         /*즐겨찾기 메뉴여부 */ 
+                   FROM COMM.XBT_MENU_INFO A
+                   LEFT OUTER JOIN COMM.XBT_PROG_MAST B
+                     ON B.PROG_ID = A.PROG_ID
+                    AND B.USER_YN = '1'
+                  INNER JOIN ( SELECT A.MENU_ID                                                                         AS MENU_ID
+                                    , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END                  AS REG_YN
+                                    , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END                  AS OUTPUT_YN
+                                    , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END                  AS DOWN_YN
+                                    , CASE WHEN MAX(COALESCE(A.IS_NEW,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_NEW
+                                    , CASE WHEN MAX(COALESCE(A.IS_RET,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_RET
+                                    , CASE WHEN MAX(COALESCE(A.IS_SAVE,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_SAVE
+                                    , CASE WHEN MAX(COALESCE(A.IS_DEL,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_DEL
+                                    , CASE WHEN MAX(COALESCE(A.IS_EXCEL,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_EXCEL
+                                    , CASE WHEN MAX(COALESCE(A.IS_PRINT,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_PRINT
+                                    , CASE WHEN MAX(COALESCE(A.IS_CONFIRM,N'0')) = '0' THEN '0' ELSE '1' END                  AS IS_CONFIRM
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP1,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP1
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP2,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP2
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP3,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP3
+                                    , MAX(COALESCE(A.TMP1_NAME,N''))                                                          AS TMP1_NAME 
+                                    , MAX(COALESCE(A.TMP2_NAME,N''))                                                          AS TMP2_NAME 
+                                    , MAX(COALESCE(A.TMP3_NAME,N''))                                                          AS TMP3_NAME 
+                                    , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                                    , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                                 FROM COMM.XBT_AUTH_MENU A
+                                    , COMM.XBT_USER_AUTH B 
+                                    , COMM.XBT_AUTH_TBL C 
+                                WHERE 1=1
+                                  AND A.AUTH_CD      = B.AUTH_CD  
+                                  AND A.AUTH_CD      = C.AUTH_CD
+                                  AND C.AUTH_USE_YN  = '1'
+                                  AND B.USER_ID      = #{USER_ID}
+                                GROUP BY A.MENU_ID
+                                UNION
+                               SELECT A.MENU_ID                                                                         AS MENU_ID
+                                    , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END                  AS REG_YN
+                                    , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END                  AS OUTPUT_YN
+                                    , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END                  AS DOWN_YN
+                                    , CASE WHEN MAX(COALESCE(A.IS_NEW,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_NEW
+                                    , CASE WHEN MAX(COALESCE(A.IS_RET,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_RET
+                                    , CASE WHEN MAX(COALESCE(A.IS_SAVE,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_SAVE
+                                    , CASE WHEN MAX(COALESCE(A.IS_DEL,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_DEL
+                                    , CASE WHEN MAX(COALESCE(A.IS_EXCEL,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_EXCEL
+                                    , CASE WHEN MAX(COALESCE(A.IS_PRINT,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_PRINT
+                                    , CASE WHEN MAX(COALESCE(A.IS_CONFIRM,N'0')) = '0' THEN '0' ELSE '1' END                  AS IS_CONFIRM
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP1,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP1
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP2,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP2
+                                    , CASE WHEN MAX(COALESCE(A.IS_TMP3,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP3
+                                    , MAX(COALESCE(A.TMP1_NAME,N''))                                                          AS TMP1_NAME 
+                                    , MAX(COALESCE(A.TMP2_NAME,N''))                                                          AS TMP2_NAME 
+                                    , MAX(COALESCE(A.TMP3_NAME,N''))                                                          AS TMP3_NAME 
+                                    , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                                    , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                                 FROM COMM.XBT_AUTH_MENU A /* 기초권한메뉴 */ 
+                                    , COMM.XBT_AUTH_TBL C /* 기초권한테이블 */ 
+                                WHERE 1=1
+                                  AND A.AUTH_CD      = C.AUTH_CD
+                                  AND '1' = (SELECT COMM.SF_XBT_GET_AUTH_USER_GROUP(A.AUTH_CD, #{USER_ID}) FROM DUAL) 
+                                  AND C.AUTH_USE_YN  = '1'
+                                GROUP BY A.MENU_ID                                  
+                             ) C
+                       ON A.MENU_ID = C.MENU_ID
+                      AND A.LINK_YN = '1'
+                     LEFT OUTER JOIN COMM.XBT_MYMENU_INFO D
+                       ON A.MENU_ID = D.MENU_ID   
+                      AND D.USER_ID = #{USER_ID}  
+             ) , VW_TEMP_MENU (
+                   LVL
+                 , MENU_ID
+                 , PMENU_ID
+                 , MENU_NM
+                 , MENU_DC
+                 , PROG_ID
+                 , PROG_FG
+                 , FORM_PATH
+                 , FORM_ID
+                 , FORM_NM
+                 , MENU_LVL
+                 , MENU_DIV
+                 , LINK_YN
+                 , MENU_SORT
+                 , REG_ID
+                 , REG_DT
+                 , MOD_ID
+                 , MOD_DT
+                 , REG_YN
+                 , PRT_YN
+                 , DOWN_YN
+                 , IS_NEW
+                 , IS_RET
+                 , IS_SAVE
+                 , IS_DEL
+                 , IS_EXCEL
+                 , IS_PRINT
+                 , IS_CONFIRM
+                 , IS_TMP1
+                 , IS_TMP2
+                 , IS_TMP3
+                 , NEW_NAME
+                 , RET_NAME
+                 , SAVE_NAME
+                 , DEL_NAME
+                 , EXCEL_NAME
+                 , PRINT_NAME
+                 , CONFIRM_NAME
+                 , TMP1_NAME
+                 , TMP2_NAME
+                 , TMP3_NAME
+                 , AUTH_CD
+                 , AUTH_NM
+                 , MY_MENU_FG
+                 , SORT_HIR
+                 , DEPT_NAME 
+                ) AS (
+                SELECT 1                                               AS LVL
+                     , A.MENU_ID                                       AS MENU_ID
+                     , A.PMENU_ID                                      AS UP_MENU_ID
+                     , A.MENU_NM                                       AS MENU_NM
+                     , A.MENU_DC                                       AS MENU_DC
+                     , A.PROG_ID                                       AS PROG_ID
+                     , A.PROG_FG                                       AS PROG_FG
+                     , A.FORM_PATH                                     AS FORM_PATH
+                     , A.FORM_ID                                       AS FORM_ID
+                     , A.FORM_NM                                       AS FORM_NM
+                     , A.MENU_LVL                                      AS MENU_LVL
+                     , A.MENU_DIV                                      AS MENU_DIV
+                     , A.LINK_YN                                       AS LINK_YN
+                     , A.MENU_SORT                                     AS MENU_SORT
+                     , A.REG_ID                                        AS REG_ID
+                     , A.REG_DT                                      AS REG_DT
+                     , A.MOD_ID                                        AS MOD_ID
+                     , A.MOD_DT                                      AS MOD_DT
+                     , A.REG_YN                                        AS REG_YN
+                     , A.PRT_YN                                        AS PRT_YN
+                     , A.DOWN_YN                                       AS DOWN_YN
+                     , A.IS_NEW                                        AS IS_NEW
+                     , A.IS_RET                                        AS IS_RET
+                     , A.IS_SAVE                                       AS IS_SAVE
+                     , A.IS_DEL                                        AS IS_DEL
+                     , A.IS_EXCEL                                      AS IS_EXCEL
+                     , A.IS_PRINT                                      AS IS_PRINT
+                     , A.IS_CONFIRM                                    AS IS_CONFIRM
+                     , A.IS_TMP1                                       AS IS_TMP1
+                     , A.IS_TMP2                                       AS IS_TMP2
+                     , A.IS_TMP3                                       AS IS_TMP3
+                     , A.NEW_NAME                                      AS NEW_NAME
+                     , A.RET_NAME                                      AS RET_NAME
+                     , A.SAVE_NAME                                     AS SAVE_NAME
+                     , A.DEL_NAME                                      AS DEL_NAME
+                     , A.EXCEL_NAME                                    AS EXCEL_NAME
+                     , A.PRINT_NAME                                    AS PRINT_NAME
+                     , A.CONFIRM_NAME                                  AS CONFIRM_NAME
+                     , A.TMP1_NAME                                     AS TMP1_NAME
+                     , A.TMP2_NAME                                     AS TMP2_NAME
+                     , A.TMP3_NAME                                     AS TMP3_NAME
+                     , A.AUTH_CD                                       AS AUTH_CD
+                     , A.AUTH_NM                                       AS AUTH_NM
+                     , A.MY_MENU_FG                                    AS MY_MENU_FG
+                     , LPAD(TO_CHAR(A.MENU_SORT),3,'0') || A.MENU_ID   AS SORT_HIR
+                     , A.MENU_NM                                       AS DEPT_NAME
+                  FROM VW_MAIN_MENU A
+                 WHERE MENU_LVL = 1                                                /* START WITH 절에 해당함 */
+             UNION ALL
+                SELECT A.LVL + 1                                                             AS LVL
+                     , B.MENU_ID                                                             AS MENU_ID
+                     , B.PMENU_ID                                                            AS PMENU_ID
+                     , B.MENU_NM                                                             AS MENU_SORT
+                     , B.MENU_DC                                                             AS MENU_DC
+                     , B.PROG_ID                                                             AS PROG_ID
+                     , B.PROG_FG                                                             AS PROG_FG
+                     , B.FORM_PATH                                                           AS FORM_PATH
+                     , B.FORM_ID                                                             AS FORM_ID
+                     , B.FORM_NM                                                             AS FORM_NM
+                     , B.MENU_LVL                                                            AS MENU_LVL
+                     , B.MENU_DIV                                                            AS MENU_DIV
+                     , B.LINK_YN                                                             AS LINK_YN
+                     , B.MENU_SORT                                                           AS MENU_SORT
+                     , B.REG_ID                                                              AS REG_ID
+                     , B.REG_DT                                                            AS REG_DT
+                     , B.MOD_ID                                                              AS MOD_ID
+                     , B.MOD_DT                                                            AS MOD_DT
+                     , B.REG_YN                                                              AS REG_YN
+                     , B.PRT_YN                                                              AS PRT_YN
+                     , B.DOWN_YN                                                             AS DOWN_YN
+                     , B.IS_NEW                                                              AS IS_NEW
+                     , B.IS_RET                                                              AS IS_RET
+                     , B.IS_SAVE                                                             AS IS_SAVE
+                     , B.IS_DEL                                                              AS IS_DEL
+                     , B.IS_EXCEL                                                            AS IS_EXCEL
+                     , B.IS_PRINT                                                            AS IS_PRINT
+                     , B.IS_CONFIRM                                                          AS IS_CONFIRM
+                     , B.IS_TMP1                                                             AS IS_TMP1
+                     , B.IS_TMP2                                                             AS IS_TMP2
+                     , B.IS_TMP3                                                             AS IS_TMP3
+                     , B.NEW_NAME                                                            AS NEW_NAME
+                     , B.RET_NAME                                                            AS RET_NAME
+                     , B.SAVE_NAME                                                           AS SAVE_NAME
+                     , B.DEL_NAME                                                            AS DEL_NAME
+                     , B.EXCEL_NAME                                                          AS EXCEL_NAME
+                     , B.PRINT_NAME                                                          AS PRINT_NAME
+                     , B.CONFIRM_NAME                                                        AS CONFIRM_NAME
+                     , B.TMP1_NAME                                                           AS TMP1_NAME
+                     , B.TMP2_NAME                                                           AS TMP2_NAME
+                     , B.TMP3_NAME                                                           AS TMP3_NAME
+                     , B.AUTH_CD                                                             AS AUTH_CD
+                     , B.AUTH_NM                                                             AS AUTH_NM
+                     , B.MY_MENU_FG                                                          AS MY_MENU_FG
+                     , A.SORT_HIR  || ' | ' || LPAD(TO_CHAR(B.MENU_SORT),3,'0') || B.MENU_ID AS SORT_HIR 
+                     , A.DEPT_NAME || ' > ' || B.MENU_NM                                     AS DEPT_NAME 
+                  FROM VW_TEMP_MENU A 
+                 INNER JOIN VW_MAIN_MENU B
+                    ON B.PMENU_ID = A.MENU_ID                /* CONNECT BY 절에 해당함 */
+            )
+            SELECT distinct  A.LVL               AS LVL                /*메뉴레벨*/
+                 , A.MENU_ID           AS MENU_ID            /*메뉴ID*/
+                 , A.PMENU_ID          AS PMENU_ID           /*상위메뉴코드*/
+                 , A.MENU_NM           AS MENU_NM            /*메뉴명*/
+                 , A.MENU_DC           AS MENU_DC            /*메뉴설명*/
+                 , A.PROG_ID           AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                 , A.PROG_FG           AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                 , A.FORM_PATH         AS FORM_PATH          /*FORM위치명(PREFIX)*/
+                 , A.FORM_ID           AS FORM_ID            /*FORMID(xfdl)*/
+                 , A.FORM_NM           AS FORM_NM            /*FORM명(한글명)*/
+                 , A.MENU_LVL-1        AS MENU_LVL           /*메뉴레벨*/
+                 , A.MENU_DIV          AS MENU_DIV           /*메뉴구분*/
+                 , A.LINK_YN           AS LINK_YN            /*연결여부*/
+                 , A.MENU_SORT         AS SORT               /*메뉴순서*/
+                 , A.REG_ID            AS REG_ID             /*최초입력자ID*/
+                 , A.REG_DT          AS REG_DT           /*최초입력일시*/
+                 , A.MOD_ID            AS MOD_ID             /*최종수정자ID*/
+                 , A.MOD_DT          AS MOD_DT           /*최종수정일시*/
+                 , A.REG_YN            AS REG_YN             /*등록*/
+                 , A.PRT_YN            AS PRT_YN             /*출력*/
+                 , A.DOWN_YN           AS DOWN_YN            /*다운로드*/
+                 , A.IS_NEW            AS IS_NEW             /*신규*/
+                 , A.IS_RET            AS IS_RET             /*조회*/
+                 , A.IS_SAVE           AS IS_SAVE            /*저장*/
+                 , A.IS_DEL            AS IS_DEL             /*삭제*/
+                 , A.IS_EXCEL          AS IS_EXCEL           /*엑셀*/
+                 , A.IS_PRINT          AS IS_PRINT           /*출력*/
+                 , A.IS_CONFIRM        AS IS_CONFIRM         /*확정*/
+                 , A.IS_TMP1           AS IS_TMP1            /*임시1*/
+                 , A.IS_TMP2           AS IS_TMP2            /*임시2*/
+                 , A.IS_TMP3           AS IS_TMP3            /*임시3*/
+                 , A.NEW_NAME          AS NEW_NAME           /*신규명*/
+                 , A.RET_NAME          AS RET_NAME           /*조회명*/
+                 , A.SAVE_NAME         AS SAVE_NAME          /*저장명*/
+                 , A.DEL_NAME          AS DEL_NAME           /*삭제명*/
+                 , A.EXCEL_NAME        AS EXCEL_NAME         /*엑셀명*/
+                 , A.PRINT_NAME        AS PRINT_NAME         /*출력명*/
+                 , A.CONFIRM_NAME      AS CONFIRM_NAME       /*확정명*/
+                 , A.TMP1_NAME         AS TMP1_NAME          /*입시이름1*/
+                 , A.TMP2_NAME         AS TMP2_NAME          /*입시이름2*/
+                 , A.TMP3_NAME         AS TMP3_NAME          /*입시이름3*/
+                -- , A.AUTH_CD           AS AUTH_CD            /*권한코드*/
+                -- , A.AUTH_NM           AS AUTH_NM            /*권한명*/
+                 , A.MY_MENU_FG        AS MY_MENU_FG         /*즐겨찾기 등록 명부 */
+                 , A.SORT_HIR          AS SORT_HIR
+                 , A.DEPT_NAME         AS DEPT_NAME
+              FROM VW_TEMP_MENU A
+             WHERE 1=1
+             ORDER BY A.SORT_HIR   
+		]]>
+ 		/* COM002LoginDAO.retrieveLoginMenuData_1 사용자 메뉴정보 조회 */
+	</select>
+	
+	<select id="retrieveBookmarkRegisterList" parameterType="map" resultType="egovMap">
+	SELECT 1
+	  FROM DUAL
+	</select>
+	
+	<select id="retrieveBookmarkRegisterList_1" parameterType="map" resultType="egovMap">
+        <![CDATA[
+            SELECT                                                  											
+                   A.MENU_ID                                          AS MENU_ID 	 	    /*메뉴아이디*/         
+                 , A.USER_ID                                          AS USER_ID            /*사용자 ID*/ 
+                 , B.PARENT_MENU_ID                                   AS PMENU_ID           /*상위메뉴아이디*/     
+                 , B.MENU_NM                                          AS MENU_NM            /*메뉴명*/
+                 , B.MENU_ENG                                         AS MENU_EN            /*메뉴명(영어)*/       
+                 , B.MENU_CH                                          AS MENU_CH            /*메뉴명(중국어)*/     
+                 , B.MENU_JP                                          AS MENU_JP            /*메뉴명(일어)*/       
+                 , B.MENU_ETC                                         AS MENU_EC            /*메뉴명(기타언어)*/   
+                 , B.MENU_DC                                          AS MENU_DC            /*메뉴설명*/           
+                 , B.PROG_ID                                          AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                 , CASE WHEN B.PROG_ID IS NULL THEN '0' ELSE '1' END  AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                 , C.FORM_PATH                                        AS FORM_PATH          /*FORM위치명(PREFIX)*/           
+                 , C.FORM_ID                                          AS FORM_ID            /*FORMID(xfdl)*/            
+                 , C.FORM_NM                                          AS FORM_NM            /*FORM명(한글명)*/
+                 , B.MENU_LVL                                         AS MENU_LVL           /*메뉴레벨*/           
+                 , B.MENU_DIV                                         AS MENU_DIV           /*메뉴구분*/           
+                 , B.LINK_YN                                          AS LINK_YN            /*연결여부*/           
+                 , B.MENU_SORT                                        AS MENU_SORT          /*메뉴순서*/           
+                 , B.REG_ID                                           AS REG_ID             /*등록자*/             
+                 , B.REG_DT                                           AS REG_DT           /*등록일시*/           
+                 , B.MOD_ID                                           AS MOD_ID             /*수정자*/             
+                 , B.MOD_DT                                           AS MOD_DT           /*수정일시*/           
+                 , D.REG_YN                                           AS REG_YN             /*등록*/ 
+                 , D.OUTPUT_YN                                        AS PRT_YN             /*출력*/ 
+                 , D.DOWN_YN                                          AS DOWN_YN            /*다운로드*/
+                 , D.IS_NEW                                           AS IS_NEW             /*신규*/     
+                 , D.IS_RET                                           AS IS_RET             /*조회*/     
+                 , D.IS_SAVE                                          AS IS_SAVE            /*저장*/     
+                 , D.IS_DEL                                           AS IS_DEL             /*삭제*/     
+                 , D.IS_EXCEL                                         AS IS_EXCEL           /*엑셀*/     
+                 , D.IS_PRINT                                         AS IS_PRINT           /*출력*/     
+                 , D.IS_CONFIRM                                       AS IS_CONFIRM         /*확정*/     
+                 , D.IS_TMP1                                          AS IS_TMP1            /*임시1*/    
+                 , D.IS_TMP2                                          AS IS_TMP2            /*임시2*/    
+                 , D.IS_TMP3                                          AS IS_TMP3            /*임시3*/    
+                 , CASE WHEN D.IS_NEW     = '1' THEN '신규' ELSE '' END AS NEW_NAME          /*신규명*/ 
+                 , CASE WHEN D.IS_RET     = '1' THEN '조회' ELSE '' END AS RET_NAME          /*조회명*/
+                 , CASE WHEN D.IS_SAVE    = '1' THEN '저장' ELSE '' END AS SAVE_NAME         /*저장명*/
+                 , CASE WHEN D.IS_DEL     = '1' THEN '삭제' ELSE '' END AS DEL_NAME          /*삭제명*/
+                 , CASE WHEN D.IS_EXCEL   = '1' THEN '엑셀' ELSE '' END AS EXCEL_NAME        /*엑셀명*/
+                 , CASE WHEN D.IS_PRINT   = '1' THEN '출력' ELSE '' END AS PRINT_NAME        /*출력명*/
+                 , CASE WHEN D.IS_CONFIRM = '1' THEN '확정' ELSE '' END AS CONFIRM_NAME      /*확정명*/
+                 , D.TMP1_NAME                                        AS TMP1_NAME          /*입시이름1*/  
+                 , D.TMP2_NAME                                        AS TMP2_NAME          /*입시이름2*/  
+                 , D.TMP3_NAME                                        AS TMP3_NAME          /*입시이름3*/  
+                 , D.AUTH_CD                                          AS AUTH_CD            /*권한코드*/
+                 , D.AUTH_NM                                          AS AUTH_NM            /*권한명*/
+              FROM COMM.XBT_MYMENU_INFO A
+              LEFT OUTER JOIN COMM.XBT_MENU_INFO B
+                ON A.MENU_ID = B.MENU_ID
+              LEFT OUTER JOIN COMM.XBT_PROG_MAST C
+                ON C.PROG_ID = B.PROG_ID
+               AND C.USER_YN = '1'
+             INNER JOIN ( SELECT A.MENU_ID                                                                               AS MENU_ID
+                               , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END                  AS REG_YN
+                               , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END                  AS OUTPUT_YN
+                               , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END                  AS DOWN_YN
+                               , CASE WHEN MAX(COALESCE(A.IS_NEW,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_NEW
+                               , CASE WHEN MAX(COALESCE(A.IS_RET,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_RET
+                               , CASE WHEN MAX(COALESCE(A.IS_SAVE,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_SAVE
+                               , CASE WHEN MAX(COALESCE(A.IS_DEL,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_DEL
+                               , CASE WHEN MAX(COALESCE(A.IS_EXCEL,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_EXCEL
+                               , CASE WHEN MAX(COALESCE(A.IS_PRINT,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_PRINT
+                               , CASE WHEN MAX(COALESCE(A.IS_CONFIRM,N'0')) = '0' THEN '0' ELSE '1' END                  AS IS_CONFIRM
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP1,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP1
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP2,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP2
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP3,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP3
+                               , MAX(COALESCE(A.TMP1_NAME,N''))                                                          AS TMP1_NAME 
+                               , MAX(COALESCE(A.TMP2_NAME,N''))                                                          AS TMP2_NAME 
+                               , MAX(COALESCE(A.TMP3_NAME,N''))                                                          AS TMP3_NAME 
+                               , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                               , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                            FROM COMM.XBT_AUTH_MENU A
+                               , COMM.XBT_USER_AUTH B 
+                               , COMM.XBT_AUTH_TBL  C 
+                           WHERE 1=1
+                             AND A.AUTH_CD      = B.AUTH_CD  
+                             AND A.AUTH_CD      = C.AUTH_CD
+                             AND C.AUTH_USE_YN  = '1'
+                             AND B.USER_ID      = #{USER_ID}
+                           GROUP BY A.MENU_ID
+                           UNION
+                          SELECT A.MENU_ID                                                                               AS MENU_ID
+                               , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END                  AS REG_YN
+                               , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END                  AS OUTPUT_YN
+                               , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END                  AS DOWN_YN
+                               , CASE WHEN MAX(COALESCE(A.IS_NEW,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_NEW
+                               , CASE WHEN MAX(COALESCE(A.IS_RET,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_RET
+                               , CASE WHEN MAX(COALESCE(A.IS_SAVE,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_SAVE
+                               , CASE WHEN MAX(COALESCE(A.IS_DEL,N'0'))     = '0' THEN '0' ELSE '1' END                  AS IS_DEL
+                               , CASE WHEN MAX(COALESCE(A.IS_EXCEL,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_EXCEL
+                               , CASE WHEN MAX(COALESCE(A.IS_PRINT,N'0'))   = '0' THEN '0' ELSE '1' END                  AS IS_PRINT
+                               , CASE WHEN MAX(COALESCE(A.IS_CONFIRM,N'0')) = '0' THEN '0' ELSE '1' END                  AS IS_CONFIRM
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP1,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP1
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP2,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP2
+                               , CASE WHEN MAX(COALESCE(A.IS_TMP3,N'0'))    = '0' THEN '0' ELSE '1' END                  AS IS_TMP3
+                               , MAX(COALESCE(A.TMP1_NAME,N''))                                                          AS TMP1_NAME 
+                               , MAX(COALESCE(A.TMP2_NAME,N''))                                                          AS TMP2_NAME 
+                               , MAX(COALESCE(A.TMP3_NAME,N''))                                                          AS TMP3_NAME 
+                               , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                               , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                            FROM COMM.XBT_AUTH_MENU A
+                               , COMM.XBT_AUTH_TBL  C 
+                           WHERE 1=1
+                             AND A.AUTH_CD      = C.AUTH_CD
+                             AND C.AUTH_USE_YN  = '1'
+                             AND '1' = (SELECT COMM.SF_XBT_GET_AUTH_USER_GROUP(A.AUTH_CD, #{USER_ID}) FROM DUAL) 
+                           GROUP BY A.MENU_ID                           
+                        ) D
+                  ON A.MENU_ID = D.MENU_ID
+                 AND B.LINK_YN = '1'
+               WHERE 1=1
+                 AND A.MENU_ID = D.MENU_ID
+                 AND A.USER_ID = #{USER_ID}
+         ]]>    
+	    /*COM002LoginDAO.retrieveBookmarkRegisterList_1 즐겨찾기 메뉴정보 조회 */
+	</select>
+	
+	<select id="retrieveLoginSystemDate" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+		  SELECT                                                              
+                 A.YYYY                                      AS YYYY     
+               , A.YYYYMMDD                                  AS YYYYMMDD                
+               , A.KOR_YYYYMMDD || ' ' || A.DAY_OF_KOR_WEEK  AS KOR_YYYYMMDD                      /* A.KOR_YYYYMMDD + ' ' + A.DAY_OF_KOR_WEEK */
+               , A.YYYYMM                                    AS YYYYMM              
+               , A.MMDD                                      AS MMDD                
+               , A.MM                                        AS MM                  
+               , A.DD                                        AS DD                  
+               , A.MONTH_FIRST_DAY                           AS MONTH_FIRST_DAY     
+               , A.MONTH_LAST_DAY                            AS MONTH_LAST_DAY      
+               , A.DAY_OF_WEEK                               AS DAY_OF_WEEK         
+               , A.DAY_OF_KOR_WEEK                           AS DAY_OF_KOR_WEEK     
+               , A.NOW_DATE_TIME                             AS NOW_DATE_TIME       
+            FROM
+            (
+                SELECT TO_CHAR(SYSDATE, 'YYYY')                          AS YYYY                 /*년 * LEFT(CONVERT(VARCHAR(4), GetDate(),112),4)) */    
+                     , TO_CHAR(SYSDATE, 'YYYYMMDD')                      AS YYYYMMDD             /*년/월/일 CONVERT(VARCHAR(8),GETDATE(),112)*/
+                     , TO_CHAR(SYSDATE, 'YYYY.MM.DD')                    AS KOR_YYYYMMDD         /*년/월/일 CONVERT(VARCHAR(8),GETDATE(),102)*/
+                     , TO_CHAR(SYSDATE, 'YYYYMM')                        AS YYYYMM               /*년/월 LEFT(CONVERT(VARCHAR(6), GetDate(),112),6)) */
+                     , TO_CHAR(SYSDATE, 'MMDD')                          AS MMDD                 /*월/일 RIGHT(CONVERT(VARCHAR(4), GetDate(),112),4)) */
+                     , TO_CHAR(SYSDATE, 'MM')                            AS MM                   /*월  SUBSTRING(CONVERT(VARCHAR(2), GetDate(),112),4,2))*/
+                     , TO_CHAR(SYSDATE, 'DD')                            AS DD                   /*일  RIGHT(CONVERT(VARCHAR(2), GetDate(),112),2)) */
+                     , TO_CHAR(SYSDATE, 'YYYYMM')||'01'                  AS MONTH_FIRST_DAY      /*현재월에 시작일자  LEFT(CONVERT(VARCHAR(6), GetDate(),112),6)) + '01'*/
+                     , TO_CHAR(LAST_DAY(SYSDATE), 'YYYYMMDD')            AS MONTH_LAST_DAY       /*현재월에 마지막일자 CONVERT(VARCHAR(8),EOMONTH( GETDATE())) */  
+                     , TO_CHAR(SYSDATE, 'D')                             AS DAY_OF_WEEK          /*현재요일(1일요일~7토요일) DATEPART(WEEKDAY, GETDATE()) */
+                     , CASE WHEN TO_CHAR(SYSDATE, 'D') = '1' THEN '일요일'                          /* CASE WHEN DATEPART(WEEKDAY, GETDATE()) = '1' THEN 'Sun' */ 
+                            WHEN TO_CHAR(SYSDATE, 'D') = '2' THEN '월요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '2' THEN 'Mon' */
+                            WHEN TO_CHAR(SYSDATE, 'D') = '3' THEN '화요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '3' THEN 'Tue' */
+                            WHEN TO_CHAR(SYSDATE, 'D') = '4' THEN '수요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '4' THEN 'Wed' */
+                            WHEN TO_CHAR(SYSDATE, 'D') = '5' THEN '목요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '5' THEN 'Thu' */
+                            WHEN TO_CHAR(SYSDATE, 'D') = '6' THEN '금요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '6' THEN 'Fri' */
+                            WHEN TO_CHAR(SYSDATE, 'D') = '7' THEN '토요일'                          /*      WHEN DATEPART(WEEKDAY, GETDATE()) = '7' THEN 'Sat' */
+                       END                                                AS DAY_OF_KOR_WEEK     /*현재요일(1일요일~7토요일)*/
+                     , TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')               AS NOW_DATE_TIME       /*현재일자/현재시간 CONVERT(VARCHAR(8),GETDATE(),112) + REPLACE(CONVERT(VARCHAR(8),GETDATE(),108),':','') */
+                  FROM DUAL 
+            ) A  
+                 												 
+		]]>         
+ 		/* COM002LoginDAO.retrieveLoginSystemDate 시스템에 날짜 조회 */
+	</select>
+	
+	<select id="retrieveLoginMessageData" parameterType="map" resultType="egovMap">
+	SELECT 1
+	  FROM DUAL
+	</select>
+	
+	<select id="retrieveLoginMessageData_1" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+		    SELECT A.MSG_CODE                                       AS MSG_CODE      /*KEY(자동증가:MSG00001)*/
+                 , CASE WHEN #{LANGUAGE}=N'en' THEN A.MSG_NAME_EN
+                        WHEN #{LANGUAGE}=N'ch' THEN A.MSG_NAME_CH
+                        WHEN #{LANGUAGE}=N'jp' THEN A.MSG_NAME_JP
+                        WHEN #{LANGUAGE}=N'ec' THEN A.MSG_NAME_EC
+                   ELSE A.MSG_NAME_KR END                           AS MSG_NAME      /*한글메세지*/
+                 , A.MSG_TYPE                                       AS MSG_TYPE      /*메세지타입(1.error:오류,2.question:문제,3.warning:경고,4.information:정보)*/
+                 , B.CD_NM_ENG                                      AS MSG_TYPE_NM
+                 , A.MSG_BTN                                        AS MSG_BTN       /*메세지사용여부*/
+                 , C.CD_NM                                          AS MSG_BTN_NM
+                 , A.MSG_YN                                         AS MSG_YN        /*메세지사용여부*/
+                 , A.REG_ID                                         AS REG_ID        /*등록아이디*/
+                 , A.REG_DT                                       AS REG_DT      /*등록일시*/
+                 , A.MOD_ID                                         AS MOD_ID        /*수정아이디*/
+                 , A.MOD_DT                                       AS MOD_DT      /*수정일시*/
+              FROM COMM.XBT_MESSAGE A
+              LEFT OUTER JOIN COMM.XBT_STD_CD_DETAIL B
+                ON B.CLASS_ID = '000009'
+               AND B.CD       = A.MSG_TYPE
+              LEFT OUTER JOIN COMM.XBT_STD_CD_DETAIL C
+                ON C.CLASS_ID = '000010'
+               AND C.CD       = A.MSG_BTN
+             WHERE 1=1
+               AND A.MSG_YN   = '1'       												 
+		]]>    
+ 		/* COM002LoginDAO.retrieveLoginMessageData_1 DB로 메시지 조회 */
+	</select>
+	
+	<select id="retrieveLoginComponentData" parameterType="map" resultType="egovMap">
+	SELECT 1
+	  FROM DUAL
+	</select>
+	
+	<select id="retrieveLoginComponentData_1" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+		      SELECT
+                     A.COP_CODE                                       AS COP_CODE      /*KEY(자동증가:COP00001)*/
+                   , CASE WHEN #{LANGUAGE}=N'en' THEN A.COP_NAME_EN
+                          WHEN #{LANGUAGE}=N'ch' THEN A.COP_NAME_CH
+                          WHEN #{LANGUAGE}=N'jp' THEN A.COP_NAME_JP
+                          WHEN #{LANGUAGE}=N'ec' THEN A.COP_NAME_EC
+                     ELSE A.COP_NAME_KR END                           AS COP_NAME      /*한글메세지*/
+                   , A.COP_YN                                         AS COP_YN        /*메세지사용여부*/
+                   , A.REG_ID                                         AS REG_ID        /*등록아이디*/
+                   , A.REG_DT                                       AS REG_DT      /*등록일시*/
+                   , A.MOD_ID                                         AS MOD_ID        /*수정아이디*/
+                   , A.MOD_DT                                       AS MOD_DT      /*수정일시*/
+                FROM COMM.XBT_COMPONENT A
+               WHERE 1=1
+                 AND A.COP_YN = '1'        												 
+		]]>       
+ 		/* COM002LoginDAO.retrieveLoginComponentData_1 DB로 컴퍼넌트를 조회 */
+	</select>
+	
+	<select id="retrieveLoginUserAuth" parameterType="map" resultType="egovMap">
+	SELECT 1
+	  FROM DUAL
+	</select>
+	
+	<select id="retrieveLoginUserAuth_1" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+           SELECT 
+                  A.USER_ID
+                , A.AUTH_CD  
+                , B.AUTH_CD_NM
+                , B.AUTH_CD_DC
+             FROM COMM.XBT_USER_AUTH A 
+                , COMM.XBT_AUTH_TBL  B   
+            WHERE 1 = 1
+              AND A.AUTH_CD     = B.AUTH_CD
+              AND A.USER_ID     = #{USER_ID}
+              AND B.AUTH_USE_YN = 1                 												 
+		]]>       
+ 		/* COM002LoginDAO.retrieveLoginUserAuth_1 로긴온 사용자권한 */
+	</select>
+	
+	<select id="retrieveLoginLeftMenuList" parameterType="map" resultType="egovMap">
+	WITH VW_LEFT_MENU AS (SELECT A.MENU_ID                                          AS MENU_ID            /*메뉴아이디*/
+                           , A.UPPER_MENU_ID                                    AS PMENU_ID           /*상위메뉴아이디*/
+                           , A.MENU_NM                                          AS MENU_NM            /*메뉴명*/
+                           , ''                                         		AS MENU_EN            /*메뉴명(영어)*/
+                           , ''                                          		AS MENU_CH            /*메뉴명(중국어)*/
+                           , ''                                          		AS MENU_JP            /*메뉴명(일어)*/
+                           , ''                                         		AS MENU_EC            /*메뉴명(기타언어)*/
+                           , A.RM_DTLS                                          AS MENU_DC            /*메뉴설명*/
+                           , A.PGM_ID                                           AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                           , CASE WHEN A.PGM_ID IS NULL THEN '0' ELSE '1' END   AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                           , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 1)         AS FORM_PATH          /*FORM위치명(PREFIX)*/
+                           , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 2)         AS FORM_ID            /*FORMID(xfdl)*/
+                           , B.PGM_NM                                           AS FORM_NM            /*FORM명(한글명)*/
+                           , CASE WHEN A.PGM_ID = ' ' THEN 1 ELSE 2 END         AS MENU_LVL           /*메뉴레벨*/
+                           , A.BUSNS_SE_CODE                                    AS MENU_DIV           /*메뉴구분*/
+                           , '1'                                                AS LINK_YN            /*연결여부*/
+                           , A.SORT_SN                                          AS MENU_SORT          /*메뉴순서*/
+                           , ''                                                 AS REG_YN             /*등록*/
+                           , ''                                                 AS PRT_YN             /*출력*/
+                           , ''                                                 AS DOWN_YN            /*다운로드*/
+                           , ''                                                 AS AUTH_CD            /*권한코드*/
+                           , ''                                                 AS AUTH_NM            /*권한명*/
+                           , '0'                                                AS MY_MENU_FG         /*즐겨찾기 메뉴여부 */      
+						FROM COM.SSYS200 A
+						LEFT OUTER JOIN COM.SSYS100 B
+						  ON A.PGM_ID = B.PGM_ID
+						 AND B.USE_AT = '1'
+)  , VW_TEMP_MENU (LVL
+                , MENU_ID
+                , PMENU_ID
+                , MENU_NM
+                , MENU_DC
+                , PROG_ID
+                , PROG_FG            
+                , FORM_PATH
+                , FORM_ID
+                , FORM_NM
+                , MENU_LVL
+                , MENU_DIV
+                , LINK_YN
+                , MENU_SORT
+                , AUTH_CD
+                , AUTH_NM
+                , MY_MENU_FG
+                , SORT_HIR
+                , DEPT_NAME
+             ) AS (SELECT 1                                                                    AS LVL
+                        , A.MENU_ID                                                            AS MENU_ID
+                        , A.PMENU_ID                                                           AS UP_MENU_ID
+                        , A.MENU_NM                                                            AS MENU_NM
+                        , A.MENU_DC                                                            AS MENU_DC
+                        , A.PROG_ID                                                            AS PROG_ID
+                        , A.PROG_FG                                                            AS PROG_FG
+                        , A.FORM_PATH                                                          AS FORM_PATH
+                        , A.FORM_ID                                                            AS FORM_ID
+                        , A.FORM_NM                                                            AS FORM_NM
+                        , A.MENU_LVL                                                           AS MENU_LVL
+                        , A.MENU_DIV                                                           AS MENU_DIV
+                        , A.LINK_YN                                                            AS LINK_YN
+                        , A.MENU_SORT                                                          AS MENU_SORT
+                        , A.AUTH_CD                                                            AS AUTH_CD
+                        , A.AUTH_NM                                                            AS AUTH_NM
+                        , A.MY_MENU_FG                                                         AS MY_MENU_FG
+                        , LPAD(TO_CHAR(A.MENU_SORT),3,'0') || A.MENU_ID                        AS SORT_HIR
+                        , A.MENU_NM       AS DEPT_NAME
+                     FROM VW_LEFT_MENU A
+                    WHERE A.MENU_LVL = 2
+                      AND A.PMENU_ID = #{MENU_ID}          /* START WITH 절에 해당함 */
+
+			        UNION ALL
+
+                   SELECT A.LVL + 1                                                             AS LVL
+                        , B.MENU_ID                                                             AS MENU_ID
+                        , B.PMENU_ID                                                            AS PMENU_ID
+                        , B.MENU_NM                                                             AS MENU_SORT
+                        , B.MENU_DC                                                             AS MENU_DC
+                        , B.PROG_ID                                                             AS PROG_ID
+                        , B.PROG_FG                                                             AS PROG_FG       
+                        , B.FORM_PATH                                                           AS FORM_PATH
+                        , B.FORM_ID                                                             AS FORM_ID
+                        , B.FORM_NM                                                             AS FORM_NM
+                        , B.MENU_LVL                                                            AS MENU_LVL
+                        , B.MENU_DIV                                                            AS MENU_DIV
+                        , B.LINK_YN                                                             AS LINK_YN
+                        , B.MENU_SORT                                                           AS MENU_SORT
+                        , B.AUTH_CD                                                             AS AUTH_CD
+                        , B.AUTH_NM                                                             AS AUTH_NM
+                        , B.MY_MENU_FG                                                          AS MY_MENU_FG
+                        , A.SORT_HIR  || ' | ' || LPAD(TO_CHAR(B.MENU_SORT),3,'0') || B.MENU_ID AS SORT_HIR 
+                        , A.DEPT_NAME || ' > ' || B.MENU_NM AS DEPT_NAME
+                     FROM VW_TEMP_MENU A 
+                    INNER JOIN VW_LEFT_MENU B
+                       ON B.PMENU_ID = A.MENU_ID                /* CONNECT BY 절에 해당함 */
+			 )
+			SELECT distinct A.LVL               AS LVL                /*메뉴레벨*/
+                 , A.MENU_ID           AS MENU_ID            /*메뉴ID*/
+                 , A.PMENU_ID          AS PMENU_ID           /*상위메뉴코드*/
+                 , A.MENU_NM           AS MENU_NM            /*메뉴명*/
+                 , A.MENU_DC           AS MENU_DC            /*메뉴설명*/
+                 , A.PROG_ID           AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                 , A.PROG_FG           AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                 , A.FORM_PATH         AS FORM_PATH          /*FORM위치명(PREFIX)*/
+                 , A.FORM_ID           AS FORM_ID            /*FORMID(xfdl)*/
+                 , A.FORM_NM           AS FORM_NM            /*FORM명(한글명)*/
+                 , A.MENU_LVL          AS MENU_LVL           /*메뉴레벨*/
+                 , A.MENU_DIV          AS MENU_DIV           /*메뉴구분*/
+                 , A.LINK_YN           AS LINK_YN            /*연결여부*/
+                 , A.MENU_SORT         AS SORT               /*메뉴순서*/
+            --     , A.AUTH_CD           AS AUTH_CD            /*권한코드*/
+            --     , A.AUTH_NM           AS AUTH_NM            /*권한명*/
+                 , A.MY_MENU_FG        AS MY_MENU_FG         /*즐겨찾기에등록 여부*/
+                 , A.SORT_HIR          AS SORT_HIR
+                 , A.DEPT_NAME         AS MENU_NM_PATH
+              FROM VW_TEMP_MENU A
+             WHERE 1=1
+               AND A.LINK_YN  = '1'
+           ORDER BY A.SORT_HIR
+	</select>
+	
+	<select id="retrieveLoginLeftMenuList_1" parameterType="map" resultType="egovMap">
+		<![CDATA[                                                													
+                WITH VW_LEFT_MENU AS (
+                        SELECT
+                               A.MENU_ID                                          AS MENU_ID            /*메뉴아이디*/
+                             , A.PARENT_MENU_ID                                   AS PMENU_ID           /*상위메뉴아이디*/
+                             , A.MENU_NM                                          AS MENU_NM            /*메뉴명*/
+                             , A.MENU_ENG                                         AS MENU_EN            /*메뉴명(영어)*/
+                             , A.MENU_CH                                          AS MENU_CH            /*메뉴명(중국어)*/
+                             , A.MENU_JP                                          AS MENU_JP            /*메뉴명(일어)*/
+                             , A.MENU_ETC                                         AS MENU_EC            /*메뉴명(기타언어)*/
+                             , A.MENU_DC                                          AS MENU_DC            /*메뉴설명*/
+                             , A.PROG_ID                                          AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                             , CASE WHEN A.PROG_ID IS NULL THEN '0' ELSE '1' END  AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                             , B.FORM_PATH                                        AS FORM_PATH          /*FORM위치명(PREFIX)*/
+                             , B.FORM_ID                                          AS FORM_ID            /*FORMID(xfdl)*/
+                             , B.FORM_NM                                          AS FORM_NM            /*FORM명(한글명)*/
+                             , A.MENU_LVL                                         AS MENU_LVL           /*메뉴레벨*/
+                             , A.MENU_DIV                                         AS MENU_DIV           /*메뉴구분*/
+                             , A.LINK_YN                                          AS LINK_YN            /*연결여부*/
+                             , A.MENU_SORT                                        AS MENU_SORT          /*메뉴순서*/
+                             , C.REG_YN                                           AS REG_YN             /*등록*/
+                             , C.OUTPUT_YN                                        AS PRT_YN             /*출력*/
+                             , C.DOWN_YN                                          AS DOWN_YN            /*다운로드*/
+                             , C.AUTH_CD                                          AS AUTH_CD            /*권한코드*/
+                             , C.AUTH_NM                                          AS AUTH_NM            /*권한명*/
+                             , CASE WHEN D.MENU_ID IS NULL THEN '0' ELSE '1' END  AS MY_MENU_FG         /*즐겨찾기 메뉴여부 */      
+                          FROM COMM.XBT_MENU_INFO A
+                          LEFT OUTER JOIN COMM.XBT_PROG_MAST B
+                            ON B.PROG_ID = A.PROG_ID
+                           AND B.USER_YN = '1'
+                         INNER JOIN ( SELECT A.MENU_ID                                                                         AS MENU_ID
+                                           , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END            AS REG_YN
+                                           , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END            AS OUTPUT_YN
+                                           , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END            AS DOWN_YN
+                                           , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                                           , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                                        FROM COMM.XBT_AUTH_MENU A
+                                           , COMM.XBT_USER_AUTH B
+                                           , COMM.XBT_AUTH_TBL C
+                                       WHERE 1=1
+                                         AND A.AUTH_CD      = B.AUTH_CD
+                                         AND A.AUTH_CD      = C.AUTH_CD
+                                         AND C.AUTH_USE_YN  = '1'
+                                         AND B.USER_ID      = #{USER_ID}
+                                       GROUP BY A.MENU_ID
+                                       UNION
+                                      SELECT A.MENU_ID                                                                         AS MENU_ID
+                                           , CASE WHEN MAX(COALESCE(A.REG_YN,N'0'))     = '0' THEN '0' ELSE '1' END            AS REG_YN
+                                           , CASE WHEN MAX(COALESCE(A.OUTPUT_YN,N'0'))  = '0' THEN '0' ELSE '1' END            AS OUTPUT_YN
+                                           , CASE WHEN MAX(COALESCE(A.DOWN_YN,N'0'))    = '0' THEN '0' ELSE '1' END            AS DOWN_YN
+                                           , LISTAGG(A.AUTH_CD, ',') WITHIN GROUP(ORDER BY A.AUTH_CD)                          AS AUTH_CD
+                                           , LISTAGG(CAST(C.AUTH_CD_NM AS VARCHAR(400)), ',') WITHIN GROUP(ORDER BY C.AUTH_CD) AS AUTH_NM
+                                        FROM COMM.XBT_AUTH_MENU A
+                                           , COMM.XBT_AUTH_TBL C
+                                       WHERE 1=1
+                                         AND A.AUTH_CD      = C.AUTH_CD
+                                         AND C.AUTH_USE_YN  = '1'
+                                         AND '1' = (SELECT COMM.SF_XBT_GET_AUTH_USER_GROUP(A.AUTH_CD, #{USER_ID}) FROM DUAL) 
+                                       GROUP BY A.MENU_ID                                            
+                                ) C
+                             ON A.MENU_ID = C.MENU_ID
+                            AND A.LINK_YN = '1'
+                           LEFT OUTER JOIN COMM.XBT_MYMENU_INFO D
+                             ON A.MENU_ID = D.MENU_ID
+                            AND D.USER_ID = #{USER_ID}   
+               ) , VW_TEMP_MENU (
+                   LVL
+                 , MENU_ID
+                 , PMENU_ID
+                 , MENU_NM
+                 , MENU_DC
+                 , PROG_ID
+                 , PROG_FG            
+                 , FORM_PATH
+                 , FORM_ID
+                 , FORM_NM
+                 , MENU_LVL
+                 , MENU_DIV
+                 , LINK_YN
+                 , MENU_SORT
+                 , AUTH_CD
+                 , AUTH_NM
+                 , MY_MENU_FG
+                 , SORT_HIR
+                 , DEPT_NAME
+                ) AS (
+                SELECT 1                                                                    AS LVL
+                     , A.MENU_ID                                                            AS MENU_ID
+                     , A.PMENU_ID                                                           AS UP_MENU_ID
+                     , A.MENU_NM                                                            AS MENU_NM
+                     , A.MENU_DC                                                            AS MENU_DC
+                     , A.PROG_ID                                                            AS PROG_ID
+                     , A.PROG_FG                                                            AS PROG_FG
+                     , A.FORM_PATH                                                          AS FORM_PATH
+                     , A.FORM_ID                                                            AS FORM_ID
+                     , A.FORM_NM                                                            AS FORM_NM
+                     , A.MENU_LVL                                                           AS MENU_LVL
+                     , A.MENU_DIV                                                           AS MENU_DIV
+                     , A.LINK_YN                                                            AS LINK_YN
+                     , A.MENU_SORT                                                          AS MENU_SORT
+                     , A.AUTH_CD                                                            AS AUTH_CD
+                     , A.AUTH_NM                                                            AS AUTH_NM
+                     , A.MY_MENU_FG                                                         AS MY_MENU_FG
+                     , LPAD(TO_CHAR(A.MENU_SORT),3,'0') || A.MENU_ID                        AS SORT_HIR
+                     , A.MENU_NM       AS DEPT_NAME
+                  FROM VW_LEFT_MENU A
+                 WHERE A.MENU_LVL = 2  
+                   AND A.PMENU_ID = #{MENU_ID}          /* START WITH 절에 해당함 */
+             UNION ALL
+                SELECT A.LVL + 1                                                             AS LVL
+                     , B.MENU_ID                                                             AS MENU_ID
+                     , B.PMENU_ID                                                            AS PMENU_ID
+                     , B.MENU_NM                                                             AS MENU_SORT
+                     , B.MENU_DC                                                             AS MENU_DC
+                     , B.PROG_ID                                                             AS PROG_ID
+                     , B.PROG_FG                                                             AS PROG_FG       
+                     , B.FORM_PATH                                                           AS FORM_PATH
+                     , B.FORM_ID                                                             AS FORM_ID
+                     , B.FORM_NM                                                             AS FORM_NM
+                     , B.MENU_LVL                                                            AS MENU_LVL
+                     , B.MENU_DIV                                                            AS MENU_DIV
+                     , B.LINK_YN                                                             AS LINK_YN
+                     , B.MENU_SORT                                                           AS MENU_SORT
+                     , B.AUTH_CD                                                             AS AUTH_CD
+                     , B.AUTH_NM                                                             AS AUTH_NM
+                     , B.MY_MENU_FG                                                          AS MY_MENU_FG
+                     , A.SORT_HIR  || ' | ' || LPAD(TO_CHAR(B.MENU_SORT),3,'0') || B.MENU_ID AS SORT_HIR 
+                     , A.DEPT_NAME || ' > ' || B.MENU_NM AS DEPT_NAME
+                  FROM VW_TEMP_MENU A 
+                 INNER JOIN VW_LEFT_MENU B
+                    ON B.PMENU_ID = A.MENU_ID                /* CONNECT BY 절에 해당함 */
+            )
+            SELECT distinct A.LVL               AS LVL                /*메뉴레벨*/
+                 , A.MENU_ID           AS MENU_ID            /*메뉴ID*/
+                 , A.PMENU_ID          AS PMENU_ID           /*상위메뉴코드*/
+                 , A.MENU_NM           AS MENU_NM            /*메뉴명*/
+                 , A.MENU_DC           AS MENU_DC            /*메뉴설명*/
+                 , A.PROG_ID           AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
+                 , A.PROG_FG           AS PROG_FG            /*화면출력메뉴 유무체크*/ 
+                 , A.FORM_PATH         AS FORM_PATH          /*FORM위치명(PREFIX)*/
+                 , A.FORM_ID           AS FORM_ID            /*FORMID(xfdl)*/
+                 , A.FORM_NM           AS FORM_NM            /*FORM명(한글명)*/
+                 , A.MENU_LVL          AS MENU_LVL           /*메뉴레벨*/
+                 , A.MENU_DIV          AS MENU_DIV           /*메뉴구분*/
+                 , A.LINK_YN           AS LINK_YN            /*연결여부*/
+                 , A.MENU_SORT         AS SORT               /*메뉴순서*/
+            --     , A.AUTH_CD           AS AUTH_CD            /*권한코드*/
+            --     , A.AUTH_NM           AS AUTH_NM            /*권한명*/
+                 , A.MY_MENU_FG        AS MY_MENU_FG         /*즐겨찾기에등록 여부*/
+                 , A.SORT_HIR          AS SORT_HIR
+                 , A.DEPT_NAME         AS MENU_NM_PATH
+              FROM VW_TEMP_MENU A
+             WHERE 1=1
+               AND A.LINK_YN  = '1'
+           ORDER BY A.SORT_HIR    
+         ]]>   
+ 		/* COM002LoginDAO.retrieveLoginLeftMenuList_1 화면시작시 로그인한 후 Left메뉴를 조회 */
+	</select>
+	
+    <update id="insertBookmarkRegister" parameterType="map"> 
+	SELECT 1
+	  FROM DUAL
+    </update>
+	
+    <update id="insertBookmarkRegister_1" parameterType="map"> 
+         <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_MYMENU_INFO                                       										  
+            (                                       																	  
+                   MENU_ID                       /*메뉴아이디*/ 
+                 , USER_ID                       /*상위메뉴아이디*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )                                                  														
+            (    SELECT                                                  											    
+                   A.MENU_ID                     /*메뉴아이디*/             
+                 , #{USER_ID}                    /*상위메뉴아이디*/             
+                 , #{REG_ID}                     /*등록자*/             
+                 , SYSDATE                       /*등록일시*/             
+                 , #{MOD_ID}                     /*수정자*/             
+                 , SYSDATE                       /*수정일시*/             
+              FROM COMM.XBT_MENU_INFO A                                             							 
+             WHERE A.MENU_ID   = #{MENU_ID}       
+            )	                                                      						
+        ]]>                   											
+    </update> 
+    
+    <delete id="deleteBookmark_1" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_MYMENU_INFO                                                  							      
+             WHERE 1=1                              																	          
+               AND MENU_ID         = #{MENU_ID}  
+               AND USER_ID         = #{USER_ID}  
+        ]]>                                                															           
+        /* COM002LoginDAO.deleteBookmark 즐겨찾기메뉴정보 삭제 */								       
+    </delete>             
+</mapper>

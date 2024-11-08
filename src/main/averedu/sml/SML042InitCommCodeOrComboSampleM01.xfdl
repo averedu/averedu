@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="공통코드 초기셋팅 및 다중콤보 셋팅" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Static id="Static05" taborder="0" text="공통코드 및 테이블공통코드 콤보처리" top="4" height="33" textAlign="center" background="#f80626" font="normal 700 14px/normal &quot;Gulim&quot;" color="#ffffff" left="12" right="6"/>
+        <Static id="Static01_02" taborder="1" text="※ 테이블 공통코드 가지고 오는 함수(gfn_CmmnSingleComboLoad())" top="343" height="30" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="16" right="10"/>
+        <Div id="divSetDate01" taborder="2" left="14" top="73" height="44" cssclass="div_WF_SearchBox" text="" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="stc_04" taborder="1" left="-1" top="10" height="22" text="공통코드1(전체:T)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboUseYn01" taborder="0" left="124" top="10" width="123" height="22" text="" innerdataset="dsUserYn01" codecolumn="CODE" datacolumn="CODE_NM"/>
+              <Static id="stc_04_00" taborder="2" left="247" top="10" height="22" text="공통코드2(선택:X)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboUseYn02" taborder="3" left="372" top="10" width="123" height="22" text="" innerdataset="dsUserYn02" codecolumn="CODE" datacolumn="CODE_NM"/>
+              <Static id="stc_04_00_00" taborder="4" left="494" top="10" height="22" text="공통코드3(공백:N)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboUseYn03" taborder="5" left="619" top="10" width="123" height="22" text="" innerdataset="dsUserYn03" codecolumn="CODE" datacolumn="CODE_NM"/>
+              <Static id="stc_04_00_00_00" taborder="6" left="742" top="10" height="22" text="공통코드4( X:해당사항없음)" cssclass="sta_WF_SearchLbl" width="168"/>
+              <Combo id="cboUseYn04" taborder="7" left="927" top="10" width="123" height="22" text="" innerdataset="dsUserYn04" codecolumn="CODE" datacolumn="CODE_NM"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSetDate02" taborder="3" left="14" top="378" height="44" cssclass="div_WF_SearchBox" text="" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="stc_04" taborder="1" left="-1" top="10" height="22" text="공통코드1(전체:T)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboMstCmp01" taborder="0" left="124" top="10" width="123" height="22" text="" innerdataset="dsThrAfflts01" codecolumn="AFFLTS_CD" datacolumn="AFFLTS_NM"/>
+              <Static id="stc_04_00" taborder="2" left="247" top="10" height="22" text="공통코드2(선택:X)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboMstCmp02" taborder="3" left="372" top="10" width="123" height="22" text="" innerdataset="dsThrAfflts02" codecolumn="AFFLTS_CD" datacolumn="AFFLTS_NM"/>
+              <Static id="stc_04_00_00" taborder="4" left="494" top="10" height="22" text="공통코드3(공백:N)" cssclass="sta_WF_SearchLbl" width="118"/>
+              <Combo id="cboMstCmp03" taborder="5" left="619" top="10" width="123" height="22" text="" innerdataset="dsThrAfflts03" codecolumn="AFFLTS_CD" datacolumn="AFFLTS_NM"/>
+              <Static id="stc_04_00_00_00" taborder="6" left="742" top="10" height="22" text="공통코드4( X:해당사항없음)" cssclass="sta_WF_SearchLbl" width="168"/>
+              <Combo id="cboMstCmp04" taborder="7" left="927" top="10" width="123" height="22" text="" innerdataset="dsThrAfflts04" codecolumn="AFFLTS_CD" datacolumn="AFFLTS_NM"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_02_03" taborder="4" text="※일반콛통 코드 가지고 오는 함수(gfn_CmmnMultiComboLoad())" top="40" height="30" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="14" right="10"/>
+        <GroupBox id="GroupBox00" text=" 설명 " taborder="6" cssclass="_gb_sample" enableevent="false" left="14" top="120" width="1601" height="218"/>
+        <Static id="Static02_00" taborder="5" text="    var strDs    = &quot;dsUserYn01|dsUserYn02|dsUserYn03|dsUserYn04&quot;;         // 데이터를 받을 데이터셋리스트     예) &quot;dsUserYn01|dsUserYn02|dsUserYn03|dsUserYn04&quot;&#13;&#10;    var strLgcd  = &quot;000002|000002|000002|000002&quot;;                         // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) &quot;000002|000002|000002|000002&quot;&#13;&#10;    var strComb  = &quot;T|S|N|X&quot;;                                             // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)&#13;&#10;    var strOptn  = &quot;&quot;;                                                    // 조건문 &quot; AND COMM_IT02 = '&quot; + vip + &quot;'|||&quot;;&#13;&#10;    var svcId    = &quot;Init&quot;;&#13;&#10;&#13;&#10;    // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);&#13;&#10;    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.&#13;&#10;&#13;&#10;    this.gfn_CmmnMultiComboLoad(strDs&#13;&#10;                              , strLgcd&#13;&#10;                              , strComb&#13;&#10;                              , strOptn&#13;&#10;                              , svcId);" cssclass="_SS_Text" left="45" top="133" width="1565" height="197"/>
+        <GroupBox id="GroupBox00_00" text=" 설명 " taborder="8" cssclass="_gb_sample" enableevent="false" left="14" top="424" width="1601" height="218"/>
+        <Static id="Static02_00_00" taborder="7" text="    // 기초데이타 공통코드&#13;&#10;    var strDs    = &quot;dsThrAfflts01|dsThrAfflts02|dsThrAfflts03|dsThrAfflts04&quot;;      // 데이터를 받을 데이터셋리스트              예) &quot;dsThrAfflts01|dsThrAfflts02|dsThrAfflts03|dsThrAfflts04&quot;&#13;&#10;    var strLgcd  = &quot;XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS&quot;;                  // 테이블코드 , 데이터셋 개수와 같아야 한다. 예) &quot;XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS&quot;&#13;&#10;    var strComb  = &quot;T|S|N|X&quot;;                                          // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)&#13;&#10;    var svcId    = &quot;singleInit&quot;;                                       // 서비스아이디&#13;&#10;    var callback = &quot;fn_callBack&quot;;                                      // 콜백&#13;&#10;&#13;&#10;    // gfn_CmmnSingleComboLoad(승인/정산);&#13;&#10;    this.gfn_CmmnSingleComboLoad( strDs&#13;&#10;                                , strLgcd&#13;&#10;                                , strComb&#13;&#10;                                , svcId&#13;&#10;                                , callback);" cssclass="_SS_Text" left="35" top="442" width="1565" height="202"/>
+        <Div id="divSetDate03" taborder="9" left="14" top="658" height="44" cssclass="div_WF_SearchBox" text="" width="766">
+          <Layouts>
+            <Layout>
+              <Static id="stc_04" taborder="1" left="1" top="10" height="22" text="대분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboLarge01" taborder="0" left="64" top="10" width="123" height="22" text="" innerdataset="dsLarge" codecolumn="LRE_CD" datacolumn="LRE_NM" onitemchanged="divSetDate03_cboLarge01_onitemchanged"/>
+              <Static id="stc_04_00" taborder="2" left="193" top="10" height="22" text="중분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboMedium01" taborder="3" left="252" top="10" width="123" height="22" text="" innerdataset="dsMedium" codecolumn="MDI_CD" datacolumn="MDI_NM" onitemchanged="divSetDate03_cboMedium01_onitemchanged"/>
+              <Static id="stc_04_00_00" taborder="4" left="382" top="10" height="22" text="소분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboSmall01" taborder="5" left="441" top="10" width="123" height="22" text="" innerdataset="dsSmall" codecolumn="SML_CD" datacolumn="SML_NM" onitemchanged="divSetDate03_cboSmall01_onitemchanged"/>
+              <Static id="stc_04_00_00_00" taborder="6" left="572" top="10" height="22" text="항목" cssclass="sta_WF_SearchLbl" width="48"/>
+              <Combo id="cboItem01" taborder="7" left="625" top="10" width="123" height="22" text="" innerdataset="dsItem" codecolumn="ITEM_CD" datacolumn="ITEM_NM"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSetDate04" taborder="10" left="14" top="715" height="44" cssclass="div_WF_SearchBox" text="" width="766">
+          <Layouts>
+            <Layout>
+              <Static id="stc_04" taborder="1" left="1" top="10" height="22" text="대분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboLarge01" taborder="0" left="64" top="10" width="123" height="22" text="" innerdataset="dsLarge" codecolumn="LRE_CD" datacolumn="LRE_NM" onitemchanged="divSetDate04_cboLarge01_onitemchanged"/>
+              <Static id="stc_04_00" taborder="2" left="193" top="10" height="22" text="중분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboMedium01" taborder="3" left="252" top="10" width="123" height="22" text="" innerdataset="dsMedium" codecolumn="MDI_CD" datacolumn="MDI_NM" onitemchanged="divSetDate04_cboMedium01_onitemchanged"/>
+              <Static id="stc_04_00_00" taborder="4" left="382" top="10" height="22" text="소분류" cssclass="sta_WF_SearchLbl" width="58"/>
+              <Combo id="cboSmall01" taborder="5" left="441" top="10" width="123" height="22" text="" innerdataset="dsSmall" codecolumn="SML_CD" datacolumn="SML_NM" onitemchanged="divSetDate04_cboSmall01_onitemchanged"/>
+              <Static id="stc_04_00_00_00" taborder="6" left="572" top="10" height="22" text="항목" cssclass="sta_WF_SearchLbl" width="48"/>
+              <Combo id="cboItem01" taborder="7" left="625" top="10" width="123" height="22" text="" innerdataset="dsItem" codecolumn="ITEM_CD" datacolumn="ITEM_NM"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_02_00" taborder="11" text="※ 트랜젝션을 처리해서 서버에서 대/중/소/아이템별로 가지고 오는 소스 샘풀" top="649" height="50" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="786" right="20"/>
+        <Static id="Static01_02_00_00" taborder="12" text="※ 전체를 가지고 와서 필터링으로 대/중/소/아이템별로 가지고오는 소스 샘풀" top="709" height="50" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="786" right="20"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): SML042InitCommCodeOrComboSampleM01.xfdl(업체공통클래스(샘풀) 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/07/06
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+this.cmpCd 			= "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+
+};
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/*
+ * 공통코드 초기셋팅
+ */
+this.fn_formInit = function()
+{
+    var strDs    = "dsUserYn01|dsUserYn02|dsUserYn03|dsUserYn04";         // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "000002|000002|000002|000002";                         // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|S|N|X";                                             // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                                    // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+    // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+/*
+ * 공통코드 콜백시 후처리(기초데이타 공통처리 함수)
+ */
+this.fn_PostFormInit = function()
+{
+    // 공통코드 초기화
+	this.ds_input.setColumn(0,"USER_YN01",null);
+    this.ds_input.setColumn(0,"USER_YN02",null);
+    this.ds_input.setColumn(0,"USER_YN03",null);
+    this.ds_input.setColumn(0,"USER_YN04","1");
+    
+	// 기초데이타 공통코드
+	var strDs 		= "dsThrAfflts01|dsThrAfflts02|dsThrAfflts03|dsThrAfflts04";
+    var strLgcd 	= "XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS|XBT_THR_AFFLTS";   				//계열사 코드
+    var strComb 	= "T|S|N|X";   
+    var svcId 		= "singleInit";
+    var callback 	= "fn_callBack";
+    
+    // gfn_CmmnSingleComboLoad(승인/정산);
+    this.gfn_CmmnSingleComboLoad( strDs
+                                , strLgcd
+                                , strComb
+                                , svcId
+                                , callback);
+};
+
+this.fn_PostSingleInt = function()
+{
+     //trace(this.dsThrAfflts04.saveXML());
+	this.ds_input.setColumn(0,"AFFLTS_CD1",null);
+    this.ds_input.setColumn(0,"AFFLTS_CD2",null);
+    this.ds_input.setColumn(0,"AFFLTS_CD3",null);
+
+	this.cmpCd  	= objApp.gds_userInfoDb.getColumn(0,"CMP_CD");
+	var nRow 		= this.dsThrAfflts04.findRow("AFFLTS_CD",this.cmpCd );
+	if(nRow != -1)
+	{
+		var sCmpCode 	= this.dsThrAfflts04.getColumn(nRow,"AFFLTS_CD");
+		this.ds_input.setColumn(0,"AFFLTS_CD4",sCmpCode);
+	}	
+
+	this.fn_Ret();
+	
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostFormInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+			case "RetLarge":
+                    this.fn_PostRetLarge();
+                break;
+			case "RetMedium":
+                    this.fn_PostRetMedium();
+                break;	
+            case "RetSmall":
+                    this.fn_PostRetSmall();
+                break;
+
+            default:
+                break;
+        }
+    }
+};
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "excel" :       // 엑셀
+                this.fn_Excel();
+            break;
+        case "print" :       // 출력
+                 this.fn_Print();
+            break;
+        case "confirm" :     // 확정
+                 this.fn_Confirm();
+            break;
+        case "tmp1" :        // 여분버튼1
+                 this.fn_Tmp1();
+            break;
+        case "tmp2" :        // 여분버튼2
+                 this.fn_Tmp2();
+            break;
+        case "tmp3" :        // 여분버튼3
+                 this.fn_Tmp3();
+            break;
+        default :
+            break;
+    };
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/sml/RetrieveInitCommCodeOrCombo.do";
+    var strInDs     = "";
+    var strOutDs    = "dsLarge=dsLarge ";
+	    strOutDs   += "dsMedium=dsMedium ";
+		strOutDs   += "dsSmall=dsSmall ";
+		strOutDs   += "dsItem=dsItem";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.ds_input01.set_enableevent(false);
+	this.ds_input01.setColumn(0,"LRE_CD",null);
+	this.ds_input01.setColumn(0,"MDI_CD",null);
+	this.ds_input01.setColumn(0,"SML_CD",null);
+	this.ds_input01.setColumn(0,"ITEM_CD",null);
+	
+	this.ds_input02.setColumn(0,"LRE_CD",null);
+	this.ds_input02.setColumn(0,"MDI_CD",null);
+	this.ds_input02.setColumn(0,"SML_CD",null);
+	this.ds_input02.setColumn(0,"ITEM_CD",null);
+	this.ds_input01.set_enableevent(true);
+	//trace(this.dsSmall.saveXML());
+    
+};
+/***********************************************트랜젝션 처리 대/중/소/아이템 처리 *****************************************/
+
+/*
+ *	기능 : 대분류 콤보가 변경시 처리하는이벤티
+ */
+this.divSetDate03_cboLarge01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_RetLargeChanged();
+}; 
+
+
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRetLarge = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+/*
+ *	기능 : 대분류 콤보 메인
+ */
+this.fn_RetLargeChanged = function ()
+{
+	if(!this.fn_PreRetLarge())
+    {
+        return false;
+    }
+    var strSvc      = "RetLarge";
+    var strUrl      = "/prj/sml/RetrieveInitLargeCombo.do";
+    var strInDs     = "ds_input01=ds_input01";
+    var strOutDs    = "dsMedium=dsMedium ";
+		strOutDs   += "dsSmall=dsSmall ";
+		strOutDs   += "dsItem=dsItem";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRetLarge = function()
+{
+    this.ds_input01.set_enableevent(false);
+	this.ds_input01.setColumn(0,"MDI_CD",null);
+	this.ds_input01.setColumn(0,"SML_CD",null);
+	this.ds_input01.setColumn(0,"ITEM_CD",null);
+	this.ds_input01.set_enableevent(true);
+	//trace(this.dsMaster.saveXML());
+    
+};
+
+/*
+ *	기능 : 중분류 콤보가 변경시 처리하는이벤티
+ */
+this.divSetDate03_cboMedium01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_RetMediumChanged();
+};
+
+
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRetMedium = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+/*
+ *	기능 : 중분류 콤보 메인
+ */
+this.fn_RetMediumChanged = function ()
+{
+	if(!this.fn_PreRetMedium())
+    {
+        return false;
+    }
+    var strSvc      = "RetMedium";
+    var strUrl      = "/prj/sml/RetrieveInitMediumCombo.do";
+    var strInDs     = "ds_input01=ds_input01";
+    var	strOutDs    = "dsSmall=dsSmall ";
+		strOutDs   += "dsItem=dsItem";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRetMedium = function()
+{
+    this.ds_input01.set_enableevent(false);
+	this.ds_input01.setColumn(0,"SML_CD",null);
+	this.ds_input01.setColumn(0,"ITEM_CD",null);
+	this.ds_input01.set_enableevent(true);
+	//trace(this.dsMaster.saveXML());
+    
+};
+
+this.divSetDate03_cboSmall01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_RetSmallChanged();
+};
+
+
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRetSmall= function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+/*
+ *	기능 : 소분류 콤보 메인
+ */
+this.fn_RetSmallChanged = function ()
+{
+	if(!this.fn_PreRetSmall())
+    {
+        return false;
+    }
+    var strSvc      = "RetSmall";
+    var strUrl      = "/prj/sml/RetrieveInitSmallCombo.do";
+    var strInDs     = "ds_input01=ds_input01";
+  	var	strOutDs    = "dsItem=dsItem";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRetSmall = function()
+{
+    this.ds_input01.set_enableevent(false);
+	this.ds_input01.setColumn(0,"ITEM_CD",null);
+	this.ds_input01.set_enableevent(true);
+    
+};
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    
+};
+/***********************************************필터링 처리 대/중/소/아이템 처리 *****************************************/
+
+this.divSetDate04_cboLarge01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	
+	if(!this.gfn_isNull(e.postvalue))
+	{
+		this.dsMedium.filter("LRE_CD == '" + e.postvalue + "' || MDI_CD == null");
+		this.ds_input02.setColumn(0,"MDI_CD",null);
+		
+		var strMdiCd = this.ds_input02.getColumn(0,"MDI_CD");
+	
+		this.dsSmall.filter("(LRE_CD == '" + e.postvalue + "') || SML_CD == null");
+		this.ds_input02.setColumn(0,"SML_CD",null);
+	
+		this.dsItem.filter("(LRE_CD == '" + e.postvalue + "') || ITEM_CD == null");
+		this.ds_input02.setColumn(0,"ITEM_CD",null);
+		
+	}else
+	{
+		this.dsMedium.filter(null);
+		this.dsSmall.filter(null);
+		this.dsItem.filter(null);
+	}
+	
+};
+
+this.divSetDate04_cboMedium01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	
+	if(!this.gfn_isNull(e.postvalue))
+	{
+		this.dsSmall.filter("(MDI_CD == '" + e.postvalue + "') || SML_CD == null");
+		this.ds_input02.setColumn(0,"SML_CD",null);
+	
+		this.dsItem.filter("(MDI_CD == '" + e.postvalue + "') || ITEM_CD == null");
+		this.ds_input02.setColumn(0,"ITEM_CD",null);
+		
+	}else
+	{
+		
+		this.dsSmall.filter(null);
+		this.dsItem.filter(null);
+	}
+	
+};
+
+
+this.divSetDate04_cboSmall01_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(!this.gfn_isNull(e.postvalue))
+	{
+		this.dsItem.filter("(SML_CD == '" + e.postvalue + "') || ITEM_CD == null");
+		this.ds_input02.setColumn(0,"ITEM_CD",null);
+		
+	}else
+	{
+		this.dsItem.filter(null);
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="USER_YN01" type="STRING" size="256"/>
+          <Column id="USER_YN02" type="STRING" size="256"/>
+          <Column id="USER_YN03" type="STRING" size="256"/>
+          <Column id="USER_YN04" type="STRING" size="256"/>
+          <Column id="AFFLTS_CD1" type="STRING" size="256"/>
+          <Column id="AFFLTS_CD2" type="STRING" size="256"/>
+          <Column id="AFFLTS_CD3" type="STRING" size="256"/>
+          <Column id="AFFLTS_CD4" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="USER_YN01"/>
+            <Col id="USER_YN02"/>
+            <Col id="USER_YN03"/>
+            <Col id="USER_YN04"/>
+            <Col id="AFFLTS_CD1"/>
+            <Col id="AFFLTS_CD2"/>
+            <Col id="AFFLTS_CD3"/>
+            <Col id="AFFLTS_CD4"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUserYn01" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserYn02" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserYn03" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserYn04" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThrAfflts01" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AFFLTS_CD" type="STRING" size="32"/>
+          <Column id="AFFLTS_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThrAfflts02" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AFFLTS_CD" type="STRING" size="32"/>
+          <Column id="AFFLTS_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThrAfflts03" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AFFLTS_CD" type="STRING" size="32"/>
+          <Column id="AFFLTS_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThrAfflts04" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AFFLTS_CD" type="STRING" size="32"/>
+          <Column id="AFFLTS_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSmall" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="LRE_CD" type="STRING" size="32"/>
+          <Column id="MDI_CD" type="STRING" size="32"/>
+          <Column id="SML_CD" type="STRING" size="32"/>
+          <Column id="SML_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input01" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SML_CD" type="STRING" size="256"/>
+          <Column id="MDI_CD" type="STRING" size="256"/>
+          <Column id="LRE_CD" type="STRING" size="256"/>
+          <Column id="ITEM_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="SML_CD"/>
+            <Col id="MDI_CD"/>
+            <Col id="LRE_CD"/>
+            <Col id="ITEM_CD"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMedium" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SML_CD" type="STRING" size="32"/>
+          <Column id="MDI_NM" type="STRING" size="256"/>
+          <Column id="MDI_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsLarge" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="LRE_CD" type="STRING" size="256"/>
+          <Column id="LRE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsItem" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SML_CD" type="STRING" size="32"/>
+          <Column id="MDI_CD" type="STRING" size="256"/>
+          <Column id="LRE_CD" type="STRING" size="256"/>
+          <Column id="ITEM_CD" type="STRING" size="256"/>
+          <Column id="ITEM_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input02" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SML_CD" type="STRING" size="256"/>
+          <Column id="MDI_CD" type="STRING" size="256"/>
+          <Column id="LRE_CD" type="STRING" size="256"/>
+          <Column id="ITEM_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="SML_CD"/>
+            <Col id="MDI_CD"/>
+            <Col id="LRE_CD"/>
+            <Col id="ITEM_CD"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSetDate01.form.cboUseYn01" propid="value" datasetid="ds_input" columnid="USER_YN01"/>
+      <BindItem id="item1" compid="divSetDate01.form.cboUseYn02" propid="value" datasetid="ds_input" columnid="USER_YN02"/>
+      <BindItem id="item2" compid="divSetDate01.form.cboUseYn03" propid="value" datasetid="ds_input" columnid="USER_YN03"/>
+      <BindItem id="item3" compid="divSetDate01.form.cboUseYn04" propid="value" datasetid="ds_input" columnid="USER_YN04"/>
+      <BindItem id="item4" compid="divSetDate02.form.cboMstCmp01" propid="value" datasetid="ds_input" columnid="AFFLTS_CD1"/>
+      <BindItem id="item5" compid="divSetDate02.form.cboMstCmp02" propid="value" datasetid="ds_input" columnid="AFFLTS_CD2"/>
+      <BindItem id="item6" compid="divSetDate02.form.cboMstCmp03" propid="value" datasetid="ds_input" columnid="AFFLTS_CD3"/>
+      <BindItem id="item7" compid="divSetDate02.form.cboMstCmp04" propid="value" datasetid="ds_input" columnid="AFFLTS_CD4"/>
+      <BindItem id="item8" compid="divSetDate03.form.cboLarge01" propid="value" datasetid="ds_input01" columnid="LRE_CD"/>
+      <BindItem id="item9" compid="divSetDate03.form.cboMedium01" propid="value" datasetid="ds_input01" columnid="MDI_CD"/>
+      <BindItem id="item10" compid="divSetDate03.form.cboSmall01" propid="value" datasetid="ds_input01" columnid="SML_CD"/>
+      <BindItem id="item11" compid="divSetDate03.form.cboItem01" propid="value" datasetid="ds_input01" columnid="ITEM_CD"/>
+      <BindItem id="item12" compid="divSetDate04.form.cboLarge01" propid="value" datasetid="ds_input02" columnid="LRE_CD"/>
+      <BindItem id="item13" compid="divSetDate04.form.cboMedium01" propid="value" datasetid="ds_input02" columnid="MDI_CD"/>
+      <BindItem id="item14" compid="divSetDate04.form.cboSmall01" propid="value" datasetid="ds_input02" columnid="SML_CD"/>
+      <BindItem id="item15" compid="divSetDate04.form.cboItem01" propid="value" datasetid="ds_input02" columnid="ITEM_CD"/>
+    </Bind>
+  </Form>
+</FDL>

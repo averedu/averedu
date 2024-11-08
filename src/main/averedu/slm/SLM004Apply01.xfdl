@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="설문신청" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="설문신청" height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grdMaster00" taborder="0" left="15" top="52" binddataset="dsMaster" right="14" bottom="410" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" onheadclick="grdMaster_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="1172"/>
+                <Column size="133"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="checkbox" text="No"/>
+                <Cell col="1" text="설문명"/>
+                <Cell col="2" text="참여"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center"/>
+                <Cell col="2" text="bind:REG_ID" displaytype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_00" taborder="1" left="15" top="20" height="22" text="설문목록" width="330" cssclass="sta_WF_Title02"/>
+        <Static id="stc_09_00_00" taborder="2" left="15" top="408" height="22" text="설문참여목록" width="330" cssclass="sta_WF_Title02"/>
+        <Grid id="grdMaster00_00" taborder="3" left="15" top="442" binddataset="dsMaster" right="14" bottom="20" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" onheadclick="grdMaster_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="1172"/>
+                <Column size="133"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="checkbox" text="No"/>
+                <Cell col="1" text="설문명"/>
+                <Cell col="2" text="참여일시"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center"/>
+                <Cell col="2" text="bind:REG_ID" displaytype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" canrowposchange="dsMaster_canrowposchange">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="32"/>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CLASS_NM" type="STRING" size="32"/>
+          <Column id="REMK" type="STRING" size="32"/>
+          <Column id="SN" type="BIGDECIMAL" size="16"/>
+          <Column id="USE_CHK" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CLASS_NM" type="STRING" size="256"/>
+          <Column id="USE_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CLASS_ID"/>
+            <Col id="CLASS_NM"/>
+            <Col id="USE_CHK"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGUserYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.form_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

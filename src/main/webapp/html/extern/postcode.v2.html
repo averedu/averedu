@@ -1,0 +1,22 @@
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="/res/js/html2nx.js"></script>
+<script>
+	window.NEXACROHTML.Init();
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+			try {
+				window.NEXACROHTML.FireUserNotify(data);
+			} catch(e) {
+				alert(e + "error");
+			}
+        },
+		onclose: function(state) {
+			try {
+				window.NEXACROHTML.FireUserNotify('close');
+			} catch(e) {
+				alert(e + "error");
+			}
+		}
+    }).open();
+</script>

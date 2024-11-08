@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_014" width="1606" height="830" titletext="근무조관리">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
+        <Button id="btn_02" taborder="1" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="60" width="46"/>
+        <Div id="div_01" taborder="2" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="44" fittocontents="width"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Combo id="Combo02" taborder="2" text="GMP" left="54" top="10" width="85" height="22" value="" index="-1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="3" left="0" top="5" height="22" text="근무조관리" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="stc_00" taborder="4" left="0" top="84" height="22" text="근무조 관리" width="130" cssclass="sta_WF_Title02" fittocontents="width"/>
+        <Static id="Static11" taborder="5" text="7" left="0" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static14" taborder="6" text="15" left="810" top="74" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Grid id="Grid01" taborder="7" left="0" top="109" binddataset="ds_grd" bottom="0" width="795" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="공항" cssclass="point"/>
+                <Cell col="1" text="근무조" cssclass="point"/>
+                <Cell col="2" text="설명"/>
+                <Cell col="3" text="감독자" cssclass="point"/>
+                <Cell col="4" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_02" taborder="8" left="stc_00:0" top="84" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Static id="stc_03" taborder="9" left="810" top="127" height="22" text="관제사 매핑" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+        <Static id="Static01" taborder="10" text="7" left="810" top="145" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static03" taborder="11" text="17" left="810" top="117" width="100" height="17" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Grid id="Grid02" taborder="12" left="810" top="152" binddataset="ds_grd" bottom="0" right="0" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="200"/>
+                <Column size="200"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="공항" cssclass="point"/>
+                <Cell col="1" text="근무조" cssclass="point"/>
+                <Cell col="2" cssclass="point" text="관제사"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_04" taborder="13" left="stc_03:0" top="127" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Div id="Div03" taborder="14" left="795" top="75" width="15" bottom="0" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Vspltt" top="0" text="" bottom="0" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button03" taborder="15" text="저장" top="127" width="46" height="22" right="48"/>
+        <Button id="Button04" taborder="16" text="엑셀" top="127" width="46" height="22" right="0"/>
+        <Static id="stc_24" taborder="17" left="810" top="89" height="28" cssclass="sta_WF_DetailBg" text="" right="0"/>
+        <Static id="stc_25" taborder="18" text="처리여부" left="810" top="89" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <Combo id="Combo00" taborder="19" text="60" left="962" top="92" width="80" height="22" value="" index="-1"/>
+        <Combo id="Combo01" taborder="20" text="60" left="1362" top="92" width="80" height="22" value="" index="-1"/>
+        <Static id="stc_01" taborder="21" text="처리여부" left="1210" top="89" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <Button id="Button00" taborder="22" text="조회" top="92" width="47" height="22" right="115"/>
+        <Button id="Button01" taborder="23" text="엑셀" top="84" width="46" height="22" right="811"/>
+        <Button id="Button02" taborder="24" text="저장" top="84" width="45" height="22" right="859"/>
+        <Button id="Button05" taborder="25" text="추가" top="84" width="45" height="22" right="954"/>
+        <Button id="Button06" taborder="26" text="삭제" top="84" width="46" height="22" right="906"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

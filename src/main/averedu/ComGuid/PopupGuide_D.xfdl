@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="PopupGuide_B" width="400" height="400" titletext="단순팝업 300X300">
+    <Layouts>
+      <Layout height="400" width="400">
+        <Static id="stc_05" taborder="0" left="20" top="25" height="22" text="그리드등록관리" width="220" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Div id="div_01" taborder="1" left="20" top="50" height="44" cssclass="div_WF_SearchBox" text="" right="20">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="1" left="0" top="10" height="22" text="권한그룹ID" cssclass="sta_WF_SearchLbl" width="90" fittocontents="width"/>
+              <Edit id="edt_00" taborder="0" left="stc_00:10" top="10" width="145" height="22" cssclass="point"/>
+              <Button id="btn_00" taborder="2" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09" taborder="2" left="20" top="104" height="22" text="리스트 제목" width="140" cssclass="sta_WF_Title02" fittocontents="width"/>
+        <Static id="Static10" taborder="3" text="7" left="20" top="122" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="4" text="35" left="235" top="94" width="50" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="5" text="15" left="20" top="94" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_01" taborder="6" left="stc_09:0" top="104" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Grid id="Grid00" taborder="7" left="20" top="129" binddataset="ds_grd" right="20" bottom="66">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="150"/>
+                <Column size="300"/>
+                <Column size="80"/>
+                <Column size="300"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="그룹코드" cssclass="point"/>
+                <Cell col="1" text="그룹명" cssclass="point"/>
+                <Cell col="2" text="순서" cssclass="point"/>
+                <Cell col="3" text="설명"/>
+                <Cell col="4" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_02" taborder="8" text="확인" height="26" cssclass="btn_WF_Pop" right="20" width="55" bottom="20"/>
+        <Button id="btn_01" taborder="9" text="취소" height="26" cssclass="btn_WF_Pop" right="77" width="55" bottom="20"/>
+        <Button id="Button05" taborder="10" text="추가" top="104" width="46" height="22" right="20"/>
+        <Static id="Static01" taborder="11" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static03" taborder="12" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static04" taborder="13" text="20" left="0" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20"/>
+        <Static id="Static05" taborder="14" text="20" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20" right="0"/>
+        <Static id="Static06" taborder="15" text="20" left="20" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="20" bottom="46"/>
+        <Static id="Static07" taborder="16" text="10" left="320" top="94" width="60" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static08" taborder="17" text="3" left="320" top="126" width="60" height="3" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static09" taborder="18" text="30" left="219" top="20" width="76" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Button id="Button00" taborder="19" top="20" width="25" height="25" right="20" cssclass="btn_WF_Close01"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

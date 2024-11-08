@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P04_DAO">									                            
+
+    <select id="COM_P04_DAO.retrieve_P04" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                '0' AS CHK                    /*CHK*/        		                
+                , A.HAKBEON  
+				, A.CAMPUS_GBCD  
+				, A.DAEHAK_CD  
+				, (SELECT COMM.SF_SC_GET_DEPT(A.DAEHAK_CD) FROM DUAL) AS DAEHAK_NM  
+				, A.HAKGWA_CD  
+				, (SELECT COMM.SF_SC_GET_DEPT(A.HAKGWA_CD) FROM DUAL) AS HAKGWA_NM  
+				, A.JEONGONG_CD  
+				, (SELECT COMM.SF_SC_GET_DEPT(A.JEONGONG_CD) FROM DUAL) AS JEONGONG_NM  
+				, A.JUYA_GBCD  
+				, (SELECT COMM.SF_SC_GET_COMMCODE('00003', A.JUYA_GBCD, '', '') FROM DUAL) AS JUYA_NM  
+				, A.HAKNYEON
+				, (SELECT COMM.SF_XBT_STD_CD_DETAIL('00060', A.HAKNYEON, 'CD_NM')
+						FROM DUAL) AS HAKNYEON_NM   
+				, A.JINGEUP_HAKNYEON  
+				, A.JINGEUP_SYS_SAJEONG_GBCD  
+				, A.JINGEUP_ADMIN_SAJEONG_GBCD  
+				, A.BUNBAN
+				, (SELECT COMM.SF_XBT_STD_CD_DETAIL('00050', A.BUNBAN, 'CD_NM')
+						FROM DUAL) AS BUNBAN_NM  
+				, A.HAKSAENG_NM  
+				, A.HAKSAENG_ENM  
+				, A.HAKSAENG_CNM  
+				, A.RES_NO  
+				, A.BIRTHDAY  
+				, A.HAKJEOK_STCD  
+				, (SELECT COMM.SF_SC_GET_COMMCODE('00004', A.HAKJEOK_STCD, '', '') FROM DUAL) AS HAKJEOK_SANGTAE_NM  
+				, A.BYEONDONG_CD  
+				, A.BYEONDONG_SEQ  
+				, A.BYEONDONG_DT  
+				, A.JIDOGYOSU_CD  
+				, (SELECT SEONGMYEONG  FROM ADMI.AM_GIBONINSA_M  WHERE SABEON = A.JIDOGYOSU_CD) AS JIDOGYOSU_NM  
+				, A.HAKSEOKSA_TONGHAPGWAJEONG_YN  
+				, A.SUHEOM_NO  
+				, A.IPSI_YYYY  
+				, A.MOJIP_GBCD  
+				, A.HAKNYEONJE_GBCD  
+				, A.GENDER_CD  
+				, (SELECT COMM.SF_SC_GET_COMMCODE('00001', A.GENDER_CD, '', '') FROM DUAL) AS GENDER_NM  
+				, A.GUKJEOK_CD  
+				, A.GYOJIK_ISU_YN  
+				, A.GYOJIK_POGI_YN  
+				, A.GYOJIK_POGI_DT  
+				, A.GYOJIK_POGI_SAYU  
+				, A.SERVICE_HAKJEOM_YN  
+				, A.OEGUKIN_YN  
+				, A.DONGPO_YN  
+				, A.BALSONGJUSO_GBCD  
+				, A.EMAIL  
+				, A.TEL_NO  
+				, A.HP_NO  
+				, A.POST_NO  
+				, A.ADDR1  
+				, A.ADDR2  
+				, A.PWD  
+				, A.BOHOJA_NM  
+				, A.BOHOJA_GWANGYE_GBCD  
+				, A.BOHOJA_TEL_NO  
+				, A.BOHOJA_HP_NO  
+				, A.BOHOJA_POST_NO  
+				, A.BOHOJA_ADDR1  
+				, A.BOHOJA_ADDR2  
+				, A.BOHOJA_JIKEOP  
+				, A.IPHAK_DT  
+				, A.IPHAK_HAKGWA_CD  
+				, A.GOGYOGYEYEOL_GBCD  
+				, A.CHULSINGOGYO_JOLEOP_YYYY  
+				, A.CHULSINGOGYO_JOLEOP_DT  
+				, A.CHULSINGOGYO_CD  
+				, A.CHULSINGOGYO_NM  
+				, A.NEIS_GOGYO_CD  
+				, A.CHULSINGOGYO_GUKJEOK_CD  
+				, A.CHULSINDAEHAK_NM  
+				, A.CHULSINDAEHAK_HAKGWA_NM  
+				, A.CHULSINDAEHAK_JOLEOP_YYYY  
+				, A.CHULSINDAEHAK_JOLEOP_GBCD  
+				, A.DAEHAK_GBCD  
+				, A.JEONGWONNAEOE_GBCD  
+				, A.IPHAK_JEONHYEONG_GBCD  
+				, A.IPHAK_TYCD  
+				, A.IPHAK_GBCD  
+				, A.PYEONIP_HAKNYEON  
+				, A.JOLEOP_YYYY  
+				, A.JOLEOP_HAKGI  
+				, A.JOLEOP_DT  
+				, A.JOLEOP_HOETSU  
+				, A.HAKWI_DEUNGROK_NO1  
+				, A.HAKWI_DEUNGROK_NO2  
+				, A.HAKWI_CD1  
+				, A.HAKWI_CD2  
+				, A.BALGEUP_BULGA_YN  
+				, A.BALGEUP_BULGA_SAYU  
+				, A.BALGEUP_BULGA_DT
+				, '/upload/pic/' ||  CASE WHEN SUBSTR(A.HAKBEON, 0, 2) > '60' THEN '19' || SUBSTR(A.HAKBEON, 0, 2) || '/' || A.HAKBEON || '.jpg'  ELSE '20' || SUBSTR(A.HAKBEON, 0, 2) || '/' || A.HAKBEON  || '.jpg' END AS FILE_PATH                                        
+              FROM UNIV.US_HAKJEOKGIBON_M A                                             							 
+             WHERE 1=1                                             												     
+        ]]>
+        <if test="DAEHAK_CD != null and DAEHAK_CD != ''">                                           							                        
+               AND A.DAEHAK_CD         = #{DAEHAK_CD}                                            													
+        </if>
+        <if test="HAKGWA_CD != null and HAKGWA_CD != ''">                                           							                        
+               AND A.HAKGWA_CD         = #{HAKGWA_CD}                                            													
+        </if>
+        <if test="JEONGONG_CD != null and JEONGONG_CD != ''">                                           							                        
+               AND A.JEONGONG_CD         = #{JEONGONG_CD}                                            													
+        </if>
+        <if test="JUYA_GBCD != null and JUYA_GBCD != ''">                                           							                        
+               AND A.JUYA_GBCD         = #{JUYA_GBCD}                                            													
+        </if>      
+        <if test="BUNBAN != null and BUNBAN != ''">                                           							                        
+               AND A.BUNBAN         = #{BUNBAN}                                            													
+        </if>                                                              												 
+        <if test="HAKBEON_NM != null and HAKBEON_NM != ''">                                           							                        
+               AND (A.HAKBEON = #{HAKBEON_NM} OR INSTR(A.HAKSAENG_NM, #{HAKBEON_NM}) > 0)                                     													
+        </if>
+        <if test="HAKJEOK_STCD != null and HAKJEOK_STCD != ''">                                           							                        
+               AND A.HAKJEOK_STCD         = #{HAKJEOK_STCD}                                            													
+        </if>      
+        <if test="GENDER_CD != null and GENDER_CD != ''">                                           							                        
+               AND A.GENDER_CD         = #{GENDER_CD}                                            													
+        </if>      
+        <if test="BIRTHDAY != null">                                           							                        
+               AND A.BIRTHDAY         = TO_CHAR(#{BIRTHDAY}, 'YYYYMMDD')                                           													
+        </if>      
+                                                                                                                   
+        /* COM_P04_DAO.retrieve_P04_ 학적기본관리 조회 */	                                 
+    </select> 	                                                        													                                                           													   
+</mapper>

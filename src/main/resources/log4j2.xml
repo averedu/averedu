@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+             <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+       <!--
+		<RollingFile name="file-debug" fileName="C:\log\debug\debug.log" filePattern="C:\tms\log\user\debug\$${date:yyyyMMdd}\%d{yyyyMMdd}-%i.debug.log" append="false">
+            <PatternLayout pattern="%d %p (%t) [%c] - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="500" fileIndex="min" />
+        </RollingFile>
+
+        <RollingFile name="file-sqltiming" fileName="C:\log\sqltiming\sqltiming.log" filePattern="C:\tms\log\user\sqltiming\$${date:yyyyMMdd}\%d{yyyyMMdd}-%i.sqltiming.log" append="false">
+            <PatternLayout pattern="%d %p (%t) [%c] - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="500" fileIndex="min" />
+        </RollingFile>
+        -->
+    </Appenders>
+    <Loggers>
+
+		<Logger name="com.msu" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="egovframework" level="INFO" additivity="true">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.apache.commons" level="INFO" additivity="true">
+            <AppenderRef ref="console" />
+        </Logger>
+        <logger name="jdbc.sqltiming" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="jdbc.connection" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="jdbc.audit" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        
+        <logger name="log4jdbc.debug" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        
+        <logger name="jdbc.resultset" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        
+        <logger name="jdbc.resultsettable" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        
+        <logger name="java.sql.Connection" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.apache.commons.digester" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="com.nexacro17.xapi" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        
+        <logger name="org.mybatis.spring" level="WARN" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+
+    </Loggers>
+
+</Configuration>

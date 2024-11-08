@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS006CommonMessageDAO">									                            
+
+    <select id="SYS006CommonMessageDAO.retrieveCommonMessageList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.MSG_CODE                    /*KEY(자동증가:MSG00001)*/             
+                 , A.MSG_NAME_KR                 /*한글메세지*/             
+                 , A.MSG_NAME_EN                 /*영문메세지*/             
+                 , A.MSG_NAME_CH                 /*중국메세지*/             
+                 , A.MSG_NAME_JP                 /*일본메세지*/             
+                 , A.MSG_NAME_EC                 /*기타메세지*/             
+                 , A.MSG_TYPE                    /*메세지타입(1.error:오류,2.question:문제,3.warning:경고,4.information:정보)*/             
+                 , A.MSG_YN                      /*메세지사용여부*/             
+                 , A.REG_ID                      /*등록아이디*/             
+                 , A.REG_DT                    /*등록일시*/             
+                 , A.MOD_ID                      /*수정아이디*/             
+                 , A.MOD_DT                    /*수정일시*/             
+                 , A.MSG_BTN                     /*버튼타입(0:OK,1:YES.NO)*/             
+              FROM COMM.XBT_MESSAGE A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="MSG_CODE != null and MSG_CODE != ''">    
+            <![CDATA[                                         							                        
+               AND A.MSG_CODE LIKE '%'|| #{MSG_CODE} ||'%'  
+            ]]>                                           													
+        </if>
+        <if test="MSG_NAME_KR != null and MSG_NAME_KR != ''">    
+            <![CDATA[                                         							                        
+               AND A.MSG_NAME_KR LIKE '%' || #{MSG_NAME_KR} || '%'  
+            ]]>                                           													
+        </if>   
+        <if test="MSG_YN != null and MSG_YN != ''">    
+            <![CDATA[                                         							                        
+               AND A.MSG_YN        = #{MSG_YN}  
+            ]]>                                           													
+        </if>  
+        ORDER BY MSG_CODE                                                                                                       
+        /* SYS006CommonMessageDAO.retrieveCommonMessageList 메세지 조회 */	                                 
+    </select> 	                                                        													 
+
+    <select id="SYS006CommonMessageDAO.retrieveCommonMessageListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											
+				'MSG' || LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(MSG_CODE,4)))+1,1)),5,'0') AS MSG_CODE        								       
+			 FROM COMM.XBT_MESSAGE                                             								 
+			WHERE 1=1         
+        ]]>                                                      												             
+        /* SYS006CommonMessageDAO.retrieveCommonMessageListPKey 메세지 PK 조회 */								             
+    </select> 	                                                        													     
+
+    <select id="SYS006CommonMessageDAO.retrieveCommonMessageListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_MESSAGE
+             WHERE 1=1
+               AND MSG_CODE        = #{MSG_CODE}
+        ]]>
+        /* SYS006CommonMessageDAO.retrieveCommonMessageListKey 메세지 중복 조회 */
+    </select>
+
+    <insert id="SYS006CommonMessageDAO.insertCommonMessageList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_MESSAGE                                       										  
+            (                                       																	  
+                   MSG_CODE                    /*KEY(자동증가:MSG00001)*/ 
+                 , MSG_NAME_KR                 /*한글메세지*/ 
+                 , MSG_NAME_EN                 /*영문메세지*/ 
+                 , MSG_NAME_CH                 /*중국메세지*/ 
+                 , MSG_NAME_JP                 /*일본메세지*/ 
+                 , MSG_NAME_EC                 /*기타메세지*/ 
+                 , MSG_TYPE                    /*메세지타입(1.error:오류,2.question:문제,3.warning:경고,4.information:정보)*/ 
+                 , MSG_YN                      /*메세지사용여부*/ 
+                 , REG_ID                      /*등록아이디*/ 
+                 , REG_DT                    /*등록일시*/ 
+                 , MOD_ID                      /*수정아이디*/ 
+                 , MOD_DT                    /*수정일시*/ 
+                 , MSG_BTN                     /*버튼타입(0:OK,1:YES.NO)*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{MSG_CODE} 
+                 , #{MSG_NAME_KR}  
+                 , #{MSG_NAME_EN}  
+                 , #{MSG_NAME_CH}  
+                 , #{MSG_NAME_JP}  
+                 , #{MSG_NAME_EC}  
+                 , #{MSG_TYPE}  
+                 , #{MSG_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+                 , #{MSG_BTN}  
+            )	                                                      						
+        ]]>                                    											
+        /* SYS006CommonMessageDAO.insertCommonMessageList 메세지 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS006CommonMessageDAO.updateCommonMessageList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_MESSAGE                                			        
+               SET                                                      				
+                   MSG_CODE                  = #{MSG_CODE}                    /*KEY(자동증가:MSG00001)*/  
+                 , MSG_NAME_KR               = #{MSG_NAME_KR}                 /*한글메세지*/  
+                 , MSG_NAME_EN               = #{MSG_NAME_EN}                 /*영문메세지*/  
+                 , MSG_NAME_CH               = #{MSG_NAME_CH}                 /*중국메세지*/  
+                 , MSG_NAME_JP               = #{MSG_NAME_JP}                 /*일본메세지*/  
+                 , MSG_NAME_EC               = #{MSG_NAME_EC}                 /*기타메세지*/  
+                 , MSG_TYPE                  = #{MSG_TYPE}                    /*메세지타입(1.error:오류,2.question:문제,3.warning:경고,4.information:정보)*/  
+                 , MSG_YN                    = #{MSG_YN}                      /*메세지사용여부*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록아이디*/  
+                 , REG_DT                  = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정아이디*/  
+                 , MOD_DT                  = SYSDATE                        /*수정일시*/  
+                 , MSG_BTN                   = #{MSG_BTN}                     /*버튼타입(0:OK,1:YES.NO)*/  
+             WHERE 1=1                                                   						                        
+               AND MSG_CODE        = #{MSG_CODE}  
+        ]]>  	                                   							                            				
+        /* SYS006CommonMessageDAO.updateCommonMessageList 메세지 수정 */								
+    </update>                                                           												
+
+    <delete id="SYS006CommonMessageDAO.deleteCommonMessageList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_MESSAGE                                                  							      
+             WHERE 1=1                              																	          
+               AND MSG_CODE        = #{MSG_CODE}  
+        ]]>                                                															           
+        /* SYS006CommonMessageDAO.deleteCommonMessageList 메세지 삭제 */								       
+    </delete>	                                                          													   
+</mapper>               

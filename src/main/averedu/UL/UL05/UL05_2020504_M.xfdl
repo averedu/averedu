@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="강의평가문항관리" onload="form_onload">
+    <Layouts>
+      <Layout description="강의평가문항관리" height="800" mobileorientation="landscape" width="1640">
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="2" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00" taborder="3" left="-3" top="9" height="22" text="문항구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right" onclick="divSearch_stc_01_00_onclick"/>
+              <Static id="Static01_02_00" taborder="4" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="5" text="10" left="80" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="6" text="9" left="26" top="31" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Combo id="cboSearchMunhangGbcd" taborder="0" text="" top="9" width="141" height="22" codecolumn="CODE" datacolumn="CODE_NM" value="1" enable="true" innerdataset="dsSearchMunhangGb" left="90" autoselect="true"/>
+              <Static id="Static01_02_01_01" taborder="7" text="← 56 →" left="231" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_00" taborder="8" left="258" top="9" height="22" text="주 객관식 구분" cssclass="sta_WF_SearchLbl" width="110" textAlign="right" onclick="divSearch_stc_01_00_onclick"/>
+              <Static id="Static01_02_00_00_00_00" taborder="9" text="10" left="370" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchJuGaekgwansikGbcd" taborder="1" text="" top="9" width="91" height="22" codecolumn="CODE" datacolumn="CODE_NM" value="1" enable="true" innerdataset="dsSearchJuGaekgwansikGb" left="380" autoselect="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09_00" taborder="2" left="-3" top="52" height="22" text="강의평가 문항 리스트" cssclass="sta_WF_Title02" right="1458" onclick="stc_09_00_onclick"/>
+        <Static id="staRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="157" top="51" height="24" usedecorate="true" right="1360"/>
+        <Grid id="grdMaster" taborder="1" left="0" top="77" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" bottom="0" right="0">
+          <Grid id="grdMaster" taborder="1" binddataset="dsMaster" autoenter="select" autofittype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="80" right="0" bottom="0">
+            <Formats>
+              <Format id="default">
+                <Columns>
+                  <Col size="40"/>
+                  <Col size="40"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                </Columns>
+                <Rows>
+                  <Row size="30" band="head"/>
+                  <Row size="30"/>
+                </Rows>
+                <Band id="head">
+                  <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                  <Cell col="1" displaytype="normal" text="No."/>
+                  <Cell col="2" disptype="normal" text="입시 년도"/>
+                  <Cell col="3" disptype="normal" text="고교 코드"/>
+                  <Cell col="4" disptype="normal" text="고교 명"/>
+                  <Cell col="5" disptype="normal" text="시도 교육청"/>
+                  <Cell col="6" disptype="normal" text="전화 번호"/>
+                  <Cell col="7" disptype="normal" text="우편 번호"/>
+                  <Cell col="8" disptype="normal" text="주소"/>
+                  <Cell col="9" disptype="normal" text="상세 주소"/>
+                  <Cell col="10" disptype="normal" text="고교계열 구분코드"/>
+                  <Cell col="11" disptype="normal" text="지역 구분코드"/>
+                  <Cell col="12" disptype="normal" text="세부지역 구분코드"/>
+                  <Cell col="13" disptype="normal" text="고교약어 명"/>
+                  <Cell col="14" disptype="normal" text="비고"/>
+                  <Cell col="15" disptype="normal" text="적용 구분코드"/>
+                  <Cell col="16" disptype="normal" text="제공 년도"/>
+                  <Cell col="17" disptype="normal" text="기준 년도 대상 여부"/>
+                  <Cell col="18" disptype="normal" text="대상 여부1(기준년도 기준 1년전)"/>
+                  <Cell col="19" disptype="normal" text="대상 여부2(기준년도 기준 2년전)"/>
+                  <Cell col="20" disptype="normal" text="대상 여부3(기준년도 기준 3년전)"/>
+                  <Cell col="21" disptype="normal" text="대상 여부4(기준년도 기준 4년전)"/>
+                  <Cell col="22" disptype="normal" text="대상 여부5(기준년도 기준 5년전)"/>
+                  <Cell col="23" disptype="normal" text="등록자"/>
+                  <Cell col="24" disptype="normal" text="등록일시"/>
+                  <Cell col="25" disptype="normal" text="등록아이피"/>
+                  <Cell col="26" disptype="normal" text="등록프로그램"/>
+                  <Cell col="27" disptype="normal" text="수정자"/>
+                  <Cell col="28" disptype="normal" text="수정일시"/>
+                  <Cell col="29" disptype="normal" text="수정아이피"/>
+                  <Cell col="30" disptype="normal" text="수정프로그램"/>
+                </Band>
+                <Band id="body">
+                  <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK" editmaxlength="1"/>
+                  <Cell col="1" displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                  <Cell col="2" displaytype="text" edittype="text" textAlign="left" text="bind:IPSI_YYYY" editmaxlength="4"/>
+                  <Cell col="3" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYO_CD" editmaxlength="10"/>
+                  <Cell col="4" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYO_NM" editmaxlength="100"/>
+                  <Cell col="5" displaytype="text" edittype="text" textAlign="left" text="bind:SIDO_GYOYUKCHEONG" editmaxlength="100"/>
+                  <Cell col="6" displaytype="text" edittype="text" textAlign="left" text="bind:TEL_NO" editmaxlength="50"/>
+                  <Cell col="7" displaytype="text" edittype="text" textAlign="left" text="bind:POST" editmaxlength="6"/>
+                  <Cell col="8" displaytype="text" edittype="text" textAlign="left" text="bind:JUSO" editmaxlength="500"/>
+                  <Cell col="9" displaytype="text" edittype="text" textAlign="left" text="bind:SANGSE_JUSO" editmaxlength="500"/>
+                  <Cell col="10" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYOGYEYEOL_GBCD" editmaxlength="10"/>
+                  <Cell col="11" displaytype="text" edittype="text" textAlign="left" text="bind:JIYEOK_GBCD" editmaxlength="10"/>
+                  <Cell col="12" displaytype="text" edittype="text" textAlign="left" text="bind:SEBUJIYEOK_GBCD" editmaxlength="10"/>
+                  <Cell col="13" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYOYAKEO_NM" editmaxlength="100"/>
+                  <Cell col="14" displaytype="text" edittype="text" textAlign="left" text="bind:BIGO" editmaxlength="1000"/>
+                  <Cell col="15" displaytype="text" edittype="text" textAlign="left" text="bind:JEOKYONG_GBCD" editmaxlength="10"/>
+                  <Cell col="16" displaytype="text" edittype="text" textAlign="left" text="bind:JEGONG_YYYY" editmaxlength="4"/>
+                  <Cell col="17" displaytype="text" edittype="text" textAlign="left" text="bind:GIJUN_YYYY_DAESANG_YN" editmaxlength="2"/>
+                  <Cell col="18" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN1" editmaxlength="2"/>
+                  <Cell col="19" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN2" editmaxlength="2"/>
+                  <Cell col="20" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN3" editmaxlength="2"/>
+                  <Cell col="21" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN4" editmaxlength="2"/>
+                  <Cell col="22" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN5" editmaxlength="2"/>
+                  <Cell col="23" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_ID" editmaxlength="30"/>
+                  <Cell col="24" displaytype="date" edittype="date" textAlign="center" text="bind:INSERT_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                  <Cell col="25" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_IP" editmaxlength="30"/>
+                  <Cell col="26" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_PG" editmaxlength="500"/>
+                  <Cell col="27" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_ID" editmaxlength="30"/>
+                  <Cell col="28" displaytype="date" edittype="date" textAlign="center" text="bind:UPDATE_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                  <Cell col="29" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_IP" editmaxlength="30"/>
+                  <Cell col="30" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_PG" editmaxlength="500"/>
+                </Band>
+              </Format>
+            </Formats>
+          </Grid>
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="67"/>
+                <Column size="80"/>
+                <Column size="298"/>
+                <Column size="94"/>
+                <Column size="629"/>
+                <Column size="64"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="NO"/>
+                <Cell col="2" text="문항번호"/>
+                <Cell col="3" text="문항구분"/>
+                <Cell col="4" text="주 객관식 구분"/>
+                <Cell col="5" text="문항"/>
+                <Cell col="6" text="정렬"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="2" text="bind:MUNHANG_NO"/>
+                <Cell col="3" text="bind:MUNHANG_GBCD" displaytype="combocontrol" edittype="combo" combodataset="dsMunhangGb" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="4" text="bind:JU_GAEKGWANSIK_GBCD" displaytype="combocontrol" combodataset="dsJuGaekgwansikGb" combocodecol="CODE" combodatacol="CODE_NM" edittype="combo"/>
+                <Cell col="5" text="bind:MUNHANG" textAlign="left" edittype="text"/>
+                <Cell col="6" text="bind:SORT" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="4" text="↑&#13;&#10;35&#13;&#10;↓" left="1110" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00" taborder="5" text="8" left="10" top="69" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="MUNHANG_NO" type="BIGDECIMAL" size="22"/>
+          <Column id="MUNHANG_GBCD" type="STRING" size="10"/>
+          <Column id="JU_GAEKGWANSIK_GBCD" type="STRING" size="10"/>
+          <Column id="MUNHANG" type="STRING" size="500"/>
+          <Column id="SORT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="MUNHANG_GBCD" type="STRING" size="10"/>
+          <Column id="JU_GAEKGWANSIK_GBCD" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMunhangGb" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="REF_1" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJuGaekgwansikGb" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearchMunhangGb" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="REF_1" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearchJuGaekgwansikGb" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UL05_2020504_M.xfdl(강의평가문항관리)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/07/12
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "MUNHANG_GBCD$JU_GAEKGWANSIK_GBCD$MUNHANG";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "문항구분$주 객관식 구분$문항";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsSearchMunhangGb|dsMunhangGb|dsSearchJuGaekgwansikGb|dsJuGaekgwansikGb";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00031|00031|00528|00528";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|S|T|S";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+
+this.fn_PostformInit = function()
+{
+	this.dsMunhangGb.filter("REF_1 != '5'");
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            case "Del":
+                    this.fn_PostDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+	if(this.fn_beforeclose())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}	
+	}	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UL/UL05/Retrieve_2020504_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    var nRow = this.dsMaster.addRow();
+};
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreDel = function()
+{
+    //멀티삭제용도
+    if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
+    {
+        this.gfn_alert("삭제할 데이터가 없습니다.","삭제정보","","warning");
+        return false;
+    }
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+
+    if(result == 0)
+    {
+        return false;
+    }
+
+    //다중삭제 용도
+    this.dsMaster.set_enableevent(false);
+    for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+    {
+        if(this.dsMaster.getColumn(i,"CHK") == "1" || this.dsMaster.getRowType(i) == 2)
+        {
+            this.dsMaster.deleteRow(i);
+        }
+    }
+    this.dsMaster.set_enableevent(true);
+	
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(!this.fn_PreDel())
+    {
+        return false;
+    }
+
+    var strSvc      = "Del";
+    var strUrl      = "/prj/UL/UL05/Delete_2020504_M.do";
+    var strInDs     = "dsMaster=dsMaster:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(this.dsMaster.rowcount > 0)
+    {
+        for(var i=0;i<this.dsMaster.rowcount; i++)
+        {
+            if(this.dsMaster.getColumn(i,"CHK") == "0")
+            {
+                continue;
+            }
+            this.dsMaster.setColumn(i,"CHK","0");
+        }
+    }
+
+    if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = true;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+     }
+
+     var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+     if(result == 0)
+     {
+         return false;
+     }
+     return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UL/UL05/Save_2020504_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ * 기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        10. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 체크
+ */
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+    {
+        this.gfn_checkAll(obj, e);
+    }
+};
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    return this.gfn_isUpdate(this.dsMaster);
+};]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboSearchMunhangGbcd" propid="value" datasetid="ds_input" columnid="MUNHANG_GBCD"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchJuGaekgwansikGbcd" propid="value" datasetid="ds_input" columnid="JU_GAEKGWANSIK_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

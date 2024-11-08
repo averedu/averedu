@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1" height="1" titletext="주소 검색" onload="form_onload" ontimer="form_ontimer">
+    <Layouts>
+      <Layout height="1" mobileorientation="landscape" width="1">
+        <WebBrowser id="brw_addr" taborder="0" left="0" top="0" tabstop="true" right="0" bottom="35" onloadcompleted="brw_addr_onloadcompleted" onusernotify="brw_addr_onusernotify"/>
+        <Button id="btn_close" taborder="1" text="닫기" top="16" width="60" height="22" left="0" onclick="btnClose_onclick" cssclass="btn_WF_Pop"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ * 01. 업무구분	: 공통 
+ * 02. 프로그램명	: 주소 검색 팝업
+ * 03. 화면설명	: 
+ * 04. 작성일		: 2016.07.26
+ * 05. 작성자		: jiback
+ * 06. 수정이력	: 
+ **************************************************************************************************
+ *     수정일        이  름    사유
+ **************************************************************************************************
+ *     2016-07-26     jiback    최초 작성
+ **************************************************************************************************
+ */
+ 
+//=================================================================================================
+//	▷ 공통 라이브러리 INCLUDE 영역 (필수)
+//=================================================================================================
+//include "js::CommonUtil.xjs";
+
+//=================================================================================================
+//	▷ Form Variables Definition
+//=================================================================================================
+
+
+//=================================================================================================
+//	▶ Form Event(화면 Load Event 처리)
+//=================================================================================================	
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//웹브라우저 주소 셋팅
+	this.brw_addr.set_url(nexacro.getEnvironment().services["svcurl"].url + "msu/util/jsp/address.jsp");
+	
+};
+
+
+//=================================================================================================
+//	▷ Load 후 초기설정 및 Data Setting
+//=================================================================================================
+
+
+//=================================================================================================
+//	☞ Local Function(사용자 FUNCTION 영역)
+//=================================================================================================
+
+
+//=================================================================================================
+//	▶ Component Event(각 COMPONENT 별 EVENT 영역)
+//=================================================================================================
+
+
+
+
+//=================================================================================================
+//	♨ Callback Function (트랜잭션 처리 후 함수 ) (fn_callback 고정)
+//=================================================================================================
+this.brw_addr_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var nVal = e.userdata;
+
+	if(e.userdata != "CLOSE")//선택한 데이터가 있을시
+	{
+		if(nVal.indexOf("WD@") >= 0)
+		{
+			//선택된 주소값을 글로벌 리턴DS에 받아서 넘기고 팝업 종료한다.
+			//리턴 데이터셋 초기화
+			this.ds_addr.clearData();
+			var addRow = this.ds_addr.addRow();
+			
+			//리턴 주소 정보 받기
+			var addrJson = e.userdata;
+			//앞에 prefix 제거
+			addrJson = this.gfn_replace(addrJson, "WD@", "");
+			//주소 정보 분해
+			var addrArr1 = addrJson.split("?");
+			
+			for (var i = 0; i < addrArr1.length; i++) 
+			{
+				var addrArr2 	= addrArr1[i].split(":");
+				var addrKey 	= addrArr2[0];
+				var addrValue 	= addrArr2[1];
+				//주소 데이터셋에 맞게 셋팅
+				this.ds_addr.setColumn(addRow,addrKey,addrValue);
+			}
+			
+			//전송 할 데이터 셋팅
+			this.ds_returnAddr.clearData();
+			var addRowReturn = this.ds_returnAddr.addRow();
+			this.ds_returnAddr.setColumn(addRowReturn, "ADDRESS_TYPE", this.ds_addr.getColumn(addRow,"userSelectedType"));
+			this.ds_returnAddr.setColumn(addRowReturn, "ZIP_CODE", this.ds_addr.getColumn(addRow,"zonecode"));
+					
+			if(this.ds_addr.getColumn(addRow,"userSelectedType") == "J")
+			{
+				this.ds_returnAddr.setColumn(addRowReturn, "ADDRESS", this.ds_addr.getColumn(addRow,"jibunAddress"));	//지번 주소
+				this.ds_returnAddr.setColumn(addRowReturn, "ADDRESS2", this.ds_addr.getColumn(addRow,"roadAddress"));	//도로명주소
+			} else
+			{
+				//도로명 주소
+				this.ds_returnAddr.setColumn(addRowReturn, "ADDRESS", this.ds_addr.getColumn(addRow,"roadAddress"));	//도로명주소
+				this.ds_returnAddr.setColumn(addRowReturn, "ADDRESS2", this.ds_addr.getColumn(addRow,"jibunAddress"));	//지번주소
+			}
+			
+			//글로벌 데이터셋 셋팅
+			//파일 데이터셋 클리어
+			objApp.gds_PopRtn.clearData();
+			//글로벌 팝업 리턴 데이터셋에 셋팅
+			objApp.gds_PopRtn.copyData(this.ds_returnAddr);
+			
+			
+			//팝업 닫기
+			this.setTimer(1, 500);
+		}
+	}else if(e.userdata =="CLOSE") //데이터를 선택하지 않고 그냥 닫았을시
+	{
+		//팝업 닫기
+		this.setTimer(1, 500);
+	
+	}
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	objApp.gds_PopRtn.clearData();
+	this.close();	
+};
+
+
+this.brw_addr_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	//로드가 성공하면 되는것
+};
+
+
+this.form_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	this.killTimer(1);
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_addr" updatecontrol="false">
+        <ColumnInfo>
+          <Column id="zonecode" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="addressEnglish" type="STRING" size="256"/>
+          <Column id="addressType" type="STRING" size="256"/>
+          <Column id="userSelectedType" type="STRING" size="256"/>
+          <Column id="userLanguageType" type="STRING" size="256"/>
+          <Column id="roadAddress" type="STRING" size="256"/>
+          <Column id="roadAddressEnglish" type="STRING" size="256"/>
+          <Column id="jibunAddress" type="STRING" size="256"/>
+          <Column id="jibunAddressEnglish" type="STRING" size="256"/>
+          <Column id="autoRoadAddress" type="STRING" size="256"/>
+          <Column id="autoRoadAddressEnglish" type="STRING" size="256"/>
+          <Column id="autoJibunAddress" type="STRING" size="256"/>
+          <Column id="autoJibunAddressEnglish" type="STRING" size="256"/>
+          <Column id="buildingCode" type="STRING" size="256"/>
+          <Column id="buildingName" type="STRING" size="256"/>
+          <Column id="apartment" type="STRING" size="256"/>
+          <Column id="sido" type="STRING" size="256"/>
+          <Column id="sigungu" type="STRING" size="256"/>
+          <Column id="sigunguCode" type="STRING" size="256"/>
+          <Column id="roadnameCode" type="STRING" size="256"/>
+          <Column id="bcode" type="STRING" size="256"/>
+          <Column id="bname" type="STRING" size="256"/>
+          <Column id="hname" type="STRING" size="256"/>
+          <Column id="query" type="STRING" size="256"/>
+          <Column id="postcode" type="STRING" size="256"/>
+          <Column id="postcode1" type="STRING" size="256"/>
+          <Column id="postcode2" type="STRING" size="256"/>
+          <Column id="postcodeSeq" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_returnAddr" updatecontrol="false">
+        <ColumnInfo>
+          <Column id="ZIP_CODE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="ADDRESS2" type="STRING" size="256"/>
+          <Column id="ADDRESS_TYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

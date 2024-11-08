@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="900" height="600" titletext="단체변경이력" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="900" description="단체변경이력">
+        <Grid id="grdMaster" taborder="1" left="10" top="87" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" oncelldblclick="grdMaster_oncelldblclick" binddataset="dsMaster" bottom="50" right="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="82"/>
+                <Column size="87"/>
+                <Column size="91"/>
+                <Column size="98"/>
+                <Column size="97"/>
+                <Column size="99"/>
+                <Column size="107"/>
+                <Column size="105"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="변경일자"/>
+                <Cell col="1" text="단체명"/>
+                <Cell col="2" text="지도교수"/>
+                <Cell col="3" text="대표학생"/>
+                <Cell col="4" text="부대표학생"/>
+                <Cell col="5" text="단체구분"/>
+                <Cell col="6" text="단체분류"/>
+                <Cell col="7" text="관리부서"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="date" edittype="none" textAlign="center" text="bind:BYEONGYEONG_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                <Cell col="1" displaytype="text" edittype="none" textAlign="center" text="bind:DANCHE_NM" editmaxlength="10"/>
+                <Cell col="2" displaytype="text" edittype="none" textAlign="center" text="bind:JIDOGYOSU_NM" editmaxlength="256"/>
+                <Cell col="3" displaytype="text" edittype="none" textAlign="center" text="bind:DAEPYO_NM" editmaxlength="256"/>
+                <Cell col="4" displaytype="text" edittype="none" textAlign="center" text="bind:BU_DAEPYO_NM" editmaxlength="256"/>
+                <Cell col="5" displaytype="text" edittype="none" textAlign="center" text="bind:DANCHE_GBNM" editmaxlength="256"/>
+                <Cell col="6" displaytype="text" edittype="none" textAlign="center" text="bind:DANCHE_BUNRYU_GBNM" editmaxlength="256"/>
+                <Cell col="7" displaytype="text" edittype="none" textAlign="center" text="bind:GWANLI_DEPT_NM" editmaxlength="256"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="2" text="닫기" top="564" width="55" height="26" left="835" onclick="btnClose_onclick" cssclass="btn_WF_Pop"/>
+        <Div id="divSearch00" taborder="0" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" width="880" formscrolltype="none">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="4" left="-11" top="9" width="76" height="22" cssclass="sta_WF_SearchLbl" text="단체명" textAlign="right"/>
+              <Edit id="edtSearchDancheNm" taborder="1" left="189" top="9" height="22" width="509" autoselect="true" onkeyup="divSearch_edtStoreCd_onkeyup" oninput="divSearch_edtStoreCd_oninput" enable="false"/>
+              <Edit id="edtSearchDancheCd" taborder="0" left="80" top="9" height="22" width="99" autoselect="true" onkeyup="divSearch_edtStoreCd_onkeyup" oninput="divSearch_edtStoreCd_oninput" enable="false"/>
+              <Button id="btnExcel" taborder="2" text="엑셀" left="745" top="8" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnExcel_onclick"/>
+              <Button id="btnSearch" taborder="3" text="조회" left="810" top="8" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSearch_onclick"/>
+              <Static id="Static01_02_00" taborder="5" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01" taborder="6" text="9" left="20" top="0" width="610" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00" taborder="7" text="10" left="70" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00" taborder="8" text="9" left="20" top="31" width="610" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="9" text="10" left="179" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09_00" taborder="3" left="10" top="62" height="22" text="단체변경이력목록" width="140" cssclass="sta_WF_Title02"/>
+        <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="150" top="61" height="24" usedecorate="true" width="233"/>
+        <Static id="Static01" taborder="5" text="↑&#13;&#10;35&#13;&#10;↓" left="247" top="52" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00" taborder="6" text="8" left="10" top="79" width="850" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UD01_2110103_P02.xfdl(단체변경이력)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/12/02
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().dancheCd))
+	{
+		this.ds_input.setColumn(0, "DANCHE_CD", this.getOwnerFrame().dancheCd);
+		this.ds_input.setColumn(0, "DANCHE_NM", this.getOwnerFrame().dancheNm);
+	}
+	
+    if(this.ds_input.getColumn(0,"DANCHE_CD") == null){
+		return false;	    
+	}
+	else
+	{
+        this.fn_Ret();
+	};	
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if(this.ds_input.getColumn(0,"DANCHE_CD") == null){
+        this.gfn_alert("검색조건에 단체코드 값이 존재하지 않습니다.", "검색조건 정보" ,"","information");
+        return false;	    
+	}else{
+        this.fn_Ret();
+	};
+};
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UD/UD01/Retrieve_2110103_P02.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Excel();
+};
+
+this.fn_Excel = function()
+{
+    if(this.dsMaster.rowcount < 1)
+    {
+        this.gfn_alert("출력할 엑셀데이터가 없습니다.", "EXCEL 정보" ,"","information");
+        return false;
+    }
+    var result = this.gfn_confirm( "Excel를 출력하시겠습니까?", "EXCEL 출력","","question" );
+    if(result == 0)
+    {
+       return false;
+    }
+    this.gfn_excelExport(this.grdMaster, "단체 변경이력 목록","단체 변경이력 목록");
+
+};
+
+/**********************************************************************
+        07. 기타 Control Event
+***********************************************************************/
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DANCHE_CD" type="STRING" size="32"/>
+          <Column id="DANCHE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DANCHE_CD"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" canrowposchange="dsMaster_canrowposchange">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="DANCHE_CD" type="STRING" size="10"/>
+          <Column id="BYEONGYEONG_DT" type="DATE" size="8"/>
+          <Column id="BYEONGYEONG_GBN" type="STRING" size="8"/>
+          <Column id="DANCHE_NM" type="STRING" size="100"/>
+          <Column id="SEOLRIB_DT" type="DATE" size="8"/>
+          <Column id="DAEPYO_HAKBEON" type="STRING" size="10"/>
+          <Column id="DAEPYO_NM" type="STRING" size="256"/>
+          <Column id="BU_DAEPYO_HAKBEON" type="STRING" size="10"/>
+          <Column id="BU_DAEPYO_NM" type="STRING" size="256"/>
+          <Column id="DANCHE_GBCD" type="STRING" size="8"/>
+          <Column id="DANCHE_GBNM" type="STRING" size="256"/>
+          <Column id="DANCHE_BUNRYU_GBCD" type="STRING" size="8"/>
+          <Column id="DANCHE_BUNRYU_GBNM" type="STRING" size="256"/>
+          <Column id="SAHOE_BONGSA_YN" type="STRING" size="1"/>
+          <Column id="JIDOGYOSU_CD" type="STRING" size="8"/>
+          <Column id="JIDOGYOSU_NM" type="STRING" size="256"/>
+          <Column id="HWALDONG_MOKJEOK" type="STRING" size="4000"/>
+          <Column id="GWANLI_DEPT_CD" type="STRING" size="8"/>
+          <Column id="GWANLI_DEPT_NM" type="STRING" size="256"/>
+          <Column id="SEUNGIN_DT" type="DATE" size="8"/>
+          <Column id="SINSEOL_YYYY" type="STRING" size="4"/>
+          <Column id="SINSEOL_HAKGI" type="STRING" size="8"/>
+          <Column id="DANCHE_SANGTAE_GBCD" type="STRING" size="8"/>
+          <Column id="SEOYAKSEO_JECHUL_YN" type="STRING" size="1"/>
+          <Column id="MYEONGDAN_JECHUL_YN" type="STRING" size="1"/>
+          <Column id="JIDOGYOSU_JECHUL_YN" type="STRING" size="1"/>
+          <Column id="GYEHOEKSEO_JECHUL_YN" type="STRING" size="1"/>
+          <Column id="SEOYAKSEO_FILE_NO" type="STRING" size="32"/>
+          <Column id="MYEONGDANG_FILE_NO" type="STRING" size="32"/>
+          <Column id="JIDOGYOSU_FILE_NO" type="STRING" size="32"/>
+          <Column id="GYEHOEKSEO_FILE_NO" type="STRING" size="32"/>
+          <Column id="DANCHE_SINCHEONG_NO" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOYUK_GONGGAN_CD" type="STRING" size="10"/>
+          <Column id="DEPT_CD" type="STRING" size="8"/>
+          <Column id="DAMDANGJA_SAWON_NO" type="BIGDECIMAL" size="22"/>
+          <Column id="DAMDANGJA_TEL_NO" type="STRING" size="16"/>
+          <Column id="BIGO" type="STRING" size="4000"/>
+          <Column id="INSERT_ID" type="STRING" size="30"/>
+          <Column id="INSERT_DT" type="DATE" size="8"/>
+          <Column id="INSERT_IP" type="STRING" size="30"/>
+          <Column id="INSERT_PG" type="STRING" size="30"/>
+          <Column id="UPDATE_ID" type="STRING" size="30"/>
+          <Column id="UPDATE_DT" type="DATE" size="8"/>
+          <Column id="UPDATE_IP" type="STRING" size="30"/>
+          <Column id="UPDATE_PG" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch00.form.edtSearchDancheNm" propid="value" datasetid="ds_input" columnid="DANCHE_NM"/>
+      <BindItem id="item1" compid="divSearch00.form.edtSearchDancheCd" propid="value" datasetid="ds_input" columnid="DANCHE_CD"/>
+    </Bind>
+  </Form>
+</FDL>

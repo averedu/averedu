@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS008CommonComponentDAO">									                            
+
+    <select id="SYS008CommonComponentDAO.retrieveCommonComponentList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.COP_CODE                    /*KEY(자동증가:COP00001)*/             
+                 , A.COP_NAME_KR                 /*한글어컴포넌트*/             
+                 , A.COP_NAME_EN                 /*영문어컴포넌트*/             
+                 , A.COP_NAME_CH                 /*중국어컴포넌트*/             
+                 , A.COP_NAME_JP                 /*일본어컴포넌트*/             
+                 , A.COP_NAME_EC                 /*기타컴포넌트*/             
+                 , A.COP_YN                      /*컴포넌트사용여부*/             
+                 , A.REG_ID                      /*등록아이디*/             
+                 , A.REG_DT                    /*등록일시*/             
+                 , A.MOD_ID                      /*수정아이디*/             
+                 , A.MOD_DT                    /*수정일시*/             
+              FROM COMM.XBT_COMPONENT A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="COP_CODE != null and COP_CODE != ''">    
+            <![CDATA[                                         							                        
+               AND A.COP_CODE        = #{COP_CODE}  
+            ]]>                                           													
+        </if>
+        <if test="COP_NAME_KR != null and COP_NAME_KR != ''">    
+            <![CDATA[                                         							                        
+               AND A.COP_NAME_KR LIKE '%' || #{COP_NAME_KR} || '%'  
+            ]]>                                           													
+        </if>
+        <if test="COP_YN != null and COP_YN != ''">    
+            <![CDATA[                                         							                        
+               AND A.COP_YN        = #{COP_YN}  
+            ]]>                                           													
+        </if>
+        ORDER BY COP_CODE	                                                                                                   
+        /* SYS008CommonComponentDAO.retrieveCommonComponentList 컴포넌트다국어 조회 */	                                 
+    </select> 	                                                        													 
+
+    <select id="SYS008CommonComponentDAO.retrieveCommonComponentListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+		    SELECT                                                  											
+				 'COP' || LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(COP_CODE,4)))+1,1)),5,'0') AS KEY_CODE        								       
+			  FROM COMM.XBT_COMPONENT                                             								 
+			  WHERE 1=1      
+        ]]>                                                      												             
+        /* SYS008CommonComponentDAO.retrieveCommonComponentListPKey 컴포넌트다국어 PK 조회 */								             
+    </select> 	                                                        													     
+
+    <insert id="SYS008CommonComponentDAO.insertCommonComponentList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_COMPONENT                                       										  
+            (                                       																	  
+                   COP_CODE                    /*KEY(자동증가:COP00001)*/ 
+                 , COP_NAME_KR                 /*한글어컴포넌트*/ 
+                 , COP_NAME_EN                 /*영문어컴포넌트*/ 
+                 , COP_NAME_CH                 /*중국어컴포넌트*/ 
+                 , COP_NAME_JP                 /*일본어컴포넌트*/ 
+                 , COP_NAME_EC                 /*기타컴포넌트*/ 
+                 , COP_YN                      /*컴포넌트사용여부*/ 
+                 , REG_ID                      /*등록아이디*/ 
+                 , REG_DT                    /*등록일시*/ 
+                 , MOD_ID                      /*수정아이디*/ 
+                 , MOD_DT                    /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{COP_CODE} 
+                 , #{COP_NAME_KR}  
+                 , #{COP_NAME_EN}  
+                 , #{COP_NAME_CH}  
+                 , #{COP_NAME_JP}  
+                 , #{COP_NAME_EC}  
+                 , #{COP_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+        /* SYS008CommonComponentDAO.insertCommonComponentList 컴포넌트다국어 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS008CommonComponentDAO.updateCommonComponentList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_COMPONENT                                			        
+               SET                                                      				
+                   COP_CODE                  = #{COP_CODE}                    /*KEY(자동증가:COP00001)*/  
+                 , COP_NAME_KR               = #{COP_NAME_KR}                 /*한글어컴포넌트*/  
+                 , COP_NAME_EN               = #{COP_NAME_EN}                 /*영문어컴포넌트*/  
+                 , COP_NAME_CH               = #{COP_NAME_CH}                 /*중국어컴포넌트*/  
+                 , COP_NAME_JP               = #{COP_NAME_JP}                 /*일본어컴포넌트*/  
+                 , COP_NAME_EC               = #{COP_NAME_EC}                 /*기타컴포넌트*/  
+                 , COP_YN                    = #{COP_YN}                      /*컴포넌트사용여부*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록아이디*/  
+                 , REG_DT                  = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정아이디*/  
+                 , MOD_DT                  = SYSDATE                        /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND COP_CODE        = #{COP_CODE}  
+        ]]>  	                                   							                            				
+        /* SYS008CommonComponentDAO.updateCommonComponentList 컴포넌트다국어 수정 */								
+    </update>                                                           												
+
+    <delete id="SYS008CommonComponentDAO.deleteCommonComponentList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_COMPONENT                                                  							      
+             WHERE 1=1                              																	          
+               AND COP_CODE        = #{COP_CODE}  
+        ]]>                                                															           
+        /* SYS008CommonComponentDAO.deleteCommonComponentList 컴포넌트다국어 삭제 */								       
+    </delete>	                                                          													   
+</mapper>

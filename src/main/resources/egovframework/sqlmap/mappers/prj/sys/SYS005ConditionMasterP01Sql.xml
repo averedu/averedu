@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS005ConditionMasterP01DAO">
+	
+	<!-- 신청제어항목관리 팝업 제어항목리스트 조회 -->
+	<select id="SYS005ConditionMasterP01DAO.retrieveConditionMasterP01List" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT A.JEEO_CODE
+				 , A.JEEO_NAME
+				 , A.IPRYEOK_TYPE_CD
+			FROM   SYS.SINCHEONG_JEEO A
+			WHERE  1=1
+		]]>
+		/* SYS005ConditionMasterP01DAO.retrieveConditionMasterP01List 신청제어항목 조회 */
+	</select>
+	
+	<!-- 신청제어항목관리 팝업 제어항목리스트 조회 -->
+	<select id="SYS005ConditionMasterP01DAO.retrieveConditionMasterP01" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT '0' AS CHK
+			     , B.SINCHEONG_CODE
+			     , A.JEEO_CODE
+			     , A.JEEO_NAME
+				 , A.IPRYEOK_TYPE_CD
+				 , B.OPERATOR
+				 , B.INPUT_VALUE
+			FROM   SYS.SINCHEONG_JEEO A
+				 , SYS.SINCHEONG_JEEO_HANGMOK B
+			WHERE  1=1
+			AND    A.JEEO_CODE = B.JEEO_CODE
+		]]>
+			<if test="SINCHEONG_CODE != null and SINCHEONG_CODE != ''">
+			AND    B.SINCHEONG_CODE = #{SINCHEONG_CODE}
+			</if>
+		/* SYS005ConditionMasterP01DAO.retrieveConditionMasterP01 신청제어항목 조회 */
+	</select>
+
+	<insert id="SYS005ConditionMasterP01DAO.insertConditionMasterP01List" parameterType="map">
+		<![CDATA[
+			INSERT INTO SYS.SINCHEONG_JEEO_HANGMOK
+			(
+				   SINCHEONG_CODE
+				 , JEEO_CODE
+				 , OPERATOR
+				 , INPUT_VALUE
+                 , INSERT_ID
+                 , INSERT_DT
+                 , INSERT_IP
+                 , INSERT_PG
+                 , UPDATE_ID 
+                 , UPDATE_DT 
+                 , UPDATE_IP
+                 , UPDATE_PG
+			) VALUES
+			(
+				   #{SINCHEONG_CODE}
+				 , #{JEEO_CODE}
+				 , #{OPERATOR}
+				 , #{INPUT_VALUE}
+                 , #{INSERT_ID}
+                 , SYSDATE
+                 , #{INSERT_IP}
+                 , #{INSERT_PG}
+                 , #{UPDATE_ID}
+                 , SYSDATE
+                 , #{UPDATE_IP}
+                 , #{UPDATE_PG}
+			)
+		]]>
+		/* SYS005ConditionMasterP01DAO.insertConditionMasterP01List 신청제어항목 생성 */
+	</insert>
+	
+	<update id="SYS005ConditionMasterP01DAO.updateConditionMasterP01List" parameterType="map">
+		<![CDATA[
+			UPDATE SYS.SINCHEONG_JEEO_HANGMOK
+			SET
+				   JEEO_CODE			= #{JEEO_CODE}
+				 , OPERATOR				= #{OPERATOR}
+				 , INPUT_VALUE			= #{INPUT_VALUE}
+                 , UPDATE_ID			= #{UPDATE_ID}
+                 , UPDATE_DT			= SYSDATE
+                 , UPDATE_IP			= #{UPDATE_IP}
+                 , UPDATE_PG			= #{UPDATE_PG}
+			WHERE  1=1
+			AND    SINCHEONG_CODE		= #{SINCHEONG_CODE}
+			AND    JEEO_CODE			= #{JEEO_CODE}
+		]]>
+		/* SYS005ConditionMasterP01DAO.updateConditionMasterP01List 신청제어항목 수정 */
+	</update>
+	
+	<delete id="SYS005ConditionMasterP01DAO.deleteConditionMasterP01List" parameterType="map">
+		<![CDATA[
+			DELETE SYS.SINCHEONG_JEEO_HANGMOK
+			WHERE  1=1
+			AND    SINCHEONG_CODE		= #{SINCHEONG_CODE}
+			AND    JEEO_CODE			= #{JEEO_CODE}
+		]]>
+		/* SYS005ConditionMasterP01DAO.deleteConditionMasterP01List 신청제어항목 삭제 */
+	</delete>
+	
+	<select id="SYS005ConditionMasterP01DAO.retrieveConditionMasterP01Key" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(SINCHEONG_CODE,2)))+1,1)),5,'0') AS SINCHEONG_CODE
+		    FROM   SYS.SINCHEONG_JEEO_HANGMOK 
+		    WHERE  1=1
+		]]>
+	</select>
+	
+</mapper>

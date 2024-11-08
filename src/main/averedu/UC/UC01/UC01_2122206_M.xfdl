@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1630" height="800" titletext="직무능력성취도관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="직무능력성취도관리" height="800" mobileorientation="landscape" width="1630">
+        <Tab id="tab" taborder="0" tabindex="0" top="0" width="932" enable="true" onchanged="tab_onchanged" height="226" left="0">
+          <Tabpages>
+            <Tabpage id="hakgwa" text="학과 직무능력성취도">
+              <Layouts>
+                <Layout>
+                  <Button id="btnPrint" taborder="3" text="학과 직무능력성취도 출력" top="119" width="164" height="25" cssclass="btn_WF_Crud" tabstop="true" right="384" onclick="tab_hakgwa_btnPrint_onclick"/>
+                  <Static id="stc_01_00" taborder="4" left="-13" top="36" height="22" text="학년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+                  <Spin id="spnSearchYYYY" taborder="0" left="80" top="36" width="100" height="22"/>
+                  <Static id="stc_01_00_00_00" taborder="5" left="-13" top="63" height="22" text="계열/학과" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+                  <Combo id="cboSearchGyeYeolHakGwa" taborder="1" text="" left="80" top="63" width="160" height="22" codecolumn="DEPT_CD" datacolumn="DEPT_NM" index="0" value="1" innerdataset="dsGyeyeolHakgwa" onlbuttondown="divM_cboSearchGyeYeolHakGwa_onlbuttondown" onitemchanged="divM_cboSearchGyeYeolHakGwa_onitemchanged"/>
+                  <Static id="Static01_00_00_00" taborder="6" text="↑&#13;&#10;35&#13;&#10;↓" left="1" top="1" width="250" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                  <Static id="Static01_02_00_00_00" taborder="7" text="10" left="70" top="29" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Static id="StaticLeft01" taborder="8" text="10" left="399" top="453" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Static id="StaticLeft01_00" taborder="9" text="10" left="-1" top="-7" width="10" height="187" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Static id="Static01_01_00_00_02" taborder="10" text="5" left="-4" top="58" width="260" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 6pt/normal &quot;Arial&quot;"/>
+                  <Static id="Static01_00_00_00_00" taborder="11" text="↑&#13;&#10;35&#13;&#10;↓" left="351" top="144" width="250" height="45" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                  <Static id="Static01_00_00_00_01" taborder="2" text="↑&#13;&#10;35&#13;&#10;↓" left="1" top="84" width="620" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="daehak" text="대학 직무능력성취도">
+              <Layouts>
+                <Layout>
+                  <Static id="Static01_01_00_00_00_00_00_00_01" taborder="2" text="10" left="436" top="472" width="210" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+                  <Static id="Static01_02_00_00_00_00_00" taborder="3" text="10" left="1232" top="121" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Button id="btnPrint" taborder="1" text="대학 직무능력성취도 출력" top="119" width="164" height="25" cssclass="btn_WF_Crud" tabstop="true" right="384" onclick="tab_daehak_btnPrint_onclick"/>
+                  <Static id="stc_01_00" taborder="4" left="-13" top="36" height="22" text="학년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+                  <Spin id="spnSearchYYYY" taborder="0" left="80" top="36" width="100" height="22"/>
+                  <Static id="Static01_00_00_00" taborder="5" text="↑&#13;&#10;35&#13;&#10;↓" left="1" top="1" width="250" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                  <Static id="StaticLeft01_00" taborder="6" text="10" left="-1" top="-7" width="10" height="187" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Static id="Static01_00_00_00_00" taborder="7" text="↑&#13;&#10;35&#13;&#10;↓" left="351" top="144" width="250" height="45" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                  <Static id="Static01_00_00_00_01" taborder="8" text="↑&#13;&#10;62&#13;&#10;↓" left="1" top="57" width="620" height="62" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsHakgwa" preload="true" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDaehak" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="YYYY"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGyeyeolHakgwa" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="GBN" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="UP_DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input1" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SUBJECT_CD_NM" type="STRING" size="256"/>
+          <Column id="SAWON_CD_NM" type="STRING" size="256"/>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="SEMESTER" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UC01_2122206_M.xfdl(직무능력성취도관리)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/02/18
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{						 
+	// 기준연도학기 
+    strDs    = "dsBaseYyyyHakgi";        // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    svcId    = "baseYyyyHakgiInit";
+	var strEopmuGbcd = "UL";
+	var strUseYn     = "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs
+                              , svcId
+                              , strEopmuGbcd
+                              , strUseYn);	
+							  
+							  
+	// gfn_HakgwaComboLoad(데이터셋, 콤보 옵션)
+	// 학과콤보
+	strComb     = "T";
+	svcId       = "gyeyeolHakgwaInit";
+	strUseYn    = "1"; // 사용 여부
+	strJojikGbcd = "20";  // 조직구분 10.행정조직   20.학사조직   30.입시조직
+	
+	this.gfn_GyeyeolHakgwaComboLoad(this.tab.hakgwa.form.cboSearchGyeYeolHakGwa, strComb, svcId, strUseYn, strJojikGbcd, objApp.gv_cutPrgId);	 
+};
+
+this.fn_PostBaseYyyyHakgiInit = function()
+{
+	if (this.dsBaseYyyyHakgi.rowcount > 0) {
+		this.dsHakgwa.setColumn(0,"YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.dsDaehak.setColumn(0,"YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+	}
+};
+
+this.fn_PostGyeyeolHakgwaInit = function()
+{
+	this.tab.hakgwa.form.cboSearchGyeYeolHakGwa.set_index(0);	
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "baseYyyyHakgiInit":
+					this.fn_PostBaseYyyyHakgiInit();
+			    break;	
+			case "gyeyeolHakgwaInit":
+					this.fn_PostGyeyeolHakgwaInit();
+			    break;		
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        10. 기타 Control Event
+***********************************************************************/
+// 학과 직무능력성취도 출력
+this.tab_hakgwa_btnPrint_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, "YYYY") == null || this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, "YYYY") == "")
+	{
+		this.gfn_alert("학년도를 입력해주세요.","저장정보","","question");
+		return false;
+	}
+	
+	if(this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, "DEPT_CD") == null || this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, "DEPT_CD") == "")
+	{
+		this.gfn_alert("학과를 선택해주세요.","저장정보","","question");
+		return false;
+	}
+	
+	var YYYY    = this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, 'YYYY');
+	var DEPT_CD = this.dsHakgwa.getColumn(this.dsHakgwa.rowposition, 'DEPT_CD');
+	
+	var param = { YYYY 		: YYYY
+				, DEPT_CD 	: DEPT_CD
+				};
+	
+	this.gfn_commonUtils_report('UC01/UC01_2122206_M_01.crf',  param);
+};
+
+// 대학 직무능력성취도 출력
+this.tab_daehak_btnPrint_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsDaehak.getColumn(this.dsHakgwa.rowposition, "YYYY") == null)
+	{
+		this.gfn_alert("학년도를 입력해주세요.","저장정보","","question");
+		return false;
+	}
+	
+	var YYYY    = this.dsDaehak.getColumn(this.dsDaehak.rowposition, 'YYYY');
+	
+	var param = { YYYY 	: YYYY
+				};
+	
+	this.gfn_commonUtils_report('UC01/UC01_2122206_M_01.crf',  param);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item63" compid="tab" propid="enable" datasetid="dsBindableTab" columnid="bEnable"/>
+      <BindItem id="item0" compid="tab.hakgwa.form.spnSearchYYYY" propid="value" datasetid="dsHakgwa" columnid="YYYY"/>
+      <BindItem id="item1" compid="tab.hakgwa.form.cboSearchGyeYeolHakGwa" propid="value" datasetid="dsHakgwa" columnid="DEPT_CD"/>
+      <BindItem id="item2" compid="tab.daehak.form.spnSearchYYYY" propid="value" datasetid="dsDaehak" columnid="YYYY"/>
+    </Bind>
+  </Form>
+</FDL>

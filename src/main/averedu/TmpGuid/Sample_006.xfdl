@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_006" width="1606" height="830" titletext="비정상원인 일괄처리">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_02" taborder="0" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="46"/>
+        <Button id="btn_01" taborder="1" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="48" width="46"/>
+        <Div id="div_01" taborder="2" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" formscrollbartype="none" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="44" fittocontents="width"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Combo id="Combo00" taborder="2" text="전체" left="stc_00:10" top="10" width="80" height="22" value="" index="-1"/>
+              <Static id="stc_01" taborder="3" left="404" top="10" height="22" text="상태" cssclass="sta_WF_SearchLbl" width="44" fittocontents="width"/>
+              <Combo id="Combo01" taborder="4" text="지연" left="458" top="10" width="80" height="22" value="" index="-1"/>
+              <Static id="stc_03" taborder="5" left="Combo00:0" top="10" height="22" text="운항일자" cssclass="sta_WF_SearchLbl" width="70"/>
+              <Button id="Button00" taborder="6" left="stc_03:10" top="10" width="22" height="22" cssclass="btn_WF_CalBtnM"/>
+              <Button id="Button02" taborder="7" text="0" left="238" top="10" width="30" height="22" cssclass="btn_WF_CalBtnDay"/>
+              <Calendar id="cal_00" taborder="8" left="270" top="10" width="110" height="22" value="20181025" dateformat="yyyy-MM-dd" onchanged="div_01_cal_00_onchanged"/>
+              <Button id="Button01" taborder="9" left="382" top="10" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="3" left="0" top="5" height="22" text="비정상원인 일괄처리" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick"/>
+        <Static id="stc_09" taborder="4" left="0" top="124" height="22" text="처리" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+        <Static id="Static10" taborder="5" text="7" left="0" top="142" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="6" text="15" left="0" top="114" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Grid id="Grid01" taborder="7" left="0" top="149" binddataset="ds_grd" bottom="0" right="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="48"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="No"/>
+                <Cell col="2" text="상태"/>
+                <Cell col="3" text="운항일자"/>
+                <Cell col="4" text="운항편명"/>
+                <Cell col="5" text="상대공항"/>
+                <Cell col="6" text="출도착"/>
+                <Cell col="7" text="국내국제"/>
+                <Cell col="8" text="등록기호"/>
+                <Cell col="9" text="ICAO"/>
+                <Cell col="10" text="운항시간"/>
+                <Cell col="11" text="예정시간"/>
+                <Cell col="12" text="실시각"/>
+                <Cell col="13" text="원인코드"/>
+                <Cell col="14" text="원인"/>
+                <Cell col="15" text="원인공항"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1"/>
+                <Cell col="2" text="bind:Column1"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+                <Cell col="7"/>
+                <Cell col="8"/>
+                <Cell col="9"/>
+                <Cell col="10"/>
+                <Cell col="11"/>
+                <Cell col="12"/>
+                <Cell col="13"/>
+                <Cell col="14"/>
+                <Cell col="15"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_01" taborder="8" left="stc_09:0" top="124" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Static id="stc_24" taborder="9" left="0" top="89" height="28" right="0" cssclass="sta_WF_DetailBg" text=""/>
+        <Static id="stc_25" taborder="10" text="원인" left="0" top="89" height="28" cssclass="sta_WF_DetailTi_P" width="150"/>
+        <Edit id="Edit00" taborder="11" left="152" top="92" width="50" height="22" cssclass="point"/>
+        <Edit id="Edit01" taborder="12" left="204" top="92" width="180" height="22" cssclass="point"/>
+        <Static id="stc_00" taborder="13" text="원인공항" left="799" top="89" height="28" cssclass="sta_WF_DetailTi" width="150"/>
+        <Button id="Button01" taborder="14" left="386" top="92" width="22" height="22" cssclass="btn_WF_PopSrch"/>
+        <Edit id="Edit02" taborder="15" left="951" top="92" width="120" height="22"/>
+        <Button id="Button00" taborder="16" left="1073" top="92" width="22" height="22" cssclass="btn_WF_PopSrch"/>
+        <Static id="Static00" taborder="17" text="15" left="0" top="74" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Button id="btn_00" taborder="18" text="저장" top="3" height="23" cssclass="btn_WF_Crud" right="96" width="46"/>
+        <Button id="Button02" taborder="19" top="92" width="46" height="22" text="반영" right="3"/>
+        <Button id="Button03" taborder="20" top="92" width="58" height="22" text="초기화" right="51"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cmb">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">전체</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">현재</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="App_Desktop" screenid="Desktop_screen" onbeforeexit="Application_onbeforeexit" onerror="Application_onerror" onload="Application_onload" onexit="Application_onexit">
+    <Layout>
+      <MainFrame id="mainframe" title="maintitle" defaultfont="" resizable="true" showtitlebar="true" showstatusbar="false" left="0" top="0" width="1920" height="1080" openstatus="maximize" onsize="mainframe_onsize">
+        <VFrameSet id="VFrameSet" separatesize="0,0,*,0">
+          <Frames>
+            <ChildFrame id="TopFrame" showcascadetitletext="true" showtitlebar="false" formurl="Frame::TopFrame.xfdl" dragmovetype="none"/>
+            <HFrameSet id="HFrameSet" separatesize="225,15,*" style="border:0 solid #808080ff ;">
+              <Frames>
+                <ChildFrame id="frameLeft" showtitlebar="false" formurl="Frame::LeftFrame.xfdl" dragmovetype="none"/>
+                <ChildFrame id="framHideShow" formurl="Frame::HideShowFrame.xfdl" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+                <VFrameSet id="VFrameWork" separatesize="35,*">
+                  <Frames>
+                    <ChildFrame id="frameTab" showtitlebar="false" formurl="Frame::TabFrame.xfdl" dragmovetype="none"/>
+                    <FrameSet id="workFrameSet">
+                      <Frames>
+                        <ChildFrame id="mainForm" formurl="Frame::MainFrame.xfdl" dragmovetype="all" showtitlebar="false" openstatus="maximize"/>
+                      </Frames>
+                    </FrameSet>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+            <ChildFrame id="commLogin" formurl="Frame::Login.xfdl" dragmovetype="none" showtitlebar="false"/>
+            <ChildFrame id="BottomFrame" showtitlebar="false" formurl="Frame::BottomFrame.xfdl" dragmovetype="none"/>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <Style url="xcssrc::NxPivot.xcss"/>
+    <Style url="xcssrc::gridExpr.xcss"/>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**********************************************************************************
+ *  공통  변수, 객체, 상수를 정의
+ **********************************************************************************/ 
+/**********************************************************************************
+ 각 프레임에 해당되는 객체 참조 변수
+ **********************************************************************************/
+this.gv_appMainFrame        = "";   // MainFrame   
+this.gv_appVFrameSet		= "";   // VFrameSet 프레임  
+this.gv_appTopFrame     	= "";	// 상단 TOP프레임
+this.gv_appHFrameSet    	= "";	// 메뉴와 업무화면을 갖고있는 프레임셋
+this.gv_appLoginFrame 		= "";	// 로그인 프레임
+this.gv_appBottomFrame 		= "";	// 하단 프레임
+this.gv_appLeftFrame    	= "";	// 좌측 프레임
+this.gv_appHideShowFrame 	= "";   // 펄치기 접기 프레임
+this.gv_appVFrameWorkFrame  = "";   // 작업프레임
+this.gv_appTabFrame 		= "";	// MDI TAB 프레임
+this.gv_appWorkFrameSet 	= "";	// 업무화면을 관리하는 프레임셋
+this.gv_appMainForm 		= "";	// 하단 프레임
+
+/**********************************************************************************
+ 해당 PC의 시스템 정보
+ **********************************************************************************/
+this.gv_osVersion		 = "";	// OS Version
+this.gv_navigatorName    = "";	// Browser 명("nexacro", "IE", "Chrome", "Gecko")
+this.gv_navigatorVersion = "";	// Browser Version	
+this.gv_screenResolution = "";	// 첫번째 모니터의 Screen 해상도(V13에서는 getMonitorIndex 미지원)
+this.gv_screenWidth      = "";	// 첫번째 모니터의 Screen 가로 해상도
+this.gv_screenHeight     = "";	// 첫번째 모니터의 Screen 세로 해상도
+objApp                   = "";
+
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+		
+	objApp = nexacro.getApplication();
+
+	this.gv_appMainFrame        = objApp.mainframe;
+	this.gv_appVFrameSet 		= objApp.mainframe.VFrameSet;
+    this.gv_appTopFrame 		= objApp.mainframe.VFrameSet.TopFrame;
+    this.gv_appHFrameSet 		= objApp.mainframe.VFrameSet.HFrameSet;
+    this.gv_appLoginFrame 		= objApp.mainframe.VFrameSet.commLogin;
+	this.gv_appBottomFrame 		= objApp.mainframe.VFrameSet.bottomFrame;
+	this.gv_appLeftFrame 		= objApp.mainframe.VFrameSet.HFrameSet.frameLeft;
+	this.gv_appHideShowFrame	= objApp.mainframe.VFrameSet.HFrameSet.framHideShow;
+	this.gv_appVFrameWorkFrame  = objApp.mainframe.VFrameSet.HFrameSet.VFrameWork;  
+    this.gv_appTabFrame 		= objApp.mainframe.VFrameSet.HFrameSet.VFrameWork.frameTab;
+    this.gv_appWorkFrameSet 	= objApp.mainframe.VFrameSet.HFrameSet.VFrameWork.workFrameSet;
+	this.gv_appMainForm  		= objApp.mainframe.VFrameSet.HFrameSet.VFrameWork.workFrameSet.mainForm;
+
+	this.gv_appMainFrame.set_titletext("averedu");   // 메이프레임의 타이틀.
+    
+ 	// 실행경로에 따른 Service 지정
+ 	var appUrl      = objApp.xadl;
+ 	/*
+	//trace("1.appUrl   : " + appUrl);
+	//RUNTIME :1.appUrl : file://C:/eGovFrame-3.2/workspace/gan/src/main/webapp/msu/App_Desktop.xadl.js
+	//EI      :2.appUrl : http://localhost/msu/App_Desktop.xadl.js
+	*/
+	var appUrlSplit = appUrl.split("/");
+	var objEnv 		= nexacro.getEnvironment();
+ 	var service     = objEnv.services["svcurl"];	// TypeDefinition 접근하기위한객체
+	var protocol 	= appUrlSplit[0];   			// 프로토콜이 : RUNTIME(file:),WEB(http)
+	
+	if (protocol != "file:")						// 전용브라우저가 안닌경우
+ 	{
+ 		service.set_url(protocol + "//" + appUrlSplit[2] + "/");
+ 		// localhost:8080 or localhost:80 일때는 로컬 Http 접속
+ 		if(appUrlSplit[2] == "localhost:8080" || appUrlSplit[2] == "localhost")
+ 		{
+ 			objApp.gv_runMode = "local";
+ 		
+ 		}else if(appUrlSplit[2] == "30.111.100.102:8080")
+ 		{
+ 			// 개발 서버
+ 			objApp.gv_runMode = "dev";
+ 			objApp.gv_serverUrl = "http://"+appUrlSplit[2]+"/";
+ 		
+ 		}else 
+ 		{
+ 			// 운영 서버
+ 			objApp.gv_runMode = "prd";
+ 			objApp.gv_serverUrl = "https://"+appUrlSplit[2]+"/";
+ 		}
+ 	}
+	//trace("3.service.url : "+service.url);
+	// 시스템환경저장
+	this.gv_osVersion		 = system.osversion;		
+	this.gv_navigatorName    = system.navigatorname;
+	this.gv_navigatorVersion = system.navigatorversion;
+	
+	this.gv_screenResolution = system.getScreenResolution(1);
+	var arrScreenResolution  = this.gv_screenResolution.split(" ");
+	this.gv_screenWidth      = arrScreenResolution[0];
+	this.gv_screenHeight     = arrScreenResolution[1];
+	/************************* 시작 ******************************/
+	/*	
+		trace("1.gv_osVersion        :  " + this.gv_osVersion);	     	//RUNTIME :  Windows 7 , IE : Windows 7
+		trace("2.gv_navigatorName    :  " + this.gv_navigatorName);		//RUNTIME :  nexacro , IE : IE	
+		trace("3.gv_navigatorVersion :  " + this.gv_navigatorVersion);	//RUNTIME :  17 , IE : 11
+		trace("4.gv_screenResolution :  " + this.gv_screenResolution);	//RUNTIME :  1600 900 , IE : 1455 818
+	*/	
+	/************************* 종료 ******************************/
+	objApp.gv_locale = "KO";
+	//this.gv_appTopFrame.form.fn_setTopMenu();
+};
+/*----------------------------------------------------------------------------------------------
+ * 설명      : application onbeforeexit 실행시
+ *---------------------------------------------------------------------------------------------*/
+this.Application_onbeforeexit = function(obj:nexacro.Application,e:nexacro.ExitEventInfo)
+{
+	//trace("application_onbeforeexit");
+};
+
+/*----------------------------------------------------------------------------------------------
+ * 설명      : application onexit 실행시
+ *---------------------------------------------------------------------------------------------*/
+
+this.Application_onexit = function(obj:nexacro.Application,e:nexacro.ExitEventInfo)
+{
+	//trace("application_onexit");
+};
+
+/*----------------------------------------------------------------------------------------------
+ * 설명      : application onerror
+ *---------------------------------------------------------------------------------------------*/
+
+this.Application_onerror = function(obj:nexacro.Application,e:nexacro.ErrorEventInfo)
+{
+	
+	trace("application_onerror > e.errorcode=["+e.errorcode +"] e.errormsg=["+ e.errormsg +"] e.statuscode=["+ e.statuscode +"]");
+	
+	var arrMsg  = e.errormsg.split(")");
+    
+	//사용자가 통신중에 ESC키 발생시 
+	if( e.errorcode == -2147418039 ) 
+	{
+		return true;	//사용자가 통신중에 ESC키로 통신중단을 막을때 주석해제한다.
+	}
+    
+	// Network이 연결이 끊어진경우
+	if (e.errorcode = -2147418085) 
+	{
+		if (e.statuscode == 10060) 
+		{
+			trace("application_onerror : 서버와의 통신이 원활하지 않습니다.");
+		} else if (e.statuscode == 0) 
+		{	//timeout
+			trace("application_onerror : timeout 이 발생했습니다.");
+		} else if (e.statuscode == 404) 
+		{	//404 에러시 처리 방안
+			trace("application_onerror : 404 에러가  발생했습니다.");
+			//gv_workFrame.form.div_work.set_url("frame::workFrameNofile.xfdl");
+		} else if (e.statuscode == 408) 
+		{	//408 Request Timeout
+			trace("application_onerror : 408 Request Timeout 가 발생했습니다.");
+		} else if (e.statuscode == 500) 
+		{	//500 에러시 처리 방안
+			trace("application_onerror : 500 에러 가 발생했습니다.");
+		} else if (e.statuscode == 503) 
+		{	//"System is unavailable. Please reconnect after a while."
+			trace("application_onerror : System is unavailable. Please reconnect after a while.");
+		} else if (e.statuscode == 12029) 
+		{	
+            alert("서버에서 응답이 없습니다. 잠시후 다시 로그인하시기 바랍니다.\n\n( No response from the server. Again in a few minutes, please login. )");		
+			nexacro.getApplication().exit();	
+		} 
+		else 
+		{	// 미등록 오류 발생시.
+			//trace("application_onerror : 미등록 오류 발생했습니다. = " + e.statuscode + ":" + e.errormsg);
+		}
+	}
+};
+
+this.afn_logout = function() 
+{ 
+	//this.gv_appTopFrame.form.gfn_logout(); 
+};
+
+this.mainframe_onsize = function(obj:nexacro.MainFrame,e:nexacro.SizeEventInfo)
+{
+	if( system.navigatorname == "nexacro" )
+	{ 
+		if(e.cx < 1280 )
+		{ 
+			nexacro.getApplication().mainframe.set_width(1280); 
+		}
+
+		if(e.cy < 720 )
+		{ 
+			nexacro.getApplication().mainframe.set_height(720); 
+		}
+	} 
+ 
+};
+
+]]></Script>
+</ADL>

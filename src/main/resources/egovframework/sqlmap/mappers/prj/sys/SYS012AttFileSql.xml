@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS012AttFileDAO">									                            
+
+    <!-- SYS012AttFileDAO.retrieveAttFileList 첨부파일마스터 조회 -->	                                 
+    <select id="SYS012AttFileDAO.retrieveAttFileList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.ATTFL_NO                      /*첨부파일번호*/             
+                 , A.ATTFL_DC                      /*첨부파일설명*/             
+                 , A.USE_YN                        /*사용여부*/             
+                 , A.NLOGN_SVC_TRGET_YN            /*비로그인서비스대상여부*/             
+                 , (SELECT COMM.SF_XBT_ATTFILE_NM(A.ATTFL_NO) FROM DUAL) AS ATTFL_NM
+                 , A.REG_ID                        /*등록자*/             
+                 , A.REG_DT                        /*등록일시*/             
+                 , A.MOD_ID                        /*수정자*/             
+                 , A.MOD_DT                        /*수정일시*/
+                 , TO_CHAR(A.MOD_DT, 'YYYY.MM.DD HH24:MI:SS') AS MOD_DTTM             
+              FROM COMM.XBT_ATTFL_MASTER A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="ATTFL_NO != null and ATTFL_NO != ''">    
+            <![CDATA[                                         							                        
+               AND A.ATTFL_NO             = #{ATTFL_NO}  
+            ]]>                                           													
+        </if>
+        
+	    <if test="ATTFL_DC != null and ATTFL_DC != ''">
+            <![CDATA[	    
+ 	           AND A.ATTFL_DC LIKE '%' || #{ATTFL_DC} || '%'
+ 	        ]]>
+	    </if>
+
+	    <if test="USE_YN != null and USE_YN != ''">
+            <![CDATA[	   
+ 	     	   AND A.USE_YN = #{USE_YN}
+ 	        ]]>
+	    </if>
+
+	    <if test="REG_FRDT != null and REG_FRDT != ''">
+            <![CDATA[
+ 	     	   AND A.REG_DT >= TO_DATE(#{REG_FRDT} || '000000', 'YYYYMMDDHH24MISS')
+ 	        ]]>
+	    </if>
+	    
+	    <if test="REG_TODT != null and REG_TODT != ''">
+            <![CDATA[
+ 	     	   AND  REG_DT <= TO_DATE(#{REG_TODT} || '235959', 'YYYYMMDDHH24MISS')
+ 	        ]]>
+	    </if>
+    </select> 	                                                        													 
+
+    <!-- SYS012AttFileDAO.retrieveAttFileListPKey 첨부파일마스터 PK 조회 -->				             
+    <select id="SYS012AttFileDAO.retrieveAttFileListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   LPAD(NVL(MAX(TO_NUMBER(CODE))+1,'1'),5,'0') AS KEY_CODE        								     
+              FROM COMM.XBT_ATTFL_MASTER                                             								 
+             WHERE 1=1                                             												     
+               AND ATTFL_NO             = #{ATTFL_NO}    
+        ]]>                                                      												             
+    </select> 	                                                        													     
+
+    <!-- SYS012AttFileDAO.retrieveAttFileListKey 첨부파일마스터 중복 조회 -->
+    <select id="SYS012AttFileDAO.retrieveAttFileListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_ATTFL_MASTER
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}
+        ]]>
+    </select>
+
+    <!-- SYS012AttFileDAO.insertAttFileList 첨부파일마스터 저장 -->	
+    <insert id="SYS012AttFileDAO.insertAttFileList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_ATTFL_MASTER                                       										  
+            (                                       																	  
+                   ATTFL_NO                      /*첨부파일번호*/ 
+                 , ATTFL_DC                      /*첨부파일설명*/ 
+                 , USE_YN                        /*사용여부*/ 
+                 , NLOGN_SVC_TRGET_YN            /*비로그인서비스대상여부*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{ATTFL_NO} 
+                 , #{ATTFL_DC}  
+                 , #{USE_YN}  
+                 , #{NLOGN_SVC_TRGET_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    </insert>                                                           					
+
+    <!-- SYS012AttFileDAO.updateAttFileList 첨부파일마스터 수정 -->								
+    <update id="SYS012AttFileDAO.updateAttFileList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_ATTFL_MASTER                                			        
+               SET                                                      				  
+                   ATTFL_DC             = #{ATTFL_DC}                      /*첨부파일설명*/  
+                 , MOD_ID               = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT               = SYSDATE                          /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND ATTFL_NO             = #{ATTFL_NO}  
+        ]]>  	                                   							                            				
+    </update>
+                                                               												    <!-- SYS012AttFileDAO.updateAttFileList 첨부파일마스터 수정 -->								
+    <update id="SYS012AttFileDAO.update02AttFileList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_ATTFL_MASTER                                			        
+               SET                                                      				  
+                   USE_YN               = ( /*사용여부(00801)*/
+                                            SELECT (CASE WHEN COUNT(*) = 0 THEN '0' ELSE '1' END) 
+                                              FROM COMM.XBT_ATTFL_DETAIL B      
+                                             WHERE B.ATTFL_NO = #{ATTFL_NO} 
+                                          )
+             WHERE 1=1                                                   						                        
+               AND ATTFL_NO             = #{ATTFL_NO}  
+        ]]>  	                                   							                            				
+    </update>   
+
+    <!-- SYS012AttFileDAO.mergeAttFileList 첨부파일마스터 저장/수정 -->							  
+    <update id="SYS012AttFileDAO.mergeAttFileList" parameterType="map"> 
+        <![CDATA[                                                				 
+            MERGE INTO COMM.XBT_ATTFL_MASTER A                               
+                 USING DUAL                                                 
+                    ON (                                                 	 
+                           AND A.ATTFL_NO           = #{ATTFL_NO}        		
+                       )                                                 	 
+                  WHEN MATCHED THEN                                                    
+                        UPDATE SET                               													
+                               A.ATTFL_NO                       = #{ATTFL_NO}                      /*첨부파일번호*/  
+                             , A.ATTFL_DC                       = #{ATTFL_DC}                      /*첨부파일설명*/  
+                             , A.USE_YN                         = #{USE_YN}                        /*사용여부*/  
+                             , A.NLOGN_SVC_TRGET_YN             = #{NLOGN_SVC_TRGET_YN}            /*비로그인서비스대상여부*/    
+                             , A.MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                             , A.MOD_DT                         = SYSDATE                          /*수정일시*/  
+                  WHEN NOT MATCHED THEN                                                  
+                            INSERT                                        				 
+                            (                                       					 
+                                   A.ATTFL_NO                 
+                                 , A.ATTFL_DC                 
+                                 , A.USE_YN                 
+                                 , A.NLOGN_SVC_TRGET_YN                 
+                                 , A.REG_ID                 
+                                 , A.REG_DT                 
+                                 , A.MOD_ID                 
+                                 , A.MOD_DT                 
+                             )VALUES                                                  														
+                             (                                                        														
+                                   #{ATTFL_NO}  
+                                 , #{ATTFL_DC}                                   
+                                 , #{USE_YN}                                   
+                                 , #{NLOGN_SVC_TRGET_YN}                                   
+                                 , #{REG_ID}                                   
+                                 , SYSDATE                                   
+                                 , #{MOD_ID}                                   
+                                 , SYSDATE                                   
+                             )	                                                      									  
+        ]]>  	                                   							                            			  
+    </update>                                                           													  
+
+    <!-- SYS012AttFileDAO.deleteAttFileList 첨부파일마스터 삭제 -->								       
+    <delete id="SYS012AttFileDAO.deleteAttFileList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_ATTFL_MASTER                                                  							      
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}  
+        ]]>
+    </delete>
+    
+
+    <!-- SYS012AttFileDAO.retrieveAttFileDetailList 첨부파일상세 조회 -->	                                 
+    <select id="SYS012AttFileDAO.retrieveAttFileDetailList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.ATTFL_NO                      /*첨부파일번호*/             
+                 , A.ATTFL_SN                      /*첨부파일순번*/             
+                 , A.ATTFL_LOGIC_NM                /*첨부파일논리명*/             
+                 , A.ATTFL_PATH_NM                 /*첨부파일경로명*/             
+                 , A.ATTFL_PHYSC_NM                /*첨부파일물리명*/             
+                 , A.ATTFL_EXTSN_NM                /*첨부파일확장자명*/             
+                 , A.ATTFL_BYTE_SIZE               /*첨부파일바이트사이즈*/
+                 , CEIL(TO_NUMBER(A.ATTFL_BYTE_SIZE) / 1024) AS FILE_SIZE             
+                 , A.INDCT_ORD                     /*표시순서*/             
+                 , A.REG_ID                        /*등록자*/             
+                 , A.REG_DT                        /*등록일시*/             
+                 , A.MOD_ID                        /*수정자*/             
+                 , A.MOD_DT                        /*수정일시*/
+                 , B.ATTFL_DC
+                 , B.NLOGN_SVC_TRGET_YN
+              FROM COMM.XBT_ATTFL_DETAIL A
+                 , COMM.XBT_ATTFL_MASTER B
+             WHERE A.ATTFL_NO = B.ATTFL_NO
+               AND A.ATTFL_NO             = #{ATTFL_NO}                        
+        ]]>
+                                                         												                                                                                                    
+        <if test="ATTFL_SN != null and ATTFL_SN != ''">    
+            <![CDATA[                                         							                        
+               AND A.ATTFL_SN             = #{ATTFL_SN}  
+            ]]>                                           													
+        </if>
+       <if test="attflLogicNm != null and attflLogicNm != ''">
+            <![CDATA[       
+   		  	   AND A.ATTFL_LOGIC_NM = #{attflLogicNm}
+            ]]>
+       </if>
+       <if test="attflPhyscNm != null and attflPhyscNm != ''">
+            <![CDATA[
+       	   	   AND A.ATTFL_PHYSC_NM = #{attflPhyscNm}
+            ]]>
+       </if>       
+          ORDER BY A.INDCT_ORD, A.ATTFL_LOGIC_NM
+    </select> 	
+    
+
+    <!-- SYS012AttFileDAO.retrieveAttFileDetailListPKey 첨부파일상세 PK 조회 -->				             
+    <select id="SYS012AttFileDAO.retrieveAttFileDetailListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   LPAD(NVL(MAX(TO_NUMBER(ATTFL_SN))+1,'1'),3,'0') AS KEY_CODE        								     
+              FROM COMM.XBT_ATTFL_DETAIL                                             								 
+             WHERE 1=1                                             												     
+               AND ATTFL_NO             = #{ATTFL_NO}        
+        ]]>                                                      												             
+    </select> 	                                                        													     
+
+    <!-- SYS012AttFileDAO.retrieveAttFileDetailListKey 첨부파일상세 중복 조회 -->
+    <select id="SYS012AttFileDAO.retrieveAttFileDetailListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_ATTFL_DETAIL
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}
+        ]]>
+    </select>
+
+    <!-- SYS012AttFileDAO.insertAttFileDetailList 첨부파일상세 저장 -->	
+    <insert id="SYS012AttFileDAO.insertAttFileDetailList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_ATTFL_DETAIL                                       										  
+            (                                       																	  
+                   ATTFL_NO                      /*첨부파일번호*/ 
+                 , ATTFL_SN                      /*첨부파일순번*/ 
+                 , ATTFL_LOGIC_NM                /*첨부파일논리명*/ 
+                 , ATTFL_PATH_NM                 /*첨부파일경로명*/ 
+                 , ATTFL_PHYSC_NM                /*첨부파일물리명*/ 
+                 , ATTFL_EXTSN_NM                /*첨부파일확장자명*/ 
+                 , ATTFL_BYTE_SIZE               /*첨부파일바이트사이즈*/ 
+                 , INDCT_ORD                     /*표시순서*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{ATTFL_NO} 
+                 , #{ATTFL_SN}  
+                 , #{ATTFL_LOGIC_NM}  
+                 , #{ATTFL_PATH_NM}  
+                 , #{ATTFL_PHYSC_NM}  
+                 , #{ATTFL_EXTSN_NM}  
+                 , #{ATTFL_BYTE_SIZE}  
+                 , (
+                     SELECT NVL(MAX(S.INDCT_ORD), 0) + 1 
+                       FROM COMM.XBT_ATTFL_DETAIL S
+                      WHERE S.ATTFL_NO = #{ATTFL_NO} 
+                   ) 
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    </insert>                                                           					
+
+    <!-- SYS012AttFileDAO.updateAttFileDetailList 첨부파일상세 수정 -->								
+    <update id="SYS012AttFileDAO.updateAttFileDetailList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_ATTFL_DETAIL                                			        
+               SET                                                      				
+                   INDCT_ORD                      = #{INDCT_ORD}                     /*표시순서*/    
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일시*/  
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}  
+               AND ATTFL_SN             = #{ATTFL_SN}  
+        ]]>  	                                   							                            				
+    </update>                                                           												
+
+    <!-- SYS012AttFileDAO.mergeAttFileDetailList 첨부파일상세 저장/수정 -->							  
+    <update id="SYS012AttFileDAO.mergeAttFileDetailList" parameterType="map"> 
+        <![CDATA[                                                				 
+            MERGE INTO COMM.XBT_ATTFL_DETAIL A                               
+                 USING DUAL                                                 
+                    ON (                                                 	 
+                           AND A.ATTFL_NO           = #{ATTFL_NO}        		
+                           AND A.ATTFL_SN           = #{ATTFL_SN}        		
+                       )                                                 	 
+                  WHEN MATCHED THEN                                                    
+                        UPDATE SET                               													
+                               A.ATTFL_NO                       = #{ATTFL_NO}                      /*첨부파일번호*/  
+                             , A.ATTFL_SN                       = #{ATTFL_SN}                      /*첨부파일순번*/  
+                             , A.ATTFL_LOGIC_NM                 = #{ATTFL_LOGIC_NM}                /*첨부파일논리명*/  
+                             , A.ATTFL_PATH_NM                  = #{ATTFL_PATH_NM}                 /*첨부파일경로명*/  
+                             , A.ATTFL_PHYSC_NM                 = #{ATTFL_PHYSC_NM}                /*첨부파일물리명*/  
+                             , A.ATTFL_EXTSN_NM                 = #{ATTFL_EXTSN_NM}                /*첨부파일확장자명*/  
+                             , A.ATTFL_BYTE_SIZE                = #{ATTFL_BYTE_SIZE}               /*첨부파일바이트사이즈*/  
+                             , A.INDCT_ORD                      = #{INDCT_ORD}                     /*표시순서*/    
+                             , A.MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                             , A.MOD_DT                         = SYSDATE                          /*수정일시*/  
+                  WHEN NOT MATCHED THEN                                                  
+                            INSERT                                        				 
+                            (                                       					 
+                                   A.ATTFL_NO                 
+                                 , A.ATTFL_SN                 
+                                 , A.ATTFL_LOGIC_NM                 
+                                 , A.ATTFL_PATH_NM                 
+                                 , A.ATTFL_PHYSC_NM                 
+                                 , A.ATTFL_EXTSN_NM                 
+                                 , A.ATTFL_BYTE_SIZE                 
+                                 , A.INDCT_ORD                 
+                                 , A.REG_ID                 
+                                 , A.REG_DT                 
+                                 , A.MOD_ID                 
+                                 , A.MOD_DT                 
+                             )VALUES                                                  														
+                             (                                                        														
+                                   #{ATTFL_NO}  
+                                 , #{ATTFL_SN}                                   
+                                 , #{ATTFL_LOGIC_NM}                                   
+                                 , #{ATTFL_PATH_NM}                                   
+                                 , #{ATTFL_PHYSC_NM}                                   
+                                 , #{ATTFL_EXTSN_NM}                                   
+                                 , #{ATTFL_BYTE_SIZE}                                   
+                                 , #{INDCT_ORD}                                   
+                                 , #{REG_ID}                                   
+                                 , SYSDATE                                   
+                                 , #{MOD_ID}                                   
+                                 , SYSDATE                                   
+                             )	                                                      									  
+        ]]>  	                                   							                            			  
+    </update>                                                           													  
+
+    <!-- SYS012AttFileDAO.deleteAttFileDetailList 첨부파일상세 삭제 -->								       
+    <delete id="SYS012AttFileDAO.deleteAttFileDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_ATTFL_DETAIL                                                  							      
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}  
+               AND ATTFL_SN             = #{ATTFL_SN}  
+        ]]>
+    </delete>
+    
+    <!-- SYS012AttFileDAO.delete02AttFileDetailList 첨부파일상세 삭제 -->								       
+    <delete id="SYS012AttFileDAO.delete02AttFileDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_ATTFL_DETAIL                                                  							      
+             WHERE 1=1
+               AND ATTFL_NO             = #{ATTFL_NO}    
+        ]]>
+    </delete>
+    
+    <!-- SYS012AttFileDAO.insertActionHistoryList 동작이력 저장 -->	
+    <insert id="SYS012AttFileDAO.insertActionHistoryList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_ACTON_HIST                                       										  
+            (                                       																	  
+                   ACTON_SEQ                     /*행위순번*/ 
+                 , CLASS_NM                      /*클래스명*/ 
+                 , FUNC_NM                       /*함수명*/ 
+                 , SESSION_CN                    /*세션정보*/ 
+                 , INPUT_CN                      /*조회정보*/ 
+                 , DATASET_CN                    /*데이터셋정보*/ 
+                 , REMARK                        /*비고*/ 
+                 , REG_ID                        /*등록아이디*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , REG_IPADR                     /*등록IP주소*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   COMM.SEQ_ACTON_HIST.NEXTVAL
+                 , #{CLASS_NM}  
+                 , #{FUNC_NM}
+                 , #{SESSION_CN}  
+                 , #{INPUT_CN}  
+                 , #{DATASET_CN}  
+                 , #{REMARK}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{REG_IPADR}  
+            )	                                                      						
+        ]]>                                    											
+    </insert>     	    	     
+        	                                   
+</mapper>                                                                 													   

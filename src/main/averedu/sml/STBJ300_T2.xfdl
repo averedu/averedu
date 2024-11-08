@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="STBJ300_T1" width="992" height="550" titletext="전체상품" onload="form_onload" onclose="STBJ300_T1_onclose">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="992">
+        <Static id="Static06" taborder="29" left="632" top="398" width="98" height="148" cssclass="sta_WF_bgLine"/>
+        <Grid id="grd_item" taborder="0" left="0" top="40" height="350" binddataset="ds_generalBind" autoenter="select" autofittype="col" oncellclick="grd_item_oncellclick" scrolltype="none" right="0" onkeyup="grd_item_onkeyup" nodatatext="No Data">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="157"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="49"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="31"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="상품명"/>
+                <Cell col="1" text="매가"/>
+                <Cell col="2" text="이익율"/>
+                <Cell col="3" text="유효&#13;&#10;기간"/>
+                <Cell col="4" text="차발주"/>
+                <Cell col="5" text="현재고"/>
+                <Cell col="6" text="입수"/>
+                <Cell col="7" text="배수"/>
+                <Cell col="8" text="발주량"/>
+                <Cell col="9" text="발주&#13;&#10;단위"/>
+                <Cell col="10" text="당월&#13;&#10;행사"/>
+                <Cell col="11" text="익월&#13;&#10;행사"/>
+                <Cell col="12" text="등급"/>
+                <Cell col="13" text="반품&#13;&#10;불가"/>
+                <Cell col="14" text="원가&#13;&#10;DC"/>
+                <Cell col="15" text="장려금"/>
+                <Cell col="16" text="원/매가"/>
+                <Cell col="17" text="발주&#13;&#10;정지"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ITEM_NM" cssclass="grid_linkPoint"/>
+                <Cell col="1" text="bind:HQ_MAEGA_SET" displaytype="number"/>
+                <Cell col="2" text="bind:PROFIT_RATE" displaytype="number"/>
+                <Cell col="3" text="bind:EXPIRE_DAY" textAlign="center"/>
+                <Cell col="4" text="bind:ECO_ORD_QTY" textAlign="center"/>
+                <Cell col="5" text="bind:NOW_QTY" cssclass="grid_bgGreen"/>
+                <Cell col="6" text="bind:ORD_UNIT_QTY" displaytype="number"/>
+                <Cell col="7" text="bind:PYUN_QTY" edittype="text" displaytype="number" editinputtype="number" maskeditformat="999,999,999" maskeditlimitbymask="integer" cssclass="grid_bgBlue" editautoselect="true"/>
+                <Cell col="8" text="bind:TOT_QTY" displaytype="number"/>
+                <Cell col="9" text="bind:ORD_UNIT" textAlign="center"/>
+                <Cell col="10" text="bind:MONTH_EVT" textAlign="center" cssclass="grid_link"/>
+                <Cell col="11" text="bind:NEXT_MONTH_EVT" textAlign="center" cssclass="grid_link"/>
+                <Cell col="12" text="bind:PITEM_ID_NM" textAlign="center" cssclass="bind:PITEM_ID_NM_CSS"/>
+                <Cell col="13" textAlign="center" text="bind:EVT_CHK_01" cssclass="bind:EVT_CHK_01_CSS"/>
+                <Cell col="14" textAlign="center" cssclass="bind:EVT_CHK_02"/>
+                <Cell col="15" textAlign="center" cssclass="bind:EVT_CHK_03"/>
+                <Cell col="16" textAlign="center" cssclass="bind:EVT_CHK_04"/>
+                <Cell col="17" textAlign="center" cssclass="bind:EVT_CHK_05"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_summ" taborder="2" left="48" top="398" width="455" height="148" binddataset="ds_dateBind" cssclass="grid_WF_table" visible="true" nodatatext="No Data">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="53"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="27"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+                <Cell col="5"/>
+                <Cell col="6"/>
+                <Cell col="7"/>
+                <Cell col="8" text="평균"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DAY1"/>
+                <Cell col="1" text="bind:DAY2"/>
+                <Cell col="2" text="bind:DAY3"/>
+                <Cell col="3" text="bind:DAY4"/>
+                <Cell col="4" text="bind:DAY5"/>
+                <Cell col="5" text="bind:DAY6"/>
+                <Cell col="6" text="bind:DAY7"/>
+                <Cell col="7" text="bind:DAY8"/>
+                <Cell col="8" text="bind:AVG"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_search" taborder="25" left="0" top="0" height="32" cssclass="sta_WF_inquiryTable" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_search00" taborder="0" left="0" top="0" width="64" height="32" cssclass="sta_WF_inquiryThFirst" text="발주일자"/>
+              <Static id="stc_date" taborder="1" left="64" top="0" width="105" height="32" cssclass="sta_WF_inquiryTd" text=""/>
+              <Static id="stc_search01" taborder="2" left="169" top="0" width="64" height="32" cssclass="sta_WF_inquiryTh" text="중분류"/>
+              <Static id="stc_midNm_search" taborder="3" left="233" top="0" width="151" height="32" cssclass="sta_WF_inquiryTd"/>
+              <Static id="stc_search02" taborder="4" left="384" top="0" width="64" height="32" cssclass="sta_WF_inquiryTh" text="소분류"/>
+              <Static id="stc_smallNm" taborder="5" left="448" top="0" width="121" height="32" cssclass="sta_WF_inquiryTd"/>
+              <Static id="stc_search03" taborder="6" left="569" top="0" width="65" height="32" cssclass="sta_WF_inquiryTh" text="발주금액"/>
+              <Static id="stc_totamt" taborder="7" left="634" top="0" width="95" height="32" cssclass="sta_WF_inquiryTd" text="0원" textAlign="right"/>
+              <Static id="stc_search04" taborder="8" left="729" top="0" width="65" height="32" cssclass="sta_WF_inquiryTh" text="발주수량"/>
+              <Static id="stc_totqnty" taborder="9" left="794" top="0" width="65" height="32" cssclass="sta_WF_inquiryTd" text="0개" textAlign="right"/>
+              <Static id="stc_search05" taborder="10" left="859" top="0" width="78" height="32" cssclass="sta_WF_inquiryTh" text="발주진행율"/>
+              <Static id="stc_rate" taborder="11" left="937" top="0" width="55" height="32" cssclass="sta_WF_inquiryTd" text="00/00" textAlign="center"/>
+              <Button id="btn_pop01" taborder="12" left="143" top="7" width="18" height="18" cssclass="btn_WF_order" onclick="div_search_btn_pop_onclick" text=""/>
+              <Button id="btn_pop02" taborder="13" left="358" top="7" width="18" height="18" cssclass="btn_WF_order" onclick="div_search_btn_pop_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static51" taborder="26" text="8" left="633" top="479" width="8" height="62" cssclass="sta_GU_space" visible="false"/>
+        <Static id="Static00" taborder="27" text="8" left="721" top="484" width="8" height="62" cssclass="sta_GU_space" visible="false"/>
+        <Static id="Static03" taborder="1" left="0" top="398" width="48" height="40" cssclass="sta_WF_thColFirst" text="구분"/>
+        <Static id="Static01" taborder="3" left="0" top="436" width="48" height="28" cssclass="sta_WF_thColFirst" text="발주"/>
+        <Static id="Static02" taborder="4" left="0" top="463" width="48" height="28" cssclass="sta_WF_thColFirst" text="입고"/>
+        <Static id="Static04" taborder="5" left="0" top="490" width="48" height="28" cssclass="sta_WF_thColFirst" text="판매"/>
+        <Static id="Static05" taborder="6" left="0" top="517" width="48" height="29" cssclass="sta_WF_thColFirst" text="폐기"/>
+        <Button id="btn_pop02" taborder="10" text="현재고변경" left="641" top="504" width="80" height="26" onclick="btn_pop02_onclick"/>
+        <Button id="btn_pop03" taborder="9" text="자동/스마트" left="641" top="474" width="80" height="26" onclick="btn_pop03_onclick"/>
+        <Button id="btn_pop01" taborder="8" text="중점설정" left="641" top="444" width="80" height="26" onclick="btn_pop01_onclick"/>
+        <Button id="btn_pop00" taborder="7" text="CUT설정" left="641" top="414" width="80" height="26" onclick="btn_pop00_onclick"/>
+        <Static id="stc_MID_NM" taborder="18" left="835" top="398" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_title00" taborder="11" left="730" top="398" width="105" height="22" cssclass="sta_WF_thFirst" text="원가DC"/>
+        <Static id="stc_title01" taborder="12" left="730" top="419" width="105" height="22" cssclass="sta_WF_thFirst" text="원가DC 이익율"/>
+        <Static id="stc_AMT" taborder="19" left="835" top="419" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_WHRJS" taborder="20" left="835" top="440" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_title03" taborder="13" left="730" top="440" width="105" height="22" cssclass="sta_WF_thFirst" text="장려금 지급액"/>
+        <Static id="stc_title04" taborder="14" left="730" top="461" width="105" height="22" cssclass="sta_WF_thFirst" text="장려금 조건"/>
+        <Static id="stc_RLRKS" taborder="21" left="835" top="461" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_WLRMQDPWJD" taborder="22" left="835" top="482" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_title05" taborder="15" left="730" top="482" width="105" height="22" cssclass="sta_WF_thFirst" text="장려금 기간"/>
+        <Static id="stc_title06" taborder="16" left="730" top="503" width="105" height="22" cssclass="sta_WF_thFirst" text="반품기간"/>
+        <Static id="stc_ALWLRMQTKDB" taborder="23" left="835" top="503" height="22" cssclass="sta_WF_td" right="0"/>
+        <Static id="stc_title02" taborder="17" left="730" top="524" width="105" height="22" cssclass="sta_WF_thFirst" text="발주정지 예정일"/>
+        <Static id="stc_ALWLRMQTKDB00" taborder="24" left="835" top="524" height="22" cssclass="sta_WF_td" right="0"/>
+        <ImageViewer id="img_item" taborder="28" left="501" top="398" width="132" height="148"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Objects>
+      <Dataset id="ds_general">
+        <ColumnInfo>
+          <Column id="ORD_YMD" type="STRING" size="256"/>
+          <Column id="PRE_STORE_CD" type="STRING" size="256"/>
+          <Column id="STORE_CD" type="STRING" size="256"/>
+          <Column id="JIP_PLU_CD" type="STRING" size="256"/>
+          <Column id="RET_PSS_YN" type="STRING" size="256"/>
+          <Column id="ITEM_NM" type="STRING" size="256"/>
+          <Column id="PITEM_ID" type="STRING" size="256"/>
+          <Column id="PITEM_ID_NM_CSS" type="STRING" size="256"/>
+          <Column id="PITEM_ID_NM" type="STRING" size="256"/>
+          <Column id="PROFIT_RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="HQ_MAEGA_SET" type="BIGDECIMAL" size="256"/>
+          <Column id="ORD_UNIT" type="STRING" size="256"/>
+          <Column id="ORD_UNIT_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="ORD_SUG_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="PYUN_PLU_CD" type="STRING" size="256"/>
+          <Column id="PYUN_ID" type="STRING" size="256"/>
+          <Column id="PYUN_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="MAGAM_HMS" type="STRING" size="256"/>
+          <Column id="ABSENCE" type="STRING" size="256"/>
+          <Column id="ORD_MULT_ULMT" type="STRING" size="256"/>
+          <Column id="ORD_MULT_LLMT" type="STRING" size="256"/>
+          <Column id="CT_ITEM_YN" type="STRING" size="256"/>
+          <Column id="CITEM_YN" type="STRING" size="256"/>
+          <Column id="AIS_PLAN_HM" type="STRING" size="256"/>
+          <Column id="ORD_MUL_QTY" type="STRING" size="256"/>
+          <Column id="NOW_QTY" type="STRING" size="256"/>
+          <Column id="OLD_PYUN_QTY" type="STRING" size="256"/>
+          <Column id="TOT_QTY" type="STRING" size="256"/>
+          <Column id="EXPIRE_DAY" type="STRING" size="256"/>
+          <Column id="CURDAY" type="STRING" size="256"/>
+          <Column id="CURTIME" type="STRING" size="256"/>
+          <Column id="PRE_BKCOLOR" type="STRING" size="256"/>
+          <Column id="IMG_CHK" type="STRING" size="256"/>
+          <Column id="SMALL_NM" type="STRING" size="256"/>
+          <Column id="MONTH_EVT" type="STRING" size="256"/>
+          <Column id="NEXT_MONTH_EVT" type="STRING" size="256"/>
+          <Column id="INFORM_SYMD" type="STRING" size="256"/>
+          <Column id="PAGE_CNT" type="STRING" size="256"/>
+          <Column id="EVT_CHK_01" type="STRING" size="256"/>
+          <Column id="EVT_CHK_01_CSS" type="STRING" size="256"/>
+          <Column id="EVT_CHK_02" type="STRING" size="256"/>
+          <Column id="EVT_CHK_03" type="STRING" size="256"/>
+          <Column id="EVT_CHK_04" type="STRING" size="256"/>
+          <Column id="EVT_CHK_05" type="STRING" size="256"/>
+          <Column id="EVT_TXT_01" type="STRING" size="256"/>
+          <Column id="EVT_TXT_02" type="STRING" size="256"/>
+          <Column id="EVT_TXT_03" type="STRING" size="256"/>
+          <Column id="EVT_TXT_04" type="STRING" size="256"/>
+          <Column id="EVT_TXT_05" type="STRING" size="256"/>
+          <Column id="EVT_TXT_06" type="STRING" size="256"/>
+          <Column id="EVT_TXT_07" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gridheader"/>
+      <Dataset id="ds_date">
+        <ColumnInfo>
+          <Column id="ORD_YMD" type="STRING" size="256"/>
+          <Column id="JIP_PLU_CD" type="STRING" size="256"/>
+          <Column id="PYUN_PLU_CD" type="STRING" size="256"/>
+          <Column id="ORD_QTY" type="STRING" size="256"/>
+          <Column id="BUY_QTY" type="STRING" size="256"/>
+          <Column id="SALE_QTY" type="STRING" size="256"/>
+          <Column id="DISUSE_QTY" type="STRING" size="256"/>
+          <Column id="SUM_UNIT_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_generalBind" oncolumnchanged="ds_general_oncolumnchanged" onrowposchanged="ds_generalBind_onrowposchanged">
+        <ColumnInfo>
+          <Column id="ORD_YMD" type="STRING" size="256"/>
+          <Column id="PRE_STORE_CD" type="STRING" size="256"/>
+          <Column id="STORE_CD" type="STRING" size="256"/>
+          <Column id="JIP_PLU_CD" type="STRING" size="256"/>
+          <Column id="RET_PSS_YN" type="STRING" size="256"/>
+          <Column id="ITEM_NM" type="STRING" size="256"/>
+          <Column id="PITEM_ID" type="STRING" size="256"/>
+          <Column id="PITEM_ID_NM_CSS" type="STRING" size="256"/>
+          <Column id="PITEM_ID_NM" type="STRING" size="256"/>
+          <Column id="PROFIT_RATE" type="BIGDECIMAL" size="256"/>
+          <Column id="HQ_MAEGA_SET" type="BIGDECIMAL" size="256"/>
+          <Column id="ORD_UNIT" type="STRING" size="256"/>
+          <Column id="ORD_UNIT_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="ORD_SUG_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="PYUN_PLU_CD" type="STRING" size="256"/>
+          <Column id="PYUN_ID" type="STRING" size="256"/>
+          <Column id="PYUN_QTY" type="BIGDECIMAL" size="256"/>
+          <Column id="MAGAM_HMS" type="STRING" size="256"/>
+          <Column id="ABSENCE" type="STRING" size="256"/>
+          <Column id="ORD_MULT_ULMT" type="STRING" size="256"/>
+          <Column id="ORD_MULT_LLMT" type="STRING" size="256"/>
+          <Column id="CT_ITEM_YN" type="STRING" size="256"/>
+          <Column id="CITEM_YN" type="STRING" size="256"/>
+          <Column id="AIS_PLAN_HM" type="STRING" size="256"/>
+          <Column id="ORD_MUL_QTY" type="STRING" size="256"/>
+          <Column id="NOW_QTY" type="STRING" size="256"/>
+          <Column id="OLD_PYUN_QTY" type="STRING" size="256"/>
+          <Column id="TOT_QTY" type="STRING" size="256"/>
+          <Column id="EXPIRE_DAY" type="STRING" size="256"/>
+          <Column id="CURDAY" type="STRING" size="256"/>
+          <Column id="CURTIME" type="STRING" size="256"/>
+          <Column id="PRE_BKCOLOR" type="STRING" size="256"/>
+          <Column id="IMG_CHK" type="STRING" size="256"/>
+          <Column id="SMALL_NM" type="STRING" size="256"/>
+          <Column id="MONTH_EVT" type="STRING" size="256"/>
+          <Column id="NEXT_MONTH_EVT" type="STRING" size="256"/>
+          <Column id="INFORM_SYMD" type="STRING" size="256"/>
+          <Column id="PAGE_CNT" type="STRING" size="256"/>
+          <Column id="EVT_CHK_01" type="STRING" size="256"/>
+          <Column id="EVT_CHK_01_CSS" type="STRING" size="256"/>
+          <Column id="EVT_CHK_02" type="STRING" size="256"/>
+          <Column id="EVT_CHK_03" type="STRING" size="256"/>
+          <Column id="EVT_CHK_04" type="STRING" size="256"/>
+          <Column id="EVT_CHK_05" type="STRING" size="256"/>
+          <Column id="EVT_TXT_01" type="STRING" size="256"/>
+          <Column id="EVT_TXT_02" type="STRING" size="256"/>
+          <Column id="EVT_TXT_03" type="STRING" size="256"/>
+          <Column id="EVT_TXT_04" type="STRING" size="256"/>
+          <Column id="EVT_TXT_05" type="STRING" size="256"/>
+          <Column id="EVT_TXT_06" type="STRING" size="256"/>
+          <Column id="EVT_TXT_07" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_dateBind">
+        <ColumnInfo>
+          <Column id="DAY1" type="STRING" size="256"/>
+          <Column id="DAY2" type="STRING" size="256"/>
+          <Column id="DAY3" type="STRING" size="256"/>
+          <Column id="DAY4" type="STRING" size="256"/>
+          <Column id="DAY5" type="STRING" size="256"/>
+          <Column id="DAY6" type="STRING" size="256"/>
+          <Column id="DAY7" type="STRING" size="256"/>
+          <Column id="DAY8" type="STRING" size="256"/>
+          <Column id="AVG" type="BIGDECIMAL" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_weather"/>
+      <Dataset id="ds_week">
+        <ColumnInfo>
+          <Column id="ORD_YMD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_search.form.stc_smallNm" propid="text" datasetid="ds_generalBind" columnid="SMALL_NM"/>
+      <BindItem id="item1" compid="stc_MID_NM" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_01"/>
+      <BindItem id="item2" compid="stc_AMT" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_02"/>
+      <BindItem id="item3" compid="stc_WHRJS" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_03"/>
+      <BindItem id="item4" compid="stc_RLRKS" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_04"/>
+      <BindItem id="item5" compid="stc_WLRMQDPWJD" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_05"/>
+      <BindItem id="item6" compid="stc_ALWLRMQTKDB" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_06"/>
+      <BindItem id="item7" compid="stc_ALWLRMQTKDB00" propid="text" datasetid="ds_generalBind" columnid="EVT_TXT_07"/>
+    </Bind>
+  </Form>
+</FDL>

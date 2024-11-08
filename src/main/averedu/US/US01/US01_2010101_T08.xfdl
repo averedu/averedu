@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="성적" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="성적" height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grdChongSeongjeok" taborder="0" left="10" top="35" right="10" autofittype="col" autoenter="select" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" height="62" binddataset="dsChongSeongjeok" onheaddblclick="grdChongSeongjeok_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="178"/>
+                <Column size="178"/>
+                <Column size="178"/>
+                <Column size="178"/>
+                <Column size="178"/>
+                <Column size="178"/>
+                <Column size="178"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="신청학점"/>
+                <Cell col="1" text="취득학점"/>
+                <Cell col="2" text="편입학점"/>
+                <Cell col="3" text="점수총합"/>
+                <Cell col="4" text="백분율"/>
+                <Cell col="5" text="평점총계"/>
+                <Cell col="6" text="평균학점"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="number" edittype="none" textAlign="center" text="bind:SINCHEONG_HAKJEOM" editmaxlength="256"/>
+                <Cell col="1" displaytype="number" edittype="none" textAlign="center" text="bind:CHWIDEUK_HAKJEOM" editmaxlength="256"/>
+                <Cell col="2" displaytype="number" edittype="none" textAlign="center" text="bind:PYEONIPINJEONG_HAKJEOM" editmaxlength="256"/>
+                <Cell col="3" displaytype="number" edittype="none" textAlign="center" text="bind:JEOMSUGYE" editmaxlength="256"/>
+                <Cell col="4" displaytype="number" edittype="none" textAlign="center" text="bind:JEOMSU_AVG" editmaxlength="256"/>
+                <Cell col="5" displaytype="number" edittype="none" textAlign="center" text="bind:PYEONGJEOMGYE" editmaxlength="256"/>
+                <Cell col="6" displaytype="number" edittype="none" textAlign="center" text="bind:PYEONGJEOM_AVG" editmaxlength="256"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09" taborder="4" left="7" top="11" height="22" text="총성적" width="85" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Static id="stc_09_00" taborder="5" left="7" top="106" height="22" text="이수별 성적" width="109" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Grid id="grdHakgiSeongjeok" taborder="2" left="10" bottom="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdHakgiSeongjeok_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" width="600" binddataset="dsHakgiSeongjeok" top="264">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="85"/>
+                <Column size="98"/>
+                <Column size="108"/>
+                <Column size="88"/>
+                <Column size="84"/>
+                <Column size="82"/>
+                <Column size="96"/>
+                <Column size="96"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="학년도/학기"/>
+                <Cell col="2" text="신청학점"/>
+                <Cell col="3" text="취득학점"/>
+                <Cell col="4" text="백분율"/>
+                <Cell col="5" text="평점총점"/>
+                <Cell col="6" text="평점평균"/>
+                <Cell col="7" text="석차"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" displaytype="normal" edittype="none" textAlign="center" text="bind:YYYY_HAKGI" editmaxlength="256"/>
+                <Cell col="2" displaytype="number" edittype="none" textAlign="center" text="bind:SINCHEONG_HAKJEOM" editmaxlength="22"/>
+                <Cell col="3" displaytype="number" edittype="none" textAlign="center" text="bind:CHWIDEUK_HAKJEOM" editmaxlength="22"/>
+                <Cell col="4" displaytype="number" edittype="none" textAlign="center" text="bind:JEOMSU_AVG" editmaxlength="22"/>
+                <Cell col="5" displaytype="number" edittype="none" textAlign="center" text="bind:PYEONGJEOMGYE" editmaxlength="22"/>
+                <Cell col="6" displaytype="number" edittype="none" textAlign="center" text="bind:PYEONGJEOM_AVG" editmaxlength="22"/>
+                <Cell col="7" displaytype="normal" edittype="none" textAlign="center" text="bind:SEOKCHA" editmaxlength="256"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_01" taborder="6" left="7" top="239" height="22" text="학기별성적" width="100" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Grid id="grdGwamokSeongjeok" taborder="3" left="619" right="10" bottom="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdGwamokSeongjeok_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" binddataset="dsGwamokSeongjeok" top="263">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="56"/>
+                <Column size="77"/>
+                <Column size="140"/>
+                <Column size="52"/>
+                <Column size="43"/>
+                <Column size="43"/>
+                <Column size="43"/>
+                <Column size="43"/>
+                <Column size="43"/>
+                <Column size="67"/>
+                <Column size="71"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="교과목코드"/>
+                <Cell col="2" text="교과목명"/>
+                <Cell col="3" text="이수구분"/>
+                <Cell col="4" text="학년"/>
+                <Cell col="5" text="학점"/>
+                <Cell col="6" text="등급"/>
+                <Cell col="7" text="백분율"/>
+                <Cell col="8" text="평점"/>
+                <Cell col="9" text="이수여부"/>
+                <Cell col="10" text="재수강여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" edittype="none"/>
+                <Cell col="1" displaytype="normal" edittype="none" textAlign="center" text="bind:GYOGWAMOK_CD" editmaxlength="10"/>
+                <Cell col="2" displaytype="normal" edittype="none" textAlign="center" text="bind:GYOGWAMOK_NM" editmaxlength="256"/>
+                <Cell col="3" displaytype="normal" edittype="none" textAlign="center" text="bind:ISU_GBNM" editmaxlength="256"/>
+                <Cell col="4" displaytype="normal" edittype="none" textAlign="center" text="bind:HAKNYEON" editmaxlength="1"/>
+                <Cell col="5" displaytype="normal" edittype="none" textAlign="center" text="bind:HAKJEOM" editmaxlength="10"/>
+                <Cell col="6" displaytype="normal" edittype="none" textAlign="center" text="bind:DEUNGGEUP" editmaxlength="10"/>
+                <Cell col="7" displaytype="normal" edittype="none" textAlign="center" text="bind:CHWIDEUK_JEOMSU" editmaxlength="10"/>
+                <Cell col="8" displaytype="normal" edittype="none" textAlign="center" text="bind:PYEONGJEOM" editmaxlength="10"/>
+                <Cell col="9" displaytype="checkboxcontrol" edittype="none" textAlign="center" text="bind:ISU_YN" editmaxlength="1"/>
+                <Cell col="10" displaytype="normal" edittype="none" textAlign="center" text="bind:SUGANG_GUBUN_NM" editmaxlength="256"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_01_00" taborder="7" left="617" top="239" height="22" text="과목별성적" width="100" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Static id="staRowCnt" taborder="8" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="73" top="11" height="24" usedecorate="true" width="233"/>
+        <Static id="staRowCnt2" taborder="9" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="102" top="238" height="24" usedecorate="true" width="233"/>
+        <Static id="staRowCnt3" taborder="10" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="714" top="239" height="24" usedecorate="true" width="233"/>
+        <Div id="Div03" taborder="1" text="Div00" left="10" top="130" cssclass="type02" height="102" width="602">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="0" top="0" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" text=""/>
+              <Static id="Static01" taborder="1" text="전공학점" left="0" top="20" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center"/>
+              <Static id="Static02" taborder="2" text="교양학점" left="0" top="40" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center"/>
+              <Static id="Static03" taborder="3" text="교직학점" left="0" top="60" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center"/>
+              <Static id="Static04" taborder="4" text="공통학점" left="0" top="80" width="120" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" height="20"/>
+              <Static id="Static05" taborder="5" left="120" top="0" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" text="이수학점"/>
+              <Static id="Static06" taborder="6" left="240" top="0" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" text="점수총점"/>
+              <Static id="Static07" taborder="7" left="360" top="0" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" text="백분율"/>
+              <Static id="Static08" taborder="8" left="480" top="0" width="120" height="20" background="powderblue" border="1px solid #9db9d1" verticalAlign="middle" textAlign="center" text="평균학점"/>
+              <MaskEdit id="MaskEdit00" taborder="9" left="120" top="20" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit01" taborder="10" left="240" top="20" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" format="###,##0"/>
+              <MaskEdit id="MaskEdit02" taborder="11" left="360" top="20" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit03" taborder="12" left="480" top="20" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit04" taborder="13" left="120" top="40" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit05" taborder="14" left="240" top="40" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" format="###,##0"/>
+              <MaskEdit id="MaskEdit06" taborder="15" left="360" top="40" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit07" taborder="16" left="480" top="40" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit08" taborder="17" left="120" top="60" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit09" taborder="18" left="240" top="60" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" format="###,##0"/>
+              <MaskEdit id="MaskEdit10" taborder="19" left="360" top="60" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit11" taborder="20" left="480" top="60" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit12" taborder="21" left="120" top="80" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit13" taborder="22" left="240" top="80" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" format="###,##0"/>
+              <MaskEdit id="MaskEdit14" taborder="23" left="360" top="80" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+              <MaskEdit id="MaskEdit15" taborder="24" left="480" top="80" width="120" height="20" border="1px solid #9db9d1" readonly="true" textAlign="center" displaynulltext="0"/>
+            </Layout>
+            <Layout name="default0"/>
+          </Layouts>
+        </Div>
+        <Static id="Static01_02_00_00_00_00_00" taborder="11" text="10" top="0" width="10" height="487" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static01_01_00_00_00" taborder="12" text="10" left="5" top="496" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="304" right="404"/>
+        <Static id="Static01_02_00_00_00_00" taborder="13" text="10" left="0" top="-1" width="10" height="477" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01_01_00_00_00_00_00_00" taborder="14" text="8" left="11" top="28" width="510" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01" taborder="15" text="↑&#13;&#10;35&#13;&#10;↓" left="733" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_00" taborder="16" text="↑&#13;&#10;35&#13;&#10;↓" left="463" top="96" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00_00_00_00_00" taborder="17" text="8" left="5" top="123" width="510" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_00_00" taborder="18" text="↑&#13;&#10;35&#13;&#10;↓" left="413" top="230" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00_00_00_00_00_00" taborder="19" text="8" left="11" top="256" width="880" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_02_00_00_00_00_01" taborder="20" text="10" left="610" top="250" width="10" height="107" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsChongSeongjeok" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="SINCHEONG_HAKGISU" type="BIGDECIMAL" size="22"/>
+          <Column id="ISU_HAKGISU" type="BIGDECIMAL" size="22"/>
+          <Column id="SINCHEONG_GWAMOKSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_GWAMOKSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOYANG_ISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="JEONGONG_ISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GONGTONG_ISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOJIK_ISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOYANG_JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="JEONGONG_JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="GONGTONG_JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOJIK_JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOYANG_JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="JEONGONG_JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="GONGTONG_JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOJIK_JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="SINCHEONG_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONIPINJEONG_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOMGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="HAKGWA_INWONSU" type="BIGDECIMAL" size="22"/>
+          <Column id="HAKGWA_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOYANG_PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="JEONGONG_PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="GONGTONG_PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOJIK_PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="BIGO" type="STRING" size="500"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsHakgiSeongjeok" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsHakgiSeongjeok_onrowposchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="YYYY_HAKGI" type="STRING" size="65532"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="SINCHEONG_GWAMOKSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_GWAMOKSU" type="BIGDECIMAL" size="22"/>
+          <Column id="SINCHEONG_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOMGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="JEOMSU_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="GYEONGGO_YN" type="STRING" size="1"/>
+          <Column id="GYEONGGO_DT" type="STRING" size="8"/>
+          <Column id="YUGEUP_YN" type="STRING" size="1"/>
+          <Column id="YUGEUP_SAYU" type="STRING" size="100"/>
+          <Column id="HAKGWA_INWONSU" type="BIGDECIMAL" size="22"/>
+          <Column id="HAKGWA_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="INJEONG_YN" type="STRING" size="1"/>
+          <Column id="HAKNYEON_INWONSU" type="BIGDECIMAL" size="22"/>
+          <Column id="HAKNYEON_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="BIGO" type="STRING" size="500"/>
+          <Column id="SEOKCHA" type="STRING" size="65532"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsGwamokSeongjeok" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="YYYY_HAKGI" type="STRING" size="65532"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="GYOGWAMOK_CD" type="STRING" size="10"/>
+          <Column id="GYOGWAMOK_NM" type="STRING" size="200"/>
+          <Column id="HAKNYEON" type="STRING" size="1"/>
+          <Column id="BUNBAN" type="STRING" size="3"/>
+          <Column id="ISU_GBCD" type="STRING" size="10"/>
+          <Column id="ISU_GBNM" type="STRING" size="65532"/>
+          <Column id="HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="DAMDANG_GYOSU_CD" type="STRING" size="10"/>
+          <Column id="SUEOP_SIGAN" type="BIGDECIMAL" size="22"/>
+          <Column id="GYEOLSEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="CHULSEOK_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GWAJE_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="JUNGGAN_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GIMAL_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GITA_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGGEUP" type="STRING" size="10"/>
+          <Column id="PYEONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="SUGANG_GUBUN" type="STRING" size="10"/>
+          <Column id="SUGANG_GUBUN_NM" type="STRING" size="65532"/>
+          <Column id="JAESUGANG_YYYY" type="STRING" size="4"/>
+          <Column id="JAESUGANG_HAKGI" type="STRING" size="2"/>
+          <Column id="JAESUGANG_GYOGWAMOK_CD" type="STRING" size="10"/>
+          <Column id="DAECHE_GWAJEONG_YYYY" type="STRING" size="4"/>
+          <Column id="DAECHE_GWAJEONG_HAKGI" type="STRING" size="2"/>
+          <Column id="DAECHE_GWAJEONG_HAKNYEON" type="STRING" size="1"/>
+          <Column id="DAECHE_GWAJEONG_GWAMOK_CD" type="STRING" size="10"/>
+          <Column id="SEONGJEOK_INJEONG_YN" type="STRING" size="1"/>
+          <Column id="SEONGJEOK_INJEONG_SAYU" type="STRING" size="1"/>
+          <Column id="ISU_YN" type="STRING" size="1"/>
+          <Column id="BYEONDONG_CD" type="STRING" size="10"/>
+          <Column id="BYEONDONG_SEQ" type="STRING" size="3"/>
+          <Column id="ORG_ISU_GBCD" type="STRING" size="10"/>
+          <Column id="CHWISO_DT" type="STRING" size="8"/>
+          <Column id="BIGO" type="STRING" size="500"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_dInput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="FLAG" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): US01_2010101_T08.xfdl(총성적 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/09/07
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdChongSeongjeok);
+	this.gfn_clearSortAll(this.grdHakgiSeongjeok);
+	this.gfn_clearSortAll(this.grdGwamokSeongjeok);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+			case "DRet":
+                    this.fn_PostDRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function(hakbeon)
+{
+	this.ds_input.setColumn(0, "HAKBEON", hakbeon);
+	
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T08.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsChongSeongjeok=dsChongSeongjeok ";
+	    strOutDs   += "dsHakgiSeongjeok=dsHakgiSeongjeok ";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsChongSeongjeok);
+	this.gfn_getRowCount(this.staRowCnt2,this.dsHakgiSeongjeok);
+};
+
+/**********************************************************************
+        06. 조회 함수 선언(디테일 함수)
+***********************************************************************/
+/**
+ * 기능 : 디테일 조회 실행
+ */
+this.dsHakgiSeongjeok_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	var pHakgi = '';
+	var hakgi  = this.dsHakgiSeongjeok.getColumn(this.dsHakgiSeongjeok.rowposition, "HAKGI");
+	var flag   = hakgi.substr(hakgi.length-1, 1);
+		
+	if (flag != 'P' && flag != 'I') 
+	{	
+		flag   = 'N';
+		pHakgi = hakgi;
+	}
+	else 
+	{
+		pHakgi = hakgi.substr(0, hakgi.length-1);
+	}
+	
+	this.ds_dInput.setColumn(0, "YYYY", this.dsHakgiSeongjeok.getColumn(this.dsHakgiSeongjeok.rowposition, "YYYY"));
+	this.ds_dInput.setColumn(0, "HAKGI", hakgi);
+	this.ds_dInput.setColumn(0, "HAKBEON", this.ds_input.getColumn(0, "HAKBEON"));
+	this.ds_dInput.setColumn(0, "FLAG", flag);
+	
+	this.fn_DRet();
+};
+
+this.fn_DRet = function()
+{
+    var strSvc      = "DRet";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T08_Detail.do";
+    var strInDs     = "ds_dInput=ds_dInput";
+    var strOutDs    = "dsGwamokSeongjeok=dsGwamokSeongjeok";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostDRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt3,this.dsGwamokSeongjeok);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdChongSeongjeok_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+
+this.grdHakgiSeongjeok_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+
+this.grdGwamokSeongjeok_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item14" compid="cboJuya00" propid="value" datasetid="ds_input" columnid="DAEHAK_CD"/>
+      <BindItem id="item0" compid="Div03.form.MaskEdit00" propid="value" datasetid="dsChongSeongjeok" columnid="JEONGONG_ISU_HAKJEOM"/>
+      <BindItem id="item1" compid="Div03.form.MaskEdit04" propid="value" datasetid="dsChongSeongjeok" columnid="GYOYANG_ISU_HAKJEOM"/>
+      <BindItem id="item2" compid="Div03.form.MaskEdit08" propid="value" datasetid="dsChongSeongjeok" columnid="GYOJIK_ISU_HAKJEOM"/>
+      <BindItem id="item3" compid="Div03.form.MaskEdit12" propid="value" datasetid="dsChongSeongjeok" columnid="GONGTONG_ISU_HAKJEOM"/>
+      <BindItem id="item4" compid="Div03.form.MaskEdit01" propid="value" datasetid="dsChongSeongjeok" columnid="JEONGONG_JEOMSUGYE"/>
+      <BindItem id="item5" compid="Div03.form.MaskEdit05" propid="value" datasetid="dsChongSeongjeok" columnid="GYOYANG_JEOMSUGYE"/>
+      <BindItem id="item6" compid="Div03.form.MaskEdit09" propid="value" datasetid="dsChongSeongjeok" columnid="GYOJIK_JEOMSUGYE"/>
+      <BindItem id="item7" compid="Div03.form.MaskEdit13" propid="value" datasetid="dsChongSeongjeok" columnid="GONGTONG_JEOMSU_AVG"/>
+      <BindItem id="item8" compid="Div03.form.MaskEdit02" propid="value" datasetid="dsChongSeongjeok" columnid="JEONGONG_JEOMSU_AVG"/>
+      <BindItem id="item9" compid="Div03.form.MaskEdit06" propid="value" datasetid="dsChongSeongjeok" columnid="GYOYANG_JEOMSU_AVG"/>
+      <BindItem id="item10" compid="Div03.form.MaskEdit10" propid="value" datasetid="dsChongSeongjeok" columnid="GYOJIK_JEOMSU_AVG"/>
+      <BindItem id="item11" compid="Div03.form.MaskEdit14" propid="value" datasetid="dsChongSeongjeok" columnid="GONGTONG_JEOMSU_AVG"/>
+      <BindItem id="item12" compid="Div03.form.MaskEdit03" propid="value" datasetid="dsChongSeongjeok" columnid="JEONGONG_PYEONGJEOM_AVG"/>
+      <BindItem id="item13" compid="Div03.form.MaskEdit07" propid="value" datasetid="dsChongSeongjeok" columnid="GYOYANG_PYEONGJEOM_AVG"/>
+      <BindItem id="item15" compid="Div03.form.MaskEdit11" propid="value" datasetid="dsChongSeongjeok" columnid="GYOJIK_PYEONGJEOM_AVG"/>
+      <BindItem id="item16" compid="Div03.form.MaskEdit15" propid="value" datasetid="dsChongSeongjeok" columnid="GONGTONG_PYEONGJEOM_AVG"/>
+    </Bind>
+  </Form>
+</FDL>

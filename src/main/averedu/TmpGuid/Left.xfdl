@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Left" width="270" height="720" titletext="LeftMenu">
+    <Layouts>
+      <Layout height="720" width="270">
+        <Button id="Button00" taborder="0" text="메뉴" left="0" top="0" width="110" height="35" cssclass="btn_LF_Menu_S"/>
+        <Button id="Button01" taborder="1" text="즐겨찾기" left="110" top="0" width="100" height="35" cssclass="btn_LF_Menu"/>
+        <Button id="Button02" taborder="2" left="208" top="0" width="50" height="35" cssclass="btn_LF_MenuClose"/>
+        <Div id="Div00" taborder="3" text="Div00" left="0" top="35" bottom="0" background="#0079bb" width="270">
+          <Layouts>
+            <Layout>
+              <Grid id="grdMenu" taborder="0" left="0" top="50" binddataset="ds_Tree" treeinitstatus="expand,null" right="0" bottom="0" treeuseimage="true" treeuseline="false" treeusecheckbox="false" treeusebutton="no" cssclass="grd_LF_Menu">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="230"/>
+                      <Column size="40"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="35"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:txt" displaytype="treeitemcontrol" treelevel="bind:lev" cssclass="Lf_Menu" edittype="tree"/>
+                      <Cell col="1" expandshow="show" expandsize="40" displaytype="imagecontrol" edittype="button" expandimage="URL(&quot;theme://images/btn_WF_Bookmark.png&quot;)"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Edit id="Edit00" taborder="1" left="20" top="10" height="30" right="20" cssclass="edt_LF_Search" value="메뉴검색" text="메뉴검색"/>
+              <Button id="Button00" taborder="2" left="Edit00:-28" top="14" width="22" height="22" cssclass="btn_LF_Search"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="4" top="0" width="1" bottom="0" background="#b5b6ba" right="0"/>
+        <Grid id="Grid01" taborder="5" left="300" top="85" width="270" height="635" binddataset="ds_Tree" cssclass="grd_LF_Menu" treeinitstatus="expand,null" treeusecheckbox="false" treeuseline="false" treeuseimage="true" treeuseexpandkey="false" treeusebutton="no">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="268"/>
+              </Columns>
+              <Rows>
+                <Row size="35"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" treelevel="bind:lev" treestartlevel="3"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00" taborder="6" left="635" top="35" width="270" height="685" binddataset="ds_Tree" cssclass="grd_LF_Menu" treeinitstatus="expand,null" treeusecheckbox="false" treeuseline="false" treeuseimage="true" treeuseexpandkey="false" treeusebutton="no">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="230"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="35"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:txt" treelevel="bind:lev" cssclass="Lf_Menu" treestartlevel="3"/>
+                <Cell col="1" displaytype="imagecontrol" edittype="button" expandshow="show" expandimage="URL(&quot;theme://images/btn_WF_Bookmark_S.png&quot;)" expandsize="40"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Tree">
+        <ColumnInfo>
+          <Column id="txt" type="STRING" size="256"/>
+          <Column id="lev" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="txt">일이삼사오육칠팔구십일이삼사</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="txt">일이삼사오육칠팔구십일이삼사</Col>
+            <Col id="lev">1</Col>
+            <Col id="Column0">theme://images/btn_WF_Bookmark_S.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+            <Col id="Column0">theme://images/btn_WF_Bookmark_S.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">일이삼사오육칠팔구십일이삼사</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Tree00">
+        <ColumnInfo>
+          <Column id="txt" type="STRING" size="256"/>
+          <Column id="lev" type="STRING" size="256"/>
+          <Column id="img" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">1 Depth Menu</Col>
+            <Col id="lev">0</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">3 Depth Menu</Col>
+            <Col id="lev">2</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+          <Row>
+            <Col id="txt">2 Depth Menu</Col>
+            <Col id="lev">1</Col>
+            <Col id="img">theme://images/btn_LF_Search.png</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

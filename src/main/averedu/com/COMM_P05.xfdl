@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1200" height="600" titletext="비교과프로그램" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="1200" description="비교과프로그램">
+        <Button id="btnClose" taborder="0" text="닫기" left="1130" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10"/>
+        <Button id="btnChoice" taborder="1" text="선택" left="1065" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnChoice_onclick" bottom="10"/>
+        <Div id="divSearch" taborder="2" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01" taborder="0" left="-11" top="10" width="126" height="22" cssclass="sta_WF_SearchLbl" text="비교과프로그램" textAlign="right"/>
+              <Edit id="edtSearchProgramCdNm" taborder="1" left="131" top="9" height="22" width="603" autoselect="true" onkeydown="divSearch_edtSearchProgramCdNm_onkeydown"/>
+              <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="4" text="10" left="121" top="-9" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="5" text="9" left="20" top="31" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Button id="btnSearch" taborder="6" text="조회" left="1107" top="8" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="10" height="24" usedecorate="true" width="233" bottom="10"/>
+        <Grid id="grdMaster" taborder="4" left="10" top="70" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" oncelldblclick="grdMaster_oncelldblclick" autosizingtype="none" extendsizetype="row" right="10" bottom="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="56"/>
+                <Column size="106"/>
+                <Column size="214"/>
+                <Column size="49"/>
+                <Column size="49"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="101"/>
+                <Column size="101"/>
+                <Column size="101"/>
+                <Column size="101"/>
+                <Column size="96"/>
+                <Column size="70"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="NO"/>
+                <Cell col="1" rowspan="2" text="프로그램코드"/>
+                <Cell col="2" rowspan="2" text="프로그램명"/>
+                <Cell col="3" rowspan="2" text="학년도"/>
+                <Cell col="4" rowspan="2" text="학기"/>
+                <Cell col="5" rowspan="2" text="핵심역량"/>
+                <Cell col="6" rowspan="2" text="비교과분류구분"/>
+                <Cell col="7" colspan="2" text="프로그램 기간"/>
+                <Cell col="9" colspan="2" text="프로그램 신청 기간"/>
+                <Cell col="11" rowspan="2" text="주관부서"/>
+                <Cell col="12" rowspan="2" text="담당자"/>
+                <Cell col="13" rowspan="2" text="강사"/>
+                <Cell row="1" col="7" text="시작일시"/>
+                <Cell row="1" col="8" text="종료일시"/>
+                <Cell row="1" col="9" text="시작일시"/>
+                <Cell row="1" col="10" text="종료일시"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="readonly"/>
+                <Cell col="1" displaytype="normal" edittype="none" textAlign="center" text="bind:BIGYOGWA_PROGRAM_CD" editmaxlength="10"/>
+                <Cell col="2" displaytype="normal" edittype="none" textAlign="left" text="bind:BIGYOGWA_PROGRAM_NM" editmaxlength="100"/>
+                <Cell col="3" displaytype="normal" edittype="none" textAlign="center" text="bind:YYYY" editmaxlength="4"/>
+                <Cell col="4" displaytype="normal" edittype="none" textAlign="center" text="bind:HAKGI_NM" editmaxlength="8"/>
+                <Cell col="5" displaytype="normal" edittype="none" textAlign="center" text="bind:HAEKSIM_YEOKRYANG_NM" editmaxlength="8" combodataset="dsHaeksim"/>
+                <Cell col="6" displaytype="normal" edittype="none" textAlign="center" editmaxlength="8" text="bind:BIGYOGWA_PROGRAM_GBCD_NM" combodataset="dsBigyogwaBunryu"/>
+                <Cell col="7" displaytype="date" edittype="none" textAlign="center" text="bind:PROGRAM_SIJAK_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                <Cell col="8" displaytype="date" edittype="none" textAlign="center" text="bind:PROGRAM_JONGRYO_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                <Cell col="9" displaytype="date" edittype="none" textAlign="center" text="bind:PROGRAM_SINCHEONG_SIJAK_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                <Cell col="10" displaytype="date" edittype="none" textAlign="center" text="bind:PROGRAM_SINCHEONG_JONGRYO_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                <Cell col="11" displaytype="normal" edittype="none" textAlign="center" text="bind:JUGWAN_DEPT_CD" editmaxlength="8"/>
+                <Cell col="12" displaytype="normal" edittype="none" textAlign="center" text="bind:DAMDANGJA_SAWON_NO" editmaxlength="9"/>
+                <Cell col="13" displaytype="normal" edittype="none" textAlign="center" text="bind:GANGSA_NM" editmaxlength="100"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): COM_P05_P05.xfdl(비교과개설관리 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/11/19
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().bigyogwaProgramCdNm)){
+		this.ds_input.setColumn(0, "BIGYOGWA_PROGRAM_CD_NM",  this.getOwnerFrame().bigyogwaProgramCdNm);
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().yyyy)){
+		this.ds_input.setColumn(0, "YYYY",  this.getOwnerFrame().yyyy);
+	}
+		
+	if( !this.gfn_isNull(this.getOwnerFrame().hakgi)){
+		this.ds_input.setColumn(0, "HAKGI", this.getOwnerFrame().hakgi);	
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Ret();
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/com/Retrieve_P05.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+this.btnChoice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objRtnArr = new Array(2);
+	objRtnArr[0] = this.dsMaster.getColumn(this.dsMaster.rowposition, "BIGYOGWA_PROGRAM_CD");
+	objRtnArr[1] = this.dsMaster.getColumn(this.dsMaster.rowposition, "BIGYOGWA_PROGRAM_NM");
+	
+	this.close(objRtnArr.toString());
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.divSearch_edtSearchProgramCdNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (obj.name == "edtSearchProgramCdNm")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"BIGYOGWA_PROGRAM_CD_NM",obj.value);
+			this.fn_Ret();
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="BIGYOGWA_PROGRAM_CD" type="STRING" size="10"/>
+          <Column id="YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="8"/>
+          <Column id="HAKGI_NM" type="STRING" size="256"/>
+          <Column id="PROGRAM_SINCHEONG_SIJAK_DT" type="DATE" size="8"/>
+          <Column id="PROGRAM_SINCHEONG_JONGRYO_DT" type="DATE" size="8"/>
+          <Column id="PROGRAM_SIJAK_DT" type="DATE" size="8"/>
+          <Column id="PROGRAM_JONGRYO_DT" type="DATE" size="8"/>
+          <Column id="GANGUISIL_JONGRYU" type="STRING" size="20"/>
+          <Column id="GANGSA_SAWON_NO" type="STRING" size="9"/>
+          <Column id="GANGSA_NM" type="STRING" size="100"/>
+          <Column id="BIGYOGWA_PROGRAM_NM" type="STRING" size="100"/>
+          <Column id="JUGWAN_DEPT_CD" type="STRING" size="8"/>
+          <Column id="DAMDANGJA_SAWON_NO" type="STRING" size="9"/>
+          <Column id="HAEKSIM_YEOKRYANG_GBCD" type="STRING" size="8"/>
+          <Column id="HAEKSIM_YEOKRYANG_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="BIGYOGWA_PROGRAM_CD_NM" type="STRING" size="100"/>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOutput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="BIGYOGWA_PROGRAM_CD" type="STRING" size="10"/>
+          <Column id="BIGYOGWA_PROGRAM_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_get" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="BIGYOGWA_PROGRAM_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item9" compid="divSearch.form.edtSearchProgramCdNm" propid="value" datasetid="ds_input" columnid="BIGYOGWA_PROGRAM_CD_NM"/>
+    </Bind>
+  </Form>
+</FDL>

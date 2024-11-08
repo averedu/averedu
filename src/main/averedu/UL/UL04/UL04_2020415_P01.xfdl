@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1000" height="400" titletext="수강신청현황상세정보" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="1000" description="수강신청현황상세정보">
+        <Button id="btnClose" taborder="0" text="닫기" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10" right="10"/>
+        <Static id="staTree" taborder="1" left="10" top="10" height="22" text="수강신청목록" width="160" cssclass="sta_WF_Title02"/>
+        <Static id="Static01_01_00_00_01" taborder="2" text="8" left="0" top="27" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01" taborder="3" text="↑&#13;&#10;35&#13;&#10;↓" left="200" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_02_00_00_00_00" taborder="4" text="10" left="0" top="10" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="5" text="10" top="35" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="6" text="10" left="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10" right="0"/>
+        <Grid id="grdMaster" taborder="7" left="10" top="35" right="10" bottom="49" binddataset="dsMaster" fillareatype="none" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="120"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="160"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="번호"/>
+                <Cell col="1" text="학과/전공"/>
+                <Cell col="2" text="주야구분"/>
+                <Cell col="3" text="이수학년"/>
+                <Cell col="4" text="교과목코드"/>
+                <Cell col="5" text="교과목명"/>
+                <Cell col="6" text="분반"/>
+                <Cell col="7" text="학점"/>
+                <Cell col="8" text="통합시수"/>
+                <Cell col="9" text="대표교수코드"/>
+                <Cell col="10" text="대표교수명"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:GYOGWAMOK_CD != &quot;&quot; ? currow+1 : &quot;none&quot;"/>
+                <Cell col="1" text="bind:JEONGONG_NM" textAlign="left"/>
+                <Cell col="2" text="bind:JUYA_GBNM"/>
+                <Cell col="3" text="bind:ISU_HAKNYEON_NM"/>
+                <Cell col="4" text="bind:GYOGWAMOK_CD"/>
+                <Cell col="5" text="bind:GYOGWAMOK_NM" textAlign="left"/>
+                <Cell col="6" text="bind:BUNBAN"/>
+                <Cell col="7" text="bind:HAKJEOM"/>
+                <Cell col="8" text="bind:TONGHAP_SISU"/>
+                <Cell col="9" text="bind:DAMDANGGYOSU_CD"/>
+                <Cell col="10" text="bind:DAMDANGGYOSU_NM"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UL04_2020415_P01.xfdl(수강신청현황상세정보)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/07/27
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	if (!this.gfn_isNull(this.getOwnerFrame().YYYY)) {
+		this.ds_input.setColumn(0, "YYYY", this.getOwnerFrame().YYYY);
+	}
+	if (!this.gfn_isNull(this.getOwnerFrame().HAKGI)) {
+		this.ds_input.setColumn(0, "HAKGI", this.getOwnerFrame().HAKGI);
+	}
+	if (!this.gfn_isNull(this.getOwnerFrame().HAKBEON)) {
+		this.ds_input.setColumn(0, "HAKBEON", this.getOwnerFrame().HAKBEON);
+	}
+	if (!this.gfn_isNull(this.getOwnerFrame().GUBUN)) {
+		this.ds_input.setColumn(0, "GUBUN", this.getOwnerFrame().GUBUN);
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UL/UL04/Retrieve_2020415_P01.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="LV" type="STRING" size="256"/>
+          <Column id="BLDG_CODE" type="STRING" size="256"/>
+          <Column id="FLOR_NUMB" type="STRING" size="256"/>
+          <Column id="HOSIL_CD" type="STRING" size="256"/>
+          <Column id="HOSIL_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="100"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="256"/>
+          <Column id="GUBUN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P01_DAO">									                            
+
+    <select id="COM_P01_DAO.retrieve_P01" parameterType="map" resultType="egovMap"> 
+            SELECT 
+            	  A.DEPT_CD
+            	, CASE WHEN A.USE_YN = '0' THEN A.DEPT_NM || '(폐)' ELSE A.DEPT_NM END AS DEPT_NM
+			    , A.UP_DEPT_CD
+		     	, COMM.SF_SC_GET_DEPT (A.UP_DEPT_CD,'') AS UP_DEPT_NM
+			    , A.USE_YN
+			    , B.DEL_YN
+			    , B.JOLEOP_HAKNYEON
+			  FROM TABLE(COMM.SF_XBT_AUTH_DEPT_TBL(#{USER_ID},#{MENU_ID},#{JOJIK_GBCD},#{USE_YN})) A
+		      JOIN COMM.SC_DEPT_M B 
+		        ON A.DEPT_CD = B.DEPT_CD                                           							 
+             WHERE 1=1     
+            <if test="DEPT_LV != null and DEPT_LV != ''">    
+               AND A.DEPT_LV = #{DEPT_LV}
+        	</if>                                         												     
+        	<if test="DEPT_CD_NM != null and DEPT_CD_NM != ''">    
+               AND (A.DEPT_CD = #{DEPT_CD_NM} OR A.DEPT_NM LIKE '%' || #{DEPT_CD_NM} || '%')
+        	</if>    
+        	ORDER BY A.UP_DEPT_CD, A.DEPT_CD                                                                                               
+        /* COM_01_DAO.retrieve_01_ 부서 조회 */	                                 
+    </select> 	                                                        													                                                           													   
+</mapper>

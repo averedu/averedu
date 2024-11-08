@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="학생부성적관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="학생부성적관리" height="800" mobileorientation="landscape" width="1640">
+        <Tab id="Tab" taborder="0" tabindex="0" top="0" right="0" bottom="0" width="1640">
+          <Tabpages>
+            <Tabpage id="TabPage1" text="지원자파일생성" url="EN03::EN03_1010301_T01.xfdl"/>
+            <Tabpage id="TabPage2" text="학생부파일이관" url="EN03::EN03_1010301_T02.xfdl"/>
+            <Tabpage id="TabPage3" text="학생부성적이관" url="EN03::EN03_1010301_T03.xfdl"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN03_1010301_M.xfdl(학생부성적관리)
+* 작 성         일 명: 성연우
+* 작 성         일 자: 2021/04/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};]]></Script>
+    <InitValue/>
+  </Form>
+</FDL>

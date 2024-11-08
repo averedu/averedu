@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="재학생" onload="form_onload">
+    <Layouts>
+      <Layout description="재학생" height="800" mobileorientation="landscape" width="1640">
+        <Div id="divSearch" taborder="0" left="10" top="35" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="0" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00" taborder="1" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="2" text="9" left="26" top="31" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00_00" taborder="3" left="-33" top="9" height="22" text="학년도" cssclass="sta_WF_SearchLbl" width="100" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_01" taborder="4" text="10" left="68" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Spin id="spnSearchYYYY" taborder="5" left="78" top="9" width="80" height="22" max="3000" min="0" value="" onkeydown="divSearch_spnSearchYYYY_onkeydown" cssclass="point"/>
+              <Static id="stc_01_00_00_01" taborder="6" left="159" top="9" height="22" text="학기" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_01_01_00" taborder="7" text="← 56 →" left="158" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_01_01_00" taborder="8" text="10" left="239" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchHakgi" taborder="9" text="" left="249" top="9" width="110" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" onkeydown="divSearch_cboSearchHakgi_onkeydown" innerdataset="dsHakgi" cssclass="point"/>
+              <Static id="stc_01_00_00_03" taborder="10" left="380" top="9" height="22" text="학과/전공" cssclass="sta_WF_SearchLbl" width="90" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_01_00_00" taborder="11" text="10" left="471" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchHakgwa" taborder="12" text="" left="481" top="9" width="180" height="22" codecolumn="DEPT_CD" datacolumn="DEPT_NM" index="-1" value="1" onkeydown="divSearch_cboSearchHakgwa_onkeydown" innerdataset="dsHakgwa" cssclass="point"/>
+              <Static id="Static01_02_01_01_00_00_00" taborder="13" text="← 56 →" left="661" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_00_00" taborder="14" left="654" top="9" height="22" text="학년" cssclass="sta_WF_SearchLbl" width="90" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_01_00_00_00" taborder="15" text="10" left="744" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchHaknyeon" taborder="16" text="" left="754" top="9" width="120" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" innerdataset="dsHaknyeon" enable="true" cssclass="point" onkeydown="divSearch_cboSearchHaknyeon_onkeydown"/>
+              <Static id="Static01_02_01_01_00_00" taborder="17" text="← 56 →" left="359" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_00_00_00_00" taborder="18" text="← 56 →" left="874" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_00_00_00" taborder="19" left="888" top="9" height="22" text="주야구분" cssclass="sta_WF_SearchLbl" width="90" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_01_00_00_00_00" taborder="20" text="10" left="981" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Radio id="rdoSearchJuyaGbcd" taborder="21" left="996" top="9" width="120" height="22" direction="vertical" value="0" text="예" index="0" innerdataset="dsJuya" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="divSearch_rdoSearchJuyaGbcd_onkeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09_00" taborder="1" left="7" top="87" height="22" text="성적장학대상자 목록" cssclass="sta_WF_Title02" right="1448"/>
+        <Static id="staRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="167" top="86" height="24" usedecorate="true" right="1350"/>
+        <Static id="Static01" taborder="3" text="↑&#13;&#10;35&#13;&#10;↓" left="1110" top="77" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00" taborder="4" text="8" left="10" top="104" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01" taborder="5" text="↑&#13;&#10;35&#13;&#10;↓" left="610" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_05" taborder="6" left="10" top="10" height="22" text="검색조건" width="220" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="Static01_01_00_00_00_01" taborder="7" text="8" left="11" top="27" width="1620" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_02_00_00_00_00" taborder="8" text="10" left="0" top="1" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="9" text="10" left="0" width="1640" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10"/>
+        <Static id="Static01_02_00_00_00_00_01" taborder="10" text="10" top="1" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0" right="0"/>
+        <Grid id="grdMaster" taborder="11" left="10" top="110" right="10" bottom="10" binddataset="dsMaster" autofittype="col" onheadclick="Div04_Grid00_onheadclick" autoenter="select">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="80"/>
+                <Column size="89"/>
+                <Column size="50"/>
+                <Column size="55"/>
+                <Column size="103"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="50"/>
+                <Column size="40"/>
+                <Column size="80"/>
+                <Column size="87"/>
+                <Column size="150"/>
+                <Column size="143"/>
+                <Column size="74"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="학번"/>
+                <Cell col="2" text="학과"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="주야구분"/>
+                <Cell col="5" text="주민번호"/>
+                <Cell col="6" text="평균평점"/>
+                <Cell col="7" text="백분율"/>
+                <Cell col="8" text="신청학점"/>
+                <Cell col="9" text="취득학점"/>
+                <Cell col="10" text="총점"/>
+                <Cell col="11" text="석차"/>
+                <Cell col="12" text="장학금액" cssclass="point"/>
+                <Cell col="13" text="국가장학금액"/>
+                <Cell col="14" text="장학명"/>
+                <Cell col="15" text="비고"/>
+                <Cell col="16" text="납부상태"/>
+                <Cell col="17" text="지급결과"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:HAKBEON"/>
+                <Cell col="2" text="bind:HAKGWA_NM"/>
+                <Cell col="3" text="bind:HAKSAENG_NM"/>
+                <Cell col="4" text="bind:JUYA_GBCD" displaytype="combotext" combodataset="dsJuya" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="5" text="bind:RES_NO"/>
+                <Cell col="6" text="bind:PYEONGJEOM_AVG"/>
+                <Cell col="7" text="bind:JEOMSU_AVG"/>
+                <Cell col="8" text="bind:SINCHEONG_HAKJEOM"/>
+                <Cell col="9" text="bind:CHWIDEUK_HAKJEOM"/>
+                <Cell col="10" text="bind:JEOMSUGYE"/>
+                <Cell col="11" text="bind:SEOKCHA"/>
+                <Cell col="12" text="bind:JANGHAK_GEUMAEK" textAlign="right" displaytype="number" edittype="expr:JANGHAK_CD?'normal':'none'" editmaxlength="16"/>
+                <Cell col="13" text="bind:GUKGA_GEUMAEK"/>
+                <Cell col="14" text="bind:JANGHAK_CD" edittype="combo" displaytype="expr:JANGHAK_CD!=''?'combotext':'normal'" combodataset="dsJanghak" combodatacol="JANGHAK_NM" combocodecol="JANGHAK_CD"/>
+                <Cell col="15" text="bind:BIGO"/>
+                <Cell col="16" text="bind:NAPBU_NM"/>
+                <Cell col="17" text="bind:JIGEUP_SANGTAE_GBNM" combodataset="DS_JIGEUP_SANGTAE_GBCD" combodatacol="LABEL" combocodecol="CD"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JANGHAK_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="ORIGIN_JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="HAKNYEON" type="STRING" size="1"/>
+          <Column id="SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="50"/>
+          <Column id="JUYA_GBCD" type="STRING" size="3"/>
+          <Column id="SUHYE_GBCD" type="STRING" size="2"/>
+          <Column id="BIRTHDAY" type="STRING" size="8"/>
+          <Column id="SINCHEONG_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHWIDEUK_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOM_AVG" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOMGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="JEOMSUGYE" type="BIGDECIMAL" size="22"/>
+          <Column id="SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="JANGHAK_GEUMAEK" type="BIGDECIMAL" size="22"/>
+          <Column id="BIGO" type="STRING" size="200"/>
+          <Column id="JIGEUP_SANGTAE_GBCD" type="STRING" size="2"/>
+          <Column id="NAPBU_NM" type="STRING" size="65532"/>
+          <Column id="RES_NO" type="STRING" size="65532"/>
+          <Column id="HAKGWA_NM" type="STRING" size="256"/>
+          <Column id="GUKGA_GEUMAEK" type="STRING" size="256"/>
+          <Column id="JEOMSU_AVG" type="STRING" size="256"/>
+          <Column id="JIGEUP_SANGTAE_GBNM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="JANGHAK_YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="HAKNYEON_CD" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="REF_1" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHaknyeon" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJuya" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHakgwa" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="GBN" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="UP_DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJanghak" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="JANGHAK_CD" type="STRING" size="256"/>
+          <Column id="JANGHAK_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_preInput" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="PRE_JANGHAK_YYYY" type="STRING" size="256"/>
+          <Column id="PRE_HAKGI" type="STRING" size="256"/>
+          <Column id="PRE_HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="PRE_HAKNYEON_CD" type="STRING" size="256"/>
+          <Column id="PRE_JUYA_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_amtInput" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="JANGHAK_YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="256"/>
+          <Column id="JANGHAK_CD" type="STRING" size="256"/>
+          <Column id="HAKNYEON" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsAmt" preload="true" updatecontrol="true" useclientlayout="true" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JANGHAK_GEUMAEK" type="BIGDECIMAL" size="22"/>
+          <Column id="SUHYE_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE02_2060205_M.xfdl(재학생)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/03
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "JANGHAK_GEUMAEK";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "장학금액";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsHakgi|dsHaknyeon|dsJuya";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00022|00060|00003";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|X|X";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+							  
+	// 기준연도학기 
+    strDs    = "dsBaseYyyyHakgi";        // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    svcId    = "baseYyyyHakgiInit";
+	var strEopmuGbcd = "US";
+	var strUseYn     = "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs
+                              , svcId
+                              , strEopmuGbcd
+                              , strUseYn);
+							  
+	// gfn_HakgwaComboLoad(데이터셋, 콤보 옵션)
+	// 학과콤보
+	strDs       = "dsHakgwa";
+	strComb     = "N";
+	svcId       = "hakgwaInit";
+	strUseYn    = "1"; // 사용 여부
+	strJojikGbcd = "20";  // 조직구분 10.행정조직   20.학사조직   30.입시조직
+	strUpDeptCd = "all";
+	
+	this.gfn_HakgwaComboLoad(this.divSearch.form.cboSearchHakgwa, strComb, svcId, strUseYn, strJojikGbcd, strUpDeptCd, objApp.gv_cutPrgId);	
+
+};
+
+this.fn_PostformInit = function()
+{
+	this.dsHakgi.filter("REF_1 == '10'");
+	this.divSearch.form.rdoSearchJuyaGbcd.set_index(0);
+	
+	this.fn_JanghakRet();
+};
+
+this.fn_PostBaseYyyyHakgiInit = function()
+{
+	if (this.dsBaseYyyyHakgi.rowcount > 0) 
+	{
+		this.ds_input.setColumn(0, "JANGHAK_YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.ds_input.setColumn(0, "HAKGI",  this.dsBaseYyyyHakgi.getColumn(0, "HAKGI"));
+	}
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+			case "baseYyyyHakgiInit":
+					this.fn_PostBaseYyyyHakgiInit();
+			    break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+			case "AmtRet":
+                    this.fn_PostAmtRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 장학 코드 조회 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_JanghakRet = function()
+{
+    var strSvc      = "";
+    var strUrl      = "/prj/UE/UE02/janghakRetrieve_2060205_M.do";
+    var strInDs     = "";
+    var strOutDs    = "dsJanghak=dsJanghak";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**********************************************************************
+        06. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "JANGHAK_YYYY")))
+    {
+        this.alert("학년도는 필수입력입니다.");
+        return false;
+    }
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "HAKGI")))
+    {
+        this.alert("학기는 필수입력입니다.");
+        return false;
+    }
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "HAKGWA_CD")))
+    {
+        this.alert("학과/전공은 필수입력입니다.");
+        return false;
+    }
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "HAKNYEON_CD")))
+    {
+        this.alert("학년은 필수입력입니다.");
+        return false;
+    }
+
+	this.ds_preInput.setColumn(0, "PRE_JANGHAK_YYYY", this.ds_input.getColumn(0, "JANGHAK_YYYY"));
+	this.ds_preInput.setColumn(0, "PRE_HAKGI", this.ds_input.getColumn(0, "HAKGI"));
+	this.ds_preInput.setColumn(0, "PRE_HAKGWA_CD", this.ds_input.getColumn(0, "HAKGWA_CD"));
+	this.ds_preInput.setColumn(0, "PRE_HAKNYEON_CD", this.ds_input.getColumn(0, "HAKNYEON_CD"));
+	this.ds_preInput.setColumn(0, "PRE_JUYA_GBCD", this.ds_input.getColumn(0, "JUYA_GBCD"));
+	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UE/UE02/jaehakRetrieve_2060205_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        07. 장학금액 조회 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreAmtRet = function()
+{
+    // 조회조건 셋팅
+	this.ds_amtInput.setColumn(0, "JANGHAK_YYYY", this.ds_preInput.getColumn(0, "PRE_JANGHAK_YYYY"));
+	this.ds_amtInput.setColumn(0, "HAKGI", this.ds_preInput.getColumn(0, "PRE_HAKGI"));
+	this.ds_amtInput.setColumn(0, "HAKGWA_CD", this.dsMaster.getColumn(this.dsMaster.rowposition, "HAKGWA_CD"));
+	this.ds_amtInput.setColumn(0, "HAKBEON", this.dsMaster.getColumn(this.dsMaster.rowposition, "HAKBEON"));
+	this.ds_amtInput.setColumn(0, "JANGHAK_CD", this.dsMaster.getColumn(this.dsMaster.rowposition, "JANGHAK_CD"));
+	this.ds_amtInput.setColumn(0, "HAKNYEON", this.dsMaster.getColumn(this.dsMaster.rowposition, "HAKNYEON"));
+	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_AmtRet = function()
+{
+    if(!this.fn_PreAmtRet())
+    {
+        return false;
+    }
+    var strSvc      = "AmtRet";
+    var strUrl      = "/prj/UE/UE02/amtRetrieve_2060205_M.do";
+    var strInDs     = "ds_amtInput=ds_amtInput";
+    var strOutDs    = "dsAmt=dsAmt";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostAmtRet = function()
+{
+	if (this.dsAmt.rowcount == 0) {
+		this.alert("장학코드에 해당하는 장학금액이 존재하지 않습니다.")
+	} else {
+		this.dsMaster.setColumn(this.dsMaster.rowposition, 'JANGHAK_GEUMAEK', this.dsAmt.getColumn(0, 'JANGHAK_GEUMAEK'));
+		this.dsMaster.setColumn(this.dsMaster.rowposition, 'SUHYE_GBCD', this.dsAmt.getColumn(0, 'SUHYE_GBCD'));
+	}
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = true;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+	}
+
+	var result = this.gfn_confirm( "장학선발확정 처리를 하시겠습니까?", "저장","", "question" );
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UE/UE02/jaehakSave_2060205_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u ";
+		strInDs    += "ds_preInput=ds_preInput:a";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+	this.alert("장학선발확정 되었습니다.");
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+this.dsMaster_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == 'JANGHAK_CD') { 
+	    var janghakCd = this.dsMaster.getColumn(e.row, 'JANGHAK_CD');
+	
+		if(this.gfn_isNull(janghakCd)) {
+			this.dsMaster.setColumn(e.row, 'JANGHAK_GEUMAEK', '');
+		} else {
+			this.fn_AmtRet();
+		}
+	}
+};
+
+/**********************************************************************
+        10. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_spnSearchYYYY_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JANGHAK_YYYY",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchHakgi_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"HAKGI",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchHakgwa_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"HAKGWA_CD",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchHaknyeon_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"HAKNYEON_CD",obj.value);
+		this.fn_Ret();
+	}
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item3" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="JANGHAK_YYYY"/>
+      <BindItem id="item4" compid="divSearch.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="HAKGI"/>
+      <BindItem id="item6" compid="divSearch.form.cboSearchHakgwa" propid="value" datasetid="ds_input" columnid="HAKGWA_CD"/>
+      <BindItem id="item8" compid="divSearch.form.cboSearchHaknyeon" propid="value" datasetid="ds_input" columnid="HAKNYEON_CD"/>
+      <BindItem id="item9" compid="divSearch.form.rdoSearchJuyaGbcd" propid="value" datasetid="ds_input" columnid="JUYA_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

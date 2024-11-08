@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="지원자 파일생성" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="지원자 파일생성" height="800" mobileorientation="landscape" width="1640">
+        <Div id="divSearch" taborder="0" left="10" top="35" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="stc_02" taborder="4" left="224" top="9" height="22" text="모집 구분" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Static id="stc_01" taborder="5" left="7" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cboSearchMojip" taborder="1" text="" left="306" top="9" width="170" height="22" innerdataset="ds_mojipGbcd" codecolumn="MOJIP_GBCD" datacolumn="MOJIP_NM" index="0" value="1" onkeydown="divSearch_cboSearchMojip_onkeydown" cssclass="point"/>
+              <Spin id="spnSearchYYYY" taborder="0" left="87" top="9" width="101" height="22" onkeydown="divSearch_spnSearchYYYY_onkeydown" max="3000" min="0" value="" cssclass="point"/>
+              <Static id="Static01_01_02" taborder="6" text="9" left="14" top="0" width="1580" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00_01" taborder="7" text="9" left="14" top="31" width="1580" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_01" taborder="8" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="9" text="10" left="78" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01" taborder="10" text="← 56 →" left="188" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="11" text="10" left="297" top="-1" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02" taborder="12" text="← 56 →" left="476" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Button id="btn01" taborder="2" text="성적미입력파일생성" top="8" width="131" height="25" cssclass="btn_WF_Crud" tabstop="true" right="116" visible="true" onclick="divSearch_btn01_onclick"/>
+              <Button id="btn02" taborder="3" text="파일생성" top="8" width="91" height="25" cssclass="btn_WF_Crud" tabstop="true" right="16" onclick="divSearch_btn02_onclick"/>
+              <FileDownload id="FileDownload" taborder="13" text="FileDownload" left="1256" top="8" width="100" height="25" visible="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="2" text="↑&#13;&#10;35&#13;&#10;↓" left="490" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00" taborder="3" left="10" top="10" height="22" text="파일생성 기준" cssclass="sta_WF_Title02" right="1475"/>
+        <Static id="Static01_01_00_00_00" taborder="4" text="8" left="10" top="27" width="320" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_00" taborder="5" text="↑&#13;&#10;35&#13;&#10;↓" left="489" top="76" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00_00" taborder="6" left="10" top="86" height="22" text="지원자파일 목록" cssclass="sta_WF_Title02" right="1473"/>
+        <Static id="staRowCnt" taborder="7" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="144" top="86" height="24" usedecorate="true" right="1373"/>
+        <Grid id="grdMaster" taborder="1" left="10" top="111" right="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" bottom="10" binddataset="dsMaster">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="파일내용"/>
+              </Band>
+              <Band id="body">
+                <Cell textAlign="center" edittype="none" text="bind:FILE_NAEYONG"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_02_00_00_00_00" taborder="8" text="10" left="0" top="1" width="10" height="741" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="9" text="10" left="0" width="1640" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="10" text="10" top="11" width="10" height="741" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static01_01_00_00_00_00" taborder="11" text="8" left="10" top="103" width="320" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="FILE_NAEYONG" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mojipGbcd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_NM" type="STRING" size="256"/>
+          <Column id="HYEONJAE_MOJIP_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsFile">
+        <ColumnInfo>
+          <Column id="FILE_URL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN03_1010301_T01.xfdl(지원자파일생성 관리)
+* 작 성         일 명: 성연우
+* 작 성         일 자: 2021/04/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	this.fn_GijunYyyy();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }
+	else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {	
+            case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+			case "MojipGb":
+                    this.fn_PostMojipGb();
+                break;
+			case "MiIpryeok":
+                    this.fn_PostMiIpryeok();
+                break;
+			case "Jiwonja":
+                    this.fn_PostJiwonja();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 성적미입력파일생성
+***********************************************************************/
+this.divSearch_btn01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 	this.alert("보류");
+ 	return false;
+	
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == '' || this.ds_input.getColumn(0, "IPSI_YYYY") == null) 
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+	if(this.ds_input.getColumn(0, "MOJIP_GBCD") == '' || this.ds_input.getColumn(0, "MOJIP_GBCD") == null)
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	
+	// 파일다운로드 보류		
+ 	var strSvc      = "MiIpryeok";
+    var strUrl      = "/prj/EN/EN03/Retrieve_1010301_T01_MiIpryeok.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster ";
+	    strOutDs   += "dsFile=dsFile";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostMiIpryeok = function()
+{
+	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	var url = this.dsFile.getColumn(0, "FILE_URL");
+	this.divSearch.form.FileDownload.set_downloadurl(url);
+	this.divSearch.form.FileDownload.download();
+}
+
+/**********************************************************************
+        06. 파일생성
+***********************************************************************/
+this.divSearch_btn02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+ 	this.alert("보류");
+ 	return false;
+	
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == '' || this.ds_input.getColumn(0, "IPSI_YYYY") == null) 
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+	if(this.ds_input.getColumn(0, "MOJIP_GBCD") == '' || this.ds_input.getColumn(0, "MOJIP_GBCD") == null)
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	
+	// 파일다운로드 보류	
+	var strSvc      = "Jiwonja";
+    var strUrl      = "/prj/EN/EN03/Retrieve_1010301_T01.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster ";
+	    strOutDs   += "dsFile=dsFile";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostJiwonja = function()
+{
+	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	var url = this.dsFile.getColumn(0, "FILE_URL");
+	this.divSearch.form.FileDownload.set_downloadurl(url);
+	this.divSearch.form.FileDownload.download();
+}
+
+/**********************************************************************
+        07. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+/**********************************************************************
+        08. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.fn_MojipGb();
+}
+
+// 입시모집구분 가져오기
+this.fn_MojipGb = function()
+{
+	this.ds_mojipGbcd.deleteAll();
+	
+    var strSvc      = "MojipGb";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_MOJIPGBCD.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_mojipGbcd=ds_mojipGbcd";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+}
+
+this.fn_PostMojipGb = function()
+{
+	var gubun;
+	for(var i=0; i<this.ds_mojipGbcd.rowcount; i++)
+	{
+		gubun = this.ds_mojipGbcd.getColumn(i, "HYEONJAE_MOJIP_YN");
+		
+		if(gubun == 'Y')
+		{
+			this.ds_input.setColumn(0, "MOJIP_GBCD", this.ds_mojipGbcd.getColumn(i, "MOJIP_GBCD"));
+		}
+	}
+}]]></Script>
+    <InitValue/>
+    <Bind>
+      <BindItem id="item1" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item0" compid="divSearch.form.btn01" propid="enable" datasetid="dsBindableButton" columnid="bEnable"/>
+      <BindItem id="item2" compid="divSearch.form.btn02" propid="enable" datasetid="dsBindableButton" columnid="bEnable"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

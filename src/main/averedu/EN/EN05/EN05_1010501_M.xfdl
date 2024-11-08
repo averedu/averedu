@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="성적산출" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="성적산출" height="800" mobileorientation="landscape" width="1640">
+        <Div id="DivBg" taborder="0" left="0" top="0" cssclass="type01" bottom="0" width="780" background="#e3ebff" text="">
+          <Layouts>
+            <Layout>
+              <Div id="divSearch" taborder="0" left="10" top="40" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+                <Layouts>
+                  <Layout>
+                    <Static id="stc_01" taborder="3" left="7" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="98"/>
+                    <Spin id="spnSearchYYYY" taborder="0" left="105" top="9" width="101" height="22" readonly="true"/>
+                    <Static id="stc_01_00" taborder="4" left="245" top="9" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="80"/>
+                    <Edit id="edtCheoriGunsu" taborder="2" left="631" top="9" width="100" height="22" readonly="true"/>
+                    <Static id="stc_01_01_00_00" taborder="5" left="511" top="9" height="22" text="처리건수" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+                    <Combo id="cboSearchMojip" taborder="1" text="" left="325" top="9" width="120" height="22" codecolumn="MOJIP_GBCD" datacolumn="MOJIP_NM" index="0" value="1" innerdataset="ds_mojipGbcd" displaynulltext="전체" onitemchanged="divSearch_cboSearchMojip_onitemchanged" onkeydown="divSearch_cboSearchMojip_onkeydown" readonly="true"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="Static01_02_00" taborder="2" text="27" left="10" top="41" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01" taborder="3" text="← 56 →" left="217" top="41" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00" taborder="4" text="10" left="106" top="41" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_01" taborder="5" text="9" left="30" top="41" width="720" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00_00" taborder="6" text="9" left="30" top="72" width="720" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="7" text="10" left="326" top="41" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_01" taborder="8" text="27" left="742" top="41" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="9" text="10" left="632" top="41" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Div id="DivButton" taborder="1" left="10" top="107" height="50" background="white" right="10" border="1px solid #4c4b66" text="">
+                <Layouts>
+                  <Layout>
+                    <Button id="btnJeomsu" taborder="0" text="1. 면접(실기) 점수부여" top="11" width="179" cssclass="btn_WF_Crud" left="162" height="25" onclick="DivBg_DivButton_btnJeomsu_onclick"/>
+                    <Button id="btnSeongjeok" taborder="1" text="2. 성적산출" top="11" width="179" cssclass="btn_WF_Crud" left="392" height="25" onclick="DivBg_DivButton_btnSeongjeok_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="Static01_00_01" taborder="10" text="↑25↓" left="330" top="82" width="100" height="25" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_63" taborder="11" left="-9" top="10" height="20" text="입시년도와 모집구분을 기준으로 성적사정을 시행합니다." width="362" cssclass="sta_WF_SearchLbl"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mojipGbcd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_NM" type="STRING" size="256"/>
+          <Column id="HYEONJAE_MOJIP_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsResult1">
+        <ColumnInfo>
+          <Column id="ROWINDEX" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="RESULT" type="STRING" size="256"/>
+          <Column id="ERROR" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsResult2"/>
+      <Dataset id="dsResult3">
+        <ColumnInfo>
+          <Column id="OUT_TOTAL_CNT" type="STRING" size="10000"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN05_1010501_M.xfdl(성적산출)
+* 작 성         일 명: 백재인
+* 작 성         일 자: 2021/06/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	this.fn_GijunYyyy();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+			case "MojipGb":
+                    this.fn_PostMojipGb();
+                break;
+            case "Jeomsu":
+                    this.fn_PostJeomsu();
+                break;
+            case "Seongjeok":
+                    this.fn_PostSeongjeok();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 면접(실기) 점수부여 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.DivBg_DivButton_btnJeomsu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == "" || this.ds_input.getColumn(0, "IPSI_YYYY") == null)
+	{
+		this.alert("입시년도를 입력하세요");
+		return false;
+	}
+	
+	if(this.ds_input.getColumn(0, "MOJIP_GBCD") == "" || this.ds_input.getColumn(0, "MOJIP_GBCD") == null)
+	{
+		this.alert("모집구분을 선택하세요");
+		return false;
+	}
+	
+    var result = this.gfn_confirm( "입시년도와 모집구분을 기준으로 면접/실기 점수를 부여합니다.", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	this.fn_Jeomsu();
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Jeomsu = function()
+{
+    var strSvc      = "Jeomsu";
+    var strUrl      = "/prj/EN/EN05/Jeomsu_1010501_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+    var strOutDs    = "dsResult1=dsResult1 ";
+	    strOutDs   += "dsResult2=dsResult2";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostJeomsu = function()
+{
+    var resultCnt = this.dsResult1.rowcount + this.dsResult2.rowcount;
+	this.DivBg.form.divSearch.form.edtCheoriGunsu.set_value(resultCnt);
+};
+
+/**********************************************************************
+        06. 성적산출 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.DivBg_DivButton_btnSeongjeok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var result = this.gfn_confirm( "성적산출 하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	this.fn_Seongjeok();	
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Seongjeok = function()
+{
+    var strSvc      = "Seongjeok";
+    var strUrl      = "/prj/EN/EN05/Seongjeok_1010501_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+    var strOutDs    = "dsResult3=dsResult3 ";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSeongjeok = function()
+{
+    var resultCnt = this.dsResult3.getColumn(0, "OUT_TOTAL_CNT");
+	this.DivBg.form.divSearch.form.edtCheoriGunsu.set_value(resultCnt);
+};
+
+/**********************************************************************
+        07. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.fn_MojipGb();
+}
+
+// 입시모집구분 가져오기
+this.fn_MojipGb = function()
+{
+	this.ds_mojipGbcd.deleteAll();
+	
+    var strSvc      = "MojipGb";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_IPSI_MOJIPGBCD.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_mojipGbcd=ds_mojipGbcd";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+}
+
+this.fn_PostMojipGb = function()
+{
+	var gubun;
+	for(var i=0; i<this.ds_mojipGbcd.rowcount; i++)
+	{
+		gubun = this.ds_mojipGbcd.getColumn(i, "HYEONJAE_MOJIP_YN");
+		
+		if(gubun == 'Y')
+		{
+			this.ds_input.setColumn(0, "MOJIP_GBCD", this.ds_mojipGbcd.getColumn(i, "MOJIP_GBCD"));
+		}
+	}
+}]]></Script>
+    <Bind>
+      <BindItem id="item23" compid="edt1_01_00_01_01_00" propid="value" datasetid="dsMaster" columnid="DANCHE_NM"/>
+      <BindItem id="item24" compid="edt1_01_00_01_01_00_00" propid="value" datasetid="dsMaster" columnid="DANCHE_NM"/>
+      <BindItem id="item22" compid="rdo_00_00" propid="value" datasetid="dsMaster" columnid="HYEONJAE_MOJIP_YN"/>
+      <BindItem id="item27" compid="rdo_00_00_01" propid="value" datasetid="dsMaster" columnid="HYEONJAE_MOJIP_YN"/>
+      <BindItem id="item0" compid="DivBg.form.divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item2" compid="DivBg.form.divSearch.form.edtCheoriGunsu" propid="value" datasetid="dsMaster" columnid="OUT_TOTAL_CNT"/>
+      <BindItem id="item1" compid="DivBg.form.divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+    </Bind>
+    <InitValue/>
+  </Form>
+</FDL>

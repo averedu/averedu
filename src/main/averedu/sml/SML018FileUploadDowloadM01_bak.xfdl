@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="FILE(UPLOAD/DOWNLOAD)" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640" stepcount="0">
+        <Static id="Static00" taborder="1" text="업로드" left="8" top="10" width="296" height="42" right="" bottom=""/>
+        <Grid id="Grid00" taborder="2" left="228" top="90" width="576" height="154" binddataset="ds_fileSingle" cellclickbound="cell">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="344"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CHK"/>
+                <Cell col="1" text="File Name"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:FILE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnSingleUpload" taborder="3" text="upload" left="706" top="41" width="93" height="39" onclick="btnSingleUpload_onclick"/>
+        <Static id="Static02" taborder="0" text="다운로드" left="10" top="520" width="146" height="42"/>
+        <FileUpload id="fup_single" taborder="4" left="0" top="0" width="100" height="50" onerror="fileUpload_onerror" onitemchanged="FileUpload00_onitemchanged" onsuccess="fileUpload_onsuccess" itemcount="0" visible="true"/>
+        <Button id="Button01" taborder="5" text="+" left="576" top="41" width="55" height="39" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="6" text="-" left="641" top="41" width="55" height="39" onclick="Button02_onclick"/>
+        <Grid id="Grid01" taborder="7" left="230" top="545" width="360" height="107" binddataset="ds_download" autofittype="col" onheadclick="Grid01_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="114"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="File Name"/>
+                <Cell col="2" text="Size"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:CHK"/>
+                <Cell col="1" text="bind:ORGFILENM"/>
+                <Cell col="2" text="bind:FILESIZE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_down" taborder="8" text="download" left="686" top="545" width="120" height="50" onclick="btn_down_onclick"/>
+        <Edit id="edt_lageCdNm" taborder="9" left="102" top="277" width="468" height="26" text="Edit" maxheight="26" minheight="" maxlength="50" autoselect="true" onkeyup="div_cond_edt_lageCdNm_onkeyup"/>
+        <Button id="btn_fileSearch" taborder="10" text="파일찾기" left="574" top="277" width="93" height="26" onclick="btn_fileSearch_onclick"/>
+        <Button id="btnSend_1" taborder="11" text="upload" left="671" top="277" width="93" height="26" onclick="btnSend_onclick"/>
+        <FileUpload id="FileUploadSingle" taborder="12" left="100" top="236" width="145" height="44" onerror="FileUploadSingle_onerror" onitemchanged="FileUploadSingle_onitemchanged" onsuccess="FileUploadSingle_onsuccess"/>
+        <Button id="btnSend_0" taborder="13" text="upload" left="674" top="313" width="93" height="26" onclick="btnSend_0_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="14" left="70" top="351" width="316" height="123" stretch="none"/>
+        <Button id="btnSend_00" taborder="15" text="이미지 VIEW" left="423" top="357" width="97" height="103" onclick="btnSend_00_onclick"/>
+        <Button id="btnSend_01" taborder="16" text="이미지 VIEW" left="534" top="357" width="97" height="103" onclick="btnSend_01_onclick"/>
+        <FileDownload id="FileDownload00" taborder="17" text="FileDownload00" left="900" top="192" width="134" height="80"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_fileSingle">
+        <ColumnInfo>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_SAVENM" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_download">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="ORGFILENM" type="string" size="32"/>
+          <Column id="FILENM" type="string" size="32"/>
+          <Column id="FILESIZE" type="string" size="32"/>
+          <Column id="FILETP" type="string" size="32"/>
+          <Column id="FILEPATH" type="string" size="32"/>
+          <Column id="FILEID" type="string" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="ORGFILENM">a.jpg</Col>
+            <Col id="FILENM">aaa.jpg</Col>
+            <Col id="FILESIZE">1151</Col>
+            <Col id="FILETP">txt</Col>
+            <Col id="FILEPATH">event/sub</Col>
+            <Col id="FILEID">20171214132822_76</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_fileSingle2">
+        <ColumnInfo>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_SAVENM" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분
+ ************************************************************************************************/
+this.fileUpload_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{
+ 	alert("fileUpload_onsuccess >> " + e.datasets[0].saveXML());
+
+    /**
+		e.datasets[0] 를 이용하여 서버에 업로드된 파일의 정보를 DB에 저장합니다.
+	*/
+}
+
+this.fileUpload_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	alert("fileUpload_onerror >> " + e.errormsg);
+}
+
+ /************************************************************************************************
+ * 업로드
+ * 화면에 fileupload 컴포넌트를 사이즈 0 으로 생성합니다. 
+ ************************************************************************************************/
+ 
+//fup_single_onitemchanged 	파일 업로드 컴포넌트(싱글) - 선택된 파일 정보 데이터셋 반영
+this.FileUpload00_onitemchanged = function(obj:nexacro.FileUpload,e:nexacro.FileUploadItemChangeEventInfo)
+{
+	var sCompValue = this.fup_single.value;
+	var sNewvalue = e.newvalue;
+	var sOldValue = e.oldvalue;
+	
+	trace("FileUpload00_onitemchanged=======>  sCompValue: " + sCompValue +  "/ sNewvalue: " + sNewvalue + "/  sOldValue: " + sOldValue );
+	
+	var sFilePath = this.fup_single.value;
+	var dirExpt   = nexacro.toNumber(sFilePath.lastIndexOf("\\"))+1;
+	
+	var sFileName = sFilePath.substr(dirExpt);
+	var nRow      = this.ds_fileSingle.addRow();
+	
+	this.ds_fileSingle.setColumn(nRow, "FILE_PATH", sFilePath);
+	this.ds_fileSingle.setColumn(nRow, "FILE_NAME", sFileName);
+	
+};
+
+//upload 파일추가
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fup_single.appendItem();
+	this.fup_single.filefindbuttons[this.fup_single.itemcount-1].click();
+};
+
+//upload 파일삭제
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	for(var i=this.ds_fileSingle.rowcount-1; i>=0; i--){
+		var nChk = this.ds_fileSingle.getColumn(i,"CHK");
+		if(nChk == 1){
+			this.fup_single.deleteItem(i);
+			this.ds_fileSingle.deleteRow(i);
+		}
+	}
+};
+
+
+
+//Upload 실행
+this.btnSingleUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var options = {type:"Event"};
+	this.gfn_fileUpload(this.fup_single,options); 
+};
+
+ /************************************************************************************************
+ * 다운로드
+ ************************************************************************************************/
+
+this.btn_down_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/**
+	 * 현재 Form 상의 FileDownload 컴포넌트를 이용하여 파일을 다운로드한다.
+	 * @param {Object} objFileDownload	파일다운로드 컴포넌트
+	 * @param {Object} sFilename		다운로드 할 실제파일명
+	 * @param {String} sSaveFileName	서버에 업로드될때 변경된 파일명
+	 * @param {String} sPath			파일업로드시킬 폴더 위치
+	 * @example this.gfn_fileDownload(objFileDownload, sFilename, sSaveFileName, sPath);
+	 */
+	 
+	//DB에 저장된 파일관련정보를 조회하여 아래정보를 기입합니다.
+	
+	for(var i=0; i<this.ds_download.rowcount; i++){
+		if(this.ds_download.getColumn(i,"CHK") == 1){			
+			var objFileDownload = obj;
+			var sFilename       = this.ds_download.getColumn(i,"ORGFILENM");
+			var sSaveFileName   = this.ds_download.getColumn(i,"FILENM");
+			var sPath           = this.ds_download.getColumn(i,"FILEPATH");
+			this.gfn_fileDownload(sFilename, sSaveFileName, sPath);			
+		}
+	}	
+};
+
+//전체선택
+this.Grid01_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.col == 0){
+		this.gfn_checkAll(obj,e,true);
+	}
+};
+
+
+//파일찾기
+this.btn_fileSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	this.FileUploadSingle.deleteItem(0);
+	this.FileUploadSingle.appendItem();
+	//this.FileUploadSingle.appendItem();
+	//this.FileUploadSingle.filefindbuttons[this.FileUploadSingle.itemcount-1].click();		
+	
+	this.FileUploadSingle.filefindbuttons[0].click();	
+};
+
+
+this.FileUploadSingle_onitemchanged = function(obj:nexacro.FileUpload,e:nexacro.FileUploadItemChangeEventInfo)
+{
+    var sCompValue = this.FileUploadSingle.value;
+	
+	var start = sCompValue.lastIndexOf(".");	// [object Grid]
+	if( start > -1) {
+		sCompValue = sCompValue.substr(start + 1, sCompValue.length);
+	}
+	
+		
+	//var sNewvalue = e.newvalue;
+	//var sOldValue = e.oldvalue;
+	
+	//trace("FileUpload00_onitemchanged=======>  sCompValue: " + sCompValue +  "/ sNewvalue: " + sNewvalue + "/  sOldValue: " + sOldValue );
+	
+	var sFilePath = this.FileUploadSingle.value;
+	var dirExpt   = nexacro.toNumber(sFilePath.lastIndexOf("\\"))+1;
+	
+	var sFileName = sFilePath.substr(dirExpt);
+	
+	this.ds_fileSingle.clearData();
+	
+	var nRow      = this.ds_fileSingle2.addRow();
+	this.ds_fileSingle2.setColumn(nRow, "FILE_PATH", sFilePath);
+	this.ds_fileSingle2.setColumn(nRow, "FILE_NAME", sFileName);
+};
+
+this.FileUploadSingle_onsuccess = function(obj:nexacro.FileUpload,e:nexacro.FileUploadEventInfo)
+{
+	alert("fileUpload_onsuccess >> " + e.datasets[0].saveXML());
+};
+
+this.FileUploadSingle_onerror = function(obj:nexacro.FileUpload,e:nexacro.FileUploadErrorEventInfo)
+{
+	alert("fileUpload_onerror >> " + e.errormsg);
+};
+
+
+this.btnSend_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//var options = {type:"Event", fileLimit:5, fileReName:"aaad.jpg", subPath:"sub" , height:"", width:"100"};
+	var options = {type:"Event", fileReName:"aaad.jpg", subPath:"sub" , subsubPath:"sub", height:"", width:"100"};
+	this.gfn_fileUpload(this.FileUploadSingle,options); 
+};
+
+this.btnSend_0_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var options = {type:"Event", fileLimit:0, fileReName:"aaaaaa.jpg", subPath:"sub"};
+	this.gfn_fileUpload(this.FileUploadSingle,options); 
+};
+
+this.btnSend_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objEnv = nexacro.getEnvironment();
+	
+	var httpUrl = objEnv.services["svc"].url + nexacro.getApplication().gv_imgRoot;		
+	//this.ImageViewer00.set_image("http://localhost:8084/mast/bizfiles/1.jpg");
+		
+	this.ImageViewer00.set_image("http://localhost:8084/mast/bizfiles/1.jpg" + "?a="+ Math.random() )
+	
+	
+};
+
+this.btnSend_01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	return;
+	var objEnv = nexacro.getEnvironment();
+	var httpUrl = objEnv.services["svc"].url + nexacro.getApplication().gv_imgRoot;	
+	this.ImageViewer00.set_image("http://localhost:8084/mast/bizfiles/sub/1.jpg")
+};
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edt_lageCdNm" propid="value" datasetid="ds_fileSingle2" columnid="FILE_NAME"/>
+    </Bind>
+  </Form>
+</FDL>

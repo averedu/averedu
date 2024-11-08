@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="280" height="230" titletext="시수생성" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="230" mobileorientation="landscape" width="280" description="시수생성">
+        <Static id="Static01_02_00_00_00_00" taborder="2" text="10" left="0" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="3" text="10" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="4" text="10" left="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10" right="0"/>
+        <Static id="stc_09_00" taborder="5" left="7" top="6" height="22" text="시수생성" cssclass="sta_WF_Title02" right="188"/>
+        <Static id="Static01_01_00_00_00" taborder="6" text="8" left="0" top="23" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Button id="btnSave" taborder="0" text="생성" width="60" height="25" cssclass="btn_WF_Crud" right="75" bottom="10" onclick="btnSave_onclick"/>
+        <Button id="btnClose" taborder="1" text="닫기" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" right="10" bottom="10"/>
+        <Static id="stc_13_06" taborder="7" left="10" top="31" height="28" cssclass="sta_WF_DetailBg" width="260"/>
+        <Static id="stc_12_06" taborder="8" text="전임여부" left="10" top="31" height="28" cssclass="sta_WF_DetailTi" width="105"/>
+        <Static id="stc_13_06_00" taborder="9" left="10" top="59" height="28" cssclass="sta_WF_DetailBg" width="260"/>
+        <Static id="stc_12_06_01" taborder="10" text="학년도" left="10" top="59" height="28" cssclass="sta_WF_DetailTi" width="105"/>
+        <Static id="stc_13_00_00" taborder="11" left="10" top="87" height="28" cssclass="sta_WF_DetailBg" width="260"/>
+        <Static id="stc_12_00_00" taborder="12" text="학기" left="10" top="87" height="28" cssclass="sta_WF_DetailTi" width="105"/>
+        <Static id="stc_13_00_00_00" taborder="13" left="10" top="115" height="28" cssclass="sta_WF_DetailBg" width="260"/>
+        <Static id="staSisu" taborder="14" text="책임시수" left="10" top="115" height="28" cssclass="sta_WF_DetailTi" width="105"/>
+        <Edit id="edtSisu" taborder="15" left="117" top="118" height="22" width="150" enable="true" cssclass="point"/>
+        <Static id="stc_13_00_00_00_00" taborder="16" left="10" top="143" height="28" cssclass="sta_WF_DetailBg" width="260"/>
+        <Static id="stc_12_00_00_01_00" taborder="17" text="기존데이터삭제" left="10" top="143" height="28" cssclass="sta_WF_DetailTi" width="105"/>
+        <Radio id="RdoJeonim" taborder="18" left="117" top="34" width="146" height="22" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" enable="true" onitemchanged="RdoJeonim_onitemchanged">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">전임</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">비전임</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Combo id="cboHakgi" taborder="19" text="" left="117" top="90" width="150" height="22" innerdataset="dsHakgi" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" onlbuttondown="cboSearchGyeyeol_onlbuttondown" onitemchanged="cboSearchGyeyeol_onitemchanged" onkeydown="div_01_cboSearchGyeyeol_onkeydown" cssclass="point"/>
+        <Spin id="spnYYYY" taborder="20" left="117" top="62" width="150" height="22" cssclass="point"/>
+        <CheckBox id="chkDel" taborder="21" left="117" top="146" width="150" height="22" tooltiptype="hover"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UL06_2020601_P01.xfdl(시수생성)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/07/14
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+    this.fn_formInit();
+	
+	if(!this.gfn_isNull(this.getOwnerFrame().yyyy)){
+		this.dsMaster.setColumn(0, "YYYY", this.getOwnerFrame().yyyy);
+	}
+	if(!this.gfn_isNull(this.getOwnerFrame().hakgi)){
+		this.dsMaster.setColumn(0, "HAKGI", this.getOwnerFrame().hakgi);
+	}
+	this.dsMaster.setColumn(0, "JEONIM_GBCD", "1");
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	var strDs    = "dsHakgi";
+    var strLgcd  = "00022";    // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "S";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "Save":
+                    this.fn_PostSave();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 복사 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Save();
+};
+
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(this.gfn_isNull(this.dsMaster.getColumn(0, "YYYY")))
+    {
+        this.alert("학년도는 필수입력입니다.");
+        return false;
+    }
+	if(this.gfn_isNull(this.dsMaster.getColumn(0, "HAKGI")))
+    {
+        this.alert("학기는 필수입력입니다.");
+        return false;
+    }
+	if(this.dsMaster.getColumn(0, "JEONIM_GBCD") == "1")
+	{
+		if(this.gfn_isNull(this.dsMaster.getColumn(0, "CHAEKIM_SISU")))
+		{
+			this.alert("책임시수는 필수입력입니다.");
+			return false;
+		}
+	}
+
+	var result = this.gfn_confirm("시수 생성하시겠습니까?", "저장","", "question" );
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+};
+
+/**
+ * 기능 : 마스터 저장 실행
+ */
+this.fn_Save = function()
+{
+	if(!this.fn_PreSave())
+    {
+        return false;
+    }
+	
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UL/UL06/Save_2020601_P01.do";
+    var strInDs     = "dsMaster=dsMaster";
+    var strOutDs    = "";
+    var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+      strArg = "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 저장 후 실행
+ */
+this.fn_PostSave = function()
+{
+	this.alert("정상적으로 생성되었습니다.");
+	this.close("CLOSE");
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+// 종료버튼 클릭시
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.RdoJeonim_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if(e.postvalue == "2")
+	{
+		this.staSisu.set_visible(false);
+		this.edtSisu.set_visible(false);
+		this.dsMaster.setColumn(0, "CHAEKIM_SISU", null);
+	}
+	else
+	{
+		this.staSisu.set_visible(true);
+		this.edtSisu.set_visible(true);
+	}	
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="JEONIM_GBCD" type="STRING" size="256"/>
+          <Column id="CHAEKIM_SISU" type="STRING" size="256"/>
+          <Column id="DEL_FLAG" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item9" compid="edtSisu" propid="value" datasetid="dsMaster" columnid="CHAEKIM_SISU"/>
+      <BindItem id="item15" compid="RdoJeonim" propid="value" datasetid="dsMaster" columnid="JEONIM_GBCD"/>
+      <BindItem id="item18" compid="cboHakgi" propid="value" datasetid="dsMaster" columnid="HAKGI"/>
+      <BindItem id="item0" compid="spnYYYY" propid="value" datasetid="dsMaster" columnid="YYYY"/>
+      <BindItem id="item1" compid="chkDel" propid="value" datasetid="dsMaster" columnid="DEL_FLAG"/>
+    </Bind>
+  </Form>
+</FDL>

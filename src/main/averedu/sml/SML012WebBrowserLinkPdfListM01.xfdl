@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="WEBBROWSER(LINK/PDF)" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Button id="btnTest01" taborder="0" text="PDF" left="880" top="70" width="120" height="50" onclick="btnTest01_onclick"/>
+        <Button id="btnTest03" taborder="1" text="웹call" left="883" top="193" width="120" height="50" onclick="btnTest03_onclick"/>
+        <Button id="btnTest02" taborder="2" text="신규화면링크" left="883" top="130" width="120" height="50" onclick="btnTest02_onclick"/>
+        <Button id="btnTest04" taborder="3" text="초기화하면" left="879" top="10" width="120" height="50" onclick="btnTest04_onclick"/>
+        <Button id="btnTest05" taborder="4" text="innerHTML" left="884" top="258" width="120" height="50" onclick="btnTest05_onclick"/>
+        <WebBrowser id="webSemple" taborder="5" left="20" top="10" bottom="10" width="850"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_setInitLink("htmlContent.html");
+};
+
+this.fn_setInitLink = function (fvFile)
+{
+	var svcUrl = nexacro.getEnvironment().services["svcurl"].url;
+	var sPath  = "msu/file/"
+	
+	if(this.gfn_isNull(fvFile)) 
+	{
+		alert("호출한 파일이 없습니다.");
+		return false;	
+	}
+	
+	var sFile  = fvFile;
+	trace(svcUrl + sPath + sFile);
+	this.webSemple.set_url(svcUrl + sPath + sFile);
+};
+/*  Runtime/IE인 경우, adobe reader가 설치되어 있어야 함.  */
+this.btnTest01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_setInitLink("빌드.pdf");
+};
+
+this.btnTest02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	system.execBrowser("https://www.naver.com/");
+};
+
+this.btnTest03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (nexacro._Browser == "Runtime") { // Runtime
+        try {
+            this.webTest = this.webSemple.getProperty("Document").getProperty("parentWindow");
+        } catch (e) {
+            this.webTest = this.webSemple;
+        }
+	} else 
+	{ 	//HTML5
+		this.webTest = this.webSemple.getProperty("window");
+	}
+	this.webTest.callMethod("fn_ToWeb", "넥사크로에서 넘어온 html화면을 펑션을 호출함");
+};
+
+
+
+this.webSemple_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	 //PC런타임에선 발생안하니 기다리지마
+    //trace("WebBrowser00_onloadcompleted " + obj);
+    
+};
+
+this.webSemple_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	 trace("WebBrowser00_onusernotify " + e.userdata);
+
+// 	if (!this.gfnIsNull(e.userdata))
+// 	{
+//         var arrRtn = e.userdata.split("|");
+//         if (arrRtn[0] == "nexaCall")
+//         {
+//             alert(arrRtn[1]);
+//         }
+// 	}
+};
+
+this.btnTest04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_setInitLink("htmlContent.html");
+};
+
+this.btnTest05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (nexacro._Browser == "Runtime") { // Runtime
+        try {
+            this.webTest = this.webSemple.getProperty("Document").getProperty("parentWindow");
+        } catch (e) {
+            this.webTest = this.webSemple;
+        }
+	} else { //HTML5
+		this.webTest = this.webSemple.getProperty("window");
+	}
+	
+	var originalData = '<p class="titleMain">공지사항<span class="btn border4"><a href="https://www.naver.com/">더보기</a></span></p>';	
+	this.webTest.callMethod("fn_setContent", originalData);
+};
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+]]></Script>
+  </Form>
+</FDL>

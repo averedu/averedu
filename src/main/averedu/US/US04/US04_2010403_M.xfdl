@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="증명서 이력조회" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="증명서 이력조회" height="800" mobileorientation="landscape" width="1640">
+        <Static id="stc_09_00" taborder="2" left="0" top="52" height="22" text="증명서 발급 목록" cssclass="sta_WF_Title02" right="1485"/>
+        <Static id="staRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="137" top="51" height="24" usedecorate="true" right="1380"/>
+        <Grid id="grdMaster" taborder="1" left="0" top="77" binddataset="dsMaster" right="0" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" onheadclick="grdMaster_onheadclick" bottom="0" onexpandup="grdMaster_onexpandup">
+          <Grid id="grdMaster" taborder="1" binddataset="dsMaster" autoenter="select" autofittype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="80" right="0" bottom="0">
+            <Formats>
+              <Format id="default">
+                <Columns>
+                  <Col size="40"/>
+                  <Col size="40"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                  <Col size="100"/>
+                </Columns>
+                <Rows>
+                  <Row size="30" band="head"/>
+                  <Row size="30"/>
+                </Rows>
+                <Band id="head">
+                  <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                  <Cell col="1" displaytype="normal" text="No."/>
+                  <Cell col="2" disptype="normal" text="입시 년도"/>
+                  <Cell col="3" disptype="normal" text="고교 코드"/>
+                  <Cell col="4" disptype="normal" text="고교 명"/>
+                  <Cell col="5" disptype="normal" text="시도 교육청"/>
+                  <Cell col="6" disptype="normal" text="전화 번호"/>
+                  <Cell col="7" disptype="normal" text="우편 번호"/>
+                  <Cell col="8" disptype="normal" text="주소"/>
+                  <Cell col="9" disptype="normal" text="상세 주소"/>
+                  <Cell col="10" disptype="normal" text="고교계열 구분코드"/>
+                  <Cell col="11" disptype="normal" text="지역 구분코드"/>
+                  <Cell col="12" disptype="normal" text="세부지역 구분코드"/>
+                  <Cell col="13" disptype="normal" text="고교약어 명"/>
+                  <Cell col="14" disptype="normal" text="비고"/>
+                  <Cell col="15" disptype="normal" text="적용 구분코드"/>
+                  <Cell col="16" disptype="normal" text="제공 년도"/>
+                  <Cell col="17" disptype="normal" text="기준 년도 대상 여부"/>
+                  <Cell col="18" disptype="normal" text="대상 여부1(기준년도 기준 1년전)"/>
+                  <Cell col="19" disptype="normal" text="대상 여부2(기준년도 기준 2년전)"/>
+                  <Cell col="20" disptype="normal" text="대상 여부3(기준년도 기준 3년전)"/>
+                  <Cell col="21" disptype="normal" text="대상 여부4(기준년도 기준 4년전)"/>
+                  <Cell col="22" disptype="normal" text="대상 여부5(기준년도 기준 5년전)"/>
+                  <Cell col="23" disptype="normal" text="등록자"/>
+                  <Cell col="24" disptype="normal" text="등록일시"/>
+                  <Cell col="25" disptype="normal" text="등록아이피"/>
+                  <Cell col="26" disptype="normal" text="등록프로그램"/>
+                  <Cell col="27" disptype="normal" text="수정자"/>
+                  <Cell col="28" disptype="normal" text="수정일시"/>
+                  <Cell col="29" disptype="normal" text="수정아이피"/>
+                  <Cell col="30" disptype="normal" text="수정프로그램"/>
+                </Band>
+                <Band id="body">
+                  <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK" editmaxlength="1"/>
+                  <Cell col="1" displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                  <Cell col="2" displaytype="text" edittype="text" textAlign="left" text="bind:IPSI_YYYY" editmaxlength="4"/>
+                  <Cell col="3" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYO_CD" editmaxlength="10"/>
+                  <Cell col="4" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYO_NM" editmaxlength="100"/>
+                  <Cell col="5" displaytype="text" edittype="text" textAlign="left" text="bind:SIDO_GYOYUKCHEONG" editmaxlength="100"/>
+                  <Cell col="6" displaytype="text" edittype="text" textAlign="left" text="bind:TEL_NO" editmaxlength="50"/>
+                  <Cell col="7" displaytype="text" edittype="text" textAlign="left" text="bind:POST" editmaxlength="6"/>
+                  <Cell col="8" displaytype="text" edittype="text" textAlign="left" text="bind:JUSO" editmaxlength="500"/>
+                  <Cell col="9" displaytype="text" edittype="text" textAlign="left" text="bind:SANGSE_JUSO" editmaxlength="500"/>
+                  <Cell col="10" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYOGYEYEOL_GBCD" editmaxlength="10"/>
+                  <Cell col="11" displaytype="text" edittype="text" textAlign="left" text="bind:JIYEOK_GBCD" editmaxlength="10"/>
+                  <Cell col="12" displaytype="text" edittype="text" textAlign="left" text="bind:SEBUJIYEOK_GBCD" editmaxlength="10"/>
+                  <Cell col="13" displaytype="text" edittype="text" textAlign="left" text="bind:GOGYOYAKEO_NM" editmaxlength="100"/>
+                  <Cell col="14" displaytype="text" edittype="text" textAlign="left" text="bind:BIGO" editmaxlength="1000"/>
+                  <Cell col="15" displaytype="text" edittype="text" textAlign="left" text="bind:JEOKYONG_GBCD" editmaxlength="10"/>
+                  <Cell col="16" displaytype="text" edittype="text" textAlign="left" text="bind:JEGONG_YYYY" editmaxlength="4"/>
+                  <Cell col="17" displaytype="text" edittype="text" textAlign="left" text="bind:GIJUN_YYYY_DAESANG_YN" editmaxlength="2"/>
+                  <Cell col="18" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN1" editmaxlength="2"/>
+                  <Cell col="19" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN2" editmaxlength="2"/>
+                  <Cell col="20" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN3" editmaxlength="2"/>
+                  <Cell col="21" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN4" editmaxlength="2"/>
+                  <Cell col="22" displaytype="text" edittype="text" textAlign="left" text="bind:DAESANG_YN5" editmaxlength="2"/>
+                  <Cell col="23" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_ID" editmaxlength="30"/>
+                  <Cell col="24" displaytype="date" edittype="date" textAlign="center" text="bind:INSERT_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                  <Cell col="25" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_IP" editmaxlength="30"/>
+                  <Cell col="26" displaytype="text" edittype="text" textAlign="left" text="bind:INSERT_PG" editmaxlength="500"/>
+                  <Cell col="27" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_ID" editmaxlength="30"/>
+                  <Cell col="28" displaytype="date" edittype="date" textAlign="center" text="bind:UPDATE_DT" editmaxlength="8" calendardisplaynulltype="none"/>
+                  <Cell col="29" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_IP" editmaxlength="30"/>
+                  <Cell col="30" displaytype="text" edittype="text" textAlign="left" text="bind:UPDATE_PG" editmaxlength="500"/>
+                </Band>
+              </Format>
+            </Formats>
+          </Grid>
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="120"/>
+                <Column size="90"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="60"/>
+                <Column size="50"/>
+                <Column size="100"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="발급일"/>
+                <Cell col="2" text="발급번호"/>
+                <Cell col="3" text="학번"/>
+                <Cell col="4" text="성명"/>
+                <Cell col="5" text="생년월일"/>
+                <Cell col="6" text="학과"/>
+                <Cell col="7" text="국영문구분"/>
+                <Cell col="8" text="발급구분"/>
+                <Cell col="9" text="증명서종류"/>
+                <Cell col="10" text="발급매수"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow+1"/>
+                <Cell col="1" text="bind:BALGEUP_DT" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="2" text="bind:BALGEUP_NO"/>
+                <Cell col="3" text="bind:HAKBEON"/>
+                <Cell col="4" text="bind:HAKSAENG_NM"/>
+                <Cell col="5" text="bind:BIRTHDAY" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="6" text="bind:HAKGWA_NM" textAlign="left"/>
+                <Cell col="7" text="bind:JEUNGMYEONGSEO_GBNM"/>
+                <Cell col="8" text="bind:SINCHEONG_GBNM"/>
+                <Cell col="9" text="bind:JEUNGMYEONGSEO_NM" textAlign="left"/>
+                <Cell col="10" text="bind:BALGEUP_MAESU"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="4" text="↑&#13;&#10;35&#13;&#10;↓" left="550" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00" taborder="5" text="8" left="0" top="69" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01" taborder="6" text="9" left="24" top="0" width="1500" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="7" text="9" left="24" top="31" width="1500" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02" taborder="8" text="← 56 →" left="221" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00" taborder="9" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00" taborder="10" text="10" left="81" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="11" text="10" left="328" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Edit id="edtSearchHakbeonNm" taborder="0" left="91" top="9" width="130" height="22" enable="true" readonly="false" onkeydown="divSearch_edtSearchHakbeonNm_onkeydown"/>
+              <Static id="stc_01_01" taborder="12" left="-1" top="9" height="22" text="학번/성명" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="stc_01_00_01" taborder="13" left="245" top="9" height="22" text="생년월일" cssclass="sta_WF_SearchLbl" width="80" textAlign="right" visible="true"/>
+              <MaskEdit id="mskSearchbirthday" taborder="1" left="338" top="9" width="130" height="22" format="####.##.##" type="string" textAlign="left" onkeydown="divSearch_mskSearchbirthday_onkeydown"/>
+              <Static id="Static01_02_01" taborder="14" text="← 56 →" left="468" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00" taborder="15" left="471" top="9" height="22" text="기간" cssclass="sta_WF_SearchLbl" width="80" textAlign="right" visible="true"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="16" text="10" left="554" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Calendar id="calSearchFrDt" taborder="2" left="564" top="9" width="120" height="22" readonly="false" enable="true" onkeydown="divSearch_calSearchFrDt_onkeydown"/>
+              <Static id="Static00_00" taborder="17" text="~" left="693" top="7" width="16" height="22" textAlign="center"/>
+              <Calendar id="calSearchToDt" taborder="3" left="719" top="9" width="120" height="22" readonly="false" enable="true" onkeydown="divSearch_calSearchToDt_onkeydown"/>
+              <Static id="stc_01_00_01_00_00" taborder="18" left="852" top="9" height="22" text="발급처" cssclass="sta_WF_SearchLbl" width="80" textAlign="right" visible="true"/>
+              <Static id="Static01_02_01_00" taborder="19" text="← 56 →" left="839" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00_00" taborder="20" text="10" left="935" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchBalgeupcheo" taborder="4" text="" left="945" top="9" width="117" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsBalgeupcheo" readonly="false" onkeydown="divSearch_cboSearchBalgeupcheo_onkeydown"/>
+              <Static id="stc_01_00_01_00_00_00" taborder="21" left="1095" top="9" height="22" text="증명서 종류" cssclass="sta_WF_SearchLbl" width="90" textAlign="right" visible="true"/>
+              <Static id="Static01_02_01_00_00" taborder="22" text="← 56 →" left="1062" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00_00_00" taborder="23" text="10" left="1188" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchCert" taborder="5" text="" left="1198" top="9" width="117" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsCert" readonly="false" onkeydown="divSearch_cboSearchCert_onkeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="BALGEUP_DT" type="STRING" size="8"/>
+          <Column id="BALGEUP_NO" type="STRING" size="10"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="50"/>
+          <Column id="BIRTHDAY" type="STRING" size="8"/>
+          <Column id="HAKGWA_NM" type="STRING" size="65532"/>
+          <Column id="JEUNGMYEONGSEO_GBNM" type="STRING" size="65532"/>
+          <Column id="SINCHEONG_GBNM" type="STRING" size="65532"/>
+          <Column id="JEUNGMYEONGSEO_NM" type="STRING" size="65532"/>
+          <Column id="BALGEUP_MAESU" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="NUMNAME" type="STRING" size="256"/>
+          <Column id="BIRTHDAY" type="STRING" size="256"/>
+          <Column id="FR_DT" type="STRING" size="256"/>
+          <Column id="TO_DT" type="STRING" size="256"/>
+          <Column id="SINCHEONG_GBCD" type="STRING" size="256"/>
+          <Column id="JEUNGMYEONGSEO_KIND" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBalgeupcheo">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCert">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): US04_2010403_M.xfdl(증명서 이력조회)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/10/01
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = ""; // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsBalgeupcheo|dsCert";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00043|00032";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+
+this.fn_PostInit = function()
+{
+	this.ds_input.setColumn(0, "FR_DT", objApp.gds_SystemDate.getColumn(0,"YYYYMMDD"));
+	this.ds_input.setColumn(0, "TO_DT", objApp.gds_SystemDate.getColumn(0,"YYYYMMDD"));
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "Init":
+			        this.fn_PostInit();					
+			    break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "print" :       // 출력
+                 this.fn_Print();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/US/US04/Retrieve_2010403_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 출력 함수 선언
+***********************************************************************/
+this.fn_Print = function()
+{
+	if(this.dsMaster.rowcount == 0)
+	{
+		this.gfn_alert("출력할 데이터가 없습니다.", "EXCEL 정보" ,"","information");
+        return false;
+	}
+	
+	var NUMNAME = this.ds_input.getColumn(0, 'NUMNAME');
+	var BIRTHDAY = this.ds_input.getColumn(0, 'BIRTHDAY');
+	var FR_DT = this.ds_input.getColumn(0, 'FR_DT');
+	var TO_DT = this.ds_input.getColumn(0, 'TO_DT');
+	var SINCHEONG_GBCD = this.ds_input.getColumn(0, 'SINCHEONG_GBCD');
+	var JEUNGMYEONGSEO_KIND = this.ds_input.getColumn(0, 'JEUNGMYEONGSEO_KIND');
+	var PRT_INFO = '127.0.0.1 ' + objApp.gds_userInfoDb.getColumn(0,"DEPT_NM") + ' ' + objApp.gds_userInfoDb.getColumn(0,"USER_NM");
+	var PG_CD = objApp.gv_cutPrgId;
+	
+	var param = {
+				  NUMNAME 			  : NUMNAME
+				, BIRTHDAY 	 	 	  : BIRTHDAY
+				, FR_DT 			  : FR_DT
+				, TO_DT 			  : TO_DT
+				, SINCHEONG_GBCD	  : SINCHEONG_GBCD
+				, JEUNGMYEONGSEO_KIND : JEUNGMYEONGSEO_KIND
+				, PRT_INFO			  : PRT_INFO
+				, PG_CD				  : PG_CD
+				};
+	
+
+	this.gfn_commonUtils_report('US04/US04_2010403_M.crf',  param);
+};
+
+/**********************************************************************
+        07. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+/**********************************************************************
+        08. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_edtSearchHakbeonNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"NUMNAME",obj.value);
+		this.fn_Ret();
+	}		
+};
+
+this.divSearch_mskSearchbirthday_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"BIRTHDAY",obj.value);
+		this.fn_Ret();
+	}			
+};
+
+this.divSearch_calSearchFrDt_onkeydown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"FR_DT",obj.value);
+		this.fn_Ret();
+	}		
+};
+
+this.divSearch_calSearchToDt_onkeydown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"TO_DT",obj.value);
+		this.fn_Ret();
+	}		
+};
+
+this.divSearch_cboSearchBalgeupcheo_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"SINCHEONG_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};
+
+this.divSearch_cboSearchCert_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JEUNGMYEONGSEO_KIND",obj.value);
+		this.fn_Ret();
+	}	
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item2" compid="divSearch.form.edtSearchHakbeonNm" propid="value" datasetid="ds_input" columnid="NUMNAME"/>
+      <BindItem id="item0" compid="divSearch.form.calSearchFrDt" propid="value" datasetid="ds_input" columnid="FR_DT"/>
+      <BindItem id="item1" compid="divSearch.form.calSearchToDt" propid="value" datasetid="ds_input" columnid="TO_DT"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchBalgeupcheo" propid="value" datasetid="ds_input" columnid="SINCHEONG_GBCD"/>
+      <BindItem id="item4" compid="divSearch.form.cboSearchCert" propid="value" datasetid="ds_input" columnid="JEUNGMYEONGSEO_KIND"/>
+      <BindItem id="item5" compid="divSearch.form.mskSearchbirthday" propid="value" datasetid="ds_input" columnid="BIRTHDAY"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1200" height="600" titletext="설문문항" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="1200" description="설문문항">
+        <Button id="btnClose" taborder="0" text="닫기" left="1130" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10"/>
+        <Button id="btnChoice" taborder="1" text="선택" left="1065" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnChoice_onclick" bottom="10"/>
+        <Div id="divSearch" taborder="2" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01" taborder="0" left="-30" top="11" width="85" height="22" cssclass="sta_WF_SearchLbl" text="문항" textAlign="right"/>
+              <Edit id="edtSearchMunhangNoNaeyong" taborder="1" left="68" top="9" height="22" width="603" autoselect="true" onkeydown="divSearch_edtSearchMunhangNoNaeyong_onkeydown"/>
+              <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="4" text="10" left="58" top="-9" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="5" text="9" left="20" top="31" width="320" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Button id="btnSearch" taborder="6" text="조회" left="1110" top="8" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="10" height="24" usedecorate="true" width="233" bottom="10"/>
+        <Grid id="grdMaster" taborder="4" left="10" top="70" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" oncelldblclick="grdMaster_oncelldblclick" autosizingtype="none" extendsizetype="row" right="10" bottom="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="57"/>
+                <Column size="565"/>
+                <Column size="69"/>
+                <Column size="76"/>
+                <Column size="81"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="checkbox" text="No"/>
+                <Cell col="1" text="설문유형"/>
+                <Cell col="2" text="문항번호"/>
+                <Cell col="3" text="문항내용"/>
+                <Cell col="4" text="표시순서"/>
+                <Cell col="5" text="객관식여부"/>
+                <Cell col="6" text="객관식예제수"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" edittype="none"/>
+                <Cell col="1" displaytype="combocontrol" edittype="none" textAlign="center" text="bind:SEOLMUN_YUHYUNG_GBCD" editmaxlength="256" combodataset="dsSeolmunYuhyung" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="2" displaytype="number" edittype="none" textAlign="center" text="bind:MUNHANG_NO" editmaxlength="22"/>
+                <Cell col="3" displaytype="text" edittype="none" textAlign="left" text="bind:MUNHANG_NAEYONG" editmaxlength="4000"/>
+                <Cell col="4" displaytype="number" edittype="none" textAlign="center" text="bind:PYOSI_SEQ" editmaxlength="22"/>
+                <Cell col="5" displaytype="combocontrol" edittype="none" textAlign="center" text="bind:GAEKGWANSIK_YN" editmaxlength="256" combodataset="dsGaekgwansikYeobu" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="6" displaytype="number" edittype="none" textAlign="center" text="bind:GAEKGWANSIK_YEJE_CNT" editmaxlength="22"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): COM_P06_P06.xfdl(설문문항내역 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/11/19
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().munhangNoNaeyong)){
+		this.ds_input.setColumn(0, "MUNHANG_NO_NAEYONG", this.getOwnerFrame().munhangNoNaeyong);
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsSeolmunYuhyung|dsGaekgwansikYeobu";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "80201|00528";                         // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X|X";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Ret();
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/com/Retrieve_P06.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+this.btnChoice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objRtnArr = new Array(2);
+	objRtnArr[0] = this.dsMaster.getColumn(this.dsMaster.rowposition, "MUNHANG_NO");
+	objRtnArr[1] = this.dsMaster.getColumn(this.dsMaster.rowposition, "MUNHANG_NAEYONG");
+	
+	this.close(objRtnArr.toString());
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.divSearch_edtSearchMunhangNoNaeyong_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (obj.name == "edtSearchMunhangNoNaeyong")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"MUNHANG_NO_NAEYONG",obj.value);
+			this.fn_Ret();
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="MUNHANG_NO" type="BIGDECIMAL" size="22"/>
+          <Column id="SEOLMUN_YUHYUNG_GBCD" type="STRING" size="20"/>
+          <Column id="MUNHANG_NAEYONG" type="STRING" size="4000"/>
+          <Column id="PYOSI_SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="GAEKGWANSIK_YN" type="STRING" size="1"/>
+          <Column id="GAEKGWANSIK_YEJE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="INSERT_ID" type="STRING" size="30"/>
+          <Column id="INSERT_DT" type="DATE" size="8"/>
+          <Column id="INSERT_IP" type="STRING" size="30"/>
+          <Column id="INSERT_PG" type="STRING" size="30"/>
+          <Column id="UPDATE_ID" type="STRING" size="30"/>
+          <Column id="UPDATE_DT" type="DATE" size="8"/>
+          <Column id="UPDATE_IP" type="STRING" size="30"/>
+          <Column id="UPDATE_PG" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="MUNHANG_NO_NAEYONG" type="STRING" size="4000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOutput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="MUNHANG_NO" type="BIGDECIMAL" size="22"/>
+          <Column id="MUNHANG_NAEYONG" type="STRING" size="4000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_get" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="BIGYOGWA_PROGRAM_NM" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGaekgwansikYeobu">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSeolmunYuhyung">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item9" compid="divSearch.form.edtSearchMunhangNoNaeyong" propid="value" datasetid="ds_input" columnid="MUNHANG_NO_NAEYONG"/>
+    </Bind>
+  </Form>
+</FDL>

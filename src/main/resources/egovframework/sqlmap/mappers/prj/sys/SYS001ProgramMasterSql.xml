@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SYS001ProgramMasterDAO">
+
+    <select id="SYS001ProgramMasterDAO.retrieveProgramMasterList" parameterType="map" resultType="egovMap">
+    /* SYS001ProgramMasterDAO.retrieveProgramMasterList 프로그램 마스터 조회 */
+    SELECT '0' AS CHK             /* CHEK */
+         , A.PGM_ID AS PROG_ID    /* 프로그램ID */
+         , A.PGM_PATH_NM          /* 프로그램경로명 */
+         , A.PGM_NM               /* 프로그램명 */
+         , A.PGM_KND_SE_CODE      /* 프로그램종류구분코드 */
+         , A.SYS_SE_CODE          /* 시스템구분코드 */
+         , A.BUSNS_LCLAS_CODE     /* 업무대분류코드 */
+         , A.BUSNS_MLSFC_CODE     /* 업무중분류코드 */
+         , A.USE_AT               /* 사용여부 */
+         , A.SORT_SN              /* 정렬순번 */
+         , A.FRST_INPTR_ID        /* 최초입력자ID */
+         , A.FRST_INPUT_DT        /* 최초입력일시 */
+         , A.LAST_UPDSR           /* 최종수정입력자ID */
+         , A.LAST_MODF_CODE       /* 최종수정일시 */
+      FROM COM.SSYS100 A
+     WHERE 1 = 1
+	   <if test="PROG_ID != null and PROG_ID != ''" >
+       AND A.PGM_ID LIKE '%' || #{PROG_ID} || '%'
+       </if>
+	   <if test="PGM_NM != null and PGM_NM != ''" >
+       AND A.PGM_NM LIKE '%' || #{PGM_NM} || '%'
+       </if>
+	   <if test="USER_YN != null and USER_YN != ''" >
+       AND A.USE_AT = #{USER_YN}
+       </if>
+     ORDER BY A.PGM_ID
+    </select>
+
+	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterList_1" parameterType="map" resultType="egovMap">               
+		
+		<![CDATA[                                                													
+			SELECT                                                  											
+			       '0' AS CHK                    /*chk*/        		
+			     , A.PROG_ID                     /*프로그램ID(프로젝트 + 0001)*/        
+			     , A.FORM_PATH                   /*FORM위치명(PREFIX)*/        
+			     , A.FORM_ID                     /*FORMID(xfdl)*/        
+			     , A.FORM_NM                     /*FORM명(한글명)*/        
+			     , A.USER_YN                     /*사용여부(사용여부:사용:1 미사용0)*/        
+			     , A.REG_ID                      /*등록자*/        
+			     , A.REG_DT                    /*등록일*/        
+			     , A.MOD_ID                      /*수정자*/        
+			     , A.MOD_DT                    /*수정일*/        
+			FROM COMM.XBT_PROG_MAST A                                             								 
+			WHERE 1=1                                             												 
+		]]> 
+		<if test="PROG_ID != null and PROG_ID != ''" >
+			AND A.PROG_ID LIKE '%' || #{PROG_ID} || '%'
+		</if>
+		<if test="FORM_PATH != null and FORM_PATH != ''" >
+			AND A.FORM_PATH LIKE '%' || #{FORM_PATH} || '%'
+		</if>                                                       												 
+		<if test="FORM_ID != null and FORM_ID != ''" >
+			AND A.FORM_ID LIKE '%' || #{FORM_ID} || '%'
+		</if> 
+		<if test="FORM_NM != null and FORM_NM != ''" >
+			AND A.FORM_NM LIKE '%' || #{FORM_NM} || '%'
+		</if> 
+		<if test="USER_YN != null and USER_YN != ''" >
+			AND A.USER_YN LIKE '%' || #{USER_YN} || '%'
+		</if>	
+			ORDER BY A.PROG_ID 	
+		 /* SYS001ProgramMasterDAO.retrieveProgramMasterList 프로그램 마스터 조회 */	                																				
+	</select>
+
+	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListPKey" parameterType="map" resultType="egovMap">
+	/* SYS001ProgramMasterDAO.retrieveProgramMasterListPKey 프로그램 키값을 추출 조회 */                    									
+	SELECT 'P' || LPAD(TO_NUMBER(SUBSTR(MAX(A.PGM_ID), 2, 7)) + 1, 6, 0) AS KEY_CODE
+      FROM COM.SSYS100 A
+	</select>
+							
+	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListPKey_1" parameterType="map" resultType="egovMap">                    									
+		<![CDATA[                                                													
+			SELECT                                                  											
+				'PRM' || LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(PROG_ID,4,6)))+1,1)),4,'0') AS KEY_CODE        								       
+			FROM COMM.XBT_PROG_MAST                                             								 
+			WHERE 1=1        
+		]]>
+		/* SYS001ProgramMasterDAO.retrieveProgramMasterListPKey 프로그램 키값을 추출 조회 */                                                      												 
+	</select>
+
+	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListKey" parameterType="map" resultType="egovMap">
+	/* SYS001ProgramMasterDAO.retrieveProgramMasterListKey 프로그램 중복 체크 */
+	SELECT COUNT(1) AS CNT
+      FROM COM.SSYS100 A
+     WHERE A.PGM_ID = #{PROG_ID}
+	</select>
+	
+	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListKey_1" parameterType="map" resultType="egovMap"> 
+		<![CDATA[
+		     SELECT
+		            COUNT(1) AS CNT
+		       FROM COMM.XBT_PROG_MAST
+		      WHERE 1=1
+		        AND PROG_ID = #{PROG_ID} 
+		]]>
+		/* SYS001ProgramMasterDAO.retrieveProgramMasterListKey 프로그램 중복 체크 */
+	</select>
+	
+	<insert id="insertProgramMasterList" parameterType="map">
+	/* SYS001ProgramMasterDAO.insertProgramMasterList 프로그램 생성 */
+	INSERT INTO COM.SSYS100
+	(
+	       PGM_ID				/* 프로그램ID */
+         , PGM_NM				/* 프로그램명 */
+         , PGM_PATH_NM			/* 프로그램경로명 */
+         , PGM_KND_SE_CODE		/* 프로그램종류구분코드 */
+         , SYS_SE_CODE			/* 시스템구분코드 */
+         , BUSNS_LCLAS_CODE		/* 업무대분류코드 */
+         , BUSNS_MLSFC_CODE		/* 업무중분류코드 */
+         , USE_AT				/* 사용여부 */
+         , SORT_SN				/* 정렬순번 */
+         , FRST_INPTR_ID		/* 최초입력자ID */
+         , FRST_INPUT_DT		/* 최초입력일시 */
+         , FRST_INPUT_MENU_ID	/* 최초입력메뉴ID */
+         , FRST_INPUT_IP		/* 최초입력IP */
+         , LAST_UPDSR			/* 최종수정입력자ID */
+         , LAST_MODF_CODE		/* 최종수정일시 */
+         , LAST_MODF_CODE_ID	/* 최종수정메뉴ID */
+         , LAST_MODF_IP			/* 최종수정IP */
+	) VALUES (
+	       #{PROG_ID}           /* 프로그램ID */
+	     , #{PGM_NM}            /* 프로그램명 */
+	     , #{PGM_PATH_NM}       /* 프로그램경로명 */
+	     , '1'                  /* 프로그램종류구분코드 */
+	     , '1'                  /* 시스템구분코드 */
+	     , '1'                  /* 업무대분류코드 */
+	     , '1'                  /* 업무중분류코드 */
+	     , '1'                  /* 사용여부 */
+	     , '1'                  /* 정렬순번 */
+	     , #{REG_ID}            /* 최초입력자ID */
+	     , SYSDATE              /* 최초입력일시 */
+	     , #{IP_ADDRESS}        /* 최초입력메뉴ID */
+	     , #{MENU_ID}           /* 최초입력IP */
+	     , #{MOD_ID}            /* 최종수정입력자ID */
+	     , SYSDATE              /* 최종수정일시 */
+	     , #{IP_ADDRESS}        /* 최종수정메뉴ID */
+	     , #{MENU_ID}           /* 최종수정IP */
+	)
+	</insert>
+
+	<insert id="insertProgramMasterList_1" parameterType="map">   
+		 
+		<![CDATA[                                                																
+			INSERT INTO COMM.XBT_PROG_MAST                                       										
+			(                                       																		
+			       PROG_ID                                     
+			     , FORM_PATH                                      
+			     , FORM_ID                                     
+			     , FORM_NM                                    
+			     , USER_YN                                   
+			     , REG_ID                                    
+			     , REG_DT                                 
+			     , MOD_ID                                    
+			     , MOD_DT                                    
+			)VALUES                                                  														
+			(                                                        														
+			       #{PROG_ID}                                   
+			     , #{FORM_PATH}                                   
+			     , #{FORM_ID}                                   
+			     , #{FORM_NM}                                   
+			     , #{USER_YN}                                   
+			     , #{REG_ID}                                   
+			     , SYSDATE                                   
+			     , #{MOD_ID}                                   
+			     , SYSDATE                                   
+			)	                                                      														
+		]]>
+		/* SYS001ProgramMasterDAO.updateProgramMasterList 프로그램 수정 */                                   																			
+	</insert>
+
+	<update id="updateProgramMasterList" parameterType="map">
+	/* SYS001ProgramMasterDAO.updateProgramMasterList 프로그램 수정 */
+	UPDATE COM.SSYS100
+	   SET PGM_PATH_NM       = #{PGM_PATH_NM}   /* 프로그램경로명 */
+	     , PGM_NM            = #{PGM_NM}        /* 프로그램명 */
+	     , USE_AT            = #{USE_AT}        /* 사용여부 */
+         , LAST_UPDSR		 = #{MOD_ID}        /* 최종수정입력자ID */
+         , LAST_MODF_CODE	 = SYSDATE          /* 최종수정일시 */
+         , LAST_MODF_CODE_ID = #{IP_ADDRESS}    /* 최종수정메뉴ID */
+         , LAST_MODF_IP		 = #{MENU_ID}       /* 최종수정IP */
+	 WHERE 1 = 1
+	   AND PGM_ID = #{PROG_ID}
+	</update>
+
+	<update id="updateProgramMasterList_1" parameterType="map">
+		<![CDATA[                                                																
+			UPDATE COMM.XBT_PROG_MAST                                													
+			SET                                                      														
+			       FORM_PATH        = #{FORM_PATH}           /*FORM위치명(PREFIX)*/  
+			     , FORM_ID          = #{FORM_ID}             /*FORMID(xfdl)*/  
+			     , FORM_NM          = #{FORM_NM}             /*FORM명(한글명)*/  
+			     , USER_YN          = #{USER_YN}             /*사용여부(사용여부:사용:1 미사용0)*/  
+			     , MOD_ID           = #{MOD_ID}              /*수정자*/  
+			     , MOD_DT         = SYSDATE                /*수정일*/  
+			WHERE 1=1                                                   						                        
+			AND PROG_ID = #{PROG_ID}        		
+		]]>  
+	</update>                                                           													
+
+	<delete id="SYS001ProgramMasterDAO.deleteProgramMasterList" parameterType="map">
+	/* SYS001ProgramMasterDAO.deleteProgramMasterList 프로그램 삭제 */
+	DELETE FROM COM.SSYS100
+	 WHERE 1 = 1
+	   AND PGM_ID = #{PROG_ID}
+	</delete>
+
+	<delete id="SYS001ProgramMasterDAO.deleteProgramMasterList_1" parameterType="map">                                      						
+		<![CDATA[                                                           												
+			DELETE FROM COMM.XBT_PROG_MAST                                                  							
+			WHERE 1=1                              																	
+			AND PROG_ID = #{PROG_ID}        		
+		]]>   
+		/* SYS001ProgramMasterDAO.deleteProgramMasterList 프로그램 삭제 */                                             															
+	</delete>	                  
+</mapper>

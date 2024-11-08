@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="모집합격:등록현황" onload="form_onload">
+    <Layouts>
+      <Layout height="800" width="1640" description="모집합격:등록현황">
+        <Static id="Static01" taborder="2" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00" taborder="3" left="0" top="52" height="22" text="모집합격 : 등록 현황 목록" cssclass="sta_WF_Title02" right="1455"/>
+        <Static id="staRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="197" top="51" height="24" usedecorate="true" right="1320" visible="false"/>
+        <Static id="Static01_01_00_00_00" taborder="5" text="8" left="0" top="69" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00" taborder="4" left="-1" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Spin id="spnSearchYYYY" taborder="0" left="94" top="9" width="124" height="22" onchanged="fn_MojipGb" onkeydown="divSearch_spnSearchYYYY_onkeydown" cssclass="point" max="3000" min="0" value=""/>
+              <Static id="stc_01_00_00" taborder="5" left="244" top="9" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchMojip" taborder="1" text="" left="335" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" onkeydown="divSearch_cboSearchMojip_onkeydown" onitemchanged="divSearch_cboSearchMojip_onitemchanged" innerdataset="dsMojip"/>
+              <Static id="Static01_02_00" taborder="6" text="27" left="0" top="0" width="27" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="7" text="10" left="84" top="0" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="8" text="10" left="325" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01" taborder="9" text="← 56 →" left="630" top="2" width="56" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_01" taborder="10" text="← 56 →" left="218" top="3" width="56" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="11" text="9" left="16" top="31" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00_00_00" taborder="12" left="657" top="9" height="22" text="공지구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="13" text="10" left="738" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchGongji" taborder="2" text="" left="748" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsGongji" onkeydown="divSearch_cboSearchGongji_onkeydown"/>
+              <Static id="Static00_00_00" taborder="14" text="~" left="474" top="9" width="16" height="22" textAlign="center"/>
+              <Combo id="cboSearchMojipTo" taborder="15" text="" left="506" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsMojip" onkeydown="divSearch_cboSearchMojipTo_onkeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <CheckBox id="chkGansohwa1" taborder="6" text="간략하게 보기1" top="52" width="110" height="20" right="132" onclick="chkGansohwa1_onclick"/>
+        <CheckBox id="chkGansohwa2" taborder="7" text="간략하게 보기2" top="52" width="110" height="20" right="2" onclick="chkGansohwa2_onclick"/>
+        <Grid id="grdMaster" taborder="1" left="0" top="77" right="0" bottom="0" autofittype="col" cellsizingtype="col" binddataset="dsMaster" onheaddblclick="grdMaster_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="3" text="모집학과"/>
+                <Cell col="1" rowspan="3" text="주야&#13;&#10;구분"/>
+                <Cell col="2" rowspan="2" colspan="4" text="일반전형"/>
+                <Cell col="6" colspan="20" text="정원 내"/>
+                <Cell col="26" colspan="28" text="정원외"/>
+                <Cell row="1" col="6" colspan="4" text="일반고"/>
+                <Cell row="1" col="10" colspan="4" text="특성화고"/>
+                <Cell row="1" col="14" colspan="4" text="특기자"/>
+                <Cell row="1" col="18" colspan="4" text="대학자체기준"/>
+                <Cell row="1" col="22" colspan="4" text="합계"/>
+                <Cell row="1" col="26" colspan="4" text="전문대이상 졸업자"/>
+                <Cell row="1" col="30" colspan="4" text="농어촌"/>
+                <Cell row="1" col="34" colspan="4" text="기초생활수급자 및 차상위"/>
+                <Cell row="1" col="38" colspan="4" text="재외국민 및 외국인"/>
+                <Cell row="1" col="42" colspan="4" text="만학도 및 성인재직자"/>
+                <Cell row="1" col="46" colspan="4" text="특수교육대상자"/>
+                <Cell row="1" col="50" colspan="4" text="합계"/>
+                <Cell row="2" col="2" text="최초"/>
+                <Cell row="2" col="3" text="등록"/>
+                <Cell row="2" col="4" text="충원"/>
+                <Cell row="2" col="5" text="등록"/>
+                <Cell row="2" col="6" text="최초"/>
+                <Cell row="2" col="7" text="등록"/>
+                <Cell row="2" col="8" text="충원"/>
+                <Cell row="2" col="9" text="등록"/>
+                <Cell row="2" col="10" text="최초"/>
+                <Cell row="2" col="11" text="등록"/>
+                <Cell row="2" col="12" text="충원"/>
+                <Cell row="2" col="13" text="등록"/>
+                <Cell row="2" col="14" text="최초"/>
+                <Cell row="2" col="15" text="등록"/>
+                <Cell row="2" col="16" text="충원"/>
+                <Cell row="2" col="17" text="등록"/>
+                <Cell row="2" col="18" text="최초"/>
+                <Cell row="2" col="19" text="등록"/>
+                <Cell row="2" col="20" text="충원"/>
+                <Cell row="2" col="21" text="등록"/>
+                <Cell row="2" col="22" text="최초"/>
+                <Cell row="2" col="23" text="등록"/>
+                <Cell row="2" col="24" text="충원"/>
+                <Cell row="2" col="25" text="등록"/>
+                <Cell row="2" col="26" text="최초"/>
+                <Cell row="2" col="27" text="등록"/>
+                <Cell row="2" col="28" text="충원"/>
+                <Cell row="2" col="29" text="등록"/>
+                <Cell row="2" col="30" text="최초"/>
+                <Cell row="2" col="31" text="등록"/>
+                <Cell row="2" col="32" text="충원"/>
+                <Cell row="2" col="33" text="등록"/>
+                <Cell row="2" col="34" text="최초"/>
+                <Cell row="2" col="35" text="등록"/>
+                <Cell row="2" col="36" text="충원"/>
+                <Cell row="2" col="37" text="등록"/>
+                <Cell row="2" col="38" text="최초"/>
+                <Cell row="2" col="39" text="등록"/>
+                <Cell row="2" col="40" text="충원"/>
+                <Cell row="2" col="41" text="등록"/>
+                <Cell row="2" col="42" text="최초"/>
+                <Cell row="2" col="43" text="등록"/>
+                <Cell row="2" col="44" text="충원"/>
+                <Cell row="2" col="45" text="등록"/>
+                <Cell row="2" col="46" text="최초"/>
+                <Cell row="2" col="47" text="등록"/>
+                <Cell row="2" col="48" text="충원"/>
+                <Cell row="2" col="49" text="등록"/>
+                <Cell row="2" col="50" text="최초"/>
+                <Cell row="2" col="51" text="등록"/>
+                <Cell row="2" col="52" text="충원"/>
+                <Cell row="2" col="53" text="등록"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_NM"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CLN_111_01"/>
+                <Cell col="3" text="bind:CLN_111_01_D"/>
+                <Cell col="4" text="bind:CLN_111_02"/>
+                <Cell col="5" text="bind:CLN_111_02_D"/>
+                <Cell col="6" text="bind:CLN_221_01"/>
+                <Cell col="7" text="bind:CLN_221_01_D"/>
+                <Cell col="8" text="bind:CLN_221_02"/>
+                <Cell col="9" text="bind:CLN_221_02_D"/>
+                <Cell col="10" text="bind:CLN_222_01"/>
+                <Cell col="11" text="bind:CLN_222_01_D"/>
+                <Cell col="12" text="bind:CLN_222_02"/>
+                <Cell col="13" text="bind:CLN_222_02_D"/>
+                <Cell col="14" text="bind:CLN_223_01"/>
+                <Cell col="15" text="bind:CLN_223_01_D"/>
+                <Cell col="16" text="bind:CLN_223_02"/>
+                <Cell col="17" text="bind:CLN_223_02_D"/>
+                <Cell col="18" text="bind:CLN_224_01"/>
+                <Cell col="19" text="bind:CLN_224_01_D"/>
+                <Cell col="20" text="bind:CLN_224_02"/>
+                <Cell col="21" text="bind:CLN_224_02_D"/>
+                <Cell col="22" text="expr:CLN_221_01+CLN_222_01+CLN_223_01+CLN_224_01"/>
+                <Cell col="23" text="bind:CLN_2_01_D_ALL"/>
+                <Cell col="24" text="expr:CLN_221_02+CLN_222_02+CLN_223_02+CLN_224_02"/>
+                <Cell col="25" text="bind:CLN_2_02_D_ALL"/>
+                <Cell col="26" text="bind:CLN_334_01"/>
+                <Cell col="27" text="bind:CLN_334_01_D"/>
+                <Cell col="28" text="bind:CLN_334_02"/>
+                <Cell col="29" text="bind:CLN_334_02_D"/>
+                <Cell col="30" text="bind:CLN_331_01"/>
+                <Cell col="31" text="bind:CLN_331_01_D"/>
+                <Cell col="32" text="bind:CLN_331_02"/>
+                <Cell col="33" text="bind:CLN_331_02_D"/>
+                <Cell col="34" text="bind:CLN_332_01"/>
+                <Cell col="35" text="bind:CLN_332_01_D"/>
+                <Cell col="36" text="bind:CLN_332_02"/>
+                <Cell col="37" text="bind:CLN_332_02_D"/>
+                <Cell col="38" text="bind:CLN_335_01"/>
+                <Cell col="39" text="bind:CLN_335_01_D"/>
+                <Cell col="40" text="bind:CLN_335_02"/>
+                <Cell col="41" text="bind:CLN_335_02_D"/>
+                <Cell col="42" text="bind:CLN_333_01"/>
+                <Cell col="43" text="bind:CLN_333_01_D"/>
+                <Cell col="44" text="bind:CLN_333_02"/>
+                <Cell col="45" text="bind:CLN_333_02_D"/>
+                <Cell col="46" text="bind:CLN_336_01"/>
+                <Cell col="47" text="bind:CLN_336_01_D"/>
+                <Cell col="48" text="bind:CLN_336_02"/>
+                <Cell col="49" text="bind:CLN_336_02_D"/>
+                <Cell col="50" text="expr:CLN_331_01+CLN_332_01+CLN_333_01+CLN_334_01+CLN_335_01+CLN_336_01"/>
+                <Cell col="51" text="bind:CLN_3_01_D_ALL"/>
+                <Cell col="52" text="expr:CLN_331_02+CLN_332_02+CLN_333_02+CLN_334_02+CLN_335_02+CLN_336_02"/>
+                <Cell col="53" text="bind:CLN_3_02_D_ALL"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합  계:"/>
+                <Cell col="2" text="expr:dataset.getSum('CLN_111_01')"/>
+                <Cell col="3" text="expr:dataset.getSum('CLN_111_01_D')"/>
+                <Cell col="4" text="expr:dataset.getSum('CLN_111_02')"/>
+                <Cell col="5" text="expr:dataset.getSum('CLN_111_02_D')"/>
+                <Cell col="6" text="expr:dataset.getSum('CLN_221_01')"/>
+                <Cell col="7" text="expr:dataset.getSum('CLN_221_01_D')"/>
+                <Cell col="8" text="expr:dataset.getSum('CLN_221_02')"/>
+                <Cell col="9" text="expr:dataset.getSum('CLN_221_02_D')"/>
+                <Cell col="10" text="expr:dataset.getSum('CLN_222_01')"/>
+                <Cell col="11" text="expr:dataset.getSum('CLN_222_01_D')"/>
+                <Cell col="12" text="expr:dataset.getSum('CLN_222_02')"/>
+                <Cell col="13" text="expr:dataset.getSum('CLN_222_02_D')"/>
+                <Cell col="14" text="expr:dataset.getSum('CLN_223_01')"/>
+                <Cell col="15" text="expr:dataset.getSum('CLN_223_01_D')"/>
+                <Cell col="16" text="expr:dataset.getSum('CLN_223_02')"/>
+                <Cell col="17" text="expr:dataset.getSum('CLN_223_02_D')"/>
+                <Cell col="18" text="expr:dataset.getSum('CLN_224_01')"/>
+                <Cell col="19" text="expr:dataset.getSum('CLN_224_01_D')"/>
+                <Cell col="20" text="expr:dataset.getSum('CLN_224_02')"/>
+                <Cell col="21" text="expr:dataset.getSum('CLN_224_02_D')"/>
+                <Cell col="22" text="expr:dataset.getSum('CLN_221_01') + dataset.getSum('CLN_222_01') + dataset.getSum('CLN_223_01') + dataset.getSum('CLN_224_01')"/>
+                <Cell col="23" text="expr:dataset.getSum('CLN_2_01_D_ALL')"/>
+                <Cell col="24" text="expr:dataset.getSum('CLN_221_02') + dataset.getSum('CLN_222_02') + dataset.getSum('CLN_223_02') + dataset.getSum('CLN_224_02')"/>
+                <Cell col="25" text="expr:dataset.getSum('CLN_2_02_D_ALL')"/>
+                <Cell col="26" text="expr:dataset.getSum('CLN_334_01')"/>
+                <Cell col="27" text="expr:dataset.getSum('CLN_334_01_D')"/>
+                <Cell col="28" text="expr:dataset.getSum('CLN_334_02')"/>
+                <Cell col="29" text="expr:dataset.getSum('CLN_334_02_D')"/>
+                <Cell col="30" text="expr:dataset.getSum('CLN_331_01')"/>
+                <Cell col="31" text="expr:dataset.getSum('CLN_331_01_D')"/>
+                <Cell col="32" text="expr:dataset.getSum('CLN_331_02')"/>
+                <Cell col="33" text="expr:dataset.getSum('CLN_331_02_D')"/>
+                <Cell col="34" text="expr:dataset.getSum('CLN_332_01')"/>
+                <Cell col="35" text="expr:dataset.getSum('CLN_332_01_D')"/>
+                <Cell col="36" text="expr:dataset.getSum('CLN_332_02')"/>
+                <Cell col="37" text="expr:dataset.getSum('CLN_332_02_D')"/>
+                <Cell col="38" text="expr:dataset.getSum('CLN_335_01')"/>
+                <Cell col="39" text="expr:dataset.getSum('CLN_335_01_D')"/>
+                <Cell col="40" text="expr:dataset.getSum('CLN_335_02')"/>
+                <Cell col="41" text="expr:dataset.getSum('CLN_335_02_D')"/>
+                <Cell col="42" text="expr:dataset.getSum('CLN_333_01')"/>
+                <Cell col="43" text="expr:dataset.getSum('CLN_333_01_D')"/>
+                <Cell col="44" text="expr:dataset.getSum('CLN_333_02')"/>
+                <Cell col="45" text="expr:dataset.getSum('CLN_333_02_D')"/>
+                <Cell col="46" text="expr:dataset.getSum('CLN_336_01')"/>
+                <Cell col="47" text="expr:dataset.getSum('CLN_336_01_D')"/>
+                <Cell col="48" text="expr:dataset.getSum('CLN_336_02')"/>
+                <Cell col="49" text="expr:dataset.getSum('CLN_336_02_D')"/>
+                <Cell col="50" text="expr:dataset.getSum('CLN_331_01') + dataset.getSum('CLN_332_01') + dataset.getSum('CLN_333_01') + dataset.getSum('CLN_334_01') + dataset.getSum('CLN_335_01') + dataset.getSum('CLN_336_01')"/>
+                <Cell col="51" text="expr:dataset.getSum('CLN_3_01_D_ALL')"/>
+                <Cell col="52" text="expr:dataset.getSum('CLN_331_02') + dataset.getSum('CLN_332_02') + dataset.getSum('CLN_333_02') + dataset.getSum('CLN_334_02') + dataset.getSum('CLN_335_02') + dataset.getSum('CLN_336_02')"/>
+                <Cell col="53" text="expr:dataset.getSum('CLN_3_02_D_ALL')"/>
+              </Band>
+            </Format>
+            <Format id="format00">
+              <Columns>
+                <Column size="120"/>
+                <Column size="40"/>
+                <Column size="53"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="학과명"/>
+                <Cell col="1" rowspan="2" text="주야"/>
+                <Cell col="2" rowspan="2" text="입학정원"/>
+                <Cell col="3" colspan="2" text="일반전형"/>
+                <Cell col="5" colspan="5" text="정원내"/>
+                <Cell col="10" colspan="7" text="정원외"/>
+                <Cell row="1" col="3" text="일반전형"/>
+                <Cell row="1" col="4" text="계"/>
+                <Cell row="1" col="5" text="일반과정"/>
+                <Cell row="1" col="6" text="전문과정"/>
+                <Cell row="1" col="7" text="특기자"/>
+                <Cell row="1" col="8" text="대학자체"/>
+                <Cell row="1" col="9" text="계"/>
+                <Cell row="1" col="10" text="전문대"/>
+                <Cell row="1" col="11" text="농어촌"/>
+                <Cell row="1" col="12" text="수급자"/>
+                <Cell row="1" col="13" text="외국인"/>
+                <Cell row="1" col="14" text="만학도"/>
+                <Cell row="1" col="15" text="특수교육"/>
+                <Cell row="1" col="16" text="계"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_NM"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:JEONGWON"/>
+                <Cell col="3" text="expr:CLN_111_01_D+CLN_111_02_D"/>
+                <Cell col="4" text="expr:CLN_1_01_D_ALL+CLN_1_02_D_ALL"/>
+                <Cell col="5" text="expr:CLN_221_01_D+CLN_221_02_D"/>
+                <Cell col="6" text="expr:CLN_222_01_D+CLN_222_02_D"/>
+                <Cell col="7" text="expr:CLN_223_01_D+CLN_223_02_D"/>
+                <Cell col="8" text="expr:CLN_224_01_D+CLN_224_02_D"/>
+                <Cell col="9" text="expr:CLN_2_01_D_ALL+CLN_2_02_D_ALL"/>
+                <Cell col="10" text="expr:CLN_334_01_D+CLN_334_02_D"/>
+                <Cell col="11" text="expr:CLN_331_01_D+CLN_331_02_D"/>
+                <Cell col="12" text="expr:CLN_332_01_D+CLN_332_02_D"/>
+                <Cell col="13" text="expr:CLN_335_01_D+CLN_335_02_D"/>
+                <Cell col="14" text="expr:CLN_333_01_D+CLN_333_02_D"/>
+                <Cell col="15" text="expr:CLN_336_01_D+CLN_336_02_D"/>
+                <Cell col="16" text="expr:CLN_3_01_D_ALL+CLN_3_02_D_ALL"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" text="합  계 :"/>
+                <Cell col="3" text="expr:dataset.getSum('CLN_111_01_D')+dataset.getSum('CLN_111_02_D')"/>
+                <Cell col="4" text="expr:dataset.getSum('CLN_1_01_D_ALL')+dataset.getSum('CLN_1_02_D_ALL')"/>
+                <Cell col="5" text="expr:dataset.getSum('CLN_221_01_D')+dataset.getSum('CLN_221_02_D')"/>
+                <Cell col="6" text="expr:dataset.getSum('CLN_222_01_D')+dataset.getSum('CLN_222_02_D')"/>
+                <Cell col="7" text="expr:dataset.getSum('CLN_223_01_D')+dataset.getSum('CLN_223_02_D')"/>
+                <Cell col="8" text="expr:dataset.getSum('CLN_224_01_D')+dataset.getSum('CLN_224_02_D')"/>
+                <Cell col="9" text="expr:dataset.getSum('CLN_2_01_D_ALL')+dataset.getSum('CLN_2_02_D_ALL')"/>
+                <Cell col="10" text="expr:dataset.getSum('CLN_334_01_D')+dataset.getSum('CLN_334_02_D')"/>
+                <Cell col="11" text="expr:dataset.getSum('CLN_331_01_D')+dataset.getSum('CLN_331_02_D')"/>
+                <Cell col="12" text="expr:dataset.getSum('CLN_332_01_D')+dataset.getSum('CLN_332_02_D')"/>
+                <Cell col="13" text="expr:dataset.getSum('CLN_335_01_D')+dataset.getSum('CLN_335_02_D')"/>
+                <Cell col="14" text="expr:dataset.getSum('CLN_333_01_D')+dataset.getSum('CLN_333_02_D')"/>
+                <Cell col="15" text="expr:dataset.getSum('CLN_336_01_D')+dataset.getSum('CLN_336_02_D')"/>
+                <Cell col="16" text="expr:dataset.getSum('CLN_3_01_D_ALL')+dataset.getSum('CLN_3_02_D_ALL')"/>
+              </Band>
+            </Format>
+            <Format id="format01">
+              <Columns>
+                <Column size="120"/>
+                <Column size="50"/>
+                <Column size="40"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="55"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="학과명"/>
+                <Cell col="1" rowspan="2" text="입학정원"/>
+                <Cell col="2" rowspan="2" text="주야"/>
+                <Cell col="3" colspan="2" text="일반전형"/>
+                <Cell col="5" colspan="2" text="정원내"/>
+                <Cell col="7" colspan="2" text="정원외"/>
+                <Cell col="9" colspan="2" text="계"/>
+                <Cell row="1" col="3" text="합격수"/>
+                <Cell row="1" col="4" text="등록수"/>
+                <Cell row="1" col="5" text="합격수"/>
+                <Cell row="1" col="6" text="등록수"/>
+                <Cell row="1" col="7" text="합격수"/>
+                <Cell row="1" col="8" text="등록수"/>
+                <Cell row="1" col="9" text="합격수"/>
+                <Cell row="1" col="10" text="등록수"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_NM"/>
+                <Cell col="1" text="bind:JEONGWON"/>
+                <Cell col="2" text="bind:JUYA_GBNM"/>
+                <Cell col="3" text="expr:CLN_111_01"/>
+                <Cell col="4" text="expr:CLN_111_01_D + CLN_111_02_D"/>
+                <Cell col="5" text="expr:CLN_221_01+CLN_222_01+CLN_223_01+CLN_224_01"/>
+                <Cell col="6" text="expr:CLN_221_01_D+CLN_222_01_D+CLN_223_01_D+CLN_224_01_D+CLN_221_02_D+CLN_222_02_D+CLN_223_02_D+CLN_224_02_D"/>
+                <Cell col="7" text="expr:CLN_331_01+CLN_332_01+CLN_333_01+CLN_334_01+CLN_335_01+CLN_336_01"/>
+                <Cell col="8" text="expr:CLN_331_01_D+CLN_332_01_D+CLN_333_01_D+CLN_334_01_D+CLN_335_01_D+CLN_336_01_D+CLN_331_02_D+CLN_332_02_D+CLN_333_02_D+CLN_334_02_D+CLN_335_02_D+CLN_336_02_D"/>
+                <Cell col="9" text="expr:CLN_111_01+CLN_221_01+CLN_222_01+CLN_223_01+CLN_224_01+CLN_331_01+CLN_332_01+CLN_333_01+CLN_334_01+CLN_335_01+CLN_336_01"/>
+                <Cell col="10" text="expr:CLN_1_01_D_ALL+CLN_2_01_D_ALL+CLN_3_01_D_ALL+CLN_1_02_D_ALL+CLN_2_02_D_ALL+CLN_3_02_D_ALL"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" text="합  계 :"/>
+                <Cell col="3" text="expr:dataset.getSum('CLN_111_01')"/>
+                <Cell col="4" text="expr:dataset.getSum('CLN_111_01_D') + dataset.getSum('CLN_111_02_D')"/>
+                <Cell col="5" text="expr:dataset.getSum('CLN_221_01')+dataset.getSum('CLN_222_01')+dataset.getSum('CLN_223_01')+dataset.getSum('CLN_224_01')"/>
+                <Cell col="6" text="expr:dataset.getSum('CLN_221_01_D')+dataset.getSum('CLN_222_01_D')+dataset.getSum('CLN_223_01_D')+dataset.getSum('CLN_224_01_D')+dataset.getSum('CLN_221_02_D')+dataset.getSum('CLN_222_02_D')+dataset.getSum('CLN_223_02_D')+dataset.getSum('CLN_224_02_D')"/>
+                <Cell col="7" text="expr:dataset.getSum('CLN_331_01')+dataset.getSum('CLN_332_01')+dataset.getSum('CLN_333_01')+dataset.getSum('CLN_334_01')+dataset.getSum('CLN_335_01')+dataset.getSum('CLN_336_01')"/>
+                <Cell col="8" text="expr:dataset.getSum('CLN_331_01_D')+dataset.getSum('CLN_332_01_D')+dataset.getSum('CLN_333_01_D')+dataset.getSum('CLN_334_01_D')+dataset.getSum('CLN_335_01_D')+dataset.getSum('CLN_336_01_D')+dataset.getSum('CLN_331_02_D')+dataset.getSum('CLN_332_02_D')+dataset.getSum('CLN_333_02_D')+dataset.getSum('CLN_334_02_D')+dataset.getSum('CLN_335_02_D')+dataset.getSum('CLN_336_02_D')"/>
+                <Cell col="9" text="expr:dataset.getSum('CLN_111_01')+dataset.getSum('CLN_221_01')+dataset.getSum('CLN_222_01')+dataset.getSum('CLN_223_01')+dataset.getSum('CLN_224_01')+dataset.getSum('CLN_331_01')+dataset.getSum('CLN_332_01')+dataset.getSum('CLN_333_01')+dataset.getSum('CLN_334_01')+dataset.getSum('CLN_335_01')+dataset.getSum('CLN_336_01')"/>
+                <Cell col="10" text="expr:dataset.getSum('CLN_1_01_D_ALL')+dataset.getSum('CLN_2_01_D_ALL')+dataset.getSum('CLN_3_01_D_ALL')+dataset.getSum('CLN_1_02_D_ALL')+dataset.getSum('CLN_2_02_D_ALL')+dataset.getSum('CLN_3_02_D_ALL')"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="DEPT_NM" type="STRING" size="100"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="JEONGWON" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_111_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_111_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_111_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_111_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_1_01_D_ALL" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_1_02_D_ALL" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_221_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_221_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_221_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_221_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_222_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_222_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_222_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_222_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_223_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_223_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_223_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_223_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_224_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_224_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_224_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_224_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_2_01_D_ALL" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_2_02_D_ALL" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_331_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_331_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_331_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_331_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_332_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_332_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_332_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_332_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_333_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_333_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_333_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_333_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_334_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_334_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_334_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_334_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_335_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_335_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_335_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_335_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_336_01" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_336_01_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_336_02" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_336_02_D" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_3_01_D_ALL" type="BIGDECIMAL" size="22"/>
+          <Column id="CLN_3_02_D_ALL" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCDTO" type="STRING" size="256"/>
+          <Column id="GONGJI_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMojip" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGongji" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item13" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item14" compid="divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchGongji" propid="value" datasetid="ds_input" columnid="GONGJI_GBCD"/>
+      <BindItem id="item0" compid="divSearch.form.cboSearchMojipTo" propid="value" datasetid="ds_input" columnid="MOJIP_GBCDTO"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN07_1010710_M.xfdl(모집합격:등록현황)
+* 작 성         일 명: 백재인
+* 작 성         일 자: 2021/06/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsGongji|dsMojip";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "01057|00005";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+    // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+	
+	this.fn_GijunYyyy();
+};
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+		case "print" :       // 출력
+                 this.fn_Print();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == null || this.ds_input.getColumn(0, "IPSI_YYYY") == '')
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	if(!this.fn_PreRet())
+    {
+        return false;
+    }
+
+	var strSvc      = "Ret";
+	var strUrl      = "/prj/EN/EN07/Retrieve_1010710_M.do";
+	var strInDs     = "ds_input=ds_input";
+	var strOutDs    = "dsMaster=dsMaster";
+	var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+	if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+	{
+		strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+	}
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+					   , strUrl
+					   , strInDs
+					   , strOutDs
+					   , strArg
+					   , strCallBack
+					   , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        07. 출력
+***********************************************************************/
+this.fn_Print = function()
+{
+	var IPSI_YYYY				= this.ds_input.getColumn(0, "IPSI_YYYY");
+	var MOJIP_GBCD 				= this.ds_input.getColumn(0, "MOJIP_GBCD");
+	var GONGJI_GBCD 			= this.ds_input.getColumn(0, "GONGJI_GBCD");
+	var chk1 = this.chkGansohwa1.value;	// 간략1
+	var chk2 = this.chkGansohwa2.value;	// 간략2
+	
+	if(IPSI_YYYY == "" || IPSI_YYYY == null)
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+
+	var param =   { IPSI_YYYY:IPSI_YYYY
+				  , MOJIP_GBCD:MOJIP_GBCD
+				  , GONGJI_GBCD:GONGJI_GBCD
+				  }
+
+	if(chk1 == false && chk2 == false)
+	{
+		if(IPSI_YYYY < 2020)
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_01.crf',  param);
+		}
+		else
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_01_2.crf',  param);
+		}
+	}
+	else if(chk1 == true && chk2 == false)
+	{
+		if(IPSI_YYYY < 2020)
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_02.crf',  param);
+		}
+		else
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_02_2.crf',  param);
+		}
+	}	
+	else if(chk1 == false && chk2 == true)
+	{
+		if(IPSI_YYYY < 2020)
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_03.crf',  param);
+		}
+		else
+		{
+			this.gfn_commonUtils_report('EN07/EN07_1010710_M_03_2.crf',  param);
+		}
+	}
+};
+
+/**********************************************************************
+        08. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+// 간략하게 보기1
+this.chkGansohwa1_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	if(obj.value)
+	{		
+		this.grdMaster.set_formatid("format00");		// 간략하게보기1
+		this.chkGansohwa2.set_value(false);
+	}
+	else
+	{
+		this.grdMaster.set_formatid("default");			// 기본
+	}	
+};
+
+// 간략하게 보기2
+this.chkGansohwa2_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	if(obj.value)
+	{		
+		this.grdMaster.set_formatid("format01");		// 간략하게보기2
+		this.chkGansohwa1.set_value(false);
+	}
+	else
+	{
+		this.grdMaster.set_formatid("default");			// 기본
+	}	
+};
+
+// 모집구분 FROM 변경시
+this.divSearch_cboSearchMojip_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.ds_input.setColumn(0, "MOJIP_GBCDTO", this.ds_input.getColumn(0, "MOJIP_GBCD"));
+};
+
+/**********************************************************************
+        09. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.divSearch.form.cboSearchGongji.set_index(1);
+}
+
+/**********************************************************************
+        10. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_spnSearchYYYY_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"IPSI_YYYY",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchMojip_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"MOJIP_GBCD",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchMojipTo_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"MOJIP_GBCDTO",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchGongji_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"GONGJI_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};]]></Script>
+  </Form>
+</FDL>

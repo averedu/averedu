@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_016" width="1606" height="830" titletext="보고서C-D 타입">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="파일저장" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="70"/>
+        <Div id="div_01" taborder="1" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0" formscrolltype="none" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Button id="btn_00" taborder="0" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Button id="Button00" taborder="1" left="78" top="10" width="22" height="22" cssclass="btn_WF_CalBtnM"/>
+              <Button id="Button02" taborder="2" text="0" left="102" top="10" width="30" height="22" cssclass="btn_WF_CalBtnDay"/>
+              <Calendar id="cal_00" taborder="3" left="134" top="10" width="110" height="22" value="20181025" dateformat="yyyy-MM-dd" onchanged="div_01_cal_00_onchanged"/>
+              <Button id="Button01" taborder="4" left="246" top="10" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+              <Static id="stc_04" taborder="5" left="0" top="10" height="22" text="운항일자" cssclass="sta_WF_SearchLbl" width="68"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="2" left="0" top="5" height="22" text="보고서" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="Static14" taborder="3" text="15" left="-272" top="74" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Div id="Div00" taborder="4" left="0" top="109" bottom="0" right="0" border="1px solid #c6c6c6"/>
+        <Button id="Button13" taborder="5" text="우선순위적용 시즌 SLOT생성" top="84" width="178" height="22" right="0"/>
+        <Static id="stc_00" taborder="6" left="0" top="84" height="22" text="보고서 타이틀" width="280" cssclass="sta_WF_Title02" onclick="stc_05_onclick" fittocontents="width"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

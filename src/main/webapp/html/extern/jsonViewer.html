@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>JSON Viewer</title>
+
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+        background-color: #1c2833;
+    }
+    #json-display {
+        margin: 0;
+        padding: 10px 20px;
+    }
+</style>
+
+<script src="/res/vendor/jquery_v3.3.1/jquery-3.3.1.min.js"></script>
+<script src="/res/vendor/jquery_v3.3.1/jquery.json-editor.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor  = new JsonEditor('#json-display', '', {editable: false});        
+        var jsonTxt = decodeURIComponent(getQuerystring('jtxt'));
+
+        editor.load(getJson(jsonTxt));
+    });
+
+    function getJson(jsonTxt) {
+        try {
+            return JSON.parse(jsonTxt);
+        } catch (ex) {
+            alert('Wrong JSON Format: ' + ex);
+        }
+    }
+
+    function getQuerystring(paramName) {
+        var _tempUrl   = window.location.search.substring(1);
+        var _tempArray = _tempUrl.split('&');
+
+        for (var idx = 0; _tempArray.length; idx++) { 
+            var _keyValuePair = _tempArray[idx].split('='); 
+            if (_keyValuePair[0] == paramName) { 
+                return _keyValuePair[1]; 
+            } 
+        } 
+    }
+</script>
+</head>
+
+<body>
+<pre id="json-display"></pre>
+</body>
+</html>

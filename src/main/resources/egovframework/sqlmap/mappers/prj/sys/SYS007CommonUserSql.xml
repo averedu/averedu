@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS007CommonUserDAO">									                            
+
+    <select id="SYS007CommonUserDAO.retrieveCommonUserList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.USER_ID                     /*사용자ID*/             
+                 , A.USER_NM                     /*사용자명*/             
+                 , A.PW                          /*패스워드*/             
+                 , A.DEPT                        /*부서*/             
+                 , A.TEL_NO                      /*전화번호*/             
+                 , A.HP_NO                       /*핸드폰번호*/             
+                 , A.EMAIL                       /*이메일*/             
+                 , A.FIRST_LOGIN                 /*최초로그인*/             
+                 , A.LAST_LOGIN                  /*최종로그인*/             
+                 , A.LOGIN_ERROR                 /*로그인에러*/             
+                 , A.PRE_PW                      /*이전비밀번호*/             
+                 , A.PW_CHANGE_DAY               /*비밀번호변경일*/             
+                 , A.PW_CHANGE_CYCLE             /*비밀번호변경주기*/             
+                 , A.PW_CHANGE_PERIOD            /*비밀번호변경기간*/             
+                 , A.USE_YN                      /*사용여부*/             
+                 , A.REG_ID                      /*등록자*/             
+                 , A.REG_DT                      /*등록일시*/             
+                 , A.MOD_ID                      /*수정자*/             
+                 , A.MOD_DT                      /*수정일시*/             
+                 , A.AUTO_PLUS                   /*자동증가*/             
+                 , A.CMP_CD                      /*회사코드*/            
+              FROM COMM.XBT_USER A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="USER_ID != null and USER_ID != ''">    
+            <![CDATA[                                         							                        
+               AND A.USER_ID LIKE '%'||#{USER_ID}||'%'  
+            ]]>                                           													
+        </if>    
+         <if test="USER_NM != null and USER_NM != ''">    
+            <![CDATA[                                         							                        
+               AND A.USER_NM LIKE '%'|| #{USER_NM}||'%'  
+            ]]>                                           													
+        </if> 
+         <if test="USE_YN != null and USE_YN != ''">    
+            <![CDATA[                                         							                        
+               AND A.USE_YN = #{USE_YN}  
+            ]]>                                           													
+        </if>    
+        ORDER BY A.USER_ID , A.USER_NM                                                                                             
+        /* SYS007CommonUserDAO.retrieveCommonUserList 기초사용자 조회 */	                                 
+    </select> 	                                                        													 
+
+    <select id="SYS007CommonUserDAO.retrieveCommonUserListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_USER
+             WHERE 1=1
+               AND USER_ID         = #{USER_ID}
+        ]]>
+        /* SYS007CommonUserDAO.retrieveCommonUserListKey 기초사용자 중복 조회 */
+    </select>
+
+    <insert id="SYS007CommonUserDAO.insertCommonUserList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_USER                                       										  
+            (                                       																	  
+                   USER_ID                     /*사용자ID*/ 
+                 , USER_NM                     /*사용자명*/ 
+                 , PW                          /*패스워드*/ 
+                 , DEPT                        /*부서*/ 
+                 , TEL_NO                      /*전화번호*/ 
+                 , HP_NO                       /*핸드폰번호*/ 
+                 , EMAIL                       /*이메일*/ 
+                 , FIRST_LOGIN                 /*최초로그인*/ 
+                 , LAST_LOGIN                  /*최종로그인*/ 
+                 , LOGIN_ERROR                 /*로그인에러*/ 
+                 , PRE_PW                      /*이전비밀번호*/ 
+                 , PW_CHANGE_DAY               /*비밀번호변경일*/ 
+                 , PW_CHANGE_CYCLE             /*비밀번호변경주기*/ 
+                 , PW_CHANGE_PERIOD            /*비밀번호변경기간*/ 
+                 , USE_YN                      /*사용여부*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일시*/ 
+                 , AUTO_PLUS                   /*자동증가*/ 
+                 , CMP_CD                      /*회사코드*/   
+            )VALUES                                                  														
+            (                                                        														
+                   #{USER_ID} 
+                 , #{USER_NM}  
+                 , #{PW}  
+                 , #{DEPT}  
+                 , #{TEL_NO}  
+                 , #{HP_NO}  
+                 , #{EMAIL}  
+                 , SYSDATE                                   
+                 , SYSDATE                                   
+                 , #{LOGIN_ERROR}  
+                 , #{PRE_PW}  
+                 , #{PW_CHANGE_DAY}  
+                 , #{PW_CHANGE_CYCLE}  
+                 , #{PW_CHANGE_PERIOD}  
+                 , #{USE_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+                 , #{AUTO_PLUS}  
+                 , #{CMP_CD}  
+            )	                                                      						
+        ]]>                                    											
+        /* SYS007CommonUserDAO.insertCommonUserList 기초사용자 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS007CommonUserDAO.updateCommonUserList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_USER                                			        
+               SET                                                      				
+                   USER_ID                   = #{USER_ID}                     /*사용자ID*/  
+                 , USER_NM                   = #{USER_NM}                     /*사용자명*/  
+                 , PW                        = #{PW}                          /*패스워드*/  
+                 , DEPT                      = #{DEPT}                        /*부서*/  
+                 , TEL_NO                    = #{TEL_NO}                      /*전화번호*/  
+                 , HP_NO                     = #{HP_NO}                       /*핸드폰번호*/  
+                 , EMAIL                     = #{EMAIL}                       /*이메일*/  
+                 , FIRST_LOGIN               = SYSDATE                        /*최초로그인*/  
+                 , LAST_LOGIN                = SYSDATE                        /*최종로그인*/  
+                 , LOGIN_ERROR               = #{LOGIN_ERROR}                 /*로그인에러*/  
+                 , PRE_PW                    = #{PRE_PW}                      /*이전비밀번호*/  
+                 , PW_CHANGE_DAY             = #{PW_CHANGE_DAY}               /*비밀번호변경일*/  
+                 , PW_CHANGE_CYCLE           = #{PW_CHANGE_CYCLE}             /*비밀번호변경주기*/  
+                 , PW_CHANGE_PERIOD          = #{PW_CHANGE_PERIOD}            /*비밀번호변경기간*/  
+                 , USE_YN                    = #{USE_YN}                      /*사용여부*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록자*/  
+                 , REG_DT                    = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT                    = SYSDATE                        /*수정일시*/  
+                 , AUTO_PLUS                 = #{AUTO_PLUS}                   /*자동증가*/  
+                 , CMP_CD                    = #{CMP_CD}                      /*회사코드*/   
+             WHERE 1=1                                                   						                        
+               AND USER_ID         = #{USER_ID}  
+        ]]>  	                                   							                            				
+        /* SYS007CommonUserDAO.updateCommonUserList 기초사용자 수정 */								
+    </update>                                                           												
+
+    
+    <delete id="SYS007CommonUserDAO.deleteUserFavoriteMenuList" parameterType="map">    
+        <![CDATA[                                                           												  
+           DELETE FROM COMM.XBT_MYMENU_INFO                                                  							      
+            WHERE 1=1                              																	          
+              AND USER_ID 	= #{USER_ID}  
+        ]]>                                                															           
+        /* SYS007CommonUserDAO.deleteUserFavoriteMenuList 사용자 즐겨찾기 메뉴 삭제 */								       
+    </delete>
+    
+    <delete id="SYS007CommonUserDAO.deleteCommUserAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+           DELETE FROM COMM.XBT_USER_AUTH                                                  							      
+            WHERE 1=1                              																	          
+              AND USER_ID = #{USER_ID}  
+        ]]>                                                															           
+        /* SYS007CommonUserDAO.deleteCommUserAuthList 기초사용자 권한코드 삭제 */								       
+    </delete>
+    
+    <delete id="SYS007CommonUserDAO.deleteUserMenuButtonAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+           DELETE FROM COMM.XBT_BUTTON_AUTH                                                  							      
+            WHERE 1=1                              																	          
+              AND USER_ID = #{USER_ID}   
+        ]]>                                                															           
+        /* SYS007CommonUserDAO.deleteUserMenuButtonAuthList 사용자메뉴별버튼권한 삭제 */								       
+    </delete>	 
+    
+    <delete id="SYS007CommonUserDAO.deleteCommonUserList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_USER                                                  							      
+             WHERE 1=1                              																	          
+               AND USER_ID  = #{USER_ID}  
+        ]]>                                                															           
+        /* SYS007CommonUserDAO.deleteCommonUserList 기초사용자 삭제 */								       
+    </delete>	   
+    
+                                                           													   
+</mapper>   

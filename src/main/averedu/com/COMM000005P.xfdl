@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="commMsgPop" titletext="공통메시지" left="0" width="600" top="0" height="300" onload="fn_onload" background="#0068b7">
+    <Layouts>
+      <Layout>
+        <Static id="staFormSize" left="0" top="65" taborder="4" border="5px solid #0068b7" right="0" bottom="0" text="" background="#ffffff"/>
+        <TextArea id="txtMsg" taborder="5" left="19" width="564" top="85" readonly="true" font="bold 16pt/normal &quot;Helvetica&quot;" border="0 none #808080ff " textAlign="center" color="#222222ff" bottom="73"/>
+        <Button id="btnYes" taborder="1" onclick="common_onclick" position="absolute" text="예" left="179" width="114" height="45" visible="true" font="bold 20pt/normal &quot;Helvetica&quot;" color="#222222ff" bottom="14"/>
+        <Button id="btnNo" taborder="2" onclick="common_onclick" position="absolute" text="아니오" left="308" width="114" height="45" visible="true" font="bold 20pt/normal &quot;Helvetica&quot;" color="#222222ff" bottom="14"/>
+        <Static id="staTitle" text="Title" left="0" top="0" height="67" width="225" taborder="3" background="#0068b7" color="#ffffff" font="23 Helvetica" padding="0px 0px 0px 80px"/>
+        <Static id="staFront" taborder="14" left="10" top="75" width="578" height="163" text=""/>
+        <Button id="btnOK" taborder="0" text="확인" onclick="common_onclick" left="239" width="114" height="45" font="bold 20pt/normal &quot;Helvetica&quot;" color="#222222ff" bottom="14"/>
+        <Static id="stc_type" taborder="18" left="17" top="7" width="51" height="50" background="URL(&quot;theme://images/ico_WF_Alert.png&quot;)"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_image" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="imageId" size="50" type="STRING"/>
+          <Column id="imageUrl" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="imageId">Question</Col>
+            <Col id="imageUrl">transparent URL('theme://images/ico_WF_Question.png')</Col>
+          </Row>
+          <Row>
+            <Col id="imageId">Information</Col>
+            <Col id="imageUrl">transparent URL('theme://images/ico_WF_Information.png')</Col>
+          </Row>
+          <Row>
+            <Col id="imageId">Error</Col>
+            <Col id="imageUrl">transparent URL('theme://images/ico_WF_Error.png')</Col>
+          </Row>
+          <Row>
+            <Col id="imageId">Warning</Col>
+            <Col id="imageUrl">transparent URL('theme://images/ico_WF_Alert.png')</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/************************************************************************************************
+ * Program ID    : commMsgPop.xfdl
+ * Program Name  : 모바일학사행정/공통/공통메시지
+ * Author        : jiback
+ * Created On    : 2015.11.26
+ * 화면 설명    : 공통메시지
+ * 관련 화면/서비스 : 
+ * 관련테이블   :  
+ * 수정이력     :
+ 
+ ************************************************************************************************
+ *     수정일        이  름    사유
+ ************************************************************************************************
+ *     2015-11-26      kjh       최초 작성
+ ************************************************************************************************
+ */ 
+
+/*  Message Template
+ Alert, Confirm 형태의 메세지 창
+ gfn_Msg를 사용해서 띄워야함
+ 
+ gfn_msg 사용법 : gfn_msg = function (sPopId, sTitle, sDesc, sType, sCallback)
+ - sPopId : Msg ID
+ - sTitle : title에 표시할 내용 (OFFSIDE에서는 사용안함)
+ - sDesc : 메세지 내용
+ - sType : 메세지 타입
+ OK : Alert(에러:Error:E/물음:Question:Q/알림:Information:I/경고:Warning:W)
+ YES,NO : Confirm (에러:Error:E/물음:Question:Q/알림:Information:I/경고:Warning:W)
+ - sCallback : 콜백함수명
+ 
+ ex) gfn_msg("ALERT", "타이틀", "메세지내용", "OK", "");
+ */
+
+/************************************************************************************************
+ * 공통 라이브러리 INCLUDE 영역
+************************************************************************************************/
+
+ 
+/*======================================================================================
+ Initialization Area: form 변수 선언 및 form 초기화.
+=======================================================================================*/ 
+
+
+
+/************************************************************************************************
+ * FORM EVENT 영역
+************************************************************************************************/
+
+/**
+ * @Description : onload Event Handler
+ * @param       : obj  ( Form                   )
+ * @param       : e    ( nexacro.LoadEventInfo )
+ * @return      : N/A
+ */ 
+ 
+this.fn_onload = function (obj:Form, e:LoadEventInfo)
+{	
+	var arrArg = this.getOwnerFrame().arrParam;
+	var sTitle = "";
+	if(this.gfn_isNull(this.gfn_trim(arrArg[0])))
+	{
+		sTitle = "Information";	
+	}else 
+	{
+		sTitle = this.gfn_trim(arrArg[0]);	
+	}
+	
+	this.staTitle.set_text(sTitle);  		// Title SET 
+	this.txtMsg.set_value(arrArg[1]);   	// 메세지 SET 
+
+	var fvNRow = this.ds_image.findRow("imageId", sTitle);
+	var fvImageUrl = this.ds_image.getColumn(fvNRow, "imageUrl" );
+    
+    // set default component
+	this.btnYes.set_visible(false);
+	this.btnNo .set_visible(false);
+	this.btnOK .set_visible(false);
+	
+	var fvMessageType   = arrArg[2];	
+		
+	// set title type button
+	if ((fvMessageType == "YES,NO") )
+	{
+		this.btnYes.set_visible(true);
+		this.btnNo.set_visible(true);
+	} 
+	else if ((fvMessageType == "OK")) 
+	{
+		this.btnOK.set_visible(true);
+	}
+	
+    this.stc_type.set_background(fvImageUrl);
+}
+
+
+/************************************************************************************************
+ * 사용자 정의 이벤트 영역
+ ************************************************************************************************/
+
+/**
+ * @Description : button on click ( button event logic  )
+ * @param       : obj ( Button                   )
+ * @param       : e   ( nexacro.ClickEventInfo )
+ * @return      : N/A
+ **/ 
+this.common_onclick = function (obj:Button, e:ClickEventInfo)
+{
+	switch (obj.name) 
+	{
+		case "btnOK":
+			this.close();		
+			break;
+			
+		case "btnYes":
+			this.close(true);	
+			break;
+			
+		case "btnNo":
+			this.close(false);
+			break;
+			
+	}
+}]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P08_DAO">									                            
+
+    <select id="COM_P08_DAO.retrieve_P08" parameterType="map" resultType="egovMap">                                               													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.HOSIL_CD                    /*호실코드*/             
+                 , A.HOSIL_NM                    /*호실명*/                         
+                 , A.GEONMUL_CD                  /*건물코드*/             
+                 , A.CHEUNG_CD                   /*층코드*/             
+                 , A.HOSIL_INWON                 /*호실인원*/                         
+                 , A.YONGDO_GBCD                 /*용도구분*/                          
+                 , A.GANGUISIL_GBCD              /*강의실구분*/             
+                 , A.BIGO                        /*비고*/                      
+              FROM UNIV.UL_HOSIL_M A                                             							 
+             WHERE 1=1
+        <if test="HOSIL_CD_NM != null and HOSIL_CD_NM != ''">    
+            <![CDATA[                                         							                        
+               AND (A.HOSIL_CD = #{HOSIL_CD_NM} OR A.HOSIL_NM LIKE '%' || #{HOSIL_CD_NM} || '%')
+            ]]>                                           													
+        </if>                                                    												                                                       												 
+        <if test="YONGDO_GBCD != null and YONGDO_GBCD != ''">                                        							                        
+               AND A.YONGDO_GBCD        = #{YONGDO_GBCD}                                         													
+        </if>
+         ORDER BY GEONMUL_CD, CHEUNG_CD, HOSIL_CD                                                                                                   
+        /* COM_P08_DAO.retrieve_P08_ 호실정보 조회 */	                                 
+    </select> 	                                                        													                                                        													   
+</mapper>

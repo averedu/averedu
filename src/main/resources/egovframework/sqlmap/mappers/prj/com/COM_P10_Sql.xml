@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P10_DAO">									                            
+
+    <select id="COM_P10_DAO.retrieve_P10" parameterType="map" resultType="egovMap"> 
+			SELECT A.YYYY
+				 , A.HAKGI
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00022', A.HAKGI, '') FROM DUAL) AS HAKGI_NM
+				 , A.HAKGWA_CD
+				 , (SELECT COMM.SF_SC_GET_DEPT(A.HAKGWA_CD, '') FROM DUAL) AS HAKGWA_NM
+				 , A.JUYA_GBCD
+				 , A.ISU_HAKNYEON_CD
+				 , A.GYOGWAMOK_CD
+				 , A.BUNBAN
+				 , (SELECT UNIV.SF_UL_GET_GIBONGWAMOK(A.GYOGWAMOK_CD, 'GYOGWAMOK_NM') FROM DUAL) AS GYOGWAMOK_NM
+				 , A.HAKJEOM
+				 , A.IRON_SISU
+				 , A.SILSEUP_SISU
+				 , A.TONGHAP_SISU
+				 , B.DAMDANGGYOSU_CD
+				 , C.SEONGMYEONG
+			  FROM UNIV.UL_GAESEOLGANGJWA_M A
+			  LEFT OUTER JOIN UNIV.UL_DAMDANGGYOSU_M B
+						   ON A.YYYY = B.YYYY
+						  AND A.HAKGI = B.HAKGI
+						  AND A.HAKGWA_CD = B.HAKGWA_CD
+						  AND A.JUYA_GBCD = B.JUYA_GBCD
+						  AND A.ISU_HAKNYEON_CD = B.ISU_HAKNYEON_CD
+						  AND A.GYOGWAMOK_CD = B.GYOGWAMOK_CD
+						  AND A.BUNBAN = B.BUNBAN
+						  AND B.DAEPYOGYOSU_YN = '1'
+			  LEFT OUTER JOIN ADMI.AM_GIBONINSA_M C
+						   ON B.DAMDANGGYOSU_CD = C.SABEON
+			 WHERE A.PYEGANG_YN != '1'
+			<if test="YYYY != null and YYYY != ''">
+			   AND A.YYYY = #{YYYY}
+		    </if>
+		    <if test="HAKGI != null and HAKGI != ''">
+			   AND A.HAKGI = #{HAKGI}
+		    </if>
+		    <if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			   AND A.HAKGWA_CD = #{HAKGWA_CD}
+		    </if>
+		    <if test="GYOGWAMOK_CD_NM != null and GYOGWAMOK_CD_NM != ''">
+			   AND (A.GYOGWAMOK_CD = #{GYOGWAMOK_CD_NM} OR A.GYOGWAMOK_NM LIKE '%' || #{GYOGWAMOK_CD_NM}|| '%')
+		    </if>
+			 ORDER BY A.YYYY DESC
+			 		 , A.HAKGI ASC
+			 		 , A.GYOGWAMOK_NM ASC
+			 		 , A.BUNBAN ASC                                                                                                  
+        /* COM_P10_DAO.retrieve_P10 개설강좌 조회 */	                                 
+    </select> 	                                                        													 
+	                                                          													   
+</mapper>                                                                 													   
+                                                                 															   

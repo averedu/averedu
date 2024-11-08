@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="교직자격증발급현황" onload="form_onload" onclose="form_onclose">
+    <Layouts>
+      <Layout height="800" width="1640" description="교직자격증발급현황">
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_02_00" taborder="0" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="1" text="10" left="100" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="2" text="9" left="0" top="0" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="3" text="9" left="0" top="32" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Spin id="spnSearchYYYY" taborder="4" left="110" top="9" width="100" height="22" onkeydown="fn_onKeydown"/>
+              <Combo id="cboSearchHakgi" taborder="5" text="" index="0" enable="true" readonly="false" left="214" width="100" height="22" top="9" innerdataset="dsHakgi" codecolumn="CODE" datacolumn="REF_2" onkeydown="fn_onKeydown"/>
+              <CheckBox id="chk_searchAll" taborder="6" text="전체" left="318" top="11" width="47" height="20" truevalue="1" falsevalue="0" onchanged="divSearch_chk_searchAll_onchanged"/>
+              <Static id="stc_01_00" taborder="7" left="0" top="9" height="22" text="졸업년도학기" cssclass="sta_WF_SearchLbl" width="100" textAlign="right"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_00" taborder="1" text="↑&#13;&#10;35&#13;&#10;↓" left="800" top="42" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" width="35"/>
+        <Static id="stRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="140" top="48" height="24" usedecorate="true" width="200"/>
+        <Static id="stc_09_00" taborder="3" left="0" top="45" height="31" cssclass="sta_WF_Title02" width="140" text="교직발급기관 목록"/>
+        <Static id="Static01_01_00_00_00" taborder="4" text="8" left="0" top="69" width="1640" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Grid id="grdMaster" taborder="5" binddataset="dsMaster" autoenter="select" autofittype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="77" bottom="0" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" onselectchanged="grdMaster_onselectchanged" right="0" onexpandup="grdMaster_onexpandup">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="90"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="65"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="No"/>
+                <Cell col="1" rowspan="2" text="졸업년도/학기"/>
+                <Cell col="2" rowspan="2" text="유치원정교사(2급)"/>
+                <Cell col="3" rowspan="2" text="보건교사(2급)"/>
+                <Cell col="4" colspan="9" text="실기교사"/>
+                <Cell col="13" rowspan="2" text="합계"/>
+                <Cell row="1" col="4" text="체육"/>
+                <Cell row="1" col="5" text="보육"/>
+                <Cell row="1" col="6" text="건축"/>
+                <Cell row="1" col="7" text="치료교육"/>
+                <Cell row="1" col="8" text="미용"/>
+                <Cell row="1" col="9" text="디자인"/>
+                <Cell row="1" col="10" text="조리"/>
+                <Cell row="1" col="11" text="자동차"/>
+                <Cell row="1" col="12" text="전자계산"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:YYYY_HAKGI" autosizerow="limitmin"/>
+                <Cell col="2" text="bind:JAGYEOK_1" displaytype="number"/>
+                <Cell col="3" text="bind:JAGYEOK_2" displaytype="number"/>
+                <Cell col="4" text="bind:JAGYEOK_3" displaytype="number"/>
+                <Cell col="5" text="bind:JAGYEOK_4" displaytype="number"/>
+                <Cell col="6" text="bind:JAGYEOK_5" displaytype="number"/>
+                <Cell col="7" text="bind:JAGYEOK_6" displaytype="number"/>
+                <Cell col="8" text="bind:JAGYEOK_7" displaytype="number"/>
+                <Cell col="9" text="bind:JAGYEOK_8" displaytype="number"/>
+                <Cell col="10" text="bind:JAGYEOK_9" displaytype="number"/>
+                <Cell col="11" text="bind:JAGYEOK_10" displaytype="number"/>
+                <Cell col="12" text="bind:JAGYEOK_11" displaytype="number"/>
+                <Cell col="13" text="bind:TOT_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="합계"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;JAGYEOK_1&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;JAGYEOK_2&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;JAGYEOK_3&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;JAGYEOK_4&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;JAGYEOK_5&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;JAGYEOK_6&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;JAGYEOK_7&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;JAGYEOK_8&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;JAGYEOK_9&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;JAGYEOK_10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;JAGYEOK_11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;TOT_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UP02_2040204_M.xfdl(교직자격증발급현황)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/08/25
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj: nexacro.Form, e: nexacro.LoadEventInfo) {
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj: nexacro.Form, e: nexacro.CloseEventInfo) {
+
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function() {
+    var strDs   = "dsHakgi";	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd	= "00022"; 		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb = "T"; 			// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn = ""; 			// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId   = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+	
+	// 기준연도학기 
+    var strDs    		= "dsBaseYyyyHakgi"; // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    var svcId    		= "baseYyyyHakgiInit";
+	var strEopmuGbcd 	= "00009";
+	var strUseYn     	= "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs, svcId, strEopmuGbcd, strUseYn);
+};
+
+this.fn_PostBaseYyyyHakgiInit = function() {
+	if (this.dsBaseYyyyHakgi.rowcount > 0) {
+		this.divSearch.form.spnSearchYYYY.set_value(this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.divSearch.form.cboSearchHakgi.set_value(this.dsBaseYyyyHakgi.getColumn(0, "HAKGI"));
+	}
+};
+
+this.fn_PostformInit = function() {
+	this.dsHakgi.setColumn(0, "REF_2", "전체"); // 전기, 후기
+	this.dsHakgi.filter("REF_2 != null");
+	this.divSearch.form.cboSearchHakgi.set_index(0);
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId, nErrorCode, sErrorMsg) {
+    this.gfn_clearSortAll(this.grdMaster);
+	
+    if(nErrorCode != 0) {
+        this.gfn_alert(sErrorMsg, "에러정보", "", "error");
+        return false;
+    } else {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId) {
+            case "Init":
+				this.fn_PostformInit();
+                break;
+            case "singleInit":
+				this.fn_PostSingleInt();
+                break;
+            case "Ret":
+				this.fn_PostRet();
+                break;
+			case "baseYyyyHakgiInit":
+				this.fn_PostBaseYyyyHakgiInit();
+			    break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn) {
+    switch(sBtn) {
+        case "ret" :	// 조회
+			this.fn_Ret();
+            break;
+        case "tmp1" : 	// 여분버튼1
+			this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function() {
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function() {
+    if(!this.fn_PreRet()) {
+        return false;
+    }
+	
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UP/UP02/Retrieve_2040204_MList.do";
+	var strInDs 	= this.divSearch.form.chk_searchAll.value == "1" ? "ds_input=ds_inputAll" : "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID	= objApp.gv_cutPrgId;
+    if (!this.gfn_isNull(this.gfn_trim(GBV_MENUID))) {
+    	strArg     += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";	//공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function() {
+    this.gfn_getRowCount(this.staRowCnt, this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 체크
+ */
+this.grdMaster_onheadclick = function(obj: nexacro.Grid, e: nexacro.GridClickEventInfo) {
+    if (e.cell == this.grdMaster.getBindCellIndex("body", "CHK")) {
+        this.gfn_checkAll(obj, e);
+    }
+};
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj: nexacro.Grid, e: nexacro.GridClickEventInfo) {
+    if (e.cell != this.grdMaster.getBindCellIndex("body", "CHK") && e.cell != 1) {
+        this.gfn_gridSort(obj, e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function() {
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+/**
+ * 기능 : 팁 실행
+ */
+this.fn_Tip = function() {
+	this.alert("도움말 준비중입니다.");
+};
+
+this.ds_input_onvaluechanged = function(obj: nexacro.NormalDataset, e: nexacro.DSColChangeEventInfo) {
+	if (this.divSearch.form.chk_searchAll.value == "1") {
+		this.ds_inputAll.copyData(this.ds_input);
+		this.ds_inputAll.setColumn(0, "JOLEOP_YYYY", "");
+		this.ds_inputAll.setColumn(0, "JOLEOP_HAKGI", "");
+	}
+};
+
+this.divSearch_chk_searchAll_onchanged = function(obj: nexacro.CheckBox, e: nexacro.CheckBoxChangedEventInfo) {
+	var enableBool = (e.postvalue == "1" ? false : true);
+	this.divSearch.form.spnSearchYYYY.set_enable(enableBool);
+	this.divSearch.form.cboSearchHakgi.set_enable(enableBool);
+};
+
+// 엔터 입력
+this.fn_onKeydown = function(obj, e) {
+	if (e.keycode == 13) {
+		this.fn_Ret();
+	}
+}]]></Script>
+    <Objects>
+      <Dataset id="dsMaster" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JOLEOP_YYYY" type="STRING" size="4"/>
+          <Column id="JOLEOP_HAKGI" type="STRING" size="2"/>
+          <Column id="YYYY_HAKGI" type="STRING" size="65532"/>
+          <Column id="JAGYEOK_1" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_2" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_3" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_4" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_5" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_6" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_7" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_8" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_9" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_10" type="BIGDECIMAL" size="22"/>
+          <Column id="JAGYEOK_11" type="BIGDECIMAL" size="22"/>
+          <Column id="TOT_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JOLEOP_YYYY" type="STRING" size="256"/>
+          <Column id="JOLEOP_HAKGI" type="STRING" size="256"/>
+          <Column id="ALL_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_inputAll" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="JOLEOP_YYYY" type="STRING" size="256"/>
+          <Column id="JOLEOP_HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+          <Column id="REF_1" type="STRING" size="256"/>
+          <Column id="REF_2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="JOLEOP_YYYY"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="JOLEOP_HAKGI"/>
+      <BindItem id="item2" compid="divSearch.form.chk_searchAll" propid="value" datasetid="ds_input" columnid="ALL_YN"/>
+    </Bind>
+  </Form>
+</FDL>

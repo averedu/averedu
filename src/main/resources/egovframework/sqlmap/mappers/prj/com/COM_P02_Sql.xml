@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P02_DAO">									                            
+
+    <select id="COM_P02_DAO.retrieve_P02" parameterType="map" resultType="egovMap"> 
+            SELECT 
+            		SABEON
+				  , SEONGMYEONG
+				  , SEONGMYEONG_HANMUN
+				  , SEONGMYEONG_YEONGMUN
+				  , (SELECT COMM.SF_DECRYPTION('0', JUMIN_NO) FROM DUAL) AS JUMIN_NO
+				  , BIRTH_DT
+				  , GENDER
+				  , GUKJEOK_GBCD
+				  , JAEJIK_GBCD
+				  , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00208', JAEJIK_GBCD, '') FROM DUAL) AS JAEJIK_GBNM
+				  , JIKWON_GBCD
+				  , IMYONG_FRDT
+				  , IMYONG_TODT
+				  , IMYONG_DT
+				  , IMYONG_GBCD
+				  , JIKJONG_GBCD
+				  , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00205', JIKJONG_GBCD, '') FROM DUAL) AS JIKJONG_GBNM
+				  , JIKGEUP_GBCD
+				  , JIKGEUP_IMYONG_DT
+				  , GYEYEOL_CD
+				  , DEPT_CD
+				  , ADMI.SF_AM_GET_DEPT(DEPT_CD) AS DEPT_NM
+				  , JEONGONG_CD
+				  , JEONGONG_DVSN
+				  , BALRYEONG_DT
+				  , BOJIK_CD
+				  , BOJIK_DEPT_CD
+				  , BOJIK_IMYONG_DT
+				  , JEONGNYEON_BOJANG_CD
+				  , GYEYAKJE_GUBUN_YN
+				  , JIKWI_GBCD
+				  , JIKWI_DT
+				  , HOBONG_GBCD
+				  , HOBONG_SEUNGGEUP_MM
+				  , GEUB_DATE
+				  , HYUJIK_GBCD
+				  , HYUJIK_FRDT
+				  , HYUJIK_TODT
+				  , TOEJIK_GBCD
+				  , TOEJIK_DT
+				  , DAMDANG_GWAMOK
+				  , SISU
+				  , CHOEJONG_HAKRYEOK_GUKGA_GBCD
+				  , CHOEJONG_HAKRYEOK_GBCD
+				  , CHWIDEUK_YYYY
+				  , CHOEJONG_HAKWI_NM
+				  , HAKSA_HAKWI_GUKGA_GBCD
+				  , BACH_SCHL
+				  , THIS_SCHL_YN
+				  , CHOEJONG_JEONGONG_NM
+				  , HAKRYEOK
+				  , SEUNGGEUP_DT
+				  , YEONGEUM_GAIP_YN
+				  , SADAE_BOHEOM_YN
+				  , CONT_YEAR
+				  , SEON_YUMU
+				  , TRAN_CHCK
+				  , WEBB_YUMU
+				  , CHEORI_DT
+				  , CHEORIJA
+				  , WEP_SUJEONG_DT
+				  , WEP_SUJEONG_IP
+			 FROM ADMI.AM_GIBONINSA_M
+			 WHERE 1 = 1                                           												     
+        	<if test="SABEON_NM != null and SABEON_NM != ''">                                         							                        
+               AND (SABEON = #{SABEON_NM} OR SEONGMYEONG LIKE '%' || #{SABEON_NM} || '%')                                      													
+        	</if>
+        	<if test="JAEJIK_GBCD != null and JAEJIK_GBCD != ''">                                         							                        
+               AND JAEJIK_GBCD          = #{JAEJIK_GBCD}                                       													
+        	</if>
+        	<if test="JIKWON_GBCD != null and JIKWON_GBCD != ''">                                         							                        
+               AND JIKWON_GBCD          = #{JIKWON_GBCD}                                       													
+        	</if>    
+        	<if test="JIKJONG_GBCD != null and JIKJONG_GBCD != ''">                                         							                        
+               AND JIKJONG_GBCD          = #{JIKJONG_GBCD}                                       													
+        	</if>    
+        	<if test="JIKGEUP_GBCD != null and JIKGEUP_GBCD != ''">                                         							                        
+               AND JIKGEUP_GBCD          = #{JIKGEUP_GBCD}                                       													
+        	</if>                                                                                                    
+        /* COM_P02_DAO.retrieve_P02_ 기본인사(SDB_MA1000) 조회 */	                                 
+    </select> 	                                                        													 	                                                          													   
+</mapper>

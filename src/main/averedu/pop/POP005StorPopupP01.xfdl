@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="form" width="675" height="533" titletext="매장 POPUP" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="533" mobileorientation="landscape" width="675">
+        <Grid id="grdStoreMaster" taborder="1" binddataset="dsStoreMaster" autoenter="select" autofittype="col" left="20" top="128" right="20" bottom="67" formatid="grdSub01" onheadclick="grdStoreMaster_onheadclick" onheaddblclick="grdStoreMaster_onheaddblclick" oncelldblclick="grdStoreMaster_oncelldblclick">
+          <Formats>
+            <Format id="grdSub01">
+              <Columns>
+                <Column size="58"/>
+                <Column size="77"/>
+                <Column size="152"/>
+                <Column size="78"/>
+                <Column size="106"/>
+                <Column size="78"/>
+                <Column size="59"/>
+                <Column size="58"/>
+              </Columns>
+              <Rows>
+                <Row size="41" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" text="No."/>
+                <Cell col="1" disptype="normal" text="매장코드"/>
+                <Cell col="2" disptype="normal" text="매장명"/>
+                <Cell col="3" disptype="normal" text="등록상태"/>
+                <Cell col="4" disptype="normal" text="직가맹&#13;&#10;구분"/>
+                <Cell col="5" disptype="normal" text="운영&#13;&#10;구분"/>
+                <Cell col="6" disptype="normal" text="24시간&#13;&#10;운영여부"/>
+                <Cell col="7" disptype="normal" text="본사&#13;&#10;여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" edittype="none"/>
+                <Cell col="1" displaytype="text" edittype="none" textAlign="center" text="bind:STOR_CD" editmaxlength="10"/>
+                <Cell col="2" displaytype="text" edittype="none" textAlign="left" text="bind:STOR_NM" editmaxlength="60"/>
+                <Cell col="3" displaytype="combotext" edittype="none" textAlign="center" text="bind:STATUS_DIV" editmaxlength="1" combodataset="dsStatusDiv" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="4" displaytype="combotext" edittype="none" textAlign="center" text="bind:DRT_FRCS_TYPE" editmaxlength="1" combodataset="dsDrtFrcsType" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="5" displaytype="combotext" edittype="none" textAlign="center" text="bind:OPER_TYPE" editmaxlength="2" combodataset="dsOperType" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="6" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:OPER_24_YN" editmaxlength="1"/>
+                <Cell col="7" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:HQ_STOR_YN" editmaxlength="1"/>
+              </Band>
+            </Format>
+            <Format id="grdSub02">
+              <Columns>
+                <Column size="47"/>
+                <Column size="58"/>
+                <Column size="61"/>
+                <Column size="136"/>
+                <Column size="78"/>
+                <Column size="75"/>
+                <Column size="78"/>
+                <Column size="59"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="41" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" displaytype="normal" text="No."/>
+                <Cell col="2" disptype="normal" text="매장코드"/>
+                <Cell col="3" disptype="normal" text="매장명"/>
+                <Cell col="4" disptype="normal" text="등록상태"/>
+                <Cell col="5" disptype="normal" text="직가맹&#13;&#10;구분"/>
+                <Cell col="6" disptype="normal" text="운영&#13;&#10;구분"/>
+                <Cell col="7" disptype="normal" text="24시간&#13;&#10;운영여부"/>
+                <Cell col="8" disptype="normal" text="본사&#13;&#10;여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK" editmaxlength="1"/>
+                <Cell col="1" displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" edittype="none"/>
+                <Cell col="2" displaytype="text" edittype="none" textAlign="left" text="bind:STOR_CD" editmaxlength="10"/>
+                <Cell col="3" displaytype="text" edittype="none" textAlign="left" text="bind:STOR_NM" editmaxlength="60"/>
+                <Cell col="4" displaytype="combotext" edittype="none" textAlign="left" text="bind:STATUS_DIV" editmaxlength="1" combodataset="dsStatusDiv" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="5" displaytype="combotext" edittype="none" textAlign="left" text="bind:DRT_FRCS_TYPE" editmaxlength="1" combodataset="dsDrtFrcsType" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="6" displaytype="combotext" edittype="none" textAlign="left" text="bind:OPER_TYPE" editmaxlength="2" combodataset="dsOperType" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="7" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:OPER_24_YN" editmaxlength="1"/>
+                <Cell col="8" displaytype="checkboxcontrol" edittype="none" textAlign="left" text="bind:HQ_STOR_YN" editmaxlength="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="1" text="닫기" top="487" width="55" height="26" left="541" onclick="btnClose_onclick" cssclass="btn_WF_Pop"/>
+        <Static id="staRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="19" top="100" height="24" usedecorate="true" right="560"/>
+        <Button id="btnConfirm" taborder="3" text="확인" top="487" height="26" left="600" onclick="btnConfirm_onclick" cssclass="btn_WF_Pop" width="55"/>
+        <Static id="staTitle" taborder="4" left="20" top="21" width="152" height="22" text="매장 조회" cssclass="sta_WF_Title01"/>
+        <Button id="btnExit" taborder="5" top="20" width="37" height="29" left="616" onclick="btnExit_onclick" cssclass="btn_WF_Close01"/>
+        <Div id="divSearch" taborder="6" left="19" top="50" height="43" cssclass="div_WF_SearchBox" width="635">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="0" text="조회" top="10" width="55" height="22" right="10" cssclass="btn_WF_Search" onclick="divSearch_btnSearch_onclick"/>
+              <Static id="staSubTitle04" taborder="1" text="매장코드/명" left="1" top="10" width="87" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtStoreCdNm" taborder="2" left="92" top="10" width="468" height="22" imemode="alpha" inputmode="upper" onkeydown="divSearch_edtStoreCdNm_onkeydown"/>
+              <Static id="Static01" taborder="3" text="10" left="440" top="0" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static00" taborder="4" text="10" left="440" top="31" width="100" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char" height="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static06" taborder="7" text="20" left="20" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="20" bottom="46"/>
+        <Static id="Static03" taborder="8" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static04" taborder="9" text="20" left="0" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20"/>
+        <Static id="Static05" taborder="10" text="20" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20" right="0"/>
+        <Static id="Static01" taborder="11" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static09" taborder="12" text="30" left="459" top="20" width="76" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="13" text="35" left="335" top="93" width="50" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="14" text="15" left="20" top="93" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static10" taborder="15" text="7" left="20" top="121" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static07" taborder="16" text="5" left="20" top="45" width="145" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): POP005StorPopupP01.xfdl(화면관리팝업)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2018/09/17
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언 
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의 
+***********************************************************************/
+this.sOptinoArg1;
+this.sOptinoArg2;
+this.sOptinoArg3;
+this.sParamArg1;
+this.sParamArg2;
+this.sParamArg3;
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 초기화 함수
+	this.fn_formInit();
+}; 
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회 
+***********************************************************************/
+this.fn_formInit = function()
+{
+	/******************* 기본셋팅 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp01))
+	{
+		 this.sOptinoArg1 = this.getOwnerFrame().pv_sOp01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp02))
+	{
+		 this.sOptinoArg2 = this.getOwnerFrame().pv_sOp02;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp03))
+	{
+		 this.sOptinoArg3 = this.getOwnerFrame().pv_sOp03;        
+	}
+	/******************* 넘어온 인자값 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal01))
+	{
+		 this.sParamArg1 = this.getOwnerFrame().pv_sVal01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal02))
+	{
+		 this.sParamArg2 = this.getOwnerFrame().pv_sVal02;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal03))
+	{
+		 this.sParamArg3 = this.getOwnerFrame().pv_sVal03;        
+	}
+	
+	var strDs   = "dsStatusDiv|dsDrtFrcsType|dsOperType";		        // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+	var strLgcd = "000016|000029|000030";           		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strComb = "X|X|X";   								// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+	var strOptn = "";										// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+	var svcId 	= "Init"; 
+ 
+   // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+   // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs
+							  , strLgcd
+							  , strComb
+							  , strOptn
+							  , svcId); 
+};
+
+this.postformInit = function()                                                                                                                                                                                   
+{                                                                                                                                                                                                        
+	var sSetComponet = this.sOptinoArg1;
+	var sAutoSearch  = this.sOptinoArg2;
+	
+	this.ds_Search.setColumn(0,"CMP_CD",this.sParamArg1); 
+	// 설정에 따라서 호출 창으로부터 파라미터를 넘겨받는다.
+	this.divSearch.form.edtStoreCdNm.setFocus();
+	
+	if(this.sOptinoArg3 == "S")
+	{	//한로우 처리 할시
+		this.grdStoreMaster.set_formatid("grdSub01");
+	
+	}else 
+	{	// 멀티로 추리시
+		this.grdStoreMaster.set_formatid("grdSub02");
+	}
+	
+	
+	if(sSetComponet == "Y") 
+	{
+		this.ds_Search.setColumn(0,"STOR_CD",	this.sParamArg2);     
+	}
+	
+	// 설정에 따라서 폼 로드 시 자동 조회한다.
+	if(sAutoSearch == "Y") 
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};  
+/**
+ * 기능 : 콜백함수(후처리) 
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg) 
+{
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg,"에러정보","","error");
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.postformInit();
+				break;
+			case "Search":
+			    this.postSearch();
+				break;
+			case "Save":
+			    this.postSave();
+				break;
+			case "Insert":
+				this.postAdd();
+				break;
+			case "Delete":
+				this.postDel();
+				break;
+			default:
+				break;
+		}
+	}
+};
+/**********************************************************************
+	05. 조회 함수 선언  
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.preSearch = function()
+{ 
+	// 조회조건 셋팅
+	return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.preSearch())
+	{
+		return false;
+	}
+	var strSvc 		= "Search";                                                                                                                                               
+	var strUrl 		= "/prj/pop/RetrieveStorPopupList.do";                                                                                             
+	var strInDs  	= "ds_Search=ds_Search";                                                                                                                                            
+	var strOutDs 	= "dsStoreMaster=dsStoreMaster";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			//샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction( strSvc                                                                                                                                                                                  
+						, strUrl                                                                                                                                                                     
+						, strInDs                                                                                                                                                                    
+						, strOutDs                                                                                                                                                                   
+						, strArg                                                                                                                                                                     
+						, strCallBack                                                                                                                                                                
+						, strASync);
+};
+/**
+ * 기능 : 조회 후 실행
+ */
+this.postSearch = function()
+{ 
+	if(this.dsStoreMaster.rowcount < 1)
+	{
+		this.gfn_alert("조회자료가 없습니다.","조회정보","","information");
+	}
+	this.gfn_getRowCount(this.staRowCnt,this.dsStoreMaster);
+	//trace(this.dsStoreMaster.saveXML());
+};
+/**********************************************************************
+	06. 닫기버튼
+***********************************************************************/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.btnExit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("EXIT");
+};
+/**********************************************************************
+	07.Get, Set Method 
+***********************************************************************/
+ /**
+ * 한행을 처리하는 로직
+ **/
+this.selDataSet = function(dsobj,nRow)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		var odsObj 	= this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+		var TRow = ds.addRow();
+		ds.copyRow(TRow, odsObj, nRow); 		//0번재 로에 행을 카피함
+		
+		var objRtnArr = new Array(3);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.getColumn(ds.rowposition, "STOR_CD");
+		objRtnArr[2] = ds.getColumn(ds.rowposition, "STOR_NM");
+		objRtnArr[3] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}else 
+	{
+		var odsObj = this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+
+		this.dsDummy.getColumn(i,"CHK")
+		var TRow = -1;
+		for(var i = 0; i < odsObj.rowcount; i++)
+		{
+			if(odsObj.getColumn(i,"CHK") == 0)
+			{
+				continue;
+			}
+			 TRow = ds.addRow();
+			ds.copyRow(TRow, odsObj, i); 
+		}
+		var objRtnArr = new Array(1);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}
+};
+
+/**********************************************************************
+	08.기타 Control Event  
+***********************************************************************/
+this.grdStoreMaster_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		this.selDataSet(obj.binddataset, this.dsStoreMaster.rowposition); 	
+	}
+};
+
+
+this.btnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		this.grdStoreMaster_oncelldblclick(this.grdStoreMaster);
+	
+	}else
+	{
+		var grdDs = this.grdStoreMaster.getBindDataset();
+		if(grdDs.findRow("CHK", "1") == -1)
+		{
+			this.gfn_alert("선택한 데이타가 없습니다.","조회정보","","information");
+			return false;
+		}
+		this.selDataSet(this.grdStoreMaster.binddataset);
+	}
+};
+
+this.divSearch_edtStoreCdNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.grdStoreMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.sOptinoArg3 == "M")
+	{
+		if(e.cell == 0)
+		{
+			this.gfn_checkAll(obj, e,true);
+		}
+	}
+};
+
+this.grdStoreMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.sOptinoArg3 == "M")
+	{
+		if(e.cell != 0 || e.cell != 1)
+		{
+			this.gfn_gridSort(obj,e);
+		}
+	}else
+	{
+		if(e.cell != 0 )
+		{
+			this.gfn_gridSort(obj,e);
+		}
+	}
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsDummy" preload="true" updatecontrol="true" useclientlayout="false"/>
+      <Dataset id="dsStatusDiv" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDrtFrcsType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOperType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsStoreMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="CMP_CD" type="STRING" size="4"/>
+          <Column id="SALES_ORG_CD" type="STRING" size="4"/>
+          <Column id="STOR_CD" type="STRING" size="10"/>
+          <Column id="BIZ_NO" type="STRING" size="10"/>
+          <Column id="DRT_FRCS_TYPE" type="STRING" size="1"/>
+          <Column id="STOR_NM" type="STRING" size="60"/>
+          <Column id="OPER_24_YN" type="STRING" size="1"/>
+          <Column id="OPER_TYPE" type="STRING" size="2"/>
+          <Column id="STATUS_DIV" type="STRING" size="1"/>
+          <Column id="HQ_STOR_YN" type="STRING" size="1"/>
+          <Column id="REG_DT" type="STRING" size="14"/>
+          <Column id="REG_USER_ID" type="STRING" size="50"/>
+          <Column id="UPD_DATE" type="STRING" size="14"/>
+          <Column id="UPD_USER_ID" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Search" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CMP_CD" type="STRING" size="32"/>
+          <Column id="STOR_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CMP_CD"/>
+            <Col id="STOR_CD"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item1" compid="divSearch.form.edtStoreCdNm" propid="value" datasetid="ds_Search" columnid="STOR_CD"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="PopupMenuOPopupDivTrackPopup샘풀" onload="form_onload" ontimer="test_ontimer">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640" stepcount="0">
+        <Grid id="grdList" taborder="1" left="10" top="55" height="220" binddataset="ds_list" user_target="grd_list" autofittype="col" onrbuttonup="grdList_onrbuttonup" width="48.84%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="VALUE"/>
+                <Cell col="3" text="RIMAK"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:VALUE"/>
+                <Cell col="3" text="bind:RIMAK"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static05" taborder="0" text="그리드에 마우스 오른쪽을 클릭시 툴팁메뉴가 표시 하는 샘풀 (PopupMenu동적으로 생성한다.)" top="14" width="48.9%" height="33" textAlign="center" background="#f80626" font="bold 12px/normal &quot;Gulim&quot;" color="#ffffff" left="12"/>
+        <Static id="Static00" taborder="2" text="그리드에 마우스 오른쪽을 클릭시 툴팁메뉴가 표시 하는 샘풀 (팝업을 메뉴를 만들어놓고 메뉴호출(정적))" top="14" height="33" textAlign="center" background="#f80626" font="bold 12px/normal &quot;Gulim&quot;" color="#ffffff" left="Static05:10" right="15"/>
+        <Grid id="grdList2" taborder="3" left="grdList:13" top="58" height="220" binddataset="ds_list" user_target="grd_list" autofittype="col" right="14" onrbuttonup="grdList2_onrbuttonup">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="VALUE"/>
+                <Cell col="3" text="RIMAK"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:VALUE"/>
+                <Cell col="3" text="bind:RIMAK"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <PopupMenu id="pmuPopupMenu" left="1440" top="95" width="133" height="191" onmenuclick="pmuPopupMenu_onmenuclick" onmouseleave="pmuPopupMenu_onmouseleave" innerdataset="PopupMenu" captioncolumn="captioncolumn" enablecolumn="enablecolumn" iconcolumn="iconcolumn" idcolumn="idcolumn" levelcolumn="levelcolumn" userdatacolumn="userdatacolumn" checkboxcolumn="checkboxcolumn" hotkeycolumn="hotkeycolumn"/>
+        <Static id="Static01" taborder="4" text="그리드에 마우스 오른쪽을 클릭시 툴팁메뉴가 표시 하는 샘풀 (PopupMenu동적으로 생성한다.)" top="294" height="33" textAlign="center" background="#f80626" font="bold 12px/normal &quot;Gulim&quot;" color="#ffffff" left="12" right="12"/>
+        <Grid id="grdList3" taborder="5" left="10" top="335" height="300" binddataset="ds_list" user_target="grd_list" autofittype="col" right="10" onrbuttonup="grdList3_onrbuttonup" onmousemove="grdList3_onmousemove">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="VALUE"/>
+                <Cell col="3" text="RIMAK"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:VALUE"/>
+                <Cell col="3" text="bind:RIMAK"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <PopupDiv id="pdvPopupDiv" visible="false" left="200" top="644" height="222" width="269" onmouseleave="pdvPopupDiv_onmouseleave">
+          <Layouts>
+            <Layout>
+              <Grid id="grdListDiv" taborder="0" left="0" top="0" binddataset="ds_PopupDiv" autofittype="col" right="0" bottom="2" oncellclick="pdvPopupDiv_grdListDiv_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="CODE"/>
+                      <Cell col="1" text="NAME"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:CODE"/>
+                      <Cell col="1" text="bind:NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+        <PopupDiv id="pdvPopupDiv01" visible="false" left="549" top="667" width="346" height="128" border="2px solid #969696" onmouseleave="pdvPopupDiv01_onmouseleave">
+          <Layouts>
+            <Layout>
+              <TextArea id="TextArea00" taborder="0" left="4" top="5" width="333" height="112"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_list" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="VALUE" type="STRING" size="256"/>
+          <Column id="RIMAK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="VALUE">90</Col>
+            <Col id="NAME">영국</Col>
+            <Col id="CODE">001</Col>
+            <Col id="RIMAK">1테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">40</Col>
+            <Col id="NAME">독일</Col>
+            <Col id="CODE">002</Col>
+            <Col id="RIMAK">2테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">70</Col>
+            <Col id="NAME">프랑스</Col>
+            <Col id="CODE">003</Col>
+            <Col id="RIMAK">3테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">80</Col>
+            <Col id="NAME">포르투칼</Col>
+            <Col id="CODE">004</Col>
+            <Col id="RIMAK">4테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">90</Col>
+            <Col id="NAME">대한민국</Col>
+            <Col id="CODE">005</Col>
+            <Col id="RIMAK">5테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">100</Col>
+            <Col id="NAME">일본</Col>
+            <Col id="CODE">006</Col>
+            <Col id="RIMAK">6테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">70</Col>
+            <Col id="NAME">러시아</Col>
+            <Col id="CODE">007</Col>
+            <Col id="RIMAK">7테스트입니다.</Col>
+          </Row>
+          <Row>
+            <Col id="VALUE">80</Col>
+            <Col id="NAME">호주</Col>
+            <Col id="CODE">008</Col>
+            <Col id="RIMAK">8테스트입니다.</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="PopupMenu">
+        <ColumnInfo>
+          <Column id="idcolumn" type="STRING" size="256"/>
+          <Column id="levelcolumn" type="STRING" size="256"/>
+          <Column id="captioncolumn" type="STRING" size="256"/>
+          <Column id="iconcolumn" type="STRING" size="256"/>
+          <Column id="enablecolumn" type="STRING" size="256"/>
+          <Column id="hotkeycolumn" type="STRING" size="256"/>
+          <Column id="checkboxcolumn" type="STRING" size="256"/>
+          <Column id="userdatacolumn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="idcolumn">1</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">전화걸기</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="iconcolumn"/>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크1</Col>
+          </Row>
+          <Row>
+            <Col id="idcolumn">2</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">문자보내기</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="iconcolumn"/>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크2</Col>
+          </Row>
+          <Row>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">-</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="idcolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">3</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">통화메모 등록</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크3</Col>
+          </Row>
+          <Row>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">-</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="idcolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">4</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">통화내역 삭제</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크4</Col>
+          </Row>
+          <Row>
+            <Col id="idcolumn">5</Col>
+            <Col id="levelcolumn">1</Col>
+            <Col id="captioncolumn">통화이력 보기</Col>
+            <Col id="iconcolumn">URL("theme://images/btn_WF_Excel.png")</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크5</Col>
+          </Row>
+          <Row>
+            <Col id="levelcolumn">1</Col>
+            <Col id="captioncolumn">통화내역 다시 내려받기</Col>
+            <Col id="idcolumn">6</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크6</Col>
+          </Row>
+          <Row>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">-</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="idcolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">7</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">전화번호 복사</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크7</Col>
+          </Row>
+          <Row>
+            <Col id="idcolumn">8</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="captioncolumn">프로필 보기/수정</Col>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">체크8</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPopupMenu">
+        <ColumnInfo>
+          <Column id="idcolumn" type="INT" size="256"/>
+          <Column id="captioncolumn" size="256" type="STRING"/>
+          <Column id="levelcolumn" type="INT" size="256"/>
+          <Column id="enablecolumn" type="STRING" size="256"/>
+          <Column id="iconcolumn" type="STRING" size="256"/>
+          <Column id="checkboxcolumn" size="256" type="STRING"/>
+          <Column id="hotkeycolumn" size="256" type="STRING"/>
+          <Column id="userdatacolumn" size="256" type="STRING"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="hotkeycolumn">CTRL+A</Col>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">참조1</Col>
+            <Col id="idcolumn">1001</Col>
+            <Col id="captioncolumn">메뉴1</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+          </Row>
+          <Row>
+            <Col id="idcolumn">1002</Col>
+            <Col id="captioncolumn">-</Col>
+            <Col id="userdatacolumn">-</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="iconcolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="hotkeycolumn"/>
+          </Row>
+          <Row>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">참조2</Col>
+            <Col id="idcolumn">2001</Col>
+            <Col id="captioncolumn">메뉴2</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+          </Row>
+          <Row>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">참조3</Col>
+            <Col id="idcolumn">3001</Col>
+            <Col id="captioncolumn">메뉴3</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">3101</Col>
+            <Col id="levelcolumn">1</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="userdatacolumn">참조3_1</Col>
+            <Col id="captioncolumn">메뉴3_1</Col>
+            <Col id="iconcolumn">URL("theme://images/btn_WF_Excel.png")</Col>
+            <Col id="checkboxcolumn"/>
+            <Col id="hotkeycolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">3102</Col>
+            <Col id="captioncolumn">메뉴3_2</Col>
+            <Col id="levelcolumn">1</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="iconcolumn"/>
+            <Col id="userdatacolumn">참조3_2</Col>
+            <Col id="checkboxcolumn">true</Col>
+            <Col id="hotkeycolumn"/>
+          </Row>
+          <Row>
+            <Col id="idcolumn">3002</Col>
+            <Col id="captioncolumn">-</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="enablecolumn">true</Col>
+            <Col id="iconcolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="hotkeycolumn"/>
+            <Col id="userdatacolumn">-</Col>
+          </Row>
+          <Row>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">참조4</Col>
+            <Col id="idcolumn">4001</Col>
+            <Col id="captioncolumn">메뉴4</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">false</Col>
+          </Row>
+          <Row>
+            <Col id="hotkeycolumn"/>
+            <Col id="checkboxcolumn"/>
+            <Col id="userdatacolumn">참조5</Col>
+            <Col id="idcolumn">5001</Col>
+            <Col id="captioncolumn">메뉴5</Col>
+            <Col id="levelcolumn">0</Col>
+            <Col id="iconcolumn"/>
+            <Col id="enablecolumn">true</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_PopupDiv" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">영국</Col>
+            <Col id="CODE">001</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">독일</Col>
+            <Col id="CODE">002</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">프랑스</Col>
+            <Col id="CODE">003</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">포르투칼</Col>
+            <Col id="CODE">004</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">대한민국</Col>
+            <Col id="CODE">005</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">일본</Col>
+            <Col id="CODE">006</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">러시아</Col>
+            <Col id="CODE">007</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">호주</Col>
+            <Col id="CODE">008</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/************************************************************************************************
+ * 1.PopupMenu 동적 메뉴를 관리 처리.
+ ************************************************************************************************/
+ 
+/*
+ * 그리드에 마우스 오른쪽 클릭이벤트발생시 툴팁메뉴가 아온다.
+ */
+this.grdList_onrbuttonup = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	// 메뉴를 동적으로 만들어 화면에 오늘쪽메뉴가 보임.
+ 	// PopupMenu id 		: pmuGridMenu
+	// 표출할 메뉴 dataset : this.dsPopupMenu
+	var crtPopupMenuObj =  this.gfn_createPopupMenu(obj, e,"pmuGridMenu",this.dsPopupMenu,0, 0, 0, 0);
+	
+	// 메뉴를 grid cell단위로 오른쪽에 오픈함.
+	this.gfn_gridMenuOpen(obj,e,crtPopupMenuObj);
+};
+
+/*
+ * PopupMenu를 동적으로 만든다.
+ */
+this.gfn_createPopupMenu = function (obj, e, toolBarCompId , dsMenuObj ,vLeft, vTop , vWidth, vHeight )
+{
+	if(e.row < 0) 
+	{
+		return false;                                                       						// 해더클릭시 표시 하지 않음
+	}
+	
+	this.ds_list.set_rowposition(e.row);															// 현재행을 선택한다.
+	
+	var gridPopupMenuComp = new PopupMenu();														// 팝업메뉴를 생성
+	gridPopupMenuComp.init(toolBarCompId, vLeft, vTop , vWidth, vHeight);  
+	
+	gridPopupMenuComp.set_border("1px solid black");												// 팝업메뉴의 border 색을 지정한다		
+	gridPopupMenuComp.set_innerdataset(dsMenuObj);													// 팝업메뉴를 지정하는 데이타셋(메뉴지정함)(필수)
+	gridPopupMenuComp.set_idcolumn("idcolumn");														// 메뉴를 구분하는 코드값(필수)
+	gridPopupMenuComp.set_captioncolumn("captioncolumn");											// 팝업메뉴에 표출되는 코드명(필수)
+	gridPopupMenuComp.set_levelcolumn("levelcolumn");												// 팝업메뉴에 레벨을 결정해줌(0레벨부터 설정)(필수)
+	gridPopupMenuComp.set_enablecolumn("enablecolumn");												// 아이템별로 enable treu/false (기본값은:true)
+	gridPopupMenuComp.set_iconcolumn("iconcolumn");                         						// 0번째에서는 아이콘 표시할수 없음 1레벨부터 가능 :URL("theme://images/btn_WF_Excel.png") 아이콘경로를 지정함.
+	gridPopupMenuComp.set_checkboxcolumn("checkboxcolumn");                 						// 체크박스를 표시(true) 
+	gridPopupMenuComp.set_hotkeycolumn("hotkeycolumn");												// 단축키를 표시한다. CTRL+A
+	gridPopupMenuComp.set_userdatacolumn("userdatacolumn");											// 사용자 정의 변수임
+	//gridPopupMenuComp.set_itemheight(50);															// 아이템의 높이를 저정한다
+		
+	this.removeChild(toolBarCompId);																// 동적으로 추가된 컴포넌트를 제거하는 메소드입니다.
+	this.addChild(toolBarCompId, gridPopupMenuComp);												// 동적으로 생성한 컴포넌트를 PopupMenu 의 자식 컴포넌트로 추가하는 메소드입니다.  
+	
+	gridPopupMenuComp.addEventHandler( "onmenuclick", 	this.pmuGridMenu_onmenuclick, 	this);	    // onmenuclick 이벤트를 설정한다.
+	gridPopupMenuComp.addEventHandler( "onmouseleave", 	this.pmuGridMenu_onmouseleave, 	this);      // onmouseleave 이벤트를 설정한다.
+	gridPopupMenuComp.show();																		// 동적 생성한 PopupMenu 을(를) 화면에 표시하는 메소드
+
+	return gridPopupMenuComp;																		// 팝업 메뉴 객체를 리턴한다.
+};
+/*
+ * 그리드 위치를 지정하고 팝업메뉴를 표출한다.(1.표출방식은(스크린기준):trackPopup / 2컴포넌트를 기준 trackPopupByComponent)
+ */
+this.gfn_gridMenuOpen = function (obj, e, PopupMenuObj)
+{
+	var arrCellRect = obj.getCellRect(e.row,e.cell);												// 그리드에 셀을 기준으로 표시
+	var nx 			= arrCellRect.left;                                     						// grid cell에 왼쪽라인에 팝업메뉴 표시
+	var ny 			= arrCellRect.top + obj.getRealRowFullSize("head");								// grid cell에 탑라인에 팝업메뉴 표시 + 해더에 높이사이즈
+ 		
+	PopupMenuObj.trackPopupByComponent(obj, nx, ny);												// grid,x,y좌표에 팝업메뉴를 표출한다.
+	
+};
+/*
+ * 마우스 포인트가 나갈때 팝업메뉴를 닫는다.
+ */
+this.pmuGridMenu_onmouseleave = function(obj:nexacro.PopupMenu,e:nexacro.MenuMouseEventInfo)
+{
+	//this.pmuGridMenu.closePopup(); // 하부메뉴 마우스 포인터가 나갈 때 발생하는 이벤트가 버그로 인해 적용이 않됨.
+	obj.closePopup();                // 팝업메뉴가 수종을 닫는다.
+};
+/*
+ * 메뉴를 클릭할때 처리하는 메소드
+ */
+this.pmuGridMenu_onmenuclick = function(obj:nexacro.PopupMenu,e:nexacro.MenuClickEventInfo)
+{
+	//alert(e.id); == idcolumn
+	if(e.id == 1001)
+	{
+		trace("1.메뉴1=================>" + e.userdata);    //  e.userdata == userdatacolumn
+	}else if(e.id == 2001)
+	{
+		trace("2.메뉴2=================>" + e.userdata);
+	}else if(e.id == 3101)
+	{
+		trace("3.메뉴3_1=================>" + e.userdata);
+	}else if(e.id == 3102)
+	{
+		trace("4.메뉴3_2=================>" + e.userdata);
+	}else if(e.id == 4001)
+	{
+		trace("5.메뉴4=================>" + e.userdata);
+	}else if(e.id == 5001)
+	{
+		trace("6.메뉴5=================>" + e.userdata);
+	}
+	//this.pmuGridMenu.closePopup();
+	obj.closePopup(); //메뉴를 클릭시 팝업메뉴를 닫는다.
+};
+/************************************************************************************************
+ * 2.PopupMenu 정적 메뉴를 관리 처리.
+ ************************************************************************************************/
+this.grdList2_onrbuttonup = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	this.ds_list.set_rowposition(e.row);	
+	var arrCellRect = obj.getCellRect(e.row,e.cell);												// 그리드에 셀을 기준으로 표시
+	var nx 			= arrCellRect.left;                                     						// grid cell에 왼쪽라인에 팝업메뉴 표시
+	var ny 			= arrCellRect.top + obj.getRealRowFullSize("head");								// grid cell에 탑라인에 팝업메뉴 표시 + 해더에 높이사이즈
+ 		
+	this.pmuPopupMenu.trackPopupByComponent(obj, nx, ny);												// grid,x,y좌표에 팝업메뉴를 표출한다.
+};
+
+this.pmuPopupMenu_onmenuclick = function(obj:nexacro.PopupMenu,e:nexacro.MenuClickEventInfo)
+{
+	trace(e.id); // e.id == idcolumn
+	trace(e.userdata); // e.userdata == userdatacolumn
+	if(e.id == 1)
+	{
+		trace("1.메뉴1=================>" + e.userdata);    //  e.userdata == userdatacolumn
+	}else if(e.id == 2)
+	{
+		trace("2.메뉴2=================>" + e.userdata);
+	}else if(e.id == 3)
+	{
+		trace("3.메뉴3=================>" + e.userdata);
+	}else if(e.id == 4)
+	{
+		trace("4.메뉴4=================>" + e.userdata);
+	}else if(e.id == 5)
+	{
+		trace("5.메뉴5=================>" + e.userdata);
+	}else if(e.id == 6)
+	{
+		trace("6.메뉴6=================>" + e.userdata);
+	}else if(e.id == 7)
+	{
+		trace("7.메뉴7=================>" + e.userdata);
+	}else if(e.id == 8)
+	{
+		trace("8.메뉴8=================>" + e.userdata);
+	}
+	//this.pmuGridMenu.closePopup();
+	obj.closePopup(); //메뉴를 클릭시 팝업메뉴를 닫는다.
+};
+
+this.pmuPopupMenu_onmouseleave = function(obj:nexacro.PopupMenu,e:nexacro.MenuMouseEventInfo)
+{
+	obj.closePopup();  
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsDetail);
+};
+
+/************************************************************************************************
+ * 3.PopupDiv 정적인 팝업div사용
+ ************************************************************************************************/
+this.grdList3_onrbuttonup = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	if(e.row < 0 || e.cell < 0)
+	{
+		return false;
+	} 
+		
+	this.ds_list.set_rowposition(e.row);	
+
+	var arrCellRect = obj.getCellRect(e.row,e.cell);												// 그리드에 셀을 기준으로 표시
+	var nx 			= arrCellRect.right-this.pdvPopupDiv.getOffsetWidth();                         	// grid cell에 왼쪽라인에 팝업메뉴 표시
+	var ny 			= arrCellRect.top + obj.getRealRowFullSize("head");								// grid cell에 탑라인에 팝업메뉴 표시 + 해더에 높이사이즈
+	if(e.cell == obj.getBindCellIndex("body","CODE") || e.cell == obj.getBindCellIndex("body","NAME"))
+	{
+		this.pdvPopupDiv.trackPopupByComponent(obj, nx, ny,null,null,"fn_Callback", true );
+	
+	} 
+};
+
+/* Grid 에서 PopupDiv 호출 후 리턴*/
+this.fn_Callback = function(objDiv, strReturnValue)
+{
+	//trace(objDiv);
+	if(!this.gfn_isNull(strReturnValue))
+	{
+		var arr_OpenArg  = strReturnValue.split(",");
+		var strItemCode  = arr_OpenArg[0];
+		var strItemName  = arr_OpenArg[1];
+		
+		this.ds_list.setColumn(this.ds_list.rowposition,"CODE",strItemCode);
+		this.ds_list.setColumn(this.ds_list.rowposition,"NAME",strItemName);
+	}
+};
+
+this.pdvPopupDiv_grdListDiv_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strArg  = this.ds_PopupDiv.getColumn(this.ds_PopupDiv.rowposition,"CODE") + ",";
+		strArg += this.ds_PopupDiv.getColumn(this.ds_PopupDiv.rowposition,"NAME");
+	this.pdvPopupDiv.closePopup(strArg);
+};
+
+this.grdList3_onmousemove = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	if(e.row < 0 || e.cell < 0)
+	{
+		return false;
+	} 
+		
+	this.ds_list.set_rowposition(e.row);	
+
+	var arrCellRect = obj.getCellRect(e.row,e.cell);												// 그리드에 셀을 기준으로 표시
+	var nx 			= arrCellRect.right-this.pdvPopupDiv01.getOffsetWidth();                         	// grid cell에 왼쪽라인에 팝업메뉴 표시
+	var ny 			= arrCellRect.top;								// grid cell에 탑라인에 팝업메뉴 표시 + 해더에 높이사이즈
+	
+	if(e.cell == obj.getBindCellIndex("body","VALUE"))
+	{
+		this.pdvPopupDiv01.trackPopupByComponent(obj, nx, ny);
+	}
+};
+
+this.pdvPopupDiv_onmouseleave = function(obj:nexacro.PopupDiv,e:nexacro.MouseEventInfo)
+{
+	obj.closePopup();
+};
+
+this.pdvPopupDiv01_onmouseleave = function(obj:nexacro.PopupDiv,e:nexacro.MouseEventInfo)
+{
+	obj.closePopup();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="pdvPopupDiv01.form.TextArea00" propid="value" datasetid="ds_list" columnid="RIMAK"/>
+    </Bind>
+  </Form>
+</FDL>

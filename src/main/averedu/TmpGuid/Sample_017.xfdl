@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_017" width="1606" height="830" titletext="T타입_탭">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
+        <Button id="btn_02" taborder="1" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="60" width="46"/>
+        <Button id="btn_01" taborder="2" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="108" width="46"/>
+        <Div id="div_01" taborder="3" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0" formscrolltype="none" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="55"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Static id="stc_01" taborder="2" left="734" top="10" height="22" text="상태" cssclass="sta_WF_SearchLbl" width="52"/>
+              <Combo id="Combo00" taborder="3" text="GMP" left="55" top="10" width="95" height="22" value="" index="-1"/>
+              <Combo id="Combo02" taborder="4" text="신청" left="786" top="10" width="85" height="22" value="" index="-1"/>
+              <Button id="Button00" taborder="5" left="231" top="10" width="22" height="22" cssclass="btn_WF_CalBtnM"/>
+              <Button id="Button02" taborder="6" text="0" left="255" top="10" width="30" height="22" cssclass="btn_WF_CalBtnDay"/>
+              <Calendar id="cal_00" taborder="7" left="287" top="10" width="110" height="22" value="20181025" dateformat="yyyy-MM-dd" onchanged="div_01_cal_00_onchanged"/>
+              <Button id="Button01" taborder="8" left="399" top="10" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+              <Static id="stc_04" taborder="9" left="152" top="10" height="22" text="운항일자" cssclass="sta_WF_SearchLbl" width="77"/>
+              <Static id="stc_05" taborder="10" left="571" top="10" height="22" text="국적/외항" cssclass="sta_WF_SearchLbl" width="78"/>
+              <Combo id="Combo04" taborder="11" text="전체" left="649" top="10" width="85" height="22" value="" index="-1"/>
+              <Static id="stc_02" taborder="12" left="421" top="10" height="22" text="항공사" cssclass="sta_WF_SearchLbl" width="65"/>
+              <Combo id="Combo01" taborder="13" text="전체" left="486" top="10" width="85" height="22" value="" index="-1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="4" left="0" top="5" height="22" text="타이틀 삽입" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="Static11" taborder="5" text="7" left="-272" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static14" taborder="6" text="15" left="-272" top="74" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="7" text="7" left="-272" top="492" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01" taborder="8" text="15" left="-272" top="464" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Tab id="Tab00" taborder="9" tabindex="0" left="0" top="89" right="0" bottom="0" onchanged="Tab00_onchanged">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="수신자료">
+              <Layouts>
+                <Layout>
+                  <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="수신자료" width="130" cssclass="sta_WF_Title02" fittocontents="width"/>
+                  <Grid id="Grid01" taborder="1" left="0" top="35" binddataset="ds_grd" autofittype="col" right="0" bottom="0">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="Column0"/>
+                          <Cell col="1" text="Column1"/>
+                          <Cell col="2" text="Column2"/>
+                          <Cell col="3" text="Column3"/>
+                          <Cell col="4" text="Column4"/>
+                          <Cell col="5" text="Column5"/>
+                          <Cell col="6" text="Column6"/>
+                          <Cell col="7" text="Column7"/>
+                          <Cell col="8" text="Column8"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:Column0"/>
+                          <Cell col="1" text="bind:Column1"/>
+                          <Cell col="2" text="bind:Column2"/>
+                          <Cell col="3" text="bind:Column3"/>
+                          <Cell col="4" text="bind:Column4"/>
+                          <Cell col="5" text="bind:Column5"/>
+                          <Cell col="6" text="bind:Column6"/>
+                          <Cell col="7" text="bind:Column7"/>
+                          <Cell col="8" text="bind:Column8"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="stc_02" taborder="2" left="stc_00:10" top="10" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="80" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+                  <Button id="Button13" taborder="3" text="선택항공사전체삭제" top="10" width="142" height="22" right="0"/>
+                  <Button id="Button00" taborder="4" text="삭제" top="10" width="46" height="22" right="144"/>
+                  <Button id="Button01" taborder="5" text="자료교정" top="10" width="70" height="22" right="264"/>
+                  <Button id="Button02" taborder="6" text="자료변환" top="10" width="70" height="22" right="192"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="변환자료"/>
+            <Tabpage id="Tabpage3" text="일정자료비교"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

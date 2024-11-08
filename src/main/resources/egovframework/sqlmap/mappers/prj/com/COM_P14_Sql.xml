@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P14_DAO">									                            
+
+    <select id="COM_P14_DAO.retrieve_P14" parameterType="map" resultType="egovMap"> 
+			SELECT A.HAKBEON
+				 , A.HAKSAENG_NM
+				 , A.HAKBEON AS CODE
+				 , A.HAKSAENG_NM AS LABEL
+				 , NVL(A.JEONGONG_CD, A.HAKGWA_CD) AS HAKGWA_CD
+				 , COMM.SF_SC_GET_DEPT(NVL(A.JEONGONG_CD, A.HAKGWA_CD), '') AS HAKGWA_NM
+				 , A.IPSI_YYYY
+				 , A.HAKJEOK_STCD
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00004', A.HAKJEOK_STCD, '') FROM DUAL) AS HAKJEOK_STNM
+				 , A.BIRTHDAY
+				 , A.HAKNYEON
+				 , A.BUNBAN
+				 , A.JUYA_GBCD
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00003', A.JUYA_GBCD, '') FROM DUAL) AS JUYA_GBNM
+				 , B.SINCHEONG_YYYY
+				 , C.JAGYEOKJONGBYEOL_CD
+				 , C.JAGYEOKJONGBYEOL_NM
+				 , C.PYOSIGWAMOK_NM
+			  FROM UNIV.US_HAKJEOKGIBON_M A
+			  LEFT OUTER JOIN UNIV.UP_GYOJIKISUSINCHEONG_M B
+				ON A.HAKBEON = B.HAKBEON
+			  LEFT OUTER JOIN (SELECT X.IPHAK_YYYY
+								    , X.GYOJIK_HAKGWA_CD
+								    , X.JAGYEOKJONGBYEOL_CD
+								    , Y.JAGYEOKJONGBYEOL_NM
+								    , Y.PYOSIGWAMOK_NM
+							     FROM UNIV.UP_HAPGYEOKGIJUN_C X
+							     JOIN UNIV.UP_JAGYEOKJONGBYEOL_C Y
+								   ON X.JAGYEOKJONGBYEOL_CD = Y.JAGYEOKJONGBYEOL_CD
+							  ) C
+				ON A.IPSI_YYYY 						= C.IPHAK_YYYY
+			   AND NVL(A.JEONGONG_CD, A.HAKGWA_CD) 	= C.GYOJIK_HAKGWA_CD
+			 WHERE 1=1
+			<if test="HAKGWA == null or HAKGWA == ''">
+               AND NVL(A.JEONGONG_CD, A.HAKGWA_CD) IN (SELECT HAKGWA_CD FROM UNIV.UP_GYOJIKSEUNGININWON_M)
+			</if>
+			<if test="HAKGWA != null and HAKGWA != ''">
+			   AND NVL(A.JEONGONG_CD, A.HAKGWA_CD) = #{HAKGWA}
+			</if>
+			<if test="HAKNYEON != null and HAKNYEON != ''">
+			   AND A.HAKNYEON = #{HAKNYEON}
+			</if>
+			<if test="HAKBEON_NM != null and HAKBEON_NM != ''">
+			   AND (A.HAKBEON = #{HAKBEON_NM} OR A.HAKSAENG_NM LIKE '%' || #{HAKBEON_NM} || '%')
+			</if>
+			 ORDER BY A.HAKJEOK_STCD, HAKGWA_CD, A.HAKSAENG_NM
+    </select>
+    
+</mapper>                                                                 													   
+                                                                 															   

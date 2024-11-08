@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>nexacro17 icon crate</title>
+<meta http-equiv="content-type" content="text/html; charset=EUC-KR">
+<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true">
+<script type="text/javascript">
+var sKey;
+var Server_Path; //사용하는 서버 주소
+var bOnError = false;
+var NEXACRO_CAB_VER = "2016,9,27,1"; // nexacro cab version
+
+var nowAddress = unescape(location.href);
+var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+
+for(var i = 0 ; i < parameters.length ; i++) {
+    var varName = parameters[i].split('=')[0];
+    
+    if(varName == "key") sKey = parameters[i].split('=')[1];
+    if(varName == "path") Server_Path = parameters[i].split('=')[1];
+}
+
+function fn_objectOnError()
+{
+    bOnError = true;
+}
+
+function fn_launchCall(chk)
+{
+    if (bOnError == false)
+    {
+        // 전용브라우저
+        if (chk == "Y")
+        {
+            nexacrolauncherax14.key = sKey;
+            nexacrolauncherax14.bjson = Server_Path + "/bkrpos/start.json";
+            nexacrolauncherax14.onlyone = false;
+            nexacrolauncherax14.splashimage = Server_Path + "/install/img/" +sKey + ".gif";
+            nexacrolauncherax14.splashmessage = "none";
+            nexacrolauncherax14.loadingimage = Server_Path + "/install/img/loading.gif";
+
+            nexacrolauncherax14.makeshortcut(sKey, Server_Path + "/install/img/" + sKey + ".ico", "desktop", true);
+            nexacrolauncherax14.launch();
+			
+            fn_close();
+        }
+    }
+
+}
+
+function fn_load()
+{
+    fn_launchCall('Y');
+}
+
+function fn_close()
+{
+    if(navigator.appVersion.indexOf("MSIE 7.") >= 0 || navigator.appVersion.indexOf("MSIE 8.") >= 0  ||
+        navigator.appVersion.indexOf("MSIE 9.") >= 0 || navigator.appVersion.indexOf("MSIE 10.") >=0  || 
+        navigator.appVersion.indexOf("Trident") >= 0  )
+    {
+        window.open('about:blank','_self').close();
+    }
+    else
+    {
+        window.opener = self;
+        self.close();
+    }
+}
+</script>
+</head>
+<body onload="fn_load()">
+<script type="text/javascript">
+// nexacro Launcher
+document.write('<OBJECT ID="nexacrolauncherax14" CLASSID="CLSID:A7969122-0BB8-452A-93C9-72641B76CFB7" width="0" height="0" '
+        + 'CODEBASE="/install/nexacro14_Launcher.cab#VERSION="' + NEXACRO_CAB_VER + '" onError="fn_objectOnError()">'
+        + '<\/OBJECT>');
+</script>
+</body>
+</html>

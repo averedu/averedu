@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="성적평가분포현황(학과별)" onload="form_onload" onclose="form_onclose">
+    <Layouts>
+      <Layout height="800" width="1640">
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_01_00" taborder="2" left="0" top="9" height="22" text="년도" cssclass="sta_WF_SearchLbl" width="50" textAlign="right" onclick="divSearch_stc_01_00_onclick"/>
+              <Spin id="spnSearchYYYY" taborder="6" left="60" top="9" width="120" height="22" onkeydown="divSearch_onkeydown"/>
+              <Static id="stc_01_00_01" taborder="7" left="180" top="9" height="22" text="학기" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchHakgi" taborder="1" text="" index="0" enable="true" readonly="false" left="270" width="120" height="22" top="9" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="divSearch_onkeydown" innerdataset="dsHakgi"/>
+              <Static id="Static01_02_00" taborder="0" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="3" text="10" left="50" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="4" text="9" left="0" top="0" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="5" text="9" left="0" top="32" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="8" text="← 56 →" left="180" top="0" width="56" height="39" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_01" taborder="9" text="10" left="260" top="0" width="10" height="39" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_01_00" taborder="10" text="10" left="495" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_01" taborder="11" left="390" top="9" height="22" text="이수구분" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Combo id="cboSearchIsu" taborder="12" text="" index="0" enable="true" readonly="false" left="505" width="120" height="22" top="9" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboSearchGyeyeol_onitemchanged" onkeydown="divSearch_onkeydown" innerdataset="dsIsu"/>
+              <Static id="Static01_02_00_00_00_00_00_00" taborder="13" text="← 56 →" left="390" top="2" width="56" height="39" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_00" taborder="1" text="↑&#13;&#10;35&#13;&#10;↓" left="800" top="42" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" width="50"/>
+        <Static id="stc_09_00" taborder="2" left="0" top="45" height="31" text="성적평가분포현황(학과별) 미리보기" cssclass="sta_WF_Title02" width="300"/>
+        <Static id="Static01_01_00_00_00" taborder="3" text="8" left="0" top="69" width="1640" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <WebBrowser id="wbMaster" taborder="4" left="0" top="77" right="0" bottom="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UM05_2030506_M.xfdl
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/08/08
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+
+this.fn_formInit = function()
+{
+    var strDs    = "dsHakgi|dsIsu";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00022|00025";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+	// 기준연도학기 
+    var strDs    = "dsBaseYyyyHakgi";        // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    var svcId    = "baseYyyyHakgiInit";
+	var strEopmuGbcd = "UM";
+	var strUseYn     = "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs
+                              , svcId
+                              , strEopmuGbcd
+                              , strUseYn);
+};
+
+this.fn_PostBaseYyyyHakgiInit = function()
+{
+	if (this.dsBaseYyyyHakgi.rowcount > 0) {
+		this.ds_input.setColumn(0,"YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.ds_input.setColumn(0,"HAKGI", this.dsBaseYyyyHakgi.getColumn(0, "HAKGI"));	
+	}
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+			case "baseYyyyHakgiInit":
+					this.fn_PostBaseYyyyHakgiInit();
+			    break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+	
+	var YYYY		= this.ds_input.getColumn(0, "YYYY");
+	var HAKGI		= this.ds_input.getColumn(0, "HAKGI");
+	var ISU_GBCD	= this.ds_input.getColumn(0, "ISU_GBCD");
+	var USER_NM 	= objApp.gds_userInfoDb.getColumn(0, "USER_NM");
+	var USER_IP 	= objApp.gds_userInfoDb.getColumn(0, ""); // ip
+	var DEPT_NM 	= objApp.gds_userInfoDb.getColumn(0, "DEPT_NM");
+	var PRT_INFO 	= DEPT_NM + ' ' + USER_NM; // USER_IP + ' ' + DEPT_NM + ' ' + USER_NM;
+	var PG_CD 		= objApp.gv_cutPrgId;
+
+	var param = { 
+				  YYYY 		  : YYYY
+				, HAKGI 	  : HAKGI
+				, ISU_GBCD	  :	ISU_GBCD
+			    , PRT_INFO 	  : PRT_INFO
+				, PG_CD		  : PG_CD
+				};
+	
+	this.wbMaster.set_url(this.gfn_commonUtils_report2('UM05/UM05_2030506_M.crf',  param));
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+/**
+ * 기능 : 팁 실행
+ */
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+// 엔터 입력
+this.divSearch_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if (obj.name == "spnSearchYYYY")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"YYYY",obj.value);
+			this.fn_Ret();
+		}
+	}
+	
+	if (obj.name == "cboSearchHakgi")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"HAKGI",obj.value);
+			this.fn_Ret();
+		}
+	}
+	
+	if (obj.name == "cboSearchIsu")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"ISU_GBCD",obj.value);
+			this.fn_Ret();
+		}
+	}
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_input" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="ISU_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsIsu">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="YYYY"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="HAKGI"/>
+      <BindItem id="item2" compid="divSearch.form.cboSearchIsu" propid="value" datasetid="ds_input" columnid="ISU_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

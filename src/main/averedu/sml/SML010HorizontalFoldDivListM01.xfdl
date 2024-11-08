@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="form" width="1640" height="800" onload="test_onload" ondragmove="test_ondragmove" ondrop="test_ondrop" titletext="화면수평 Drag화면접기">
+    <Layouts>
+      <Layout>
+        <ImageViewer id="imgHorizontalBarMove01" taborder="0" image="url('theme://images/btn_WF_Hspltt.png')" left="19" top="201" height="10" cursor="s-resize" ondrag="div_horizontalBar_move_ondrag" right="50"/>
+        <ImageViewer id="imgHorizontalBarMove02" taborder="4" image="url('theme://images/btn_WF_Hspltt.png')" left="19" top="395" height="10" cursor="s-resize" ondrag="div_horizontalBar_move00_ondrag" right="50"/>
+        <Div id="divView02" taborder="1" text="" left="19" top="imgHorizontalBarMove01:0" background="gainsboro" border="1px solid rgba(128,128,128,1)" right="50" bottom="imgHorizontalBarMove02:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="2" text="Button00" left="65" height="45" bottom="58" width="280"/>
+              <Grid id="Grid00" taborder="3" left="353" top="41" right="65" bottom="25" binddataset="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell row="1" displaytype="editcontrol" edittype="text"/>
+                      <Cell row="1" col="1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell/>
+                      <Cell col="1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divView01" taborder="2" left="19" top="17" background="beige" border="1px solid rgba(128,128,128,1)" right="50" bottom="imgHorizontalBarMove01:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="Button00" left="93" height="45" bottom="31" width="198"/>
+              <Grid id="Grid00" taborder="1" left="390" top="9" width="440" bottom="29" binddataset="dsMaster">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <ImageViewer id="imgHorizontalBarMove03" taborder="5" image="url('theme://images/btn_WF_Hspltt.png')" cssclass="img_GWF_SplitterH" left="19" top="589" height="12" cursor="s-resize" ondrag="div_horizontalBar_move01_ondrag" right="50"/>
+        <Div id="divView03" taborder="3" text="" left="19" top="imgHorizontalBarMove02:0" background="gainsboro" border="1px solid rgba(128,128,128,1)" right="50" bottom="imgHorizontalBarMove03:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="2" text="Button00" left="65" height="45" bottom="58" width="280"/>
+              <Grid id="Grid00" taborder="3" left="353" top="41" right="65" bottom="25" binddataset="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell row="1" displaytype="editcontrol" edittype="text"/>
+                      <Cell row="1" col="1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell/>
+                      <Cell col="1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divView04" taborder="6" text="" left="19" top="imgHorizontalBarMove03:0" bottom="15" background="gainsboro" border="1px solid rgba(128,128,128,1)" right="50">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="2" text="Button00" left="65" height="45" bottom="58" width="280"/>
+              <Grid id="Grid00" taborder="3" left="353" top="41" right="65" bottom="25" binddataset="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell row="1" displaytype="editcontrol" edittype="text"/>
+                      <Cell row="1" col="1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell/>
+                      <Cell col="1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnTopBottomFold1" taborder="7" text="▲" height="30" color="#7c84f2" onclick="btnTopBottomFold1_onclick" bottom="imgHorizontalBarMove02:1" width="30" right="17"/>
+        <Button id="btnTopBottomFold2" taborder="8" text="▲" left="divView04:3" width="30" color="#7c84f2" onclick="btnTopBottomFold2_onclick" height="30" bottom="15"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMaster" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">test_1</Col>
+            <Col id="Column0">test_1.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_2.xfdl</Col>
+            <Col id="Column1">test_2</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_3.xfdl</Col>
+            <Col id="Column1">test_3</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_4.xfdl</Col>
+            <Col id="Column1">test_4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.1"><![CDATA[
+this.f_drag 		= false;
+this.currArrange 	= "horizontal1";
+this.nMoveY 		= 0;
+this.nBottom		= 0;
+this.nBarMoveY      = 1;   //버튼을 클릭시 접기/펼치기 플래그 변수
+this.test_ondragmove = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	
+	if (this.f_drag == false) 
+	{
+		return false;
+	}
+	var nPosY;
+	if (e.button == "lbutton") 
+	{
+		nPosY = nexacro.toNumber(e.clienty);
+				
+		try 
+		{
+			if (this.currArrange == "horizontal1") 
+			{
+				if(this.divView01.getOffsetTop() < nPosY &&  nPosY < this.nBottom )
+				{
+					this.imgHorizontalBarMove01.setOffsetTop(nPosY);
+				}else 
+				{
+					
+					this.imgHorizontalBarMove01.setOffsetTop(this.nMoveY);
+				}
+			}else if (this.currArrange == "horizontal2") 
+			{
+				if(this.divView02.getOffsetTop() < nPosY &&  nPosY < this.nBottom )
+				{
+					this.imgHorizontalBarMove02.setOffsetTop(nPosY);
+				}else 
+				{
+					
+					this.imgHorizontalBarMove02.setOffsetTop(this.nMoveY);
+				}
+			}else if (this.currArrange == "horizontal3") 
+			{
+				
+				if(this.divView03.getOffsetTop() < nPosY &&  nPosY < this.nBottom )
+				{
+					this.imgHorizontalBarMove03.setOffsetTop(nPosY);
+				}else 
+				{
+					
+					this.imgHorizontalBarMove03.setOffsetTop(this.nMoveY);
+				}
+			}
+		}
+		catch (ex) 
+		{
+		}
+	}
+	this.resetScroll();
+};
+
+this.test_ondrop = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	
+    if(this.f_drag == false) 
+	{
+		return false;
+	}
+
+	this.f_drag = false;
+
+
+	if (this.currArrange == "horizontal1") 
+	{
+		if(this.divView01.getOffsetTop() < e.clienty && e.clienty < this.nBottom )
+		{
+			this.imgHorizontalBarMove01.getOffsetTop(e.clienty);
+		}else 
+		{
+			this.imgHorizontalBarMove01.getOffsetTop(this.nBottom);
+		}
+	}else if (this.currArrange == "horizontal2") 
+	{
+		if(this.divView02.getOffsetTop() < e.clienty && e.clienty < this.nBottom )
+		{
+			this.imgHorizontalBarMove02.getOffsetTop(e.clienty);
+		}else 
+		{
+			this.imgHorizontalBarMove02.getOffsetTop(this.nBottom);
+		}
+	}else if (this.currArrange == "horizontal3") 
+	{
+		if(this.divView03.getOffsetTop() < e.clienty && e.clienty < this.nBottom )
+		{
+			this.imgHorizontalBarMove03.getOffsetTop(e.clienty);
+		}else 
+		{
+			this.imgHorizontalBarMove03.getOffsetTop(this.nBottom);
+		}
+	}
+	this.resetScroll();
+};
+
+
+this.div_horizontalBar_move_ondrag = function(obj:nexacro.ImageViewer,e:nexacro.DragEventInfo)
+{
+	this.currArrange 	= "horizontal1";
+    this.nMoveY 		= nexacro.toNumber(obj.top);
+	this.nBottom 		= this.divView02.getOffsetBottom();
+	this.f_drag 		= true;
+	return true;
+};
+
+this.div_horizontalBar_move00_ondrag = function(obj:nexacro.ImageViewer,e:nexacro.DragEventInfo)
+{
+	this.currArrange 	= "horizontal2";
+    this.nMoveY 		= nexacro.toNumber(obj.top);
+	this.nBottom 		= this.divView03.getOffsetBottom();
+	this.f_drag 		= true;
+	return true;
+};
+
+this.div_horizontalBar_move01_ondrag = function(obj:nexacro.ImageViewer,e:nexacro.DragEventInfo)
+{
+	this.currArrange 	= "horizontal3";
+    this.nMoveY 		= nexacro.toNumber(obj.top);
+	this.nBottom 		= this.divView04.getOffsetBottom();
+	this.f_drag 		= true;
+	return true;
+};
+
+
+this.btnTopBottomFold1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.nBarMoveY == -1)
+	{
+		this.imgHorizontalBarMove01.setOffsetTop(this.divView02.getOffsetBottom()-this.imgHorizontalBarMove01.getOffsetHeight());
+		this.btnTopBottomFold1.set_text("▲");
+		this.nBarMoveY = 1;
+		this.resetScroll();
+	}else 
+	{
+		this.imgHorizontalBarMove01.setOffsetTop(this.divView01.getOffsetTop());
+		this.btnTopBottomFold1.set_text("▼");
+		this.nBarMoveY = -1;
+		this.resetScroll();
+	}
+};
+
+this.btnTopBottomFold2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.nBarMoveY == -1)
+	{
+		this.imgHorizontalBarMove03.setOffsetTop(this.divView04.getOffsetBottom()-this.imgHorizontalBarMove03.getOffsetHeight());
+		this.btnTopBottomFold2.set_text("▲");
+		this.nBarMoveY = 1;
+		this.resetScroll();
+	}else 
+	{
+		this.imgHorizontalBarMove03.setOffsetTop(this.divView03.getOffsetTop());
+		this.btnTopBottomFold2.set_text("▼");
+		this.nBarMoveY = -1;
+		this.resetScroll();
+	}
+};
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+]]></Script>
+  </Form>
+</FDL>

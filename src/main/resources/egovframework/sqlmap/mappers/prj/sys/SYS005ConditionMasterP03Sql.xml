@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS005ConditionMasterP03DAO">
+
+	<!-- 제어항목관리 팝업 제어항목리스트 조회 -->
+	<select id="SYS005ConditionMasterP03DAO.retrieveConditionMasterP03List" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT A.JEEO_CODE
+			     , B.JEEO_NAME
+			     , A.OPERATOR
+			     , A.INPUT_VALUE
+			     , '' AS TF_CD
+			     , A.SINCHEONG_CODE
+			     , REPLACE(B.RETURN_QUERY, '?', '#' || '{HAKBEON}') AS RETURN_QUERY
+			FROM   SYS.SINCHEONG_JEEO_HANGMOK A
+			     , SYS.SINCHEONG_JEEO B
+			WHERE  1=1
+			AND    A.JEEO_CODE = B.JEEO_CODE
+		]]>
+		/* SYS005ConditionMasterP03DAO.retrieveConditionMasterP03List 신청제어항목 조회 */
+	</select>
+
+	<select id="SYS005ConditionMasterP03DAO.retrieveConditionMasterP03" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT CASE WHEN (${RETURN_QUERY}) ${OPERATOR} #{INPUT_VALUE}
+						THEN '01'
+						ELSE '02' END TF_CD
+			FROM   DUAL
+		]]>
+	</select>
+
+</mapper>

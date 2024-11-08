@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS003AuthMenuMasterDAO">									                            
+
+    <select id="SYS003AuthMenuMasterDAO.retrieveAuthMenuMasterList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.AUTH_CD                     /*권한코드*/
+                 , A.AUTH_CD AS TAUTH_CD         /*임시 권한코드*/             
+                 , A.AUTH_CD_NM                  /*권한코드명*/             
+                 , A.AUTH_CD_DC                  /*권한코드설명*/             
+                 , A.AUTH_USE_YN                 /*권한사용YN*/             
+                 , A.REG_ID                      /*등록자*/             
+                 , A.REG_DT                      /*등록일시*/             
+                 , A.MOD_ID                      /*수정자*/             
+                 , A.MOD_DT                      /*수정일시*/             
+              FROM COMM.XBT_AUTH_TBL A                                             							 
+             WHERE 1=1
+             ORDER BY AUTH_CD                                               												     
+        ]]>                                                      												 
+        /* SYS003AuthMenuMasterDAO.retrieveAuthMenuMasterList 기초권한테이블 조회 */	                                 
+    </select> 	                                                        													 
+	
+	<select id="SYS003AuthMenuMasterDAO.retrieveAuthMenuDetailList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+           WITH VW_AUTH_MENU AS (
+                SELECT MA.MENU_ID                  AS MENU_ID            /*메뉴아이디*/
+                     , MA.PARENT_MENU_ID           AS PARENT_MENU_ID     /*상위메뉴아이디*/ 
+                     , MA.MENU_NM                  AS MENU_NM            /*메뉴명*/
+                     , MA.PROG_ID                  AS PROG_ID            /*프로그램아이디*/
+                     , MA.MENU_SORT                AS MENU_SORT          /*메뉴순서*/
+                     , AU.AUTH_CD                  AS AUTH_CD            /*권한코드*/
+                     , AU.REG_YN                   AS REG_YN             /*읽기권한*/
+                     , AU.OUTPUT_YN                AS OUTPUT_YN          /*쓰기권한*/
+                     , AU.DOWN_YN                  AS DOWN_YN            /*다운권한*/
+                     , AU.IS_NEW                   AS IS_NEW             /*신규*/             
+                     , AU.IS_RET                   AS IS_RET             /*조회*/             
+                     , AU.IS_SAVE                  AS IS_SAVE            /*저장*/             
+                     , AU.IS_DEL                   AS IS_DEL             /*삭제*/             
+                     , AU.IS_EXCEL                 AS IS_EXCEL           /*엑셀*/             
+                     , AU.IS_PRINT                 AS IS_PRINT           /*출력*/             
+                     , AU.IS_CONFIRM               AS IS_CONFIRM         /*확정*/             
+                     , AU.IS_TMP1                  AS IS_TMP1            /*임시1*/             
+                     , AU.IS_TMP2                  AS IS_TMP2            /*임시2*/             
+                     , AU.IS_TMP3                  AS IS_TMP3            /*임시3*/             
+                     , AU.TMP1_NAME                AS TMP1_NAME          /*입시이름1*/             
+                     , AU.TMP2_NAME                AS TMP2_NAME          /*입시이름2*/             
+                     , AU.TMP3_NAME                AS TMP3_NAME          /*입시이름3*/       
+                  FROM COMM.XBT_MENU_INFO MA
+                  LEFT OUTER JOIN COMM.XBT_AUTH_MENU AU
+                    ON AU.MENU_ID = MA.MENU_ID
+                   AND AU.AUTH_CD = #{AUTH_CD}
+           ) , VW_TEMP_MENU (
+                   LVL
+                 , MENU_ID
+                 , PARENT_MENU_ID
+                 , MENU_NM
+                 , PROG_ID
+                 , MENU_SORT
+                 , AUTH_CD
+                 , REG_YN
+                 , OUTPUT_YN
+                 , DOWN_YN
+                 , IS_NEW
+                 , IS_RET
+                 , IS_SAVE
+                 , IS_DEL
+                 , IS_EXCEL
+                 , IS_PRINT
+                 , IS_CONFIRM
+                 , IS_TMP1
+                 , IS_TMP2
+                 , IS_TMP3
+                 , TMP1_NAME
+                 , TMP2_NAME
+                 , TMP3_NAME
+                 , SORT_HIR
+                ) AS (
+                SELECT 1                                  AS LVL                
+                     , A.MENU_ID                          AS MENU_ID            
+                     , A.PARENT_MENU_ID                   AS PARENT_MENU_ID     
+                     , A.MENU_NM                          AS MENU_NM            
+                     , A.PROG_ID                          AS PROG_ID            
+                     , A.MENU_SORT                        AS MENU_SORT          
+                     , A.AUTH_CD                          AS AUTH_CD            
+                     , A.REG_YN                           AS REG_YN             
+                     , A.OUTPUT_YN                        AS OUTPUT_YN          
+                     , A.DOWN_YN                          AS DOWN_YN            
+                     , A.IS_NEW                           AS IS_NEW                   
+                     , A.IS_RET                           AS IS_RET                   
+                     , A.IS_SAVE                          AS IS_SAVE                  
+                     , A.IS_DEL                           AS IS_DEL                   
+                     , A.IS_EXCEL                         AS IS_EXCEL                 
+                     , A.IS_PRINT                         AS IS_PRINT                 
+                     , A.IS_CONFIRM                       AS IS_CONFIRM               
+                     , A.IS_TMP1                          AS IS_TMP1                   
+                     , A.IS_TMP2                          AS IS_TMP2                   
+                     , A.IS_TMP3                          AS IS_TMP3                   
+                     , A.TMP1_NAME                        AS TMP1_NAME                   
+                     , A.TMP2_NAME                        AS TMP2_NAME                   
+                     , A.TMP3_NAME                        AS TMP3_NAME          
+                     , LPAD(TO_CHAR(A.MENU_SORT),3,'0') || A.MENU_ID   AS SORT_HIR
+                  FROM VW_AUTH_MENU A
+                 WHERE A.PARENT_MENU_ID =  '00000000' 
+             UNION ALL
+                SELECT A.LVL + 1                          AS LVL
+                     , B.MENU_ID                          AS MENU_ID            
+                     , B.PARENT_MENU_ID                   AS PARENT_MENU_ID     
+                     , B.MENU_NM                          AS MENU_NM            
+                     , B.PROG_ID                          AS PROG_ID            
+                     , B.MENU_SORT                        AS MENU_SORT          
+                     , B.AUTH_CD                          AS AUTH_CD            
+                     , B.REG_YN                           AS REG_YN             
+                     , B.OUTPUT_YN                        AS OUTPUT_YN          
+                     , B.DOWN_YN                          AS DOWN_YN            
+                     , B.IS_NEW                           AS IS_NEW                   
+                     , B.IS_RET                           AS IS_RET                   
+                     , B.IS_SAVE                          AS IS_SAVE                  
+                     , B.IS_DEL                           AS IS_DEL                   
+                     , B.IS_EXCEL                         AS IS_EXCEL                 
+                     , B.IS_PRINT                         AS IS_PRINT                 
+                     , B.IS_CONFIRM                       AS IS_CONFIRM               
+                     , B.IS_TMP1                          AS IS_TMP1                   
+                     , B.IS_TMP2                          AS IS_TMP2                   
+                     , B.IS_TMP3                          AS IS_TMP3                   
+                     , B.TMP1_NAME                        AS TMP1_NAME                   
+                     , B.TMP2_NAME                        AS TMP2_NAME                   
+                     , B.TMP3_NAME                        AS TMP3_NAME          
+                     , A.SORT_HIR  || ' | ' || LPAD(TO_CHAR(B.MENU_SORT),3,'0') || B.MENU_ID AS SORT_HIR 
+                  FROM VW_TEMP_MENU A 
+                 INNER JOIN VW_AUTH_MENU B
+                    ON B.PARENT_MENU_ID = A.MENU_ID                /* CONNECT BY 절에 해당함 */
+            ) 
+            SELECT A.LVL                                             AS LVL              /*레벨코드*/
+                 , A.MENU_NM 						                 AS MENU_NM          /*메뉴명*/ 
+                 , #{AUTH_CD}                                        AS AUTH_CD          /*그룹권한코드*/ 
+                 , A.MENU_ID                                         AS MENU_ID          /*메뉴아이디*/ 
+                 , A.PARENT_MENU_ID					                 AS PARENT_MENU_ID   /*상위메뉴아이디*/ 
+                 , CASE WHEN A.AUTH_CD IS NULL THEN '0' ELSE '1' END AS CHK              /*권한유무*/
+                 , CASE WHEN A.PROG_ID IS NULL THEN '0' ELSE '1' END AS PROG_FG          /*프로그램아이디유무*/ 
+                 , A.REG_YN 		                                 AS REG_YN           /*읽기권한*/   
+                 , A.OUTPUT_YN 	                                     AS OUTPUT_YN        /*쓰기권한*/
+                 , A.DOWN_YN 	                                     AS DOWN_YN          /*출력권한*/ 
+                 , A.IS_NEW                                          AS IS_NEW           /*신규*/             
+                 , A.IS_RET                                          AS IS_RET           /*조회*/             
+                 , A.IS_SAVE                                         AS IS_SAVE          /*저장*/             
+                 , A.IS_DEL                                          AS IS_DEL           /*삭제*/             
+                 , A.IS_EXCEL                                        AS IS_EXCEL         /*엑셀*/             
+                 , A.IS_PRINT                                        AS IS_PRINT         /*출력*/             
+                 , A.IS_CONFIRM                                      AS IS_CONFIRM       /*확정*/             
+                 , A.IS_TMP1                                         AS IS_TMP1          /*임시1*/             
+                 , A.IS_TMP2                                         AS IS_TMP2          /*임시2*/             
+                 , A.IS_TMP3                                         AS IS_TMP3          /*임시3*/             
+                 , A.TMP1_NAME                                       AS TMP1_NAME        /*입시이름1*/             
+                 , A.TMP2_NAME                                       AS TMP2_NAME        /*입시이름2*/             
+                 , A.TMP3_NAME                                       AS TMP3_NAME        /*입시이름3*/       
+             	 , A.SORT_HIR                                        AS SORT_HIR 
+              FROM VW_TEMP_MENU A
+             ORDER BY A.SORT_HIR  
+                                                   												     
+        ]]>                                                      												 
+        /* SYS003AuthMenuMasterDAO.retrieveAuthMenuDetailList 기초권한테이블 상세조회 */	                                 
+    </select> 	
+    
+    <insert id="SYS003AuthMenuMasterDAO.insertAuthMenuMasterList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_TBL                                       										  
+            (                                       																	  
+                   AUTH_CD                     /*권한코드*/ 
+                 , AUTH_CD_NM                  /*권한코드명*/ 
+                 , AUTH_CD_DC                  /*권한코드설명*/ 
+                 , AUTH_USE_YN                 /*권한사용YN*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_CD} 
+                 , #{AUTH_CD_NM}  
+                 , #{AUTH_CD_DC}  
+                 , #{AUTH_USE_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+             )	                                                      						
+        ]]>                                    											
+        /* SYS003AuthMenuMasterDAO.insertAuthMenuMasterList 기초권한테이블 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS003AuthMenuMasterDAO.updateAuthMenuMasterList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_TBL                                			        
+               SET                                                      				
+                   AUTH_CD         = #{AUTH_CD}                     /*권한코드*/  
+                 , AUTH_CD_NM      = #{AUTH_CD_NM}                  /*권한코드명*/  
+                 , AUTH_CD_DC      = #{AUTH_CD_DC}                  /*권한코드설명*/  
+                 , AUTH_USE_YN     = #{AUTH_USE_YN}                 /*권한사용YN*/  
+                 , REG_ID          = #{REG_ID}                      /*등록자*/  
+                 , REG_DT          = SYSDATE                        /*등록일시*/  
+                 , MOD_ID          = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT          = SYSDATE                        /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_CD         = #{AUTH_CD}  
+        ]]>  	                                   							                            				
+        /* SYS003AuthMenuMasterDAO.updateAuthMenuMasterList 기초권한테이블 수정 */								
+    </update>                                                           												
+
+    <select id="SYS003AuthMenuMasterDAO.retrieveAuthMenuDetailListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_AUTH_MENU
+             WHERE 1=1
+               AND AUTH_CD         = #{AUTH_CD}
+               AND MENU_ID         = #{MENU_ID}
+        ]]>
+        /* SYS003AuthMenuMasterDAO.retrieveAuthMenuDetailListKey 기초권한메뉴 중복 조회 */
+    </select>
+     <insert id="SYS003AuthMenuMasterDAO.insertAuthMenuDetailList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_MENU                                       										  
+            (                                       																	  
+                   AUTH_CD                     /*권한코드*/ 
+                 , MENU_ID                     /*메뉴아이디*/ 
+                 , REG_YN                      /*등록여부*/ 
+                 , OUTPUT_YN                   /*출력여부*/ 
+                 , DOWN_YN                     /*다운로드여부*/ 
+                 , IS_NEW                      /*신규*/ 
+                 , IS_RET                      /*조회*/ 
+                 , IS_SAVE                     /*저장*/ 
+                 , IS_DEL                      /*삭제*/ 
+                 , IS_EXCEL                    /*엑셀*/ 
+                 , IS_PRINT                    /*출력*/ 
+                 , IS_CONFIRM                  /*확정*/ 
+                 , IS_TMP1                     /*임시1*/ 
+                 , IS_TMP2                     /*임시2*/ 
+                 , IS_TMP3                     /*임시3*/ 
+                 , TMP1_NAME                   /*입시이름1*/ 
+                 , TMP2_NAME                   /*입시이름2*/ 
+                 , TMP3_NAME                   /*입시이름3*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일*/ 
+                
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_CD} 
+                 , #{MENU_ID}  
+                 , #{REG_YN}  
+                 , #{OUTPUT_YN}  
+                 , #{DOWN_YN}  
+                 , #{IS_NEW}  
+                 , #{IS_RET}  
+                 , #{IS_SAVE}  
+                 , #{IS_DEL}  
+                 , #{IS_EXCEL}  
+                 , #{IS_PRINT}  
+                 , #{IS_CONFIRM}  
+                 , #{IS_TMP1}  
+                 , #{IS_TMP2}  
+                 , #{IS_TMP3}  
+                 , #{TMP1_NAME}  
+                 , #{TMP2_NAME}  
+                 , #{TMP3_NAME}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+               
+            )	                                                      						
+        ]]>                                    											
+        /* SYS003AuthMenuMasterDAO.insertAuthMenuDetailList 기초권한메뉴 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS003AuthMenuMasterDAO.updateAuthMenuDetailList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_MENU                                			        
+               SET                                                      				
+                   AUTH_CD         = #{AUTH_CD}                     /*권한코드*/  
+                 , MENU_ID         = #{MENU_ID}                     /*메뉴아이디*/  
+                 , REG_YN          = #{REG_YN}                      /*등록여부*/  
+                 , OUTPUT_YN       = #{OUTPUT_YN}                   /*출력여부*/  
+                 , DOWN_YN         = #{DOWN_YN}                     /*다운로드여부*/  
+                 , IS_NEW          = #{IS_NEW}                      /*신규*/  
+                 , IS_RET          = #{IS_RET}                      /*조회*/  
+                 , IS_SAVE         = #{IS_SAVE}                     /*저장*/  
+                 , IS_DEL          = #{IS_DEL}                      /*삭제*/  
+                 , IS_EXCEL        = #{IS_EXCEL}                    /*엑셀*/  
+                 , IS_PRINT        = #{IS_PRINT}                    /*출력*/  
+                 , IS_CONFIRM      = #{IS_CONFIRM}                  /*확정*/  
+                 , IS_TMP1         = #{IS_TMP1}                     /*임시1*/  
+                 , IS_TMP2         = #{IS_TMP2}                     /*임시2*/  
+                 , IS_TMP3         = #{IS_TMP3}                     /*임시3*/  
+                 , TMP1_NAME       = #{TMP1_NAME}                   /*입시이름1*/  
+                 , TMP2_NAME       = #{TMP2_NAME}                   /*입시이름2*/  
+                 , TMP3_NAME       = #{TMP3_NAME}                   /*입시이름3*/  
+                 , REG_ID          = #{REG_ID}                      /*등록자*/  
+                 , REG_DT          = SYSDATE                        /*등록일시*/  
+                 , MOD_ID          = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT          = SYSDATE                        /*수정일*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_CD         = #{AUTH_CD}  
+               AND MENU_ID         = #{MENU_ID}  
+        ]]>  	                                   							                            				
+        /* SYS003AuthMenuMasterDAO.updateAuthMenuDetailList 기초권한메뉴 수정 */								
+    </update>                                                           												
+    
+    
+    <select id="SYS003AuthMenuMasterDAO.retrieveUserAuthMenuList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+             SELECT 
+                    A.USER_ID                     /* 사용자      */ 
+                  , A.AUTH_CD                     /* 권한코드    */
+                  , B.MENU_ID                     /* 메뉴아이디  */
+             FROM COMM.XBT_USER_AUTH A
+                , COMM.XBT_AUTH_MENU B
+             WHERE 1=1
+               AND A.AUTH_CD = B.AUTH_CD
+               AND A.AUTH_CD = #{AUTH_CD}
+               AND B.MENU_ID = #{MENU_ID}                                    												     
+        ]]>                                                      												 
+        /* SYS003AuthMenuMasterDAO.retrieveUserAuthMenuList 사용자메뉴별 리스트 조회 */	                                 
+    </select>
+    
+    <select id="SYS003AuthMenuMasterDAO.retrieveUserCntList" parameterType="map" resultType="String"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS USER_CNT
+             FROM COMM.XBT_USER_AUTH A
+                , COMM.XBT_AUTH_MENU B
+             WHERE 1=1
+               AND A.AUTH_CD = B.AUTH_CD
+               AND A.USER_ID = #{USER_ID}
+               AND B.MENU_ID = #{MENU_ID}
+        ]]>
+        /* SYS003AuthMenuMasterDAO.retrieveUserCntList 사용자 중복체크 중복 조회 */
+    </select>
+    <delete id="SYS003AuthMenuMasterDAO.deleteUserMenuButtonAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_BUTTON_AUTH                                                  							      
+             WHERE 1=1                              																	          
+                AND USER_ID         = #{USER_ID}  
+                AND MENU_ID         = #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS003AuthMenuMasterDAO.deleteUserMenuButtonAuthList 사용자메뉴별버튼권한 삭제 */								       
+    </delete> 
+    
+    <delete id="SYS003AuthMenuMasterDAO.deleteAuthMenuDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_MENU                                                  							      
+             WHERE 1=1                              																	          
+               AND AUTH_CD         = #{AUTH_CD}  
+               AND MENU_ID         = #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS003AuthMenuMasterDAO.deleteAuthMenuDetailList 기초권한메뉴 삭제 */								       
+    </delete>
+    
+    
+    
+    <delete id="SYS003AuthMenuMasterDAO.deleteAuthMenuAllList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_MENU                                                  							      
+             WHERE 1=1                              																	          
+               AND AUTH_CD         = #{AUTH_CD}  
+        ]]>                                                															           
+        /* SYS003AuthMenuMasterDAO.deleteAuthMenuAllList 기초권한전체메뉴 삭제 */								       
+    </delete>	  
+    
+     <delete id="SYS003AuthMenuMasterDAO.deleteUserAuthAllList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE 
+              FROM COMM.XBT_USER_AUTH                                              							      
+             WHERE 1=1                              																	          
+               AND AUTH_CD 		   = #{AUTH_CD}  
+        ]]>                                                															           
+        /* SYS003AuthMenuMasterDAO.deleteUserAuthAllList 사용자권한 매핑 리스트 삭제 */								       
+    </delete>
+    
+    
+    <delete id="SYS003AuthMenuMasterDAO.deleteAuthMenuMasterList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_TBL                                                  							      
+             WHERE 1=1                              																	          
+               AND AUTH_CD         = #{AUTH_CD}  
+        ]]>                                                															           
+        /* SYS003AuthMenuMasterDAO.deleteAuthMenuMasterList 기초권한테이블 삭제 */								       
+    </delete>   
+    
+    <select id="SYS003AuthMenuMasterDAO.retrieveUserAuthMenuAllList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+               
+           SELECT D.USER_ID
+                , B.MENU_ID 
+             FROM COMM.XBT_AUTH_MENU  A 
+                , COMM.XBT_MENU_INFO B
+                , COMM.XBT_USER_AUTH D
+            WHERE 1=1
+              AND A.MENU_ID = B.MENU_ID
+              AND A.AUTH_CD = D.AUTH_CD
+              AND B.PROG_ID IS NOT NULL
+              AND D.AUTH_CD = #{AUTH_CD}    
+                                                												     
+        ]]>                                                      												 
+        /* SYS003AuthMenuMasterDAO.retrieveUserAuthMenuAllList 사용자그룹별 메뉴 전체 리스트 조회 */	 
+     </select>
+        	                                                          	                                                          													   
+    <!-- SYS003AuthMenuMasterDAO.retrieveAuthDeptTreeList 부서트리(조직도)서 조회 -->	                                 
+    <select id="SYS003AuthMenuMasterDAO.retrieveAuthDeptTreeList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT '0' AS CHK                      /*CHK*/        
+                 , JOJIK_GBCD
+			     , DEPT_CD
+			     , DEPT_NM
+			     , UP_DEPT_CD
+			     , UP_CD_LIST
+			     , DEPT_LV
+			     , SORT
+			     , USE_YN
+			  FROM (
+			SELECT TBL1.JOJIK_GBCD
+			     , TBL1.DEPT_CD
+			     , TBL2.DEPT_NM
+			     , TBL1.UP_DEPT_CD
+			     , TBL1.UP_CD_LIST
+			     , TBL1.DEPT_LV
+			     , ROW_NUMBER() OVER (PARTITION BY TBL1.JOJIK_GBCD, TBL1.DEPT_LV  ORDER BY TBL1.USE_YN DESC,TBL1. SORT) AS SORT          
+			     , TBL1.USE_YN
+			  FROM COMM.SC_DEPT_S TBL1 LEFT OUTER JOIN COMM.SC_DEPT_M TBL2
+			    ON TBL1.DEPT_CD = TBL2.DEPT_CD
+			 WHERE TBL1.JOJIK_GBCD = '00'
+			       ) TBL
+			 START WITH TBL.UP_DEPT_CD = '-1' CONNECT BY PRIOR TBL.DEPT_CD = TBL.UP_DEPT_CD
+			 ORDER SIBLINGS BY TBL.SORT                                      												     
+        ]]>                                                      												 
+                                                                                                  
+    /* SYS003AuthMenuMasterDAO.retrieveAuthDeptTreeList 부서트리(조직도) 조회 */	                                 
+    </select>
+    
+    <!-- SYS003AuthMenuMasterDAO.retrieveAuthCtrlDeptList 권한별관활부서 조회 -->	                                 
+    <select id="SYS003AuthMenuMasterDAO.retrieveAuthCtrlDeptList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.AUTH_CD                       /*권한코드*/             
+                 , A.DEPT_CD                       /*부서코드*/   
+                 , B.DEPT_NM          
+                 , A.SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/                        
+              FROM COMM.XBT_AUTH_CTRL_DEPT A      
+                 , COMM.SC_DEPT_M B                                       							 
+             WHERE A.DEPT_CD = B.DEPT_CD                                             												     
+        ]]>
+        <if test="AUTH_CD != null and AUTH_CD != ''">    
+            <![CDATA[                                         							                        
+               AND A.AUTH_CD              = #{AUTH_CD}  
+            ]]>                                           													
+        </if>
+        <if test="DEPT_CD != null and DEPT_CD != ''">    
+            <![CDATA[                                         							                        
+               AND A.DEPT_CD              = #{DEPT_CD}  
+            ]]>                                           													
+        </if>
+    /* SYS003AuthMenuMasterDAO.retrieveAuthCtrlDeptList 권한별관활부서 조회 */	                                 
+    </select> 	     	   
+    
+    <!-- SYS003AuthMenuMasterDAO.insertAuthCtrlDeptList 권한별관활부서 저장 -->	
+    <insert id="SYS003AuthMenuMasterDAO.insertAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_CTRL_DEPT                                       										  
+            (                                       																	  
+                   AUTH_CD                       /*권한코드*/ 
+                 , DEPT_CD                       /*부서코드*/ 
+                 , SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_CD} 
+                 , #{DEPT_CD}  
+                 , #{SUB_DEPT_INCLS_GBCD}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    /* SYS003AuthMenuMasterDAO.insertAuthCtrlDeptList 권한별관활부서 저장 */	
+    </insert>                                                           					
+
+    <!-- SYS003AuthMenuMasterDAO.updateAuthCtrlDeptList 권한별관활부서 수정 -->								
+    <update id="SYS003AuthMenuMasterDAO.updateAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_CTRL_DEPT                                			        
+               SET                                                      				
+                   SUB_DEPT_INCLS_GBCD            = #{SUB_DEPT_INCLS_GBCD}           /*하위부서포함여부*/  
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND DEPT_CD              = #{DEPT_CD}  
+        ]]>  	                                   							                            				
+    /* SYS003AuthMenuMasterDAO.updateAuthCtrlDeptList 권한별관활부서 수정 */								
+    </update>                                                           												
+
+
+    <!-- SYS003AuthMenuMasterDAO.deleteAuthCtrlDeptList 권한별관활부서 삭제 -->								       
+    <delete id="SYS003AuthMenuMasterDAO.deleteAuthCtrlDeptList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_CTRL_DEPT                                                  							      
+             WHERE 1=1
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND DEPT_CD              = #{DEPT_CD}  
+        ]]>
+    /* SYS003AuthMenuMasterDAO.deleteAuthCtrlDeptList 권한별관활부서 삭제 */								       
+    </delete>
+    
+</mapper>    

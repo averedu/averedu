@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="800" height="400" titletext="소득분위이력" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="800" description="소득분위이력">
+        <Button id="btnClose" taborder="0" text="닫기" left="730" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10"/>
+        <Static id="staTree" taborder="1" left="10" top="10" height="22" text="소득분위이력" width="160" cssclass="sta_WF_Title02"/>
+        <Static id="Static01_01_00_00_01" taborder="2" text="8" left="0" top="27" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01" taborder="3" text="↑&#13;&#10;35&#13;&#10;↓" left="200" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_02_00_00_00_00" taborder="4" text="10" left="0" top="10" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="5" text="10" top="35" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="6" text="10" left="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10" right="0"/>
+        <Grid id="grdMaster" taborder="7" left="10" top="35" right="10" bottom="49" binddataset="dsMaster" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="학번(수험번호)"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3" text="소득분위" suppressalign="middle"/>
+                <Cell col="4" text="수정일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow + 1"/>
+                <Cell col="1" textAlign="center" text="bind:HAKBEON"/>
+                <Cell col="2" combodataset="DS_JANGHAK_DEUNGGEUP_GBCD" combocodecol="CD" combodatacol="LABEL" text="bind:HAKSAENG_NM"/>
+                <Cell col="3" text="bind:SODEUKBUNWI_GBNM"/>
+                <Cell col="4" combodataset="ds_고지서포함여부_grid" combocodecol="cd" combodatacol="cdNm" displaytype="date" calendardateformat="yyyy-MM-dd" text="bind:CHEORI_DT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE03_2020304_P01.xfdl(소득분위이력)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/09
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	
+	if (!this.gfn_isNull(this.getOwnerFrame().hakbeon)) {
+		this.ds_input.setColumn(0, "HAKBEON", this.getOwnerFrame().hakbeon);
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UE/UE03/Retrieve_2060304_P01.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="50"/>
+          <Column id="SODEUKBUNWI_GBCD" type="STRING" size="5"/>
+          <Column id="SODEUKBUNWI_GBNM" type="STRING" size="256"/>
+          <Column id="CHEORI_DT" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

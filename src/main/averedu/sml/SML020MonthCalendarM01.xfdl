@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="sample025_monthCalendar" width="1640" height="800" titletext="MONTHCALENDAR(월달력)" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Div id="Div00" taborder="0" left="39" top="76" width="136" height="26" url="com::COMM000006P.xfdl" callbackfunc="fn_afterCall"/>
+        <Button id="Button00" taborder="1" text="_getValue" left="200" top="71" width="120" height="35" onclick="Button00_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="Button01" taborder="2" text="_setValue" left="200" top="117" width="120" height="35" onclick="Button01_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="Button02" taborder="3" text="_clearValue" left="200" top="163" width="120" height="35" onclick="Button02_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="Button03" taborder="4" text="_enable" left="200" top="209" width="120" height="35" onclick="Button03_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="Button04" taborder="5" text="_setFocus" left="200" top="255" width="120" height="35" onclick="Button04_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="Button06" taborder="6" text="_setReadonly" left="200" top="301" width="120" height="35" onclick="Button06_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Grid id="Grid00" taborder="7" left="407" top="71" height="259" binddataset="Dataset00" onexpanddown="Grid00_onexpanddown" right="3">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="151"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="년월"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="mask" text="bind:PAY_YYMM" calendardateformat="yyyy-MM" calendareditformat="yyyy-MM" calendardisplaynulltype="nulltext" calendartype="spin" expandshow="show" expandsize="26" maskeditformat="####-##" maskeditautoselect="true" maskedittype="string"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static06" taborder="8" text="각종월달력 처리 샘풀(그리드상의 월달력처리)" top="1" height="44" textAlign="center" background="#f80626" color="#ffffff" font="bold 18px/normal &quot;Gulim&quot;" left="0" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.Div00.form._setValue(this.gfn_getDate("date").substr(0, 6));   //월달력에 로컬PC시간기준 월설정
+}
+
+//월선택시 콜백함수. callbackfunc user property생성후 정의
+this.fn_afterCall = function (sVal)
+{
+	trace("sVal >> "+sVal);
+}
+
+//월달력값 가져오기. _getValue()
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.gfn_alert(this.Div00.form._getValue());
+}
+
+//월달력 값설정. _setValue
+this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div00.form._setValue("201502");
+}
+
+//월달력 클리어. _clearValue
+this.Button02_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div00.form._clearValue();
+}
+
+// Enable / Disable
+this.Button03_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div00.form._enable(false); // true / false
+}
+
+// setFocus
+this.Button04_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div00.form._setFocus();
+}
+
+// ReadOnly
+this.Button06_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.Div00.form._setReadonly(true); // true/false
+}
+this.Grid00_onexpanddown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	if(e.col == 0)
+	{
+		this.fn_monCalCall(obj, e);
+	}	
+};
+
+
+this.fn_monCalCall = function(obj, e)
+{
+	var objDs 		= obj.getBindDataset();
+	var nCellIndex 	= obj.getBindCellIndex("Body", "PAY_YYMM");
+	var nRow 		= e.row;
+	var nCol 		= objDs.getColIndex( "PAY_YYMM" );
+	var nCell 		= e.cell;	
+	if (nCell== nCellIndex)
+	{
+		this.gfn_calendarMonthByGrid(obj, nRow, nCol, nCell);
+	}
+}
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsDetail);
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="PAY_YYMM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_monthCalendar">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

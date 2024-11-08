@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="화면수직 Drag화면접기" onload="form_onload" ondragmove="form_ondragmove" ondrop="form_ondrop">
+    <Layouts>
+      <Layout>
+        <ImageViewer id="imgVerticalBarMove02" taborder="4" image="url('theme://images/btn_WF_Vspltt.png')" left="865" top="40" ondrag="div_verticalBar_move00_ondrag" text="" width="10" cursor="w-resize" bottom="10"/>
+        <ImageViewer id="imgVerticalBarMove03" taborder="3" image="url('theme://images/btn_WF_Vspltt.png')" left="1294" top="40" text="" width="10" ondrag="div_verticalBar_move01_ondrag" cursor="w-resize" bottom="10"/>
+        <Div id="divView03" taborder="6" text="Div02" left="imgVerticalBarMove02:0" top="40" bottom="10" background="gainsboro" border="1px solid rgba(128,128,128,1)" right="imgVerticalBarMove03:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="4" text="Button00" left="7.1%" top="42" right="61.75%" height="45"/>
+              <Grid id="Grid00" taborder="5" left="5.46%" top="151" right="7.1%" height="139">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Col size="80"/>
+                      <Col size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row band="body" size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell col="0" text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell col="0" text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <ImageViewer id="imgVerticalBarMove01" taborder="0" left="436" top="40" ondrag="div_verticalBar_move_ondrag" width="10" cursor="w-resize" bottom="10" image="url('theme://images/btn_WF_Vspltt.png')"/>
+        <Div id="divView02" taborder="1" text="Div02" left="imgVerticalBarMove01:0" top="40" bottom="10" background="gainsboro" border="1px solid rgba(128,128,128,1)" right="imgVerticalBarMove02:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="2" text="Button00" left="7.26%" top="42" right="61.69%" height="45"/>
+              <Grid id="Grid00" taborder="3" left="5.24%" top="151" right="7.26%" height="139" binddataset="dsMaster1">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell row="1" displaytype="editcontrol" edittype="text"/>
+                      <Cell row="1" col="1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell/>
+                      <Cell col="1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnLeftRightFold1" taborder="7" text="◀" left="divView02:-30" top="6" width="30" height="30" onclick="btnLeftRightFold1_onclick" color="#7c84f2"/>
+        <Div id="divView01" taborder="2" text="Div00" left="14" top="40" bottom="10" background="beige" border="1px solid rgba(128,128,128,1)" right="imgVerticalBarMove01:0">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" text="Button00" left="10.5%" top="42" right="68%" height="45"/>
+              <Grid id="Grid00" taborder="1" binddataset="dsMaster" left="47.5%" top="29" right="3.75%" height="139">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divView04" taborder="5" text="Div02" left="imgVerticalBarMove03:0" top="40" right="15" bottom="10" background="gainsboro" border="1px solid rgba(128,128,128,1)">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="4" text="Button00" left="7.1%" top="42" right="61.75%" height="45"/>
+              <Grid id="Grid00" taborder="5" left="5.46%" top="151" right="7.1%" height="139">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Col size="80"/>
+                      <Col size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row band="body" size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell col="0" text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell col="0" text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnLeftRightFold2" taborder="8" text="◀" left="divView04:-30" top="6" width="30" height="30" onclick="btnLeftRightFold2_onclick" color="#7c84f2"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMaster" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column1">test_1</Col>
+            <Col id="Column0">test_1.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_2.xfdl</Col>
+            <Col id="Column1">test_2</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_3.xfdl</Col>
+            <Col id="Column1">test_3</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">test_4.xfdl</Col>
+            <Col id="Column1">test_4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): SML009VerticalFoldDivListM01.xfdl(수직 드래그 접기)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2018/09/13
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의
+***********************************************************************/
+this.f_drag 		= false;
+this.currArrange 	= "vertical1";
+this.nMoveX 		= 0; 
+this.nRight			= 0;
+this.nBarMoveX      = 1;   //버튼을 클릭시 접기/펼치기 플래그 변수
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+	this.fn_formInit();
+};
+ 
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	
+								
+};
+
+/**********************************************************************
+	05. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+	06. 기타 Control Event
+***********************************************************************/
+/**
+ * FORM화면상의 드래그 상태에서 마우스움직일때 발생하는 이벤트처리(화면접기/펼치기)
+ */
+this.form_ondragmove = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+	if (this.f_drag == false) 
+	{
+		return;
+	}
+	var nPosX;
+	if (e.button == "lbutton") 
+	{
+		nPosX = nexacro.toNumber(e.clientx);
+				
+		try 
+		{
+			if (this.currArrange == "vertical1") 
+			{
+				if(this.divView01.getOffsetLeft() < nPosX &&  nPosX < this.nRight )
+				{
+					this.imgVerticalBarMove01.setOffsetLeft(nPosX);
+				}else 
+				{
+					this.imgVerticalBarMove01.setOffsetLeft(this.nMoveX);
+				}
+			}else if (this.currArrange == "vertical2") 
+			{
+				
+				if(this.divView02.getOffsetLeft() < nPosX && nPosX < this.nRight)
+				{
+					this.imgVerticalBarMove02.setOffsetLeft(nPosX);
+				}else 
+				{
+					
+					this.imgVerticalBarMove02.setOffsetLeft(this.nMoveX);
+				}
+			}else if(this.currArrange == "vertical3") 
+			{
+				
+				if(this.divView03.getOffsetLeft() < nPosX && nPosX < this.nRight)
+				{
+					this.imgVerticalBarMove03.setOffsetLeft(nPosX);
+				}else 
+				{
+					
+					this.imgVerticalBarMove03.setOffsetLeft(this.nMoveX);
+				}
+			}
+		}
+		catch (ex) 
+		{
+		}
+	}
+	this.resetScroll();
+};
+/**
+ * FORM화면상의 드래그 상태에서 마우스 떼었을 때 발생하는 이벤트처리(화면접기/펼치기)
+ */
+this.form_ondrop = function(obj:nexacro.Form,e:nexacro.DragEventInfo)
+{
+   if(this.f_drag == false) 
+	{
+		return;
+	}
+
+	this.f_drag = false;
+
+	if (this.currArrange == "vertical1") 
+	{
+		if(this.divView01.getOffsetLeft() < e.clientx && e.clientx < this.nRight )
+		{
+			this.imgVerticalBarMove01.setOffsetLeft(e.clientx);
+		}else 
+		{
+			this.imgVerticalBarMove01.setOffsetLeft(this.nMoveX);
+		}
+			
+	}else if (this.currArrange == "vertical2") 
+	{
+		if(this.divView02.getOffsetLeft() < e.clientx && e.clientx < this.nRight)
+		{
+			this.imgVerticalBarMove02.setOffsetLeft(e.clientx);
+		}else 
+		{
+			this.imgVerticalBarMove02.setOffsetLeft(this.nMoveX);
+		}
+	}else if (this.currArrange == "vertical3") 
+	{
+		if(this.divView03.getOffsetLeft() < e.clientx && e.clientx < this.nRight)
+		{
+			this.imgVerticalBarMove03.setOffsetLeft(e.clientx);
+		}else 
+		{
+			this.imgVerticalBarMove03.setOffsetLeft(this.nMoveX);
+		}
+	}
+	this.resetScroll();
+};
+
+
+this.div_verticalBar_move_ondrag = function(obj:nexacro.ImageViewer,e:nexacro.DragEventInfo)
+{
+	this.currArrange = "vertical1";
+	this.nMoveX = nexacro.toNumber(obj.left);
+	this.nRight =  this.divView02.getOffsetRight();
+	this.f_drag = true;
+
+	return true;
+};
+
+this.div_verticalBar_move00_ondrag = function (obj:ImageViewer, e:nexacro.DragEventInfo)
+{
+	this.currArrange = "vertical2";
+	this.nMoveX = nexacro.toNumber(obj.left);
+	this.nRight =  this.divView03.getOffsetRight();
+	this.f_drag = true;
+
+	return true;
+};
+
+this.div_verticalBar_move01_ondrag = function(obj:ImageViewer, e:nexacro.DragEventInfo)
+{
+	this.currArrange = "vertical3";
+	this.nMoveX = nexacro.toNumber(obj.left);
+	this.nRight =  this.divView04.getOffsetRight();
+	this.f_drag = true;
+
+	return true;
+};
+
+/**
+ * 버튼을 클릭시 접기/펼치기 처리이벤트
+ */
+this.btnLeftRightFold1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.nBarMoveX == -1)
+	{
+		this.imgVerticalBarMove01.setOffsetLeft(this.divView02.getOffsetRight()-this.imgVerticalBarMove01.getOffsetWidth());
+		this.btnLeftRightFold1.set_text("◀");
+		this.nBarMoveX = 1;
+		this.resetScroll();
+	}else 
+	{
+		this.imgVerticalBarMove01.setOffsetLeft(this.divView01.getOffsetLeft());
+		this.btnLeftRightFold1.set_text("▶");
+		this.nBarMoveX = -1;
+		this.resetScroll();
+	}
+};
+
+/**
+ * 버튼을 클릭시 접기/펼치기 처리이벤트
+ */
+this.btnLeftRightFold2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.nBarMoveX == -1)
+	{
+		this.imgVerticalBarMove03.setOffsetLeft(this.divView04.getOffsetRight()-this.imgVerticalBarMove03.getOffsetWidth());
+		this.btnLeftRightFold2.set_text("◀");
+		this.nBarMoveX = 1;
+		this.resetScroll();
+	}else 
+	{
+		this.imgVerticalBarMove03.setOffsetLeft(this.divView03.getOffsetLeft());
+		this.btnLeftRightFold2.set_text("▶");
+		this.nBarMoveX = -1;
+		this.resetScroll();
+	}
+};
+
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>

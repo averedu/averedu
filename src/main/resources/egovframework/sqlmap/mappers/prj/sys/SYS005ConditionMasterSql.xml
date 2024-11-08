@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS005ConditionMasterDAO">
+	
+	<select id="SYS005ConditionMasterDAO.retrieveConditionMasterList" parameterType="map" resultType="egovMap">
+		<![CDATA[
+			SELECT
+				   '0' AS CHK
+				 , A.JEEO_CODE
+				 , A.JEEO_NAME
+				 , A.IPRYEOK_TYPE_CD
+				 , A.DATA_TYPE_CD
+				 , A.CODE_QUERY
+				 , A.RETURN_QUERY
+			FROM   SYS.SINCHEONG_JEEO A
+			WHERE  1=1
+		]]>
+		/* SYS005ConditionMasterDAO.retrieveConditionMasterList 신청제어항목관리 조회 */
+	</select>
+
+	<insert id="SYS005ConditionMasterDAO.insertConditionMasterList" parameterType="map">
+		<![CDATA[
+			INSERT INTO SYS.SINCHEONG_JEEO
+			(
+				   JEEO_CODE
+				 , JEEO_NAME
+				 , IPRYEOK_TYPE_CD
+				 , DATA_TYPE_CD
+				 , CODE_QUERY
+				 , RETURN_QUERY
+                 , INSERT_ID
+                 , INSERT_DT
+                 , INSERT_IP
+                 , INSERT_PG
+                 , UPDATE_ID 
+                 , UPDATE_DT 
+                 , UPDATE_IP
+                 , UPDATE_PG
+			) VALUES                                                  														
+            (                                                        														
+                   (SELECT LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(JEEO_CODE,2)))+1,1)),5,'0') AS JEEO_CODE
+				    FROM   SYS.SINCHEONG_JEEO 
+				    WHERE  1=1)
+                 , #{JEEO_NAME}  
+                 , #{IPRYEOK_TYPE_CD}  
+                 , #{DATA_TYPE_CD}  
+                 , #{CODE_QUERY}  
+                 , #{RETURN_QUERY}
+                 , #{INSERT_ID}
+                 , SYSDATE
+                 , #{INSERT_IP}
+                 , #{INSERT_PG}
+                 , #{UPDATE_ID}
+                 , SYSDATE
+                 , #{UPDATE_IP}
+                 , #{UPDATE_PG}  
+            )
+		]]>
+		/* SYS005ConditionMasterDAO.insertConditionMasterList 신청제어항목관리 생성 */
+	</insert>
+
+	<update id="SYS005ConditionMasterDAO.updateConditionMasterList" parameterType="map">
+		<![CDATA[
+			UPDATE SYS.SINCHEONG_JEEO
+			SET
+				   JEEO_NAME			= #{JEEO_NAME}
+				 , IPRYEOK_TYPE_CD		= #{IPRYEOK_TYPE_CD}
+				 , DATA_TYPE_CD			= #{DATA_TYPE_CD}
+				 , CODE_QUERY			= #{CODE_QUERY}
+				 , RETURN_QUERY			= #{RETURN_QUERY}
+                 , UPDATE_ID			= #{UPDATE_ID}
+                 , UPDATE_DT			= SYSDATE
+                 , UPDATE_IP			= #{UPDATE_IP}
+                 , UPDATE_PG			= #{UPDATE_PG}
+			WHERE  1=1
+			AND    JEEO_CODE			= #{JEEO_CODE}
+		]]>
+		/* SYS005ConditionMasterDAO.updateConditionMasterList 신청제어항목관리 수정 */
+	</update>
+	
+	<delete id="SYS005ConditionMasterDAO.deleteConditionMasterList" parameterType="map">
+		<![CDATA[
+			DELETE SYS.SINCHEONG_JEEO
+			WHERE  1=1
+			AND    JEEO_CODE			= #{JEEO_CODE}
+		]]>
+		/* SYS005ConditionMasterDAO.updateConditionMasterList 신청제어항목관리 삭제 */
+	</delete>
+
+</mapper>

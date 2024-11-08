@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_019" width="1606" height="830" titletext="캐로셀자동배정관리">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
+        <Button id="btn_02" taborder="1" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="60" width="46"/>
+        <Button id="btn_01" taborder="2" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="108" width="46"/>
+        <Button id="btn_00" taborder="3" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="156" width="46"/>
+        <Div id="div_01" taborder="4" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="44" fittocontents="width"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Static id="stc_01" taborder="2" left="159" top="10" height="22" text="터미널" cssclass="sta_WF_SearchLbl" width="65" fittocontents="width"/>
+              <Combo id="Combo00" taborder="3" text="전체" left="54" top="10" width="105" height="22" value="" index="-1"/>
+              <Static id="stc_02" taborder="4" left="329" top="10" height="22" text="출/도착" cssclass="sta_WF_SearchLbl" width="71" fittocontents="width"/>
+              <Combo id="Combo01" taborder="5" text="전체" left="224" top="10" width="105" height="22" value="" index="-1"/>
+              <Combo id="Combo02" taborder="6" text="전체" left="400" top="10" width="75" height="22" value="" index="-1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="5" left="0" top="5" height="22" text="캐로셀자동배정관리" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="stc_09" taborder="6" left="0" top="84" height="22" text="기본정보" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+        <Static id="Static10" taborder="7" text="7" left="0" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="8" text="35" left="415" top="74" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="9" text="15" left="0" top="74" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_00" taborder="10" left="650" top="84" height="22" text="캐로셀배정" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+        <Static id="Static11" taborder="11" text="7" left="650" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static14" taborder="12" text="17" left="650" top="74" width="100" height="17" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Button id="btn_134" taborder="13" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="204" width="46"/>
+        <Button id="btn_132" taborder="14" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="252" width="46"/>
+        <Grid id="Grid00" taborder="15" left="0" top="109" binddataset="ds_grd" width="635" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="300"/>
+                <Column size="300"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell cssclass="point"/>
+                <Cell col="1" cssclass="point"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="16" left="650" top="109" binddataset="ds_grd" bottom="0" width="265" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="264"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="캐로셀ID" cssclass="point"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_01" taborder="17" left="stc_09:0" top="84" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Static id="stc_02" taborder="18" left="stc_00:0" top="84" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Static id="stc_03" taborder="19" left="995" top="84" height="22" text="캐로셀리스트" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+        <Static id="Static01" taborder="20" text="7" left="995" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static03" taborder="21" text="17" left="995" top="74" width="100" height="17" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Grid id="Grid02" taborder="22" left="995" top="109" binddataset="ds_grd" bottom="0" right="0" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="237"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="캐로셀ID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_04" taborder="23" left="stc_03:0" top="84" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Div id="Div01" taborder="24" left="930" top="74" width="50" bottom="0" text="">
+          <Layouts>
+            <Layout>
+              <Button id="btn_62" taborder="0" left="10" top="333" width="30" height="40" cssclass="btn_WF_ShuttleL"/>
+              <Button id="btn_64" taborder="1" left="10" top="383" width="30" height="40" cssclass="btn_WF_ShuttleR"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="25" left="915" top="75" width="15" bottom="0" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Vspltt" top="0" text="" right="0" bottom="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="26" left="980" top="75" width="15" bottom="0" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Vspltt" top="0" text="" right="0" bottom="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="27" left="635" top="75" width="15" bottom="0" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Vspltt" top="0" text="" right="0" bottom="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

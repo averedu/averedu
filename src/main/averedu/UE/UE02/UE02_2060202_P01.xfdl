@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="250" height="130" titletext="장학신청관리(접수)" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="130" mobileorientation="landscape" width="250" description="장학신청관리(접수)">
+        <Static id="Static01_02_00_00_00_00" taborder="3" text="10" left="0" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="4" text="10" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="5" text="10" left="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10" right="0"/>
+        <Static id="stc_09_00" taborder="6" left="7" top="6" height="22" text="장학신청관리(접수)" cssclass="sta_WF_Title02" right="98"/>
+        <Static id="Static01_01_00_00_00" taborder="7" text="8" left="7" top="23" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Button id="btnSave" taborder="1" text="확인" width="60" height="25" cssclass="btn_WF_Crud" bottom="10" right="75" onclick="btnSave_onclick"/>
+        <Div id="divSearch" taborder="0" left="10" top="31" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="0" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00" taborder="1" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="2" text="9" left="26" top="31" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00_01" taborder="3" left="-5" top="9" height="22" text="접수일자" cssclass="sta_WF_SearchLbl" width="80" textAlign="right" onclick="divSearch_stc_01_00_onclick"/>
+              <Static id="Static01_02_00_00_00_01" taborder="4" text="10" left="78" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Calendar id="calJeopsuDt" taborder="5" left="88" width="113" height="22" bottom="9"/>
+              <Static id="Static01_02_00_00" taborder="6" text="27" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnClose" taborder="2" text="닫기" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10" right="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE02_2060202_P01.xfdl(장학신청관리(접수))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/02
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "CLASS_NM";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "설명";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	this.dsMaster.copyData(this.getOwnerFrame().jeopsuData)
+	
+	var objDate = new nexacro.Date();
+	var mm = (objDate.getMonth()+1).toString().padLeft(2, "0");
+	var dd = objDate.getDate().toString().padLeft(2, "0");
+	var today = objDate.getYear() + mm + dd;
+	for(var i = 0 ; i < this.dsMaster.rowcount ; i++) {
+		this.dsMaster.setColumn(i, "JEOPSU_DT", today);
+	}
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+	var result = this.gfn_confirm("접수 하시겠습니까?", "저장","", "question" );
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UE/UE02/Save_2060202_P01.do";
+    var strInDs     = "dsMaster=dsMaster";
+    var strOutDs    = "";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.alert("접수처리가 완료되었습니다.");
+	this.close("CLOSE");
+};
+
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+// 확인버튼 클릭시
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Save();
+};
+
+// 종료버튼 클릭시
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="22"/>
+          <Column id="JANGHAK_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="JANGHAK_NM" type="STRING" size="100"/>
+          <Column id="JIKJEON_HAKGI_SEONGJEOK" type="STRING" size="3"/>
+          <Column id="JIKJEON_HAKGI_CHIDEUK_HAKJEOM" type="STRING" size="2"/>
+          <Column id="JIKJEON_HAKGI_JEOMSU_AVG" type="STRING" size="5"/>
+          <Column id="JANYEO_IPHAK_AMT" type="STRING" size="13"/>
+          <Column id="JANYEO_DEUNGROK_AMT" type="STRING" size="13"/>
+          <Column id="SUHYE_GBCD" type="STRING" size="2"/>
+          <Column id="SINCHEONG_SEUNGIN_GBCD" type="STRING" size="2"/>
+          <Column id="SINCHEONG_DT" type="STRING" size="8"/>
+          <Column id="SINCHEONG_SAYU" type="STRING" size="100"/>
+          <Column id="SEUNGIN_DT" type="STRING" size="8"/>
+          <Column id="SEUNGIN_SABEON" type="STRING" size="20"/>
+          <Column id="BANRYEO_DT" type="STRING" size="8"/>
+          <Column id="BANRYEO_SABEON" type="STRING" size="20"/>
+          <Column id="BANRYEO_SAYU" type="STRING" size="100"/>
+          <Column id="JEOPSU_DT" type="STRING" size="8"/>
+          <Column id="JEOPSUJA_SABEON" type="STRING" size="20"/>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="50"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="HAKNYEON" type="STRING" size="1"/>
+          <Column id="JUYA_GBCD" type="STRING" size="3"/>
+          <Column id="BIRTHDAY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.calJeopsuDt" propid="value" datasetid="dsMaster" columnid="BANRYEO_DT"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS009UserMenuButtonAuthDAO">									                            
+    
+     <select id="SYS009UserMenuButtonAuthDAO.retrieveUserInfoList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   A.USER_ID                     /*사용자ID*/             
+                 , A.USER_NM                     /*사용자명*/             
+              FROM COMM.XBT_USER A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="USER_ID != null and USER_ID != ''">    
+            <![CDATA[                                         							                        
+               AND A.USER_ID LIKE '%' + #{USER_ID} + '%'  
+            ]]>                                           													
+        </if>
+        <if test="USER_NM != null and USER_NM != ''">    
+            <![CDATA[                                         							                        
+               AND A.USER_NM LIKE '%' +  #{USER_NM} + '%'  
+            ]]>                                           													
+        </if>                                                                                                   
+        /* SYS009UserMenuButtonAuthDAO.retrieveUserInfoList 기초사용자 조회 */	                                 
+    </select> 	                                                        													 
+    
+     <select id="SYS009UserMenuButtonAuthDAO.retrieveUserAuthMenuList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT DISTINCT D.USER_ID
+			     , B.MENU_ID 
+			     , B.MENU_NM
+			  FROM COMM.XBT_AUTH_MENU A 
+			     , COMM.XBT_MENU_INFO B
+			     , COMM.XBT_USER_AUTH D
+			 WHERE 1=1
+			   AND A.MENU_ID = B.MENU_ID
+			   AND A.AUTH_CD = D.AUTH_CD
+			   AND B.PROG_ID IS NOT NULL
+			   AND D.USER_ID = #{USER_ID}                                    							 
+        ]]>                                                      												 
+        /* SYS009UserMenuButtonAuthDAO.retrieveUserAuthMenuList 기초권한메뉴 조회 */	                                 
+    </select> 	     
+    
+    
+    <select id="SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.USER_ID                     /*사용자아이디*/             
+                 , A.MENU_ID                     /*메뉴아이디*/             
+                 , A.BTTN_SEQ                    /*버튼아이디*/             
+                 , A.BTTN_NM                     /*버튼명*/             
+                 , A.BTTN_FG                     /*버튼구분(W:쓰기,D:읽기,V:미보기)*/             
+                 , A.REG_ID                      /*등록자ID*/             
+                 , A.REG_DT                    /*등록일자*/             
+                 , A.MOD_ID                      /*수정자ID*/             
+                 , A.MOD_DT                    /*수정일자*/             
+              FROM COMM.XBT_BUTTON_AUTH A                                             							 
+             WHERE 1=1 
+               AND A.USER_ID         = #{USER_ID}  
+               AND A.MENU_ID         = #{MENU_ID}                                              												     
+        ]]>                                                      												 
+        /* SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthList 사용자메뉴별버튼권한 조회 */	                                 
+    </select> 	                                                        													 
+
+    <select id="SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   NVL(MAX(BTTN_SEQ),0) + 1 AS KEY_CODE        								     
+              FROM COMM.XBT_BUTTON_AUTH                                             								 
+             WHERE 1=1                                             												     
+               AND MENU_ID         = #{MENU_ID}    
+               AND USER_ID         = #{USER_ID}    
+                 
+        ]]>                                                      												             
+        /* SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthListPKey 사용자메뉴별버튼권한 PK 조회 */								             
+    </select> 	                                                        													     
+
+    <select id="SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_BUTTON_AUTH
+             WHERE 1=1
+               AND USER_ID         = #{USER_ID}
+               AND MENU_ID         = #{MENU_ID}
+               AND BTTN_SEQ        = #{BTTN_SEQ}
+        ]]>
+        /* SYS009UserMenuButtonAuthDAO.retrieveUserMenuButtonAuthListKey 사용자메뉴별버튼권한 중복 조회 */
+    </select>
+
+    <insert id="SYS009UserMenuButtonAuthDAO.insertUserMenuButtonAuthList" parameterType="map"> 
+        <![CDATA[                                                														  
+             INSERT INTO COMM.XBT_BUTTON_AUTH                                       										  
+            (                                       																	  
+                   MENU_ID                     /**/ 
+                 , USER_ID                     /**/ 
+                 , BTTN_SEQ                    /*버튼아이디*/ 
+                 , BTTN_NM                     /*버튼명*/ 
+                 , BTTN_FG                     /*버튼구분(W:쓰기,D:읽기,V:미보기)*/ 
+                 , REG_ID                      /*등록자ID*/ 
+                 , REG_DT                    /*등록일자*/ 
+                 , MOD_ID                      /*수정자ID*/ 
+                 , MOD_DT                    /*수정일자*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{MENU_ID} 
+                 , #{USER_ID}  
+                 , #{BTTN_SEQ}  
+                 , #{BTTN_NM}  
+                 , #{BTTN_FG}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                     						
+        ]]>                                    											
+        /* SYS009UserMenuButtonAuthDAO.insertUserMenuButtonAuthList 사용자메뉴별버튼권한 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS009UserMenuButtonAuthDAO.updateUserMenuButtonAuthList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_BUTTON_AUTH                                			        
+               SET                                                      				
+                   MENU_ID         = #{MENU_ID}                     /*메뉴아이디*/  
+                 , USER_ID         = #{USER_ID}                     /*사용자아이디*/  
+                 , BTTN_SEQ        = #{BTTN_SEQ}                    /*버튼아이디*/  
+                 , BTTN_NM         = #{BTTN_NM}                     /*버튼명*/  
+                 , BTTN_FG         = #{BTTN_FG}                     /*버튼구분(W:쓰기,D:읽기,V:미보기)*/  
+                 , REG_ID          = #{REG_ID}                      /*등록자ID*/  
+                 , REG_DT        = SYSDATE                        /*등록일자*/  
+                 , MOD_ID          = #{MOD_ID}                      /*수정자ID*/  
+                 , MOD_DT        = SYSDATE                        /*수정일자*/  
+             WHERE 1=1                                         						                        
+               AND MENU_ID         = #{MENU_ID}  
+               AND USER_ID         = #{USER_ID}  
+               AND BTTN_SEQ        = #{BTTN_SEQ}  
+        ]]>  	                                   							                            				
+        /* SYS009UserMenuButtonAuthDAO.updateUserMenuButtonAuthList 사용자메뉴별버튼권한 수정 */								
+    </update>                                                           												
+    <delete id="SYS009UserMenuButtonAuthDAO.deleteUserMenuButtonAuthList" parameterType="map">    
+        <![CDATA[                                                           												             
+            DELETE FROM COMM.XBT_BUTTON_AUTH                                                  							      
+             WHERE 1=1
+               AND MENU_ID         = #{MENU_ID}  
+               AND USER_ID         = #{USER_ID}  
+               AND BTTN_SEQ        = #{BTTN_SEQ}     
+        ]]>                                                															           
+        /* SYS009UserMenuButtonAuthDAO.deleteUserMenuButtonAuthList 사용자메뉴별버튼권한 삭제 */								       
+    </delete>	                                                          													   
+</mapper>                                                                 													   
+            

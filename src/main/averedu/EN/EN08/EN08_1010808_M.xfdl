@@ -1,0 +1,1616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="지역/학교별학과별통계" onload="form_onload">
+    <Layouts>
+      <Layout height="800" width="1640" description="지역/학교별학과별통계">
+        <Static id="Static01" taborder="7" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00" taborder="8" left="0" top="52" height="22" text="지역/학교별학과별통계" cssclass="sta_WF_Title02" right="1475"/>
+        <Static id="staRowCnt" taborder="9" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="177" top="51" height="24" usedecorate="true" right="1340"/>
+        <Static id="Static01_01_00_00_00" taborder="10" text="8" left="0" top="69" width="320" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="7" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="8" text="9" left="20" top="31" width="1610" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Combo id="cboSearchJeongwon" taborder="2" text="" left="584" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsJeongwon" onkeydown="divSearch_cboSearchJeongwon_onkeydown"/>
+              <Static id="stc_01" taborder="9" left="1146" top="9" height="22" text="통계구분1" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Static id="stc_01_00_00_00" taborder="10" left="493" top="9" height="22" text="정원구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="stc_01_00" taborder="11" left="7" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Spin id="spnSearchYYYY" taborder="0" left="100" top="9" width="124" height="22" onkeydown="divSearch_spnSearchYYYY_onkeydown" cssclass="point" max="3000" min="0" value=""/>
+              <Static id="stc_01_00_00" taborder="12" left="248" top="9" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchMojip" taborder="1" text="" left="341" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" onkeydown="divSearch_cboSearchMojip_onkeydown" innerdataset="dsMojip"/>
+              <Static id="Static01_02_00" taborder="13" text="27" left="0" top="0" width="27" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="14" text="10" left="90" top="0" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="15" text="10" left="331" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01" taborder="16" text="← 56 →" left="465" top="-1" width="56" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="17" text="10" left="574" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_00" taborder="18" text="← 56 →" left="708" top="-1" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_01" taborder="19" text="10" left="1258" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_01" taborder="20" text="← 56 →" left="224" top="3" width="56" height="60" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchTonggye1" taborder="5" text="" left="1268" top="9" width="94" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsTonggye1" onitemchanged="fn_TonggyeChange"/>
+              <Static id="Static01_02_00_00" taborder="21" text="27" top="0" width="27" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+              <Static id="stc_01_01" taborder="22" left="683" top="9" height="22" text="지역" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00_01_00" taborder="23" text="10" left="795" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchJiyeok" taborder="3" text="" left="805" top="9" width="74" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsJiyeok" onkeydown="divSearch_cboSearchJiyeok_onkeydown"/>
+              <Static id="Static01_02_01_01_00_00" taborder="24" text="← 56 →" left="879" top="-1" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_01_00" taborder="25" left="867" top="9" height="22" text="학교명" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Edit id="edtSearchGogyoNm" taborder="26" left="990" top="9" width="124" height="22" readonly="true"/>
+              <Static id="Static01_02_00_00_00_00_02" taborder="27" text="10" left="1114" top="6" width="10" height="27" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Button id="btnSearchGogyo" taborder="4" left="1124" top="9" width="22" height="22" cssclass="btn_WF_PopSrch" onclick="divSearch_btnSearchGogyo_onclick"/>
+              <Static id="Static01_02_00_00_00_00_01_01" taborder="28" text="10" left="980" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_00_00_00" taborder="29" text="← 56 →" left="1146" top="9" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_02" taborder="30" left="1362" top="9" height="22" text="통계구분2" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00_01_02" taborder="31" text="10" left="1474" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchTonggye2" taborder="6" text="" left="1484" top="9" width="94" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsTonggye2" onitemchanged="fn_TonggyeChange"/>
+              <Static id="Static01_02_01_01_00_00_00_00" taborder="32" text="← 56 →" left="1362" top="9" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdMaster1" taborder="1" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="true" binddataset="dsMaster1" autofittype="none" onheaddblclick="grdMaster1_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="지역"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="지원자"/>
+                <Cell row="1" col="3" text="지원자"/>
+                <Cell row="1" col="4" text="지원자"/>
+                <Cell row="1" col="5" text="지원자"/>
+                <Cell row="1" col="6" text="지원자"/>
+                <Cell row="1" col="7" text="지원자"/>
+                <Cell row="1" col="8" text="지원자"/>
+                <Cell row="1" col="9" text="지원자"/>
+                <Cell row="1" col="10" text="지원자"/>
+                <Cell row="1" col="11" text="지원자"/>
+                <Cell row="1" col="12" text="지원자"/>
+                <Cell row="1" col="13" text="지원자"/>
+                <Cell row="1" col="14" text="지원자"/>
+                <Cell row="1" col="15" text="지원자"/>
+                <Cell row="1" col="16" text="지원자"/>
+                <Cell row="1" col="17" text="지원자"/>
+                <Cell row="1" col="18" text="지원자"/>
+                <Cell row="1" col="19" text="지원자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:JIYEOK_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;JIYEOK_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster2" taborder="2" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="false" binddataset="dsMaster2" autofittype="none" onheaddblclick="grdMaster2_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="지역"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="합격자"/>
+                <Cell row="1" col="3" text="합격자"/>
+                <Cell row="1" col="4" text="합격자"/>
+                <Cell row="1" col="5" text="합격자"/>
+                <Cell row="1" col="6" text="합격자"/>
+                <Cell row="1" col="7" text="합격자"/>
+                <Cell row="1" col="8" text="합격자"/>
+                <Cell row="1" col="9" text="합격자"/>
+                <Cell row="1" col="10" text="합격자"/>
+                <Cell row="1" col="11" text="합격자"/>
+                <Cell row="1" col="12" text="합격자"/>
+                <Cell row="1" col="13" text="합격자"/>
+                <Cell row="1" col="14" text="합격자"/>
+                <Cell row="1" col="15" text="합격자"/>
+                <Cell row="1" col="16" text="합격자"/>
+                <Cell row="1" col="17" text="합격자"/>
+                <Cell row="1" col="18" text="합격자"/>
+                <Cell row="1" col="19" text="합격자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:JIYEOK_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;JIYEOK_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster3" taborder="3" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="false" binddataset="dsMaster3" autofittype="none" onheaddblclick="grdMaster3_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="지역"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="등록자"/>
+                <Cell row="1" col="3" text="등록자"/>
+                <Cell row="1" col="4" text="등록자"/>
+                <Cell row="1" col="5" text="등록자"/>
+                <Cell row="1" col="6" text="등록자"/>
+                <Cell row="1" col="7" text="등록자"/>
+                <Cell row="1" col="8" text="등록자"/>
+                <Cell row="1" col="9" text="등록자"/>
+                <Cell row="1" col="10" text="등록자"/>
+                <Cell row="1" col="11" text="등록자"/>
+                <Cell row="1" col="12" text="등록자"/>
+                <Cell row="1" col="13" text="등록자"/>
+                <Cell row="1" col="14" text="등록자"/>
+                <Cell row="1" col="15" text="등록자"/>
+                <Cell row="1" col="16" text="등록자"/>
+                <Cell row="1" col="17" text="등록자"/>
+                <Cell row="1" col="18" text="등록자"/>
+                <Cell row="1" col="19" text="등록자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:JIYEOK_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;JIYEOK_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster4" taborder="4" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="false" binddataset="dsMaster4" autofittype="none" onheaddblclick="grdMaster4_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="학교"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="지원자"/>
+                <Cell row="1" col="3" text="지원자"/>
+                <Cell row="1" col="4" text="지원자"/>
+                <Cell row="1" col="5" text="지원자"/>
+                <Cell row="1" col="6" text="지원자"/>
+                <Cell row="1" col="7" text="지원자"/>
+                <Cell row="1" col="8" text="지원자"/>
+                <Cell row="1" col="9" text="지원자"/>
+                <Cell row="1" col="10" text="지원자"/>
+                <Cell row="1" col="11" text="지원자"/>
+                <Cell row="1" col="12" text="지원자"/>
+                <Cell row="1" col="13" text="지원자"/>
+                <Cell row="1" col="14" text="지원자"/>
+                <Cell row="1" col="15" text="지원자"/>
+                <Cell row="1" col="16" text="지원자"/>
+                <Cell row="1" col="17" text="지원자"/>
+                <Cell row="1" col="18" text="지원자"/>
+                <Cell row="1" col="19" text="지원자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GOGYO_NM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:GOGYO_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;GOGYO_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster5" taborder="5" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="false" binddataset="dsMaster5" autofittype="none" onheaddblclick="grdMaster5_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="학교"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="합격자"/>
+                <Cell row="1" col="3" text="합격자"/>
+                <Cell row="1" col="4" text="합격자"/>
+                <Cell row="1" col="5" text="합격자"/>
+                <Cell row="1" col="6" text="합격자"/>
+                <Cell row="1" col="7" text="합격자"/>
+                <Cell row="1" col="8" text="합격자"/>
+                <Cell row="1" col="9" text="합격자"/>
+                <Cell row="1" col="10" text="합격자"/>
+                <Cell row="1" col="11" text="합격자"/>
+                <Cell row="1" col="12" text="합격자"/>
+                <Cell row="1" col="13" text="합격자"/>
+                <Cell row="1" col="14" text="합격자"/>
+                <Cell row="1" col="15" text="합격자"/>
+                <Cell row="1" col="16" text="합격자"/>
+                <Cell row="1" col="17" text="합격자"/>
+                <Cell row="1" col="18" text="합격자"/>
+                <Cell row="1" col="19" text="합격자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GOGYO_NM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:GOGYO_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;GOGYO_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster6" taborder="6" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="false" binddataset="dsMaster6" autofittype="none" onheaddblclick="grdMaster6_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="81"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="135"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="학교"/>
+                <Cell col="1" rowspan="2" text="주야구분"/>
+                <Cell col="2" text="간호학과"/>
+                <Cell col="3" text="물리치료과"/>
+                <Cell col="4" text="임상병리과"/>
+                <Cell col="5" text="방사선과"/>
+                <Cell col="6" text="치위생과"/>
+                <Cell col="7" text="보건행정과"/>
+                <Cell col="8" text="토목조경과"/>
+                <Cell col="9" text="전기과"/>
+                <Cell col="10" text="사회복지과"/>
+                <Cell col="11" text="웰빙복지융합과"/>
+                <Cell col="12" text="뷰티미용과"/>
+                <Cell col="13" text="운동건강과"/>
+                <Cell col="14" text="건설융합과"/>
+                <Cell col="15" text="휴먼융합복지과"/>
+                <Cell col="16" text="호텔조리제빵과"/>
+                <Cell col="17" text="평생교육복지학"/>
+                <Cell col="18" text="유튜브크리에이터학과"/>
+                <Cell col="19" text=" "/>
+                <Cell col="20" rowspan="2" text="총계"/>
+                <Cell row="1" col="2" text="등록자"/>
+                <Cell row="1" col="3" text="등록자"/>
+                <Cell row="1" col="4" text="등록자"/>
+                <Cell row="1" col="5" text="등록자"/>
+                <Cell row="1" col="6" text="등록자"/>
+                <Cell row="1" col="7" text="등록자"/>
+                <Cell row="1" col="8" text="등록자"/>
+                <Cell row="1" col="9" text="등록자"/>
+                <Cell row="1" col="10" text="등록자"/>
+                <Cell row="1" col="11" text="등록자"/>
+                <Cell row="1" col="12" text="등록자"/>
+                <Cell row="1" col="13" text="등록자"/>
+                <Cell row="1" col="14" text="등록자"/>
+                <Cell row="1" col="15" text="등록자"/>
+                <Cell row="1" col="16" text="등록자"/>
+                <Cell row="1" col="17" text="등록자"/>
+                <Cell row="1" col="18" text="등록자"/>
+                <Cell row="1" col="19" text="등록자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GOGYO_NM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:JUYA_GBNM"/>
+                <Cell col="2" text="bind:CNT01" displaytype="number"/>
+                <Cell col="3" text="bind:CNT02" displaytype="number"/>
+                <Cell col="4" text="bind:CNT03" displaytype="number"/>
+                <Cell col="5" text="bind:CNT04" displaytype="number"/>
+                <Cell col="6" text="bind:CNT05" displaytype="number"/>
+                <Cell col="7" text="bind:CNT06" displaytype="number"/>
+                <Cell col="8" text="bind:CNT07" displaytype="number"/>
+                <Cell col="9" text="bind:CNT08" displaytype="number"/>
+                <Cell col="10" text="bind:CNT09" displaytype="number"/>
+                <Cell col="11" text="bind:CNT10" displaytype="number"/>
+                <Cell col="12" text="bind:CNT11" displaytype="number"/>
+                <Cell col="13" text="bind:CNT12" displaytype="number"/>
+                <Cell col="14" text="bind:CNT13" displaytype="number"/>
+                <Cell col="15" text="bind:CNT14" displaytype="number"/>
+                <Cell col="16" text="bind:CNT15" displaytype="number"/>
+                <Cell col="17" text="bind:CNT16" displaytype="number"/>
+                <Cell col="18" text="bind:CNT17" displaytype="number"/>
+                <Cell col="19" text="bind:CNT18" displaytype="number"/>
+                <Cell col="20" text="bind:GOGYO_CNT" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합   계:"/>
+                <Cell col="2" text="expr:dataset.getSum(&quot;CNT01&quot;)" displaytype="number"/>
+                <Cell col="3" text="expr:dataset.getSum(&quot;CNT02&quot;)" displaytype="number"/>
+                <Cell col="4" text="expr:dataset.getSum(&quot;CNT03&quot;)" displaytype="number"/>
+                <Cell col="5" text="expr:dataset.getSum(&quot;CNT04&quot;)" displaytype="number"/>
+                <Cell col="6" text="expr:dataset.getSum(&quot;CNT05&quot;)" displaytype="number"/>
+                <Cell col="7" text="expr:dataset.getSum(&quot;CNT06&quot;)" displaytype="number"/>
+                <Cell col="8" text="expr:dataset.getSum(&quot;CNT07&quot;)" displaytype="number"/>
+                <Cell col="9" text="expr:dataset.getSum(&quot;CNT08&quot;)" displaytype="number"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;CNT09&quot;)" displaytype="number"/>
+                <Cell col="11" text="expr:dataset.getSum(&quot;CNT10&quot;)" displaytype="number"/>
+                <Cell col="12" text="expr:dataset.getSum(&quot;CNT11&quot;)" displaytype="number"/>
+                <Cell col="13" text="expr:dataset.getSum(&quot;CNT12&quot;)" displaytype="number"/>
+                <Cell col="14" text="expr:dataset.getSum(&quot;CNT13&quot;)" displaytype="number"/>
+                <Cell col="15" text="expr:dataset.getSum(&quot;CNT14&quot;)" displaytype="number"/>
+                <Cell col="16" text="expr:dataset.getSum(&quot;CNT15&quot;)" displaytype="number"/>
+                <Cell col="17" text="expr:dataset.getSum(&quot;CNT16&quot;)" displaytype="number"/>
+                <Cell col="18" text="expr:dataset.getSum(&quot;CNT17&quot;)" displaytype="number"/>
+                <Cell col="19" text="expr:dataset.getSum(&quot;CNT18&quot;)" displaytype="number"/>
+                <Cell col="20" text="expr:dataset.getSum(&quot;GOGYO_CNT&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="JEONGWON_GBCD" type="STRING" size="256"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="256"/>
+          <Column id="GOGYO_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJeongwon" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTonggye1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="CODE_NM">지원자</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="CODE_NM">합격자</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="CODE_NM">등록자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMojip" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJiyeok" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTonggye2">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="CODE_NM">지역별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="CODE_NM">학교별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMaster1">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_GBNM" type="STRING" size="65532"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster2">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_GBNM" type="STRING" size="65532"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster3">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_GBNM" type="STRING" size="65532"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster4">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="GOGYO_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster5">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="GOGYO_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster6">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_GBNM" type="STRING" size="65532"/>
+          <Column id="CNT01" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT02" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT03" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT04" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT05" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT06" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT07" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT08" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT09" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT10" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT11" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT12" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT13" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT14" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT15" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT16" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT17" type="BIGDECIMAL" size="22"/>
+          <Column id="CNT18" type="BIGDECIMAL" size="22"/>
+          <Column id="GOGYO_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUYA_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item2" compid="divSearch.form.cboSearchJeongwon" propid="value" datasetid="ds_input" columnid="JEONGWON_GBCD"/>
+      <BindItem id="item13" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item14" compid="divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+      <BindItem id="item0" compid="divSearch.form.cboSearchJiyeok" propid="value" datasetid="ds_input" columnid="JIYEOK_GBCD"/>
+      <BindItem id="item1" compid="divSearch.form.edtSearchGogyoNm" propid="value" datasetid="ds_input" columnid="GOGYO_NM"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN08_1010808_M.xfdl(지역/학교별학과별통계)
+* 작 성         일 명: 백재인
+* 작 성         일 자: 2021/06/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsJeongwon|dsMojip|dsJiyeok";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00006|00005|00053";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|T|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+    // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+	this.fn_GijunYyyy();
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster1);
+	this.gfn_clearSortAll(this.grdMaster2);
+	this.gfn_clearSortAll(this.grdMaster3);
+	this.gfn_clearSortAll(this.grdMaster4);
+	this.gfn_clearSortAll(this.grdMaster5);
+	this.gfn_clearSortAll(this.grdMaster6);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+			case "MojipGb":
+                    this.fn_PostMojipGb();
+                break;
+            case "Ret1":
+                    this.fn_PostRet1();
+                break;
+			case "Ret2":
+                    this.fn_PostRet2();
+                break;
+			case "Ret3":
+                    this.fn_PostRet3();
+                break;
+			case "Ret4":
+                    this.fn_PostRet4();
+                break;
+			case "Ret5":
+                    this.fn_PostRet5();
+                break;
+			case "Ret6":
+                    this.fn_PostRet6();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+//Popup callback영역
+this.fn_popupCallback = function(strId, strVal)
+{
+	switch(strId)
+	{
+		case "gogyo" :		
+				var sRtn = strVal.split(",");
+				if(sRtn[0] != "CLOSE")
+				{
+					this.ds_input.setColumn(0, "GOGYO_NM", sRtn[1]);
+					this.ds_input.setColumn(0, "JIYEOK_GBCD", sRtn[2]);
+				}
+			break;		
+		default:
+            break;
+	}
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+		case "print" :       // 출력
+                 this.fn_Print();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == null || this.ds_input.getColumn(0, "IPSI_YYYY") == '')
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	var tonggyeGbcd1 = this.divSearch.form.cboSearchTonggye1.value
+	var tonggyeGbcd2 = this.divSearch.form.cboSearchTonggye2.value
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+	
+	if(tonggyeGbcd1 == '0' && tonggyeGbcd2 == '0')
+	{
+		var strSvc      = "Ret1";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_1.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster1=dsMaster1";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	}
+	else if(tonggyeGbcd1 == '1' && tonggyeGbcd2 == '0')
+	{
+		var strSvc      = "Ret2";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_2.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster2=dsMaster2";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+	else if(tonggyeGbcd1 == '2' && tonggyeGbcd2 == '0')
+	{
+		var strSvc      = "Ret3";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_3.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster3=dsMaster3";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+	else if(tonggyeGbcd1 == '0' && tonggyeGbcd2 == '1')
+	{
+		var strSvc      = "Ret4";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_4.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster4=dsMaster4";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+	else if(tonggyeGbcd1 == '1' && tonggyeGbcd2 == '1')
+	{
+		var strSvc      = "Ret5";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_5.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster5=dsMaster5";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+	else if(tonggyeGbcd1 == '2' && tonggyeGbcd2 == '1')
+	{
+		var strSvc      = "Ret6";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010808_M_6.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster6=dsMaster6";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet1 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster1);
+};
+this.fn_PostRet2 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster2);
+};
+this.fn_PostRet3 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster3);
+};
+this.fn_PostRet4 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster4);
+};
+this.fn_PostRet5 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster5);
+};
+this.fn_PostRet6 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster6);
+};
+
+/**********************************************************************
+        06. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        07. 출력
+***********************************************************************/
+this.fn_Print = function()
+{
+	var IPSI_YYYY				= this.ds_input.getColumn(0, "IPSI_YYYY");
+	var MOJIP_GBCD 				= this.ds_input.getColumn(0, "MOJIP_GBCD");
+	var JEONGWON_GBCD 			= this.ds_input.getColumn(0, "JEONGWON_GBCD");
+	var JIYEOK_GBCD				= this.ds_input.getColumn(0, "JIYEOK_GBCD");
+	var GOGYO_NM				= this.ds_input.getColumn(0, "GOGYO_NM");
+	
+	var tonggyeGbcd1 = this.divSearch.form.cboSearchTonggye1.value;
+	var tonggyeGbcd2 = this.divSearch.form.cboSearchTonggye2.value;
+	
+	if(IPSI_YYYY == "" || IPSI_YYYY == null)
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+	var param =   { IPSI_YYYY:IPSI_YYYY
+				  , MOJIP_GBCD:MOJIP_GBCD
+				  , JEONGWON_GBCD:JEONGWON_GBCD
+				  , JIYEOK_GBCD:JIYEOK_GBCD
+				  , GOGYO_NM:GOGYO_NM
+				  }
+				  
+	// 지원자 & 지역별
+	if(tonggyeGbcd1 == '0' && tonggyeGbcd2 == '0')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_01.crf',  param);
+	}
+	// 합격자 & 지역별
+	else if(tonggyeGbcd1 == '1'&& tonggyeGbcd2 == '0')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_02.crf',  param);
+	}
+	// 등록자 & 지역별
+	else if(tonggyeGbcd1 == '2'&& tonggyeGbcd2 == '0')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_03.crf',  param);
+	}
+	// 지원자 & 학교별
+	else if(tonggyeGbcd1 == '0'&& tonggyeGbcd2 == '1')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_04.crf',  param);
+	}
+	// 합격자 & 학교별
+	else if(tonggyeGbcd1 == '1'&& tonggyeGbcd2 == '1')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_05.crf',  param);
+	}
+	// 등록자 & 학교별
+	else if(tonggyeGbcd1 == '2'&& tonggyeGbcd2 == '1')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010808_M_06.crf',  param);
+	}
+};
+
+/**********************************************************************
+        08. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster1_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster2_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster3_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster4_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster5_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster6_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+// 통계구분 변경시
+this.fn_TonggyeChange = function()
+{
+	var tonggyeGbcd1 = this.divSearch.form.cboSearchTonggye1.value;
+	var tonggyeGbcd2 = this.divSearch.form.cboSearchTonggye2.value;
+	
+	if(tonggyeGbcd1 == 0 && tonggyeGbcd2 == 0)
+	{
+		this.grdMaster1.set_visible(true);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(false);
+		this.grdMaster4.set_visible(false);
+		this.grdMaster5.set_visible(false);
+		this.grdMaster6.set_visible(false);
+	}
+	else if(tonggyeGbcd1 == 1 && tonggyeGbcd2 == 0)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(true);
+		this.grdMaster3.set_visible(false);
+		this.grdMaster4.set_visible(false);
+		this.grdMaster5.set_visible(false);
+		this.grdMaster6.set_visible(false);
+	}	
+	else if(tonggyeGbcd1 == 2 && tonggyeGbcd2 == 0)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(true);
+		this.grdMaster4.set_visible(false);
+		this.grdMaster5.set_visible(false);
+		this.grdMaster6.set_visible(false);
+	}	
+	else if(tonggyeGbcd1 == 0 && tonggyeGbcd2 == 1)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(false);
+		this.grdMaster4.set_visible(true);
+		this.grdMaster5.set_visible(false);
+		this.grdMaster6.set_visible(false);
+	}	
+	else if(tonggyeGbcd1 == 1 && tonggyeGbcd2 == 1)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(false);
+		this.grdMaster4.set_visible(false);
+		this.grdMaster5.set_visible(true);
+		this.grdMaster6.set_visible(false);
+	}	
+	else if(tonggyeGbcd1 == 2 && tonggyeGbcd2 == 1)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(false);
+		this.grdMaster4.set_visible(false);
+		this.grdMaster5.set_visible(false);
+		this.grdMaster6.set_visible(true);
+	}	
+};
+
+/**********************************************************************
+        09. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.divSearch.form.cboSearchTonggye1.set_index(0);
+	this.divSearch.form.cboSearchTonggye2.set_index(0);
+}
+
+/**********************************************************************
+        10. 팝업
+***********************************************************************/
+this.divSearch_btnSearchGogyo_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {yyyy:this.ds_input.getColumn(0, "IPSI_YYYY")};
+	var oOption = {};	
+	var sPopupCallBack = "fn_popupCallback";
+	this.gfn_openPopup("gogyo","EN01::EN01_1010106_P02.xfdl",oArg,sPopupCallBack,oOption);		
+};
+
+/**********************************************************************
+        11. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_spnSearchYYYY_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"IPSI_YYYY",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchMojip_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"MOJIP_GBCD",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchJeongwon_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JEONGWON_GBCD",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchJiyeok_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JIYEOK_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};
+]]></Script>
+  </Form>
+</FDL>

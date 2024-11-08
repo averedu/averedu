@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample002_popup" width="1640" height="800" titletext="ALERT/CONFIRM  메세지창" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Button id="btnConfirm" taborder="1" text="confirm" left="240" top="103" width="250" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnConfirm_onclick"/>
+        <Button id="btnAlert" taborder="0" text="alert" left="7" top="103" width="225" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnAlert_onclick"/>
+        <Static id="Static06" taborder="2" text="각종: alert/confirm/(gfn_alert/gfn_confirm)/gfn_msg(alert+confirm)" top="6" height="44" textAlign="center" background="#f80626" color="#ffffff" font="bold 18px/normal &quot;Gulim&quot;" left="5" right="5"/>
+        <Static id="Static01" taborder="3" text="※ 기본샘풀(일반) " top="55" height="40" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="5" right="5"/>
+        <Static id="Static02" taborder="4" text="※ 개선샘풀(gfn_alert/gfn_confirm =&gt; 일반 alert/confirm메세지를 DB기준으로 메세지처리(파라미터처리)  )" top="255" height="40" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="5" right="5"/>
+        <Static id="Static03" taborder="5" text="※ 팝업창을 이용한 메세지 처리(gfn_msg=&gt; 일반 alert/confirm메세지를 DB기준으로 메세지처리(파라미터처리)  )" top="480" height="40" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="5" right="5"/>
+        <Button id="btnGfnAlert" taborder="6" text="gfn_alert" left="6" top="301" width="225" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnGfnAlert_onclick"/>
+        <Button id="btnGfnConfirm" taborder="7" text="gfn_confirm" left="239" top="301" width="250" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnGfnConfirm_onclick"/>
+        <Button id="btnMsgAlert" taborder="8" text="gfn_msg(Alert)" left="7" top="527" width="225" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnMsgAlert_onclick"/>
+        <Button id="btnMsgConfirm" taborder="9" text="gfn_msg(Confirm)" left="240" top="527" width="250" height="40" font="bold 20pt/normal &quot;Helvetica&quot;" onclick="btnMsgConfirm_onclick"/>
+        <Static id="Static00" taborder="10" text="- this.alert(&quot;저장할수없습니다.&quot;,&quot;테스트&quot;,&quot;information&quot;);&#13;&#10;- 메세지값,타이틀,이미지표시&#13;&#10;  &gt; 메세지내용.&#13;&#10;  &gt; 메세지 제목(타이틀) html5에서는 적용않됨.&#13;&#10;  &gt; 이미지표시4(&quot;error&quot;: &quot;X&quot;/&quot;question&quot;:(&quot;?&quot;)&#13;&#10;                            /&quot;warning&quot;:(&quot;!&quot;)/&quot;information&quot;:(&quot;!&quot;) 모양표시" top="150" height="100" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="6" verticalAlign="top" right="824"/>
+        <Static id="Static04" taborder="11" text="this.gfn_alert(&quot;MSG00001&quot;,&quot;팝업입니다&quot;,&quot;하나,둘,셋&quot;,&quot;warning&quot;);&#13;&#10;1.번째인자: 메세지테이블에 메세지코드&#13;&#10;2.번째인자: 메세지타이틀 직접입력(문자열) (HTML5적용않됨)&#13;&#10;3.번째인자: {#1}:파라미터인자값 {#2}두번째 파라미터인자값(최대6개까지가능)&#13;&#10;4.번째인자: 메세지 타입(HTML5적용않됨." top="350" height="125" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="6" verticalAlign="top" right="824"/>
+        <Static id="Static05" taborder="12" text="this.gfn_msg(&quot;MSG00001&quot;,&quot;1,2,3&quot;,&quot;fn_msgCallback&quot;,&quot;gfn_alert&quot;);&#13;&#10;1.번째인자: 문자/DB메세지코드(메제지내용)&#13;&#10;2.번째인자: {#1}기준으로 문자/인자값코드(컴포넌트) {#1},{#2}두개의 인자값.&#13;&#10;3.번째인자: callBack 메세지처리후 후처리함수.&#13;&#10;4.번째인자: callBack 메세지에 처리한 후처러 서비스별ID 팝업인자 값 &#13;&#10;- 팝의을 이용해서 따로 메세지 ALERT만든것임 &#13;&#10;- DB기준의 &quot;OK&quot;.이면 ALERT/ YESNO이면 CONFIRM 메세지 " top="573" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="6" verticalAlign="top" bottom="20" right="824"/>
+        <Static id="Static08" taborder="14" text="this.gfn_msg(&quot;MSG00001&quot;,&quot;1,2,3&quot;,&quot;fn_msgCallback&quot;,&quot;gfn_confirm&quot;);&#13;&#10;1.번째인자: 문자/DB메세지코드(메제지내용)&#13;&#10;2.번째인자: {#1}기준으로 문자/인자값코드(컴포넌트) {#1},{#2}두개의 인자값.&#13;&#10;3.번째인자: callBack 메세지처리후 후처리함수.&#13;&#10;4.번째인자: callBack 메세지에 처리한 후처러 서비스별ID 팝업인자 값 &#13;&#10;- 팝의을 이용해서 따로 메세지 ALERT만든것임 &#13;&#10;- DB기준의 &quot;OK&quot;.이면 ALERT/ YESNO이면 CONFIRM 메세지 " top="573" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="Static05:8" right="6" verticalAlign="top" bottom="19"/>
+        <Static id="Static07" taborder="13" text="this.gfn_confirm(&quot;MSG00001&quot;,&quot;팝업입니다&quot;,&quot;1,2,3&quot;,&quot;information&quot;);&#13;&#10;1.번째인자: 메세지테이블에 메세지코드(HTML5적용않됨)&#13;&#10;2.번째인자: 메세지타이틀 직접입력(문자열)&#13;&#10;3.번째인자: {#1}:파라미터인자값 {#2}두번째 파라미터인자값(최대6개까지가능)&#13;&#10;4.번째인자: 메세지 타입(HTML5적용않됨." top="350" height="125" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="Static04:8" right="6" verticalAlign="top"/>
+        <Static id="Static09" taborder="15" text="- this.confirm(&quot;저장할수없습니다.&quot;,&quot;테스트&quot;,&quot;information&quot;);&#13;&#10;- 메세지값,타이틀,이미지표시&#13;&#10;  &gt; 메세지내용.&#13;&#10;  &gt; 메세지 제목(타이틀) html5에서는 적용않됨.&#13;&#10;  &gt; 이미지표시4(&quot;error&quot;: &quot;X&quot;/&quot;question&quot;:(&quot;?&quot;)&#13;&#10;                            /&quot;warning&quot;:(&quot;!&quot;)/&quot;information&quot;:(&quot;!&quot;) 모양표시" top="149" height="101" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="Static00:8" right="6" verticalAlign="top"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): SAMPLE004.xfdl(Alert/Confirm)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2018/09/11
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_formInit();
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회 
+***********************************************************************/
+this.fn_formInit = function()
+{
+	
+};
+
+this.postformInit = function()                                                                                                                                                                                   
+{     
+};
+/**********************************************************************
+	03. 폼 로드 및 언로드 선언
+***********************************************************************/
+/**********************************************************************
+	04. 공통 코드 및 마스터 코드 선언 
+***********************************************************************/
+/**********************************************************************
+	05. 콜백 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+	this.gfn_clearSortAll(this.grdList);
+	if(nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.postformInit();
+				break;
+			default:
+				break;
+		}
+	}
+};
+
+//메시지콜백 (메세지 후처리: alert,confirm)
+this.fn_msgCallback = function (strId, strVal)
+{
+	switch (strId)
+	{
+		case "gfn_alert":
+			//OK:화면그대로 닫이고 처리됨. 
+			break;
+		case "gfn_confirm":
+			//YES:클릭시 true  인자값으로 넘어옮.	
+			//NO :클릭시 false 인자값으로 넘어옮.
+			break;
+		default:
+			break;					
+	}
+};
+/**********************************************************************
+	06. 조회 함수 선언
+***********************************************************************/
+/**********************************************************************
+	07. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+	08. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+	09. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+	10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+	11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+	12. ExcelUpLoad 엑셀업로드
+***********************************************************************/
+/**********************************************************************
+	13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+	14. 기타 Control Event
+***********************************************************************/
+/*
+ * alert을 처리하는 펑션 테스트	
+ */
+this.btnAlert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.alert("저장할수없습니다.","테스트","information");
+};
+
+/*
+ * confirm을 처리하는 펑션 테스트	
+ */
+this.btnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.confirm("저장하시겠습니까?","테스트","information");
+};
+
+/*
+ * gfn_alert을 처리하는 펑션 테스트	
+ */
+this.btnGfnAlert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfn_alert("MSG00001","팝업입니다","하나,둘,셋","warning");
+};
+
+/*
+ * gfn_confirm을 처리하는 펑션 테스트	
+ */
+this.btnGfnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfn_confirm("MSG00001","저장하시겠습니까?","1,2,3","information");
+};
+
+/*
+ * gfn_msg(alert)을 처리하는 펑션 테스트	
+ */
+this.btnMsgAlert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMsgCd 			= "MSG00001";									// DB:GDS_MESSAGE 메세지코드값(코드값이 못찾을 시 입력한 값이 그대로 표시.디폴트:Information:I)
+	var sMsgParam 		= "1,2,3";                              // "20100816,20100916" 파리미터 인자값 "시작에서 $1이고 끝은 $2입니다. $1,$2이거로 치환됨.
+	var sMsgCallBack 	= "fn_msgCallback";							// 메세지 박스 콜백함수 
+	var sMsgSvcId       = "gfn_alert";                              // 콜백함수에 분기처리함.
+	this.gfn_msg(sMsgCd, sMsgParam, sMsgCallBack, sMsgSvcId); 		// 패스워드는 필수항목입니다.
+};
+/*
+ * gfn_msg(confirm)을 처리하는 펑션 테스트	
+ */
+this.btnMsgConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMsgCd 			= "MSG00002";									// DB:GDS_MESSAGE 메세지코드값(코드값이 못찾을 시 입력한 값이 그대로 표시.디폴트:Information:I)
+	var sMsgParam 		= "이름";                              // "20100816,20100916" 파리미터 인자값 "시작에서 $1이고 끝은 $2입니다. $1,$2이거로 치환됨.
+	var sMsgCallBack 	= "fn_msgCallback";							// 메세지 박스 콜백함수 
+	var sMsgSvcId       = "gfn_confirm";                              // 콜백함수에 분기처리함.
+	this.gfn_msg(sMsgCd, sMsgParam, sMsgCallBack, sMsgSvcId); 		// 패스워드는 필수항목입니다.
+};
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">강남구</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">서초구</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">강동구</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">4</Col>
+            <Col id="Column1">강서구</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">5</Col>
+            <Col id="Column1">송파구</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_rtn"/>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsDummy" preload="true" updatecontrol="true" useclientlayout="false"/>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="chk" type="string" size="32"/>
+          <Column id="progId" type="string" size="32"/>
+          <Column id="formPath" type="string" size="32"/>
+          <Column id="formId" type="string" size="32"/>
+          <Column id="formNm" type="string" size="32"/>
+          <Column id="userYn" type="string" size="32"/>
+          <Column id="regId" type="string" size="32"/>
+          <Column id="regDate" type="string" size="32"/>
+          <Column id="modId" type="string" size="32"/>
+          <Column id="modDate" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="uiId" type="STRING" size="32"/>
+          <Column id="formPath" type="STRING" size="256"/>
+          <Column id="formId" type="STRING" size="256"/>
+          <Column id="formNm" type="STRING" size="256"/>
+          <Column id="userYn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="uiId"/>
+            <Col id="formPath"/>
+            <Col id="formId"/>
+            <Col id="formNm"/>
+            <Col id="userYn"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGUseYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="classId" type="string" size="32" prop=""/>
+          <Column id="code" type="string" size="32" prop=""/>
+          <Column id="seq" type="bigdecimal" size="16" prop=""/>
+          <Column id="codeNm" type="string" size="32" prop=""/>
+          <Column id="codeSht" type="string" size="32" prop=""/>
+          <Column id="userRef1" type="string" size="32" prop=""/>
+          <Column id="userRef2" type="string" size="32" prop=""/>
+          <Column id="userRef3" type="string" size="32" prop=""/>
+          <Column id="useChk" type="string" size="32" prop=""/>
+          <Column id="regId" type="string" size="32" prop=""/>
+          <Column id="regDate" type="date" size="6" prop=""/>
+          <Column id="modId" type="string" size="32" prop=""/>
+          <Column id="modDate" type="date" size="6" prop=""/>
+          <Column id="sn" type="bigdecimal" size="16" prop=""/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGPrefix" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="classId" type="string" size="32" prop=""/>
+          <Column id="code" type="string" size="32" prop=""/>
+          <Column id="seq" type="bigdecimal" size="16" prop=""/>
+          <Column id="codeNm" type="string" size="32" prop=""/>
+          <Column id="codeSht" type="string" size="32" prop=""/>
+          <Column id="userRef1" type="string" size="32" prop=""/>
+          <Column id="userRef2" type="string" size="32" prop=""/>
+          <Column id="userRef3" type="string" size="32" prop=""/>
+          <Column id="useChk" type="string" size="32" prop=""/>
+          <Column id="regId" type="string" size="32" prop=""/>
+          <Column id="regDate" type="date" size="6" prop=""/>
+          <Column id="modId" type="string" size="32" prop=""/>
+          <Column id="modDate" type="date" size="6" prop=""/>
+          <Column id="sn" type="bigdecimal" size="16" prop=""/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsList" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="chk" type="string" size="32"/>
+          <Column id="progId" type="string" size="32"/>
+          <Column id="formPath" type="string" size="32"/>
+          <Column id="formId" type="string" size="32"/>
+          <Column id="formNm" type="string" size="32"/>
+          <Column id="userYn" type="string" size="32"/>
+          <Column id="regId" type="string" size="32"/>
+          <Column id="regDate" type="string" size="32"/>
+          <Column id="modId" type="string" size="32"/>
+          <Column id="modDate" type="string" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

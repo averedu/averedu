@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+	
+    <!-- Mssql  
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
+	    <property name="url" value="jdbc:jtds:sqlserver://127.0.0.1:1433/example"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="apmsetup"/>
+	</bean>
+	 -->
+	<!-- globals.properties 파일에 등록된 DB정보를 사용하여 datasource 정보를 정의한다. -->
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/egovframework/egovProps/global.properties</value>
+            </list>
+        </property>
+    </bean>
+	
+    <!-- oracle -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${Globals.oracle.DriverClassName}"/>
+        <property name="url" value="${Globals.oracle.Url}" />
+        <property name="username" value="${Globals.oracle.UserName}"/>
+        <property name="password" value="${Globals.oracle.Password}"/>
+        <property name="maxActive" value="15"/>
+		<property name="maxIdle" value="10"/>
+		<property name="maxWait" value="100000"/>
+    </bean>
+    
+    <!-- 개발서버 DataSource SQL Formatter-->
+	<bean id="dataSourceDev" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSource" /> 
+	    <property name="logFormatter">
+	    	<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+	        	<property name="loggingType" value="MULTI_LINE" /> 
+	            <property name="sqlPrefix" value="SQL : "/> 
+	        </bean> 
+	    </property>
+	</bean>
+    
+    <!-- Tibero -->
+	<!-- 
+ 	<bean id="dataSourceTbJdbc" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${Globals.tibero.DriverClassName}"/>
+        <property name="url" value="${Globals.tibero.Url}" />
+        <property name="username" value="${Globals.tibero.UserName}"/>
+        <property name="password" value="${Globals.tibero.Password}"/>
+		<property name="maxActive" value="15"/>
+		<property name="maxIdle" value="10"/>
+		<property name="maxWait" value="100000"/>
+	</bean>
+
+	<bean id="dataSourceTbDev" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+		<constructor-arg ref="dataSourceTbJdbc" /> 
+	    <property name="logFormatter">
+	    	<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+	        	<property name="loggingType" value="MULTI_LINE" /> 
+	            <property name="sqlPrefix" value="SQL : "/> 
+	        </bean> 
+	    </property>
+	</bean>
+     -->
+</beans>

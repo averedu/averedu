@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Top" width="1916" height="71" titletext="TopFrame">
+    <Layouts>
+      <Layout height="71" mobileorientation="landscape" width="1916">
+        <Button id="Button04" taborder="12" top="5" height="22" cssclass="btn_TF_Logout" text="로그아웃" width="70" right="0"/>
+        <Static id="Static07" taborder="11" text="|" top="7" height="20" right="Button04:0" width="20" cssclass="sta_TF_Hline"/>
+        <Static id="Static09" taborder="14" text="김항공 님" top="6" height="20" textAlign="center" verticalAlign="middle" cssclass="sta_TF_Info" right="Static07:0" fittocontents="width" width="70"/>
+        <Static id="Static08" taborder="13" text="|" top="6" height="20" right="Static09:0" width="20" cssclass="sta_TF_Hline"/>
+        <Static id="Static00" taborder="0" left="0" top="0" height="5" right="0" background="#005d90" text=""/>
+        <Static id="Static01" taborder="1" left="0" top="0" height="5" background="#00b1f1" width="260"/>
+        <Static id="Static02" taborder="2" left="0" top="0" height="5" background="#a99767" width="220"/>
+        <Static id="Static03" taborder="3" left="0" top="0" height="5" background="#8b1d04" width="150"/>
+        <Button id="Button00" taborder="4" left="1500" top="75" width="60" height="65" cssclass="btn_TF_MenuList"/>
+        <Button id="Button01" taborder="5" text="Menu01" left="260" top="185" width="120" height="65" cssclass="btn_TF_Menu" fittocontents="width"/>
+        <Static id="Static04" taborder="6" left="0" top="70" height="1" right="0" background="#8d8e91" text=""/>
+        <Button id="Button02" taborder="7" text="메뉴명길이에따라 늘어남" left="Button01:0" top="184" width="180" height="66" cssclass="btn_TF_Menu" fittocontents="width"/>
+        <Button id="Button03" taborder="8" text="메뉴 선택" left="Button02:0" top="184" width="120" height="66" cssclass="btn_TF_Menu_S" fittocontents="width"/>
+        <Static id="Static05" taborder="9" left="40" top="20" width="130" height="30" cssclass="sta_TF_Logo"/>
+        <Static id="Static06" taborder="10" text="2018.10.10 12:00 (172.25.118.001)" top="7" height="20" cssclass="sta_TF_IpAdd" right="Static08:0" fittocontents="width" width="216"/>
+        <Div id="Div00" taborder="15" left="1440" top="141" width="200" height="210" cssclass="div_WF_MenuBox">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="0" right="0" bottom="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Menu id="Menu00" taborder="16" left="270" top="30" height="40" right="0" innerdataset="menu_ds" captioncolumn="menu" levelcolumn="lev"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="menu_ds">
+        <ColumnInfo>
+          <Column id="lev" type="STRING" size="256"/>
+          <Column id="menu" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="menu">메뉴01</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴두번째</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">세번째메뉴</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴4</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴다섯번째</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴6</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴일곱번째</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴8</Col>
+            <Col id="lev">0</Col>
+          </Row>
+          <Row>
+            <Col id="menu">메뉴9</Col>
+            <Col id="lev">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

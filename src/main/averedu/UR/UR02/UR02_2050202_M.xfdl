@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="등록대상자/가상계좌생성" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="등록대상자/가상계좌생성" height="800" mobileorientation="landscape" width="1640">
+        <Div id="divBg" taborder="0" left="0" top="0" cssclass="type01" bottom="0" width="780" background="#e3ebff" text="">
+          <Layouts>
+            <Layout>
+              <Div id="divSelect" taborder="5" left="10" top="30" height="190" background="white" right="10" border="1px solid #4c4b66" text="">
+                <Layouts>
+                  <Layout>
+                    <Button id="btnDaesang" taborder="6" text="등록대상자생성" top="145" height="25" enable="true" width="110" left="260" cssclass="btn_WF_Crud" onclick="fn_Saengsung"/>
+                    <Button id="btnGyejwa" taborder="7" text="가상계좌 부여" top="145" height="25" enable="true" width="110" left="390" cssclass="btn_WF_Crud" onclick="fn_Gyejwa"/>
+                    <Static id="stc_13_06" taborder="8" left="10" top="40" height="28" cssclass="sta_WF_DetailBg" right="8"/>
+                    <Static id="stc_12_06" taborder="9" text="등록년도" left="10" top="40" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Static id="stc_13_06_00" taborder="10" left="10" top="68" height="28" cssclass="sta_WF_DetailBg" right="8"/>
+                    <Static id="stc_12_06_01" taborder="11" text="모집구분" left="10" top="68" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Static id="stc_13_00_00" taborder="12" left="10" top="96" height="28" cssclass="sta_WF_DetailBg" right="8"/>
+                    <Static id="stc_12_00_00" taborder="13" text="수험번호" left="10" top="96" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Static id="stc_12_06_02" taborder="14" text="공지구분" left="380" top="40" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Static id="stc_12_06_01_00" taborder="15" text="차수" left="380" top="68" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Static id="stc_12_00_00_02" taborder="16" text="합격구분" left="380" top="96" height="28" cssclass="sta_WF_DetailTi" width="165"/>
+                    <Combo id="cboGongji" taborder="1" text="" left="547" top="43" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsGongji" right="11"/>
+                    <Combo id="cboMojip" taborder="2" text="" left="177" top="71" width="200" height="22" codecolumn="MOJIP_GBCD" datacolumn="MOJIP_NM" index="0" value="1" innerdataset="dsMojip"/>
+                    <Combo id="cboHabgyeok" taborder="5" text="" left="547" top="99" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsHapgyeok" right="11"/>
+                    <Combo id="cboChasu" taborder="3" text="" left="547" top="71" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsChasu" right="11"/>
+                    <Static id="staScore" taborder="17" left="-9" top="10" height="20" text="※대상 년도, 학기의 가상계좌 부여 및 등록대상자를 생성합니다." width="408" cssclass="sta_WF_SearchLbl" visible="true"/>
+                    <Spin id="spnDeungrokYYYY" taborder="0" left="177" top="43" width="200" height="22" max="3000" min="0" value=""/>
+                    <Edit id="edtSuhoemNo" taborder="4" left="177" top="99" width="200" height="22" maxlength="10"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="Static01_01_00_00_00" taborder="0" text="8" left="10" top="22" width="290" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_05" taborder="1" left="10" top="5" height="22" text="등록대상자 및 가상 계좌 생성" width="220" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+              <Static id="Static01_02_00_00_00_00" taborder="2" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" left="770" bottom="0"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="3" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0" width="10" left="0"/>
+              <Static id="Static01_01_00_00_01" taborder="4" text="10" left="0" top="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="DEUNGROK_YYYY" type="STRING" size="256"/>
+          <Column id="GONGJI_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="CHASU_GBCD" type="STRING" size="256"/>
+          <Column id="SUHEOM_NO" type="STRING" size="256"/>
+          <Column id="HAPGYEOK_GBCD" type="STRING" size="256"/>
+          <Column id="DEUNGROK_FRDT" type="STRING" size="256"/>
+          <Column id="DEUNGROK_TODT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGongji">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsChasu">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHapgyeok">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMojip" preload="true">
+        <ColumnInfo>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mojipInput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsChasuY" preload="true">
+        <ColumnInfo>
+          <Column id="DEUNGROK_YYYY" type="STRING" size="32"/>
+          <Column id="GONGJI_GBCD" type="STRING" size="32"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="DEUNGROK_CHASU_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsResult" preload="true">
+        <ColumnInfo>
+          <Column id="OUT_CODE" type="STRING" size="256"/>
+          <Column id="OUT_MSG" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDeungrok" preload="true">
+        <ColumnInfo>
+          <Column id="DEUNGROK_YYYY" type="STRING" size="256"/>
+          <Column id="DEUNGROK_FRDT" type="STRING" size="256"/>
+          <Column id="DEUNGROK_TODT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UR02_2050202_M.xfdl(등록 공지 관리(신입생) 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/10/06
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsGongji|dsChasu|dsHapgyeok";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "03005|03006|01014";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "S|S|S";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+	// 기준연도학기 
+    strDs    = "dsBaseYyyyHakgi";        // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    svcId    = "baseYyyyHakgiInit";
+	var strEopmuGbcd = "UR";
+	var strUseYn     = "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs
+                              , svcId
+                              , strEopmuGbcd
+                              , strUseYn);
+
+};
+
+this.fn_PostBaseYyyyHakgiInit = function()
+{
+	if (this.dsBaseYyyyHakgi.rowcount > 0) 
+	{
+		this.ds_input.setColumn(0, "DEUNGROK_YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.ds_mojipInput.setColumn(0, "YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+	}
+	this.fn_Mojip();
+	this.fn_ChasuY();
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "baseYyyyHakgiInit":
+					this.fn_PostBaseYyyyHakgiInit();
+			    break;	
+			case "Mojip":
+                    this.fn_PostMojip();
+                break;
+			case "ChasuY":
+                    this.fn_PostChasuY();
+                break;
+            case "Saengsung":
+                    this.fn_PostSaengsung();
+                break;
+            case "Gyejwa":
+                    this.fn_PostGyejwa();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 등록 대상자 생성
+***********************************************************************/
+this.fn_PreSaengsung = function()
+{
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "DEUNGROK_YYYY")))
+	{
+		this.alert("등록년도를 입력해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "GONGJI_GBCD")))
+	{
+		this.alert("등록 공지 구분을 선택해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "MOJIP_GBCD")))
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "CHASU_GBCD")))
+	{
+		this.alert("차수를 선택해주세요.");
+		return false;
+	}
+	if(this.ds_input.getColumn(0, "GONGJI_GBCD") == "01")
+	{
+		if(this.gfn_isNull(this.ds_input.getColumn(0, "HAPGYEOK_GBCD")))
+		{
+			this.alert("합격구분을 선택해주세요.");
+			return false;
+		}
+	}
+	if(this.ds_input.getColumn(0, "MOJIP_GBCD") > 2)
+	{
+		if(this.gfn_isNull(this.ds_input.getColumn(0, "HAPGYEOK_GBCD")))
+		{
+			this.alert("합격구분을 선택해주세요.");
+			return false;
+		}
+	}
+	
+	var result = this.gfn_confirm( "대상자를 생성하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	
+    return true;
+};
+
+this.fn_Saengsung = function()
+{
+    if(!this.fn_PreSaengsung())
+    {
+        return false;
+    }
+	var strSvc      = "Saengsung";
+	var strUrl      = "/prj/UR/UR02/Saengsung_2050202_M.do";
+	var strInDs     = "ds_input=ds_input";
+	var strOutDs    = "dsResult=dsResult";
+	var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+	if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+	{
+		strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+	}
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+					   , strUrl
+					   , strInDs
+					   , strOutDs
+					   , strArg
+					   , strCallBack
+					   , strASync);
+};
+
+this.fn_PostSaengsung = function()
+{
+    this.alert(this.dsResult.getColumn(0,'OUT_MSG'));
+};
+
+/**********************************************************************
+        06. 가상계좌 부여
+***********************************************************************/
+this.fn_PreGyejwa = function()
+{
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "DEUNGROK_YYYY")))
+	{
+		this.alert("등록년도를 입력해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "GONGJI_GBCD")))
+	{
+		this.alert("등록 공지 구분을 선택해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "MOJIP_GBCD")))
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	if(this.gfn_isNull(this.ds_input.getColumn(0, "CHASU_GBCD")))
+	{
+		this.alert("차수를 선택해주세요.");
+		return false;
+	}
+	
+	var strSvc      = "Ret";
+    var strUrl      = "/prj/UR/UR02/Retrieve_2050202_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsDeungrok=dsDeungrok";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = false;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+	
+    var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	
+	this.ds_input.setColumn(0, "DEUNGROK_FRDT", this.dsDeungrok.getColumn(0, "DEUNGROK_FRDT"));
+	this.ds_input.setColumn(0, "DEUNGROK_TODT", this.dsDeungrok.getColumn(0, "DEUNGROK_TODT"));
+	
+    return true;
+};
+
+this.fn_Gyejwa = function()
+{
+    if(!this.fn_PreGyejwa())
+    {
+        return false;
+    }
+    var strSvc      = "Gyejwa";
+    var strUrl      = "/prj/UR/UR02/Gyejwa_2050202_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsResult=dsResult";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostGyejwa = function()
+{
+    this.alert(this.dsResult.getColumn(0,'OUT_MSG'));
+};
+
+/**********************************************************************
+        07. 각종함수
+***********************************************************************/
+// 공통 모집구분 조회
+this.fn_Mojip = function()
+{
+    var strSvc      = "Mojip";
+    var strUrl      = "/prj/UR/UR_COMMON/Retrieve_COMMON_M_Mojip.do";
+    var strInDs     = "ds_mojipInput=ds_mojipInput";
+    var strOutDs    = "dsMojip=dsMojip";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = false;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+};
+
+this.fn_PostMojip = function()
+{
+	this.dsMojip.insertRow(0);
+	this.dsMojip.setColumn(0, "MOJIP_GBCD", "");
+	this.dsMojip.setColumn(0, "MOJIP_NM", "선택");
+	this.divBg.form.divSelect.form.cboMojip.set_index(0);
+};
+
+// 현재차수 Y 조회
+this.fn_ChasuY = function()
+{
+    var strSvc      = "ChasuY";
+    var strUrl      = "/prj/UR/UR_COMMON/Retrieve_COMMON_M_ChasuY.do";
+    var strInDs     = "ds_chasuInput=ds_mojipInput";
+    var strOutDs    = "dsChasuY=dsChasuY";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+};
+
+this.fn_PostChasuY = function()
+{
+	this.ds_input.setColumn(0, "GONGJI_GBCD", this.dsChasuY.getColumn(0, "GONGJI_GBCD"));
+	this.ds_input.setColumn(0, "CHASU_GBCD", this.dsChasuY.getColumn(0, "DEUNGROK_CHASU_GBCD"));
+	this.ds_input.setColumn(0, "MOJIP_GBCD", this.dsChasuY.getColumn(0, "MOJIP_GBCD"));
+};]]></Script>
+    <Bind>
+      <BindItem id="item23" compid="edt1_01_00_01_01_00" propid="value" datasetid="dsMaster" columnid="DANCHE_NM"/>
+      <BindItem id="item24" compid="edt1_01_00_01_01_00_00" propid="value" datasetid="dsMaster" columnid="DANCHE_NM"/>
+      <BindItem id="item22" compid="rdo_00_00" propid="value" datasetid="dsMaster" columnid="HYEONJAE_MOJIP_YN"/>
+      <BindItem id="item27" compid="rdo_00_00_01" propid="value" datasetid="dsMaster" columnid="HYEONJAE_MOJIP_YN"/>
+      <BindItem id="item1" compid="divBg.form.divSelect.form.cboGongji" propid="value" datasetid="ds_input" columnid="GONGJI_GBCD"/>
+      <BindItem id="item3" compid="divBg.form.divSelect.form.cboMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+      <BindItem id="item5" compid="divBg.form.divSelect.form.cboHabgyeok" propid="value" datasetid="ds_input" columnid="HAPGYEOK_GBCD"/>
+      <BindItem id="item6" compid="divBg.form.divSelect.form.cboChasu" propid="value" datasetid="ds_input" columnid="CHASU_GBCD"/>
+      <BindItem id="item4" compid="divBg.form.divSelect.form.spnDeungrokYYYY" propid="value" datasetid="ds_input" columnid="DEUNGROK_YYYY"/>
+      <BindItem id="item0" compid="divBg.form.divSelect.form.edtSuhoemNo" propid="value" datasetid="ds_input" columnid="SUHEOM_NO"/>
+    </Bind>
+    <InitValue/>
+  </Form>
+</FDL>

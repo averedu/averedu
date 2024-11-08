@@ -1,0 +1,583 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="MULTICOMBO(멀티콤보)" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Div id="div_multCombo" taborder="1" text="Div00" left="10" top="52" width="150" height="26" url="com::COMM000009P.xfdl" callbackfunc="fn_multiComboCallback" combocodecolumn="code" combodatacolumn="name" comboinnerdataset="ds_list00"/>
+        <Button id="btn_getValue" taborder="2" text="getValue" left="169" top="50" width="113" height="33" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="btnGetValue_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_getValue" taborder="7" left="296" top="50" width="355" height="33" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Button id="btn_setValue" taborder="3" text="setValue" left="169" top="132" width="113" height="33" onclick="btnSetValue_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_setValue" taborder="8" left="296" top="132" width="355" height="33"/>
+        <Button id="btn_getText" taborder="5" text="getText" left="169" top="91" width="113" height="33" onclick="btnGetText_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_getText" taborder="9" left="296" top="91" width="355" height="33"/>
+        <Button id="btn_setEssential" taborder="6" text="setEssential" left="169" top="173" width="113" height="33" onclick="btnSetEssential_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="btn_init" taborder="4" text="initialization" left="169" top="214" width="113" height="33" onclick="btnInit_onclick" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Div id="div_multCombo01" taborder="0" left="5" top="359" width="145" height="26" url="com::COMM000009P.xfdl" callbackfunc="fn_multiComboCallback" combocodecolumn="code" combodatacolumn="name" comboinnerdataset="ds_list11" cellwidth="300"/>
+        <Div id="div_multCombo00" taborder="10" text="Div00" left="508" top="354" width="155" height="26" url="com::COMM000009P.xfdl" callbackfunc="fn_multiComboCallback" combocodecolumn="code" combodatacolumn="data" comboinnerdataset="ds_list01" displaycount="5"/>
+        <Static id="Static06" taborder="11" text="각종: 멀티콤보 각종기능(MULTICOMBO)-선택후처리:fn_multiComboCallback" top="1" height="44" textAlign="center" background="#f80626" color="#ffffff" font="bold 18px/normal &quot;Gulim&quot;" left="0" right="1"/>
+        <Static id="Static03" taborder="12" text="※ 멀티콤보에 사용자정의 셋팅후 처리 콤포넌트-선택후처리:fn_multiComboCallback" top="260" height="50" textAlign="left" background="cadetblue" font="bold 14px/normal &quot;Gulim&quot;" color="#ffffff" left="0" right="2"/>
+        <Static id="Static04" taborder="13" text="Add User Property -&gt; cellwidth 추가 후 값 입력" top="315" height="35" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="0" verticalAlign="middle" width="500"/>
+        <Static id="Static02" taborder="14" text="Add User Property -&gt; displaycount 추가 후 값 입력" top="313" height="35" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="505" verticalAlign="middle" right="3"/>
+        <Static id="Static01" taborder="15" text="선택할 값을 ,(콤마)로 구분해서 입력    예)02,03" top="134" height="35" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="655" verticalAlign="middle" right="1"/>
+        <Div id="div_multComboS" taborder="16" left="5" top="459" width="145" height="26" url="com::COMM000009P.xfdl" callbackfunc="fn_multiComboCallback" combocodecolumn="CODE" combodatacolumn="CODE_NM" comboinnerdataset="dsMessageCd" cellwidth="300"/>
+        <Button id="select" taborder="17" text="select" left="180" top="456" width="113" height="33" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" font="bold 12px/normal &quot;Gulim&quot;" onclick="select_onclick"/>
+        <Edit id="editParam" taborder="18" left="422" top="454" width="100" height="33"/>
+        <Static id="Static04_00" taborder="19" text="인자값(조회조건)" top="455" height="35" textAlign="left" background="#351ee0" font="bold 13px/normal &quot;Gulim&quot;" color="#ffffff" left="299" verticalAlign="middle" width="118"/>
+        <Edit id="Edit00" taborder="20" left="526" top="454" width="150" height="33"/>
+        <Grid id="Grid00" taborder="21" left="7" top="502" width="1243" height="178" binddataset="dsMaster">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CHK"/>
+                <Cell col="1" text="CLASS_ID"/>
+                <Cell col="2" text="CD"/>
+                <Cell col="3" text="TCODE"/>
+                <Cell col="4" text="SORT"/>
+                <Cell col="5" text="CD_NM"/>
+                <Cell col="6" text="CD_NM_ENG"/>
+                <Cell col="7" text="CD_NM_CH"/>
+                <Cell col="8" text="CD_NM_JP"/>
+                <Cell col="9" text="CD_NM_ETC"/>
+                <Cell col="10" text="ADDR"/>
+                <Cell col="11" text="REF_1"/>
+                <Cell col="12" text="REF_2"/>
+                <Cell col="13" text="REF_3"/>
+                <Cell col="14" text="USE_YN"/>
+                <Cell col="15" text="REG_ID"/>
+                <Cell col="16" text="REG_DT"/>
+                <Cell col="17" text="MOD_ID"/>
+                <Cell col="18" text="MOD_DT"/>
+                <Cell col="19" text="AUTO_PLUS"/>
+                <Cell col="22" text="REF_4"/>
+                <Cell col="23" text="REF_5"/>
+                <Cell col="24" text="REF_6"/>
+                <Cell col="25" text="REF_7"/>
+                <Cell col="26" text="REF_8"/>
+                <Cell col="27" text="REF_9"/>
+                <Cell col="28" text="REF_10"/>
+                <Cell col="29" text="CD_DC"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK"/>
+                <Cell col="1" text="bind:CLASS_ID"/>
+                <Cell col="2" text="bind:CD"/>
+                <Cell col="3" text="bind:TCODE"/>
+                <Cell col="4" text="bind:SORT"/>
+                <Cell col="5" text="bind:CD_NM"/>
+                <Cell col="6" text="bind:CD_NM_ENG"/>
+                <Cell col="7" text="bind:CD_NM_CH"/>
+                <Cell col="8" text="bind:CD_NM_JP"/>
+                <Cell col="9" text="bind:CD_NM_ETC"/>
+                <Cell col="10" text="bind:ADDR"/>
+                <Cell col="11" text="bind:REF_1"/>
+                <Cell col="12" text="bind:REF_2"/>
+                <Cell col="13" text="bind:REF_3"/>
+                <Cell col="14" text="bind:USE_YN"/>
+                <Cell col="15" text="bind:REG_ID"/>
+                <Cell col="16" text="bind:REG_DT"/>
+                <Cell col="17" text="bind:MOD_ID"/>
+                <Cell col="18" text="bind:MOD_DT"/>
+                <Cell col="19" text="bind:AUTO_PLUS"/>
+                <Cell col="22" text="bind:REF_4"/>
+                <Cell col="23" text="bind:REF_5"/>
+                <Cell col="24" text="bind:REF_6"/>
+                <Cell col="25" text="bind:REF_7"/>
+                <Cell col="26" text="bind:REF_8"/>
+                <Cell col="27" text="bind:REF_9"/>
+                <Cell col="28" text="bind:REF_10"/>
+                <Cell col="29" text="bind:CD_DC"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Radio id="rdoMsgCd" taborder="22" left="744" top="452" width="296" height="29" innerdataset="dsMsgYn" codecolumn="CODE" datacolumn="CODE_NM" direction="vertical"/>
+        <Combo id="cboUserYn" taborder="23" left="1072" top="454" width="118" height="32" text="" innerdataset="dsMsgYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
+        <Grid id="Grid01" taborder="24" left="5" top="388" width="371" height="49" binddataset="ds_input">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="OPT"/>
+                <Cell col="2" text="CLASS_ID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:OPT"/>
+                <Cell col="2" text="bind:CLASS_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+※ 멀티콤보 사용방법(Default)
+
+1. div를 추가한다.(width:202 X height:23 )
+2. div에 "Properties"에서 "url에 "cmm::cmmMultiCombo.xfdl"를 입력한다.
+3. div에 "Properties"에서 오른쪽 마우스를 클릭하여 "Add User Property"를 클릭하여 User Property를 추가한다.
+ ㄱ. comboinnerdataset : combo bind dataset
+ ㄴ. combodatacolumn : combo text
+ ㄷ. combocodecolumn : combo value
+*/
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnload(obj.e);
+	this.div_multCombo.form._setCombo();
+	this.div_multCombo01.form._setCombo();
+	this.div_multCombo00.form._setCombo();
+	
+	
+	//사용자 화면  초기화 함수
+	this.fn_formInit();
+	
+};
+
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	
+	var strDs    = "dsMessageCd|dsMsgYn";      						// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+	var strLgcd  = "000009|000010";           		 		                // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strComb  = "X|T";   								            // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+	var strOptn  = "";										        // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+	var svcId 	 = "Init";   										
+   
+   // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+   // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+  
+  
+	this.gfn_CmmnMultiComboLoad(strDs                                                                                                                                                                           
+							, strLgcd                                                                                                                                                       
+							, strComb                                                                                                                                                       
+							, strOptn                                                                                                                                                       
+							, svcId);  
+								
+};
+/**
+ * 메세지 후처리
+ */
+this.fn_PostformInit = function()
+{
+	//trace(this.dsMessageCd.saveXML());
+	this.div_multComboS.form._setCombo();
+	//this.ds_input.setColumn(0,"OPT","");
+	//this.ds_input.setColumn(0,"OPT",undefined);
+	this.rdoMsgCd.set_index(0); 
+	
+};
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+	
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg,"에러정보","","error");
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.fn_PostformInit();
+				break;
+			case "Ret":
+			    this.fn_PostRet();
+			  	break;	
+			default:
+				break;
+		}
+	}
+};
+
+
+//멀티콤보콜백
+this.fn_multiComboCallback = function(arrVal)
+{
+
+	//trace("getText::"+this.div_multCombo.form.getText());
+	
+	//선택가능 갯수 제어
+	if(arrVal.length > 3)
+	{
+		//this.gfn_alert("너무많음");
+		//초기화
+		//this.div_multCombo.form.fn_init();
+		
+	}
+};
+
+//멀티콤보 데이터가져오기. getValue()
+this.btnGetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.div_multCombo.form.getValue();	
+	this.edt_getValue.set_value(sValue);
+};
+
+//멀티콤보 텍스트가져오기. .getText()
+this.btnGetText_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sText = this.div_multCombo.form.getText();
+	this.edt_getText.set_value(sText);
+};
+
+//멀티콤보 데이터셋 세팅하기. setValue(sValue)
+this.btnSetValue_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.edt_setValue.value;
+	if(this.gfn_isNull(sValue)) return;
+	this.div_multCombo.form.setValue(sValue);
+};
+
+//멀티콤보 필수처리. setEssential()
+this.btnSetEssential_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_multCombo.form.setEssential();
+};
+
+//멀티콤보 초기화. fn_init()
+this.btnInit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_multCombo.form.fn_init();
+};
+
+
+this.select_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sValue = this.div_multComboS.form.getValue();	
+	this.editParam.set_value(sValue);
+	this.ds_input.clearData();
+	var nRow =  this.ds_input.addRow();
+	// 조회조건 설정
+	//데이터를 넘길 경우 데이터셋에 추가해서 넘기는 방식과
+	//아규먼트를 추가해서 넘기는 방식 모두 사용가능
+	
+	this.ds_input.setColumn(nRow,"CODE",sValue);
+	this.ds_input.setColumn(nRow,"CLASS_ID","000009");
+	
+					
+	var strSvc 		= "Ret";
+	var strUrl 		= "/prj/sml/RetrieveMultiComboSampleList.do";                                     
+	var strInDs  	= "ds_input=ds_input";                                         
+	var strOutDs 	= "dsMaster=dsMaster";    
+	var strArg 		= "";               
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;			     //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
+	this.gfn_Transaction( strSvc
+				        , strUrl
+				        , strInDs
+				        , strOutDs
+				        , strArg
+				        , strCallBack
+				        , strASync);	
+};
+this.fn_PostRet = function ()
+{
+	//trace(this.dsMaster.saveXML());
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   // return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail1) || this.gfn_isUpdate(this.dsDetail2));
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list11">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">FFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list01">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01234</Col>
+            <Col id="data">0000AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="code">02345</Col>
+            <Col id="data">0000BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="code">03456</Col>
+            <Col id="data">0000CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="code">04567</Col>
+            <Col id="data">0000DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="code">05678</Col>
+            <Col id="data">0000EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="code">06789</Col>
+            <Col id="data">0000FFFF</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">z</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">x</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">c</Col>
+          </Row>
+          <Row>
+            <Col id="code">4</Col>
+            <Col id="data">v</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">b</Col>
+          </Row>
+          <Row>
+            <Col id="code">6</Col>
+            <Col id="data">n</Col>
+          </Row>
+          <Row>
+            <Col id="code">7</Col>
+            <Col id="data">m</Col>
+          </Row>
+          <Row>
+            <Col id="code">8</Col>
+            <Col id="data">a</Col>
+          </Row>
+          <Row>
+            <Col id="code">9</Col>
+            <Col id="data">s</Col>
+          </Row>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">d</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list00">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">AAAA</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">BBBB</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">CCCC</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">DDDD</Col>
+          </Row>
+          <Row>
+            <Col id="code">05</Col>
+            <Col id="name">EEEE</Col>
+          </Row>
+          <Row>
+            <Col id="code">06</Col>
+            <Col id="name">FFFF</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMessageCd">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="OPT" type="STRING" size="256"/>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE"/>
+            <Col id="OPT"></Col>
+            <Col id="CLASS_ID"></Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_List"/>
+      <Dataset id="dsMsgYn">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="32"/>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CD" type="STRING" size="32"/>
+          <Column id="TCODE" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="CD_NM" type="STRING" size="32"/>
+          <Column id="CD_NM_ENG" type="STRING" size="32"/>
+          <Column id="CD_NM_CH" type="STRING" size="32"/>
+          <Column id="CD_NM_JP" type="STRING" size="32"/>
+          <Column id="CD_NM_ETC" type="STRING" size="32"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="ds_input" columnid="CODE"/>
+      <BindItem id="item1" compid="rdoMsgCd" propid="value" datasetid="ds_input" columnid="OPT"/>
+      <BindItem id="item2" compid="cboUserYn" propid="value" datasetid="ds_input" columnid="USE_CHK"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="400" height="300" titletext="생활관 퇴사처리" onload="form_onload">
+    <Layouts>
+      <Layout height="300" width="400" description="생활관 퇴사처리">
+        <Static id="Static01_00" taborder="0" text="↑&#13;&#10;35&#13;&#10;↓" top="0" width="20" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" left="200"/>
+        <Static id="stc_09_00_00" taborder="1" left="10" top="4" height="31" text="관생 퇴사신청 목록" cssclass="sta_WF_Title02" width="145"/>
+        <Static id="Static01_01_00_00_00" taborder="2" text="8" left="0" top="29" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01_00_00_01" taborder="3" text="10" left="0" top="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="4" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0" width="10" left="0"/>
+        <Static id="Static01_02_00_00_00_00" taborder="5" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0" width="10"/>
+        <Static id="Static01_01_00_00_01_00" taborder="6" text="10" left="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0" bottom="0"/>
+        <Div id="divSelect" taborder="7" left="10" top="35" background="white" right="10" border="1px solid #4c4b66" text="" bottom="50">
+          <Layouts>
+            <Layout>
+              <Static id="stc_13_06" taborder="0" left="55" top="59" height="28" cssclass="sta_WF_DetailBg" width="270"/>
+              <Static id="stc_12_06" taborder="1" text="대상년도" left="55" top="59" height="28" cssclass="sta_WF_DetailTi" width="125"/>
+              <Static id="stc_13_06_00" taborder="2" left="55" top="87" height="28" cssclass="sta_WF_DetailBg" width="270"/>
+              <Static id="stc_12_06_01" taborder="3" text="대상학기" left="55" top="87" height="28" cssclass="sta_WF_DetailTi" width="125"/>
+              <Static id="stc_13_00_00" taborder="4" left="55" top="115" height="28" cssclass="sta_WF_DetailBg" width="270"/>
+              <Static id="stc_12_00_00" taborder="5" text="퇴사일" left="55" top="115" height="28" cssclass="sta_WF_DetailTi" width="125"/>
+              <Calendar id="calImyongTodt" taborder="6" left="182" top="118" width="140" height="22" readonly="false" enable="true"/>
+              <Spin id="spnSearchYYYY" taborder="7" left="182" top="62" width="140" height="22" onkeydown="fn_onKeyDown"/>
+              <Combo id="cboSearchHakgi" taborder="8" text="" index="0" enable="true" readonly="false" left="182" width="140" height="22" top="90" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboSearchHakgi_onitemchanged" innerdataset="dsHakgi" onkeydown="fn_onKeyDown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_proc" taborder="8" text="확인" width="50" height="20" visible="true" left="157" bottom="20" onclick="btn_proc_onclick" cssclass="btn_WF_Crud"/>
+        <Button id="btn_cancel" taborder="9" text="취소" width="50" height="20" visible="true" left="213" bottom="20" cssclass="btn_WF_Crud" onclick="btn_cancel_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divSelect.form.calImyongTodt" propid="value" datasetid="ds_input" columnid="QUIT_DATE"/>
+      <BindItem id="item1" compid="divSelect.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="SCHL_YEAR"/>
+      <BindItem id="item2" compid="divSelect.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="SCHL_SMST"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): BH03_4080305_P01.xfdl(생활관 퇴사처리)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/10/11
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsHakgi";	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00022"; 	// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X"; 		// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = ""; 			// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+};
+
+this.fn_PostformInit = function() {
+	if (!this.gfn_isNull(this.getOwnerFrame().schlYear)) {
+		this.ds_input.setColumn(0, "SCHL_YEAR", this.getOwnerFrame().schlYear);
+	}
+	
+	if (!this.gfn_isNull(this.getOwnerFrame().schlSmst)) {
+		this.ds_input.setColumn(0, "SCHL_SMST", this.getOwnerFrame().schlSmst);
+	}
+	
+	this.ds_input.setColumn(0, "QUIT_DATE", objApp.gds_SystemDate.getColumn(0, "YYYYMMDD"))
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+this.btn_proc_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var schlYear = this.ds_input.getColumn(0, "SCHL_YEAR");
+	if (this.gfn_isNull(this.gfn_trim(schlYear))) {
+	    this.alert('"대상년도" 항목은 필수 입력입니다.');
+		return;
+	}
+	
+	var schlSmst = this.ds_input.getColumn(0, "SCHL_SMST");
+	if (this.gfn_isNull(this.gfn_trim(schlSmst))) {
+	    this.alert('"대상학기" 항목은 필수 입력입니다.');
+		return;
+	}
+	
+	var quitDate = this.ds_input.getColumn(0, "QUIT_DATE");
+	if (this.gfn_isNull(this.gfn_trim(quitDate))) {
+	    this.alert('"퇴사일" 항목은 필수 입력입니다.');
+		return;
+	}
+
+	var schlSmstLabel = this.divSelect.form.cboSearchHakgi.text;
+	var quitDateLabel = objApp.gds_SystemDate.getColumn(0, "KOR_YYYYMMDD");
+	var msgStr = schlYear + '년도 ' + schlSmstLabel + '의 생활관 사용자들을 ' + quitDateLabel + ' 일자로 퇴사처리하겠습니까?'
+	var result = this.gfn_confirm(msgStr, "처리","", "question");
+	if(result == 0) return;
+
+    var strSvc      = "Save";
+    var strUrl      = "/prj/BH/BH03/Save_4080305_P01List.do";
+    var strInDs     = "ds_input=ds_input:a ";
+    var strOutDs    = "";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+	 
+};
+
+this.btn_cancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="QUIT_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="jusoopenapi" width="1280" height="720" titletext="팝업 API" onload="jusoopenapi_onload" font="normal 12pt/normal &quot;Arial&quot;">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Edit id="edtPostcode" taborder="0" left="100" top="21" width="152" height="38" autoselect="true"/>
+        <Button id="btnPostcode" taborder="1" text="팝업 API 우편번호 조회" left="264" top="20" width="186" height="39" onclick="btnPostcode_onclick" cssclass="btn_WF_add01"/>
+        <Edit id="edtAddress1" taborder="2" left="100" top="69" width="350" height="38" autoselect="true"/>
+        <Edit id="edtAddress2" taborder="3" left="100" top="116" width="350" height="38" autoselect="true"/>
+        <Edit id="edtAddressDetail" taborder="4" left="100" top="164" width="350" height="38" autoselect="true"/>
+        <Static id="Static00" taborder="5" text="우편번호" left="10" top="21" width="80" height="38"/>
+        <Static id="Static00_00" taborder="6" text="도로명주소" left="10" top="69" width="80" height="38"/>
+        <Static id="Static00_00_00" taborder="7" text="지번주소" left="10" top="116" width="80" height="38"/>
+        <Static id="Static00_00_00_00" taborder="8" text="상세주소" left="10" top="164" width="80" height="38"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.formType = "";
+
+this.jusoopenapi_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//팝업화면을 띄울 폼타입 설정, 버튼 선택 시 변경 가능
+	//팝업 API : "popup" , 검색 API : "search"
+	this.formType = "popup";
+};
+
+
+//우편번호 찾기 버튼 클릭
+this.btnPostcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	//popup 화면으로 전달할 값
+	var oArg = {};
+	
+	var sPopupUrl = "";
+	var sPopupId = "";
+	if(this.formType == "popup")
+	{
+		sPopupId = "popupapi";
+		sPopupUrl = "learn::jusoapiwebbrowserpop_popup.xfdl";
+	}
+	
+	//modal popup open call
+	this.gfn_showModal(sPopupId, oArg, sPopupUrl, "popupCallBack", this, 10, 100, 570, 450);
+};
+
+//popup call back
+this.popupCallBack = function(sFormId, sArg)
+{
+	if(sFormId=="popupapi")
+	{
+		if(!this.gfn_isNull(sArg))
+		{
+			var addData = sArg.split(",");
+			this.edtPostcode.set_value(addData[0]);
+			this.edtAddress1.set_value(addData[1]);
+			this.edtAddress2.set_value(addData[3]);
+			this.edtAddressDetail.set_value(addData[2]);
+		}		
+	}
+}
+
+/**
+* @description null value check
+* @param  pvVal - object (input value)
+* @return true/false (Null is true)
+*/
+this.gfn_isNull = function (pvVal)
+{
+	if (new String(pvVal).valueOf() == "undefined") 
+	{
+		return true;
+	}
+	if (pvVal == null) 
+	{
+		return true;
+	}
+	if (("x" + pvVal == "xNaN") && (new String(pvVal.length).valueOf() == "undefined")) 
+	{
+		return true;
+	}
+	if (pvVal.length == 0) 
+	{
+		return true;
+	}
+
+	return false;
+}
+/**
+* @description Modal Dialog open
+* @param 	sPopupId = showmodal popup id,
+			arrArguments = null, 
+			sPopupUrl = popup form url, 
+			popupCallback = call back funtion, 
+			obj = this,
+			nPopupLeft = popup position left,
+			nPopupTop = popup position top,
+			nPopupWidth = popup position width, 
+			nPopupHeight = popup position height
+* @return	
+*/
+
+//옵션 간소화 팝업
+this.gfn_showModal = function (sPopupId, arrArguments, sPopupUrl, popupCallback, obj, nPopupLeft, nPopupTop, nPopupWidth, nPopupHeight)
+{
+	// child frame 생성
+	var childFrame = new ChildFrame();
+	
+	// parent frame 정의
+	var parentFrame = obj.getOwnerFrame();
+	
+	//child frame 초기화
+	childFrame.init(sPopupId, nPopupLeft, nPopupTop, nPopupWidth, nPopupHeight, null, null, sPopupUrl);
+	
+	// Modal Dialog 추가 옵션
+	//autosize default true
+	childFrame.set_autosize(false);	
+	//statusbar default true
+	childFrame.set_showtitlebar(false);
+	
+	// 동적으로 생성한 ChildFrame을 Modal Dialog로 보여줌.
+	childFrame.showModal(parentFrame, arrArguments, obj, popupCallback, true);
+};
+
+]]></Script>
+  </Form>
+</FDL>

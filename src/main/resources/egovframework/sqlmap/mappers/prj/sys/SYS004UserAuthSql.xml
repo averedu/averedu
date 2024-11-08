@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS004UserAuthDAO">									                            
+
+    <select id="SYS004UserAuthDAO.retrieveAuthMasterList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   0 AS CHK                     /*chk*/        		
+			     , AUTH_CD                      /*권한코드*/
+			     , AUTH_CD AS TAUTH_CD        
+			     , AUTH_CD_NM                   /*권한명*/        
+			     , AUTH_CD_DC                	/*권한설명*/        
+			     , AUTH_USE_YN                  /*사용여부*/        
+			     , REG_ID                       /*등록자*/        
+			     , REG_DT                    	/*등록일*/        
+			     , MOD_ID                       /*수정자*/        
+			     , MOD_DT                       /*수정일*/            
+              FROM COMM.XBT_AUTH_TBL A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="AUTH_CD != null and AUTH_CD != ''">    
+            <![CDATA[                                         							                        
+               AND A.AUTH_CD         = #{AUTH_CD}  
+            ]]>                                           													
+        </if>  
+        <if test="AUTH_CD_NM != null and AUTH_CD_NM != ''">    
+            <![CDATA[                                         							                        
+               AND A.AUTH_CD_NM         = #{AUTH_CD_NM}  
+            ]]>                                           													
+        </if>    
+        ORDER BY A.AUTH_CD                                                                                                 
+        /* SYS004UserAuthDAO.retrieveAuthMasterList 권한리스트 조회 */	                                 
+    </select> 	    
+
+    <select id="SYS004UserAuthDAO.retrieveUserAuthList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT
+			      '0' AS CHK        /*chk*/        	
+			     , A.USER_ID        /*사용자ID*/        
+			     , A.AUTH_CD        /*사용자권한*/
+			     , NVL(B.USER_NM, C.USER_NM) AS USER_NM        /*사용자명*/        
+			     , B.DEPT_NM AS DEPT /*부서*/        
+			     , B.HP_NO          /*핸드폰번호*/
+			     , A.REG_ID         /*등록자*/        
+			     , A.REG_DT       /*등록일*/        
+			     , A.MOD_ID         /*수정자*/        
+			     , A.MOD_DT       /*수정일*/        
+			FROM COMM.XBT_USER_AUTH A
+			   , COMM.SC_USERINFO_V B
+			   , COMM.XBT_USER      C
+			WHERE 1=1
+			AND A.USER_ID = B.USER_ID (+)
+			AND A.USER_ID = C.USER_ID (+)
+			AND A.AUTH_CD = #{AUTH_CD}           												     
+        ]]>                                                      												 
+       	ORDER BY B.USER_NM                                                                                                   
+        /* SYS004UserAuthDAO.retrieveUserAuthList 사용자권한조회 조회 */	                                 
+    </select> 	                                                        													 
+	
+	<select id="SYS004UserAuthDAO.retrieveUserList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT
+			      '0' AS CHK        /*chk*/        	
+			     , A.USER_ID        /*사용자ID*/        
+			     , '' AS AUTH_CD    /*사용자권한*/
+			     , NVL(B.USER_NM, A.USER_NM) AS USER_NM         /*사용자명*/        
+			     , B.DEPT_NM AS DEPT           /*부서*/        
+			     , B.HP_NO          /*핸드폰번호*/
+			     , '' AS REG_ID   	/*등록자*/        
+			     , '' AS REG_DT 	/*등록일*/        
+			     , '' AS MOD_ID   	/*수정자*/        
+			     , '' AS MOD_DT 	/*수정일*/    
+			FROM COMM.XBT_USER A
+			   , COMM.SC_USERINFO_V B
+			WHERE A.USER_ID = B.USER_ID (+)
+			AND NOT EXISTS( 
+			                SELECT 
+			                        'X' 
+			                  FROM COMM.XBT_USER_AUTH C
+			                 WHERE 1=1
+			                   AND A.USER_ID = C.USER_ID 
+			                   AND C.AUTH_CD = #{AUTH_CD}
+			              )
+		]]>
+		ORDER BY A.USER_NM                                                                                                     
+        /* SYS004UserAuthDAO.retrieveUserList 사용자조회 */	                                 
+    </select>
+                                                          													     
+
+    <select id="SYS004UserAuthDAO.retrieveUserAuthListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS TABLE_CNT
+              FROM COMM.XBT_USER_AUTH
+             WHERE 1=1
+               AND USER_ID         = #{USER_ID}
+               AND AUTH_CD         = #{AUTH_CD}
+        ]]>
+        /* SYS004UserAuthDAO.retrieveUserAuthListKey 교육생권한코드 중복 조회 */
+    </select>
+
+    <insert id="SYS004UserAuthDAO.insertUserAuthList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_USER_AUTH                                       										  
+            (                                       																	  
+                   USER_ID                     /*사용자*/ 
+                 , AUTH_CD                     /*권한코드*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                    /*등록일*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                    /*수정일*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{USER_ID} 
+                 , #{AUTH_CD}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+        /* SYS004UserAuthDAO.insertUserAuthList 교육생권한코드 저장 */	
+    </insert>                                                           					
+             													  
+
+    <delete id="SYS004UserAuthDAO.deleteUserAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_USER_AUTH                                                  							      
+             WHERE 1=1                              																	          
+               AND USER_ID         = #{USER_ID}  
+               AND AUTH_CD         = #{AUTH_CD}  
+        ]]>                                                															           
+        /* SYS004UserAuthDAO.deleteUserAuthList 교육생권한코드 삭제 */								       
+    </delete>
+    
+    <select id="SYS004UserAuthDAO.retrieveUserCntList" parameterType="map" resultType="String"> 
+        <![CDATA[
+            SELECT COUNT(1) AS USER_CNT
+              FROM COMM.XBT_USER_AUTH
+             WHERE 1=1
+               AND USER_ID = #{USER_ID}
+        ]]>
+        /* SYS004UserAuthDAO.retrieveUserCntList 사용자 중복체크 중복 조회 */
+    </select>	 
+    
+    <delete id="SYS004UserAuthDAO.deleteUserMenuButtonAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_BUTTON_AUTH                                                  							      
+             WHERE 1=1                              																	          
+               AND USER_ID = #{USER_ID}   
+        ]]>                                                															           
+        /* SYS004UserAuthDAO.deleteUserMenuButtonAuthList 사용자메뉴별버튼권한 삭제 */								       
+    </delete>
+    
+       	                                                          													   
+    <!-- SYS004UserAuthDAO.retrieveUserAuthCtrlDeptList 사용자관할부서 조회 -->	                                 
+    <select id="SYS004UserAuthDAO.retrieveUserAuthCtrlDeptList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.USER_ID                       /*사용자ID*/             
+                 , A.AUTH_CD                       /*권한코드*/             
+                 , A.DEPT_CD                       /*부서코드*/
+                 , B.DEPT_NM                   
+                 , A.SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/             
+                 , A.REG_ID                        /*등록자*/             
+                 , A.REG_DT                        /*등록일시*/             
+                 , A.MOD_ID                        /*수정자*/             
+                 , A.MOD_DT                        /*수정일시*/             
+              FROM COMM.XBT_USER_AUTH_CTRL_DEPT A
+                 , COMM.SC_DEPT_M B                                                    							 
+             WHERE A.DEPT_CD = B.DEPT_CD   
+               AND A.USER_ID              = #{USER_ID}   
+               AND A.AUTH_CD              = #{AUTH_CD}                                  												     
+        ]]>
+        <if test="DEPT_CD != null and DEPT_CD != ''">    
+            <![CDATA[                                         							                        
+               AND A.DEPT_CD              = #{DEPT_CD}  
+            ]]>                                           													
+        </if>                                                                                                   
+    /* SYS004UserAuthDAO.retrieveUserAuthCtrlDeptList 사용자관할부서 조회 */	                                 
+    </select> 	                                                        													 
+       	                                                          													   
+       	                                                          													   
+    <!-- SYS004UserAuthDAO.retrieveUserAuthCtrlDeptListKey 사용자관할부서 중복 조회 -->
+    <select id="SYS004UserAuthDAO.retrieveUserAuthCtrlDeptListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_USER_AUTH_CTRL_DEPT
+             WHERE 1=1
+               AND USER_ID              = #{USER_ID}
+               AND AUTH_CD              = #{AUTH_CD}
+               AND DEPT_CD              = #{DEPT_CD}
+        ]]>
+    /* SYS004UserAuthDAO.retrieveUserAuthCtrlDeptListKey 사용자관할부서 중복 조회 */
+    </select>
+
+    <!-- SYS004UserAuthDAO.insertUserAuthCtrlDeptList 사용자관할부서 저장 -->	
+    <insert id="SYS004UserAuthDAO.insertUserAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_USER_AUTH_CTRL_DEPT                                       										  
+            (                                       																	  
+                   USER_ID                       /*사용자ID*/ 
+                 , AUTH_CD                       /*권한코드*/ 
+                 , DEPT_CD                       /*부서코드*/ 
+                 , SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{USER_ID} 
+                 , #{AUTH_CD}  
+                 , #{DEPT_CD}  
+                 , #{SUB_DEPT_INCLS_GBCD}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    /* SYS004UserAuthDAO.insertUserAuthCtrlDeptList 사용자관할부서 저장 */	
+    </insert>                                                           					
+
+    <!-- SYS004UserAuthDAO.updateUserAuthCtrlDeptList 사용자관할부서 수정 -->								
+    <update id="SYS004UserAuthDAO.updateUserAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_USER_AUTH_CTRL_DEPT                                			        
+               SET                                                      				
+                   SUB_DEPT_INCLS_GBCD            = #{SUB_DEPT_INCLS_GBCD}           /*하위부서포함여부*/  
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND USER_ID              = #{USER_ID}  
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND DEPT_CD              = #{DEPT_CD}  
+        ]]>  	                                   							                            				
+    /* SYS004UserAuthDAO.updateUserAuthCtrlDeptList 사용자관할부서 수정 */								
+    </update>                                                           												
+       	                                                          													   
+
+    <!-- SYS004UserAuthDAO.deleteUserAuthCtrlDeptList 사용자관할부서 삭제 -->								       
+    <delete id="SYS004UserAuthDAO.deleteUserAuthCtrlDeptList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_USER_AUTH_CTRL_DEPT                                                  							      
+             WHERE 1=1
+               AND USER_ID              = #{USER_ID}  
+               AND AUTH_CD              = #{AUTH_CD}    
+        ]]>
+        <if test="DEPT_CD != null and DEPT_CD != ''">    
+            <![CDATA[                                         							                        
+               AND DEPT_CD              = #{DEPT_CD}  
+            ]]>                                           													
+        </if>          
+    /* SYS004UserAuthDAO.deleteUserAuthCtrlDeptList 사용자관할부서 삭제 */								       
+    </delete>	
+           	                                                          													   
+</mapper>   

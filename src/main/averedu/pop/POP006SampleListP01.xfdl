@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="675" height="533" titletext="화면관리팝업(모달테스트)" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="533" mobileorientation="landscape" width="675">
+        <Grid id="grdMaster" taborder="0" left="20" top="128" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" height="339" oncelldblclick="grdMaster_oncelldblclick" onheadclick="grdMaster_onheadclick" formatid="grdSub01" width="635">
+          <Formats>
+            <Format id="grdSub01">
+              <Columns>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="75"/>
+                <Column size="157"/>
+                <Column size="160"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="화면ID"/>
+                <Cell col="2" text="PREFIX"/>
+                <Cell col="3" text="FORMID"/>
+                <Cell col="4" text="FORM명(한글)"/>
+                <Cell col="5" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="1" text="bind:PROG_ID" displaytype="text" edittype="none"/>
+                <Cell col="2" text="bind:FORM_PATH" displaytype="combotext" edittype="none" combodataset="dsGPrefix" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="3" text="bind:FORM_ID" displaytype="text" edittype="none"/>
+                <Cell col="4" text="bind:FORM_NM" displaytype="text" edittype="none" textAlign="left"/>
+                <Cell col="5" text="bind:USER_YN" displaytype="combotext" edittype="none" combodataset="dsGUseYn" combocodecol="CODE" combodatacol="CODE_NM"/>
+              </Band>
+            </Format>
+            <Format id="grdSub02">
+              <Columns>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="75"/>
+                <Column size="157"/>
+                <Column size="160"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="No."/>
+                <Cell col="2" text="화면ID"/>
+                <Cell col="3" text="PREFIX"/>
+                <Cell col="4" text="FORMID"/>
+                <Cell col="5" text="FORM명(한글)"/>
+                <Cell col="6" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="2" text="bind:PROG_ID" displaytype="text" edittype="none"/>
+                <Cell col="3" text="bind:FORM_PATH" displaytype="combotext" edittype="none" combodataset="dsGPrefix" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="4" text="bind:FORM_ID" displaytype="text" edittype="none"/>
+                <Cell col="5" text="bind:FORM_NM" displaytype="text" edittype="none" textAlign="left"/>
+                <Cell col="6" text="bind:USER_YN" displaytype="combotext" edittype="none" combodataset="dsGUseYn" combocodecol="CODE" combodatacol="CODE_NM"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="1" text="닫기" top="487" width="55" height="26" left="541" onclick="btnClose_onclick" cssclass="btn_WF_Pop"/>
+        <Static id="staRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="19" top="100" height="24" usedecorate="true" right="560"/>
+        <Button id="btnConfirm" taborder="3" text="확인" top="487" height="26" left="600" onclick="btnConfirm_onclick" cssclass="btn_WF_Pop" width="55"/>
+        <Static id="staTitle" taborder="4" left="20" top="21" width="152" height="22" text="화면관리팝업" cssclass="sta_WF_Title01"/>
+        <Button id="btnExit" taborder="5" top="20" width="37" height="29" left="616" onclick="btnExit_onclick" cssclass="btn_WF_Close01"/>
+        <Div id="divSearch" taborder="6" left="19" top="50" height="43" cssclass="div_WF_SearchBox" width="635">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="2" text="조회" top="10" width="55" height="22" right="10" onclick="dvSearch_btnSearch_onclick" cssclass="btn_WF_Search"/>
+              <Static id="staSubTitle01" taborder="0" text="화면아이디" left="0" top="10" width="83" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtProgId" taborder="1" left="88" top="10" width="98" height="22" imemode="alpha" inputmode="upper" onkeydown="divSearch_edtProgId_onkeydown"/>
+              <Static id="staSubTitle04" taborder="3" text="FORM명" left="186" top="10" width="72" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtFormNm" taborder="4" left="262" top="10" width="298" height="22" imemode="alpha" inputmode="upper" onkeydown="divSearch_edtFormNm_onkeydown"/>
+              <Static id="Static01" taborder="5" text="10" left="440" top="0" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static00" taborder="6" text="10" left="440" top="31" width="100" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char" height="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static06" taborder="7" text="20" left="20" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="20" bottom="46"/>
+        <Static id="Static03" taborder="8" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static04" taborder="9" text="20" left="0" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20"/>
+        <Static id="Static05" taborder="10" text="20" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20" right="0"/>
+        <Static id="Static01" taborder="11" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static09" taborder="12" text="30" left="459" top="20" width="76" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="13" text="35" left="335" top="93" width="50" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="14" text="15" left="20" top="93" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static10" taborder="15" text="7" left="20" top="121" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static07" taborder="16" text="5" left="20" top="45" width="145" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): POP006SampleListP01.xfdl(화면관리팝업)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2018/09/17
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언 
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의 
+***********************************************************************/
+this.sOptinoArg1;
+this.sOptinoArg2;
+this.sOptinoArg3;
+this.sParamArg1;
+this.sParamArg2;
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 초기화 함수
+	this.fn_formInit();
+}; 
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회 
+***********************************************************************/
+this.fn_formInit = function()
+{
+	/******************* 기본셋팅 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp01))
+	{
+		 this.sOptinoArg1 = this.getOwnerFrame().pv_sOp01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp02))
+	{
+		 this.sOptinoArg2 = this.getOwnerFrame().pv_sOp02;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp03))
+	{
+		 this.sOptinoArg3 = this.getOwnerFrame().pv_sOp03;        
+	}
+	/******************* 넘어온 인자값 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal01))
+	{
+		 this.sParamArg1 = this.getOwnerFrame().pv_sVal01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal02))
+	{
+		 this.sParamArg2 = this.getOwnerFrame().pv_sVal02;        
+	}
+
+	
+	var strDs   = "dsUseYn|dsGUseYn|dsPrefix|dsGPrefix";		// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+	var strLgcd = "000002|000002|000008|000008";           		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strComb = "T|X|T|X";   									// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+	var strOptn = "";											// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+	var svcId 	= "Init"; 
+ 
+   // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+   // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs
+							  , strLgcd
+							  , strComb
+							  , strOptn
+							  , svcId); 
+};
+
+this.postformInit = function()                                                                                                                                                                                   
+{                                                                                                                                                                                                        
+	
+	this.ds_input.setColumn(0,"FORM_PATH", 	null);
+	this.ds_input.setColumn(0,"USER_YN", 	null);
+	
+	var sSetComponet = this.sOptinoArg1;
+	var sAutoSearch  = this.sOptinoArg2;
+	
+	// 설정에 따라서 호출 창으로부터 파라미터를 넘겨받는다.
+	this.divSearch.form.edtProgId.setFocus();
+	
+	if(this.sOptinoArg3 == "S")
+	{	// 한로우 처리 할시
+		this.grdMaster.set_formatid("grdSub01");
+	
+	}else 
+	{	// 멀티로 추리시
+		this.grdMaster.set_formatid("grdSub02");
+	}
+	
+	
+	if(sSetComponet == "Y") 
+	{
+		this.ds_input.setColumn(0,"UI_ID",		this.sParamArg1);     
+		this.ds_input.setColumn(0,"FORM_ID",	this.sParamArg2);
+	}
+	
+	// 설정에 따라서 폼 로드 시 자동 조회한다.
+	if(sAutoSearch == "Y") 
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};  
+/**
+ * 기능 : 콜백함수(후처리) 
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg) 
+{
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg,"에러정보","","error");
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.postformInit();
+				break;
+			case "Search":
+			    this.postSearch();
+				break;
+			case "Save":
+			    this.postSave();
+				break;
+			case "Insert":
+				this.postAdd();
+				break;
+			case "Delete":
+				this.postDel();
+				break;
+			default:
+				break;
+		}
+	}
+};
+/**********************************************************************
+	05. 조회 함수 선언  
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.preSearch = function()
+{ 
+	// 조회조건 셋팅
+	return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+
+this.dvSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.preSearch())
+	{
+		return false;
+	}
+	var strSvc 		= "Search";                                                                                                                                               
+	var strUrl 		= "/prj/pop/RetrieveProgramMasterList.do";                                                                                             
+	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
+	var strOutDs 	= "dsMaster=dsMaster";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync);
+};
+/**
+ * 기능 : 조회 후 실행
+ */
+this.postSearch = function()
+{ 
+	if(this.dsMaster.rowcount < 1)
+	{
+		this.gfn_alert("조회자료가 없습니다.","조회정보","","information");
+	}
+	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	//trace(this.dsMaster.saveXML());
+};
+/**********************************************************************
+	06. 닫기버튼
+***********************************************************************/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.btnExit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("EXIT");
+};
+/**********************************************************************
+	07.Get, Set Method 
+***********************************************************************/
+ /**
+ * 한행을 처리하는 로직
+ **/
+this.selDataSet = function(dsobj,nRow)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		var odsObj 	= this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+		var TRow = ds.addRow();
+		ds.copyRow(TRow, odsObj, nRow); 		//0번재 로에 행을 카피함
+		
+		var objRtnArr = new Array(3);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.getColumn(ds.rowposition, "PROG_ID");
+		objRtnArr[2] = ds.getColumn(ds.rowposition, "FORM_NM");
+		objRtnArr[3] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}else 
+	{
+		var odsObj = this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+
+		this.dsDummy.getColumn(i,"CHK")
+		var TRow = -1;
+		for(var i = 0; i < odsObj.rowcount; i++)
+		{
+			if(odsObj.getColumn(i,"CHK") == 0)
+			{
+				continue;
+			}
+			 TRow = ds.addRow();
+			ds.copyRow(TRow, odsObj, i); 
+		}
+		var objRtnArr = new Array(1);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}
+};
+
+/**********************************************************************
+	08.기타 Control Event  
+***********************************************************************/
+
+this.grdMaster_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		this.selDataSet(obj.binddataset, this.dsMaster.rowposition); 	
+	}
+};
+
+this.btnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		this.grdMaster_oncelldblclick(this.grdMaster);
+	
+	}else
+	{
+		var grdDs = this.grdMaster.getBindDataset();
+		if(grdDs.findRow("CHK", "1") == -1)
+		{
+			this.gfn_alert("선택한 데이타가 없습니다.","조회정보","","information");
+			return false;
+		}
+		this.selDataSet(this.grdMaster.binddataset);
+	}
+};
+
+this.divSearch_edtProgId_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_edtFormId_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_edtFormNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_cboPrefix_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.divSearch.form.btnSearch.setFocus();
+	this.divSearch.form.btnSearch.click();
+};
+
+
+this.divSearch_cboUserYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.divSearch.form.btnSearch.setFocus();
+	this.divSearch.form.btnSearch.click();
+};
+
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell != 0 || e.cell != 1)
+	{
+		this.gfn_gridSort(obj,e);
+	}
+};
+
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		this.gfn_checkAll(obj, e);
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsDummy" preload="true" updatecontrol="true" useclientlayout="false"/>
+      <Dataset id="dsGUseYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPrefix" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGPrefix" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="32"/>
+          <Column id="PROG_ID" type="STRING" size="32"/>
+          <Column id="FORM_PATH" type="STRING" size="32"/>
+          <Column id="FORM_ID" type="STRING" size="32"/>
+          <Column id="FORM_NM" type="STRING" size="32"/>
+          <Column id="USER_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="PROG_ID" type="STRING" size="32"/>
+          <Column id="FORM_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="PROG_ID"/>
+            <Col id="FORM_NM"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtProgId" propid="value" datasetid="ds_input" columnid="PROG_ID"/>
+      <BindItem id="item1" compid="divSearch.form.edtFormNm" propid="value" datasetid="ds_input" columnid="FORM_NM"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="학생이력" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="학생이력" height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grdEohak" taborder="4" left="10" top="35" right="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdEohak_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" height="127" binddataset="dsEohak">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="56"/>
+                <Column size="349"/>
+                <Column size="108"/>
+                <Column size="84"/>
+                <Column size="321"/>
+                <Column size="112"/>
+                <Column size="161"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="시험명"/>
+                <Cell col="2" text="취득급수"/>
+                <Cell col="3" text="취득점수"/>
+                <Cell col="4" text="발급기관명"/>
+                <Cell col="5" text="발급번호"/>
+                <Cell col="6" text="취득일자"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="1" displaytype="combocontrol" edittype="combo" textAlign="left" text="bind:EOHAK_GBCD" editmaxlength="256" combodataset="dsEohakGbcd" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="2" displaytype="combocontrol" edittype="combo" textAlign="center" text="bind:DEUNGGEUP_GBCD" editmaxlength="10" combodataset="dsEohakDeunggeup" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="3" displaytype="normal" edittype="text" textAlign="center" text="bind:JEOMSU" editmaxlength="10"/>
+                <Cell col="4" displaytype="normal" edittype="text" textAlign="left" text="bind:BALGEUP_GIGWAN_NM" editmaxlength="100"/>
+                <Cell col="5" displaytype="normal" edittype="text" textAlign="center" text="bind:BALGEUP_NO" editmaxlength="100"/>
+                <Cell col="6" displaytype="calendarcontrol" edittype="date" textAlign="center" text="bind:CHWIDEUK_DT" editmaxlength="8" calendardisplaynulltype="none" calendardateformat="yyyy-MM-dd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09" taborder="15" left="7" top="11" height="22" text="어학 내역" width="135" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Grid id="grdJagyeok" taborder="9" left="10" top="207" right="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdJagyeok_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" height="127" binddataset="dsJagyeok">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="56"/>
+                <Column size="363"/>
+                <Column size="92"/>
+                <Column size="286"/>
+                <Column size="112"/>
+                <Column size="161"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="자격명"/>
+                <Cell col="2" text="자격등급"/>
+                <Cell col="3" text="발급기관명"/>
+                <Cell col="4" text="자격증번호"/>
+                <Cell col="5" text="취득일자"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="1" displaytype="normal" edittype="text" textAlign="left" text="bind:JAGYEOKJEUNG_NM" editmaxlength="50" expandshow="show" expandsize="20"/>
+                <Cell col="2" displaytype="combocontrol" edittype="combo" textAlign="center" text="bind:JAGYEOK_DEUNGGEUP_GBCD" editmaxlength="10" combodataset="dsJagyeokDeunggeup" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="3" displaytype="normal" edittype="none" textAlign="left" text="bind:BALGEUP_GIGWAN_NM" editmaxlength="50"/>
+                <Cell col="4" displaytype="normal" edittype="text" textAlign="center" text="bind:JAGYEOKJEUNG_NO" editmaxlength="50"/>
+                <Cell col="5" displaytype="calendarcontrol" edittype="date" textAlign="center" text="bind:CHWIDEUK_DT" editmaxlength="8" calendardisplaynulltype="none" calendardateformat="yyyy-MM-dd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_00" taborder="16" left="7" top="183" height="22" text="자격 내역" width="135" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Grid id="grdEohakYeonsu" taborder="14" left="10" right="10" autofittype="col" autoenter="select" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" binddataset="dsEohakYeonsu" top="379" height="127" onheaddblclick="grdEohakYeonsu_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="56"/>
+                <Column size="371"/>
+                <Column size="144"/>
+                <Column size="144"/>
+                <Column size="368"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="어학연수명"/>
+                <Cell col="2" text="시작일자"/>
+                <Cell col="3" text="종료일자"/>
+                <Cell col="4" text="내용"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="1" displaytype="normal" edittype="text" textAlign="left" text="bind:EOHAK_YEONSU_NM" editmaxlength="100"/>
+                <Cell col="2" displaytype="calendarcontrol" edittype="date" textAlign="center" text="bind:EOHAK_YEONSU_FRDT" editmaxlength="8" calendardisplaynulltype="none" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="3" displaytype="calendarcontrol" edittype="date" textAlign="center" text="bind:EOHAK_YEONSU_TODT" editmaxlength="8" calendardisplaynulltype="none" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="4" displaytype="normal" edittype="text" textAlign="left" text="bind:NAEYONG" editmaxlength="1000"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_00_00" taborder="17" left="7" top="354" height="22" text="어학연수 내역" width="135" cssclass="sta_WF_Title02" onclick="tab_00_Tabpage7_stc_09_onclick"/>
+        <Static id="staRowCnt" taborder="18" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="96" top="9" height="24" usedecorate="true" width="233"/>
+        <Static id="staRowCnt2" taborder="19" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="96" top="182" height="24" usedecorate="true" width="233"/>
+        <Static id="staRowCnt3" taborder="20" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="123" top="352" height="24" usedecorate="true" width="233"/>
+        <Static id="Static01_02_00_00_00_00" taborder="21" text="10" left="0" top="-1" width="10" height="477" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01" taborder="22" text="↑&#13;&#10;35&#13;&#10;↓" left="733" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00_00_00_00" taborder="23" text="8" left="11" top="28" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01_00_00_00" taborder="24" text="10" left="5" top="586" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="214" right="404"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="25" text="10" top="0" width="10" height="487" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static01_00" taborder="26" text="↑&#13;&#10;45&#13;&#10;↓" left="742" top="162" width="100" height="45" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_00_00" taborder="27" text="↑&#13;&#10;45&#13;&#10;↓" left="742" top="334" width="100" height="45" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00_00_00_00_00" taborder="28" text="8" left="11" top="199" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="29" text="8" left="10" top="371" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Button id="btnDel1" taborder="3" text="삭제" top="6" width="52" height="22" cssclass="btn_WF_Crud" right="10" onclick="btnDel1_onclick"/>
+        <Button id="btnRet1" taborder="0" text="조회" top="6" width="52" height="22" cssclass="btn_WF_Crud" right="181" onclick="btnRet1_onclick"/>
+        <Button id="btnNew1" taborder="1" text="신규" top="6" width="52" height="22" cssclass="btn_WF_Crud" right="124" onclick="btnNew1_onclick"/>
+        <Button id="btnSave1" taborder="2" text="저장" top="6" width="52" height="22" cssclass="btn_WF_Crud" right="67" onclick="btnSave1_onclick"/>
+        <Button id="btnDel2" taborder="8" text="삭제" top="177" width="52" height="22" cssclass="btn_WF_Crud" right="10" onclick="btnDel2_onclick"/>
+        <Button id="btnRet2" taborder="5" text="조회" top="177" width="52" height="22" cssclass="btn_WF_Crud" right="181" onclick="btnRet2_onclick"/>
+        <Button id="btnNew2" taborder="6" text="신규" top="177" width="52" height="22" cssclass="btn_WF_Crud" right="124" onclick="btnNew2_onclick"/>
+        <Button id="btnSave2" taborder="7" text="저장" top="177" width="52" height="22" cssclass="btn_WF_Crud" right="67" onclick="btnSave2_onclick"/>
+        <Button id="btnDel3" taborder="13" text="삭제" top="349" width="52" height="22" cssclass="btn_WF_Crud" right="10" onclick="btnDel3_onclick"/>
+        <Button id="btnRet3" taborder="10" text="조회" top="349" width="52" height="22" cssclass="btn_WF_Crud" right="181" onclick="btnRet3_onclick"/>
+        <Button id="btnNew3" taborder="11" text="신규" top="349" width="52" height="22" cssclass="btn_WF_Crud" right="124" onclick="btnNew3_onclick"/>
+        <Button id="btnSave3" taborder="12" text="저장" top="349" width="52" height="22" cssclass="btn_WF_Crud" right="67" onclick="btnSave3_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsEohak" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="SEQ" type="STRING" size="3"/>
+          <Column id="EOHAK_GBCD" type="STRING" size="10"/>
+          <Column id="EOHAK_GBNM" type="STRING" size="65532"/>
+          <Column id="DEUNGGEUP_GBCD" type="STRING" size="10"/>
+          <Column id="DEUNGGEUP_GBNM" type="STRING" size="65532"/>
+          <Column id="JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="BALGEUP_GIGWAN_NM" type="STRING" size="100"/>
+          <Column id="BALGEUP_NO" type="STRING" size="100"/>
+          <Column id="CHWIDEUK_DT" type="STRING" size="8"/>
+          <Column id="BIGO" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsJagyeok" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="SEQ" type="STRING" size="3"/>
+          <Column id="JAGYEOKJEUNG_CD" type="STRING" size="30"/>
+          <Column id="JAGYEOKJEUNG_NM" type="STRING" size="50"/>
+          <Column id="JAGYEOK_DEUNGGEUP_GBCD" type="STRING" size="10"/>
+          <Column id="JAGYEOK_DEUNGGEUP_GBNM" type="STRING" size="65532"/>
+          <Column id="BALGEUP_GIGWAN_NM" type="STRING" size="50"/>
+          <Column id="JAGYEOKJEUNG_NO" type="STRING" size="50"/>
+          <Column id="CHWIDEUK_DT" type="STRING" size="8"/>
+          <Column id="BIGO" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsEohakYeonsu" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="HAKBEON" type="STRING" size="10"/>
+          <Column id="SEQ" type="STRING" size="3"/>
+          <Column id="EOHAK_YEONSU_NM" type="STRING" size="100"/>
+          <Column id="EOHAK_YEONSU_FRDT" type="STRING" size="8"/>
+          <Column id="EOHAK_YEONSU_TODT" type="STRING" size="8"/>
+          <Column id="NAEYONG" type="STRING" size="1000"/>
+          <Column id="BIGO" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEohakGbcd">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEohakDeunggeup">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJagyeokDeunggeup">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): US01_2010101_T11.xfdl(어학, 자격, 어학연수 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2021/09/08
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsEohakGbcd|dsEohakDeunggeup|dsJagyeokDeunggeup";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00081|00082|00071";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "S|S|S";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdEohak);
+	this.gfn_clearSortAll(this.grdJagyeok);
+	this.gfn_clearSortAll(this.grdEohakYeonsu);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "EohakRet":
+                    this.fn_PostEohakRet();
+                break;
+			case "JagyeokRet":
+                    this.fn_PostJagyeokRet();
+                break;
+			case "EohakYeonsuRet":
+                    this.fn_PostEohakYeonsuRet();
+                break;
+            case "EohakSave":
+                    this.fn_PostEohakSave();
+                break;
+			case "JagyeokSave":
+                    this.fn_PostJagyeokSave();
+                break;
+			case "EohakYeonsuSave":
+                    this.fn_PostEohakYeonsuSave();
+                break;
+            case "EohakDel":
+                    this.fn_PostEohakDel();
+                break;
+			case "JagyeokDel":
+                    this.fn_PostJagyeokDel();
+                break;
+			case "EohakYeonsuDel":
+                    this.fn_PostEohakYeonsuDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(어학 함수)
+***********************************************************************/
+this.btnRet1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(this.fn_beforeEohakRet())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}	
+	}	
+	this.fn_EohakRet(this.ds_input.getColumn(0, "HAKBEON"));
+};
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_EohakRet = function(hakbeon)
+{
+	this.ds_input.setColumn(0, "HAKBEON", hakbeon);
+	
+    var strSvc      = "EohakRet";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T11_Eohak.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsEohak=dsEohak";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostEohakRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsEohak);
+};
+
+/**********************************************************************
+        06. 조회 함수 선언(자격 함수)
+***********************************************************************/
+this.btnRet2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.fn_beforeJagyeokRet())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}	
+	}	
+	this.fn_JagyeokRet(this.ds_input.getColumn(0, "HAKBEON"));
+};
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_JagyeokRet = function(hakbeon)
+{
+	this.ds_input.setColumn(0, "HAKBEON", hakbeon);
+	
+    var strSvc      = "JagyeokRet";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T11_Jagyeok.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsJagyeok=dsJagyeok";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostJagyeokRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt2,this.dsJagyeok);
+};
+
+/**********************************************************************
+        07. 조회 함수 선언(어학연수 함수)
+***********************************************************************/
+this.btnRet3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.fn_beforeEohakYeonsuRet())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}	
+	}	
+	this.fn_EohakYeonsuRet(this.ds_input.getColumn(0, "HAKBEON"));
+};
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_EohakYeonsuRet = function(hakbeon)
+{
+	this.ds_input.setColumn(0, "HAKBEON", hakbeon);
+	
+    var strSvc      = "EohakYeonsuRet";
+    var strUrl      = "/prj/US/US01/Retrieve_2010101_T11_EohakYeonsu.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsEohakYeonsu=dsEohakYeonsu";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostEohakYeonsuRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt3,this.dsEohakYeonsu);
+};
+
+/**********************************************************************
+        08. 어학 추가 함수 선언
+***********************************************************************/
+this.btnNew1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsEohak.addRow();
+	this.dsEohak.setColumn(nRow, "HAKBEON", this.ds_input.getColumn(0, "HAKBEON"));
+};
+
+/**********************************************************************
+        09. 자격 추가 함수 선언
+***********************************************************************/
+this.btnNew2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsJagyeok.addRow();
+	this.dsJagyeok.setColumn(nRow, "HAKBEON", this.ds_input.getColumn(0, "HAKBEON"));	
+};
+
+/**********************************************************************
+        10. 어학연수 추가 함수 선언
+***********************************************************************/
+this.btnNew3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsEohakYeonsu.addRow();
+	this.dsEohakYeonsu.setColumn(nRow, "HAKBEON", this.ds_input.getColumn(0, "HAKBEON"));	
+};
+/**********************************************************************
+        11. 어학 삭제 함수 선언
+***********************************************************************/
+this.btnDel1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_EohakDel();
+};
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreEohakDel = function()
+{
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	
+	this.dsEohak.deleteRow(this.dsEohak.rowposition);
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_EohakDel = function()
+{
+    if(!this.fn_PreEohakDel())
+    {
+        return false;
+    }
+    var strSvc      = "EohakDel";
+    var strUrl      = "/prj/US/US01/Delete_2010101_T11_Eohak.do";
+    var strInDs     = "dsEohak=dsEohak:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostEohakDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsEohak);
+};
+
+/**********************************************************************
+        12. 자격 삭제 함수 선언
+***********************************************************************/
+this.btnDel2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_JagyeokDel();
+};
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreJagyeokDel = function()
+{
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	
+	this.dsJagyeok.deleteRow(this.dsJagyeok.rowposition);
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_JagyeokDel = function()
+{
+    if(!this.fn_PreJagyeokDel())
+    {
+        return false;
+    }
+
+    var strSvc      = "JagyeokDel";
+    var strUrl      = "/prj/US/US01/Delete_2010101_T11_Jagyeok.do";
+    var strInDs     = "dsJagyeok=dsJagyeok:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostJagyeokDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt2,this.dsJagyeok);
+};
+
+/**********************************************************************
+        13. 어학연수 삭제 함수 선언
+***********************************************************************/
+this.btnDel3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_EohakYeonsuDel();
+};
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreEohakYeonsuDel = function()
+{
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+    if(result == 0)
+    {
+        return false;
+    }
+	
+	this.dsEohakYeonsu.deleteRow(this.dsEohakYeonsu.rowposition);
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_EohakYeonsuDel = function()
+{
+    if(!this.fn_PreEohakYeonsuDel())
+    {
+        return false;
+    }
+    var strSvc      = "EohakYeonsuDel";
+    var strUrl      = "/prj/US/US01/Delete_2010101_T11_EohakYeonsu.do";
+    var strInDs     = "dsEohakYeonsu=dsEohakYeonsu:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostEohakYeonsuDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt3,this.dsEohakYeonsu);
+};
+
+/**********************************************************************
+        14. 어학 저장 함수 선언
+***********************************************************************/
+this.btnSave1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_EohakSave();
+};
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreEohakSave = function()
+{
+    if(!this.gfn_isUpdate(this.dsEohak))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+	
+    var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+    return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_EohakSave = function()
+{
+    if(!this.fn_PreEohakSave())
+    {
+        return false;
+    }
+    var strSvc      = "EohakSave";
+    var strUrl      = "/prj/US/US01/Save_2010101_T11_Eohak.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsEohak=dsEohak:u";
+    var strOutDs    = "dsEohak=dsEohak";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostEohakSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsEohak);
+};
+
+/**********************************************************************
+        15. 자격 저장 함수 선언
+***********************************************************************/
+this.btnSave2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_JagyeokSave();
+};
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreJagyeokSave = function()
+{
+    if(!this.gfn_isUpdate(this.dsJagyeok))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+	
+    var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+    return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_JagyeokSave = function()
+{
+    if(!this.fn_PreJagyeokSave())
+    {
+        return false;
+    }
+    var strSvc      = "JagyeokSave";
+    var strUrl      = "/prj/US/US01/Save_2010101_T11_Jagyeok.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsJagyeok=dsJagyeok:u";
+    var strOutDs    = "dsJagyeok=dsJagyeok";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostJagyeokSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt2,this.dsJagyeok);
+};
+
+/**********************************************************************
+        16. 어학연수 저장 함수 선언
+***********************************************************************/
+this.btnSave3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_EohakYeonsuSave();
+};
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreEohakYeonsuSave = function()
+{
+    if(!this.gfn_isUpdate(this.dsEohakYeonsu))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+	
+    var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+    if(result == 0)
+    {
+        return false;
+    }
+    return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_EohakYeonsuSave = function()
+{
+    if(!this.fn_PreEohakYeonsuSave())
+    {
+        return false;
+    }
+    var strSvc      = "EohakYeonsuSave";
+    var strUrl      = "/prj/US/US01/Save_2010101_T11_EohakYeonsu.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsEohakYeonsu=dsEohakYeonsu:u";
+    var strOutDs    = "dsEohakYeonsu=dsEohakYeonsu";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostEohakYeonsuSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt3,this.dsEohakYeonsu);
+};
+
+/**********************************************************************
+        17. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdEohak_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+this.grdJagyeok_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+this.grdEohakYeonsu_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};
+
+// 조회 전 사용자가 변경유무를 체크(공통처리)
+this.fn_beforeEohakRet = function()
+{
+    return this.gfn_isUpdate(this.dsEohak);
+};
+this.fn_beforeJagyeokRet = function()
+{
+    return this.gfn_isUpdate(this.dsJagyeok);
+};
+this.fn_beforeEohakYeonsuRet = function()
+{
+    return this.gfn_isUpdate(this.dsEohakYeonsu);
+};]]></Script>
+    <Bind>
+      <BindItem id="item14" compid="cboJuya00" propid="value" datasetid="ds_input" columnid="DAEHAK_CD"/>
+    </Bind>
+  </Form>
+</FDL>

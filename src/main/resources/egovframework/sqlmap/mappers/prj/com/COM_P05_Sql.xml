@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P05_DAO">									                            
+
+    <select id="COM_P05_DAO.retrieve_P05" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+           SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.BIGYOGWA_PROGRAM_CD         /*비교과프로그램코드*/             
+                 , A.YYYY                        /*학년도*/            
+                 , A.HAKGI                       /*학기*/
+                 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00022', A.HAKGI, 'CD_NM')
+					  FROM DUAL) AS HAKGI_NM                 
+                 , A.PROGRAM_SINCHEONG_SIJAK_DT  /*프로그램신청시작일시*/             
+                 , A.PROGRAM_SINCHEONG_JONGRYO_DT/*프로그램신청종료일시*/             
+                 , A.PROGRAM_SIJAK_DT            /*프로그램시작일시*/             
+                 , A.PROGRAM_JONGRYO_DT          /*프로그램종료일시*/                    
+                 , A.GANGSA_SAWON_NO             /*강사사원번호*/             
+                 , A.GANGSA_NM                   /*강사명*/                                      
+                 , B.BIGYOGWA_PROGRAM_NM
+                 , B.BIGYOGWA_PROGRAM_GBCD
+                 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('80101', B.BIGYOGWA_PROGRAM_GBCD, 'CD_NM')
+					  FROM DUAL) AS BIGYOGWA_PROGRAM_GBCD_NM
+                 , B.BIGYOGWA_PROGRAM_SEOLMYEONG
+                 , B.JUGWAN_DEPT_CD
+                 , B.DAMDANGJA_SAWON_NO
+                 , B.HAEKSIM_YEOKRYANG_GBCD
+                 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('80001', B.HAEKSIM_YEOKRYANG_GBCD, 'CD_NM')
+					  FROM DUAL) AS HAEKSIM_YEOKRYANG_NM
+              FROM UNIV.UY_BIGYOGWA_GAESEOL_M A
+              	 , UNIV.UY_BIGYOGWA_PROGRAM_M B
+             WHERE A.BIGYOGWA_PROGRAM_CD = B.BIGYOGWA_PROGRAM_CD    
+               AND B.SEUNGIN_SANGTAE = '03'
+        ]]>  
+        <if test="YYYY != null and YYYY != ''">                                           							                        
+               AND A.YYYY = #{YYYY}                                          													
+        </if>
+        <if test="HAKGI != null and HAKGI != ''">                                           							                        
+               AND A.HAKGI = #{HAKGI}                                          													
+        </if>                                                      												 
+        <if test="BIGYOGWA_PROGRAM_CD_NM != null and BIGYOGWA_PROGRAM_CD_NM != ''">                                           							                        
+               AND (B.BIGYOGWA_PROGRAM_CD = #{BIGYOGWA_PROGRAM_CD_NM} OR B.BIGYOGWA_PROGRAM_NM LIKE '%' || #{BIGYOGWA_PROGRAM_CD_NM} || '%')                                          													
+        </if>                                                                                                                                                                                                 
+        /* COM_P05_DAO.retrieve_P05_ 비교과개설관리 조회 */	                                 
+    </select> 	                                                        													 	                                                          													   
+</mapper>

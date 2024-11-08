@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Popup_007" width="1200" height="700" titletext="자동배정(탭형식샘플)">
+    <Layouts>
+      <Layout height="700" mobileorientation="landscape" width="1200">
+        <Static id="Static00" taborder="0" text="시즌 체크인 카운터 배정 상세" left="20" top="20" width="240" height="22" cssclass="sta_WF_Title01" fittocontents="width"/>
+        <Button id="Button01" taborder="1" text="닫기" top="23" width="46" height="22" cssclass="btn_WF_Crud" right="20"/>
+        <Static id="Static01" taborder="2" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static02" taborder="3" text="5" top="45" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" left="0" right="0"/>
+        <Static id="Static05" taborder="4" text="20" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0" right="0"/>
+        <Static id="Static03" taborder="5" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static04" taborder="6" text="20" left="0" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0"/>
+        <Div id="div_01" taborder="7" left="20" top="50" height="71" cssclass="div_WF_SearchBox" text="" right="20" formscrolltype="none" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="시즌" cssclass="sta_WF_SearchLbl" width="90" fittocontents="width"/>
+              <Combo id="Combo00" taborder="5" text="S18" left="stc_00:10" top="10" width="95" height="22" value="" index="-1"/>
+              <Static id="stc_01" taborder="2" left="Combo00:0" top="10" height="22" text="From Date" cssclass="sta_WF_SearchLbl" width="90" fittocontents="width"/>
+              <Edit id="Edit02" taborder="8" left="stc_01:10" top="10" width="85" height="22"/>
+              <Static id="stc_04" taborder="7" left="Edit02:0" top="10" height="22" text="To Date" cssclass="sta_WF_SearchLbl" width="79" fittocontents="width"/>
+              <Edit id="Edit03" taborder="9" left="stc_04:10" top="10" width="85" height="22"/>
+              <Static id="stc_05" taborder="11" left="Edit03:0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="60" fittocontents="width"/>
+              <Edit id="Edit01" taborder="10" left="stc_05:10" top="10" width="55" height="22"/>
+              <Static id="stc_09" taborder="13" left="Edit01:0" top="10" height="22" text="버전" cssclass="sta_WF_SearchLbl" width="60" fittocontents="width"/>
+              <Edit id="Edit04" taborder="12" left="stc_09:10" top="10" width="55" height="22"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Static id="stc_02" taborder="3" left="0" top="37" height="22" text="요일" cssclass="sta_WF_SearchLbl" width="90" fittocontents="width"/>
+              <Combo id="Combo01" taborder="6" text="일" left="stc_02:10" top="37" width="95" height="22" value="" index="-1"/>
+              <Static id="stc_06" taborder="14" left="Edit04:0" top="10" height="22" text="기존 배정자료 초기화" cssclass="sta_WF_SearchLbl" width="140" fittocontents="width"/>
+              <CheckBox id="CheckBox00" taborder="15" left="stc_06:5" top="10" width="22" height="22"/>
+              <Static id="stc_03" taborder="4" left="Combo01:0" top="37" height="22" text="주기장 선택 : LB" cssclass="sta_WF_SearchLbl" width="110" fittocontents="width"/>
+              <CheckBox id="CheckBox01" taborder="16" left="stc_03:5" top="37" width="22" height="22"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_03" taborder="8" text="도움말" top="23" height="22" cssclass="btn_WF_Crud" right="68" width="58"/>
+        <Button id="btn_02" taborder="9" text="필터" top="23" height="22" cssclass="btn_WF_Crud" right="128" width="46"/>
+        <Button id="btn_01" taborder="10" text="엑셀" top="23" height="22" cssclass="btn_WF_Crud" right="176" width="46"/>
+        <Button id="btn_00" taborder="11" text="저장" top="23" height="22" cssclass="btn_WF_Crud" right="224" width="46"/>
+        <Button id="btn_134" taborder="12" text="시뮬레이션" top="23" height="22" cssclass="btn_WF_Crud" right="272" width="82"/>
+        <Tab id="Tab00" taborder="13" tabindex="0" left="20" top="136" bottom="20" right="20">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="배정현황">
+              <Layouts>
+                <Layout>
+                  <Static id="stc_09" taborder="0" left="0" top="10" height="22" text="배정현황 리스트" width="180" cssclass="sta_WF_Title02" fittocontents="width"/>
+                  <Static id="Static10" taborder="1" text="7" left="0" top="28" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                  <Grid id="grd_00" taborder="2" left="0" top="35" binddataset="ds_grd" bottom="40" right="0">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="70"/>
+                          <Column size="70"/>
+                          <Column size="60"/>
+                          <Column size="120"/>
+                          <Column size="100"/>
+                          <Column size="100"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell colspan="2" text="배정시간"/>
+                          <Cell col="2" rowspan="2" text="항공사"/>
+                          <Cell col="3" rowspan="2" text="편명(출발시간)"/>
+                          <Cell col="4" rowspan="2" text="운항시작일자"/>
+                          <Cell col="5" rowspan="2" text="운항종료일자"/>
+                          <Cell row="1" text="*시작"/>
+                          <Cell row="1" col="1" text="*종료"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:Column1"/>
+                          <Cell col="1" text="bind:Column2"/>
+                          <Cell col="2" text="bind:Column3"/>
+                          <Cell col="3" text="bind:Column7"/>
+                          <Cell col="4" text="bind:Column8"/>
+                          <Cell col="5" text="bind:Column9"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="stc_15" taborder="3" left="stc_09:0" top="10" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;30&lt;/fc&gt;&lt;/b&gt; 건" width="80" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+                  <Static id="Static07" taborder="4" text="15" left="0" top="0" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="배정통계"/>
+            <Tabpage id="Tabpage3" text="배정출력"/>
+          </Tabpages>
+        </Tab>
+        <Static id="Static07" taborder="14" text="15" left="20" top="121" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Column0"/>
+            <Col id="Column1">06:00</Col>
+            <Col id="Column2">08:00</Col>
+            <Col id="Column3">OZ</Col>
+            <Col id="Column5"/>
+            <Col id="Column6">OZ1145(08:30)</Col>
+            <Col id="Column7">OZ1145(08:30)</Col>
+            <Col id="Column8">20181111</Col>
+            <Col id="Column4">OZ1145(08:30)</Col>
+            <Col id="Column9">9999-12-31</Col>
+            <Col id="Column10">버튼</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="form" width="1640" height="800" titletext="그리드 Cell에 각종색상표현" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grd_sample1" taborder="0" left="18" top="45" height="112" nodatatext="No Data" binddataset="ds_sample1" width="845" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="TYPE"/>
+                <Cell col="1" text="COL1"/>
+                <Cell col="2" text="COL2"/>
+                <Cell col="3" text="COL3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TYPE" cssclass="expr:TYPE == '1' ? 'grd_bgGreen':'grd_bgBlue'" edittype="text"/>
+                <Cell col="1" text="bind:COL1" cssclass="expr:TYPE == '1' ? 'grd_TxtRed':'grd_TxtBlue'"/>
+                <Cell col="2" text="bind:COL2" cssclass="expr:TYPE == '1' ? 'grd_bgOrange':'grd_bgRed'"/>
+                <Cell col="3" text="bind:COL3" cssclass="expr:TYPE == '1' ? 'grd_TxtGreen':'grd_TxtPink'"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="1. 동적 변경이 필요할 경우 - expr 사용" left="18" top="15" width="392" height="30" onclick="Static00_onclick"/>
+        <Static id="Static01" taborder="2" text="2.1 쿼리사용 - css binding" left="18" top="173" width="392" height="30" onclick="Static00_onclick"/>
+        <Grid id="grd_sample2" taborder="3" left="18" top="203" height="122" nodatatext="No Data" binddataset="ds_sample2" width="845" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="TYPE"/>
+                <Cell col="1" text="COL1"/>
+                <Cell col="2" text="COL2"/>
+                <Cell col="3" text="COL3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TYPE" cssclass="bind:CSS"/>
+                <Cell col="1" text="bind:COL1"/>
+                <Cell col="2" text="bind:COL2"/>
+                <Cell col="3" text="bind:COL3"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="4" text="2.2 쿼리 사용 - 쿼리에 태그사용" left="18" top="331" width="392" height="30" onclick="Static00_onclick"/>
+        <Grid id="grd_sample3" taborder="5" left="18" top="361" height="222" nodatatext="No Data" binddataset="ds_sample3" width="845" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="TYPE"/>
+                <Cell col="1" text="COL1"/>
+                <Cell col="2" text="COL2"/>
+                <Cell col="3" text="COL3"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TYPE" displaytype="decoratetext"/>
+                <Cell col="1" text="bind:COL1"/>
+                <Cell col="2" text="bind:COL2"/>
+                <Cell col="3" text="bind:COL3"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn1" taborder="6" text="조회" left="825" top="13" width="38" height="23" onclick="btn1_onclick"/>
+        <Button id="btn2" taborder="7" text="조회" left="825" top="175" width="38" height="23" onclick="btn2_onclick"/>
+        <Button id="btn3" taborder="8" text="조회" left="825" top="333" width="38" height="23" onclick="btn3_onclick"/>
+        <Static id="Static03" taborder="9" text="동적일 변경의 경우 expr만 사용 가능&#13;&#10;그리드 cell 의 cssclass 에 expr 사용&#13;&#10;expr:TYPE == '1' ? 'grid_colorRed':'grid_colorBlue'&#13;&#10;" left="878" top="45" width="392" height="115" onclick="Static00_onclick" verticalAlign="top"/>
+        <Static id="Static04" taborder="10" text="정적일 경우만 사용 가능&#13;&#10;쿼리에서부터 조건에 따른 cssclass값을 데이터셋 필드로 가져와서 &#13;&#10;그리드 cell 의 cssclass에 데이터셋 컬럼값을 바인딩" left="876" top="203" width="392" height="115" onclick="Static00_onclick" verticalAlign="top"/>
+        <Static id="Static05" taborder="11" text="정적일 경우 사용 가능&#13;&#10;쿼리에 태그값을 사용 &#13;&#10;그리드 셀의 displaytype을 decoratetext 로 변경 후 사용&#13;&#10;사용가능한 태그는 넥사크로 도움말에서 displaytype 검색&#13;&#10;" left="884" top="366" width="392" height="115" onclick="Static00_onclick" verticalAlign="top"/>
+        <Static id="Static06" taborder="12" text="Type Description Default Example &#13;&#10;fs 폰트크기(font size)를 지정 &quot;12&quot; &lt;fs v='12'&gt;Text&lt;/fs&gt; &#13;&#10;fc 폰트색상(font color)를 지정 &quot;#000000&quot; &lt;fc v='red'&gt;Text&lt;/fc&gt; &#13;&#10;ff 폰트종류(font face)를 지정 &quot;굴림&quot; &lt;ff v='Dotum'&gt;Text&lt;/ff&gt; &#13;&#10;b 굵은(bold) 효과 지정 &quot;false&quot; &lt;b v='true'&gt;Text&lt;/b&gt; &#13;&#10;i 기울임(italic) 효과 지정 &quot;false&quot; &lt;i v='true'&gt;Text&lt;/i&gt; &#13;&#10;u 밑줄(under line) 효과 지정 &quot;false&quot; &lt;u v='true'&gt;Text&lt;/u&gt; &#13;&#10;s 취소선(strike) 효과 지정 &quot;false&quot; &lt;s v='true'&gt;Text&lt;/s&gt; &#13;&#10;l 링크(link) 효과 지정 value 에는 URL, 전화번호, 메일주소 중 하나를 설정할 수 있습니다. &#13;&#10;value 에 설정된 형태에 따라 알맞는 앱이 실행됩니다. &quot;false&quot; &#13;&#10;&lt;l v='http://www.tobesoft.co.kr'&gt;Text&lt;/l&gt; &lt;l v='tel:010-1234-5678'&gt; 전화걸기 &lt;/l&gt; &#13;&#10;&lt;l v='mailto:manager@tobesoft.co.kr'&gt; 메일보내기 &lt;/l&gt; &#13;&#10;" left="880" top="440" onclick="Static00_onclick" verticalAlign="top" right="220" bottom="175"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_sample1">
+        <ColumnInfo>
+          <Column id="TYPE" type="STRING" size="256"/>
+          <Column id="COL1" type="STRING" size="256"/>
+          <Column id="COL2" type="STRING" size="256"/>
+          <Column id="COL3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TYPE">1</Col>
+            <Col id="COL1">글자색변경1</Col>
+            <Col id="COL3">aaaaa</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">0</Col>
+            <Col id="COL1">글자색변경2</Col>
+            <Col id="COL3">bbbbb</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_sample2">
+        <ColumnInfo>
+          <Column id="TYPE" type="STRING" size="256"/>
+          <Column id="COL1" type="STRING" size="256"/>
+          <Column id="COL2" type="STRING" size="256"/>
+          <Column id="COL3" type="STRING" size="256"/>
+          <Column id="CSS" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CSS">grd_bgGreen</Col>
+            <Col id="TYPE">222</Col>
+          </Row>
+          <Row>
+            <Col id="CSS">grd_bgRed</Col>
+            <Col id="TYPE">333</Col>
+          </Row>
+          <Row>
+            <Col id="CSS">grd_bgBlue</Col>
+            <Col id="TYPE">333</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_sample3">
+        <ColumnInfo>
+          <Column id="TYPE" type="STRING" size="256"/>
+          <Column id="COL1" type="STRING" size="256"/>
+          <Column id="COL2" type="STRING" size="256"/>
+          <Column id="COL3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TYPE">&lt;b v='true'&gt;point&lt;/b&gt;</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">&lt;fc v='red'&gt;Text&lt;/fc&gt;</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">&lt;fc v='blue'&gt;Text&lt;/fc&gt;</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfn_formOnload(obj,e);	
+};
+
+this.btn1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId     = "search1";
+	var strSvcUrl    = "sample/search1";
+	var inData       = "";
+	var outData      = "ds_sample1=ds_sample1";
+	var strArg       = "";
+	var callBackFnc  = "fn_callback";
+
+	//생략가능
+	var isAsync   = true;                   // true:비동기, false:동기
+
+	this.gfn_transaction( 	strSvcId , 	    // transaction을 구분하기 위한 svc id값
+							strSvcUrl , 	// trabsaction을 요청할 주소
+							inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+							outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+							strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+							callBackFnc, 	// transaction의 결과를 받을 Function 이름
+							isAsync);       // 통신(동기:false / 비동기:true). 생략하면 비동기통신. 비동기통신 권장.
+};
+
+this.btn2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId     = "search2";
+	var strSvcUrl    = "sample/search2";
+	var inData       = "";
+	var outData      = "ds_sample2=ds_sample2";
+	var strArg       = "";
+	var callBackFnc  = "fn_callback";
+
+	//생략가능
+	var isAsync   = true;                   // true:비동기, false:동기
+
+	this.gfn_transaction( 	strSvcId , 	    // transaction을 구분하기 위한 svc id값
+							strSvcUrl , 	// trabsaction을 요청할 주소
+							inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+							outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+							strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+							callBackFnc, 	// transaction의 결과를 받을 Function 이름
+							isAsync);       // 통신(동기:false / 비동기:true). 생략하면 비동기통신. 비동기통신 권장.
+};
+
+this.btn3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId     = "search3";
+	var strSvcUrl    = "sample/search3";
+	var inData       = "";
+	var outData      = "ds_sample3=ds_sample3";
+	var strArg       = "";
+	var callBackFnc  = "fn_callback";
+
+	//생략가능
+	var isAsync   = true;                   // true:비동기, false:동기
+
+	this.gfn_transaction( 	strSvcId , 	    // transaction을 구분하기 위한 svc id값
+							strSvcUrl , 	// trabsaction을 요청할 주소
+							inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+							outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+							strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+							callBackFnc, 	// transaction의 결과를 받을 Function 이름
+							isAsync);       // 통신(동기:false / 비동기:true). 생략하면 비동기통신. 비동기통신 권장.
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsDetail);
+};
+]]></Script>
+  </Form>
+</FDL>

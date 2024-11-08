@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P07_DAO">									                            
+
+    <select id="COM_P07_DAO.retrieve_P07" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.DANCHE_CD                   /*단체코드*/             
+                 , A.DANCHE_NM                   /*단체명*/             
+                 , A.SEOLIB_DT                   /*설립일자*/             
+                 , A.DAEPYO_HAKBEON              /*대표학번*/
+                 , (SELECT HAKSAENG_NM
+			          FROM UNIV.US_HAKJEOKGIBON_M
+			         WHERE A.DAEPYO_HAKBEON = HAKBEON) AS DAEPYO_NM             
+                 , A.BU_DAEPYO_HAKBEON           /*부대표학번*/
+                 , (SELECT HAKSAENG_NM
+			          FROM UNIV.US_HAKJEOKGIBON_M
+			         WHERE A.BU_DAEPYO_HAKBEON = HAKBEON) AS BU_DAEPYO_NM             
+                 , A.DANCHE_GBCD                 /*단체구분코드*/             
+                 , A.DANCHE_BUNRYU_GBCD          /*단체분류구분코드*/                     
+                 , A.JIDOGYOSU_CD                /*지도교수코드*/
+                 , (SELECT SEONGMYEONG
+			          FROM ADMI.AM_GIBONINSA_M
+			         WHERE TO_CHAR(A.JIDOGYOSU_CD) = SABEON) AS JIDOGYOSU_NM
+			     , A.DEPT_CD      /*부서코드*/
+			     , COMM.SF_SC_GET_DEPT(A.DEPT_CD) AS DEPT_NM                                     
+              FROM UNIV.UD_DANCHE_M A                                             							 
+             WHERE 1=1
+              AND (
+	          		#{USERID} IN (A.INSERT_ID, A.UPDATE_ID, A.DAEPYO_HAKBEON)
+	          		OR NVL(A.DEPT_CD, '110000') IN (SELECT DEPT_CD FROM TABLE(COMM.SF_XBT_AUTH_DEPT_TBL(#{USERID},#{INSERT_PG},'00','')))
+	          		)                                                    												     
+        ]]>                                                      												 
+        <if test="DANCHE_CD_NM != null and DANCHE_CD_NM != ''">    
+            <![CDATA[                                         							                        
+               AND (A.DANCHE_CD = #{DANCHE_CD_NM} OR A.DANCHE_NM LIKE '%' || #{DANCHE_CD_NM} || '%')
+            ]]>                                           													
+        </if>                                                                                                   
+        /* COM_P07_DAO.retrieve_P07_ 단체내역 조회 */	                                 
+    </select> 	                                                        													                                                           													   
+</mapper> 

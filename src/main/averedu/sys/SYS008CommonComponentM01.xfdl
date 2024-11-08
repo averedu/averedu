@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="다국어컴포넌트관리" onload="form_onload" onclose="form_onclose">
+    <Layouts>
+      <Layout description="다국어컴포넌트관리" height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grdMaster" taborder="0" left="0" top="256" binddataset="dsMaster" right="0" autofittype="col" autoenter="select" cellsizingtype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="47"/>
+                <Column size="48"/>
+                <Column size="111"/>
+                <Column size="146"/>
+                <Column size="143"/>
+                <Column size="144"/>
+                <Column size="190"/>
+                <Column size="160"/>
+                <Column size="106"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="No."/>
+                <Cell col="2" text="컴포넌트코드"/>
+                <Cell col="3" text="한글어컴포넌트"/>
+                <Cell col="4" text="영문어컴포넌트"/>
+                <Cell col="5" text="중국어컴포넌트"/>
+                <Cell col="6" text="일본어컴포넌트"/>
+                <Cell col="7" text="기타컴포넌트"/>
+                <Cell col="8" text="사용여부"/>
+                <Cell col="9" text="등록자"/>
+                <Cell col="10" text="등록일"/>
+                <Cell col="11" text="수정자"/>
+                <Cell col="12" text="수정일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" editmaxlength="1"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center"/>
+                <Cell col="2" text="bind:COP_CODE" displaytype="text"/>
+                <Cell col="3" text="bind:COP_NAME_KR" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="4" text="bind:COP_NAME_EN" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="5" text="bind:COP_NAME_CH" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="6" text="bind:COP_NAME_JP" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="7" text="bind:COP_NAME_EC" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="8" text="bind:COP_YN" displaytype="combotext" edittype="combo" combodataset="dsGUserYn" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="9" text="bind:REG_ID" displaytype="text"/>
+                <Cell col="10" text="bind:REG_DT" displaytype="date" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+                <Cell col="11" text="bind:MOD_ID" displaytype="text"/>
+                <Cell col="12" text="bind:MOD_DT" displaytype="date" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="dvSearch" taborder="1" left="0" top="0" right="0" height="44" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout>
+              <Static id="staSubTitle01" taborder="0" text="컴포넌트코드 " left="0" top="10" width="93" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Static id="staSubTitle02" taborder="1" text="컴포넌트명" left="250" top="10" width="82" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Static id="staSubTitle03" taborder="2" text="사용여부 " left="681" top="10" width="73" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtSCopCode" taborder="3" left="99" top="10" width="147" height="22" imemode="alpha" inputmode="upper" onkeydown="dvSearch_edUiId_onkeydown" onkeyup="dvSearch_edtSCopCode_onkeyup"/>
+              <Edit id="edtSCopNameKr" taborder="4" left="339" top="10" width="342" height="22" imemode="alpha" inputmode="upper" onkeyup="dvSearch_edtSCopNameKr_onkeyup"/>
+              <Combo id="cboCopYn" taborder="5" left="759" top="10" width="133" height="22" text="" innerdataset="dsUserYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="dvSearch_cbUseYn_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="6" top="225" height="24" usedecorate="true" width="63"/>
+        <Static id="staTitel01" text="설명(한글)" wordwrap="none" position="absolute" height="86" taborder="3" cssclass="sta_WF_DetailTi" left="0.00%" top="51" right="95.06%"/>
+        <Static id="staTitel03" text="설명(영문)" wordwrap="none" position="absolute" height="86" taborder="4" cssclass="sta_WF_DetailTi" left="0.00%" right="95.06%" top="136"/>
+        <TextArea id="txtCopNameKr" taborder="7" left="staTitel01:0.00%" top="51" height="86" right="48.68%" cssclass="point"/>
+        <Static id="staTitel02" text="설명(중국어)" wordwrap="none" position="absolute" top="51" height="86" taborder="5" right="43.74%" left="txtCopNameKr:0.00%" cssclass="sta_WF_DetailTi"/>
+        <TextArea id="txtCopNameCh" taborder="9" left="staTitel02:-1.16%" top="51" height="86" right="0.06%"/>
+        <TextArea id="txtCopNameEn" taborder="8" left="staTitel03:0.00%" height="86" right="48.68%" top="136"/>
+        <Static id="staTitel04" text="설명(일본어)" wordwrap="none" position="absolute" height="86" taborder="6" right="43.74%" left="txtCopNameEn:0.00%" cssclass="sta_WF_DetailTi" top="136"/>
+        <TextArea id="txtCopNameJp" taborder="10" left="staTitel04:-1.16%" height="86" right="0.06%" top="136"/>
+        <Static id="Static01" taborder="11" text="35" left="515" top="220" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="32"/>
+          <Column id="COP_CODE" type="STRING" size="32"/>
+          <Column id="COP_NAME_KR" type="STRING" size="32"/>
+          <Column id="COP_NAME_EN" type="STRING" size="32"/>
+          <Column id="COP_NAME_CH" type="STRING" size="32"/>
+          <Column id="COP_NAME_JP" type="STRING" size="32"/>
+          <Column id="COP_NAME_EC" type="STRING" size="32"/>
+          <Column id="COP_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="COP_CODE" type="STRING" size="256"/>
+          <Column id="COP_NAME_KR" type="STRING" size="256"/>
+          <Column id="COP_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="COP_CODE"/>
+            <Col id="COP_NAME_KR"/>
+            <Col id="COP_YN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGUserYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserYn" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+          <Column id="SORT" type="BIGDECIMAL" size="16"/>
+          <Column id="ADDR" type="STRING" size="32"/>
+          <Column id="CD_DC" type="STRING" size="32"/>
+          <Column id="REF_1" type="STRING" size="32"/>
+          <Column id="REF_2" type="STRING" size="32"/>
+          <Column id="REF_3" type="STRING" size="32"/>
+          <Column id="REF_4" type="STRING" size="32"/>
+          <Column id="REF_5" type="STRING" size="32"/>
+          <Column id="REF_6" type="STRING" size="32"/>
+          <Column id="REF_7" type="STRING" size="32"/>
+          <Column id="REF_8" type="STRING" size="32"/>
+          <Column id="REF_9" type="STRING" size="32"/>
+          <Column id="REF_10" type="STRING" size="32"/>
+          <Column id="USE_YN" type="STRING" size="32"/>
+          <Column id="REG_ID" type="STRING" size="32"/>
+          <Column id="REG_DT" type="DATETIME" size="17"/>
+          <Column id="MOD_ID" type="STRING" size="32"/>
+          <Column id="MOD_DT" type="DATETIME" size="17"/>
+          <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item2" compid="dvSearch.form.edtSCopCode" propid="value" datasetid="ds_input" columnid="COP_CODE"/>
+      <BindItem id="item1" compid="dvSearch.form.edtSCopNameKr" propid="value" datasetid="ds_input" columnid="COP_NAME_KR"/>
+      <BindItem id="item4" compid="dvSearch.form.cboCopYn" propid="value" datasetid="ds_input" columnid="COP_YN"/>
+      <BindItem id="item0" compid="txtCopNameKr" propid="value" datasetid="dsMaster" columnid="COP_NAME_KR"/>
+      <BindItem id="item3" compid="txtCopNameEn" propid="value" datasetid="dsMaster" columnid="COP_NAME_EN"/>
+      <BindItem id="item5" compid="txtCopNameCh" propid="value" datasetid="dsMaster" columnid="COP_NAME_CH"/>
+      <BindItem id="item6" compid="txtCopNameJp" propid="value" datasetid="dsMaster" columnid="COP_NAME_JP"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): XbtComponentM.xfdl(다국어컴포넌트관리)
+* 작 성			일 명: jiback
+* 작 성	    	일 자: 2015/9/1
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   	= "COP_NAME_KR";         		// 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs 	= "컴포넌트명";
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+	this.fn_formInit();	
+};
+
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+}; 
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	var strDs   = "dsUserYn|dsGUserYn";		// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+	var strLgcd = "000002|000002";           		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strComb = "T|X";   								// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+	var strOptn = "";										// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+	var svcId 	= "Init";   									//콤보의 (A:기본명-네임바운드nmae ,B:코드에[01] 기본명-네임바운드name1)
+  
+   // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+   // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+  
+  this.gfn_CmmnMultiComboLoad(strDs
+							  , strLgcd
+							  , strComb
+							  , strOptn
+							  , svcId);
+};
+
+this.fn_PostformInit = function()
+{
+	this.ds_input.setColumn(0,"COP_YN",null);
+};
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+	this.gfn_clearSortAll(this.grdMaster);
+
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg);
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.fn_PostformInit();
+				break;
+			case "Ret":
+			    this.fn_PostRet();
+			  	break;
+			case "Save":
+			    this.fn_PostSave();
+				break;
+			case "Insert":
+				this.fn_PostAdd();
+				break;
+			case "Del":
+				this.fn_PostDel();
+				break;
+			default:
+				break;
+		}
+	}
+};
+/************************************************************************************************
+* 공통 버튼 호출 영역(공통버튼 사용에만사용)
+************************************************************************************************/
+/*
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함) 	
+ */
+this.fn_cmmBtnClick = function(sBtn)
+{	
+	switch(sBtn)
+	{
+		case "ret" :				//조회
+				this.fn_Ret();
+			break;
+		case "new" :				//신규
+				this.fn_New();
+			break;
+		case "del" :				//삭제
+				this.fn_Del();
+			break;
+		case "save" :				//저장
+				this.fn_Save();
+			break;
+		case "excel" :				//엑셀
+				this.fn_Excel();
+			break;
+		case "print" :				//출력
+				this.fn_Print();
+			break;
+		case "confirm" :			//확정
+				this.fn_Confirm();
+			break;
+		case "tmp1" :				//여분버튼1
+				this.fn_Tmp1();
+			break;
+		case "tmp2" :				//여분버튼2
+				this.fn_Tmp2();
+			break;
+		case "tmp3" :				//여분버튼3
+				this.fn_Tmp3();
+			break;	
+			
+		default :				
+			break;
+	}
+};
+/**********************************************************************
+	05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+	// 조회조건 셋팅
+	return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	if(!this.fn_PreRet())
+	{
+		return false;
+	}
+	var strSvc 		= "Ret";
+	var strUrl 		= "/prj/sys/RetrieveCommonComponentList.do";
+	var strInDs  	= "ds_input=ds_input";
+	var strOutDs 	= "dsMaster=dsMaster";
+	var strArg 		= "";
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+				   		, strUrl
+				   		, strInDs
+				   		, strOutDs
+				   		, strArg
+				   		, strCallBack
+				   		, strASync);
+};
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+	//trace(this.dsMaster.saveXML());
+	//trace(this.dsErro.saveXML());
+	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+	
+};
+/**********************************************************************
+	06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 추가 전 실행(기본체크사항)
+ */
+this.fn_PreAdd = function()
+{
+	return true;
+};
+
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+	if(!this.fn_PreAdd())
+	{
+		return false;
+	}
+	var nRow = this.dsMaster.addRow();
+	this.dsMaster.setColumn(nRow,"COP_YN", 	"1"); 		//사용유무
+};
+/**
+ * 기능 : 처리 후 실행
+ */
+this.fn_PostAdd = function()
+{
+
+};
+
+/**********************************************************************
+	07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreDel = function()
+{
+
+	//멀티삭제용도
+	if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
+	{
+		this.gfn_alert("MSG00006","삭제 정보","","information"); 					// 삭제할 데이타가 없습니다.!
+		return false;
+	}
+	
+	var result = this.gfn_confirm("MSG00007","삭제 처리","","question");              // 현재선택행을 삭제하시겠습니까?
+	if(result == 0)
+	{
+	   return false;
+	}
+
+	//다중삭제 용도
+	this.dsMaster.set_enableevent(false);
+	for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+	{
+		if(this.dsMaster.getColumn(i,"CHK") == "1" || this.dsMaster.getRowType(i) == 2)
+		{
+			this.dsMaster.deleteRow(i);
+		}
+	}
+	this.dsMaster.set_enableevent(true);
+
+	//개별삭제시
+	return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+	if(!this.fn_PreDel())
+	{
+		return false;
+	}
+
+	var strSvc 		= "Del";
+	var strUrl 		= "/prj/sys/DeleteCommonComponentList.do";
+	var strInDs  	= "dsMaster=dsMaster:u";
+	var strOutDs 	= "";
+	var strArg 		= "";
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+				   		, strUrl
+				   		, strInDs
+				   		, strOutDs
+				   		, strArg
+				   		, strCallBack
+				   		, strASync);
+
+
+};
+this.fn_PostDel = function()
+{
+	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+	08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+	if(this.dsMaster.rowcount > 0)
+	{
+		for(var i=0;i<this.dsMaster.rowcount; i++)
+		{
+			if(this.dsMaster.getColumn(i,"CHK") == "0")
+			{
+				continue;
+			}
+			this.dsMaster.setColumn(i,"CHK","0");
+		}
+	}
+
+	if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("MSG00008","저장 정보","","information"); 	//변경된 이력이 없습니다.
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+	var chkFocusFlg = true;
+	var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+	if (result[0] != "success") 
+	{
+		this.alert(result[0]);
+		this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+		return false;
+	}
+
+    var result = this.gfn_confirm("MSG00009","저장 처리","","question");              // 저장 하시겠습니까?
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+	if(!this.fn_PreSave())
+	{
+		return false;
+	}
+
+	var strSvc 		= "Save";
+	var strUrl 		= "/prj/sys/SaveCommonComponentList.do";
+	var strInDs  	= "ds_input=ds_input:a ";
+		strInDs    += "dsMaster=dsMaster:u";
+	var strOutDs 	= "dsMaster=dsMaster";
+	var strArg 		= "";
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+				   		, strUrl
+				   		, strInDs
+				   		, strOutDs
+				   		, strArg
+				   		, strCallBack
+				   		, strASync);
+
+
+
+};
+/**
+ *	기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+	this.dsMaster.set_rowposition(this.dsMaster.rowcount-1);
+};
+/**********************************************************************
+	09. 초기화
+***********************************************************************/
+/**********************************************************************
+	10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+	11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+this.fn_Excel = function()
+{
+	if(this.dsMaster.rowcount < 1)
+	{
+		this.gfn_alert("MSG00009", "EXCEL 정보" ,"information");
+		return false;
+	}
+	var result = this.gfn_confirm( "MSG00005", "EXCEL 출력", "question" );
+	if(result == 0)
+	{
+	   return false;
+	}
+	this.gfn_excelExport(this.grdMaster);
+};
+/**********************************************************************
+	12. ExcelUpLoad 신규저장시
+***********************************************************************/
+this.preExcelUp = function()
+{
+	var result = this.confirm( "기존데이타를 삭제하고 신규데이타를 일괄적용하겠습니까?");
+
+	if(result == 0)	
+	{
+	   return false;
+	}
+	//개별삭제시 
+	return true;
+};
+
+this.btnExcelUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.preExcelUp())                                                
+	{                                                             
+		return false;                                               
+	} 
+};
+/**********************************************************************
+	13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+	14. 기타 Control Event
+***********************************************************************/
+/**
+	메세지코드 조회조건 조회
+*/
+this.dvSearch_edtSCopCode_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}
+};
+
+/**
+	메세지명 조회조건 조회
+*/
+this.dvSearch_edtSCopNameKr_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}
+};
+
+/**
+	사용여부 조건 조회
+*/
+this.dvSearch_cbUseYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_Ret();
+};
+
+/**
+ *	그리드멀티 현재로 초기화
+**/
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	}
+};
+
+/**
+ *	그리드멀티 소트정열
+**/
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+	{
+		this.gfn_gridSort(obj,e);
+	}
+};
+
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+**/
+this.fn_beforeclose = function()
+{
+    return (this.gfn_isUpdate(this.dsMaster));
+};]]></Script>
+  </Form>
+</FDL>

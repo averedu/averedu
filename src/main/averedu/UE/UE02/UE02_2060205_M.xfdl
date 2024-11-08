@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="성적장학대상자관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="성적장학대상자관리" height="800" mobileorientation="landscape" width="1640">
+        <Tab id="Tab" taborder="0" tabindex="0" top="0" enable="true" bottom="0" left="0" right="0" onchanged="Tab_onchanged">
+          <Tabpages>
+            <Tabpage id="TabPage1" text="재학생" url="UE02::UE02_2060205_T01.xfdl"/>
+            <Tabpage id="TabPage2" text="신입생" url="UE02::UE02_2060205_T02.xfdl"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE02_2060205_M.xfdl(성적장학대상자관리)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/03
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "tmp1" :        // 장학선발확정
+                 this.fn_Save();
+            break;
+        case "tmp2" :        // 팁
+                 this.fn_Tip();
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	// 재학생
+	if(this.Tab.tabindex==0){
+		this.Tab.TabPage1.form.fn_Ret();
+	}
+	// 신입생
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_Ret();
+	}
+};
+
+/**********************************************************************
+        06. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+	// 재학생
+	if(this.Tab.tabindex==0){
+		this.Tab.TabPage1.form.fn_Save();
+	}
+	// 신입생
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_Save();
+	}
+};
+
+/**********************************************************************
+        07. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};]]></Script>
+    <Bind>
+      <BindItem id="item63" compid="Tab" propid="enable" datasetid="dsBindableTab" columnid="bEnable"/>
+    </Bind>
+    <InitValue/>
+  </Form>
+</FDL>

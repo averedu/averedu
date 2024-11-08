@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS010UserGroupAuthDAO">									                            
+                                                       													   
+    <!-- SYS010UserGroupAuthDAO.retrieveUserGroupAuthList 권한별사용자그룹 조회 -->	                                 
+    <select id="SYS010UserGroupAuthDAO.retrieveUserGroupAuthList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.AUTH_CD                       /*권한코드*/             
+                 , A.USER_GROUP_SEQ                /*사용자그룹순번*/             
+                 , A.USER_GROUP_NM                 /*사용자그룹명*/
+                 , A.DEPT_CD                       /*부서코드*/      
+                 , (SELECT COMM.SF_SC_GET_DEPT(A.DEPT_CD) FROM DUAL) AS DEPT_NM       
+                 , A.CAMPS_GBCD                    /*캠퍼스구분*/             
+                 , A.SOCPS_GBCD                    /*신분구분*/             
+                 , A.BOJIK_CD                      /*보직구분(00216)*/             
+                 , A.JIKJONG_GBCD                  /*직종구분(00205)*/             
+                 , A.HAKRYEOK_GBCD                 /*학위구분(00221)*/
+                 , A.JAEJIK_GBCD                   /*재직구분(00208)*/
+                 , A.HAKJEOK_STCD                  /*재학상태구분(00004)*/
+                 , A.AUTH_TRGET_ID                 /*권한대상ID*/  
+                 , (SELECT S.AUTH_TRGET_NM FROM COMM.XBT_AUTH_TRGET S WHERE S.AUTH_TRGET_ID = A.AUTH_TRGET_ID) AS AUTH_TRGET_NM           
+                 , A.REG_ID                        /*등록자*/             
+                 , A.REG_DT                        /*등록일*/             
+                 , A.MOD_ID                        /*수정자*/             
+                 , A.MOD_DT                        /*수정일*/             
+              FROM COMM.XBT_AUTH_USER_GROUP A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="AUTH_CD != null and AUTH_CD != ''">    
+            <![CDATA[                                         							                        
+               AND A.AUTH_CD              = #{AUTH_CD}  
+            ]]>                                           													
+        </if>                                                                                                   
+        <if test="USER_GROUP_SEQ != null and USER_GROUP_SEQ != ''">    
+            <![CDATA[                                         							                        
+               AND A.USER_GROUP_SEQ       = #{USER_GROUP_SEQ}  
+            ]]>                                           													
+        </if>                                                                                                   
+    </select> 	                                                        													 
+                                                       													   
+    <!-- SYS010UserGroupAuthDAO.retrieveUserGroupAuthListPKey 권한별사용자그룹 PK 조회 -->				             
+    <select id="SYS010UserGroupAuthDAO.retrieveUserGroupAuthListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   NVL(MAX(USER_GROUP_SEQ)+1,'1') AS KEY_CODE        								     
+              FROM COMM.XBT_AUTH_USER_GROUP                                             								 
+             WHERE 1=1                                             												     
+               AND AUTH_CD              = #{AUTH_CD}        
+        ]]>                                                      												             
+    </select> 	                                                        													     
+
+    <!-- SYS010UserGroupAuthDAO.retrieveUserGroupAuthListKey 권한별사용자그룹 중복 조회 -->
+    <select id="SYS010UserGroupAuthDAO.retrieveUserGroupAuthListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_AUTH_USER_GROUP
+             WHERE 1=1
+               AND AUTH_CD              = #{AUTH_CD}
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}
+        ]]>
+    </select>
+
+    <!-- SYS010UserGroupAuthDAO.insertUserGroupAuthList 권한별사용자그룹 저장 -->	
+    <insert id="SYS010UserGroupAuthDAO.insertUserGroupAuthList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_USER_GROUP                                       										  
+            (                                       																	  
+                   AUTH_CD                       /*권한코드*/ 
+                 , USER_GROUP_SEQ                /*사용자그룹순번*/ 
+                 , USER_GROUP_NM                 /*사용자그룹명*/
+                 , DEPT_CD                       /*부서코드*/ 
+                 , CAMPS_GBCD                    /*캠퍼스구분*/ 
+                 , SOCPS_GBCD                    /*신분구분*/ 
+                 , BOJIK_CD                      /*보직구분(00216)*/ 
+                 , JIKJONG_GBCD                  /*직종구분(00205)*/ 
+                 , HAKRYEOK_GBCD                 /*학위구분(00221)*/
+                 , JAEJIK_GBCD                   /*재직구분(00208)*/
+                 , HAKJEOK_STCD                  /*재학상태구분(00004)*/
+                 , AUTH_TRGET_ID                 /*권한대상ID*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_CD} 
+                 , #{USER_GROUP_SEQ}  
+                 , #{USER_GROUP_NM}
+                 , #{DEPT_CD}  
+                 , #{CAMPS_GBCD}  
+                 , #{SOCPS_GBCD}  
+                 , #{BOJIK_CD}  
+                 , #{JIKJONG_GBCD}  
+                 , #{HAKRYEOK_GBCD}
+                 , #{JAEJIK_GBCD}
+                 , #{HAKJEOK_STCD}  
+                 , #{AUTH_TRGET_ID}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    </insert>                                                           					
+                                                       													   
+    <!-- SYS010UserGroupAuthDAO.updateUserGroupAuthList 권한별사용자그룹 수정 --> 								
+    <update id="SYS010UserGroupAuthDAO.updateUserGroupAuthList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_USER_GROUP                                			        
+               SET                                                      				
+                   AUTH_CD                        = #{AUTH_CD}                       /*권한코드*/  
+                 , USER_GROUP_SEQ                 = #{USER_GROUP_SEQ}                /*사용자그룹순번*/
+                 , USER_GROUP_NM                  = #{USER_GROUP_NM}                 /*사용자그룹명*/  
+                 , DEPT_CD                        = #{DEPT_CD}                       /*부서코드*/  
+                 , CAMPS_GBCD                     = #{CAMPS_GBCD}                    /*캠퍼스구분*/  
+                 , SOCPS_GBCD                     = #{SOCPS_GBCD}                    /*신분구분*/  
+                 , BOJIK_CD                       = #{BOJIK_CD}                      /*보직구분(00216)*/  
+                 , JIKJONG_GBCD                   = #{JIKJONG_GBCD}                  /*직종구분(00205)*/  
+                 , HAKRYEOK_GBCD                  = #{HAKRYEOK_GBCD}                 /*학위구분(00221)*/  
+                 , JAEJIK_GBCD                    = #{JAEJIK_GBCD}                   /*재직구분(00208)*/
+                 , HAKJEOK_STCD                   = #{HAKJEOK_STCD}                  /*재학상태구분(00004)*/
+                 , AUTH_TRGET_ID                  = #{AUTH_TRGET_ID}                 /*권한대상ID*/  
+                 , REG_ID                         = #{REG_ID}                        /*등록자*/  
+                 , REG_DT                         = SYSDATE                          /*등록일*/  
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}  
+        ]]>  	                                   							                            				
+    </update>
+           
+    <!-- SYS010UserGroupAuthDAO.mergeUserGroupAuthList 권한별사용자그룹 저장/수정 -->							  
+    <update id="SYS010UserGroupAuthDAO.mergeUserGroupAuthList" parameterType="map"> 
+        <![CDATA[                                                				 
+            MERGE INTO COMM.XBT_AUTH_USER_GROUP A                               
+                 USING DUAL                                                 
+                    ON (                                                 	 
+                           AND A.AUTH_CD            = #{AUTH_CD}        		
+                           AND A.USER_GROUP_SEQ     = #{USER_GROUP_SEQ}        		
+                       )                                                 	 
+                  WHEN MATCHED THEN                                                    
+                        UPDATE SET                               													
+                               A.AUTH_CD                        = #{AUTH_CD}                       /*권한코드*/  
+                             , A.USER_GROUP_SEQ                 = #{USER_GROUP_SEQ}                /*사용자그룹순번*/
+                             , A.USER_GROUP_NM                  = #{USER_GROUP_NM}                 /*사용자그룹명*/    
+                             , A.DEPT_CD                        = #{DEPT_CD}                       /*부서코드*/  
+                             , A.CAMPS_GBCD                     = #{CAMPS_GBCD}                    /*캠퍼스구분*/  
+                             , A.SOCPS_GBCD                     = #{SOCPS_GBCD}                    /*신분구분*/  
+                             , A.BOJIK_CD                       = #{BOJIK_CD}                      /*보직구분(00216)*/  
+                             , A.JIKJONG_GBCD                   = #{JIKJONG_GBCD}                  /*직종구분(00205)*/  
+                             , A.HAKRYEOK_GBCD                  = #{HAKRYEOK_GBCD}                 /*학위구분(00221)*/
+                             , A.JAEJIK_GBCD                    = #{JAEJIK_GBCD}                   /*재직구분(00208)*/
+                             , A.HAKJEOK_STCD                   = #{HAKJEOK_STCD}                  /*재학상태구분(00004)*/
+                             , A.AUTH_TRGET_ID                  = #{AUTH_TRGET_ID}                 /*권한대상ID*/  
+                             , A.REG_ID                         = #{REG_ID}                        /*등록자*/  
+                             , A.REG_DT                         = SYSDATE                          /*등록일*/  
+                             , A.MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                             , A.MOD_DT                         = SYSDATE                          /*수정일*/  
+                  WHEN NOT MATCHED THEN                                                  
+                            INSERT                                        				 
+                            (                                       					 
+                                   A.AUTH_CD                 
+                                 , A.USER_GROUP_SEQ    
+                                 , A.USER_GROUP_NM             
+                                 , A.DEPT_CD                 
+                                 , A.CAMPS_GBCD                 
+                                 , A.SOCPS_GBCD                 
+                                 , A.BOJIK_CD                 
+                                 , A.JIKJONG_GBCD                 
+                                 , A.HAKRYEOK_GBCD
+                                 , A.JAEJIK_GBCD
+                                 , A.HAKJEOK_STCD                 
+                                 , A.AUTH_TRGET_ID                 
+                                 , A.REG_ID                 
+                                 , A.REG_DT                 
+                                 , A.MOD_ID                 
+                                 , A.MOD_DT                 
+                             )VALUES                                                  														
+                             (
+                                   #{AUTH_CD}  
+                                 , #{USER_GROUP_SEQ}
+                                 , #{USER_GROUP_NM}                                   
+                                 , #{DEPT_CD}                                   
+                                 , #{CAMPS_GBCD}                                   
+                                 , #{SOCPS_GBCD}                                   
+                                 , #{BOJIK_CD}                                   
+                                 , #{JIKJONG_GBCD}                                   
+                                 , #{HAKRYEOK_GBCD}        
+                                 , #{JAEJIK_GBCD}
+                                 , #{HAKJEOK_STCD}                           
+                                 , #{AUTH_TRGET_ID}                                   
+                                 , #{REG_ID}                                   
+                                 , SYSDATE                                   
+                                 , #{MOD_ID}                                   
+                                 , SYSDATE                                   
+                             )
+        ]]>  	                                   							                            			  
+    </update>                                                           													  
+
+    <!-- SYS010UserGroupAuthDAO.deleteUserGroupAuthList 권한별사용자그룹 삭제 -->								       
+    <delete id="SYS010UserGroupAuthDAO.deleteUserGroupAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_USER_GROUP                                                  							      
+             WHERE 1=1
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}  
+        ]]>
+    </delete>
+ 
+    <!-- output cursor test
+    <resultMap id="cursorEgovMap" type="egovMap">
+    </resultMap>
+     
+    <update id="SYS010UserGroupAuthDAO.updateProcedureSample" statementType="CALLABLE" parameterType="map">
+        <![CDATA[
+         CALL COMM.SP_OUTCUR_TEST(  #{IN_AA             , mode=IN,  jdbcType=VARCHAR}               /*PARAM1 */
+                                  , #{OT_CUR            , mode=OUT, jdbcType=TB_CURSOR, resultMap=cursorEgovMap, javaType=java.sql.ResultSet}
+                                  , #{OT_NO             , mode=OUT, jdbcType=VARCHAR}               /*에러코드*/
+                                  , #{OT_MESSG          , mode=OUT, jdbcType=VARCHAR}               /*에러메세지*/
+                                  )
+        ]]>								
+    </update>
+    -->
+    
+
+    <!-- SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptList 사용자그룹별관할부서 조회 -->	                                 
+    <select id="SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                      /*CHK*/        		                
+                 , A.AUTH_CD                       /*권한코드*/             
+                 , A.USER_GROUP_SEQ                /*사용자그룹순번*/             
+                 , A.DEPT_CD                       /*부서코드*/
+                 , (SELECT COMM.SF_SC_GET_DEPT(A.DEPT_CD) FROM DUAL) AS DEPT_NM             
+                 , A.SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/                          
+              FROM COMM.XBT_AUTH_USER_GROUP_DEPT A                                             							 
+             WHERE A.AUTH_CD              = #{AUTH_CD}
+               AND A.USER_GROUP_SEQ       = #{USER_GROUP_SEQ}                                             												     
+        ]]>                                                      												                                                                                                
+        <if test="DEPT_CD != null and DEPT_CD != ''">    
+            <![CDATA[
+               AND A.DEPT_CD              = #{DEPT_CD}  
+            ]]>
+        </if>                                                                                                   
+    /* SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptList 사용자그룹별관할부서 조회 */	                                 
+    </select>
+    
+
+    <!-- SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptListKey 사용자그룹별관할부서 중복 조회 -->
+    <select id="SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_AUTH_USER_GROUP_DEPT
+             WHERE 1=1
+               AND AUTH_CD              = #{AUTH_CD}
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}
+               AND DEPT_CD              = #{DEPT_CD}
+        ]]>
+    /* SYS010UserGroupAuthDAO.retrieveUserGroupAuthCtrlDeptListKey 사용자그룹별관할부서 중복 조회 */
+    </select>
+
+    <!-- SYS010UserGroupAuthDAO.insertUserGroupAuthCtrlDeptList 사용자그룹별관할부서 저장 -->	
+    <insert id="SYS010UserGroupAuthDAO.insertUserGroupAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_AUTH_USER_GROUP_DEPT                                       										  
+            (                                       																	  
+                   AUTH_CD                       /*권한코드*/ 
+                 , USER_GROUP_SEQ                /*사용자그룹순번*/ 
+                 , DEPT_CD                       /*부서코드*/ 
+                 , SUB_DEPT_INCLS_GBCD           /*하위부서포함여부*/ 
+                 , REG_ID                        /*등록자*/ 
+                 , REG_DT                        /*등록일시*/ 
+                 , MOD_ID                        /*수정자*/ 
+                 , MOD_DT                        /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{AUTH_CD} 
+                 , #{USER_GROUP_SEQ}  
+                 , #{DEPT_CD}  
+                 , #{SUB_DEPT_INCLS_GBCD}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+    /* SYS010UserGroupAuthDAO.insertUserGroupAuthCtrlDeptList 사용자그룹별관할부서 저장 */	
+    </insert>                                                           					
+
+    <!-- SYS010UserGroupAuthDAO.updateUserGroupAuthCtrlDeptList 사용자그룹별관할부서 수정 -->								
+    <update id="SYS010UserGroupAuthDAO.updateUserGroupAuthCtrlDeptList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_AUTH_USER_GROUP_DEPT                                			        
+               SET                                                      				
+                   SUB_DEPT_INCLS_GBCD            = #{SUB_DEPT_INCLS_GBCD}           /*하위부서포함여부*/  
+                 , MOD_ID                         = #{MOD_ID}                        /*수정자*/  
+                 , MOD_DT                         = SYSDATE                          /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}  
+               AND DEPT_CD              = #{DEPT_CD}  
+        ]]>  	                                   							                            				
+    /* SYS010UserGroupAuthDAO.updateUserGroupAuthCtrlDeptList 사용자그룹별관할부서 수정 */								
+    </update>                                                           												
+
+    <!-- SYS010UserGroupAuthDAO.deleteUserGroupAuthCtrlDeptList 사용자그룹별관할부서 삭제 -->								       
+    <delete id="SYS010UserGroupAuthDAO.deleteUserGroupAuthCtrlDeptList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_USER_GROUP_DEPT
+             WHERE 1=1
+               AND AUTH_CD              = #{AUTH_CD}  
+               AND USER_GROUP_SEQ       = #{USER_GROUP_SEQ}    
+        ]]>
+        <if test="DEPT_CD != null and DEPT_CD != ''">    
+            <![CDATA[
+               AND DEPT_CD              = #{DEPT_CD}  
+            ]]>
+        </if>
+    /* SYS010UserGroupAuthDAO.deleteUserGroupAuthCtrlDeptList 사용자그룹별관할부서 삭제 */								       
+    </delete>
+</mapper>                                                                 													   

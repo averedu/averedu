@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="입학원서조회" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="입학원서조회" height="800" mobileorientation="landscape" width="1640">
+        <Grid id="grdMaster" taborder="0" left="10" top="35" right="10" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" onheadclick="grdMaster_onheadclick" bottom="10" binddataset="dsMaster">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="107"/>
+                <Column size="93"/>
+                <Column size="165"/>
+                <Column size="151"/>
+                <Column size="141"/>
+                <Column size="71"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="115"/>
+                <Column size="119"/>
+                <Column size="120"/>
+                <Column size="225"/>
+                <Column size="87"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" text="연번"/>
+                <Cell col="1" text="수험번호"/>
+                <Cell col="2" disptype="normal" text="모집구분"/>
+                <Cell col="3" disptype="normal" text="지망학과"/>
+                <Cell col="4" text="지망전공"/>
+                <Cell col="5" text="전형구분"/>
+                <Cell col="6" disptype="normal" text="주야구분"/>
+                <Cell col="7" text="성명"/>
+                <Cell col="8" text="생년월일"/>
+                <Cell col="9" text="전화번호"/>
+                <Cell col="10" text="휴대폰"/>
+                <Cell col="11" text="추가연락처"/>
+                <Cell col="12" disptype="normal" text="출신학교"/>
+                <Cell col="13" disptype="normal" text="졸업합격년도"/>
+                <Cell col="14" text="접수자"/>
+                <Cell col="15" text="전형료"/>
+                <Cell col="16"/>
+                <Cell col="17"/>
+                <Cell col="18"/>
+                <Cell col="19"/>
+                <Cell col="20"/>
+                <Cell col="21"/>
+                <Cell col="22"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" edittype="none" textAlign="center"/>
+                <Cell col="1" text="bind:SUHEOM_NO" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="2" displaytype="combotext" edittype="none" textAlign="center" text="bind:MOJIP_GBCD" editmaxlength="10" combodataset="dsMojipGbCd" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="3" displaytype="combotext" edittype="none" textAlign="center" text="bind:HAKGWA_CD" editmaxlength="10" combodataset="dsHakGwa" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="4" text="bind:JEONGONG_CD" displaytype="combotext" edittype="none" combodataset="dsJeonGongGbCd" combocodecol="CODE" combodatacol="CODE_NM" textAlign="center"/>
+                <Cell col="5" text="bind:JEONHYEONG_GBCD" displaytype="combotext" edittype="none" combodataset="dsJeonHyeongGbCd" combocodecol="CODE" combodatacol="CODE_NM" textAlign="center"/>
+                <Cell col="6" displaytype="combotext" edittype="none" textAlign="center" text="bind:JUYA_GBCD" editmaxlength="10" combodataset="dsJuyaGbCd" combocodecol="CODE" combodatacol="CODE_NM"/>
+                <Cell col="7" text="bind:SUHEOMSAENG_NM" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="8" text="bind:BIRTHDAY" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="9" text="bind:TEL_NO" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="10" text="bind:HP_NO" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="11" text="bind:CHUGA_YEONRAKCHEO" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="12" displaytype="normal" edittype="none" textAlign="center" text="bind:GOGYO_NM" editmaxlength="10"/>
+                <Cell col="13" displaytype="normal" edittype="none" textAlign="center" text="bind:GOGYOJOLEOP_YEJEONG_YYYY" editmaxlength="10"/>
+                <Cell col="14" text="bind:JEOPSUJA1" displaytype="normal" edittype="none" textAlign="center"/>
+                <Cell col="15" text="bind:JEONHYEONGRYONAPBU_GBNM" displaytype="normal" edittype="none" combodataset="dsJeonHyeongRyoNapBuGbCd" combocodecol="CODE" combodatacol="CODE_NM" textAlign="center"/>
+                <Cell col="16" text="bind:NAEYONG_HWAKIN_YN"/>
+                <Cell col="17" text="bind:GEOMJEONGGOSI_ONLINEJEGONGDONGUI_YN"/>
+                <Cell col="18" text="bind:HAKSAENGBU_ONLINEJEGONGDONGUI_YN"/>
+                <Cell col="19" text="bind:SUJIP_DONGUI_YN"/>
+                <Cell col="20" text="bind:GOYUSIKBYEOL_INFO_DONGUI_YN"/>
+                <Cell col="21" text="bind:INFO_WITAK_DONGUI_YN"/>
+                <Cell col="22" text="bind:INFO_3JA_JEGONG_DONGUI_YN"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09_00" taborder="1" left="10" top="10" height="22" text="원서접수 상세 내역" width="160" cssclass="sta_WF_Title02"/>
+        <Static id="staRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="169" top="9" height="24" usedecorate="true" width="73"/>
+        <Static id="Static01_00" taborder="3" text="↑&#13;&#10;35&#13;&#10;↓" left="279" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00_00_01_00" taborder="4" text="8" left="0" top="27" width="1630" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_02_00_00_00_00" taborder="5" text="10" left="0" top="1" width="10" height="741" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="6" text="10" left="0" width="1640" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="7" text="10" top="11" width="10" height="741" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="ERROR_YN" type="STRING" size="256"/>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+          <Column id="JEONHYEONG_GBCD" type="STRING" size="256"/>
+          <Column id="SEBUJEONHYEONG_GBCD" type="STRING" size="256"/>
+          <Column id="GOGYOGYEYEOL_GBCD" type="STRING" size="256"/>
+          <Column id="SUHEOM_NO" type="STRING" size="256"/>
+          <Column id="SUHEOMSAENG_NM" type="STRING" size="256"/>
+          <Column id="RES_NO1" type="STRING" size="256"/>
+          <Column id="JOLEOPNYEONDO_IPRYEOK_YN" type="STRING" size="256"/>
+          <Column id="ONLINEBUDONGUI" type="STRING" size="256"/>
+          <Column id="SEONGJEOKMIIPRYEOK_YN" type="STRING" size="256"/>
+          <Column id="DELETE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMojipGbCd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHakGwa" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJuyaGbCd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJeonHyeongGbCd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" canrowposchange="dsMaster_canrowposchange">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOM_NO" type="STRING" size="10"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_TYCD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="JANGSO_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOMSAENG_NM" type="STRING" size="40"/>
+          <Column id="RES_NO1" type="STRING" size="6"/>
+          <Column id="RES_NO2" type="STRING" size="100"/>
+          <Column id="BIRTHDAY" type="STRING" size="8"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="NAEOEGUKIN_GBCD" type="STRING" size="10"/>
+          <Column id="POST" type="STRING" size="6"/>
+          <Column id="JUSO_GBCD" type="STRING" size="10"/>
+          <Column id="JUSO" type="STRING" size="500"/>
+          <Column id="SANGSE_JUSO" type="STRING" size="500"/>
+          <Column id="EMAIL" type="STRING" size="50"/>
+          <Column id="HP_NO" type="STRING" size="15"/>
+          <Column id="TEL_NO" type="STRING" size="15"/>
+          <Column id="CHUGA_YEONRAKCHEO" type="STRING" size="15"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="CHULSIN_GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYOGYEYEOL_GBCD" type="STRING" size="10"/>
+          <Column id="GOGYOJOLEOP_GBCD" type="STRING" size="10"/>
+          <Column id="GOGYOJOLEOP_YEJEONG_YYYY" type="STRING" size="4"/>
+          <Column id="GOGYO_SEONGJEOK_IPRYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="TERM1_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM1_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM3_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM3_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOGWAMOK_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_SEOKCHA_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_SEOKCHA_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_CD" type="STRING" size="10"/>
+          <Column id="GEOMJEONGGOSI_NM" type="STRING" size="256"/>
+          <Column id="GEOMJEONGGOSI_HOECHA" type="STRING" size="10"/>
+          <Column id="AVG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_YYYY" type="STRING" size="4"/>
+          <Column id="DONGUI_NO" type="STRING" size="20"/>
+          <Column id="GEOMJEONGGOSI_BAEKBUNYUL" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHULSIN_DAEHAK_NM" type="STRING" size="200"/>
+          <Column id="DAEHAKJOLEOP_YEJEONG_YYYY" type="STRING" size="4"/>
+          <Column id="DAEHAKJOLEOP_GBCD" type="STRING" size="10"/>
+          <Column id="AVG_PYEONGJEOM_BAEKBUNYUL" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_PYEONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GIJUN_PYEONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOM_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="MYEONJEOP_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="SILGI_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGDEUNGGEUP" type="STRING" size="10"/>
+          <Column id="BANK_NM" type="STRING" size="50"/>
+          <Column id="GYEJWA_NO" type="STRING" size="50"/>
+          <Column id="YEGEUMJU" type="STRING" size="40"/>
+          <Column id="YEGEUMJU_GWANGYE" type="STRING" size="20"/>
+          <Column id="SUSI_HAPGYEOK_YN" type="STRING" size="2"/>
+          <Column id="GEOMJEONGGOSI_ONLINEJEGONGDONGUI_YN" type="STRING" size="2"/>
+          <Column id="HAKSAENGBU_ONLINEJEGONGDONGUI_YN" type="STRING" size="10"/>
+          <Column id="SUJIP_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="GOYUSIKBYEOL_INFO_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="INFO_WITAK_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="INFO_3JA_JEGONG_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="JEONHYEONGRYONAPBU_GBCD" type="STRING" size="10"/>
+          <Column id="JEONHYEONGRYONAPBU_GBNM" type="STRING" size="256"/>
+          <Column id="MYEONJE_SAYU_GBCD" type="STRING" size="10"/>
+          <Column id="JEOPSUJA1" type="STRING" size="10"/>
+          <Column id="JEOPSUJA2" type="STRING" size="10"/>
+          <Column id="NAEYONG_HWAKIN_YN" type="STRING" size="2"/>
+          <Column id="CHOECHOHAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_DT" type="STRING" size="8"/>
+          <Column id="JEONHYEONGBYEOL_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="YEBIHAPGYEOKHUBO_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="BULHAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="MIDEUNGROK_SEBU_GBCD" type="STRING" size="10"/>
+          <Column id="BULHAPGYEOK_DT" type="STRING" size="8"/>
+          <Column id="JEOPSU_DTTM" type="STRING" size="14"/>
+          <Column id="DELETE_YN" type="STRING" size="2"/>
+          <Column id="DELETE_SAYU" type="STRING" size="1000"/>
+          <Column id="BIGO" type="STRING" size="1000"/>
+          <Column id="GOGYO_NM" type="STRING" size="256"/>
+          <Column id="RESULT_VALUE" type="STRING" size="256"/>
+          <Column id="IJEON_SEONGJEOK_CNT" type="STRING" size="256"/>
+          <Column id="DEUNGROK_STCD_01" type="STRING" size="256"/>
+          <Column id="POGI_DT_01" type="STRING" size="256"/>
+          <Column id="NAPBU_DT_01" type="STRING" size="256"/>
+          <Column id="DEUNGROK_STCD_02" type="STRING" size="256"/>
+          <Column id="POGI_DT_02" type="STRING" size="256"/>
+          <Column id="NAPBU_DT_02" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN02_1010203_T02.xfdl(입학원서조회)
+* 작 성         일 명: 성연우
+* 작 성         일 자: 2021/04/13
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsMojipGbCd|dsHakGwa|dsJuyaGbCd|dsJeonHyeongGbCd";
+    var strLgcd  = "00005|01029|00003|01001";
+    var strComb  = "T|T|T|T";
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);  
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function(tabDs)
+{
+	this.dsMaster.deleteAll();
+	this.dsMaster.copyData(tabDs);
+	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfn_gridSort(obj,e);
+};]]></Script>
+    <InitValue/>
+  </Form>
+</FDL>

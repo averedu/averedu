@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="240" height="130" titletext="현금지급" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="130" mobileorientation="landscape" width="240" description="현금지급">
+        <Static id="Static01_02_00_00_00_00" taborder="3" text="10" left="0" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="4" text="10" top="0" width="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static01_01_00_00_00_00_00_00_01" taborder="5" text="10" left="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" bottom="0" height="10" right="0"/>
+        <Static id="stc_09_00" taborder="6" left="7" top="6" height="22" text="현금지급" cssclass="sta_WF_Title02" right="98"/>
+        <Static id="Static01_01_00_00_00" taborder="7" text="8" left="7" top="23" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Button id="btnSave" taborder="1" text="현금지급실행" width="100" height="25" cssclass="btn_WF_Crud" bottom="10" right="75" onclick="btnSave_onclick"/>
+        <Div id="divSearch" taborder="0" left="10" top="31" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="0" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00" taborder="1" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="2" text="9" left="26" top="31" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="stc_01_00_01" taborder="3" left="-12" top="9" height="22" text="지급일자" cssclass="sta_WF_SearchLbl" width="90" textAlign="right" onclick="divSearch_stc_01_00_onclick"/>
+              <Static id="Static01_02_00_00_00_01" taborder="4" text="10" left="78" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00" taborder="5" text="27" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+              <Calendar id="calJigeupDt" taborder="6" left="88" width="103" height="22" onkeydown="divSearch_calSearchBokhakFr_onkeydown" bottom="9" readonly="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnClose" taborder="2" text="닫기" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10" right="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE04_2060401_P02.xfdl(현금지급)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/09
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	this.dsCheori.copyData(this.getOwnerFrame().dsCheori)
+	this.ds_cheoriInput.copyData(this.getOwnerFrame().ds_cheoriInput)
+	this.divSearch.form.calJigeupDt.set_value(this.getOwnerFrame().today)
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Jigeup":
+                    this.alert("처리되었습니다.");
+					this.close("CLOSE");
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 장학지급처리
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreJigeup = function(flag, jigeupDt, jigeupCnt)
+{
+	var result = this.gfn_confirm(
+			 (jigeupCnt > 0 ? '지급완료된 건이 존재합니다.\n': '')
+		   + (flag=='1'?'현금지급':flag=='2'?'등록마감':flag=='3'?'등록마감취소':flag=='4'?'선발확정':flag=='5'?'선발확정취소':'')
+		   + ' 처리 하시겠습니까?'
+		   + (jigeupCnt > 0 ? '\n\n※ 지급완료된 건이 존재할 경우 반드시 등록대상자를 재생성해야 합니다.': ''), "저장","", "question" );
+		   
+	if(result == 0)
+	{
+		return false;
+	}
+	
+	this.ds_cheoriInput.setColumn(0, "FLAG", flag);
+	this.ds_cheoriInput.setColumn(0, "JIGEUP_DT", jigeupDt);
+	
+	return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Jigeup = function(flag, jigeupDt, jigeupCnt)
+{
+    if(!this.fn_PreJigeup(flag, jigeupDt, jigeupCnt))
+    {
+        return false;
+    }
+    var strSvc      = "Jigeup";
+    var strUrl      = "/prj/UE/UE04/Jigeup_2060401_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "ds_cheoriInput=ds_cheoriInput ";
+		strInDs    += "dsCheori=dsCheori";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+// 확인버튼 클릭시
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var jigeupDt = this.divSearch.form.calJigeupDt.value;
+    this.fn_Jigeup(1, jigeupDt);
+};
+
+// 종료버튼 클릭시
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_cheoriInput" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="FLAG" type="STRING" size="256"/>
+          <Column id="JIGEUP_DT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsCheori" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="BIGDECIMAL" size="22"/>
+          <Column id="JANGHAKDAESANG_GBCD" type="STRING" size="2"/>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="HAKGI" type="STRING" size="2"/>
+          <Column id="JANGHAK_CD" type="STRING" size="10"/>
+          <Column id="JANGHAK_NM" type="STRING" size="100"/>
+          <Column id="USEON_SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="GYEYEOL_CD" type="STRING" size="10"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="HAKNYEON" type="STRING" size="1"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOM_NO" type="STRING" size="10"/>
+          <Column id="SUHEOMSAENG_NM" type="STRING" size="40"/>
+          <Column id="SEQ" type="BIGDECIMAL" size="22"/>
+          <Column id="SUHYE_GBCD" type="STRING" size="2"/>
+          <Column id="JIGEUP_SANGTAE_GBCD" type="STRING" size="2"/>
+          <Column id="IPHAKGEUM_JIGEUP_GBCD" type="STRING" size="2"/>
+          <Column id="SUEOPRYO_JIGEUP_GBCD" type="STRING" size="2"/>
+          <Column id="IPHAKGEUM_JIGEUP_PAMT" type="BIGDECIMAL" size="22"/>
+          <Column id="SUEOPRYO_JIGEUP_PAMT" type="BIGDECIMAL" size="22"/>
+          <Column id="IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_GANEUNG_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_GANEUNG_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUNGBOKSAKJE_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JUNGBOKSAKJE_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIGEUP_YN" type="STRING" size="1"/>
+          <Column id="JIGEUP_DT" type="STRING" size="8"/>
+          <Column id="TOTAL_HWANSU_IPHAK_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HWANSU_SUEOP_AMT" type="BIGDECIMAL" size="22"/>
+          <Column id="BIGO" type="STRING" size="200"/>
+          <Column id="JEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGDEUNGGEUP" type="STRING" size="10"/>
+          <Column id="DEUNGROK_MAGAM_DT" type="STRING" size="8"/>
+          <Column id="HWANSU_YN" type="STRING" size="1"/>
+          <Column id="GYEOLJE_YN" type="STRING" size="1"/>
+          <Column id="GYEOLJE_DT" type="STRING" size="8"/>
+          <Column id="RES_NO_1" type="STRING" size="6"/>
+          <Column id="DEUNGROK_YN" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

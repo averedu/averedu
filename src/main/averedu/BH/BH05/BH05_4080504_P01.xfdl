@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="800" height="340" titletext="환불 계산" onload="form_onload">
+    <Layouts>
+      <Layout height="340" width="800" description="환불 계산">
+        <Static id="Static01_00" taborder="0" text="↑&#13;&#10;35&#13;&#10;↓" top="110" width="20" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" left="200"/>
+        <Static id="stc_09_00_00" taborder="1" left="10" top="114" height="31" text="관리비" cssclass="sta_WF_Title02" width="145"/>
+        <Static id="Static01_01_00_00_00" taborder="2" text="8" left="0" top="139" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01_00_00_01" taborder="3" text="10" left="0" top="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_02_00_00_00_00_00" taborder="4" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" bottom="0" width="10" left="0"/>
+        <Static id="Static01_02_00_00_00_00" taborder="5" text="10" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0" width="10"/>
+        <Static id="Static01_01_00_00_01_00" taborder="6" text="10" left="0" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0" top="330"/>
+        <Div id="divMnmt" taborder="7" left="10" top="147" background="white" border="1px solid #4c4b66" text="" width="480" height="153">
+          <Layouts>
+            <Layout>
+              <Edit id="edtSearchStntName" taborder="0" left="295" top="92" width="120" height="22" readonly="true"/>
+              <Edit id="edtSearchStntName00" taborder="1" left="295" top="65" width="120" height="22" readonly="true"/>
+              <Edit id="edtSearchStntName00_00" taborder="2" left="295" top="38" width="120" height="22" readonly="true"/>
+              <Edit id="edtSearchStntName00_00_00" taborder="3" left="295" top="11" width="120" height="22" readonly="true"/>
+              <Edit id="edtSearchStntName00_01" taborder="4" left="295" top="119" width="120" height="22" readonly="true"/>
+              <Calendar id="calRtrnDate" taborder="5" left="158" width="134" height="22" readonly="true" enable="true" top="11"/>
+              <Calendar id="calRtrnDate00" taborder="6" left="158" width="134" height="22" readonly="true" enable="true" top="38"/>
+              <Calendar id="calRtrnDate00_00" taborder="7" left="158" width="134" height="22" readonly="true" enable="true" top="65"/>
+              <Calendar id="calRtrnDate00_00_00" taborder="8" left="158" width="134" height="22" readonly="true" enable="true" top="119"/>
+              <Radio id="rdoGubn" taborder="9" left="61" top="7" width="80" height="135" innerdataset="dsHwanbulGubn" codecolumn="CODE" datacolumn="CODE_NM" columncount="1" fittocontents="none" rowcount="5"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSave" taborder="8" text="저장" width="50" height="22" visible="true" cssclass="btn_WF_Crud" right="63" onclick="btnSave_onclick" top="310"/>
+        <Button id="btnClose" taborder="9" text="닫기" width="50" height="22" visible="true" cssclass="btn_WF_Crud" onclick="btnClose_onclick" right="10" top="310"/>
+        <Div id="divPop" taborder="10" left="10" top="10" background="white" border="1px solid #4c4b66" text="" height="100" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="stc_13_06_00_00_00" taborder="0" cssclass="sta_WF_DetailBg" width="500" height="28" left="8" top="8"/>
+              <Static id="stc_12_06_01_01_01" taborder="1" text="관리비" cssclass="sta_WF_DetailTi" width="110" height="28" left="8" top="8"/>
+              <Static id="stc_13_06_00_00_00_00" taborder="2" cssclass="sta_WF_DetailBg" width="500" height="28" left="8" top="35"/>
+              <Static id="stc_13_06_00_00_00_00_00" taborder="3" cssclass="sta_WF_DetailBg" width="500" height="28" left="8" top="62"/>
+              <Static id="stc_12_06_01_01_01_00" taborder="4" text="식비" cssclass="sta_WF_DetailTi" width="110" height="28" left="258" top="8"/>
+              <Static id="stc_12_06_01_01_01_01" taborder="5" text="기준입사일" cssclass="sta_WF_DetailTi" width="110" height="28" left="8" top="35"/>
+              <Static id="stc_12_06_01_01_01_01_00" taborder="6" text="1 식비" cssclass="sta_WF_DetailTi" width="110" height="28" left="8" top="62"/>
+              <Static id="stc_12_06_01_01_01_00_00" taborder="7" text="기준퇴사일" cssclass="sta_WF_DetailTi" width="110" height="28" left="258" top="35"/>
+              <Static id="stc_12_06_01_01_01_00_00_00" taborder="8" text="퇴사일" cssclass="sta_WF_DetailTi" width="110" height="28" left="258" top="62"/>
+              <Calendar id="calStrtDate" taborder="9" left="121" width="134" height="22" readonly="false" enable="true" top="38"/>
+              <Calendar id="calEnddDate" taborder="10" left="370" width="134" height="22" readonly="false" enable="true" top="38"/>
+              <Calendar id="calToday" taborder="11" left="370" width="134" height="22" readonly="true" enable="true" top="65"/>
+              <Edit id="edtAmnt0001" taborder="12" left="121" top="11" width="134" height="22" visible="true" readonly="true"/>
+              <Edit id="edtAmnt0002" taborder="13" left="370" top="11" width="134" height="22" visible="true" readonly="true"/>
+              <Edit id="edtSearchStntName00_00_00_01" taborder="14" left="121" top="65" width="134" height="22"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_00_00" taborder="11" text="30" top="110" width="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" left="490" bottom="100"/>
+        <Static id="stc_09_00_00_00" taborder="12" left="520" top="114" height="31" text="식비" cssclass="sta_WF_Title02" width="145"/>
+        <Div id="divFood" taborder="13" left="520" top="147" background="white" border="1px solid #4c4b66" text="" height="153" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="stc_13_06_00_00_00" taborder="0" cssclass="sta_WF_DetailBg" height="28" left="8" top="8" width="252"/>
+              <Static id="stc_12_06_01_01_01" taborder="1" text="환불식비" cssclass="sta_WF_DetailTi" width="110" height="28" left="8" top="8"/>
+              <Edit id="edtSearchStntName00_00_00" taborder="2" left="121" top="11" width="136" height="22" readonly="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnCal" taborder="14" text="계산" width="50" height="22" visible="true" left="529" bottom="242" cssclass="btn_WF_Crud" onclick="btnCal_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): BH05_4080504_P01.xfdl(환불 계산)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/10/14
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strDs    = "dsHwanbulGubn";
+    // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strLgcd  = "00749";
+	// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strComb  = "X";
+    var strOptn  = ""; // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+};
+
+this.fn_PostformInit = function() {
+	if (!this.gfn_isNull(this.getOwnerFrame().amnt0001)) {
+		this.ds_input.setColumn(0, "AMNT_0001", this.getOwnerFrame().amnt0001);
+	}
+	
+	if (!this.gfn_isNull(this.getOwnerFrame().amnt0002)) {
+		this.ds_input.setColumn(0, "AMNT_0002", this.getOwnerFrame().amnt0002);
+	}
+	
+	this.ds_input.setColumn(0, "TODAY", objApp.gds_SystemDate.getColumn(0, "YYYYMMDD"));
+}
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+/******************************************************************************
+* Function명 : getDateSum()
+* 설명 : 날짜 더하거나 뺸값을 반환하는 메소드
+* Params : 
+	fixDate - 기준일(2010-01-31) yyyy-MM-dd 형식의 String 값
+	addYear - 증가하거나 감소할 년도 값
+	addMonth - 증가하거나 감소할 월값
+	addDate - 증가하거나 감소할 일값
+	type - 리턴될 날짜 형식을 지정하는 값(기본값 : yyyyMMdd)
+* Return : 
+	type == "yyyyMMdd" 결과값 "20100101"
+	type == "yyMMdd" 결과값 "100101"
+	type == "yyyy" 결과값 "2010"
+	type == "yy" 결과값 "10"
+	type == "MM" 결과값 "01"
+	type == "dd" 결과값 "01"
+******************************************************************************/
+this.getDateSum = function(fixDate, addYear, addMonth, addDate, type)
+{
+	var date = new Date(fixDate.substring(0, 4) + "-" + fixDate.substring(4, 6) + "-" + fixDate.substring(6, 8));
+	
+	if (addYear.length != 0) date.addYear(addYear);
+	if (addMonth.length != 0) date.addMonth(addMonth);
+	if (addDate.length != 0) date.addDate(addDate);
+
+	var result = date.getYear() + "" + ((date.getMonth() + 1) + "").padLeft(2, '0') + (date.getDate() + "").padLeft(2, '0');
+	
+	switch(type)
+	{
+		case "yyyyMMdd" :
+			return result;
+		case "yyyyMM" :
+			return result.substring(0,6);
+		case "yyMMdd" :
+			return result.substring(2,8);
+		case "yyyy" :
+			return result.substring(0,4);
+		case "yy" :
+			return result.substring(2,4);
+		case "MM" :
+			return result.substring(4,6);
+		case "dd" :
+			return result.substring(6,8);
+	}
+	return result;
+}
+
+// 계산
+this.btnCal_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var amnt0001 = this.ds_input.getColumn(0, "AMNT_0001");
+	var amnt0002 = this.ds_input.getColumn(0, "AMNT_0002");
+	
+	var strtDate 	= this.ds_input.getColumn(0, "STRT_DATE");
+	var enddDate 	= this.ds_input.getColumn(0, "ENDD_DATE");
+	var today	 	= this.ds_input.getColumn(0, "TODAY");
+	var oneByFood	= this.ds_input.getColumn(0, "ONBY_FOOD");
+	
+	var remainGiGan = 0;
+	var fullGigan   = 0 ;
+	var toDayGiGan  = 0 ;
+	var oneGiGan 	= 0;
+	var twoGiGan 	= 0;
+	var threeGiGan 	= 0;
+	var fourGiGan 	= 0;
+	
+	if (this.gfn_isNull(this.gfn_trim(today))) {
+		this.alert("오늘 일자가 미입력되었습니다.");
+		return;
+	}
+	
+	if (this.gfn_isNull(this.gfn_trim(strtDate))) {
+		this.alert("기준입사일이 미입력되었습니다.");
+		return;
+	}
+	
+	if (this.gfn_isNull(this.gfn_trim(enddDate))) {
+		this.alert("기준퇴사일이 미입력되었습니다.");
+		return;
+	}
+	
+	if (this.gfn_isNull(this.gfn_trim(oneByFood))) {
+		this.alert("1 식비를 입력하세요");
+		return;
+	}
+	
+	fullGigan 	= this.gfn_getDiffDate(strtDate, enddDate);
+	todayGigan	= this.gfn_getDiffDate(strtDate, today) + 1;
+	
+    twoGiGan = Math.round((fullGigan/4)) - 1;
+    threeGiGan = Math.round((fullGigan/4)*2) - 1;
+    fourGiGan = Math.round((fullGigan/4)*3) - 1;
+	
+	this.ds_input.setColumn(0, "MNMT_DATE1", this.getDateSum(strtDate, "", "", twoGiGan, 	"yyyyMMdd"));
+	this.ds_input.setColumn(0, "MNMT_DATE2", this.getDateSum(strtDate, "", "", threeGiGan, 	"yyyyMMdd"));
+	this.ds_input.setColumn(0, "MNMT_DATE3", this.getDateSum(strtDate, "", "", fourGiGan, 	"yyyyMMdd"));
+	this.ds_input.setColumn(0, "MNMT_DATE5", this.getDateSum(strtDate, "", "", 6, 			"yyyyMMdd"));
+	
+	this.ds_input.setColumn(0, "MNMT_VAL1", (amnt0001 * 60) / 100);
+	this.ds_input.setColumn(0, "MNMT_VAL2", (amnt0001 * 40) / 100);
+	this.ds_input.setColumn(0, "MNMT_VAL3", (amnt0001 * 20) / 100);
+	this.ds_input.setColumn(0, "MNMT_VAL4", 0);
+	this.ds_input.setColumn(0, "MNMT_VAL5", (amnt0001 * 80) / 100);
+	
+	remainGiGan = this.gfn_getDiffDate(today, enddDate) + 1;
+	
+	this.ds_input.setColumn(0, "FOOD_VAL", remainGiGan * oneByFood);
+};
+
+// 저장
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var gubn = this.ds_input.getColumn(0, "GUBN");
+	var objRtnArr = new Array(3);
+	
+	if (this.gfn_isNull(this.gfn_trim(gubn))) {
+		this.alert("환불금액을 선택하세요.");
+		return;
+	}
+	
+	if (gubn == "1") {
+		objRtnArr[0] = this.ds_input.getColumn(0, "MNMT_VAL5");
+	}
+	
+	if (gubn == "2") {
+		objRtnArr[0] = this.ds_input.getColumn(0, "MNMT_VAL1");
+	}
+	
+	if (gubn == "3") {
+		objRtnArr[0] = this.ds_input.getColumn(0, "MNMT_VAL2");
+	}
+	
+	if (gubn == "4") {
+		objRtnArr[0] = this.ds_input.getColumn(0, "MNMT_VAL3");
+	}
+	
+	if (gubn == "5") {
+		objRtnArr[0] = this.ds_input.getColumn(0, "MNMT_VAL4");
+	}
+	
+	objRtnArr[1] = this.ds_input.getColumn(0, "FOOD_VAL");
+	objRtnArr[2] = gubn;
+	
+	this.close(objRtnArr.toString());
+};
+
+// 닫기
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AMNT_0001" type="STRING" size="256"/>
+          <Column id="AMNT_0002" type="STRING" size="256"/>
+          <Column id="STRT_DATE" type="STRING" size="256"/>
+          <Column id="ENDD_DATE" type="STRING" size="256"/>
+          <Column id="ONBY_FOOD" type="STRING" size="256"/>
+          <Column id="TODAY" type="STRING" size="256"/>
+          <Column id="GUBN" type="STRING" size="256"/>
+          <Column id="MNMT_DATE1" type="STRING" size="256"/>
+          <Column id="MNMT_VAL1" type="STRING" size="256"/>
+          <Column id="MNMT_DATE2" type="STRING" size="256"/>
+          <Column id="MNMT_VAL2" type="STRING" size="256"/>
+          <Column id="MNMT_DATE3" type="STRING" size="256"/>
+          <Column id="MNMT_VAL3" type="STRING" size="256"/>
+          <Column id="MNMT_VAL4" type="STRING" size="256"/>
+          <Column id="MNMT_DATE5" type="STRING" size="256"/>
+          <Column id="MNMT_VAL5" type="STRING" size="256"/>
+          <Column id="FOOD_VAL" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHwanbulGubn">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPop.form.edtAmnt0001" propid="value" datasetid="ds_input" columnid="AMNT_0001"/>
+      <BindItem id="item1" compid="divPop.form.edtAmnt0002" propid="value" datasetid="ds_input" columnid="AMNT_0002"/>
+      <BindItem id="item2" compid="divPop.form.calStrtDate" propid="value" datasetid="ds_input" columnid="STRT_DATE"/>
+      <BindItem id="item3" compid="divPop.form.calEnddDate" propid="value" datasetid="ds_input" columnid="ENDD_DATE"/>
+      <BindItem id="item4" compid="divPop.form.edtSearchStntName00_00_00_01" propid="value" datasetid="ds_input" columnid="ONBY_FOOD"/>
+      <BindItem id="item5" compid="divPop.form.calToday" propid="value" datasetid="ds_input" columnid="TODAY"/>
+      <BindItem id="item6" compid="divMnmt.form.rdoGubn" propid="value" datasetid="ds_input" columnid="GUBN"/>
+      <BindItem id="item7" compid="divMnmt.form.calRtrnDate" propid="value" datasetid="ds_input" columnid="MNMT_DATE1"/>
+      <BindItem id="item8" compid="divMnmt.form.calRtrnDate00" propid="value" datasetid="ds_input" columnid="MNMT_DATE2"/>
+      <BindItem id="item9" compid="divMnmt.form.edtSearchStntName00_00_00" propid="value" datasetid="ds_input" columnid="MNMT_VAL1"/>
+      <BindItem id="item10" compid="divMnmt.form.edtSearchStntName00_00" propid="value" datasetid="ds_input" columnid="MNMT_VAL2"/>
+      <BindItem id="item11" compid="divMnmt.form.calRtrnDate00_00" propid="value" datasetid="ds_input" columnid="MNMT_DATE3"/>
+      <BindItem id="item12" compid="divMnmt.form.edtSearchStntName00" propid="value" datasetid="ds_input" columnid="MNMT_VAL3"/>
+      <BindItem id="item13" compid="divMnmt.form.edtSearchStntName" propid="value" datasetid="ds_input" columnid="MNMT_VAL4"/>
+      <BindItem id="item14" compid="divMnmt.form.calRtrnDate00_00_00" propid="value" datasetid="ds_input" columnid="MNMT_DATE5"/>
+      <BindItem id="item15" compid="divMnmt.form.edtSearchStntName00_01" propid="value" datasetid="ds_input" columnid="MNMT_VAL5"/>
+      <BindItem id="item16" compid="divFood.form.edtSearchStntName00_00_00" propid="value" datasetid="ds_input" columnid="FOOD_VAL"/>
+    </Bind>
+  </Form>
+</FDL>

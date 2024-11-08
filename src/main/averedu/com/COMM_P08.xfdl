@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="700" height="480" titletext="공간" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="480" mobileorientation="landscape" width="700">
+        <Grid id="grdMaster" taborder="0" left="10" top="70" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" oncelldblclick="grdMaster_oncelldblclick" autosizingtype="none" extendsizetype="row" right="10" bottom="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="98"/>
+                <Column size="159"/>
+                <Column size="68"/>
+                <Column size="83"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="호실코드"/>
+                <Cell col="1" text="호실명"/>
+                <Cell col="2" text="호실인원"/>
+                <Cell col="3" text="용도구분"/>
+                <Cell col="4" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="text" edittype="none" textAlign="center" text="bind:HOSIL_CD" editmaxlength="13"/>
+                <Cell col="1" displaytype="text" edittype="none" textAlign="center" text="bind:HOSIL_NM" editmaxlength="80"/>
+                <Cell col="2" displaytype="number" edittype="none" textAlign="center" text="bind:HOSIL_INWON" editmaxlength="22"/>
+                <Cell col="3" displaytype="combotext" edittype="none" textAlign="center" text="bind:YONGDO_GBCD" editmaxlength="10" combodataset="dsHosil" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="4" displaytype="text" edittype="none" textAlign="left" text="bind:BIGO" editmaxlength="200"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="1" text="닫기" left="630" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnClose_onclick" bottom="10"/>
+        <Button id="btnChoice" taborder="2" text="선택" left="565" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnChoice_onclick" bottom="10"/>
+        <Div id="divSearch" taborder="3" left="10" top="10" height="42" cssclass="div_WF_SearchBox" text="" right="10">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" left="7" top="9" width="48" height="22" cssclass="sta_WF_SearchLbl" text="호실" textAlign="right"/>
+              <Edit id="edtSearchGonggan" taborder="1" left="67" top="9" height="22" width="192" autoselect="true" onkeydown="divSearch_edtSearchGonggan_onkeydown"/>
+              <Static id="Static01_02_00" taborder="2" text="27" left="0" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" width="540" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00" taborder="4" text="10" left="58" top="-9" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="5" text="9" left="20" top="31" width="540" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00" taborder="6" text="27" left="259" top="0" width="27" height="47" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="7" text="10" left="362" top="-9" width="10" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Button id="btnSearch" taborder="8" text="조회" left="610" top="7" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSearch_onclick"/>
+              <Static id="Static01_00" taborder="9" left="269" top="9" width="90" height="22" cssclass="sta_WF_SearchLbl" text="건물용도구분" textAlign="right"/>
+              <Combo id="cboSearchYongdo" taborder="10" text="" left="372" top="9" width="177" height="22" innerdataset="dsHosil" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="10" height="24" usedecorate="true" width="233" bottom="10"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): COM_P08_P.xfdl(호실정보 관리(조회))
+* 작 성         일 명: jiback
+* 작 성         일 자: 2020/12/04
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().gongganCdNm)){
+		this.ds_input.setColumn(0, "HOSIL_CD_NM", this.getOwnerFrame().gongganCdNm);
+	}
+	
+	this.fn_Ret();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsHosil";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00539";                         // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Ret();
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/com/Retrieve_P08.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+this.btnChoice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objRtnArr = new Array(2);
+	objRtnArr[0] = this.dsMaster.getColumn(this.dsMaster.rowposition, "HOSIL_CD");
+	objRtnArr[1] = this.dsMaster.getColumn(this.dsMaster.rowposition, "HOSIL_NM");
+	
+	this.close(objRtnArr.toString());
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.divSearch_edtSearchGonggan_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (obj.name == "edtSearchGonggan")
+	{
+		//13(Enter) 누르면 조회
+		if(e.keycode == 13)		
+		{
+			this.ds_input.setColumn(0,"HOSIL_CD_NM",obj.value);
+			this.fn_Ret();
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="HOSIL_CD" type="STRING" size="13"/>
+          <Column id="HOSIL_NM" type="STRING" size="80"/>
+          <Column id="HOSIL_ABBR_NM" type="STRING" size="40"/>
+          <Column id="GEONMUL_CD" type="STRING" size="3"/>
+          <Column id="CHEUNG_CD" type="STRING" size="3"/>
+          <Column id="HOSIL_INWON" type="BIGDECIMAL" size="22"/>
+          <Column id="HOSIL_ADMIN" type="STRING" size="40"/>
+          <Column id="HOSIL_DEPT" type="STRING" size="40"/>
+          <Column id="SOSOK_DEPT" type="STRING" size="40"/>
+          <Column id="YONGDO_GBCD" type="STRING" size="10"/>
+          <Column id="HOSIL_MYEONJEOK" type="BIGDECIMAL" size="22"/>
+          <Column id="GANGUISIL_GBCD" type="STRING" size="10"/>
+          <Column id="BIGO" type="STRING" size="200"/>
+          <Column id="INSERT_ID" type="STRING" size="30"/>
+          <Column id="INSERT_DT" type="DATE" size="8"/>
+          <Column id="INSERT_IP" type="STRING" size="30"/>
+          <Column id="INSERT_PG" type="STRING" size="30"/>
+          <Column id="UPDATE_ID" type="STRING" size="30"/>
+          <Column id="UPDATE_DT" type="DATE" size="8"/>
+          <Column id="UPDATE_IP" type="STRING" size="30"/>
+          <Column id="UPDATE_PG" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HOSIL_CD_NM" type="STRING" size="100"/>
+          <Column id="YONGDO_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHosil">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="32"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtSearchGonggan" propid="value" datasetid="ds_input" columnid="HOSIL_CD_NM"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchYongdo" propid="value" datasetid="ds_input" columnid="YONGDO_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

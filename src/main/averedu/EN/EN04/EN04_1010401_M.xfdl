@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="면접관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="면접관리" height="800" mobileorientation="landscape" width="1640">
+        <Tab id="Tab" taborder="1" tabindex="0" enable="true" bottom="0" canchange="Tab_canchange" onchanged="Tab_onchanged" top="77" left="0" right="0">
+          <Tabpages>
+            <Tabpage id="TabPage1" text="학부/학과" url="EN04::EN04_1010401_T01.xfdl" formscrollbartype="auto"/>
+            <Tabpage id="TabPage2" text="학과 학생별" url="EN04::EN04_1010401_T02.xfdl"/>
+            <Tabpage id="TabPage3" text="교수별" url="EN04::EN04_1010401_T03.xfdl"/>
+          </Tabpages>
+        </Tab>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Combo id="cboSearchJuya" taborder="0" text="" left="813" top="9" width="100" height="22" codecolumn="JUYA_GBCD" datacolumn="JUYA_NM" index="0" value="1" innerdataset="ds_juyaGbcd" onkeydown="divSearch_cboSearchJuya_onkeydown"/>
+              <Static id="stc_04" taborder="1" left="732" top="9" height="22" text="주야구분" cssclass="sta_WF_SearchLbl" width="68"/>
+              <Static id="stc_02" taborder="2" left="462" top="9" height="22" text="학과" cssclass="sta_WF_SearchLbl" width="50"/>
+              <Static id="stc_01" taborder="3" left="7" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cboSearchHakgwa" taborder="4" text="" left="522" top="9" width="172" height="22" codecolumn="DEPT_CD" datacolumn="DEPT_NM" index="0" value="1" innerdataset="ds_hakgwaCd" onitemchanged="fn_Juya" onkeydown="divSearch_cboSearchHakgwa_onkeydown"/>
+              <Spin id="spnSearchYYYY" taborder="5" left="87" top="9" width="101" height="22" onkeydown="divSearch_spnSearchYYYY_onkeydown" onchanged="fn_MojipGb" max="3000" min="0" value="" cssclass="point"/>
+              <Combo id="cboSearchMojip" taborder="6" text="" left="302" top="9" width="120" height="22" codecolumn="MOJIP_GBCD" datacolumn="MOJIP_NM" index="0" value="1" innerdataset="ds_mojipGbcd" onitemchanged="fn_Hakgwa" onkeydown="divSearch_cboSearchMojip_onkeydown" cssclass="point"/>
+              <Static id="stc_02_00" taborder="7" left="225" top="10" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="70"/>
+              <Static id="Static01_02_00" taborder="8" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00" taborder="9" text="10" left="78" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01" taborder="10" text="← 56 →" left="188" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_01" taborder="11" text="10" left="292" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_00" taborder="12" text="← 56 →" left="422" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="13" text="10" left="513" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02" taborder="14" text="← 56 →" left="694" top="0" width="56" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_02" taborder="15" text="9" left="14" top="0" width="1580" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00_01" taborder="16" text="9" left="14" top="31" width="1580" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00_00" taborder="17" text="10" left="803" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="2" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOM_NO" type="STRING" size="10"/>
+          <Column id="HAKGWA_CD" type="STRING" size="10"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_GBCD" type="STRING" size="10"/>
+          <Column id="SEBUJEONHYEONG_TYCD" type="STRING" size="10"/>
+          <Column id="JEONGONG_CD" type="STRING" size="10"/>
+          <Column id="JANGSO_GBCD" type="STRING" size="10"/>
+          <Column id="SUHEOMSAENG_NM" type="STRING" size="40"/>
+          <Column id="RES_NO1" type="STRING" size="6"/>
+          <Column id="RES_NO2" type="STRING" size="100"/>
+          <Column id="BIRTHDAY" type="STRING" size="8"/>
+          <Column id="GENDER" type="STRING" size="10"/>
+          <Column id="NAEOEGUKIN_GBCD" type="STRING" size="10"/>
+          <Column id="POST" type="STRING" size="6"/>
+          <Column id="JUSO_GBCD" type="STRING" size="10"/>
+          <Column id="JUSO" type="STRING" size="500"/>
+          <Column id="SANGSE_JUSO" type="STRING" size="500"/>
+          <Column id="EMAIL" type="STRING" size="50"/>
+          <Column id="HP_NO" type="STRING" size="15"/>
+          <Column id="TEL_NO" type="STRING" size="15"/>
+          <Column id="CHUGA_YEONRAKCHEO" type="STRING" size="15"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="CHULSIN_GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYOGYEYEOL_GBCD" type="STRING" size="10"/>
+          <Column id="GOGYOJOLEOP_GBCD" type="STRING" size="10"/>
+          <Column id="GOGYOJOLEOP_YEJEONG_YYYY" type="STRING" size="4"/>
+          <Column id="GOGYO_SEONGJEOK_IPRYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="TERM1_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM1_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM3_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM3_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GYOGWAMOK_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="TERM2_SEOKCHA_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_SEOKCHA_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_CD" type="STRING" size="10"/>
+          <Column id="GEOMJEONGGOSI_HOECHA" type="STRING" size="10"/>
+          <Column id="AVG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_YYYY" type="STRING" size="4"/>
+          <Column id="DONGUI_NO" type="STRING" size="20"/>
+          <Column id="GEOMJEONGGOSI_BAEKBUNYUL" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_KOR_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_ENG_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="GEOMJEONGGOSI_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHULSIN_DAEHAK_NM" type="STRING" size="200"/>
+          <Column id="DAEHAKJOLEOP_YEJEONG_YYYY" type="STRING" size="4"/>
+          <Column id="DAEHAKJOLEOP_GBCD" type="STRING" size="10"/>
+          <Column id="AVG_PYEONGJEOM_BAEKBUNYUL" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGISU_HAKJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHOEGEUN_HAKGI_PYEONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="GIJUN_PYEONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="PYEONGJEOM_CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="MYEONJEOP_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="SILGI_JEOMSU" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGJEOM" type="BIGDECIMAL" size="22"/>
+          <Column id="CHONGDEUNGGEUP" type="STRING" size="10"/>
+          <Column id="BANK_NM" type="STRING" size="50"/>
+          <Column id="GYEJWA_NO" type="STRING" size="50"/>
+          <Column id="YEGEUMJU" type="STRING" size="40"/>
+          <Column id="YEGEUMJU_GWANGYE" type="STRING" size="20"/>
+          <Column id="SUSI_HAPGYEOK_YN" type="STRING" size="2"/>
+          <Column id="GEOMJEONGGOSI_ONLINEJEGONGDONGUI_YN" type="STRING" size="2"/>
+          <Column id="HAKSAENGBU_ONLINEJEGONGDONGUI_YN" type="STRING" size="10"/>
+          <Column id="SUJIP_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="GOYUSIKBYEOL_INFO_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="INFO_WITAK_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="INFO_3JA_JEGONG_DONGUI_YN" type="STRING" size="2"/>
+          <Column id="JEONHYEONGRYONAPBU_GBCD" type="STRING" size="10"/>
+          <Column id="MYEONJE_SAYU_GBCD" type="STRING" size="10"/>
+          <Column id="JEOPSUJA1" type="STRING" size="10"/>
+          <Column id="JEOPSUJA2" type="STRING" size="10"/>
+          <Column id="NAEYONG_HWAKIN_YN" type="STRING" size="2"/>
+          <Column id="CHOECHOHAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="HAPGYEOK_DT" type="STRING" size="8"/>
+          <Column id="JEONHYEONGBYEOL_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="YEBIHAPGYEOKHUBO_SEOKCHA" type="BIGDECIMAL" size="22"/>
+          <Column id="BULHAPGYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="MIDEUNGROK_SEBU_GBCD" type="STRING" size="10"/>
+          <Column id="BULHAPGYEOK_DT" type="STRING" size="8"/>
+          <Column id="JEOPSU_DTTM" type="DATE" size="8"/>
+          <Column id="DELETE_YN" type="STRING" size="2"/>
+          <Column id="DELETE_SAYU" type="STRING" size="1000"/>
+          <Column id="INSERT_ID" type="STRING" size="30"/>
+          <Column id="INSERT_DT" type="DATE" size="8"/>
+          <Column id="INSERT_IP" type="STRING" size="30"/>
+          <Column id="INSERT_PG" type="STRING" size="500"/>
+          <Column id="UPDATE_ID" type="STRING" size="30"/>
+          <Column id="UPDATE_DT" type="DATE" size="8"/>
+          <Column id="UPDATE_IP" type="STRING" size="30"/>
+          <Column id="UPDATE_PG" type="STRING" size="500"/>
+          <Column id="BIGO" type="STRING" size="1000"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+          <Column id="MYEONJEOP_YN" type="STRING" size="256"/>
+          <Column id="SILGI_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hakgwaCd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_juyaGbcd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+          <Column id="JUYA_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mojipGbcd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="MOJIP_NM" type="STRING" size="256"/>
+          <Column id="HYEONJAE_MOJIP_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN04_1010401_M.xfdl(면접관리)
+* 작 성         일 명: 성연우
+* 작 성         일 자: 2021/04/20
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+	this.fn_GijunYyyy();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {	
+            case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+			case "MojipGb":
+                    this.fn_PostMojipGb();
+                break;
+			case "Hakgwa":
+                    this.fn_PostHakgwa();
+                break;
+			case "Juya":
+                    this.fn_PostJuya();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+		case "tmp2" :        // 면접확인대장 출력
+                this.fn_PrintMyeonjeop();
+            break;
+		case "tmp3" :        // 수험표 출력
+                this.fn_PrintSuheompyo();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+	if(this.fn_beforeclose())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}   
+	}
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	if(!this.fn_PreRet())
+    {
+        return false;
+    }
+	
+	// 학부/학과
+	if(this.Tab.tabindex==0)
+	{
+		this.Tab.TabPage1.form.fn_Ret(this.ds_input); 
+	}
+	
+	// 학과 학생별
+	if(this.Tab.tabindex==1)
+	{
+		this.Tab.TabPage2.form.fn_Ret(this.ds_input); 
+	}
+	
+	// 교수별
+	if(this.Tab.tabindex==2)
+	{
+		this.Tab.TabPage3.form.fn_Ret(this.ds_input); 
+	} 
+};
+/**********************************************************************
+        06. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+}
+
+/**********************************************************************
+        07. 출력물
+***********************************************************************/
+this.fn_PrintMyeonjeop = function()
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == "" || this.ds_input.getColumn(0, "IPSI_YYYY") == null)
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "MOJIP_GBCD") == "" || this.ds_input.getColumn(0, "MOJIP_GBCD") == null)
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "HAKGWA_CD") == "" || this.ds_input.getColumn(0, "HAKGWA_CD") == null)
+	{
+		this.alert("학과를 선택해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "JUYA_GBCD") == "" || this.ds_input.getColumn(0, "JUYA_GBCD") == null)
+	{
+		this.alert("주야구분을 선택해주세요.");
+		return false;
+	}
+	
+	var IPSI_YYYY  		= this.ds_input.getColumn(0, 'IPSI_YYYY');
+	var MOJIP_GBCD 		= this.ds_input.getColumn(0, 'MOJIP_GBCD');
+	var HAKGWA_CD 		= this.ds_input.getColumn(0, 'HAKGWA_CD');
+	var JUYA_GBCD 		= this.ds_input.getColumn(0, 'JUYA_GBCD');
+	
+	var param = { IPSI_YYYY     : IPSI_YYYY
+				, MOJIP_GBCD 	: MOJIP_GBCD
+				, HAKGWA_CD 	: HAKGWA_CD
+				, JUYA_GBCD 	: JUYA_GBCD
+				};
+	
+	this.gfn_commonUtils_report('EN04/EN04_1010401_M_01.crf',  param);
+};
+
+this.fn_PrintSuheompyo = function()
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == "" || this.ds_input.getColumn(0, "IPSI_YYYY") == null)
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "MOJIP_GBCD") == "" || this.ds_input.getColumn(0, "MOJIP_GBCD") == null)
+	{
+		this.alert("모집구분을 선택해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "HAKGWA_CD") == "" || this.ds_input.getColumn(0, "HAKGWA_CD") == null)
+	{
+		this.alert("학과를 선택해주세요.");
+		return false;
+	}
+	else if(this.ds_input.getColumn(0, "JUYA_GBCD") == "" || this.ds_input.getColumn(0, "JUYA_GBCD") == null)
+	{
+		this.alert("주야구분을 선택해주세요.");
+		return false;
+	}
+	
+	var IPSI_YYYY  		= this.ds_input.getColumn(0, 'IPSI_YYYY');
+	var MOJIP_GBCD 		= this.ds_input.getColumn(0, 'MOJIP_GBCD');
+	var HAKGWA_CD 		= this.ds_input.getColumn(0, 'HAKGWA_CD');
+	var JUYA_GBCD 		= this.ds_input.getColumn(0, 'JUYA_GBCD');
+	
+	var param = { IPSI_YYYY     : IPSI_YYYY
+				, MOJIP_GBCD 	: MOJIP_GBCD
+				, HAKGWA_CD 	: HAKGWA_CD
+				, JUYA_GBCD 	: JUYA_GBCD
+				};
+	
+	this.gfn_commonUtils_report('EN04/EN04_1010401_M_02.crf',  param);
+};
+
+/**********************************************************************
+        08. 기타 Control Event
+***********************************************************************/
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   var value = false;
+   
+   if(this.gfn_isUpdate(this.Tab.TabPage1.form.dsDetail))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage1.form.dsDetail2))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage2.form.dsDetail2))
+   {
+      value = true;
+   }
+   
+   return value;
+};
+
+/**********************************************************************
+        09. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.fn_MojipGb();
+}
+
+// 입시모집구분 가져오기
+this.fn_MojipGb = function()
+{
+	this.ds_mojipGbcd.deleteAll();
+	this.ds_hakgwaCd.deleteAll();
+	this.ds_juyaGbcd.deleteAll();
+	
+    var strSvc      = "MojipGb";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_IPSI_MOJIPGBCD.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_mojipGbcd=ds_mojipGbcd";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+}
+
+this.fn_PostMojipGb = function()
+{
+	var gubun;
+	for(var i=0; i<this.ds_mojipGbcd.rowcount; i++)
+	{
+		gubun = this.ds_mojipGbcd.getColumn(i, "HYEONJAE_MOJIP_YN");
+		
+		if(gubun == 'Y')
+		{
+			this.ds_input.setColumn(0, "MOJIP_GBCD", this.ds_mojipGbcd.getColumn(i, "MOJIP_GBCD"));
+		}
+	}
+	
+	this.fn_Hakgwa();
+}
+
+// 입시학과 가져오기
+this.fn_Hakgwa = function()
+{
+	this.ds_hakgwaCd.deleteAll();
+	this.ds_juyaGbcd.deleteAll();
+	this.ds_input.setColumn(0, "MYEONJEOP_YN", "Y");
+	this.ds_input.setColumn(0, "SILGI_YN", "N");
+	
+	var strSvc      = "Hakgwa";
+	var strUrl      = "prj/EN/EN04/Retrieve_HAKGWACD.do";
+	var strInDs     = "ds_input=ds_input";
+	var strOutDs    = "ds_hakgwaCd=ds_hakgwaCd";
+	var strArg      = "";
+	var GBV_MENUID    = objApp.gv_cutPrgId;
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+	this.gfn_Transaction(strSvc
+					   , strUrl
+					   , strInDs
+					   , strOutDs
+					   , strArg
+					   , strCallBack
+					   , strASync);	
+}
+
+this.fn_PostHakgwa = function()
+{
+	this.ds_hakgwaCd.insertRow(0);
+	this.ds_hakgwaCd.setColumn(0, "DEPT_CD", "");
+	this.ds_hakgwaCd.setColumn(0, "DEPT_NM", "전체");
+	this.divSearch.form.cboSearchHakgwa.set_index(0);
+	
+	this.ds_juyaGbcd.insertRow(0);
+	this.ds_juyaGbcd.setColumn(0, "JUYA_GBCD", "");
+	this.ds_juyaGbcd.setColumn(0, "JUYA_NM", "전체");
+	this.divSearch.form.cboSearchJuya.set_index(0);
+}
+
+// 입시주야 가져오기
+this.fn_Juya = function()
+{
+	this.ds_juyaGbcd.deleteAll();
+	
+	var strSvc      = "Juya";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_JUYAGBCD.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_juyaGbcd=ds_juyaGbcd";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);	
+}
+
+this.fn_PostJuya = function()
+{
+	this.ds_juyaGbcd.insertRow(0);
+	this.ds_juyaGbcd.setColumn(0, "JUYA_GBCD", "");
+	this.ds_juyaGbcd.setColumn(0, "JUYA_NM", "전체");
+	this.divSearch.form.cboSearchJuya.set_index(0);
+}
+
+/**********************************************************************
+        10. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_spnSearchYYYY_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"IPSI_YYYY",obj.value);
+		this.fn_Ret();
+	}			
+};
+
+this.divSearch_cboSearchMojip_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"MOJIP_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};
+
+this.divSearch_cboSearchHakgwa_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"HAKGWA_CD",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchJuya_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JUYA_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};]]></Script>
+    <Bind>
+      <BindItem id="item63" compid="Tab" propid="enable" datasetid="dsBindableTab" columnid="bEnable"/>
+      <BindItem id="item0" compid="divSearch.form.cboSearchJuya" propid="value" datasetid="ds_input" columnid="JUYA_GBCD"/>
+      <BindItem id="item1" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item2" compid="divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchHakgwa" propid="value" datasetid="ds_input" columnid="HAKGWA_CD"/>
+    </Bind>
+    <InitValue/>
+  </Form>
+</FDL>

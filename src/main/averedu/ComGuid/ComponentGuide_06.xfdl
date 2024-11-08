@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="ComponentGuide_01" width="1280" height="720" titletext="조회영역" onclick="ComponentGuide_01_onclick">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="stc_00" taborder="0" left="0" top="0" height="200" right="0" background="#ccd6dc" text=""/>
+        <Static id="stc_02" taborder="1" left="20" top="80" height="40" background="#0066b3" text="Component Guide 06" color="#ffffff" font="normal 20px/normal &quot;Malgun Gothic&quot;" letterSpacing="0px" padding="0px, 0px, 0px, 10px" width="260"/>
+        <Static id="stc_03" taborder="2" left="20" top="147" height="20" text="Search Area" font="normal 14px/normal &quot;Malgun Gothic&quot;" width="720" color="#363636"/>
+        <Static id="stc_39" taborder="3" left="71" top="1171" height="22" text="조회영역 안에 들어가는 설명글 입니다." width="220" cssclass="sta_WF_Desc02"/>
+        <Static id="stc_40" taborder="4" left="71" top="1210" height="22" text="범례" width="200" cssclass="sta_WF_Desc03"/>
+        <Static id="stc_41" taborder="5" left="354" top="1132" height="20" text="class : &lt;b v='true'&gt;sta_WF_Desc01&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_42" taborder="6" left="354" top="1171" height="20" text="class : &lt;b v='true'&gt;sta_WF_Desc02&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_43" taborder="7" left="354" top="1210" height="20" text="class : &lt;b v='true'&gt;sta_WF_Desc03&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_44" taborder="8" left="354" top="1250" height="20" text="class : &lt;b v='true'&gt;sta_WF_Desc04&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_45" taborder="9" left="71" top="1132" height="22" text="-설명글 입니다." width="200" cssclass="sta_WF_Desc01"/>
+        <Static id="stc_46" taborder="10" left="71" top="1250" height="22" text="- 기본적인 설명글 입니다.(중요도 낮음)" width="220" cssclass="sta_WF_Desc04"/>
+        <Static id="stc_28" taborder="11" left="70" top="1055" height="22" text="조회라벨 필수" width="200" cssclass="sta_WF_Label_P"/>
+        <Static id="stc_29" taborder="12" left="354" top="1016" height="20" text="class : &lt;b v='true'&gt;sta_WF_Label&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_36" taborder="13" left="354" top="1055" height="20" text="class : &lt;b v='true'&gt;sta_WF_Label_P&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_37" taborder="14" left="70" top="1016" height="22" text="조회라벨" width="200" cssclass="sta_WF_Label"/>
+        <Static id="stc_04" taborder="15" left="20" top="230" height="30" text="- Search Area에 들어가는 Label Component와 입력 Component는 한 조합으로 쓰이고 둘의  heigt값은 &lt;fc v='red'&gt;22px&lt;/fc&gt;로 고정이나 width는 가변적임.&#13;&#10;- 한 조합 (Title 컴포넌트 + 입력 컴포넌트) 간의 간격은 &lt;fc v='red'&gt;20px&lt;/fc&gt;로 고정." width="710" font="11px/normal &quot;Malgun Gothic&quot;" usedecorate="true" onclick="stc_04_onclick"/>
+        <Div id="div_00" taborder="16" left="15" top="325" height="44" cssclass="div_WF_SearchBox" text="" right="15">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="2" left="0" top="10" height="22" text="조회라벨" cssclass="sta_WF_SearchLbl_P" width="80"/>
+              <Edit id="edt_00" taborder="0" left="90" top="10" width="100" height="22" cssclass="point"/>
+              <Static id="stc_01" taborder="1" left="190" top="10" height="22" text="조회라벨" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_00" taborder="3" text="Combo" left="280" top="10" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_02" taborder="4" left="380" top="10" height="22" text="일이삼사오육칠팔" cssclass="sta_WF_SearchLbl" width="120"/>
+              <Edit id="edt_01" taborder="5" left="508" top="10" width="100" height="22"/>
+              <Button id="btn_00" taborder="6" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="60" bottom="9"/>
+              <Button id="Button00" taborder="7" left="686" top="10" width="22" height="22" cssclass="btn_WF_CalBtnM"/>
+              <Button id="Button02" taborder="8" text="0" left="710" top="10" width="30" height="22" cssclass="btn_WF_CalBtnDay"/>
+              <Calendar id="cal_00" taborder="9" left="742" top="10" width="110" height="22" value="20181025" dateformat="yyyy-MM-dd" onchanged="div_01_cal_00_onchanged"/>
+              <Button id="Button01" taborder="10" left="854" top="10" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+              <Button id="Button03" taborder="11" left="904" top="10" width="22" height="22" cssclass="btn_WF_CalBtnM"/>
+              <Button id="Button04" taborder="12" text="0" left="928" top="10" width="30" height="22" cssclass="btn_WF_CalBtnDay"/>
+              <Calendar id="cal_01" taborder="13" left="960" top="10" width="110" height="22" value="20181025" dateformat="yyyy-MM-dd" onchanged="div_01_cal_00_onchanged"/>
+              <Button id="Button05" taborder="14" left="1072" top="10" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+              <Static id="stc_03" taborder="15" left="886" top="10" height="22" text="~" width="18" cssclass="sta_WF_SearchLbl_L"/>
+              <Static id="stc_04" taborder="16" left="609" top="10" height="22" text="기간설정" cssclass="sta_WF_SearchLbl" width="68"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_09" taborder="17" left="15" top="300" height="22" text="1줄 [조회영역사이즈 :  w 1606 x 44]" width="330" cssclass="sta_WF_Title01"/>
+        <Static id="Static10" taborder="18" text="7" left="15" top="318" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="19" text="30" left="550" top="295" width="100" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="20" text="10" left="15" top="295" width="100" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_05" taborder="21" left="14" top="420" height="21" text="2줄 [조회영역사이즈 :  w 1606 x 71]" width="330" cssclass="sta_WF_Title01"/>
+        <Div id="div_01" taborder="22" left="14" top="444" height="71" cssclass="div_WF_SearchBox" text="" right="16">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="2" left="0" top="10" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl_P" width="102"/>
+              <Edit id="edt_00" taborder="0" left="110" top="10" width="100" height="22" cssclass="point"/>
+              <Static id="stc_01" taborder="1" left="210" top="10" height="22" text="일이삼사오" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_00" taborder="3" text="Combo" left="300" top="10" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_02" taborder="4" left="400" top="10" height="22" text="일이" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_01" taborder="5" left="510" top="10" width="100" height="22"/>
+              <Static id="stc_03" taborder="6" left="610" top="10" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Calendar id="cal_00" taborder="7" left="746" top="10" width="100" height="22" value="20180308"/>
+              <Button id="btn_00" taborder="8" text="조회" top="34" cssclass="btn_WF_Search" right="10" width="60" bottom="9"/>
+              <Static id="stc_04" taborder="9" left="0" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="102"/>
+              <Edit id="edt_02" taborder="10" left="110" top="37" width="100" height="22"/>
+              <Static id="stc_05" taborder="11" left="210" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_01" taborder="12" text="Combo" left="300" top="37" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_06" taborder="13" left="400" top="37" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_03" taborder="14" left="510" top="37" width="100" height="22"/>
+              <Static id="stc_07" taborder="15" left="610" top="37" height="22" text="일이삼사오육칠팔" cssclass="sta_WF_SearchLbl_P" width="126"/>
+              <Calendar id="cal_01" taborder="16" left="746" top="37" width="100" height="22" cssclass="point" value="20180308"/>
+              <Static id="Static05" taborder="17" text="10" left="736" top="1" width="10" height="69" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="23" text="10" left="830" top="445" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static03" taborder="24" text="20" left="626" top="445" width="20" height="69" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static04" taborder="25" text="20" left="226" top="445" width="20" height="69" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static05" taborder="26" text="10" left="305" top="445" width="10" height="69" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static06" taborder="27" text="20" left="15" top="445" width="20" height="69" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_06" taborder="28" left="14" top="558" height="21" text="3줄 [조회영역사이즈 :  w 1606 x 97]" width="330" cssclass="sta_WF_Title01"/>
+        <Div id="div_02" taborder="29" left="14" top="582" height="97" cssclass="div_WF_SearchBox" text="" right="16">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="2" left="0" top="10" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl_P" width="102"/>
+              <Edit id="edt_00" taborder="0" left="110" top="10" width="100" height="22" cssclass="point"/>
+              <Static id="stc_01" taborder="1" left="210" top="10" height="22" text="일이삼사오" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_00" taborder="3" text="Combo" left="305" top="10" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_02" taborder="4" left="405" top="10" height="22" text="일이" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_01" taborder="5" left="515" top="10" width="100" height="22"/>
+              <Static id="stc_03" taborder="6" left="615" top="10" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Calendar id="cal_00" taborder="7" left="751" top="10" width="100" height="22" value="20180308"/>
+              <Button id="btn_00" taborder="8" text="조회" top="59" height="22" cssclass="btn_WF_Search" right="10" width="60"/>
+              <Static id="stc_04" taborder="9" left="0" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="102"/>
+              <Edit id="edt_02" taborder="10" left="110" top="37" width="100" height="22"/>
+              <Static id="stc_05" taborder="11" left="210" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_01" taborder="12" text="Combo" left="305" top="37" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_06" taborder="13" left="405" top="37" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_03" taborder="14" left="515" top="37" width="100" height="22"/>
+              <Static id="stc_07" taborder="15" left="615" top="37" height="22" text="일이삼사오육칠팔" cssclass="sta_WF_SearchLbl_P" width="126"/>
+              <Calendar id="cal_01" taborder="16" left="751" top="37" width="100" height="22" value="20180308" cssclass="point"/>
+              <Static id="stc_08" taborder="17" left="0" top="64" height="22" text="일이삼" cssclass="sta_WF_SearchLbl_P" width="102"/>
+              <Edit id="edt_04" taborder="18" left="110" top="64" width="100" height="22" cssclass="point"/>
+              <Static id="stc_09" taborder="19" left="210" top="64" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_02" taborder="20" text="Combo" left="305" top="64" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_10" taborder="21" left="405" top="64" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_05" taborder="22" left="515" top="64" width="100" height="22"/>
+              <Static id="stc_11" taborder="23" left="615" top="64" height="22" text="일이삼사오육칠팔" cssclass="sta_WF_SearchLbl" width="126"/>
+              <Calendar id="cal_02" taborder="24" left="751" top="64" width="100" height="22" value="20180308"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static08" taborder="30" text="10" left="830" top="583" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static13" taborder="31" text="20" left="15" top="583" width="20" height="90" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static19" taborder="32" text="10" left="830" top="668" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static20" taborder="33" text="5" left="830" top="615" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static21" taborder="34" text="5" left="830" top="642" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_07" taborder="35" left="14" top="736" height="21" text="4줄 [조회영역사이즈 :  w 1606 x 125]" width="330" cssclass="sta_WF_Title01"/>
+        <Div id="div_03" taborder="36" left="14" top="760" height="125" cssclass="div_WF_SearchBox" text="" right="16">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="2" left="0" top="10" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl_P" width="102"/>
+              <Edit id="edt_00" taborder="0" left="110" top="10" width="100" height="22" cssclass="point"/>
+              <Static id="stc_01" taborder="1" left="210" top="10" height="22" text="일이삼사오" cssclass="sta_WF_SearchLbl_P" width="90"/>
+              <Combo id="cbo_00" taborder="3" text="Combo" left="305" top="10" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1" cssclass="point"/>
+              <Static id="stc_02" taborder="4" left="405" top="10" height="22" text="일이" cssclass="sta_WF_SearchLbl_P" width="100"/>
+              <Edit id="edt_01" taborder="5" left="515" top="10" width="100" height="22" cssclass="point"/>
+              <Static id="stc_03" taborder="6" left="615" top="10" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Calendar id="cal_00" taborder="7" left="739" top="10" width="100" height="22" value="20180308"/>
+              <Button id="btn_00" taborder="8" text="조회" top="84" height="22" cssclass="btn_WF_Search" right="10" width="60"/>
+              <Static id="stc_04" taborder="9" left="0" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="102"/>
+              <Edit id="edt_02" taborder="10" left="110" top="37" width="100" height="22"/>
+              <Static id="stc_05" taborder="11" left="210" top="37" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_01" taborder="12" text="Combo" left="305" top="37" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_06" taborder="13" left="405" top="37" height="22" text="일이삼사오육" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_03" taborder="14" left="515" top="37" width="100" height="22"/>
+              <Static id="stc_07" taborder="15" left="615" top="37" height="22" text="일이삼사오육칠" cssclass="sta_WF_SearchLbl_P" width="114"/>
+              <Calendar id="cal_01" taborder="16" left="739" top="37" width="100" height="22" cssclass="point" value="20180308"/>
+              <Static id="stc_08" taborder="17" left="0" top="64" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="102"/>
+              <Edit id="edt_04" taborder="18" left="110" top="64" width="100" height="22"/>
+              <Static id="stc_09" taborder="19" left="210" top="64" height="22" text="일이삼" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_02" taborder="20" text="Combo" left="305" top="64" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_10" taborder="21" left="405" top="64" height="22" text="일이삼사오육칠" cssclass="sta_WF_SearchLbl" width="115"/>
+              <Edit id="edt_05" taborder="22" left="515" top="64" width="100" height="22"/>
+              <Static id="stc_11" taborder="23" left="615" top="64" height="22" text="일이" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Calendar id="cal_02" taborder="24" left="739" top="64" width="100" height="22" value="20180308"/>
+              <Static id="stc_12" taborder="25" left="0" top="91" height="22" text="일이삼사오" cssclass="sta_WF_SearchLbl" width="102"/>
+              <Edit id="edt_06" taborder="26" left="110" top="91" width="100" height="22"/>
+              <Static id="stc_13" taborder="27" left="210" top="91" height="22" text="일이삼사오육칠" cssclass="sta_WF_SearchLbl" width="80"/>
+              <Combo id="cbo_03" taborder="28" text="Combo" left="305" top="91" width="100" height="22" innerdataset="@combo" codecolumn="Column0" datacolumn="Column1" index="0" value="1"/>
+              <Static id="stc_14" taborder="29" left="405" top="91" height="22" text="일이" cssclass="sta_WF_SearchLbl" width="100"/>
+              <Edit id="edt_07" taborder="30" left="515" top="91" width="100" height="22"/>
+              <Static id="stc_15" taborder="31" left="615" top="91" height="22" text="일이삼사" width="100" cssclass="sta_WF_SearchLbl"/>
+              <Calendar id="cal_03" taborder="32" left="739" top="91" width="100" height="22" value="20180308"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static22" taborder="37" text="10" left="830" top="761" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static26" taborder="38" text="20" left="15" top="761" width="20" height="123" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static30" taborder="39" text="10" left="830" top="873" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static31" taborder="40" text="5" left="830" top="792" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static32" taborder="41" text="5" left="830" top="819" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static33" taborder="42" text="5" left="830" top="846" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static34" taborder="43" text="5" left="830" top="477" width="100" height="5" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static35" taborder="44" text="10" left="830" top="504" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_08" taborder="45" left="0" top="1298" height="20" right="0" background="#ccd6dc" text=""/>
+        <Static id="stc_10" taborder="46" left="70" top="969" height="22" text="조회라벨" width="77" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_11" taborder="47" left="353" top="969" height="20" text="class : &lt;b v='true'&gt;sta_WF_SearchLbl_P&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_12" taborder="48" left="70" top="929" height="22" text="조회라벨" width="77" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_13" taborder="49" left="352" top="929" height="20" text="class : &lt;b v='true'&gt;sta_WF_SearchLbl&lt;/b&gt;" width="140" font="11px/normal &quot;Malgun Gothic&quot;" color="dodgerblue" usedecorate="true"/>
+        <Static id="stc_14" taborder="50" left="641" top="928" height="22" text="일이" width="54" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_15" taborder="51" left="641" top="948" height="22" text="일이삼" width="66" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_16" taborder="52" left="641" top="968" height="22" text="일이삼사" width="78" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_17" taborder="53" left="641" top="988" height="22" text="일이삼사오" width="90" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_18" taborder="54" left="641" top="1008" height="22" text="일이삼사오육" width="102" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_19" taborder="55" left="641" top="1028" height="22" text="일이삼사오육칠" width="114" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_20" taborder="56" left="641" top="1048" height="22" text="일이삼사오육칠팔" width="126" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_21" taborder="57" left="641" top="1068" height="22" text="일이삼사오육칠팔구" width="138" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_22" taborder="58" left="641" top="1088" height="22" text="일이삼사오육칠팔구십" width="150" cssclass="sta_WF_SearchLbl"/>
+        <Static id="stc_24" taborder="59" left="801" top="927" height="22" text="W : 54" width="46"/>
+        <Static id="stc_25" taborder="60" left="801" top="947" height="22" text="W : 66" width="46"/>
+        <Static id="stc_26" taborder="61" left="801" top="967" height="22" text="W : 78" width="46"/>
+        <Static id="stc_27" taborder="62" left="801" top="987" height="22" text="W : 90" width="46"/>
+        <Static id="stc_30" taborder="63" left="801" top="1007" height="22" text="W : 102" width="46"/>
+        <Static id="stc_35" taborder="64" left="801" top="1027" height="22" text="W : 114" width="46"/>
+        <Static id="stc_38" taborder="65" left="801" top="1067" height="22" text="W : 138" width="46"/>
+        <Static id="stc_47" taborder="66" left="801" top="1087" height="22" text="W : 150" width="46"/>
+        <Static id="stc_48" taborder="67" left="801" top="1047" height="22" text="W : 126" width="46"/>
+        <Static id="stc_01" taborder="68" left="20" top="20" height="60" background="#003876" text="한국공항공사(iFIS) UI" color="#ffffff" font="normal 36px/normal &quot;Malgun Gothic&quot;" letterSpacing="0px" padding="0px, 0px, 0px, 10px" width="390"/>
+        <Static id="stc_50" taborder="69" left="875" top="927" height="23" text="일이" width="55" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_51" taborder="70" left="875" top="947" height="23" text="일이삼" width="66" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_52" taborder="71" left="875" top="967" height="23" text="일이삼사" width="78" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_53" taborder="72" left="875" top="1007" height="23" text="일이삼사오육" width="102" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_54" taborder="73" left="875" top="1027" height="23" text="일이삼사오육칠" width="115" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_55" taborder="74" left="875" top="1047" height="23" text="일이삼사오육칠팔" width="126" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_56" taborder="75" left="875" top="1067" height="23" text="일이삼사오육칠팔구" width="138" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_57" taborder="76" left="875" top="1087" height="23" text="일이삼사오육칠팔구십" width="150" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="stc_58" taborder="77" left="875" top="987" height="23" text="일이삼사오" width="90" cssclass="sta_WF_SearchLbl_P"/>
+        <Static id="Static16" taborder="78" text="7" left="15" top="436" width="100" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static17" taborder="79" text="10" left="15" top="414" width="100" height="10" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static07" taborder="80" text="10" left="930" top="927" width="10" height="22" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.tab_00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+
+this.ComponentGuide_01_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.stc_17_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.lst_00_onitemchanged = function(obj:nexacro.ListBox,e:nexacro.ItemChangeEventInfo)
+{
+	
+};
+
+this.stc_24_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.stc_04_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="combo">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">Combo</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">Combo</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">Combo</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">4</Col>
+            <Col id="Column1">Combo</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">5</Col>
+            <Col id="Column1">Combo</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cmb">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">0</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">3</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">4</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">5</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">6</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">7</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">8</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">9</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">10</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">11</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">12</Col>
+            <Col id="Column1">대우조선</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

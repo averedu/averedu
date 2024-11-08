@@ -1,0 +1,844 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="재수강조회" onload="form_onload" onclose="form_onclose">
+    <Layouts>
+      <Layout height="800" width="1640" description="재수강조회">
+        <Div id="divSearch" taborder="0" left="0" top="0" height="71" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_01_00" taborder="4" left="0" top="9" height="22" text="학년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Spin id="spnSearchYYYY" taborder="10" left="90" top="9" width="120" height="22" onkeydown="fn_onKeydown"/>
+              <Static id="stc_01_00_01" taborder="11" left="210" top="9" height="22" text="학기" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchHakgi" taborder="2" text="" index="0" enable="true" readonly="false" left="300" width="120" height="22" top="9" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="fn_onKeydown" innerdataset="dsHakgi"/>
+              <Static id="stc_01_00_00" taborder="1" left="0" top="39" height="22" text="학번/성명" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Edit id="edtSearchHakbeon" taborder="3" enable="false" left="90" width="150" height="22" top="39" maxlength="3"/>
+              <Button id="btnHakbeon" taborder="5" left="243" width="22" height="22" cssclass="btn_WF_PopSrch" top="39" onclick="divSearch_btnHakbeon_onclick"/>
+              <Edit id="edtSearchName" taborder="8" enable="true" left="268" width="152" height="22" top="39"/>
+              <Static id="Static01_02_00" taborder="0" text="27" left="0" top="0" width="27" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="6" text="10" left="80" top="0" width="10" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01" taborder="7" text="9" left="0" top="0" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="9" text="9" left="0" top="62" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="12" text="← 56 →" left="210" top="0" width="56" height="39" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_01" taborder="13" text="10" left="290" top="0" width="10" height="39" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00_00" taborder="14" text="← 56 →" left="420" top="0" width="56" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00" taborder="15" left="420" top="9" height="22" text="학년" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_00" taborder="16" text="10" left="525" top="0" width="10" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_00" taborder="17" left="420" top="39" height="22" text="학적상태" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Combo id="cboSearchHaknyeon" taborder="18" text="" index="0" enable="true" readonly="false" left="535" width="120" height="22" top="9" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="fn_onKeydown" innerdataset="dsHaknyeon"/>
+              <Combo id="cboSearchHakjeok" taborder="19" text="" index="0" enable="true" readonly="false" left="535" width="120" height="22" top="39" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="fn_onKeydown" innerdataset="dsHakjeok"/>
+              <Static id="Static01_02_00_00_00_00_00_00_00" taborder="20" text="← 56 →" left="655" top="0" width="56" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_00_00" taborder="21" left="655" top="39" height="22" text="주야구분" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_00_00" taborder="22" text="10" left="760" top="0" width="10" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_01" taborder="23" left="655" top="9" height="22" text="계열" cssclass="sta_WF_SearchLbl" width="105" textAlign="right"/>
+              <Static id="Static01_01_00_00_02" taborder="24" text="5" left="0" top="33" width="1640" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 6pt/normal &quot;Arial&quot;"/>
+              <Combo id="cboSearchGyeyeol" taborder="25" text="" index="0" enable="true" readonly="false" left="770" width="120" height="22" top="9" innerdataset="dsGyeyeol" codecolumn="DEPT_CD" datacolumn="DEPT_NM" onitemchanged="divSearch_cboSearchGyeyeol_onitemchanged" onkeydown="fn_onKeydown"/>
+              <Combo id="cboSearchJuya" taborder="26" text="" index="0" enable="true" readonly="false" left="770" width="120" height="22" top="39" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="fn_onKeydown" innerdataset="dsJuya"/>
+              <Static id="Static01_02_00_00_00_00_00_01" taborder="27" text="← 56 →" left="890" top="0" width="56" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_00_01" taborder="28" left="890" top="9" height="22" text="학과" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_00_00_00" taborder="29" text="10" left="970" top="0" width="10" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchHakgwa" taborder="30" text="" index="0" enable="true" readonly="false" left="980" width="120" height="22" top="9" innerdataset="dsHakgwa" codecolumn="DEPT_CD" datacolumn="DEPT_NM" onitemchanged="divSearch_cboSearchHakgwa_onitemchanged" onkeydown="fn_onKeydown"/>
+              <Static id="Static01_02_00_00_00_00_00_01_00" taborder="31" text="← 56 →" left="1100" top="0" width="56" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_00_01_00_00_00_00" taborder="32" left="1100" top="9" height="22" text="전공" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_00_00_00_00" taborder="33" text="10" left="1180" top="0" width="10" height="70" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchJeongong" taborder="34" text="" index="0" enable="true" readonly="false" left="1190" width="120" height="22" top="9" innerdataset="dsJeongong" codecolumn="DEPT_CD" datacolumn="DEPT_NM" onkeydown="fn_onKeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_00" taborder="1" text="↑&#13;&#10;35&#13;&#10;↓" left="800" top="71" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" width="50"/>
+        <Static id="stRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="130" top="77" height="24" usedecorate="true" width="200"/>
+        <Static id="stc_09_00" taborder="3" left="0" top="74" height="31" text="재수강 학생 목록" cssclass="sta_WF_Title02" width="130"/>
+        <Static id="Static01_01_00_00_00" taborder="4" text="8" left="0" top="98" width="1640" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Grid id="grdMaster" taborder="5" binddataset="dsMaster" autoenter="select" autofittype="none" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="106" bottom="0" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" onselectchanged="grdMaster_onselectchanged" onexpandup="grdMaster_onexpandup" right="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="120"/>
+                <Column size="130"/>
+                <Column size="100"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="100"/>
+                <Column size="130"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="100"/>
+                <Column size="130"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="No"/>
+                <Cell col="1" colspan="12" text="학생정보"/>
+                <Cell col="13" colspan="11" text="수강정보"/>
+                <Cell col="24" colspan="11" text="재수강정보"/>
+                <Cell row="1" col="1" text="계열"/>
+                <Cell row="1" col="2" text="학과/전공"/>
+                <Cell row="1" col="3" text="학번"/>
+                <Cell row="1" col="4" text="성명"/>
+                <Cell row="1" col="5" text="학년"/>
+                <Cell row="1" col="6" text="신청과목수"/>
+                <Cell row="1" col="7" text="취득과목수"/>
+                <Cell row="1" col="8" text="신청학점"/>
+                <Cell row="1" col="9" text="취득학점"/>
+                <Cell row="1" col="10" text="평점계"/>
+                <Cell row="1" col="11" text="평점평균"/>
+                <Cell row="1" col="12" text="취득점수계"/>
+                <Cell row="1" col="13" text="년도"/>
+                <Cell row="1" col="14" text="학기"/>
+                <Cell row="1" col="15" text="교과목코드"/>
+                <Cell row="1" col="16" text="교과목명"/>
+                <Cell row="1" col="17" text="학년"/>
+                <Cell row="1" col="18" text="분반"/>
+                <Cell row="1" col="19" text="이수구분"/>
+                <Cell row="1" col="20" text="학점"/>
+                <Cell row="1" col="21" text="취득점수"/>
+                <Cell row="1" col="22" text="등급"/>
+                <Cell row="1" col="23" text="평점"/>
+                <Cell row="1" col="24" text="년도"/>
+                <Cell row="1" col="25" text="학기"/>
+                <Cell row="1" col="26" text="교과목코드"/>
+                <Cell row="1" col="27" text="교과목명"/>
+                <Cell row="1" col="28" text="학년"/>
+                <Cell row="1" col="29" text="분반"/>
+                <Cell row="1" col="30" text="이수구분"/>
+                <Cell row="1" col="31" text="학점"/>
+                <Cell row="1" col="32" text="취득점수"/>
+                <Cell row="1" col="33" text="등급"/>
+                <Cell row="1" col="34" text="평점"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" combodataset="dsGrdYn" combodatacol="CODE_NM" combocodecol="CODE"/>
+                <Cell col="1" text="bind:DAEHAK_NM" textAlign="left"/>
+                <Cell col="2" text="bind:HAKGWA_NM" textAlign="left"/>
+                <Cell col="3" text="bind:HAKBEON"/>
+                <Cell col="4" text="bind:HAKSAENG_NM"/>
+                <Cell col="5" text="bind:HAKSAENG_HAKNYEON"/>
+                <Cell col="6" text="bind:SINCHEONG_GWAMOKSU"/>
+                <Cell col="7" text="bind:CHWIDEUK_GWAMOKSU"/>
+                <Cell col="8" text="bind:SINCHEONG_HAKJEOM"/>
+                <Cell col="9" text="bind:CHWIDEUK_HAKJEOM"/>
+                <Cell col="10" text="bind:PYEONGJEOMGYE"/>
+                <Cell col="11" text="bind:PYEONGJEOM_AVG"/>
+                <Cell col="12" text="bind:JEOMSUGYE"/>
+                <Cell col="13" text="bind:YYYY"/>
+                <Cell col="14" text="bind:HAKGI"/>
+                <Cell col="15" text="bind:GYOGWAMOK_CD"/>
+                <Cell col="16" text="bind:GYOGWAMOK_NM" textAlign="left"/>
+                <Cell col="17" text="bind:HAKNYEON"/>
+                <Cell col="18" text="bind:BUNBAN"/>
+                <Cell col="19" text="bind:ISU_GBNM"/>
+                <Cell col="20" text="bind:HAKJEOM"/>
+                <Cell col="21" text="bind:CHWIDEUK_JEOMSU"/>
+                <Cell col="22" text="bind:DEUNGGEUP"/>
+                <Cell col="23" text="bind:PYEONGJEOM"/>
+                <Cell col="24" text="bind:JAESUGANG_YYYY"/>
+                <Cell col="25" text="bind:JAESUGANG_HAKGI"/>
+                <Cell col="26" text="bind:JAESUGANG_GYOGWAMOK_CD"/>
+                <Cell col="27" text="bind:JAESUGANG_GYOGWAMOK_NM" textAlign="left"/>
+                <Cell col="28" text="bind:JAESUGANG_HAKNYEON"/>
+                <Cell col="29" text="bind:JAESUGANG_BUNBAN"/>
+                <Cell col="30" text="bind:JAESUGANG_ISU_GBNM"/>
+                <Cell col="31" text="bind:JAESUGANG_HAKJEOM"/>
+                <Cell col="32" text="bind:JAESUGANG_CHWIDEUK_JEOMSU"/>
+                <Cell col="33" text="bind:JAESUGANG_DEUNGGEUP"/>
+                <Cell col="34" text="bind:JAESUGANG_PYEONGJEOM"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UM04_2030404_M.xfdl(재수강조회)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/07/27
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	// 기준연도학기 
+    var strDs    = "dsBaseYyyyHakgi";        // 데이터를 받을 데이터셋리스트     예) "dsBaseYyyyHakgi"
+    var svcId    = "baseYyyyHakgiInit";
+	var strEopmuGbcd = "UM";
+	var strUseYn     = "1";
+    // gfn_BaseYyyyHakgiLoad(데이터셋, svcId , 업무구분, 사용구분);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_BaseYyyyHakgiLoad(strDs
+                              , svcId
+                              , strEopmuGbcd
+                              , strUseYn);
+							  
+    var strDs    = "dsHakgi|dsHaknyeon|dsHakjeok|dsJuya";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00022|00060|000035|00003";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X|T|T|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+        // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+        // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+							  
+	// gfn_GyeyeolComboLoad(데이터셋, 콤보 옵션)
+	// 계열콤보
+	strComb     = "T";
+	svcId       = "gyeyeolInit";
+	strUseYn    = "1"; // 사용 여부
+	strJojikGbcd = "20";  // 조직구분 10.행정조직   20.학사조직   30.입시조직
+	strDaehakCd = "";  //
+	this.gfn_GyeyeolComboLoad(this.divSearch.form.cboSearchGyeyeol, strComb, svcId, strUseYn, strJojikGbcd, strDaehakCd , objApp.gv_cutPrgId);
+};
+
+this.fn_PostBaseYyyyHakgiInit = function()
+{
+	if (this.dsBaseYyyyHakgi.rowcount > 0) {
+		this.ds_input.setColumn(0,"YYYY",  this.dsBaseYyyyHakgi.getColumn(0, "YYYY"));
+		this.ds_input.setColumn(0,"HAKGI", this.dsBaseYyyyHakgi.getColumn(0, "HAKGI"));	
+	}
+};
+
+this.fn_PostGyeyeolInt = function()				
+{
+	this.divSearch.form.cboSearchGyeyeol.set_index(0);	
+
+	// 계열 onitemchanged 호출
+	let info = new nexacro.ItemChangeEventInfo;
+	this.divSearch_cboSearchGyeyeol_onitemchanged(this.divSearch.form.cboSearchGyeyeol, info);
+};
+
+this.fn_PostHakgwaInit = function()				
+{
+	this.divSearch.form.cboSearchHakgwa.set_index(0);	
+
+	// 학과 onitemchanged 호출
+	let info = new nexacro.ItemChangeEventInfo;
+	this.divSearch_cboSearchHakgwa_onitemchanged(this.divSearch.form.cboSearchHakgwa, info);
+};
+
+this.fn_PostJeongongInit = function()			
+{
+	this.divSearch.form.cboSearchJeongong.set_index(0);
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+			// 검색조건 계열
+			case "gyeyeolInit":
+			        this.fn_PostGyeyeolInt();					
+			    break;
+			// 검색조건 학과
+			case "hakgwaInit":
+			        this.fn_PostHakgwaInit();
+			    break;
+			// 검색조건 전공
+			case "jeongongInit":
+			        this.fn_PostJeongongInit();
+			    break;
+			case "baseYyyyHakgiInit":
+					this.fn_PostBaseYyyyHakgiInit();
+			    break;
+            default:
+                break;
+        }
+    }
+};
+
+//Popup callback영역
+this.fn_popupCallback = function(strId, strVal)
+{
+	switch(strId)
+	{
+		case "hakbeon" :		
+				var sRtn = strVal.split(",");
+				if(sRtn[0] != "CLOSE")
+				{
+					this.ds_input.set_enableevent(false);
+		            this.ds_input.setColumn(0, "HAKBEON", sRtn[0]);
+		            this.ds_input.setColumn(0, "HAKSAENG_NM", sRtn[1]);
+					this.ds_input.set_enableevent(true);					
+				}
+			break;
+		default:
+            break;
+	}
+ };
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UM/UM04/Retrieve_2030404_MList.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+this.fn_Excel = function()
+{
+    if(this.dsMaster.rowcount < 1)
+    {
+        this.gfn_alert("출력할 엑셀데이터가 없습니다.", "EXCEL 정보" ,"","information");
+        return false;
+    }
+    var result = this.gfn_confirm( "Excel를 출력하시겠습니까?", "EXCEL 출력","","question" );
+    if(result == 0)
+    {
+       return false;
+    }
+    this.gfn_excelExport(this.grdList, "시트이름","파일이름");
+
+};
+
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+
+/**
+ *      그리드멀티 체크
+ */
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+    {
+        this.gfn_checkAll(obj, e);
+    }
+};
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+/**
+  * 학과 필터
+ **/
+this.divSearch_cboSearchGyeyeol_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	// gfn_HakgwaComboLoad(데이터셋, 콤보 옵션)
+	// 학과콤보
+	strComb     = "T";
+	svcId       = "hakgwaInit";
+	strUseYn    = "1"; // 사용 여부
+	strJojikGbcd = "20";  // 조직구분 10.행정조직   20.학사조직   30.입시조직
+	
+	if(this.gfn_isNull(e.postvalue)) 
+		strUpDeptCd = "";
+	else
+		strUpDeptCd = e.postvalue;
+	
+	this.gfn_HakgwaComboLoad(this.divSearch.form.cboSearchHakgwa, strComb, svcId, strUseYn, strJojikGbcd, strUpDeptCd, objApp.gv_cutPrgId);
+};
+
+/**
+  * 전공 필터
+ **/
+this.divSearch_cboSearchHakgwa_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	// gfn_JeongongComboLoad(데이터셋, 콤보 옵션)	
+	// 전공콤보
+	strComb     = "T";
+	svcId       = "jeongongInit";
+	strUseYn    = "1"; // 사용 여부
+	strJojikGbcd = "20";  // 조직구분 10.행정조직   20.학사조직   30.입시조직
+	
+	if(this.gfn_isNull(e.postvalue)) 
+		strUpDeptCd = "";
+	else
+		strUpDeptCd = e.postvalue;
+		
+	this.gfn_JeongongComboLoad(this.divSearch.form.cboSearchJeongong, strComb, svcId, strUseYn, strJojikGbcd, strUpDeptCd, objApp.gv_cutPrgId);
+};
+
+/**
+ * 기능 : 팁 실행
+ */
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+this.divSearch_btnHakbeon_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var name = this.divSearch.form.edtSearchName.value;
+	this.fn_setCallHakbeonPopup(name);
+};
+
+/**
+ * 학생 검색 팝업
+ */
+this.fn_setCallHakbeonPopup = function(strSearchValue)
+{
+	this.dsHakbeon.clearData();
+	
+	this.ds_input1.setColumn(0, "HAKBEON_NM", strSearchValue);
+	
+	if(!this.gfn_isNull(strSearchValue))
+	{		
+		var strSvc 		= "hakbeon";
+		var strUrl 		= "/prj/com/Retrieve_P04.do";
+		var strInDs  	= "ds_input=ds_input1";
+		var strOutDs 	= "dsHakbeon=dsMaster";
+		var strArg 		= "";
+
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+		  strArg = "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = false;			//생략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+
+		this.gfn_Transaction( strSvc
+							, strUrl                                                                                                                                                                     
+							, strInDs                                                                                                                                                                    
+							, strOutDs                                                                                                                                                                   
+							, strArg                                                                                                                                                                     
+							, strCallBack                                                                                                                                                                
+							, strASync);			
+	}
+	
+	if(this.dsHakbeon.rowcount == 1)
+	{
+		this.ds_input.setColumn(0, "HAKBEON", this.dsHakbeon.getColumn(0,"HAKBEON"));
+		this.ds_input.setColumn(0, "HAKSAENG_NM", this.dsHakbeon.getColumn(0,"HAKSAENG_NM"));
+	} else
+	{
+		var oArg = {hakbeonNm:strSearchValue};
+		var oOption = {};	
+		var sPopupCallBack = "fn_popupCallback";
+		this.gfn_openPopup("hakbeon","com::COMM_P04.xfdl",oArg,sPopupCallBack,oOption);	
+	}
+};
+
+// 엔터 입력
+this.fn_onKeydown = function(obj, e) {
+	if (e.keycode == 13) {
+		this.fn_Ret();
+	}
+}
+
+this.ds_input_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    // 팝업 명 삭제 시 코드 초기화
+	if (e.columnid == "HAKSAENG_NM") {
+		if (this.gfn_isNull(e.newvalue)) {
+			obj.setColumn(0, "HAKBEON", "");
+		} else {
+			if (e.oldvalue != e.newvalue) {
+				this.fn_setCallHakbeonPopup(e.newvalue);
+			}	   
+		}
+	}
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsMaster" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="DAEHAK_NM" type="STRING" size="256"/>
+          <Column id="HAKGWA_NM" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="256"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="256"/>
+          <Column id="HAKSAENG_HAKNYEON" type="STRING" size="256"/>
+          <Column id="SINCHEONG_GWAMOKSU" type="STRING" size="256"/>
+          <Column id="CHWIDEUK_GWAMOKSU" type="STRING" size="256"/>
+          <Column id="SINCHEONG_HAKJEOM" type="STRING" size="256"/>
+          <Column id="CHWIDEUK_HAKJEOM" type="STRING" size="256"/>
+          <Column id="PYEONGJEOMGYE" type="STRING" size="256"/>
+          <Column id="PYEONGJEOM_AVG" type="STRING" size="256"/>
+          <Column id="JEOMSUGYE" type="STRING" size="256"/>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="GYOGWAMOK_CD" type="STRING" size="256"/>
+          <Column id="GYOGWAMOK_NM" type="STRING" size="256"/>
+          <Column id="HAKNYEON" type="STRING" size="256"/>
+          <Column id="BUNBAN" type="STRING" size="256"/>
+          <Column id="ISU_GBNM" type="STRING" size="256"/>
+          <Column id="HAKJEOM" type="STRING" size="256"/>
+          <Column id="CHWIDEUK_JEOMSU" type="STRING" size="256"/>
+          <Column id="DEUNGGEUP" type="STRING" size="256"/>
+          <Column id="PYEONGJEOM" type="STRING" size="256"/>
+          <Column id="JAESUGANG_YYYY" type="STRING" size="256"/>
+          <Column id="JAESUGANG_HAKGI" type="STRING" size="256"/>
+          <Column id="JAESUGANG_GYOGWAMOK_CD" type="STRING" size="256"/>
+          <Column id="JAESUGANG_GYOGWAMOK_NM" type="STRING" size="256"/>
+          <Column id="JAESUGANG_HAKNYEON" type="STRING" size="256"/>
+          <Column id="JAESUGANG_BUNBAN" type="STRING" size="256"/>
+          <Column id="JAESUGANG_ISU_GBNM" type="STRING" size="256"/>
+          <Column id="JAESUGANG_HAKJEOM" type="STRING" size="256"/>
+          <Column id="JAESUGANG_CHWIDEUK_JEOMSU" type="STRING" size="256"/>
+          <Column id="JAESUGANG_DEUNGGEUP" type="STRING" size="256"/>
+          <Column id="JAESUGANG_PYEONGJEOM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+          <Column id="HAKNYEON" type="STRING" size="256"/>
+          <Column id="JUGWAN_DAEHAK_CD" type="STRING" size="256"/>
+          <Column id="JUGWAN_HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="JUGWAN_JEONGONG_CD" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="256"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="256"/>
+          <Column id="HAKJEOK_STCD" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input1" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="HAKBEON_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakbeon">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="HAKBEON" type="STRING" size="256"/>
+          <Column id="CAMPUS_GBCD" type="STRING" size="256"/>
+          <Column id="DAEHAK_CD" type="STRING" size="256"/>
+          <Column id="DAEHAK_NM" type="STRING" size="256"/>
+          <Column id="HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="HAKGWA_NM" type="STRING" size="256"/>
+          <Column id="JEONGONG_CD" type="STRING" size="256"/>
+          <Column id="JEONGONG_NM" type="STRING" size="256"/>
+          <Column id="JUYA_GBCD" type="STRING" size="256"/>
+          <Column id="JUYA_NM" type="STRING" size="256"/>
+          <Column id="HAKNYEON" type="STRING" size="256"/>
+          <Column id="HAKNYEON_NM" type="STRING" size="256"/>
+          <Column id="JINGEUP_HAKNYEON" type="STRING" size="256"/>
+          <Column id="JINGEUP_SYS_SAJEONG_GBCD" type="STRING" size="256"/>
+          <Column id="JINGEUP_ADMIN_SAJEONG_GBCD" type="STRING" size="256"/>
+          <Column id="BUNBAN" type="STRING" size="256"/>
+          <Column id="BUNBAN_NM" type="STRING" size="256"/>
+          <Column id="HAKSAENG_NM" type="STRING" size="256"/>
+          <Column id="HAKSAENG_ENM" type="STRING" size="256"/>
+          <Column id="HAKSAENG_CNM" type="STRING" size="256"/>
+          <Column id="RES_NO" type="STRING" size="256"/>
+          <Column id="BIRTHDAY" type="STRING" size="256"/>
+          <Column id="HAKJEOK_STCD" type="STRING" size="256"/>
+          <Column id="HAKJEOK_SANGTAE_NM" type="STRING" size="256"/>
+          <Column id="BYEONDONG_CD" type="STRING" size="256"/>
+          <Column id="BYEONDONG_SEQ" type="STRING" size="256"/>
+          <Column id="BYEONDONG_DT" type="STRING" size="256"/>
+          <Column id="JIDOGYOSU_CD" type="STRING" size="256"/>
+          <Column id="JIDOGYOSU_NM" type="STRING" size="256"/>
+          <Column id="HAKSEOKSA_TONGHAPGWAJEONG_YN" type="STRING" size="256"/>
+          <Column id="SUHEOM_NO" type="STRING" size="256"/>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="HAKNYEONJE_GBCD" type="STRING" size="256"/>
+          <Column id="GENDER_CD" type="STRING" size="256"/>
+          <Column id="GENDER_NM" type="STRING" size="256"/>
+          <Column id="GUKJEOK_CD" type="STRING" size="256"/>
+          <Column id="GYOJIK_ISU_YN" type="STRING" size="256"/>
+          <Column id="GYOJIK_POGI_YN" type="STRING" size="256"/>
+          <Column id="GYOJIK_POGI_DT" type="STRING" size="256"/>
+          <Column id="GYOJIK_POGI_SAYU" type="STRING" size="256"/>
+          <Column id="SERVICE_HAKJEOM_YN" type="STRING" size="256"/>
+          <Column id="OEGUKIN_YN" type="STRING" size="256"/>
+          <Column id="DONGPO_YN" type="STRING" size="256"/>
+          <Column id="BALSONGJUSO_GBCD" type="STRING" size="256"/>
+          <Column id="EMAIL" type="STRING" size="256"/>
+          <Column id="TEL_NO" type="STRING" size="256"/>
+          <Column id="HP_NO" type="STRING" size="256"/>
+          <Column id="POST_NO" type="STRING" size="256"/>
+          <Column id="ADDR1" type="STRING" size="256"/>
+          <Column id="ADDR2" type="STRING" size="256"/>
+          <Column id="PWD" type="STRING" size="256"/>
+          <Column id="BOHOJA_NM" type="STRING" size="256"/>
+          <Column id="BOHOJA_GWANGYE_GBCD" type="STRING" size="256"/>
+          <Column id="BOHOJA_TEL_NO" type="STRING" size="256"/>
+          <Column id="BOHOJA_HP_NO" type="STRING" size="256"/>
+          <Column id="BOHOJA_POST_NO" type="STRING" size="256"/>
+          <Column id="BOHOJA_ADDR1" type="STRING" size="256"/>
+          <Column id="BOHOJA_ADDR2" type="STRING" size="256"/>
+          <Column id="BOHOJA_JIKEOP" type="STRING" size="256"/>
+          <Column id="IPHAK_DT" type="STRING" size="256"/>
+          <Column id="IPHAK_HAKGWA_CD" type="STRING" size="256"/>
+          <Column id="GOGYOGYEYEOL_GBCD" type="STRING" size="256"/>
+          <Column id="CHULSINGOGYO_JOLEOP_YYYY" type="STRING" size="256"/>
+          <Column id="CHULSINGOGYO_JOLEOP_DT" type="STRING" size="256"/>
+          <Column id="CHULSINGOGYO_CD" type="STRING" size="256"/>
+          <Column id="CHULSINGOGYO_NM" type="STRING" size="256"/>
+          <Column id="NEIS_GOGYO_CD" type="STRING" size="256"/>
+          <Column id="CHULSINGOGYO_GUKJEOK_CD" type="STRING" size="256"/>
+          <Column id="CHULSINDAEHAK_NM" type="STRING" size="256"/>
+          <Column id="CHULSINDAEHAK_HAKGWA_NM" type="STRING" size="256"/>
+          <Column id="CHULSINDAEHAK_JOLEOP_YYYY" type="STRING" size="256"/>
+          <Column id="CHULSINDAEHAK_JOLEOP_GBCD" type="STRING" size="256"/>
+          <Column id="DAEHAK_GBCD" type="STRING" size="256"/>
+          <Column id="JEONGWONNAEOE_GBCD" type="STRING" size="256"/>
+          <Column id="IPHAK_JEONHYEONG_GBCD" type="STRING" size="256"/>
+          <Column id="IPHAK_TYCD" type="STRING" size="256"/>
+          <Column id="IPHAK_GBCD" type="STRING" size="256"/>
+          <Column id="PYEONIP_HAKNYEON" type="STRING" size="256"/>
+          <Column id="JOLEOP_YYYY" type="STRING" size="256"/>
+          <Column id="JOLEOP_HAKGI" type="STRING" size="256"/>
+          <Column id="JOLEOP_DT" type="STRING" size="256"/>
+          <Column id="JOLEOP_HOETSU" type="STRING" size="256"/>
+          <Column id="HAKWI_DEUNGROK_NO1" type="STRING" size="256"/>
+          <Column id="HAKWI_DEUNGROK_NO2" type="STRING" size="256"/>
+          <Column id="HAKWI_CD1" type="STRING" size="256"/>
+          <Column id="HAKWI_CD2" type="STRING" size="256"/>
+          <Column id="BALGEUP_BULGA_YN" type="STRING" size="256"/>
+          <Column id="BALGEUP_BULGA_SAYU" type="STRING" size="256"/>
+          <Column id="BALGEUP_BULGA_DT" type="STRING" size="256"/>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGyeyeol" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="GBN" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHakgwa" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="GBN" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="UP_DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJeongong" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="GBN" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="UP_DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHaknyeon">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsHakjeok">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJuya">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBaseYyyyHakgi" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="YYYY"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="HAKGI"/>
+      <BindItem id="item2" compid="divSearch.form.cboSearchHaknyeon" propid="value" datasetid="ds_input" columnid="HAKNYEON"/>
+      <BindItem id="item3" compid="divSearch.form.cboSearchGyeyeol" propid="value" datasetid="ds_input" columnid="JUGWAN_DAEHAK_CD"/>
+      <BindItem id="item4" compid="divSearch.form.cboSearchHakgwa" propid="value" datasetid="ds_input" columnid="JUGWAN_HAKGWA_CD"/>
+      <BindItem id="item5" compid="divSearch.form.cboSearchJeongong" propid="value" datasetid="ds_input" columnid="JUGWAN_JEONGONG_CD"/>
+      <BindItem id="item6" compid="divSearch.form.edtSearchHakbeon" propid="value" datasetid="ds_input" columnid="HAKBEON"/>
+      <BindItem id="item7" compid="divSearch.form.edtSearchName" propid="value" datasetid="ds_input" columnid="HAKSAENG_NM"/>
+      <BindItem id="item8" compid="divSearch.form.cboSearchHakjeok" propid="value" datasetid="ds_input" columnid="HAKJEOK_STCD"/>
+      <BindItem id="item9" compid="divSearch.form.cboSearchJuya" propid="value" datasetid="ds_input" columnid="JUYA_GBCD"/>
+    </Bind>
+  </Form>
+</FDL>

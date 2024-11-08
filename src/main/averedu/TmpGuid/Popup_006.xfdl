@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Popup_005" width="600" height="300" titletext="계류장관제근무자운영">
+    <Layouts>
+      <Layout height="300" width="600">
+        <Static id="stc_11" taborder="23" left="290" top="85" height="28" cssclass="sta_WF_DetailBg" width="290"/>
+        <Static id="Static00" taborder="0" text="계류장관제근무자운영" left="20" top="20" width="200" height="22" cssclass="sta_WF_Title01"/>
+        <Button id="Button00" taborder="1" text="저장" top="23" width="46" height="22" cssclass="btn_WF_Crud" right="68"/>
+        <Button id="Button01" taborder="2" text="닫기" top="23" width="46" height="22" cssclass="btn_WF_Crud" right="20"/>
+        <Static id="stc_41" taborder="3" left="20" top="112" height="28" cssclass="sta_WF_DetailBg" width="121" text=""/>
+        <Static id="stc_40" taborder="4" text="현 근무자" left="20" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="121"/>
+        <Static id="stc_42" taborder="5" left="20" top="60" height="22" text="관제근무현황" width="220" cssclass="sta_WF_Title02"/>
+        <Static id="stc_12" taborder="6" left="20" top="166" height="28" cssclass="sta_WF_DetailBg" width="121"/>
+        <Static id="stc_13" taborder="7" text="현 근무시작시간" left="20" top="139" height="28" cssclass="sta_WF_DetailTi_C" width="121"/>
+        <Static id="Static05" taborder="8" text="20" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0" right="0"/>
+        <Static id="Static01" taborder="9" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static04" taborder="10" text="20" left="0" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0"/>
+        <Static id="Static03" taborder="11" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static02" taborder="12" text="5" top="45" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" left="0" right="0"/>
+        <Static id="stc_00" taborder="13" left="140" top="112" height="29" cssclass="sta_WF_DetailBg" width="130"/>
+        <Edit id="edt_02" taborder="14" left="143" top="115" height="22" width="124"/>
+        <Static id="stc_01" taborder="15" left="140" top="166" height="28" cssclass="sta_WF_DetailBg" width="130"/>
+        <Static id="stc_02" taborder="16" text="현 근무석" left="140" top="139" height="28" cssclass="sta_WF_DetailTi_C" width="130"/>
+        <Static id="stc_03" taborder="17" text="현 감독자" left="140" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="130"/>
+        <Combo id="Combo00" taborder="18" left="143" top="169" width="124" height="22" value="" index="-1"/>
+        <Static id="stc_07" taborder="19" text="다음 근무자" left="290" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="146"/>
+        <Static id="stc_08" taborder="20" left="290" top="60" height="22" text="관제근무변경" width="277" cssclass="sta_WF_Title02"/>
+        <Static id="stc_09" taborder="21" left="290" top="139" height="28" cssclass="sta_WF_DetailBg" width="290"/>
+        <Static id="stc_10" taborder="22" text="근무시작시간" left="290" top="112" height="28" cssclass="sta_WF_DetailTi_C" width="290"/>
+        <Static id="stc_19" taborder="24" left="290" top="193" height="28" cssclass="sta_WF_DetailBg" width="146"/>
+        <Static id="stc_20" taborder="25" text="다음 감독자" left="290" top="166" height="28" cssclass="sta_WF_DetailTi_C" width="146"/>
+        <Static id="stc_21" taborder="26" left="435" top="193" height="28" cssclass="sta_WF_DetailBg" width="145"/>
+        <Static id="stc_22" taborder="27" text="다음 근무석" left="435" top="166" height="28" cssclass="sta_WF_DetailTi_C" width="145"/>
+        <Combo id="Combo01" taborder="28" left="438" top="88" width="139" height="22" value="" index="-1" text="관제사(jg)"/>
+        <Edit id="edt_00" taborder="30" left="23" top="115" height="22" width="115"/>
+        <Edit id="edt_01" taborder="31" left="23" top="169" height="22" width="115"/>
+        <Calendar id="cal_00" taborder="29" left="293" top="142" width="143" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Edit id="edt_03" taborder="32" left="438" top="142" height="22" width="75" text="15:40" value="15:40"/>
+        <Combo id="Combo02" taborder="33" left="438" top="196" width="139" height="22" value="" index="-1" text="TP관제석"/>
+        <Combo id="Combo03" taborder="34" left="293" top="196" width="140" height="22" value="" index="-1" text="관제사1(jg)"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DS_GridSample">
+        <ColumnInfo>
+          <Column id="Column25" type="STRING" size="256"/>
+          <Column id="Column24" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256"/>
+          <Column id="Column22" type="STRING" size="256"/>
+          <Column id="Column21" type="STRING" size="256"/>
+          <Column id="Column20" type="STRING" size="256"/>
+          <Column id="Column19" type="STRING" size="256"/>
+          <Column id="Column18" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

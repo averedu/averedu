@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Comp_Grid_Row_ScriptColumn1" classname="Script_String_Quote" inheritanceid="" position="absolute" titletext="문서이미지뷰어" left="0" top="0" width="1600" height="600">
+    <Layouts>
+      <Layout>
+        <Static id="Static04" taborder="0" text="문서 이미지 및 PDF뷰어" cssclass="_SS_Emphasis" left="15" top="10" width="242" height="20" font="12px/normal &quot;Malgun Gothic&quot;"/>
+        <Grid id="Grid01" taborder="1" left="820" top="500" binddataset="ds_doclist" autofittype="col" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" autosizingtype="none" extendsizetype="none" autosizebandtype="body" text="" autoenter="none" fillareatype="none" selecttype="row" cellsizingtype="none" right="10" bottom="10">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="114"/>
+                <Column size="195"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="23"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="문서명"/>
+                <Cell col="1" text="문서경로" font="9pt Arial"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DOC_NAME"/>
+                <Cell col="1" text="bind:DOC_FILE_PATH" displaytype="normal" edittype="none" font="8pt Arial"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div00" taborder="2" left="0" top="36" width="807" bottom="0">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="ImageViewer00" taborder="0" left="25" top="27" width="765" height="527" onload="ImageViewer00_onload" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <WebBrowser id="WebBrowser00" taborder="3" left="823" top="63" width="767" height="377"/>
+        <FileDownload id="FileDownload00" taborder="4" text="FileDownload00" left="953" top="456" width="123" height="29" onerror="FileDownload00_onerror" onsuccess="FileDownload00_onsuccess"/>
+        <Button id="btn_down" taborder="5" text="파일 다운로드" left="823" top="455" width="120" height="31" onclick="btn_down_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_doclist" onrowposchanged="ds_doclist_onrowposchanged">
+        <ColumnInfo>
+          <Column id="DOC_NAME" type="STRING" size="256"/>
+          <Column id="DOC_FILE_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DOC_FILE_PATH">images/egovframework/example/</Col>
+            <Col id="DOC_NAME">문서1.jpg</Col>
+          </Row>
+          <Row>
+            <Col id="DOC_FILE_PATH">images/egovframework/example/</Col>
+            <Col id="DOC_NAME">메뉴얼.pdf</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.1"><![CDATA[this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+
+this.ds_doclist_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	var objEnv 	= nexacro.getEnvironment();
+	var strUrl  = objEnv.services["svcurl"].url;
+	
+	strUrl += this.ds_doclist.getColumn(e.newrow,"DOC_FILE_PATH");
+	var strFileName = this.ds_doclist.getColumn(e.newrow,"DOC_NAME");
+	var strUrl1 = strUrl + "" + strFileName;
+	
+	this.Div00.form.ImageViewer00.set_image(strUrl1);
+	this.WebBrowser00.set_url(strUrl1);
+};
+
+this.ImageViewer00_onload = function(obj:nexacro.ImageViewer,e:nexacro.LoadEventInfo)
+{
+	var nHeight = obj.imageheight;
+    var nWidth = obj.imagewidth;
+    
+    obj.set_height(nHeight);
+    obj.set_width(nWidth);
+	
+	this.Div00.form.resetScroll();
+	
+};
+
+this.FileDownload00_onerror = function(obj:nexacro.FileDownload,e:nexacro.FileDownloadErrorEventInfo)
+{
+	alert(e.errormsg);
+};
+
+this.FileDownload00_onsuccess = function(obj:nexacro.FileDownload,e:nexacro.FileDownloadEventInfo)
+{
+	alert("파일이 다운로드되었습니다.");
+};
+
+this.btn_down_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objEnv 	= nexacro.getEnvironment();
+	var svcUrl  = objEnv.services["svcurl"].url;
+	var strUrl  = svcUrl + "DownloadServlet.do?";
+	
+	var cRow = this.ds_doclist.rowposition;
+	
+	strUrl += "file_path=" + "/" + this.ds_doclist.getColumn(cRow,"DOC_FILE_PATH");
+	var sNavigatorNm =  system.navigatorname;
+	if(sNavigatorNm == "nexacro" || sNavigatorNm == "IE")
+	{
+		var cRow = this.ds_doclist.rowposition;
+		var strFileName = this.ds_doclist.getColumn(cRow,"DOC_NAME");
+
+		this.FileDownload00.downloadurl = strUrl + "" + encodeURIComponent(strFileName) + "&file_name=" + encodeURIComponent(strFileName);
+		this.FileDownload00.set_downloadfilename(strFileName);
+		this.FileDownload00.show();
+		var bSucc = this.FileDownload00.download();
+		trace("bSucc >> "+bSucc);
+
+	} else {
+
+		var cRow = this.ds_doclist.rowposition;
+		var strFileName = this.ds_doclist.getColumn(cRow,"DOC_NAME");
+		
+		var strUrl1 = strUrl + "" + encodeURIComponent(strFileName) + "&file_name=" + encodeURIComponent(strFileName);
+
+		var sDownID = "WebBrowser_"+this.gfn_rand(0,123456);
+		// Create Object
+		var objWebBrowser = new WebBrowser(sDownID, 0, 0, 0, 0, null, null);
+		this.addChild(sDownID, objWebBrowser);
+		objWebBrowser.show(); 
+				
+		objWebBrowser.set_url(strUrl1);
+			
+	}
+	//http://30.111.100.102:8080/images/egovframework/example/%EB%AC%B8%EC%84%9C1.jpg
+};
+]]></Script>
+  </Form>
+</FDL>

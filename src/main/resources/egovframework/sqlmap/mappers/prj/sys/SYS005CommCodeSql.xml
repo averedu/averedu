@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS005CommCodeDAO">									                            
+
+    <select id="SYS005CommCodeDAO.retrieveCommCodeMasterList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.CLASS_ID                    /*공통코드*/             
+                 , A.CLASS_ID_NM                 /*공통코드명*/             
+                 , A.CLASS_ID_NM_ENG             /*공통코드명(영어)*/             
+                 , A.CLASS_ID_NM_CH              /*공통코드명(중국어)*/             
+                 , A.CLASS_ID_NM_JP              /*공통코드명(일어)*/             
+                 , A.CLASS_ID_NM_ETC             /*공통코드명(기타언어)*/             
+                 , A.AUTO_PLUS                   /*자동증가*/             
+                 , A.USE_YN                      /*사용여부*/             
+                 , A.REG_ID                      /*등록자*/             
+                 , A.REG_DT                      /*등록일시*/             
+                 , A.MOD_ID                      /*수정자*/             
+                 , A.MOD_DT                      /*수정일시*/             
+              FROM COMM.XBT_STD_CD_MASTER A                                             							 
+             WHERE 1=1                                             												     
+        ]]>                                                      												 
+        <if test="CLASS_ID != null and CLASS_ID != ''">    
+            <![CDATA[                                         							                        
+               AND A.CLASS_ID        = #{CLASS_ID}  
+            ]]>                                           													
+        </if>   
+           <if test="CLASS_ID_NM != null and CLASS_ID_NM != ''">    
+            <![CDATA[                                         							                        
+               AND A.CLASS_ID_NM LIKE '%' || #{CLASS_ID_NM} || '%' 
+            ]]>                                           													
+        </if>      
+           <if test="USE_YN != null and USE_YN != ''">    
+            <![CDATA[                                         							                        
+               AND A.USE_YN  LIKE '%' || #{USE_YN} || '%'  
+            ]]>                                           													
+        </if>
+        ORDER BY A.CLASS_ID                                                                                                      
+        /* SYS005CommCodeDAO.retrieveCommCodeMasterList 기초표준코드1 조회 */	                                 
+    </select> 	                                                        													 
+	
+	 <select id="SYS005CommCodeDAO.retrieveCommCodeDetailList" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            SELECT                                                  											    
+                   '0' AS CHK                    /*CHK*/        		                
+                 , A.CLASS_ID                    /*클래스*/             
+                 , A.CD                          /*코드*/             
+                 , CD AS TCODE                  /*임시코드*/
+                 , A.SORT                        /*순서*/             
+                 , A.CD_NM                       /*코드명*/             
+                 , A.CD_NM_ENG                   /*코드명(영어)*/             
+                 , A.CD_NM_CH                    /*코드명(중국어)*/             
+                 , A.CD_NM_JP                    /*코드명(일어)*/             
+                 , A.CD_NM_ETC                   /*코드명(기타언어)*/             
+                 , A.ADDR                        /*약어*/             
+                 , A.REF_1                       /*참조1*/             
+                 , A.REF_2                       /*참조2*/             
+                 , A.REF_3                       /*참조3*/             
+                 , A.USE_YN                      /*사용여부*/             
+                 , A.REG_ID                      /*등록자*/             
+                 , A.REG_DT                      /*등록일시*/             
+                 , A.MOD_ID                      /*수정자*/             
+                 , A.MOD_DT                      /*수정일시*/             
+                 , A.AUTO_PLUS                   /*자동증가*/             
+                 , A.REF_4                       /*참조4*/             
+                 , A.REF_5                       /*참조5*/             
+                 , A.REF_6                       /*참조6*/             
+                 , A.REF_7                       /*참조7*/             
+                 , A.REF_8                       /*참조8*/             
+                 , A.REF_9                       /*참조9*/             
+                 , A.REF_10                      /*참조10*/             
+                 , A.CD_DC                       /*설명*/             
+              FROM COMM.XBT_STD_CD_DETAIL A                                             							 
+             WHERE 1=1  
+             AND A.CLASS_ID        = #{CLASS_ID}                                           												     
+        	 ORDER BY A.CLASS_ID,A.SORT
+        ]]>                                                      												 
+        /* SYS005CommCodeDAO.retrieveCommCodeDetailList 기초표준코드2 조회 */	                                 
+    </select> 	             
+    
+    <select id="SYS005CommCodeDAO.retrieveCommCodeMasterListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT 
+             LPAD(TO_CHAR(COALESCE(MAX(TO_NUMBER(SUBSTR(CLASS_ID,2)))+1,1)),5,'0') AS CLASS_ID
+          FROM COMM.XBT_STD_CD_MASTER 
+		 WHERE 1=1
+        ]]>                                                      												             
+        /* SYS005CommCodeDAO.retrieveCommCodeMasterListPKey 기초표준코드1 PK 조회 */								             
+    </select> 	                                                        													     
+
+    <select id="SYS005CommCodeDAO.retrieveCommCodeMasterListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.XBT_STD_CD_MASTER
+             WHERE 1=1
+               AND CLASS_ID        = #{CLASS_ID}
+        ]]>
+        /* SYS005CommCodeDAO.retrieveCommCodeMasterListKey 기초표준코드1 중복 조회 */
+    </select>
+
+    <insert id="SYS005CommCodeDAO.insertCommCodeMasterList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_STD_CD_MASTER                                       										  
+            (                                       																	  
+                   CLASS_ID                    /*공통코드*/ 
+                 , CLASS_ID_NM                 /*공통코드명*/ 
+                 , CLASS_ID_NM_ENG             /*공통코드명(영어)*/ 
+                 , CLASS_ID_NM_CH              /*공통코드명(중국어)*/ 
+                 , CLASS_ID_NM_JP              /*공통코드명(일어)*/ 
+                 , CLASS_ID_NM_ETC             /*공통코드명(기타언어)*/ 
+                 , AUTO_PLUS                   /*자동증가*/ 
+                 , USE_YN                      /*사용여부*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일시*/ 
+  
+            )VALUES                                                  														
+            (                                                        														
+                   #{CLASS_ID} 
+                 , #{CLASS_ID_NM}  
+                 , #{CLASS_ID_NM_ENG}  
+                 , #{CLASS_ID_NM_CH}  
+                 , #{CLASS_ID_NM_JP}  
+                 , #{CLASS_ID_NM_ETC}  
+                 , #{AUTO_PLUS}  
+                 , #{USE_YN}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+                                 
+            )	                                                      						
+        ]]>                                    											
+        /* SYS005CommCodeDAO.insertCommCodeMasterList 기초표준코드1 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS005CommCodeDAO.updateCommCodeMasterList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_STD_CD_MASTER                                			        
+               SET                                                      				
+                   CLASS_ID_NM               = #{CLASS_ID_NM}                 /*공통코드명*/  
+                 , CLASS_ID_NM_ENG           = #{CLASS_ID_NM_ENG}             /*공통코드명(영어)*/  
+                 , CLASS_ID_NM_CH            = #{CLASS_ID_NM_CH}              /*공통코드명(중국어)*/  
+                 , CLASS_ID_NM_JP            = #{CLASS_ID_NM_JP}              /*공통코드명(일어)*/  
+                 , CLASS_ID_NM_ETC           = #{CLASS_ID_NM_ETC}             /*공통코드명(기타언어)*/  
+                 , AUTO_PLUS                 = #{AUTO_PLUS}                   /*자동증가*/  
+                 , USE_YN                    = #{USE_YN}                      /*사용여부*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록자*/  
+                 , REG_DT                    = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT                    = SYSDATE                        /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CLASS_ID        = #{CLASS_ID}  
+        ]]>  	                                   							                            				
+        /* SYS005CommCodeDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+    </update>                                                           												
+
+
+    <insert id="SYS005CommCodeDAO.insertCommCodeDetailList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_STD_CD_DETAIL                                       										  
+            (                                       																	  
+                   CLASS_ID                    /*클래스*/ 
+                 , CD                          /*코드*/ 
+                 , SORT                        /*순서*/ 
+                 , CD_NM                       /*코드명*/ 
+                 , CD_NM_ENG                   /*코드명(영어)*/ 
+                 , CD_NM_CH                    /*코드명(중국어)*/ 
+                 , CD_NM_JP                    /*코드명(일어)*/ 
+                 , CD_NM_ETC                   /*코드명(기타언어)*/ 
+                 , ADDR                        /*약어*/ 
+                 , REF_1                       /*참조1*/ 
+                 , REF_2                       /*참조2*/ 
+                 , REF_3                       /*참조3*/ 
+                 , REF_4                       /*참조4*/ 
+                 , REF_5                       /*참조5*/ 
+                 , REF_6                       /*참조6*/ 
+                 , REF_7                       /*참조7*/ 
+                 , REF_8                       /*참조8*/ 
+                 , REF_9                       /*참조9*/ 
+                 , REF_10                      /*참조10*/ 
+                 , CD_DC                       /*설명*/ 
+            	 , AUTO_PLUS                   /*자동증가*/
+                 , USE_YN                      /*사용여부*/
+            	 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일시*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{CLASS_ID} 
+                 , #{CD}  
+                 , #{SORT}  
+                 , #{CD_NM}  
+                 , #{CD_NM_ENG}  
+                 , #{CD_NM_CH}  
+                 , #{CD_NM_JP}  
+                 , #{CD_NM_ETC}  
+                 , #{ADDR}  
+                 , #{REF_1}  
+                 , #{REF_2}  
+                 , #{REF_3}  
+                 , #{REF_4}  
+                 , #{REF_5}  
+                 , #{REF_6}  
+                 , #{REF_7}  
+                 , #{REF_8}  
+                 , #{REF_9}  
+                 , #{REF_10}  
+                 , #{CD_DC}
+                 , #{AUTO_PLUS}
+                 , #{USE_YN}
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+        /* SYS005CommCodeDetailDAO.insertCommCodeDetailList 기초표준코드2 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS005CommCodeDAO.updateCommCodeDetailList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_STD_CD_DETAIL                                			        
+               SET                                                      				
+                   CD                        = #{CD}                          /*코드*/  
+                 , SORT                      = #{SORT}                        /*순서*/  
+                 , CD_NM                     = #{CD_NM}                       /*코드명*/  
+                 , CD_NM_ENG                 = #{CD_NM_ENG}                   /*코드명(영어)*/  
+                 , CD_NM_CH                  = #{CD_NM_CH}                    /*코드명(중국어)*/  
+                 , CD_NM_JP                  = #{CD_NM_JP}                    /*코드명(일어)*/  
+                 , CD_NM_ETC                 = #{CD_NM_ETC}                   /*코드명(기타언어)*/  
+                 , ADDR                      = #{ADDR}                        /*약어*/  
+                 , REF_1                     = #{REF_1}                       /*참조1*/  
+                 , REF_2                     = #{REF_2}                       /*참조2*/  
+                 , REF_3                     = #{REF_3}                       /*참조3*/  
+                 , REF_4                     = #{REF_4}                       /*참조4*/  
+                 , REF_5                     = #{REF_5}                       /*참조5*/  
+                 , REF_6                     = #{REF_6}                       /*참조6*/  
+                 , REF_7                     = #{REF_7}                       /*참조7*/  
+                 , REF_8                     = #{REF_8}                       /*참조8*/  
+                 , REF_9                     = #{REF_9}                       /*참조9*/  
+                 , REF_10                    = #{REF_10}                      /*참조10*/  
+                 , CD_DC                     = #{CD_DC}                       /*설명*/
+                 , USE_YN                    = #{USE_YN}                      /*사용여부*/  
+                 , AUTO_PLUS                 = #{AUTO_PLUS}                   /*자동증가*/
+                 , REG_ID                    = #{REG_ID}                      /*등록자*/  
+                 , REG_DT                    = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT                    = SYSDATE                        /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CLASS_ID        = #{CLASS_ID}  
+               AND CD              = #{TCODE}  
+        ]]>  	                                   							                            				
+        /* SYS005CommCodeDetailDAO.updateCommCodeDetailList 기초표준코드2 수정 */								
+    </update>
+    <delete id="SYS005CommCodeDAO.deleteCommCodeMasterList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_STD_CD_MASTER                                                  							      
+             WHERE 1=1                              																	          
+               AND CLASS_ID        = #{CLASS_ID}  
+        ]]>                                                															           
+        /* SYS005CommCodeDAO.deleteCommCodeMasterList 기초표준코드1 삭제 */								       
+    </delete>
+    
+    <delete id="SYS005CommCodeDAO.deleteCommCodeAllList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_STD_CD_DETAIL                                                  							      
+             WHERE 1=1                              																	          
+               AND CLASS_ID        = #{CLASS_ID}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
+    </delete>
+    
+    <delete id="SYS005CommCodeDAO.deleteCommCodeDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_STD_CD_DETAIL                                                  							      
+             WHERE 1=1                              																	          
+               AND CLASS_ID        = #{CLASS_ID}  
+               AND CD              = #{CD}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+    </delete>	                                                          													                                                             													   
+</mapper>

@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="675" height="533" titletext="화면관리팝업" onclose="form_onclose" onload="form_onload">
+    <Layouts>
+      <Layout height="533" mobileorientation="landscape" width="675">
+        <Grid id="grdMaster" taborder="0" left="19" top="128" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" width="636" height="152" oncelldblclick="grdMaster_oncelldblclick" onheadclick="grdMaster_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="400"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="No."/>
+                <Cell col="2" text="권한대상명" cssclass="point"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK" editmaxlength="1"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="2" text="bind:AUTH_TRGET_NM" displaytype="text" edittype="text" textAlign="left"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnClose" taborder="1" text="닫기" top="487" width="55" height="26" left="541" onclick="btnClose_onclick" cssclass="btn_WF_Pop"/>
+        <Div id="divSearch" taborder="2" left="19" top="49" height="44" cssclass="div_WF_SearchBox" width="636">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="2" text="조회" top="10" width="55" height="22" right="10" onclick="dvSearch_btnSearch_onclick" cssclass="btn_WF_Search"/>
+              <Static id="staSubTitle01" taborder="0" text="권한대상명" left="0" top="10" width="93" height="22" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtAuthTrgetNm" taborder="1" left="97" top="10" width="453" height="22" imemode="alpha" inputmode="upper" onkeydown="divSearch_edtProgId_onkeydown"/>
+              <Static id="Static01" taborder="3" text="10" left="440" top="0" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static35" taborder="4" text="10" left="440" top="32" width="100" height="10" cssclass="sta_GU_space" visible="false" background="pink" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="19" top="101" height="22" usedecorate="true" right="550"/>
+        <Button id="btnConfirm" taborder="4" text="확인" top="487" width="55" height="26" left="600" onclick="btnConfirm_onclick" cssclass="btn_WF_Pop"/>
+        <Static id="staTitle" taborder="5" left="20" top="20" width="152" height="22" text="권한대상검색팝업" cssclass="sta_WF_Title01"/>
+        <Button id="btnExit" taborder="6" top="18" width="37" height="31" left="618" onclick="btnExit_onclick" cssclass="btn_WF_Close01"/>
+        <Static id="Static01" taborder="7" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="16"/>
+        <Static id="Static06" taborder="8" text="20" left="20" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="20" bottom="46"/>
+        <Static id="Static03" taborder="9" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static04" taborder="10" text="20" left="0" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20"/>
+        <Static id="Static05" taborder="11" text="20" top="0" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="20" right="0"/>
+        <Static id="Static09" taborder="12" text="30" left="459" top="20" width="76" height="30" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="13" text="35" left="335" top="93" width="50" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static07" taborder="14" text="5" left="20" top="45" width="145" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="15" text="15" left="20" top="93" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static10" taborder="16" text="7" left="20" top="121" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Button id="btnAdd" taborder="17" text="추가" left="400" top="99" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnAdd_onclick"/>
+        <Button id="btnDel" taborder="18" text="삭제" left="465" top="99" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnDel_onclick"/>
+        <Button id="btnSave" taborder="19" text="저장" left="530" top="99" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnSave_onclick"/>
+        <Button id="btnExcel" taborder="20" text="엑셀" left="595" top="99" width="60" height="25" cssclass="btn_WF_Crud" onclick="btnExcel_onclick"/>
+        <TextArea id="txtMsgNameKr" taborder="21" left="2.67%" top="313" height="154" right="3.11%" cssclass="point"/>
+        <Static id="staTitel01" text="SQL 내용(SELECT)" top="280" height="34" taborder="22" cssclass="sta_WF_DetailTi" right="20" left="18" textAlign="center"/>
+        <Edit id="edtUserId" taborder="23" top="288" width="80" height="20" readonly="true" value="#{USER_ID}" text="#{USER_ID}" right="25" textAlign="center"/>
+        <Static id="staUserId" taborder="24" text="쿼리 세션 사용자 변수" top="288" width="120" height="20" verticalAlign="middle" textAlign="right" right="109"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtAuthTrgetNm" propid="value" datasetid="ds_input" columnid="AUTH_TRGET_NM"/>
+      <BindItem id="item1" compid="txtMsgNameKr" propid="value" datasetid="dsMaster" columnid="SQL_CN"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): SYS011AuthTargetUserP01.xfdl(권한별사용자그룹 관리(조회))
+* 작 성			일 명: bsoh
+* 작 성	    	일 자: 2020/01/25
+* 변 경     	일 자:
+* 변 경			자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+	01. 전처리 공통 함수 선언 
+***********************************************************************/
+/**********************************************************************
+	02. 폼 변수 정의 
+***********************************************************************/
+this.lvchkColidDs   = "AUTH_TRGET_NM$SQL_CN";    // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "권한대상명$SQL내용";
+
+this.sOptinoArg1;
+this.sOptinoArg2;
+this.sOptinoArg3;
+this.sParamArg1;
+this.sParamArg2;
+this.sParamArg3;
+this.sParamArg4;
+/**********************************************************************
+	03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 초기화 함수
+	this.fn_formInit();
+}; 
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회 
+***********************************************************************/
+this.fn_formInit = function()
+{
+	/******************* 기본셋팅 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp01))
+	{
+		 this.sOptinoArg1 = this.getOwnerFrame().pv_sOp01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp02))
+	{
+		 this.sOptinoArg2 = this.getOwnerFrame().pv_sOp02;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sOp03))
+	{
+		 this.sOptinoArg3 = this.getOwnerFrame().pv_sOp03;        
+	}
+	/******************* 넘어온 인자값 *********************/
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal01))
+	{
+		 this.sParamArg1 = this.getOwnerFrame().pv_sVal01;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal02))
+	{
+		 this.sParamArg2 = this.getOwnerFrame().pv_sVal02;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal03))
+	{
+		 this.sParamArg3 = this.getOwnerFrame().pv_sVal03;        
+	}
+	
+	if( !this.gfn_isNull(this.getOwnerFrame().pv_sVal04))
+	{
+		 this.sParamArg4 = this.getOwnerFrame().pv_sVal04;        
+	}
+
+/*
+	var strDs   = "dsSocpsGbcd";		// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+	var strLgcd = "SC005";           		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+	var strComb = "X";   									// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+	var strOptn = "";											// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+	var svcId 	= "Init"; 
+ 
+   // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+   // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs
+							  , strLgcd
+							  , strComb
+							  , strOptn
+							  , svcId); 
+*/							  
+   this.postformInit();
+};
+
+this.postformInit = function()                                                                                                                                                                                   
+{                                                                                                                                                                                                        
+	
+	this.ds_input.setColumn(0,"AUTH_TRGET_NM", 	null);
+	
+	var sSetComponet = this.sOptinoArg1;
+	var sAutoSearch  = this.sOptinoArg2;
+	
+	// 설정에 따라서 호출 창으로부터 파라미터를 넘겨받는다.
+	this.divSearch.form.edtAuthTrgetNm.setFocus();
+
+	if(sSetComponet == "Y") 
+	{
+		this.ds_input.setColumn(0,"AUTH_TRGET_NM",	this.sParamArg1);     
+	}
+	
+	// 설정에 따라서 폼 로드 시 자동 조회한다.
+	if(sAutoSearch == "Y") 
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};  
+/**
+ * 기능 : 콜백함수(후처리) 
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg) 
+{
+	if(nErrorCode != 0)
+	{
+		this.gfn_alert(sErrorMsg,"에러정보","","error");
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Init":
+				this.postformInit();
+				break;
+			case "Search":
+			    this.postSearch();
+				break;
+			case "Save":
+			    this.fn_PostSave();
+				break;
+			case "Insert":
+				this.fn_PostNew();
+				break;
+			case "Delete":
+				this.fn_PostDel();
+				break;
+			default:
+				break;
+		}
+	}
+};
+/**********************************************************************
+	05. 조회 함수 선언  
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.preSearch = function()
+{ 
+	// 조회조건 셋팅
+	return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+
+this.dvSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.preSearch())
+	{
+		return false;
+	}
+	var strSvc 		= "Search";                                                                                                                                               
+	var strUrl 		= "/prj/sys/RetrieveAuthTargetUserList.do";                                                                                             
+	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
+	var strOutDs 	= "dsMaster=dsMaster";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync);
+};
+/**
+ * 기능 : 조회 후 실행
+ */
+this.postSearch = function()
+{ 
+	if(this.dsMaster.rowcount < 1)
+	{
+		this.gfn_alert("조회자료가 없습니다.","조회정보","","information");
+	}
+	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	//trace(this.dsMaster.saveXML());
+};
+/**********************************************************************
+	06. 닫기버튼
+***********************************************************************/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("CLOSE");
+};
+
+this.btnExit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("EXIT");
+};
+/**********************************************************************
+	07.Get, Set Method 
+***********************************************************************/
+ /**
+ * 한행을 처리하는 로직
+ **/
+this.selDataSet = function(dsobj,nRow)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		var odsObj 	= this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+		var TRow = ds.addRow();
+		ds.copyRow(TRow, odsObj, nRow); 		//0번재 로에 행을 카피함
+		
+		var objRtnArr = new Array(3);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.getColumn(ds.rowposition, "AUTH_TRGET_ID");
+		objRtnArr[2] = ds.getColumn(ds.rowposition, "AUTH_TRGET_NM");
+		objRtnArr[3] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}else 
+	{
+		var odsObj = this.all[dsobj];
+		var ds = new Dataset;
+		this.dsDummy.copyData(odsObj);
+		this.dsDummy.clearData();
+		ds.copyData(this.dsDummy); 			//전체 구조을 카피하기위해 데이타를 카피
+
+		this.dsDummy.getColumn(i,"CHK")
+		var TRow = -1;
+		for(var i = 0; i < odsObj.rowcount; i++)
+		{
+			if(odsObj.getColumn(i,"CHK") == 0)
+			{
+				continue;
+			}
+			 TRow = ds.addRow();
+			ds.copyRow(TRow, odsObj, i); 
+		}
+		var objRtnArr = new Array(1);
+		objRtnArr[0] = this.sOptinoArg3;
+		objRtnArr[1] = ds.saveXML();
+		this.opener.fn_dsChildCopydsDummy(ds);
+		this.close(objRtnArr.toString());
+	}
+};
+
+/**********************************************************************
+	08.기타 Control Event  
+***********************************************************************/
+
+this.grdMaster_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.sOptinoArg3 == "S")
+	{
+		this.selDataSet(obj.binddataset, this.dsMaster.rowposition); 	
+	}
+};
+
+this.btnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if(this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 있습니다.! 저장 후 확인해 주세요.", "확인정보","", "question");
+        return false;
+    }
+	
+	if(this.sOptinoArg3 == "S")
+	{
+		this.grdMaster_oncelldblclick(this.grdMaster);
+	
+	}else
+	{
+		var grdDs = this.grdMaster.getBindDataset();
+		if(grdDs.findRow("CHK", "1") == -1)
+		{
+			this.gfn_alert("선택한 데이타가 없습니다.","조회정보","","information");
+			return false;
+		}
+		this.selDataSet(this.grd_list.binddataset);
+	}
+};
+
+this.divSearch_edtProgId_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_edtFormId_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_edtFormNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.divSearch.form.btnSearch.setFocus();
+		this.divSearch.form.btnSearch.click();
+	}
+};
+
+this.divSearch_cboPrefix_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.divSearch.form.btnSearch.setFocus();
+	this.divSearch.form.btnSearch.click();
+};
+
+
+this.divSearch_cboUserYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.divSearch.form.btnSearch.setFocus();
+	this.divSearch.form.btnSearch.click();
+};
+
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	}
+};
+
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell != 0)
+	{
+		this.gfn_gridSort(obj,e);
+	}
+};
+
+//
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_New();
+};
+
+//
+this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Del();
+};
+
+//
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Save();
+};
+
+//
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Excel();
+};
+
+
+/**********************************************************************
+        09. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 추가 전 실행(기본체크사항)
+ */
+this.fn_PreNew = function()
+{
+    return true;
+};
+
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    if(!this.fn_PreNew())
+    {
+        return false;
+    }
+
+    var nRow = this.dsMaster.addRow();
+    this.dsMaster.setColumn(nRow, "CHK", "0");           //체크 
+};
+
+/**
+ * 기능 : 처리 후 실행
+ */
+this.fn_PostNew = function()
+{
+
+};
+
+/**********************************************************************
+        10. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+
+this.fn_PreDel = function()
+{
+    //멀티삭제용도
+    if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
+    {
+        this.gfn_alert("삭제할 데이타가 없습니다.!", "삭제정보", "", "warning");
+        return false;
+    }
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보", "", "question");
+
+    if(result == 0)
+    {
+        return false;
+    }
+
+    //다중삭제 용도
+    this.dsMaster.set_enableevent(false);
+    for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+    {
+        if(this.dsMaster.getColumn(i, "CHK") == "1" || this.dsMaster.getRowType(i) == 2)
+        {
+            this.dsMaster.deleteRow(i);
+        }
+    }
+    this.dsMaster.set_enableevent(true);
+
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(!this.fn_PreDel())
+    {
+        return false;
+    }
+
+    var strSvc      = "Del";
+    var strUrl      = "/prj/sys/DeleteAuthTargetUserList.do";
+    var strInDs     = "dsMaster=dsMaster:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        11. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(this.dsMaster.rowcount > 0)
+    {
+        for(var i=0;i<this.dsMaster.rowcount; i++)
+        {
+            if(this.dsMaster.getColumn(i, "CHK") == "0")
+            {
+                continue;
+            }
+            this.dsMaster.setColumn(i, "CHK", "0");
+        }
+    }
+
+    if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.!", "저장정보","", "question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = true;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보", "","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+     }
+
+     var result = this.gfn_confirm( "저장 하시겠습니까?","저장","","question");
+     if(result == 0)
+     {
+         return false;
+     }
+     return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+
+    var strSvc      = "Save";
+    var strUrl      = "/prj/sys/SaveAuthTargetUserList.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        12. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+this.fn_Excel = function()
+{
+    if(this.dsMaster.rowcount < 1)
+    {
+        this.gfn_alert("출력할 엑셀데이타가 없습니다.!",  "EXCEL 정보","","information");
+        return false;
+    }
+    var result = this.gfn_confirm( "Excel를 출력하시겠습니까?", "EXCEL 출력","","question");
+    if(result == 0)
+    {
+       return false;
+    }
+    this.gfn_excelExport(this.grdList, "시트이름", "파일이름");
+
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsDummy" preload="true" updatecontrol="true" useclientlayout="false"/>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="AUTH_TRGET_ID" type="STRING" size="256"/>
+          <Column id="AUTH_TRGET_NM" type="STRING" size="256"/>
+          <Column id="SQL_CN" type="STRING" size="256"/>
+          <Column id="REG_ID" type="STRING" size="256"/>
+          <Column id="REG_DT" type="STRING" size="256"/>
+          <Column id="MOD_ID" type="STRING" size="256"/>
+          <Column id="MOD_DT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="AUTH_TRGET_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="AUTH_TRGET_NM"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

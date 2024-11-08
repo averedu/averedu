@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_008" width="1606" height="830" titletext="시즌주기장백업복원관리">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
+        <Div id="div_01" taborder="1" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0" formscrolltype="none" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="54"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Static id="stc_01" taborder="2" left="149" top="10" height="22" text="시즌" cssclass="sta_WF_SearchLbl" width="53"/>
+              <Combo id="Combo00" taborder="3" text="FOIS:XLS" left="54" top="10" width="95" height="22" value="" index="-1"/>
+              <Combo id="Combo02" taborder="4" text="GMP" left="202" top="10" width="85" height="22" value="" index="-1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="2" left="0" top="5" height="22" text="일일FOIS 자료비교" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Static id="stc_00" taborder="3" left="0" top="84" height="22" text="복원관리" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+        <Static id="Static11" taborder="4" text="7" left="0" top="102" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static14" taborder="5" text="17" left="0" top="74" width="100" height="17" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_02" taborder="6" left="stc_00:0" top="84" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;9&lt;/fc&gt;&lt;/b&gt; 건" width="80" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Div id="Div00" taborder="7" left="0" top="313" height="15" right="0" text="" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Hspltt" top="0" text="" bottom="0" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_03" taborder="8" left="0" top="338" height="22" text="상세내역" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+        <Static id="Static01" taborder="9" text="7" left="0" top="356" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static03" taborder="10" text="17" left="0" top="328" width="100" height="17" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="stc_04" taborder="11" left="stc_03:0" top="338" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="80" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Button id="Button13" taborder="12" text="복원" top="84" width="46" height="22" right="0"/>
+        <Grid id="Grid02" taborder="13" left="0" top="363" binddataset="ds_grd" right="0" autofittype="col" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+                <Cell col="3" text="Column3"/>
+                <Cell col="4" text="Column4"/>
+                <Cell col="5" text="Column5"/>
+                <Cell col="6" text="Column6"/>
+                <Cell col="7" text="Column7"/>
+                <Cell col="8" text="Column8"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column3"/>
+                <Cell col="4" text="bind:Column4"/>
+                <Cell col="5" text="bind:Column5"/>
+                <Cell col="6" text="bind:Column6"/>
+                <Cell col="7" text="bind:Column7"/>
+                <Cell col="8" text="bind:Column8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00" taborder="14" left="0" top="109" binddataset="ds_grd" right="0" autofittype="col" height="204">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+                <Cell col="3" text="Column3"/>
+                <Cell col="4" text="Column4"/>
+                <Cell col="5" text="Column5"/>
+                <Cell col="6" text="Column6"/>
+                <Cell col="7" text="Column7"/>
+                <Cell col="8" text="Column8"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column3"/>
+                <Cell col="4" text="bind:Column4"/>
+                <Cell col="5" text="bind:Column5"/>
+                <Cell col="6" text="bind:Column6"/>
+                <Cell col="7" text="bind:Column7"/>
+                <Cell col="8" text="bind:Column8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

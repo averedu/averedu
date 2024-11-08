@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P03_DAO">									                            
+
+    <select id="COM_P03_DAO.retrieve_P03" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+             SELECT A.GYOGWAMOK_CD
+			      , A.GYOGWAMOK_CD AS CODE
+				  , A.GYOGWAMOK_NM
+				  , A.GYOGWAMOK_NM AS LABEL
+				  , A.GYOGWAMOK_ENM
+				  , A.GYOGWAMOK_GAEYO
+				  , A.GYOGWAMOK_GAEYO_ENM
+				  , A.HAKJEOM
+				  , A.IRON_SISU
+				  , A.SILSEUP_SISU
+				  , A.TONGHAP_SISU
+				  , A.IRON_TM
+				  , A.SILSEUP_TM
+				  , A.TONGHAP_TM
+				  , A.ISU_GBCD
+				  , A.GWAMOK_GBCD
+				  , A.NCS_GBCD
+				  , A.NCS_NEUNGRYEOK_GBCD
+				  , A.PYEONGGA_GBCD
+				  , A.SEONGJEOK_BUYEO_GBCD
+				  , A.GANGUISIL_GBCD
+				  , A.GANGUIPYEONGGA_YN
+				  , A.GANGUIPYEONGGA_TYCD
+				  , A.GYOYANG_GBCD
+				  , A.PO_YN
+				  , A.JUGWAN_DAEHAK_CD
+				  , COMM.SF_SC_GET_DEPT(A.JUGWAN_DAEHAK_CD, '') AS JUGWAN_DAEHAK_NM
+				  , A.JUGWAN_HAKGWA_CD
+				  , COMM.SF_SC_GET_DEPT(A.JUGWAN_HAKGWA_CD, '') AS JUGWAN_HAKGWA_NM
+				  , A.JUGWAN_JEONGONG_CD
+				  , COMM.SF_SC_GET_DEPT(A.JUGWAN_JEONGONG_CD, '') AS JUGWAN_JEONGONG_NM
+				  , COMM.SF_SC_GET_COMMCODE('00025', A.ISU_GBCD, '', '') AS ISU_GBNM
+				  , COMM.SF_SC_GET_COMMCODE('00033', A.GWAMOK_GBCD, '', '') AS GWAMOK_GBNM
+				  , NVL(A.GYOJIKGWAMOK_YN, '0') AS GYOJIKGWAMOK_YN
+				  , A.USE_YN
+				  , COMM.SF_SC_GET_DEPT(NVL(A.JUGWAN_JEONGONG_CD, A.JUGWAN_HAKGWA_CD), '') AS HAKGWA_NM
+			  FROM UNIV.UL_GIBONGWAMOK_C A
+			 WHERE 1=1                                            												     
+        ]]>                                                      												 
+        <if test="GYOGWAMOK_CD_NM != null and GYOGWAMOK_CD_NM != ''">                                           							                        
+               AND (A.GYOGWAMOK_CD = #{GYOGWAMOK_CD_NM} OR A.GYOGWAMOK_NM LIKE '%' || #{GYOGWAMOK_CD_NM} || '%')                                         													
+        </if>
+        <if test="USE_YN != null and USE_YN != ''">                                           							                        
+               AND A.USE_YN    = #{USE_YN}                                         													
+        </if>
+        	 ORDER BY A.GYOGWAMOK_NM, A.USE_YN                                                                                                       
+        /* COM_P03_DAO.retrieve_P03_ 기본과목 조회 */	                                 
+    </select> 	                                                        													                                                          													   
+</mapper> 

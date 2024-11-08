@@ -1,0 +1,730 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="일정관리" onload="form_onload" onclose="form_onclose">
+    <Layouts>
+      <Layout height="800" width="1640" description="일정관리">
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_01_00" taborder="1" left="0" top="9" height="22" text="년도" cssclass="sta_WF_SearchLbl" width="50" textAlign="right"/>
+              <Spin id="spnSearchYYYY" taborder="2" left="60" top="9" width="120" height="22" onkeydown="fn_onKeydown"/>
+              <Static id="stc_01_00_01" taborder="3" left="180" top="9" height="22" text="학기" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchHakgi" taborder="0" text="" index="0" enable="true" readonly="false" left="270" width="120" height="22" top="9" codecolumn="CODE" datacolumn="CODE_NM" onkeydown="fn_onKeydown" innerdataset="dsHakgi"/>
+              <Static id="Static01_02_00_00_00_01" taborder="4" text="10" left="260" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="5" text="← 56 →" left="180" top="0" width="56" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="6" text="10" left="50" top="0" width="10" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00" taborder="7" text="27" left="0" top="0" width="27" height="42" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00" taborder="8" text="9" left="0" top="32" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00_00_01" taborder="9" text="9" left="0" top="0" width="1640" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01_00" taborder="1" text="↑&#13;&#10;35&#13;&#10;↓" left="800" top="42" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;" width="35"/>
+        <Static id="stRowCnt" taborder="2" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="80" top="48" height="24" usedecorate="true" width="200"/>
+        <Static id="stc_09_00" taborder="3" left="0" top="45" height="31" text="일정목록" cssclass="sta_WF_Title02" width="80"/>
+        <Static id="Static01_01_00_00_00" taborder="4" text="8" left="0" top="69" width="1640" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Grid id="grdMaster" taborder="5" binddataset="dsMaster" autoenter="select" autofittype="col" onheadclick="grdMaster_onheadclick" onheaddblclick="grdMaster_onheaddblclick" left="0" top="77" cellsizingtype="col" autoupdatetype="itemselect" cellclickbound="cell" onselectchanged="grdMaster_onselectchanged" right="0" onexpandup="grdMaster_onexpandup" height="190">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="185"/>
+                <Column size="185"/>
+                <Column size="185"/>
+                <Column size="160"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No"/>
+                <Cell col="1" text="차수"/>
+                <Cell col="2" text="년도"/>
+                <Cell col="3" text="학기"/>
+                <Cell col="4" text="현재기준"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:DIFF_SEQU" edittype="expr:dataset.getRowType(currow) == '2'?'normal':'none'" editinputtype="number,digit"/>
+                <Cell col="2" text="bind:SCHL_YEAR" edittype="expr:dataset.getRowType(currow) == '2'?'normal':'none'" editinputtype="number,digit"/>
+                <Cell col="3" text="bind:SCHL_SMST" displaytype="expr:SCHL_SMST == ''?'normal':'combotext'" combodataset="dsGrdHakgi" combodatacol="CODE_NM" combocodecol="CODE" edittype="expr:dataset.getRowType(currow) == '2'?'combo':'none'"/>
+                <Cell col="4" text="bind:CURR_GUBN" displaytype="checkboxcontrol" edittype="checkbox"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_01_00_00_00_00" taborder="6" text="35" left="0" top="267" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" height="35" right="0"/>
+        <Tab id="Tab" taborder="7" tabindex="0" left="0" right="0" top="302" preload="true" bottom="0" onchanged="Tab_onchanged">
+          <Tabpages>
+            <Tabpage id="TabPage1" text="재학생" url="BH01::BH01_4080104_T01.xfdl"/>
+            <Tabpage id="TabPage2" text="신입생" url="BH01::BH01_4080104_T01.xfdl"/>
+            <Tabpage id="TabPage3" text="편입생" url="BH01::BH01_4080104_T01.xfdl"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): BH01_4080104_M.xfdl(일정관리)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/10/04
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "DIFF_SEQU$SCHL_YEAR$SCHL_SMST"; // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "차수$년도$학기";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs 	= "dsHakgi|dsGrdHakgi";	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd = "00022|00022"; 	// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb = "T|S"; 		// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn = ""; 			// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId   = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+	
+	this.fn_RetCurrSchl();
+};
+
+this.fn_PostIljeongInit = function()
+{
+	if (this.dsIljeong.rowcount > 0) {
+		this.ds_input.setColumn(0,"YYYY",  this.dsIljeong.getColumn(0, "SCHL_YEAR"));
+		this.ds_input.setColumn(0,"HAKGI",  this.dsIljeong.getColumn(0, "SCHL_SMST"));
+	}
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+			case "iljeongInit":
+					this.fn_PostIljeongInit();
+			    break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            case "Del":
+                    this.fn_PostDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/BH/BH01/Retrieve_4080104_MList.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+};
+
+/**
+ * 기능 : 생활관일정 조회 실행
+ */
+this.fn_RetCurrSchl = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "iljeongInit";
+    var strUrl      = "/prj/BH/BH_COMMON/GET_CURR_SCHL.do";
+    var strInDs     = "ds_input=ds_inputIljeong";
+    var strOutDs    = "dsIljeong=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+};
+
+/**
+ * 기능 : 중복체크 실행
+ */
+this.fn_checkPk = function(diffSequ, schlYear, schlSmst) {
+	this.ds_inputCheck.setColumn(0, "DIFF_SEQU", diffSequ);
+	this.ds_inputCheck.setColumn(0, "SCHL_YEAR", schlYear);
+	this.ds_inputCheck.setColumn(0, "SCHL_SMST", schlSmst);
+
+    var strSvc      = "checkPk";
+    var strUrl      = "/prj/BH/BH01/Retrieve_4080104_CountPk.do";
+    var strInDs     = "ds_input=ds_inputCheck";
+    var strOutDs    = "dsCheck=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID	= objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+	
+	return nexacro.toNumber(this.dsCheck.getColumn(0, "CNT"));
+}
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	
+	if (this.dsMaster.rowcount == 0) {
+		this.Tab.TabPage1.form.clearData();
+		this.Tab.TabPage2.form.clearData();
+		this.Tab.TabPage3.form.clearData();
+	}
+};
+
+this.fn_TabRet = function(e)
+{
+	var rowPosition = this.dsMaster.rowposition;
+	var schlYear = this.dsMaster.getColumn(rowPosition, "SCHL_YEAR"); // 년도
+	var schlSmst = this.dsMaster.getColumn(rowPosition, "SCHL_SMST"); // 학기
+	var diffSequ = this.dsMaster.getColumn(rowPosition, "DIFF_SEQU"); // 차수
+	var dataCode = "";
+	
+	// 학생구분 - 0.재학 1.신입 2.편입
+	var tabPageForm;
+	var tabIndex = this.Tab.tabindex;
+	if (tabIndex == 0) {
+		tabPageForm = this.Tab.TabPage1.form;
+	} else if (tabIndex == 1) {
+		tabPageForm = this.Tab.TabPage2.form;
+	} else {
+		tabPageForm = this.Tab.TabPage3.form;
+	}
+	
+	tabPageForm.fn_Ret(schlYear, schlSmst, tabIndex, diffSequ, dataCode);
+}
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 추가 전 실행(기본체크사항)
+ */
+this.fn_PreNew = function()
+{
+	if (
+		this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.Tab.TabPage1.form.dsMaster)
+	    || this.gfn_isUpdate(this.Tab.TabPage2.form.dsMaster) || this.gfn_isUpdate(this.Tab.TabPage3.form.dsMaster)
+	) {
+	    this.alert('수정된 정보가 존재합니다. 저장 후 추가하시기 바랍니다.');
+ 	    return;
+	}
+	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    if(!this.fn_PreNew())
+    {
+        return false;
+    }
+    var nRow = this.dsMaster.addRow();
+    this.dsMaster.setColumn(nRow,"CHK", "0");
+    this.dsMaster.setColumn(nRow,"SCHL_SMST", "");
+	
+	this.fn_TabNew();
+};
+
+this.fn_TabNew = function() {
+	// 학생구분 - 0.재학 1.신입 2.편입
+	this.Tab.TabPage1.form.fn_New("0");
+	this.Tab.TabPage2.form.fn_New("1");
+	this.Tab.TabPage3.form.fn_New("2");
+}
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreDel = function() {
+	var rowPosition = this.dsMaster.rowposition;
+	var rowType = this.dsMaster.getRowType(rowPosition);
+	if (rowType == 2) { // 삭제하려는 행 신규행일시 삭제 O
+		this.dsMaster.deleteRow(rowPosition);
+		return false;
+	} else if ( // 수정된 행 존재시 삭제 X
+		this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.Tab.TabPage1.form.dsMaster)
+		|| this.gfn_isUpdate(this.Tab.TabPage2.form.dsMaster) || this.gfn_isUpdate(this.Tab.TabPage3.form.dsMaster)
+	) {
+	    this.alert('수정된 정보가 존재합니다. 저장 후 삭제하시기 바랍니다.');
+ 	    return;
+	}
+
+	// 삭제하려는 행 현재기준일시 삭제 X
+	var currGubn = this.dsMaster.getColumn(rowPosition, "CURR_GUBN"); // 삭제행의 현재기준
+	if (currGubn == "1") {
+	    this.alert('"현재기준" 항목이 체크되어있을 경우, 삭제할수 없습니다. [일정목록 Line : ' + (rowPosition + 1) + ']');
+		return false;
+	}
+	
+    var result = this.gfn_confirm("현재선택행을 삭제하시겠습니까?", "삭제정보", "", "question");
+    if (result == 0) {
+        return false;
+    }
+
+    //개별삭제시
+    this.dsMaster.deleteRow(rowPosition);
+    
+	return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(!this.fn_PreDel())
+    {
+        return false;
+    }
+    var strSvc      = "Del";
+    var strUrl      = "/prj/BH/BH01/Delete_4080104_MList.do";
+    var strInDs     = "dsMaster=dsMaster:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+};
+
+this.fn_PostDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if (this.dsMaster.rowcount > 0) {
+        for (var i = 0; i < this.dsMaster.rowcount; i++) {
+            if (this.dsMaster.getColumn(i, "CHK") == "0") {
+                continue;
+            }
+			
+            this.dsMaster.setColumn(i, "CHK", "0");
+        }
+    }
+
+    if(
+		!this.gfn_isUpdate(this.dsMaster) && !this.gfn_isUpdate(this.Tab.TabPage1.form.dsMaster)
+		&& !this.gfn_isUpdate(this.Tab.TabPage2.form.dsMaster)&& !this.gfn_isUpdate(this.Tab.TabPage3.form.dsMaster)
+	) {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = true;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+	}
+	
+	var lastRow = this.dsMaster.rowcount - 1; // 마지막 행
+	if (this.dsMaster.getRowType(lastRow) == 2) {
+		var diffSequ = this.dsMaster.getColumn(lastRow, 'DIFF_SEQU'); // 차수
+		var schlYear = this.dsMaster.getColumn(lastRow, 'SCHL_YEAR'); // 년도
+		var schlSmst = this.dsMaster.getColumn(lastRow, 'SCHL_SMST'); // 학기
+		var pkChk = this.fn_checkPk(diffSequ, schlYear, schlSmst); // 생활관 일정 pk 체크
+		if (pkChk > 0) {
+			this.alert(
+				schlYear + '년도 ' + (schlSmst == '11' ? '1학기 ' : schlSmst == '12' ? '하계학기 ' : schlSmst == '21' ? '2학기 ' : '동계학기 ')
+				+ diffSequ + '차수의 생활관 일정이 이미 존재합니다.'
+			);
+			
+			return false;
+		}
+	}
+	
+    return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if (
+		!this.fn_PreSave() || !this.Tab.TabPage1.form.fn_PreSave()
+		|| !this.Tab.TabPage2.form.fn_PreSave() || !this.Tab.TabPage3.form.fn_PreSave()
+	) {
+		return false;
+	}
+	
+    var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+    if(result == 0) {
+        return false;
+    }
+	
+    var strSvc      = "Save";
+    var strUrl      = "/prj/BH/BH01/Save_4080104_MList.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if (!this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc, strUrl, strInDs, strOutDs, strArg, strCallBack, strASync);
+	
+	this.fn_TabSave();
+};
+
+this.fn_TabSave = function()
+{
+	if (this.dsMaster.getRowType(this.dsMaster.rowposition) == 2) {
+  		this.Tab.TabPage1.form.fn_Save();
+  		this.Tab.TabPage2.form.fn_Save();
+  		this.Tab.TabPage3.form.fn_Save();
+	} else {
+		// 재학생
+		if(this.Tab.tabindex==0) {
+			this.Tab.TabPage1.form.fn_Save();
+		}
+		
+		// 신입생
+		if(this.Tab.tabindex==1){
+			this.Tab.TabPage2.form.fn_Save();
+		}
+		
+		// 편입생
+		if(this.Tab.tabindex==2){
+			this.Tab.TabPage3.form.fn_Save();
+		}
+	}
+}
+
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+
+/**
+ *      그리드멀티 체크
+ */
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+    {
+        this.gfn_checkAll(obj, e);
+    }
+};
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+// rowpos 이동시 학생별 일정검색
+this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if (obj.getRowType(e.newrow) == 2) {
+		this.Tab.TabPage1.form.fn_clearData();
+		this.Tab.TabPage2.form.fn_clearData();
+		this.Tab.TabPage3.form.fn_clearData();
+	} else {
+		this.fn_TabRet();
+	}
+	
+	if (obj.getRowType(e.oldrow) == 2) {
+		obj.deleteRow(e.oldrow);
+	}
+};
+
+// tab index 이동시 일정검색
+this.Tab_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	if (this.dsMaster.rowcount != 0 && this.dsMaster.getRowType(this.dsMaster.rowposition) != 2) {
+		this.fn_TabRet();
+	}
+};
+
+// 기준년도, 학기, 차수 변경 시 학생별 일정목록 갱신
+this.dsMaster_onvaluechanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if (obj.getRowType(obj.rowposition) == 2) { // 신규
+		// 각 그리드 값 변경
+		this.Tab.TabPage1.form.fn_setGrdValue(e.columnid, e.newvalue);
+		this.Tab.TabPage2.form.fn_setGrdValue(e.columnid, e.newvalue);
+		this.Tab.TabPage3.form.fn_setGrdValue(e.columnid, e.newvalue);
+	}
+};
+
+// 기준년도, 학기, 차수 rowpos 이동 시 학생별 일정 수정 여부 chk
+this.dsMaster_canrowposchange = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if (
+		this.gfn_isUpdate(this.Tab.TabPage1.form.dsMaster) || this.gfn_isUpdate(this.Tab.TabPage2.form.dsMaster)
+		|| this.gfn_isUpdate(this.Tab.TabPage3.form.dsMaster)
+	) {
+		var result = this.gfn_confirm("수정중인 학생구분별 일정이 초기화됩니다.\n계속하시겠습니까?", "rowposchange", "", "question");
+		if(result == 0) {
+			return false;
+		}
+	}
+};
+
+// 일정 목록 (신규)차수, 년도, 학기 변경 / (갱신) 현재기준
+this.dsMaster_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if (e.columnid == "CURR_GUBN") { // 현재기준 변경시
+		// 일정목록 갱신
+		for (var i = 0; i < this.dsMaster.rowcount; i++) {
+			if (i != e.row) {
+				obj.setColumn(i, "CURR_GUBN", "0");
+			} else {
+				obj.setColumn(i, "CURR_GUBN", "1");
+			}
+		}
+	}
+};
+
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+// 엔터 입력
+this.fn_onKeydown = function(obj, e) {
+	if (e.keycode == 13) {
+		this.fn_Ret();
+	}
+}
+]]></Script>
+    <Objects>
+      <Dataset id="dsMaster" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" onvaluechanged="dsMaster_onvaluechanged" canrowposchange="dsMaster_canrowposchange" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="DIFF_SEQU" type="STRING" size="2"/>
+          <Column id="SCHL_YEAR" type="STRING" size="4"/>
+          <Column id="SCHL_SMST" type="STRING" size="2"/>
+          <Column id="CURR_GUBN" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+          <Column id="HAKGI" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrdHakgi">
+        <ColumnInfo>
+          <Column id="CLASS_ID" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsIljeong" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_inputIljeong" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="DATE_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCheck" preload="true" updatecontrol="true" enableevent="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_inputCheck" oncolumnchanged="ds_input_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SCHL_YEAR" type="STRING" size="256"/>
+          <Column id="SCHL_SMST" type="STRING" size="256"/>
+          <Column id="DIFF_SEQU" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="YYYY"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearchHakgi" propid="value" datasetid="ds_input" columnid="HAKGI"/>
+    </Bind>
+  </Form>
+</FDL>

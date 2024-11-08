@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="cmmMonthCalendar" width="201" height="193" titletext="공통그리드월달력(MonthCalendarGrid)" onload="form_onload">
+    <Layouts>
+      <Layout height="193" mobileorientation="landscape" width="201">
+        <Div id="div_monthCal" taborder="0" left="0" top="0" right="0" bottom="0">
+          <Layouts>
+            <Layout>
+              <Static id="sta_calendarYY" taborder="0" left="0" top="0" height="28" right="0" text="2017" background="#636363" color="#ffffff" font="bold 12px/normal &quot;Gulim&quot;" textAlign="center"/>
+              <Button id="btn_month01" taborder="1" text="1월" left="0" top="28" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month02" taborder="2" text="2월" left="50" top="28" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month03" taborder="3" text="3월" left="100" top="28" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month04" taborder="4" text="4월" left="150" top="28" height="55" onclick="btn_month_onclick" font="bold 12px/normal &quot;Gulim&quot;" right="1" background="white"/>
+              <Button id="btn_month08" taborder="5" text="8월" left="150" top="83" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;" right="1"/>
+              <Button id="btn_month07" taborder="6" text="7월" left="100" top="83" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month06" taborder="7" text="6월" left="50" top="83" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month05" taborder="8" text="5월" left="0" top="83" width="51" height="55" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Button id="btn_month09" taborder="9" text="9월" left="0" top="138" width="51" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;" bottom="1"/>
+              <Button id="btn_month10" taborder="10" text="10월" left="50" top="138" width="51" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;" bottom="1"/>
+              <Button id="btn_month11" taborder="11" text="11월" left="100" top="138" width="51" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;" bottom="1"/>
+              <Button id="btn_month12" taborder="12" text="12월" left="150" top="138" onclick="btn_month_onclick" background="white" font="bold 12px/normal &quot;Gulim&quot;" right="1" bottom="1"/>
+              <Button id="btn_pre" taborder="13" text="◀" top="0" width="22" height="28" left="0" onclick="div_monthCal_btn_pre_onclick"/>
+              <Button id="btn_next" taborder="14" text="▶" top="0" width="22" height="28" right="0" onclick="div_monthCal_btn_next_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  월달력
+*  @MenuPath 
+*  @FileName 		cmmMonthCalendarGrid.xfdl 
+*  @Creator 		UI공통
+*  @CreateDate 	    2018.07.19
+*  @LastModifier  
+*  @LastModifyDate  
+*  @Version 		1.0
+*  @Outline 		
+*  @Desction   
+************** 소스 수정 이력 *************************************************
+*    date          		Modifier            Description
+*******************************************************************************
+*  2018.07.19     	    UI공통	            최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM onload
+ ************************************************************************************************/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_SetGridValue(this.parent.compent, this.parent.row, this.parent.cell);
+};
+
+this.fn_SetGridValue = function(objGrid, nRow, nCell)
+{
+	var sValue = objGrid.getCellValue(nRow, nCell);
+	if(sValue == "yyyy-MM") sValue = null;
+		
+	if(this.gfn_isNull(sValue)) sValue = this.gfn_getDate();
+	
+	var sYear = sValue.substr(0,4);
+	var sMonth = sValue.substr(4,2);
+	
+	this.fn_SetCalendar(sYear,sMonth);
+}
+
+//선택한 월에 해당하는 버튼에 효과
+this.fn_SetCalendar = function(sYear, sMonth)
+{
+	if(sMonth.trim().length == 0) return;	
+	
+	this.div_monthCal.form.sta_calendarYY.set_text(sYear);
+	
+	var objBtn = this.div_monthCal.form.components["btn_month" +sMonth];	
+	
+	objBtn.setFocus();
+	//objBtn.set_background("yellow");
+	//objBtn.set_cssclass("btn_WF_CalendarMonthS");
+}
+
+//이전 월
+this.div_monthCal_btn_pre_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sYear = this.div_monthCal.form.sta_calendarYY.text;
+	sYear = (parseInt(sYear) - 1).toString();
+	
+	this.div_monthCal.form.sta_calendarYY.set_text(sYear);
+};
+
+//다음 월
+this.div_monthCal_btn_next_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sYear = this.div_monthCal.form.sta_calendarYY.text;
+	sYear = (parseInt(sYear) + 1).toString();
+	
+	this.div_monthCal.form.sta_calendarYY.set_text(sYear);
+};
+
+//월선택
+this.btn_month_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sObjBtn;
+	
+	/*
+	for (var i=1; i<=12; i++)
+	{
+		sObjBtn = eval("this.btn_month"+i);	
+		sObjBtn.set_cssclass("btn_WF_CalendarMonth");
+	}
+	
+	obj.set_cssclass("btn_WF_CalendarMonthS");
+	*/
+	
+	this.fn_applyMonth(obj);
+};
+
+this.fn_applyMonth = function(obj, e)
+{	
+	var sDate = this.div_monthCal.form.sta_calendarYY.text + obj.name.replace("btn_month","");
+
+	// 월시작일/월종료일 리턴값 추가
+	var arrDate = sDate;
+	
+	this.parent.closePopup(arrDate);
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_enableMonth"/>
+    </Objects>
+  </Form>
+</FDL>

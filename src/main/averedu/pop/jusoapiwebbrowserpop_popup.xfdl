@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="_popup" width="570" height="450" titletext="New Form" onload="_popup_onload">
+    <Layouts>
+      <Layout height="450" mobileorientation="landscape" width="570">
+        <WebBrowser id="webOpenApi" taborder="0" left="0" top="30" onusernotify="webOpenApi_onusernotify" right="0" bottom="0"/>
+        <Button id="btnClose" taborder="1" text="X" left="522" top="2" width="45" height="26" font="normal 17pt/normal &quot;Arial&quot;" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this._popup_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//화면 로드시 웹브라우저 컴포넌트 url 연결
+	this.webOpenApi.set_url("http://localhost:8080/playnexacro_nana/service/juso/jusoopenapipopup.jsp");
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//우편번호 검색화면 닫기
+	this.close();
+};
+
+this.webOpenApi_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	//웹브라우저를 통해 로드된 웹페이지에서 정보 전달 시 발생 : onusernotify	
+	var addData = e.userdata.split(",");
+	
+	if(addData.length > 1)
+	{
+		//선택된 주소 결과 전달 및 검색화면 종료
+		this.close(e.userdata);
+	}
+};
+
+
+
+]]></Script>
+  </Form>
+</FDL>

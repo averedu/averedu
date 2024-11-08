@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Sample_023" width="1606" height="830" titletext="권한그룹등록관리">
+    <Layouts>
+      <Layout height="830" width="1606">
+        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
+        <Button id="btn_02" taborder="1" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="60" width="46"/>
+        <Button id="btn_01" taborder="2" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="108" width="46"/>
+        <Button id="btn_00" taborder="3" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="156" width="46"/>
+        <Div id="div_01" taborder="4" left="0" top="30" height="44" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_00" taborder="0" left="0" top="10" height="22" text="공항" cssclass="sta_WF_SearchLbl" width="54" fittocontents="width"/>
+              <Button id="btn_00" taborder="1" text="조회" height="22" cssclass="btn_WF_Search" right="10" width="55" bottom="9"/>
+              <Edit id="edt_01" taborder="3" left="595" top="10" width="145" height="22" cssclass="point"/>
+              <Static id="stc_01" taborder="2" left="530" top="10" height="22" text="출발편" cssclass="sta_WF_SearchLbl" width="65" fittocontents="width"/>
+              <Combo id="Combo00" taborder="4" text="GMP" left="55" top="10" width="95" height="22" value="" index="-1"/>
+              <Combo id="Combo01" taborder="5" text="60" left="228" top="10" width="96" height="21" value="" index="-1"/>
+              <Static id="stc_02" taborder="6" left="150" top="10" height="21" text="시간범위" cssclass="sta_WF_SearchLbl" width="78" fittocontents="width"/>
+              <Static id="stc_03" taborder="7" left="322" top="10" height="20" text="새로고침시간" cssclass="sta_WF_SearchLbl" width="103" fittocontents="width"/>
+              <Edit id="edt_00" taborder="8" left="425" top="9" width="105" height="22"/>
+              <Static id="stc_04" taborder="9" left="740" top="10" height="22" text="도착편" cssclass="sta_WF_SearchLbl" width="65" fittocontents="width"/>
+              <Edit id="edt_02" taborder="10" left="805" top="10" width="145" height="22" cssclass="point"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_05" taborder="5" left="0" top="5" height="22" text="통합패널" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+        <Button id="btn_134" taborder="6" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="204" width="46"/>
+        <Button id="btn_132" taborder="7" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="252" width="46"/>
+        <Div id="Div00" taborder="8" left="0" top="459" height="15" right="0" text="" cssclass="div_WF_AreaBox">
+          <Layouts>
+            <Layout>
+              <Button id="Button00" taborder="0" left="0" cssclass="btn_WF_Hspltt" top="0" text="" bottom="0" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="9" text="Div01" left="0" top="74" width="1131" height="385">
+          <Layouts>
+            <Layout>
+              <Static id="stc_09" taborder="0" left="0" top="40" height="22" text="도착편" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static10" taborder="1" text="7" left="0" top="58" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static02" taborder="2" text="15" left="0" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Grid id="Grid00" taborder="3" left="0" top="65" binddataset="ds_grd" bottom="0" width="296">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_01" taborder="4" left="stc_09:0" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Static id="stc_05" taborder="5" left="0" top="5" height="22" text="도착편명" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+              <Static id="stc_00" taborder="6" left="311" top="40" height="22" text="착륙" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static01" taborder="7" text="7" left="311" top="58" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static04" taborder="8" text="15" left="311" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Grid id="Grid01" taborder="9" left="311" top="65" binddataset="ds_grd" bottom="0" width="402">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                      <Cell col="4"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                      <Cell col="4"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_02" taborder="10" left="461" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Static id="stc_03" taborder="11" left="728" top="40" height="22" text="RAMP" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static05" taborder="12" text="7" left="728" top="57" width="100" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static06" taborder="13" text="35" left="938" top="30" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static07" taborder="14" text="15" left="728" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_04" taborder="15" left="878" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Grid id="Grid02" taborder="16" left="728" top="65" binddataset="ds_grd" bottom="0" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="69"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                      <Cell col="4"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                      <Cell col="4"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="10" text="Div01" top="74" height="385" right="0" left="1146">
+          <Layouts>
+            <Layout>
+              <Static id="stc_09" taborder="0" left="0" top="40" height="22" text="Event" width="150" cssclass="sta_WF_Title03" fittocontents="width"/>
+              <Static id="Static10" taborder="1" text="7" left="0" top="58" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static00" taborder="2" text="35" left="210" top="30" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static02" taborder="3" text="15" left="0" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Grid id="Grid00" taborder="4" left="0" top="65" binddataset="ds_grd" right="0" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="48"/>
+                      <Column size="48"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                      <Cell col="4"/>
+                      <Cell col="5"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                      <Cell col="4"/>
+                      <Cell col="5"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_01" taborder="5" left="150" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Static id="stc_05" taborder="6" left="0" top="5" height="22" text="이벤트" width="330" cssclass="sta_WF_Title02" onclick="stc_05_onclick" fittocontents="width"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div03" taborder="11" text="Div01" left="0" top="474" bottom="0" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="stc_09" taborder="0" left="0" top="40" height="22" text="출발편" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static10" taborder="1" text="7" left="0" top="58" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static02" taborder="2" text="15" left="0" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Grid id="Grid00" taborder="3" left="0" top="65" binddataset="ds_grd" bottom="0" width="296">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_01" taborder="4" left="150" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Static id="stc_05" taborder="5" left="0" top="5" height="22" text="출발편명" width="330" cssclass="sta_WF_Title01" onclick="stc_05_onclick" fittocontents="width"/>
+              <Static id="stc_00" taborder="6" left="311" top="40" height="22" text="RAMP" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static01" taborder="7" text="7" left="311" top="58" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static04" taborder="8" text="15" left="311" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Grid id="Grid01" taborder="9" left="311" top="65" binddataset="ds_grd" bottom="0" width="660">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                      <Cell col="4"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                      <Cell col="4"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_02" taborder="10" left="461" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Static id="stc_03" taborder="11" left="987" top="40" height="22" text="토잉" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static05" taborder="12" text="7" left="987" top="57" width="100" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static06" taborder="13" text="35" left="1197" top="30" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static07" taborder="14" text="15" left="987" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_04" taborder="15" left="1137" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Grid id="Grid02" taborder="16" left="987" top="65" binddataset="ds_grd" bottom="0" width="362">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="60"/>
+                      <Column size="60"/>
+                      <Column size="60"/>
+                      <Column size="60"/>
+                      <Column size="60"/>
+                      <Column size="60"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ETA"/>
+                      <Cell col="2" text="기종"/>
+                      <Cell col="3" text="주기장"/>
+                      <Cell col="4"/>
+                      <Cell col="5"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                      <Cell col="3"/>
+                      <Cell col="4"/>
+                      <Cell col="5"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stc_06" taborder="17" left="1364" top="40" height="22" text="출발완료" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+              <Static id="Static00" taborder="18" text="7" left="1364" top="57" width="100" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static08" taborder="19" text="15" left="1364" top="30" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_07" taborder="20" left="1514" top="40" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+              <Grid id="Grid03" taborder="21" left="1364" top="65" binddataset="ds_grd" bottom="0" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="편명"/>
+                      <Cell col="1" text="ATD"/>
+                      <Cell col="2" text="RWY"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static03" taborder="22" text="35" left="1349" top="111" width="15" height="145" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static09" taborder="23" text="35" left="972" top="111" width="15" height="145" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_grd">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0"/>
+          </Row>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

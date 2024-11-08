@@ -1,0 +1,1242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="학교별통계" onload="form_onload">
+    <Layouts>
+      <Layout height="800" width="1640" description="학교별통계">
+        <Static id="Static01" taborder="4" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_09_00" taborder="5" left="0" top="52" height="22" text="학교별통계" cssclass="sta_WF_Title02" right="1475"/>
+        <Static id="staRowCnt1" taborder="6" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="107" top="51" height="24" usedecorate="true" right="1410"/>
+        <Static id="Static01_01_00_00_00" taborder="7" text="8" left="0" top="69" width="320" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01_00_00_01" taborder="6" text="9" left="16" top="0" width="1620" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static01_01_00" taborder="7" text="9" left="20" top="31" width="1610" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 9pt/normal &quot;Arial&quot;"/>
+              <Combo id="cboSearchJeongwon" taborder="2" text="" left="584" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="0" value="1" innerdataset="dsJeongwon" onkeydown="divSearch_cboSearchJeongwon_onkeydown"/>
+              <Static id="stc_01" taborder="8" left="1196" top="9" height="22" text="통계구분" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Static id="stc_01_00_00_00" taborder="9" left="493" top="9" height="22" text="정원구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Static id="stc_01_00" taborder="10" left="7" top="9" height="22" text="입시년도" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Spin id="spnSearchYYYY" taborder="0" left="100" top="9" width="124" height="22" onkeydown="divSearch_spnSearchYYYY_onkeydown" max="3000" min="0" value="" cssclass="point"/>
+              <Static id="stc_01_00_00" taborder="11" left="248" top="9" height="22" text="모집구분" cssclass="sta_WF_SearchLbl" width="80" textAlign="right"/>
+              <Combo id="cboSearchMojip" taborder="1" text="" left="341" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" onkeydown="divSearch_cboSearchMojip_onkeydown" innerdataset="dsMojip"/>
+              <Static id="Static01_02_00" taborder="12" text="27" left="0" top="0" width="27" height="67" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00" taborder="13" text="10" left="90" top="0" width="10" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00" taborder="14" text="10" left="331" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01" taborder="15" text="← 56 →" left="465" top="-1" width="56" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_00" taborder="16" text="10" left="574" top="0" width="10" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_00" taborder="17" text="← 56 →" left="708" top="-1" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_00_00_00_00_01" taborder="18" text="10" left="1308" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_01" taborder="19" text="← 56 →" left="224" top="3" width="56" height="60" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchTonggye" taborder="5" text="" left="1318" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsTonggye" onitemchanged="divSearch_cboSearchTonggye_onitemchanged"/>
+              <Static id="Static01_02_00_00" taborder="20" text="27" top="0" width="27" height="37" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+              <Static id="stc_01_01" taborder="21" left="683" top="9" height="22" text="지역" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_00_01_00" taborder="22" text="10" left="795" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Combo id="cboSearchJiyeok" taborder="3" text="" left="805" top="9" width="124" height="22" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="11" innerdataset="dsJiyeok" onkeydown="divSearch_cboSearchJiyeok_onkeydown"/>
+              <Static id="Static01_02_01_01_00_00" taborder="23" text="← 56 →" left="929" top="-1" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="stc_01_01_00" taborder="24" left="917" top="9" height="22" text="학교명" cssclass="sta_WF_SearchLbl" width="110" textAlign="right"/>
+              <Edit id="edtSearchGogyoNm" taborder="25" left="1040" top="9" width="124" height="22" readonly="true"/>
+              <Static id="Static01_02_00_00_00_00_02" taborder="26" text="10" left="1164" top="6" width="10" height="27" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Button id="btnSearchGogyo" taborder="4" left="1174" top="9" width="22" height="22" cssclass="btn_WF_PopSrch" onclick="divSearch_btnSearchGogyo_onclick"/>
+              <Static id="Static01_02_00_00_00_00_01_01" taborder="27" text="10" left="1030" top="0" width="10" height="31" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_02_01_01_00_00_00" taborder="28" text="← 56 →" left="1196" top="9" width="56" height="33" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staRowCnt2" taborder="8" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="107" top="51" height="24" usedecorate="true" right="1410" visible="false"/>
+        <Static id="staRowCnt3" taborder="9" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="107" top="51" height="24" usedecorate="true" right="1410" visible="false"/>
+        <Grid id="grdMaster1" taborder="1" left="0" top="77" right="0" bottom="0" cellsizingtype="col" visible="true" binddataset="dsMaster1" autofittype="none" onheaddblclick="grdMaster1_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="170"/>
+                <Column size="81"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="49"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="3" text="지역"/>
+                <Cell col="1" rowspan="3" text="학교"/>
+                <Cell col="2" rowspan="3" text="주야구분"/>
+                <Cell col="3" colspan="16" text="창구"/>
+                <Cell col="19" colspan="16" text="인터넷"/>
+                <Cell col="35" colspan="12" text="총계"/>
+                <Cell row="1" col="3" colspan="4" text="지원자"/>
+                <Cell row="1" col="7" colspan="4" text="합격자"/>
+                <Cell row="1" col="11" colspan="4" text="등록자"/>
+                <Cell row="1" col="15" colspan="4" text="합계"/>
+                <Cell row="1" col="19" colspan="4" text="지원자"/>
+                <Cell row="1" col="23" colspan="4" text="합격자"/>
+                <Cell row="1" col="27" colspan="4" text="등록자"/>
+                <Cell row="1" col="31" colspan="4" text="합계"/>
+                <Cell row="1" col="35" colspan="4" text="지원자"/>
+                <Cell row="1" col="39" colspan="4" text="합격자"/>
+                <Cell row="1" col="43" colspan="4" text="등록자"/>
+                <Cell row="2" col="3" text="현역"/>
+                <Cell row="2" col="4" text="재수"/>
+                <Cell row="2" col="5" text="기타"/>
+                <Cell row="2" col="6" text="전체"/>
+                <Cell row="2" col="7" text="현역"/>
+                <Cell row="2" col="8" text="재수"/>
+                <Cell row="2" col="9" text="기타"/>
+                <Cell row="2" col="10" text="전체"/>
+                <Cell row="2" col="11" text="현역"/>
+                <Cell row="2" col="12" text="재수"/>
+                <Cell row="2" col="13" text="기타"/>
+                <Cell row="2" col="14" text="전체"/>
+                <Cell row="2" col="15" text="현역"/>
+                <Cell row="2" col="16" text="재수"/>
+                <Cell row="2" col="17" text="기타"/>
+                <Cell row="2" col="18" text="전체"/>
+                <Cell row="2" col="19" text="현역"/>
+                <Cell row="2" col="20" text="재수"/>
+                <Cell row="2" col="21" text="기타"/>
+                <Cell row="2" col="22" text="전체"/>
+                <Cell row="2" col="23" text="현역"/>
+                <Cell row="2" col="24" text="재수"/>
+                <Cell row="2" col="25" text="기타"/>
+                <Cell row="2" col="26" text="전체"/>
+                <Cell row="2" col="27" text="현역"/>
+                <Cell row="2" col="28" text="재수"/>
+                <Cell row="2" col="29" text="기타"/>
+                <Cell row="2" col="30" text="전체"/>
+                <Cell row="2" col="31" text="현역"/>
+                <Cell row="2" col="32" text="재수"/>
+                <Cell row="2" col="33" text="기타"/>
+                <Cell row="2" col="34" text="전체"/>
+                <Cell row="2" col="35" text="현역"/>
+                <Cell row="2" col="36" text="재수"/>
+                <Cell row="2" col="37" text="기타"/>
+                <Cell row="2" col="38" text="전체"/>
+                <Cell row="2" col="39" text="현역"/>
+                <Cell row="2" col="40" text="재수"/>
+                <Cell row="2" col="41" text="기타"/>
+                <Cell row="2" col="42" text="전체"/>
+                <Cell row="2" col="43" text="현역"/>
+                <Cell row="2" col="44" text="재수"/>
+                <Cell row="2" col="45" text="기타"/>
+                <Cell row="2" col="46" text="전체"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" color="black" background="white"/>
+                <Cell col="1" text="bind:GOGYO_NM"/>
+                <Cell col="2" text="bind:JUYA_NM"/>
+                <Cell col="3" text="bind:TBL2_A_JIWON_CH_CNT" displaytype="number"/>
+                <Cell col="4" text="bind:TBL2_A_JIWON_CJ_CNT" displaytype="number"/>
+                <Cell col="5" text="bind:TBL2_A_JIWON_CE_CNT" suppressalign="first" displaytype="number"/>
+                <Cell col="6" text="bind:JIWON_A_TOTAL" displaytype="number"/>
+                <Cell col="7" text="bind:TBL2_B_HAPGYEOK_CH_CNT" displaytype="number"/>
+                <Cell col="8" text="bind:TBL2_B_HAPGYEOK_CJ_CNT" displaytype="number"/>
+                <Cell col="9" text="bind:TBL2_B_HAPGYEOK_CE_CNT" displaytype="number"/>
+                <Cell col="10" text="bind:HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="11" text="bind:TBL2_C_DEUNGROK_CH_CNT" displaytype="number"/>
+                <Cell col="12" text="bind:TBL2_C_DEUNGROK_CJ_CNT" displaytype="number"/>
+                <Cell col="13" text="bind:TBL2_C_DEUNGROK_CE_CNT" displaytype="number"/>
+                <Cell col="14" text="bind:DEUNGROK_A_TOTAL" displaytype="number"/>
+                <Cell col="15" expr="expr:TBL2_A_JIWON_CH_CNT+TBL2_B_HAPGYEOK_CH_CNT" displaytype="number"/>
+                <Cell col="16" expr="expr:TBL2_A_JIWON_CJ_CNT+TBL2_B_HAPGYEOK_CJ_CNT" displaytype="number"/>
+                <Cell col="17" expr="expr:TBL2_A_JIWON_CE_CNT+TBL2_B_HAPGYEOK_CE_CNT" displaytype="number"/>
+                <Cell col="18" expr="expr:JIWON_A_TOTAL+HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="19" text="bind:TBL3_A_JIWON_CH_CNT" displaytype="number"/>
+                <Cell col="20" text="bind:TBL3_A_JIWON_CJ_CNT" displaytype="number"/>
+                <Cell col="21" text="bind:TBL3_A_JIWON_CE_CNT" displaytype="number"/>
+                <Cell col="22" text="bind:JIWON_B_TOTAL" displaytype="number"/>
+                <Cell col="23" text="bind:TBL3_B_HAPGYEOK_CH_CNT" displaytype="number"/>
+                <Cell col="24" text="bind:TBL3_B_HAPGYEOK_CJ_CNT" displaytype="number"/>
+                <Cell col="25" text="bind:TBL3_B_HAPGYEOK_CE_CNT" displaytype="number"/>
+                <Cell col="26" text="bind:HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="27" text="bind:TBL3_C_DEUNGROK_CH_CNT" displaytype="number"/>
+                <Cell col="28" text="bind:TBL3_C_DEUNGROK_CJ_CNT" displaytype="number"/>
+                <Cell col="29" text="bind:TBL3_C_DEUNGROK_CE_CNT" displaytype="number"/>
+                <Cell col="30" text="bind:DEUNGROK_B_TOTAL" displaytype="number"/>
+                <Cell col="31" expr="expr:TBL3_A_JIWON_CH_CNT+TBL3_B_HAPGYEOK_CH_CNT" displaytype="number"/>
+                <Cell col="32" expr="expr:TBL3_A_JIWON_CJ_CNT+TBL3_B_HAPGYEOK_CJ_CNT" displaytype="number"/>
+                <Cell col="33" expr="expr:TBL3_A_JIWON_CE_CNT+TBL3_B_HAPGYEOK_CE_CNT" displaytype="number"/>
+                <Cell col="34" expr="expr:JIWON_B_TOTAL+HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="35" text="bind:TOTAL_JIWON_CH" displaytype="number"/>
+                <Cell col="36" text="bind:TOTAL_JIWON_CJ" displaytype="number"/>
+                <Cell col="37" text="bind:TOTAL_JIWON_CE" displaytype="number"/>
+                <Cell col="38" text="bind:TOTAL_JIWON" displaytype="number"/>
+                <Cell col="39" text="bind:TOTAL_HAPGYEOK_CH" displaytype="number"/>
+                <Cell col="40" text="bind:TOTAL_HAPGYEOK_CJ" displaytype="number"/>
+                <Cell col="41" text="bind:TOTAL_HAPGYEOK_CE" displaytype="number"/>
+                <Cell col="42" text="bind:TOTAL_HAPGYEOK" displaytype="number"/>
+                <Cell col="43" text="bind:TOTAL_DEUNGROK_CH" displaytype="number"/>
+                <Cell col="44" text="bind:TOTAL_DEUNGROK_CJ" displaytype="number"/>
+                <Cell col="45" text="bind:TOTAL_DEUNGROK_CE" displaytype="number"/>
+                <Cell col="46" text="bind:TOTAL_DEUNGROK" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" text="합계:" textAlign="center"/>
+                <Cell col="3" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="4" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="5" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="6" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="7" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="8" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="9" suppressalign="first" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="10" expr="expr:dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="11" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="12" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="13" suppressalign="first" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="14" expr="expr:dataset.getSum(&quot;DEUNGROK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="15" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CH_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="16" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CJ_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="17" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_CE_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="18" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="19" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="20" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="21" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="22" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="23" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="24" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="25" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="26" expr="expr:dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="27" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="28" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="29" suppressalign="first" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="30" expr="expr:dataset.getSum(&quot;DEUNGROK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="31" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CH_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_CH_CNT&quot;)" displaytype="number"/>
+                <Cell col="32" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CJ_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_CJ_CNT&quot;)" displaytype="number"/>
+                <Cell col="33" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_CE_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_CE_CNT&quot;)" displaytype="number"/>
+                <Cell col="34" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="35" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_CH&quot;)" displaytype="number"/>
+                <Cell col="36" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_CJ&quot;)" displaytype="number"/>
+                <Cell col="37" suppressalign="first" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_CE&quot;)" displaytype="number"/>
+                <Cell col="38" expr="expr:dataset.getSum(&quot;TOTAL_JIWON&quot;)" displaytype="number"/>
+                <Cell col="39" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_CH&quot;)" displaytype="number"/>
+                <Cell col="40" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_CJ&quot;)" displaytype="number"/>
+                <Cell col="41" suppressalign="first" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_CE&quot;)" displaytype="number"/>
+                <Cell col="42" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK&quot;)" displaytype="number"/>
+                <Cell col="43" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_CH&quot;)" displaytype="number"/>
+                <Cell col="44" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_CJ&quot;)" displaytype="number"/>
+                <Cell col="45" suppressalign="first" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_CE&quot;)" displaytype="number"/>
+                <Cell col="46" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster2" taborder="2" left="0" top="77" right="0" bottom="0" visible="false" binddataset="dsMaster2" cellsizingtype="col" onheaddblclick="grdMaster2_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="170"/>
+                <Column size="81"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="3" text="지역"/>
+                <Cell col="1" rowspan="3" text="학교"/>
+                <Cell col="2" rowspan="3" text="주야구분"/>
+                <Cell col="3" colspan="12" text="창구"/>
+                <Cell col="15" colspan="12" text="인터넷"/>
+                <Cell col="27" colspan="9" text="총계"/>
+                <Cell row="1" col="3" colspan="3" text="지원자"/>
+                <Cell row="1" col="6" colspan="3" text="합격자"/>
+                <Cell row="1" col="9" colspan="3" text="등록자"/>
+                <Cell row="1" col="12" colspan="3" text="합계"/>
+                <Cell row="1" col="15" colspan="3" text="지원자"/>
+                <Cell row="1" col="18" colspan="3" text="합격자"/>
+                <Cell row="1" col="21" colspan="3" text="등록자"/>
+                <Cell row="1" col="24" colspan="3" text="합계"/>
+                <Cell row="1" col="27" colspan="3" text="지원자"/>
+                <Cell row="1" col="30" colspan="3" text="합격자"/>
+                <Cell row="1" col="33" colspan="3" text="등록자"/>
+                <Cell row="2" col="3" text="남자"/>
+                <Cell row="2" col="4" text="여자"/>
+                <Cell row="2" col="5" text="전체"/>
+                <Cell row="2" col="6" text="남자"/>
+                <Cell row="2" col="7" text="여자"/>
+                <Cell row="2" col="8" text="전체"/>
+                <Cell row="2" col="9" text="남자"/>
+                <Cell row="2" col="10" text="여자"/>
+                <Cell row="2" col="11" text="전체"/>
+                <Cell row="2" col="12" text="남자"/>
+                <Cell row="2" col="13" text="여자"/>
+                <Cell row="2" col="14" text="전체"/>
+                <Cell row="2" col="15" text="남자"/>
+                <Cell row="2" col="16" text="여자"/>
+                <Cell row="2" col="17" text="전체"/>
+                <Cell row="2" col="18" text="남자"/>
+                <Cell row="2" col="19" text="여자"/>
+                <Cell row="2" col="20" text="전체"/>
+                <Cell row="2" col="21" text="남자"/>
+                <Cell row="2" col="22" text="여자"/>
+                <Cell row="2" col="23" text="전체"/>
+                <Cell row="2" col="24" text="남자"/>
+                <Cell row="2" col="25" text="여자"/>
+                <Cell row="2" col="26" text="전체"/>
+                <Cell row="2" col="27" text="남자"/>
+                <Cell row="2" col="28" text="여자"/>
+                <Cell row="2" col="29" text="전체"/>
+                <Cell row="2" col="30" text="남자"/>
+                <Cell row="2" col="31" text="여자"/>
+                <Cell row="2" col="32" text="전체"/>
+                <Cell row="2" col="33" text="남자"/>
+                <Cell row="2" col="34" text="여자"/>
+                <Cell row="2" col="35" text="전체"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:GOGYO_NM"/>
+                <Cell col="2" text="bind:JUYA_NM"/>
+                <Cell col="3" text="bind:TBL2_A_JIWON_M_CNT" displaytype="number"/>
+                <Cell col="4" text="bind:TBL2_A_JIWON_W_CNT" displaytype="number"/>
+                <Cell col="5" text="bind:JIWON_A_TOTAL" displaytype="number"/>
+                <Cell col="6" text="bind:TBL2_B_HAPGYEOK_M_CNT" displaytype="number"/>
+                <Cell col="7" text="bind:TBL2_B_HAPGYEOK_W_CNT" displaytype="number"/>
+                <Cell col="8" text="bind:HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="9" text="bind:TBL2_C_DEUNGROK_M_CNT" displaytype="number"/>
+                <Cell col="10" text="bind:TBL2_C_DEUNGROK_W_CNT" displaytype="number"/>
+                <Cell col="11" text="bind:DEUNGROK_A_TOTAL" displaytype="number"/>
+                <Cell col="12" expr="expr:TBL2_A_JIWON_M_CNT+TBL2_B_HAPGYEOK_M_CNT" displaytype="number"/>
+                <Cell col="13" expr="expr:TBL2_A_JIWON_W_CNT+TBL2_B_HAPGYEOK_W_CNT" displaytype="number"/>
+                <Cell col="14" expr="expr:JIWON_A_TOTAL+HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="15" text="bind:TBL3_A_JIWON_M_CNT" displaytype="number"/>
+                <Cell col="16" text="bind:TBL3_A_JIWON_W_CNT" displaytype="number"/>
+                <Cell col="17" text="bind:JIWON_B_TOTAL" displaytype="number"/>
+                <Cell col="18" text="bind:TBL3_B_HAPGYEOK_M_CNT" displaytype="number"/>
+                <Cell col="19" text="bind:TBL3_B_HAPGYEOK_W_CNT" displaytype="number"/>
+                <Cell col="20" text="bind:HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="21" text="bind:TBL3_C_DEUNGROK_M_CNT" displaytype="number"/>
+                <Cell col="22" text="bind:TBL3_C_DEUNGROK_W_CNT" displaytype="number"/>
+                <Cell col="23" text="bind:DEUNGROK_B_TOTAL" displaytype="number"/>
+                <Cell col="24" expr="expr:TBL3_A_JIWON_M_CNT+TBL3_B_HAPGYEOK_M_CNT" displaytype="number"/>
+                <Cell col="25" expr="expr:TBL3_A_JIWON_W_CNT+TBL3_B_HAPGYEOK_W_CNT" displaytype="number"/>
+                <Cell col="26" expr="expr:JIWON_B_TOTAL+HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="27" text="bind:TOTAL_JIWON_M" displaytype="number"/>
+                <Cell col="28" text="bind:TOTAL_JIWON_W" displaytype="number"/>
+                <Cell col="29" text="bind:TOTAL_JIWON" displaytype="number"/>
+                <Cell col="30" text="bind:TOTAL_HAPGYEOK_M" displaytype="number"/>
+                <Cell col="31" text="bind:TOTAL_HAPGYEOK_W" displaytype="number"/>
+                <Cell col="32" text="bind:TOTAL_HAPGYEOK" displaytype="number"/>
+                <Cell col="33" text="bind:TOTAL_DEUNGROK_M" displaytype="number"/>
+                <Cell col="34" text="bind:TOTAL_DEUNGROK_W" displaytype="number"/>
+                <Cell col="35" text="bind:TOTAL_DEUNGROK" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" textAlign="center" text="합계:"/>
+                <Cell col="3" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="4" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="5" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="6" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="7" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="8" expr="expr:dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="9" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="10" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="11" expr="expr:dataset.getSum(&quot;DEUNGROK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="12" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_M_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="13" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_W_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="14" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="15" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="16" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="17" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="18" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="19" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="20" expr="expr:dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="21" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="22" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="23" expr="expr:dataset.getSum(&quot;DEUNGROK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="24" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_M_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_M_CNT&quot;)" displaytype="number"/>
+                <Cell col="25" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_W_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_W_CNT&quot;)" displaytype="number"/>
+                <Cell col="26" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="27" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_M&quot;)" displaytype="number"/>
+                <Cell col="28" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_W&quot;)" displaytype="number"/>
+                <Cell col="29" expr="expr:dataset.getSum(&quot;TOTAL_JIWON&quot;)" displaytype="number"/>
+                <Cell col="30" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_M&quot;)" displaytype="number"/>
+                <Cell col="31" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_W&quot;)" displaytype="number"/>
+                <Cell col="32" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK&quot;)" displaytype="number"/>
+                <Cell col="33" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_M&quot;)" displaytype="number"/>
+                <Cell col="34" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_W&quot;)" displaytype="number"/>
+                <Cell col="35" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdMaster3" taborder="3" left="0" top="77" right="0" bottom="0" visible="false" binddataset="dsMaster3" cellsizingtype="col" onheaddblclick="grdMaster3_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="162"/>
+                <Column size="170"/>
+                <Column size="81"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="3" text="지역"/>
+                <Cell col="1" rowspan="3" text="학교"/>
+                <Cell col="2" rowspan="3" text="주야구분"/>
+                <Cell col="3" colspan="12" text="창구"/>
+                <Cell col="15" colspan="12" text="인터넷"/>
+                <Cell col="27" colspan="9" text="총계"/>
+                <Cell row="1" col="3" colspan="3" text="지원자"/>
+                <Cell row="1" col="6" colspan="3" text="합격자"/>
+                <Cell row="1" col="9" colspan="3" text="등록자"/>
+                <Cell row="1" col="12" colspan="3" text="합계"/>
+                <Cell row="1" col="15" colspan="3" text="지원자"/>
+                <Cell row="1" col="18" colspan="3" text="합격자"/>
+                <Cell row="1" col="21" colspan="3" text="등록자"/>
+                <Cell row="1" col="24" colspan="3" text="합계"/>
+                <Cell row="1" col="27" colspan="3" text="지원자"/>
+                <Cell row="1" col="30" colspan="3" text="합격자"/>
+                <Cell row="1" col="33" colspan="3" text="등록자"/>
+                <Cell row="2" col="3" text="보건"/>
+                <Cell row="2" col="4" text="비보건"/>
+                <Cell row="2" col="5" text="전체"/>
+                <Cell row="2" col="6" text="보건"/>
+                <Cell row="2" col="7" text="비보건"/>
+                <Cell row="2" col="8" text="전체"/>
+                <Cell row="2" col="9" text="보건"/>
+                <Cell row="2" col="10" text="비보건"/>
+                <Cell row="2" col="11" text="전체"/>
+                <Cell row="2" col="12" text="보건"/>
+                <Cell row="2" col="13" text="비보건"/>
+                <Cell row="2" col="14" text="전체"/>
+                <Cell row="2" col="15" text="보건"/>
+                <Cell row="2" col="16" text="비보건"/>
+                <Cell row="2" col="17" text="전체"/>
+                <Cell row="2" col="18" text="보건"/>
+                <Cell row="2" col="19" text="비보건"/>
+                <Cell row="2" col="20" text="전체"/>
+                <Cell row="2" col="21" text="보건"/>
+                <Cell row="2" col="22" text="비보건"/>
+                <Cell row="2" col="23" text="전체"/>
+                <Cell row="2" col="24" text="보건"/>
+                <Cell row="2" col="25" text="비보건"/>
+                <Cell row="2" col="26" text="전체"/>
+                <Cell row="2" col="27" text="보건"/>
+                <Cell row="2" col="28" text="비보건"/>
+                <Cell row="2" col="29" text="전체"/>
+                <Cell row="2" col="30" text="보건"/>
+                <Cell row="2" col="31" text="비보건"/>
+                <Cell row="2" col="32" text="전체"/>
+                <Cell row="2" col="33" text="보건"/>
+                <Cell row="2" col="34" text="비보건"/>
+                <Cell row="2" col="35" text="전체"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIYEOK_GBNM" suppress="1" suppressalign="middle" background="white" color="black"/>
+                <Cell col="1" text="bind:GOGYO_NM"/>
+                <Cell col="2" text="bind:JUYA_NM"/>
+                <Cell col="3" text="bind:TBL2_A_JIWON_BOGEON_CNT" displaytype="number"/>
+                <Cell col="4" text="bind:TBL2_A_JIWON_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="5" text="bind:JIWON_A_TOTAL" displaytype="number"/>
+                <Cell col="6" text="bind:TBL2_B_HAPGYEOK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="7" text="bind:TBL2_B_HAPGYEOK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="8" text="bind:HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="9" text="bind:TBL2_C_DEUNGROK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="10" text="bind:TBL2_C_DEUNGROK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="11" text="bind:DEUNGROK_A_TOTAL" displaytype="number"/>
+                <Cell col="12" expr="expr:TBL2_A_JIWON_BOGEON_CNT+TBL2_B_HAPGYEOK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="13" expr="expr:TBL2_A_JIWON_NOTBOGEON_CNT+TBL2_B_HAPGYEOK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="14" expr="expr:JIWON_A_TOTAL+HAPGYEOK_A_TOTAL" displaytype="number"/>
+                <Cell col="15" text="bind:TBL3_A_JIWON_BOGEON_CNT" displaytype="number"/>
+                <Cell col="16" text="bind:TBL3_A_JIWON_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="17" text="bind:JIWON_B_TOTAL" displaytype="number"/>
+                <Cell col="18" text="bind:TBL3_B_HAPGYEOK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="19" text="bind:TBL3_B_HAPGYEOK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="20" text="bind:HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="21" text="bind:TBL3_C_DEUNGROK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="22" text="bind:TBL3_C_DEUNGROK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="23" text="bind:DEUNGROK_B_TOTAL" displaytype="number"/>
+                <Cell col="24" expr="expr:TBL3_A_JIWON_BOGEON_CNT+TBL3_B_HAPGYEOK_BOGEON_CNT" displaytype="number"/>
+                <Cell col="25" expr="expr:TBL3_A_JIWON_NOTBOGEON_CNT+TBL3_B_HAPGYEOK_NOTBOGEON_CNT" displaytype="number"/>
+                <Cell col="26" expr="expr:JIWON_B_TOTAL+HAPGYEOK_B_TOTAL" displaytype="number"/>
+                <Cell col="27" text="bind:TOTAL_JIWON_BOGEON" displaytype="number"/>
+                <Cell col="28" text="bind:TOTAL_JIWON_NOTBOGEON" displaytype="number"/>
+                <Cell col="29" text="bind:TOTAL_JIWON" displaytype="number"/>
+                <Cell col="30" text="bind:TOTAL_HAPGYEOK_BOGEON" displaytype="number"/>
+                <Cell col="31" text="bind:TOTAL_HAPGYEOK_NOTBOGEON" displaytype="number"/>
+                <Cell col="32" text="bind:TOTAL_HAPGYEOK" displaytype="number"/>
+                <Cell col="33" text="bind:TOTAL_DEUNGROK_BOGEON" displaytype="number"/>
+                <Cell col="34" text="bind:TOTAL_DEUNGROK_NOTBOGEON" displaytype="number"/>
+                <Cell col="35" text="bind:TOTAL_DEUNGROK" displaytype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="3" textAlign="center" text="합계:"/>
+                <Cell col="3" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="4" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="5" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="6" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="7" expr="expr:dataset.getSum(&quot;TBL2_B_HAPGYEOK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="8" expr="expr:dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="9" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="10" expr="expr:dataset.getSum(&quot;TBL2_C_DEUNGROK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="11" expr="expr:dataset.getSum(&quot;DEUNGROK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="12" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_BOGEON_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="13" expr="expr:dataset.getSum(&quot;TBL2_A_JIWON_NOTBOGEON_CNT&quot;)+dataset.getSum(&quot;TBL2_B_HAPGYEOK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="14" expr="expr:dataset.getSum(&quot;JIWON_A_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_A_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="15" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="16" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="17" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="18" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="19" expr="expr:dataset.getSum(&quot;TBL3_B_HAPGYEOK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="20" expr="expr:dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="21" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="22" expr="expr:dataset.getSum(&quot;TBL3_C_DEUNGROK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="23" expr="expr:dataset.getSum(&quot;DEUNGROK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="24" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_BOGEON_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_BOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="25" expr="expr:dataset.getSum(&quot;TBL3_A_JIWON_NOTBOGEON_CNT&quot;)+dataset.getSum(&quot;TBL3_B_HAPGYEOK_NOTBOGEON_CNT&quot;)" displaytype="number"/>
+                <Cell col="26" expr="expr:dataset.getSum(&quot;JIWON_B_TOTAL&quot;)+dataset.getSum(&quot;HAPGYEOK_B_TOTAL&quot;)" displaytype="number"/>
+                <Cell col="27" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_BOGEON&quot;)" displaytype="number"/>
+                <Cell col="28" expr="expr:dataset.getSum(&quot;TOTAL_JIWON_NOTBOGEON&quot;)" displaytype="number"/>
+                <Cell col="29" expr="expr:dataset.getSum(&quot;TOTAL_JIWON&quot;)" displaytype="number"/>
+                <Cell col="30" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_BOGEON&quot;)" displaytype="number"/>
+                <Cell col="31" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK_NOTBOGEON&quot;)" displaytype="number"/>
+                <Cell col="32" expr="expr:dataset.getSum(&quot;TOTAL_HAPGYEOK&quot;)" displaytype="number"/>
+                <Cell col="33" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_BOGEON&quot;)" displaytype="number"/>
+                <Cell col="34" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK_NOTBOGEON&quot;)" displaytype="number"/>
+                <Cell col="35" expr="expr:dataset.getSum(&quot;TOTAL_DEUNGROK&quot;)" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="256"/>
+          <Column id="MOJIP_GBCD" type="STRING" size="256"/>
+          <Column id="JEONGWON_GBCD" type="STRING" size="256"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="256"/>
+          <Column id="GOGYO_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gijunYyyy" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="YYYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJeongwon" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTonggye">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="CODE_NM">현역/재수</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="CODE_NM">남/여</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="CODE_NM">보건/비보건</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMojip" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJiyeok" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CODE_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster1">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_NM" type="STRING" size="65532"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_NM" type="STRING" size="65532"/>
+          <Column id="TBL2_A_JIWON_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_A_JIWON_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_A_JIWON_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_CH_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_CJ_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_CE_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_CH" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_CJ" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_CE" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_CH" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_CJ" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_CE" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_CH" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_CJ" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_CE" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster2">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="JUYA_NM" type="STRING" size="65532"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_NM" type="STRING" size="65532"/>
+          <Column id="TBL2_A_JIWON_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_A_JIWON_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_M_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_W_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_M" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_W" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_M" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_W" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_M" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_W" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMaster3">
+        <ColumnInfo>
+          <Column id="IPSI_YYYY" type="STRING" size="4"/>
+          <Column id="JUYA_GBCD" type="STRING" size="10"/>
+          <Column id="GOGYO_CD" type="STRING" size="10"/>
+          <Column id="GOGYO_NM" type="STRING" size="100"/>
+          <Column id="JIYEOK_GBCD" type="STRING" size="10"/>
+          <Column id="JIYEOK_NM" type="STRING" size="65532"/>
+          <Column id="JUYA_NM" type="STRING" size="65532"/>
+          <Column id="TBL2_A_JIWON_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_A_JIWON_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_B_HAPGYEOK_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL2_C_DEUNGROK_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_A_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_A_JIWON_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="JIWON_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_B_HAPGYEOK_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="HAPGYEOK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_BOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="TBL3_C_DEUNGROK_NOTBOGEON_CNT" type="BIGDECIMAL" size="22"/>
+          <Column id="DEUNGROK_B_TOTAL" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_BOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON_NOTBOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_JIWON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_BOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK_NOTBOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_HAPGYEOK" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_BOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK_NOTBOGEON" type="BIGDECIMAL" size="22"/>
+          <Column id="TOTAL_DEUNGROK" type="BIGDECIMAL" size="22"/>
+          <Column id="JIYEOK_CNT" type="BIGDECIMAL" size="22"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item2" compid="divSearch.form.cboSearchJeongwon" propid="value" datasetid="ds_input" columnid="JEONGWON_GBCD"/>
+      <BindItem id="item13" compid="divSearch.form.spnSearchYYYY" propid="value" datasetid="ds_input" columnid="IPSI_YYYY"/>
+      <BindItem id="item14" compid="divSearch.form.cboSearchMojip" propid="value" datasetid="ds_input" columnid="MOJIP_GBCD"/>
+      <BindItem id="item0" compid="divSearch.form.cboSearchJiyeok" propid="value" datasetid="ds_input" columnid="JIYEOK_GBCD"/>
+      <BindItem id="item1" compid="divSearch.form.edtSearchGogyoNm" propid="value" datasetid="ds_input" columnid="GOGYO_NM"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN08_1010807_M.xfdl(학교별통계)
+* 작 성         일 명: 백재인
+* 작 성         일 자: 2021/06/21
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsJeongwon|dsMojip|dsJiyeok";                    // 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00006|01056|00053";                           // 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "T|T|T";                                   // 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = "";                                      // 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+
+    // gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+    // 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+
+    this.gfn_CmmnMultiComboLoad(strDs
+                              , strLgcd
+                              , strComb
+                              , strOptn
+                              , svcId);
+	this.fn_GijunYyyy();
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster1);
+	this.gfn_clearSortAll(this.grdMaster2);
+	this.gfn_clearSortAll(this.grdMaster3);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+			case "GigunYyyy":
+                    this.fn_PostGigunYyyy();
+                break;
+			case "MojipGb":
+                    this.fn_PostMojipGb();
+                break;
+            case "Ret1":
+                    this.fn_PostRet1();
+                break;
+			case "Ret2":
+                    this.fn_PostRet2();
+                break;
+			case "Ret3":
+                    this.fn_PostRet3();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+//Popup callback영역
+this.fn_popupCallback = function(strId, strVal)
+{
+	switch(strId)
+	{
+		case "gogyo" :		
+				var sRtn = strVal.split(",");
+				if(sRtn[0] != "CLOSE")
+				{
+					this.ds_input.setColumn(0, "GOGYO_NM", sRtn[1]);
+					this.ds_input.setColumn(0, "JIYEOK_GBCD", sRtn[2]);
+				}
+			break;		
+		default:
+            break;
+	}
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+		case "print" :       // 출력
+                 this.fn_Print();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+	if(this.ds_input.getColumn(0, "IPSI_YYYY") == null || this.ds_input.getColumn(0, "IPSI_YYYY") == '')
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+	
+	if(this.divSearch.form.cboSearchTonggye.value == '0')
+	{
+		var strSvc      = "Ret1";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010807_M_1.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster1=dsMaster1";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	}
+	else if(this.divSearch.form.cboSearchTonggye.value == '1')
+	{
+		var strSvc      = "Ret2";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010807_M_2.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster2=dsMaster2";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+	else if(this.divSearch.form.cboSearchTonggye.value == '2')
+	{
+		var strSvc      = "Ret3";
+		var strUrl      = "/prj/EN/EN08/Retrieve_1010807_M_3.do";
+		var strInDs     = "ds_input=ds_input";
+		var strOutDs    = "dsMaster3=dsMaster3";
+		var strArg      = "";
+		var GBV_MENUID    = objApp.gv_cutPrgId;
+		if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+		{
+			strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+		}
+		var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+		var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+		this.gfn_Transaction(strSvc
+						   , strUrl
+						   , strInDs
+						   , strOutDs
+						   , strArg
+						   , strCallBack
+						   , strASync);
+	
+	}
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet1 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt1,this.dsMaster1);
+};
+this.fn_PostRet2 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt2,this.dsMaster2);
+};
+this.fn_PostRet3 = function()
+{
+    this.gfn_getRowCount(this.staRowCnt3,this.dsMaster3);
+};
+
+/**********************************************************************
+        06. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        07. 출력
+***********************************************************************/
+this.fn_Print = function()
+{
+	var IPSI_YYYY				= this.ds_input.getColumn(0, "IPSI_YYYY");
+	var MOJIP_GBCD 				= this.ds_input.getColumn(0, "MOJIP_GBCD");
+	var JEONGWON_GBCD 			= this.ds_input.getColumn(0, "JEONGWON_GBCD");
+	var JIYEOK_GBCD				= this.ds_input.getColumn(0, "JIYEOK_GBCD");
+	var GOGYO_NM				= this.ds_input.getColumn(0, "GOGYO_NM");
+	
+	if(IPSI_YYYY == "" || IPSI_YYYY == null)
+	{
+		this.alert("입시년도를 입력해주세요.");
+		return false;
+	}
+	
+	var param =   { IPSI_YYYY:IPSI_YYYY
+				  , MOJIP_GBCD:MOJIP_GBCD
+				  , JEONGWON_GBCD:JEONGWON_GBCD
+				  , JIYEOK_GBCD:JIYEOK_GBCD
+				  , GOGYO_NM:GOGYO_NM
+				  }
+	
+	if(this.divSearch.form.cboSearchTonggye.value == '0')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010807_M_01.crf',  param);
+	}
+	else if(this.divSearch.form.cboSearchTonggye.value == '1')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010807_M_02.crf',  param);
+	}
+	else if(this.divSearch.form.cboSearchTonggye.value == '2')
+	{
+		this.gfn_commonUtils_report('EN08/EN08_1010807_M_03.crf',  param);
+	}
+};
+
+/**********************************************************************
+        08. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster1_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster2_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+this.grdMaster3_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+// 통계구분 변경시
+this.divSearch_cboSearchTonggye_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var tonggyeGbcd = this.divSearch.form.cboSearchTonggye.value;
+	
+	if(tonggyeGbcd == 0)
+	{
+		this.grdMaster1.set_visible(true);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(false);
+		this.staRowCnt1.set_visible(true);
+		this.staRowCnt2.set_visible(false);
+		this.staRowCnt3.set_visible(false);
+	}
+	else if(tonggyeGbcd == 1)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(true);
+		this.grdMaster3.set_visible(false);
+		this.staRowCnt1.set_visible(false);
+		this.staRowCnt2.set_visible(true);
+		this.staRowCnt3.set_visible(false);
+	}	
+	else if(tonggyeGbcd == 2)
+	{
+		this.grdMaster1.set_visible(false);
+		this.grdMaster2.set_visible(false);
+		this.grdMaster3.set_visible(true);
+		this.staRowCnt1.set_visible(false);
+		this.staRowCnt2.set_visible(false);
+		this.staRowCnt3.set_visible(true);
+	}	
+};
+
+/**********************************************************************
+        09. 공통함수
+***********************************************************************/
+// 기준년도 가져오기
+this.fn_GijunYyyy = function()
+{							  						  
+	var strSvc      = "GigunYyyy";
+    var strUrl      = "prj/EN/EN_COM/Retrieve_GIJUN_YYYY.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "ds_gijunYyyy=ds_gijunYyyy";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+}
+
+this.fn_PostGigunYyyy = function()
+{
+	this.ds_input.setColumn(0, "IPSI_YYYY", this.ds_gijunYyyy.getColumn(0, "YYYY"));
+	this.divSearch.form.cboSearchTonggye.set_index(0);
+}
+
+/**********************************************************************
+        10. 팝업
+***********************************************************************/
+this.divSearch_btnSearchGogyo_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {yyyy:this.ds_input.getColumn(0, "IPSI_YYYY")};
+	var oOption = {};	
+	var sPopupCallBack = "fn_popupCallback";
+	this.gfn_openPopup("gogyo","EN01::EN01_1010106_P02.xfdl",oArg,sPopupCallBack,oOption);		
+};
+
+/**********************************************************************
+        11. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_spnSearchYYYY_onkeydown = function(obj:nexacro.Spin,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"IPSI_YYYY",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchMojip_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"MOJIP_GBCD",obj.value);
+		this.fn_Ret();
+	}
+};
+
+this.divSearch_cboSearchJeongwon_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JEONGWON_GBCD",obj.value);
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboSearchJiyeok_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JIYEOK_GBCD",obj.value);
+		this.fn_Ret();
+	}		
+};
+]]></Script>
+  </Form>
+</FDL>

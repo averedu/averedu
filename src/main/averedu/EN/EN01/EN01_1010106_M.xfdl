@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="고교코드관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="고교코드관리" height="800" mobileorientation="landscape" width="1640">
+        <Tab id="Tab" taborder="0" tabindex="0" top="0" enable="true" bottom="0" left="0" right="0" onchanged="Tab_onchanged">
+          <Tabpages>
+            <Tabpage id="TabPage1" text="고교코드 업로드" url="EN01::EN01_1010106_T01.xfdl"/>
+            <Tabpage id="TabPage2" text="매핑고교코드 관리" url="EN01::EN01_1010106_T02.xfdl"/>
+            <Tabpage id="TabPage3" text="온라인 대상교 관리" url="EN01::EN01_1010106_T03.xfdl"/>
+            <Tabpage id="TabPage4" text="관심고교관리(교수)" url="EN01::EN01_1010106_T04.xfdl"/>
+            <Tabpage id="TabPage5" text="관심고교관리(고교)" url="EN01::EN01_1010106_T05.xfdl"/>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): EN01_1010106_M.xfdl(고교코드관리)
+* 작 성         일 명: 성연우
+* 작 성         일 자: 2021/04/13
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	//고교코드 업로드
+	if(this.Tab.tabindex==0){
+		this.Tab.TabPage1.form.fn_Ret();
+	}
+	//매핑고교코드 관리
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_Ret();
+	}
+	//온라인대상교 관리
+	if(this.Tab.tabindex==2){
+		this.Tab.TabPage3.form.fn_Ret();
+	}
+	//관심고교관리(교수)
+	if(this.Tab.tabindex==3){
+		this.Tab.TabPage4.form.fn_Ret();
+	}
+	//관심고교관리(고교)
+	if(this.Tab.tabindex==4){
+		this.Tab.TabPage5.form.fn_Ret();
+	}	
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+	//고교코드 업로드
+	if(this.Tab.tabindex==0){
+		this.Tab.TabPage1.form.fn_New();
+	}
+	//매핑고교코드 관리
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_New();
+	}
+};
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+	//고교코드 업로드
+	if(this.Tab.tabindex==0){
+		this.Tab.TabPage1.form.fn_Del();
+	}
+	//매핑고교코드 관리
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_Del();
+	}	
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+	//고교코드 업로드
+	if(this.Tab.tabindex==0){	
+		this.Tab.TabPage1.form.fn_Save();
+	}
+	//매핑고교코드 관리
+	if(this.Tab.tabindex==1){
+		this.Tab.TabPage2.form.fn_Save();
+	}	
+};
+
+/**********************************************************************
+        09. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        10. 기타 Control Event
+***********************************************************************/
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+   var value = false;
+   
+   if(this.gfn_isUpdate(this.Tab.TabPage1.form.dsMaster))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage2.form.dsMaster))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage4.form.dsMaster))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage4.form.dsDetail))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage5.form.dsMaster))
+   {
+      value = true;
+   }
+   else if(this.gfn_isUpdate(this.Tab.TabPage5.form.dsDetail))
+   {
+      value = true;
+   }
+   
+   return value;
+};
+
+// 고교코드 업로드, 매핑고교코드관리 페이지가 아니면 공통버튼(신규, 저장, 삭제) 비활성화
+this.Tab_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	if(this.Tab.tabindex == 0 || this.Tab.tabindex == 1)
+	{	
+		this.parent.parent.div_Title.form.fn_newEnable(true);
+		this.parent.parent.div_Title.form.fn_saveEnable(true);
+		this.parent.parent.div_Title.form.fn_delEnable(true);
+	}
+	else
+	{
+		this.parent.parent.div_Title.form.fn_newEnable(false);
+		this.parent.parent.div_Title.form.fn_saveEnable(false);
+		this.parent.parent.div_Title.form.fn_delEnable(false);
+	}
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item55" compid="Tab.TabPage3.form.chk1Haknyeon00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item56" compid="Tab.TabPage3.form.chk1Haknyeon00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item57" compid="Tab.TabPage3.form.chk1Haknyeon00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item58" compid="Tab.TabPage3.form.chk1Haknyeon00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item59" compid="Tab.TabPage3.form.chk1Haknyeon00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item60" compid="Tab.TabPage3.form.chk1Haknyeon00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item61" compid="Tab.TabPage3.form.chk1Haknyeon00_00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item62" compid="Tab.TabPage3.form.chk1Haknyeon01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item64" compid="Tab.TabPage3.form.chk2Haknyeon00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item65" compid="Tab.TabPage3.form.chk2Haknyeon00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item66" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item67" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item68" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item69" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item70" compid="Tab.TabPage3.form.chk2Haknyeon01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item71" compid="Tab.TabPage3.form.chk2Haknyeon00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item72" compid="Tab.TabPage3.form.chk2Haknyeon00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item73" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item74" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item75" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item76" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item77" compid="Tab.TabPage3.form.chk2Haknyeon02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item78" compid="Tab.TabPage3.form.chk2Haknyeon00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item79" compid="Tab.TabPage3.form.chk2Haknyeon00_00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item80" compid="Tab.TabPage3.form.chk2Haknyeon00_00_00_00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item88" compid="Tab.TabPage3.form.edtSearchBigyogwaProgramNm00" propid="value" datasetid="ds_input" columnid="BIGYOGWA_PROGRAM_NM"/>
+      <BindItem id="item89" compid="Tab.TabPage3.form.edtSearchBigyogwaProgramNm01" propid="value" datasetid="ds_input" columnid="BIGYOGWA_PROGRAM_NM"/>
+      <BindItem id="item28" compid="Tab.TabPage4.form.chk1Haknyeon00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item29" compid="Tab.TabPage4.form.chk1Haknyeon00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item30" compid="Tab.TabPage4.form.chk1Haknyeon00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item31" compid="Tab.TabPage4.form.chk1Haknyeon00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item32" compid="Tab.TabPage4.form.chk1Haknyeon00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item34" compid="Tab.TabPage4.form.chk1Haknyeon00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item35" compid="Tab.TabPage4.form.chk1Haknyeon00_00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item36" compid="Tab.TabPage4.form.chk1Haknyeon01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_1"/>
+      <BindItem id="item38" compid="Tab.TabPage4.form.chk2Haknyeon00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item39" compid="Tab.TabPage4.form.chk2Haknyeon00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item40" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item41" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item42" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item43" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item44" compid="Tab.TabPage4.form.chk2Haknyeon01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item45" compid="Tab.TabPage4.form.chk2Haknyeon00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item46" compid="Tab.TabPage4.form.chk2Haknyeon00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item47" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item48" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item49" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_00_01" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item50" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_00_00_00" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item51" compid="Tab.TabPage4.form.chk2Haknyeon02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item52" compid="Tab.TabPage4.form.chk2Haknyeon00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item53" compid="Tab.TabPage4.form.chk2Haknyeon00_00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item54" compid="Tab.TabPage4.form.chk2Haknyeon00_00_00_00_02" propid="value" datasetid="dsMaster" columnid="SINCHEONG_GANEUNG_HAKNYEON_2"/>
+      <BindItem id="item87" compid="Tab.TabPage4.form.edtSearchBigyogwaProgramNm00" propid="value" datasetid="ds_input" columnid="BIGYOGWA_PROGRAM_NM"/>
+      <BindItem id="item90" compid="Tab.TabPage4.form.edtSearchBigyogwaProgramNm01" propid="value" datasetid="ds_input" columnid="BIGYOGWA_PROGRAM_NM"/>
+      <BindItem id="item63" compid="Tab" propid="enable" datasetid="dsBindableTab" columnid="bEnable"/>
+    </Bind>
+    <InitValue/>
+  </Form>
+</FDL>

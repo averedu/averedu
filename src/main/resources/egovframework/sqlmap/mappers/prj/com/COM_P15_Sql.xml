@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P15_DAO">									                            
+
+    <select id="COM_P15_DAO.retrieve_P15List" parameterType="map" resultType="egovMap"> 
+			SELECT A.JOLEOP_YYYY
+				 , A.JOLEOP_HAKGI
+				 , A.JOLEOP_YYYY || '-' || (SELECT COMM.SF_XBT_STD_CD_DETAIL('00022', A.JOLEOP_HAKGI, 'REF_2') FROM DUAL) AS YYYY_HAKGI
+				 , A.HAKBEON
+				 , B.HAKSAENG_NM
+				 , B.HAKNYEON
+				 , B.BIRTHDAY
+				 , A.IPHAK_YYYY
+				 , A.HAKGWA_CD
+				 , COMM.SF_SC_GET_DEPT(A.HAKGWA_CD, '') AS HAKGWA_NM
+				 , A.JAGYEOKJONGBYEOL_CD
+				 , C.JAGYEOKJONGBYEOL_NM
+				 , C.PYOSIGWAMOK_CD
+				 , C.PYOSIGWAMOK_NM
+				 , A.JUYA_GBCD
+				 , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00003', A.JUYA_GBCD, '') FROM DUAL) AS JUYA_NM
+				 , A.CHWIDEUK_DT
+				 , A.CHWIDEUK_YN
+				 , A.GYOJIK_JAGYEOK_NO
+				 , '목포전 제' || A.GYOJIK_JAGYEOK_NO || '호' AS GYOJIK_JAGYEOK_NM
+				 , A.JOLEOP_YN
+				 , A.BIGO
+				 , CASE WHEN NVL(D.BALGEUP_CNT, 0) > 0 THEN '1' ELSE '0' END AS BALGEUP_YN
+				 , '' AS BALGEUP_GBCD
+				 , E.JEONGJEONG_NAEYONG
+			  FROM UNIV.UP_GYOJIKSAJEONG_M A
+			  JOIN UNIV.US_HAKJEOKGIBON_M B
+				ON A.HAKBEON = B.HAKBEON
+			  JOIN UNIV.UP_JAGYEOKJONGBYEOL_C C
+				ON A.JAGYEOKJONGBYEOL_CD = C.JAGYEOKJONGBYEOL_CD
+			  LEFT JOIN (SELECT HAKBEON
+						      , COUNT(*) AS BALGEUP_CNT
+						   FROM UNIV.UP_BALGEUP_M
+					      GROUP BY HAKBEON
+					    ) D
+				ON A.HAKBEON = D.HAKBEON
+			  LEFT JOIN (SELECT HAKBEON
+						      , WM_CONCAT(JEONGJEONG_GBNM || '(' || JEONGJEONG_DT || ') : ' || JEONGJEONG_NAEYONG) AS JEONGJEONG_NAEYONG
+					       FROM (SELECT HAKBEON
+								      , COMM.SF_SC_GET_FORMAT('2', JEONGJEONG_DT, '.') AS JEONGJEONG_DT
+								      , (SELECT COMM.SF_XBT_STD_CD_DETAIL('00065', JEONGJEONG_GBCD, '') FROM DUAL) AS JEONGJEONG_GBNM
+								      , CASE WHEN JEONGJEONG_GBCD = '01' THEN JEONGJEONG_BEF_NAEYONG1 || ' -> ' || JEONGJEONG_AFT_NAEYONG1
+										     WHEN JEONGJEONG_GBCD = '02' THEN JEONGJEONG_BEF_NAEYONG2 || ' -> ' || JEONGJEONG_AFT_NAEYONG2
+										     WHEN JEONGJEONG_GBCD = '03' THEN JEONGJEONG_BEF_NAEYONG3 || ' -> ' || JEONGJEONG_AFT_NAEYONG3
+										     WHEN JEONGJEONG_GBCD = '04' THEN COMM.SF_DECRYPTION('0', JEONGJEONG_BEF_NAEYONG4) || ' -> ' || COMM.SF_DECRYPTION('0', JEONGJEONG_AFT_NAEYONG4)
+										     WHEN JEONGJEONG_GBCD = '09' THEN JEONGJEONG_SAYU
+										 END AS JEONGJEONG_NAEYONG
+							       FROM UNIV.US_HAKJEOKBU_JEONGJEONG_M
+							      WHERE CHEORI_GBCD = '1'
+								)
+					      GROUP BY HAKBEON
+						) E
+				ON A.HAKBEON = E.HAKBEON
+			 WHERE A.CHWIDEUK_YN  = '1'
+			<if test="JOLEOP_YYYY != null and JOLEOP_YYYY != ''">
+			   AND A.JOLEOP_YYYY = #{JOLEOP_YYYY}
+			</if>
+			<if test="JOLEOP_HAKGI != null and JOLEOP_HAKGI != ''">
+			   AND A.JOLEOP_HAKGI = #{JOLEOP_HAKGI}
+			</if>
+			<if test="DAEHAK_CD != null and DAEHAK_CD != ''">
+			   AND D.DAEHAK_CD = #{DAEHAK_CD}
+			</if>
+			<if test="HAKGWA_CD != null and HAKGWA_CD != ''">
+			   AND D.HAKGWA_CD = #{HAKGWA_CD}
+			</if>
+			<if test="JEONGONG_CD != null and JEONGONG_CD != ''">
+			   AND D.JEONGONG_CD = #{JEONGONG_CD}
+			</if>
+			<if test="HAKBEON != null and HAKBEON != ''">
+			   AND (A.HAKBEON = #{HAKBEON} OR D.HAKSAENG_NM LIKE '%' || #{HAKBEON} || '%')
+			</if>
+			 ORDER BY A.JOLEOP_YYYY, A.JOLEOP_HAKGI, HAKGWA_NM, A.JAGYEOKJONGBYEOL_CD, C.PYOSIGWAMOK_NM, A.HAKBEON
+        /* COM_P15_DAO.retrieve_P15List 교직사정학생 조회 */	                                 
+    </select> 	                                                        													 
+
+    <select id="COM_P15_DAO.retrieve_P15ListPKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													 
+            SELECT                                                  											     
+                   LPAD(NVL(MAX(TO_NUMBER(CODE))+1,'1'),5,'0') AS KEY_CODE        								     
+              FROM COMM.BT_COM_CLASS                                             								 
+             WHERE 1=1                                             												     
+               AND CLASS_ID        = #{CLASS_ID}    
+        ]]>                                                      												             
+        /* COM_P15_DAO.retrieve_P15ListPKey 교직사정학생 PK 조회 */								             
+    </select> 	                                                        													     
+
+    <select id="COM_P15_DAO.retrieve_P15ListKey" parameterType="map" resultType="egovMap"> 
+        <![CDATA[
+            SELECT
+                   COUNT(1) AS CNT
+              FROM COMM.BT_COM_CLASS
+             WHERE 1=1
+               AND CLASS_ID        = #{CLASS_ID}
+        ]]>
+        /* COM_P15_DAO.retrieve_P15ListKey 교직사정학생 중복 조회 */
+    </select>
+
+    <insert id="COM_P15_DAO.insert_P15List" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.BT_COM_CLASS                                       										  
+            (                                       																	  
+                   CLASS_ID                    /*회사아이디*/ 
+                 , CLASS_NM                    /*회사명*/ 
+                 , REMK                        /*설명*/ 
+                 , SN                          /*자동증가*/ 
+                 , USE_CHK                     /*사용여부*/ 
+                 , REG_ID                      /*등록자ID*/ 
+                 , REG_DT                      /*등록일자*/ 
+                 , MOD_ID                      /*수정자ID*/ 
+                 , MOD_DT                      /*수정일자*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{CLASS_ID} 
+                 , #{CLASS_NM}  
+                 , #{REMK}  
+                 , #{SN}  
+                 , #{USE_CHK}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+            )	                                                      						
+        ]]>                                    											
+        /* COM_P15_DAO.insert_P15List 교직사정학생 저장 */	
+    </insert>                                                           					
+
+    <update id="COM_P15_DAO.update_P15List" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.BT_COM_CLASS                                			        
+               SET                                                      				
+                   CLASS_ID                  = #{CLASS_ID}                    /*회사아이디*/  
+                 , CLASS_NM                  = #{CLASS_NM}                    /*회사명*/  
+                 , REMK                      = #{REMK}                        /*설명*/  
+                 , SN                        = #{SN}                          /*자동증가*/  
+                 , USE_CHK                   = #{USE_CHK}                     /*사용여부*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록자ID*/  
+                 , REG_DT                    = SYSDATE                        /*등록일자*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정자ID*/  
+                 , MOD_DT                    = SYSDATE                        /*수정일자*/  
+             WHERE 1=1                                                   						                        
+               AND CLASS_ID        = #{CLASS_ID}  
+        ]]>  	                                   							                            				
+        /* COM_P15_DAO.update_P15List 교직사정학생 수정 */								
+    </update>                                                           												
+
+    <update id="COM_P15_DAO.merge_P15List" parameterType="map"> 
+        <![CDATA[                                                				 
+            MERGE INTO COMM.BT_COM_CLASS A                               
+                 USING DUAL                                                 
+                    ON (                                                 	 
+                               A.CLASS_ID      = #{CLASS_ID}        		
+                       )                                                 	 
+                  WHEN MATCHED THEN                                                    
+                        UPDATE SET                               													
+                               A.CLASS_ID                  = #{CLASS_ID}                    /*회사아이디*/  
+                             , A.CLASS_NM                  = #{CLASS_NM}                    /*회사명*/  
+                             , A.REMK                      = #{REMK}                        /*설명*/  
+                             , A.SN                        = #{SN}                          /*자동증가*/  
+                             , A.USE_CHK                   = #{USE_CHK}                     /*사용여부*/  
+                             , A.REG_ID                    = #{REG_ID}                      /*등록자ID*/  
+                             , A.REG_DT                    = SYSDATE                        /*등록일자*/  
+                             , A.MOD_ID                    = #{MOD_ID}                      /*수정자ID*/  
+                             , A.MOD_DT                    = SYSDATE                        /*수정일자*/  
+                  WHEN NOT MATCHED THEN                                                  
+                            INSERT                                        				 
+                            (                                       					 
+                                   A.CLASS_ID                 
+                                 , A.CLASS_NM                 
+                                 , A.REMK                 
+                                 , A.SN                 
+                                 , A.USE_CHK                 
+                                 , A.REG_ID                 
+                                 , A.REG_DT                 
+                                 , A.MOD_ID                 
+                                 , A.MOD_DT                 
+                             )VALUES                                                  														
+                             (                                                        														
+                                   #{CLASS_ID}  
+                                 , #{CLASS_NM}                                   
+                                 , #{REMK}                                   
+                                 , #{SN}                                   
+                                 , #{USE_CHK}                                   
+                                 , #{REG_ID}                                   
+                                 , SYSDATE                                   
+                                 , #{MOD_ID}                                   
+                                 , SYSDATE                                   
+                             )	                                                      									  
+        ]]>  	                                   							                            			  
+        /* COM_P15_DAO.merge_P15List 교직사정학생 저장/수정 */							  
+    </update>                                                           													  
+
+    <delete id="COM_P15_DAO.delete_P15List" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.BT_COM_CLASS                                                  							      
+             WHERE 1=1
+               AND CLASS_ID        = #{CLASS_ID}  
+        ]]>
+        /* COM_P15_DAO.delete_P15List 교직사정학생 삭제 */								       
+    </delete>	                                                          													   
+</mapper>                                                                 													   
+                                                                 															   

@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="800" titletext="장학기관관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="장학기관관리" height="800" mobileorientation="landscape" width="1640">
+        <Static id="stc_09_00" taborder="4" left="0" top="53" height="22" text="장학기관 목록" width="115" cssclass="sta_WF_Title02"/>
+        <Static id="staRowCnt" taborder="5" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="113" top="52" height="24" usedecorate="true" width="233"/>
+        <Static id="stc_13" taborder="6" height="28" cssclass="sta_WF_DetailBg" bottom="192" left="1" right="0"/>
+        <Static id="stc_12" taborder="7" text="장학기관코드" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="192" left="0"/>
+        <Static id="Static01" taborder="8" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="42" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00" taborder="9" text="8" left="0" top="70" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="stc_12_00_00_02" taborder="10" text="장학기관명" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="192" left="298"/>
+        <Edit id="edtJanghakGigwanNm" taborder="1" height="22" width="173" enable="true" readonly="false" bottom="195" left="421" cssclass="point"/>
+        <Static id="stc_12_00_00_02_00" taborder="11" text="대표자" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="192" left="598"/>
+        <Static id="stc_09_00_01" taborder="12" left="0" height="22" text="장학기관 상세정보" width="135" cssclass="sta_WF_Title02" bottom="223"/>
+        <Static id="Static01_01_00_00_01" taborder="13" text="8" left="0" top="572" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+        <Static id="Static01_01" taborder="14" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="544" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Div id="divSearch" taborder="0" left="0" top="0" height="42" cssclass="div_WF_SearchBox" text="" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_02_00" taborder="1" text="27" left="0" top="0" width="27" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Static id="Static01_01_00_00_01_00" taborder="2" text="9" left="26" top="31" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static01_01_00_00_01" taborder="3" text="9" left="20" top="0" height="9" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;" right="0"/>
+              <Static id="stc_01_00_00" taborder="4" left="-13" top="9" height="22" text="장학기관명" cssclass="sta_WF_SearchLbl" width="100" textAlign="right"/>
+              <Static id="Static01_02_00_00_00_01_01" taborder="5" text="10" left="88" top="0" width="10" height="40" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+              <Edit id="edtSearchJanghakGigwanNm" taborder="0" enable="true" left="98" width="130" height="22" top="9" onkeydown="divSearch_edtSearchJanghakGigwanNm_onkeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_13_02" taborder="15" height="28" cssclass="sta_WF_DetailBg" bottom="164" left="1" right="0"/>
+        <Static id="stc_12_02" taborder="16" text="담당자" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="164" left="0"/>
+        <Static id="stc_12_00_00_02_01" taborder="17" text="담당부서" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="164" left="298"/>
+        <Edit id="edtDamdangBuseo" taborder="2" height="22" width="173" enable="true" readonly="false" bottom="167" left="421"/>
+        <Static id="stc_12_00_00_02_00_00" taborder="18" text="전화번호" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="164" left="598"/>
+        <Static id="stc_13_02_00" taborder="19" height="52" cssclass="sta_WF_DetailBg" bottom="112" left="1" right="0"/>
+        <Static id="stc_12_02_00" taborder="20" text="주소" height="52" cssclass="sta_WF_DetailTi" width="120" bottom="112" left="0"/>
+        <Static id="stc_13_02_00_00" taborder="21" height="28" cssclass="sta_WF_DetailBg" bottom="84" left="1" right="0"/>
+        <Static id="stc_12_02_00_00" taborder="22" text="이메일" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="84" left="0"/>
+        <Edit id="edtEmal" taborder="3" height="22" enable="true" readonly="false" bottom="87" left="122" right="4"/>
+        <Static id="stc_13_02_00_01" taborder="23" height="28" cssclass="sta_WF_DetailBg" bottom="56" left="1" right="0"/>
+        <Static id="stc_12_02_00_01" taborder="24" text="구비서류" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="56" left="0"/>
+        <Static id="stc_13_02_00_01_00" taborder="25" height="28" cssclass="sta_WF_DetailBg" text="" bottom="28" left="1" right="0"/>
+        <Static id="stc_12_02_00_01_00" taborder="26" text="유치자" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="28" left="0"/>
+        <Static id="stc_12_00_00_02_01_00_01_00" taborder="27" text="신청자격" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="28" left="298"/>
+        <Static id="stc_12_00_00_02_00_00_00_01_00" taborder="28" text="지급조건" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="28" left="598"/>
+        <Static id="stc_13_02_00_01_00_00" taborder="29" height="28" cssclass="sta_WF_DetailBg" bottom="0" left="1" right="0"/>
+        <Static id="stc_12_02_00_01_00_00" taborder="30" text="비고" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="0" left="0"/>
+        <Edit id="edtDaepyoja" taborder="31" height="22" width="173" enable="true" readonly="false" bottom="195" left="721"/>
+        <Static id="stc_12_00_00_02_00_01" taborder="32" text="사업자번호" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="192" left="898"/>
+        <Edit id="edtSaeopjaNo" taborder="33" height="22" width="173" enable="true" readonly="false" bottom="195" left="1021"/>
+        <Static id="stc_12_00_00_02_00_01_00" taborder="34" text="FAX번호" height="28" cssclass="sta_WF_DetailTi" width="120" bottom="164" left="898"/>
+        <Edit id="edtFaxNo" taborder="35" height="22" width="173" enable="true" readonly="false" bottom="167" left="1021"/>
+        <Edit id="edtPost" taborder="36" height="22" width="173" enable="true" readonly="true" bottom="139" left="122"/>
+        <Edit id="edtJuso" taborder="37" height="22" width="472" enable="true" readonly="true" bottom="115" left="122"/>
+        <Edit id="edtSangseJuso" taborder="38" height="22" enable="true" readonly="false" bottom="115" left="597" right="4"/>
+        <Edit id="edtGubiSeoryu" taborder="39" height="22" enable="true" readonly="false" bottom="59" left="122" right="4"/>
+        <Edit id="edtBigo" taborder="40" height="22" enable="true" readonly="false" bottom="3" left="122" right="4"/>
+        <Edit id="edtJanghakGigwanCd" taborder="41" height="22" width="173" enable="true" readonly="false" bottom="195" left="122" cssclass="point"/>
+        <Edit id="edtDamdangja" taborder="42" height="22" width="173" enable="true" readonly="false" bottom="167" left="122"/>
+        <Edit id="edtTelNo" taborder="43" height="22" width="173" enable="true" readonly="false" bottom="167" left="721"/>
+        <Edit id="edtYuchija" taborder="44" height="22" width="173" enable="true" readonly="false" bottom="31" left="122"/>
+        <Edit id="edtSincheongJagyeok" taborder="45" height="22" width="173" enable="true" readonly="false" bottom="31" left="421"/>
+        <Edit id="edtJigeupJogeon" taborder="46" height="22" width="173" enable="true" readonly="false" bottom="31" left="721"/>
+        <Button id="btnJuso" taborder="47" text="주소찾기" width="75" height="22" cssclass="btn_WF_Crud" left="298" bottom="139" onclick="btnJuso_onclick"/>
+        <Grid id="grdMaster" taborder="48" left="0" top="77" right="0" bottom="256" binddataset="dsMaster" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30" band="left"/>
+                <Column size="80"/>
+                <Column size="160"/>
+                <Column size="80"/>
+                <Column size="140"/>
+                <Column size="60"/>
+                <Column size="85"/>
+                <Column size="85"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="장학기관코드"/>
+                <Cell col="2" text="장학기관명"/>
+                <Cell col="3" text="사업자번호"/>
+                <Cell col="4" text="담당부서"/>
+                <Cell col="5" text="담당자"/>
+                <Cell col="6" text="전화번호"/>
+                <Cell col="7" text="FAX번호"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1"/>
+                <Cell col="1" text="bind:JANGHAK_GIGWAN_CD"/>
+                <Cell col="2" text="bind:JANGHAK_GIGWAN_NM"/>
+                <Cell col="3" text="bind:SAEOPJA_NO"/>
+                <Cell col="4" text="bind:DAMDANG_BUSEO"/>
+                <Cell col="5" text="bind:DAMDANGJA"/>
+                <Cell col="6" text="bind:TEL_NO"/>
+                <Cell col="7" text="bind:FAX_NO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="JANGHAK_GIGWAN_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="JANGHAK_GIGWAN_NM"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
+        <ColumnInfo>
+          <Column id="JANGHAK_GIGWAN_CD" type="STRING" size="10"/>
+          <Column id="JANGHAK_GIGWAN_NM" type="STRING" size="100"/>
+          <Column id="SAEOPJA_NO" type="STRING" size="15"/>
+          <Column id="DAEPYOJA" type="STRING" size="10"/>
+          <Column id="DAMDANG_BUSEO" type="STRING" size="50"/>
+          <Column id="DAMDANGJA" type="STRING" size="10"/>
+          <Column id="TEL_NO" type="STRING" size="15"/>
+          <Column id="FAX_NO" type="STRING" size="15"/>
+          <Column id="POST" type="STRING" size="6"/>
+          <Column id="JUSO" type="STRING" size="500"/>
+          <Column id="SANGSE_JUSO" type="STRING" size="500"/>
+          <Column id="EMAIL" type="STRING" size="50"/>
+          <Column id="YUCHIJA" type="STRING" size="50"/>
+          <Column id="SINCHEONG_JAGYEOK" type="STRING" size="50"/>
+          <Column id="GUBI_SEORYU" type="STRING" size="10"/>
+          <Column id="JIGEUP_JOGEON" type="STRING" size="50"/>
+          <Column id="BIGO" type="STRING" size="1000"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): UE01_2060104_M.xfdl(장학기관관리)
+* 작 성         일 명: jiback
+* 작 성         일 자: 2022/08/01
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "JANGHAK_GIGWAN_CD$JANGHAK_GIGWAN_NM";                        // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "장학기관코드$장학기관명";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            case "Del":
+                    this.fn_PostDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+	if(this.fn_beforeclose())
+	{
+		var result = this.gfn_confirm( "변경된 데이터가 있습니다. 그래도 이동하시겠습니까?", "저장","", "question" );
+		if(result == 0)
+		{
+			return false;
+		}	
+	}
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/UE/UE01/Retrieve_2060104_M.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    var nRow = this.dsMaster.addRow();
+};
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreDel = function()
+{
+    //멀티삭제용도
+    if(this.dsMaster.rowcount < 1)
+    {
+        this.gfn_alert("삭제할 데이터가 없습니다.","삭제정보","","warning");
+        return false;
+    }
+	
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+    if(result == 0)
+    {
+        return false;
+    }
+
+    //개별삭제시
+    this.dsMaster.deleteRow(this.dsMaster.rowposition);
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(!this.fn_PreDel())
+    {
+        return false;
+    }
+    var strSvc      = "Del";
+    var strUrl      = "/prj/UE/UE01/Delete_2060104_M.do";
+    var strInDs     = "dsMaster=dsMaster:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = false;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, "", chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+	}
+
+	var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+	if(result == 0)
+	{
+		return false;
+	}
+	return true;
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+    var strSvc      = "Save";
+    var strUrl      = "/prj/UE/UE01/Save_2060104_M.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 팁
+***********************************************************************/
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+
+/**********************************************************************
+        10. 각종함수
+***********************************************************************/
+// 주소검색
+function searchPost(postData)
+{	
+	var addr	= "";
+	if (postData.userSelectedType == "R"){
+		// 도로명주소
+		addr = postData.roadAddress;
+		this.parent.dsMaster.setColumn(this.parent.dsMaster.rowposition, "JUSO_GBCD", 'Y');
+	}
+	else if (postData.userSelectedType == "J"){
+		// 지번주소
+		addr = postData.jibunAddress;
+		this.parent.dsMaster.setColumn(this.parent.dsMaster.rowposition, "JUSO_GBCD", 'N');
+	}
+	
+	this.parent.edtJuso.set_value(addr);				// 도로명/지번 주소
+	this.parent.edtPost.set_value(postData.zonecode);	// 우편번호 - 5자리
+};
+
+// 주소검색 창 닫기
+this.postWebbrowser_close = function (obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo) 
+{
+	if (e.userdata != 'close') {
+		obj.user_callback(e.userdata);
+	} else {
+		obj.parent.removeChild('Post');
+		obj.destroy();
+		obj = null;
+	}
+};
+
+/**********************************************************************
+        11. 기타 Control Event
+***********************************************************************/
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    this.gfn_gridSort(obj,e);
+};
+
+this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if(this.dsMaster.getRowType(this.dsMaster.rowposition) == '2') 
+	{
+	    this.edtJanghakGigwanCd.set_readonly(false);
+	}
+	else 
+	{
+	    this.edtJanghakGigwanCd.set_readonly(true);
+	}
+};
+
+// 주소검색 버튼 클릭
+this.btnJuso_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfn_searchPost(this, searchPost);
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    return this.gfn_isUpdate(this.dsMaster);
+};
+
+/**********************************************************************
+        12. 검색창 엔터키 조회
+***********************************************************************/
+this.divSearch_edtSearchJanghakGigwanNm_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.ds_input.setColumn(0,"JANGHAK_GIGWAN_NM",obj.value);
+		this.fn_Ret();
+	}
+};]]></Script>
+    <Bind>
+      <BindItem id="item23" compid="edtJanghakGigwanNm" propid="value" datasetid="dsMaster" columnid="JANGHAK_GIGWAN_NM"/>
+      <BindItem id="item41" compid="divSearch.form.edtSearchJanghakGigwanNm" propid="value" datasetid="ds_input" columnid="JANGHAK_GIGWAN_NM"/>
+      <BindItem id="item2" compid="edtDamdangBuseo" propid="value" datasetid="dsMaster" columnid="DAMDANG_BUSEO"/>
+      <BindItem id="item17" compid="edtEmal" propid="value" datasetid="dsMaster" columnid="EMAIL"/>
+      <BindItem id="item0" compid="edtDaepyoja" propid="value" datasetid="dsMaster" columnid="DAEPYOJA"/>
+      <BindItem id="item1" compid="edtSaeopjaNo" propid="value" datasetid="dsMaster" columnid="SAEOPJA_NO"/>
+      <BindItem id="item3" compid="edtFaxNo" propid="value" datasetid="dsMaster" columnid="FAX_NO"/>
+      <BindItem id="item4" compid="edtPost" propid="value" datasetid="dsMaster" columnid="POST"/>
+      <BindItem id="item5" compid="edtJuso" propid="value" datasetid="dsMaster" columnid="JUSO"/>
+      <BindItem id="item6" compid="edtSangseJuso" propid="value" datasetid="dsMaster" columnid="SANGSE_JUSO"/>
+      <BindItem id="item7" compid="edtGubiSeoryu" propid="value" datasetid="dsMaster" columnid="GUBI_SEORYU"/>
+      <BindItem id="item8" compid="edtBigo" propid="value" datasetid="dsMaster" columnid="BIGO"/>
+      <BindItem id="item9" compid="edtJanghakGigwanCd" propid="value" datasetid="dsMaster" columnid="JANGHAK_GIGWAN_CD"/>
+      <BindItem id="item10" compid="edtDamdangja" propid="value" datasetid="dsMaster" columnid="DAMDANGJA"/>
+      <BindItem id="item11" compid="edtTelNo" propid="value" datasetid="dsMaster" columnid="TEL_NO"/>
+      <BindItem id="item12" compid="edtYuchija" propid="value" datasetid="dsMaster" columnid="YUCHIJA"/>
+      <BindItem id="item13" compid="edtSincheongJagyeok" propid="value" datasetid="dsMaster" columnid="SINCHEONG_JAGYEOK"/>
+      <BindItem id="item14" compid="edtJigeupJogeon" propid="value" datasetid="dsMaster" columnid="JIGEUP_JOGEON"/>
+    </Bind>
+  </Form>
+</FDL>

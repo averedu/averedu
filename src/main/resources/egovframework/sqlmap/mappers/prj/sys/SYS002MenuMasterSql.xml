@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="SYS002MenuMasterDAO">									                            
+
+	<select id="SYS002MenuMasterDAO.retrieveMenuMasterList" parameterType="map" resultType="egovMap">
+	/* SYS002MenuMasterDAO.retrieveMenuMasterList 기초메뉴정보 조회 */	
+		WITH VW_ALL_MENU AS (SELECT A.MENU_ID 									AS MENU_ID         /* 메뉴아이디 */
+							  , A.UPPER_MENU_ID 							AS PARENT_MENU_ID  /* 상위메뉴아이디 */
+							  , A.MENU_NM 									AS MENU_NM         /* 메뉴명 */
+							  , '' 											AS MENU_TNM        /* 코드명 */
+							  , '' 											AS MENU_ENG        /* 메뉴명(영어) */
+							  , '' 											AS MENU_CH         /* 메뉴명(중국어) */
+							  , '' 											AS MENU_JP         /* 메뉴명(일어) */
+							  , '' 											AS MENU_ETC        /* (기타언어) */
+							  , A.RM_DTLS 									AS MENU_DC         /* 메뉴설명 */
+							  , A.PGM_ID 									AS PROG_ID         /* 프로그램ID */
+							  , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 1) 	AS FORM_PATH       /* FORM위치명(PREFIX) */
+							  , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 2) 	AS FORM_ID         /* FORMID(xfdl) */
+							  , B.PGM_NM 									AS FORM_NM         /* FORM명(한글명) */
+							  , CASE WHEN A.PGM_ID = ' ' THEN 1 ELSE 2 END 	AS MENU_LVL        /* 메뉴레벨 */
+							  , A.BUSNS_SE_CODE 							AS MENU_DIV        /* 메뉴구분 */
+							  , '1' 										AS LINK_YN         /* 연결여부 */
+							  , A.SORT_SN 									AS MENU_SORT       /* 메뉴순서 */
+							  , '' 											AS MENU_CD_1       /* 메뉴코드1 */
+							  , '' 											AS MENU_CD_2       /* 메뉴코드2 */
+							  , '' 											AS MENU_CD_3       /* 메뉴코드3 */
+							  , '' 											AS MENU_CD_4       /* 메뉴코드4 */
+							  , A.FRST_INPTR_ID 							AS REG_ID          /* 등록자 */
+							  , A.FRST_INPUT_DT 							AS REG_DT          /* 등록일시 */
+							  , A.LAST_UPDSR								AS MOD_ID          /* 수정자 */
+							  , A.LAST_MODF_CODE 							AS MOD_DT          /* 수정일시 */
+						   FROM COM.SSYS200 A
+						   LEFT OUTER JOIN COM.SSYS100 B
+							 ON A.PGM_ID = B.PGM_ID
+							AND B.USE_AT = '1')
+	   , VE_TEMP_MENU (LVL
+					, MENU_ID
+					, PARENT_MENU_ID
+					, MENU_NM
+					, MENU_TNM
+					, MENU_ENG
+					, MENU_CH
+					, MENU_JP
+					, MENU_ETC
+					, MENU_DC
+					, PROG_ID
+					, FORM_PATH
+					, FORM_ID
+					, FORM_NM
+					, MENU_LVL
+					, MENU_DIV
+					, LINK_YN
+					, MENU_SORT
+					, MENU_CD_1
+					, MENU_CD_2
+					, MENU_CD_3
+					, MENU_CD_4
+					, REG_ID
+					, REG_DT
+					, MOD_ID
+					, MOD_DT
+					, SORT_HIR) AS (SELECT 1																		AS LVL
+										 , A.MENU_ID																AS MENU_ID
+										 , A.UPPER_MENU_ID 															AS PARENT_MENU_ID
+										 , A.MENU_NM																AS MENU_NM
+										 , '' 																		AS MENU_TNM
+										 , '' 																		AS MENU_ENG
+										 , '' 																		AS MENU_CH
+										 , '' 																		AS MENU_JP
+										 , '' 																		AS MENU_ENG
+										 , A.RM_DTLS 																AS MENU_DC
+										 , A.PGM_ID 																AS PROG_ID
+										 , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 1) 								AS FORM_PATH
+										 , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 2) 								AS FORM_ID
+										 , B.PGM_NM 																AS FORM_NM
+										 , CASE WHEN A.PGM_ID = ' ' THEN 1 ELSE 2 END 								AS MENU_LVL
+										 , A.BUSNS_SE_CODE 															AS MENU_DIV
+										 , '1' 																		AS LINK_YN
+										 , A.SORT_SN 																AS MENU_SORT
+										 , '' 																		AS MENU_CD_1
+										 , '' 																		AS MENU_CD_2
+										 , '' 																		AS MENU_CD_3
+										 , '' 																		AS MENU_CD_4
+										 , A.FRST_INPTR_ID 															AS REG_ID
+										 , A.FRST_INPUT_DT 															AS REG_DT
+										 , A.LAST_UPDSR 															AS MOD_ID
+										 , A.LAST_MODF_CODE 														AS MOD_DT
+										 , LPAD(TO_CHAR(A.SORT_SN), 3, '0') || A.MENU_ID							AS SORT_HIR
+									  FROM VW_ALL_MENU A
+									 WHERE A.MENU_LVL = 0
+									 
+									 UNION ALL
+									 
+									SELECT A.LVL + 1 																AS LVL
+										 , B.MENU_ID 																AS MENU_ID
+										 , B.UPPER_MENU_ID 															AS PARENT_MENU_ID
+										 , B.MENU_NM 																AS MENU_NM
+										 , B.MENU_TNM 																AS MENU_TNM
+										 , B.MENU_ENG 																AS MENU_ENG
+										 , B.MENU_CH																AS MENU_CH
+										 , B.MENU_JP 																AS MENU_JP
+										 , B.MENU_ETC 																AS MENU_ETC
+										 , B.MENU_DC 																AS MENU_DC
+										 , B.PROG_ID 																AS PROG_ID
+										 , B.FORM_PATH 																AS FORM_PATH
+										 , B.FORM_ID 																AS FORM_ID
+										 , B.FORM_NM 																AS FORM_NM
+										 , B.MENU_LVL 																AS MENU_LVL
+										 , B.MENU_DIV 																AS MENU_DIV
+										 , B.LINK_YN 																AS LINK_YN
+										 , B.MENU_SORT 																AS MENU_SORT
+										 , B.MENU_CD_1 																AS MENU_CD_1
+										 , B.MENU_CD_2 																AS MENU_CD_2
+										 , B.MENU_CD_3 																AS MENU_CD_3
+										 , B.MENU_CD_4 																AS MENU_CD_4
+										 , B.REG_ID 																AS REG_ID
+										 , B.REG_DT 																AS REG_DT
+										 , B.MOD_ID 																AS MOD_ID
+										 , B.MOD_DT 																AS MOD_DT
+										 , A.SORT_HIR || ' | ' || LPAD(TO_CHAR(B.MENU_SORT), 3, '0') || B.MENU_ID 	AS SORT_HIR
+									  FROM VE_TEMP_MENU A
+									 INNER JOIN VW_ALL_MENU B
+										ON A.MENU_ID = B.PARENT_MENU_ID)
+		SELECT LVL					AS LVL
+			, A.MENU_ID				AS MENU_ID
+			, A.PARENT_MENU_ID		AS PARENT_MENU_ID
+			, A.MENU_NM				AS MENU_NM
+			, A.MENU_TNM			AS MENU_TNM
+			, A.MENU_ENG			AS MENU_ENG
+			, A.MENU_CH				AS MENU_CH
+			, A.MENU_JP				AS MENU_JP
+			, A.MENU_ETC			AS MENU_ETC
+			, A.MENU_DC				AS MENU_DC
+			, A.PROG_ID				AS PROG_ID
+			, A.FORM_PATH			AS FORM_PATH
+			, A.FORM_ID				AS FORM_ID
+			, A.FORM_NM				AS FORM_NM
+			, A.MENU_LVL			AS MENU_LVL
+			, A.MENU_DIV			AS MENU_DIV
+			, A.LINK_YN				AS LINK_YN
+			, A.MENU_SORT			AS MENU_SORT
+			, A.MENU_CD_1			AS MENU_CD_1
+			, A.MENU_CD_2			AS MENU_CD_2
+			, A.MENU_CD_3			AS MENU_CD_3
+			, A.MENU_CD_4			AS MENU_CD_4
+			, A.REG_ID				AS REG_ID
+			, A.REG_DT				AS REG_DT
+			, A.MOD_ID				AS MOD_ID
+			, A.MOD_DT				AS MOD_DT
+			, A.SORT_HIR			AS SORT_HIR
+		FROM VE_TEMP_MENU A
+		ORDER BY A.SORT_HIR
+	</select>
+
+    <select id="SYS002MenuMasterDAO.retrieveMenuMasterList_1" parameterType="map" resultType="egovMap"> 
+        <![CDATA[                                                													
+            WITH VW_ALL_MENU AS (
+                 SELECT A.MENU_ID                                      AS MENU_ID               /*메뉴아이디*/
+                      , A.PARENT_MENU_ID                               AS PARENT_MENU_ID        /*상위메뉴아이디*/
+                      , A.MENU_NM                                      AS MENU_NM               /*메뉴명*/
+                      , CASE WHEN N''=N'en' THEN A.MENU_ENG
+                             WHEN N''=N'ch' THEN A.MENU_CH
+                             WHEN N''=N'jp' THEN A.MENU_JP
+                             WHEN N''=N'ec' THEN A.MENU_ETC
+                        ELSE A.MENU_NM  END                            AS MENU_TNM              /*코드명*/
+                      , A.MENU_ENG                                     AS MENU_ENG              /*메뉴명(영어)*/
+                      , A.MENU_CH                                      AS MENU_CH               /*메뉴명(중국어)*/
+                      , A.MENU_JP                                      AS MENU_JP               /*메뉴명(일어)*/
+                      , A.MENU_ETC                                     AS MENU_ETC              /*메뉴명(기타언어)*/
+                      , A.MENU_DC                                      AS MENU_DC               /*메뉴설명*/
+                      , A.PROG_ID                                      AS PROG_ID               /*프로그램ID(프로젝트 + 0001)*/
+                      , B.FORM_PATH                                    AS FORM_PATH             /*FORM위치명(PREFIX)*/
+                      , B.FORM_ID                                      AS FORM_ID               /*FORMID(xfdl)*/
+                      , B.FORM_NM                                      AS FORM_NM               /*FORM명(한글명)*/
+                      , A.MENU_LVL                                     AS MENU_LVL              /*메뉴레벨*/
+                      , A.MENU_DIV                                     AS MENU_DIV              /*메뉴구분*/
+                      , A.LINK_YN                                      AS LINK_YN               /*연결여부*/
+                      , A.MENU_SORT                                    AS MENU_SORT             /*메뉴순서*/
+                      , A.MENU_CD_1                                    AS MENU_CD_1             /*메뉴코드1*/
+                      , A.MENU_CD_2                                    AS MENU_CD_2             /*메뉴코드2*/
+                      , A.MENU_CD_3                                    AS MENU_CD_3             /*메뉴코드3*/
+                      , A.MENU_CD_4                                    AS MENU_CD_4             /*메뉴코드4*/
+                      , A.REG_ID                                       AS REG_ID                /*등록자*/
+                      , A.REG_DT                                       AS REG_DT                /*등록일시*/
+                      , A.MOD_ID                                       AS MOD_ID                /*수정자*/
+                      , A.MOD_DT                                       AS MOD_DT                /*수정일시*/
+                   FROM COMM.XBT_MENU_INFO A
+                   LEFT OUTER JOIN COMM.XBT_PROG_MAST B
+                     ON B.PROG_ID = A.PROG_ID
+                    AND B.USER_YN = '1'
+                ) , VW_TEMP_MENU (
+                    LVL
+                  , MENU_ID
+                  , PARENT_MENU_ID
+                  , MENU_NM
+                  , MENU_TNM
+                  , MENU_ENG
+                  , MENU_CH
+                  , MENU_JP
+                  , MENU_ETC
+                  , MENU_DC
+                  , PROG_ID
+                  , FORM_PATH
+                  , FORM_ID
+                  , FORM_NM
+                  , MENU_LVL
+                  , MENU_DIV
+                  , LINK_YN
+                  , MENU_SORT
+                  , MENU_CD_1
+                  , MENU_CD_2
+                  , MENU_CD_3
+                  , MENU_CD_4
+                  , REG_ID
+                  , REG_DT
+                  , MOD_ID
+                  , MOD_DT
+                  , SORT_HIR
+                ) AS (
+                SELECT 1                                                                   AS LVL
+                     , A.MENU_ID                                                           AS MENU_ID
+                     , A.PARENT_MENU_ID                                                    AS PARENT_MENU_ID
+                     , A.MENU_NM                                                           AS MENU_NM
+                     , A.MENU_TNM                                                          AS MENU_TNM
+                     , A.MENU_ENG                                                          AS MENU_ENG 
+                     , A.MENU_CH                                                           AS MENU_CH  
+                     , A.MENU_JP                                                           AS MENU_JP  
+                     , A.MENU_ETC                                                          AS MENU_ETC 
+                     , A.MENU_DC                                                           AS MENU_DC  
+                     , A.PROG_ID                                                           AS PROG_ID  
+                     , A.FORM_PATH                                                         AS FORM_PATH
+                     , A.FORM_ID                                                           AS FORM_ID  
+                     , A.FORM_NM                                                           AS FORM_NM  
+                     , A.MENU_LVL                                                          AS MENU_LVL 
+                     , A.MENU_DIV                                                          AS MENU_DIV 
+                     , A.LINK_YN                                                           AS LINK_YN  
+                     , A.MENU_SORT                                                         AS MENU_SORT
+                     , A.MENU_CD_1                                                         AS MENU_CD_1
+                     , A.MENU_CD_2                                                         AS MENU_CD_2
+                     , A.MENU_CD_3                                                         AS MENU_CD_3
+                     , A.MENU_CD_4                                                         AS MENU_CD_4
+                     , A.REG_ID                                                            AS REG_ID   
+                     , A.REG_DT                                                            AS REG_DT   
+                     , A.MOD_ID                                                            AS MOD_ID   
+                     , A.MOD_DT                                                            AS MOD_DT   
+                     , LPAD(TO_CHAR(A.MENU_SORT),3,'0') || A.MENU_ID                       AS SORT_HIR
+                  FROM VW_ALL_MENU A
+                 WHERE A.MENU_LVL = 0                                                                   /* START WITH 절에 해당함 */
+                 UNION ALL
+                SELECT A.LVL + 1                                                           AS LVL
+                     , B.MENU_ID                                                           AS MENU_ID
+                     , B.PARENT_MENU_ID                                                    AS PARENT_MENU_ID
+                     , B.MENU_NM                                                           AS MENU_NM
+                     , B.MENU_TNM                                                          AS MENU_TNM
+                     , B.MENU_ENG                                                          AS MENU_ENG 
+                     , B.MENU_CH                                                           AS MENU_CH  
+                     , B.MENU_JP                                                           AS MENU_JP  
+                     , B.MENU_ETC                                                          AS MENU_ETC 
+                     , B.MENU_DC                                                           AS MENU_DC  
+                     , B.PROG_ID                                                           AS PROG_ID  
+                     , B.FORM_PATH                                                         AS FORM_PATH
+                     , B.FORM_ID                                                           AS FORM_ID  
+                     , B.FORM_NM                                                           AS FORM_NM  
+                     , B.MENU_LVL                                                          AS MENU_LVL 
+                     , B.MENU_DIV                                                          AS MENU_DIV 
+                     , B.LINK_YN                                                           AS LINK_YN  
+                     , B.MENU_SORT                                                         AS MENU_SORT
+                     , B.MENU_CD_1                                                         AS MENU_CD_1
+                     , B.MENU_CD_2                                                         AS MENU_CD_2
+                     , B.MENU_CD_3                                                         AS MENU_CD_3
+                     , B.MENU_CD_4                                                         AS MENU_CD_4
+                     , B.REG_ID                                                            AS REG_ID   
+                     , B.REG_DT                                                            AS REG_DT   
+                     , B.MOD_ID                                                            AS MOD_ID   
+                     , B.MOD_DT                                                            AS MOD_DT   
+                     , A.SORT_HIR || '|' || LPAD(TO_CHAR(B.MENU_SORT),3,'0') || B.MENU_ID  AS SORT_HIR
+                 FROM VW_TEMP_MENU A
+                INNER JOIN VW_ALL_MENU B
+                   ON B.PARENT_MENU_ID = A.MENU_ID                /* CONNECT BY 절에 해당함 */
+              )
+              SELECT LVL                      AS LVL
+                   , A.MENU_ID                AS MENU_ID               /*메뉴아이디*/
+                   , A.PARENT_MENU_ID         AS PARENT_MENU_ID        /*상위메뉴아이디*/
+                   , A.MENU_NM                AS MENU_NM               /*메뉴명*/
+                   , A.MENU_TNM               AS MENU_TNM              /*코드명*/
+                   , A.MENU_ENG               AS MENU_ENG              /*메뉴명(영어)*/
+                   , A.MENU_CH                AS MENU_CH               /*메뉴명(중국어)*/
+                   , A.MENU_JP                AS MENU_JP               /*메뉴명(일어)*/
+                   , A.MENU_ETC               AS MENU_ETC              /*메뉴명(기타언어)*/
+                   , A.MENU_DC                AS MENU_DC               /*메뉴설명*/
+                   , A.PROG_ID                AS PROG_ID               /*프로그램ID(프로젝트 + 0001)*/
+                   , A.FORM_PATH              AS FORM_PATH             /*FORM위치명(PREFIX)*/
+                   , A.FORM_ID                AS FORM_ID               /*FORMID(xfdl)*/
+                   , A.FORM_NM                AS FORM_NM               /*FORM명(한글명)*/
+                   , A.MENU_LVL               AS MENU_LVL              /*메뉴레벨*/
+                   , A.MENU_DIV               AS MENU_DIV              /*메뉴구분*/
+                   , A.LINK_YN                AS LINK_YN               /*연결여부*/
+                   , A.MENU_SORT              AS MENU_SORT             /*메뉴순서*/
+                   , A.MENU_CD_1              AS MENU_CD_1             /*메뉴코드1*/
+                   , A.MENU_CD_2              AS MENU_CD_2             /*메뉴코드2*/
+                   , A.MENU_CD_3              AS MENU_CD_3             /*메뉴코드3*/
+                   , A.MENU_CD_4              AS MENU_CD_4             /*메뉴코드4*/
+                   , A.REG_ID                 AS REG_ID                /*등록자*/
+                   , A.REG_DT                 AS REG_DT                /*등록일시*/
+                   , A.MOD_ID                 AS MOD_ID                /*수정자*/
+                   , A.MOD_DT                 AS MOD_DT                /*수정일시*/
+                   , A.SORT_HIR
+                FROM VW_TEMP_MENU A
+               ORDER BY A.SORT_HIR
+		]]>                                                                                     
+        /* SYS002MenuMasterDAO.retrieveMenuMasterList 기초메뉴정보 조회 */	                                 
+    </select> 	                                                        													 
+
+    <insert id="SYS002MenuMasterDAO.insertMenuMasterList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COMM.XBT_MENU_INFO                                       										  
+            (                                       																	  
+                   MENU_ID                     /*메뉴아이디*/ 
+                 , PARENT_MENU_ID              /*상위메뉴아이디*/ 
+                 , MENU_NM                     /*메뉴명*/ 
+                 , MENU_ENG                    /*메뉴명(영어)*/ 
+                 , MENU_CH                     /*메뉴명(중국어)*/ 
+                 , MENU_JP                     /*메뉴명(일어)*/ 
+                 , MENU_ETC                    /*메뉴명(기타언어)*/ 
+                 , MENU_DC                     /*메뉴설명*/ 
+                 , MENU_LVL                    /*메뉴레벨*/ 
+                 , MENU_DIV                    /*메뉴구분*/ 
+                 , LINK_YN                     /*연결여부*/ 
+                 , MENU_SORT                   /*메뉴순서*/ 
+                 , MENU_CD_1                   /*메뉴코드1*/ 
+                 , MENU_CD_2                   /*메뉴코드2*/ 
+                 , MENU_CD_3                   /*메뉴코드3*/ 
+                 , MENU_CD_4                   /*메뉴코드4*/ 
+                 , REG_ID                      /*등록자*/ 
+                 , REG_DT                      /*등록일시*/ 
+                 , MOD_ID                      /*수정자*/ 
+                 , MOD_DT                      /*수정일시*/ 
+                 , PROG_ID                     /*프로그램ID(프로젝트 + 0001)*/ 
+            )VALUES                                                  														
+            (                                                        														
+                   #{MENU_ID} 
+                 , #{PARENT_MENU_ID}  
+                 , #{MENU_NM}  
+                 , #{MENU_ENG}  
+                 , #{MENU_CH}  
+                 , #{MENU_JP}  
+                 , #{MENU_ETC}  
+                 , #{MENU_DC}  
+                 , #{MENU_LVL}  
+                 , #{MENU_DIV}  
+                 , #{LINK_YN}  
+                 , #{MENU_SORT}  
+                 , #{MENU_CD_1}  
+                 , #{MENU_CD_2}  
+                 , #{MENU_CD_3}  
+                 , #{MENU_CD_4}  
+                 , #{REG_ID}  
+                 , SYSDATE                                   
+                 , #{MOD_ID}  
+                 , SYSDATE                                   
+                 , #{PROG_ID}  
+            )	                                                      						
+        ]]>                                    											
+        /* SYS002MenuMasterDAO.insertMenuMasterList 기초메뉴정보 저장 */	
+    </insert>                                                           					
+
+    <update id="SYS002MenuMasterDAO.updateMenuMasterList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COMM.XBT_MENU_INFO                                			        
+               SET                                                      				
+                   MENU_ID                   = #{MENU_ID}                     /*메뉴아이디*/  
+                 , PARENT_MENU_ID            = #{PARENT_MENU_ID}              /*상위메뉴아이디*/  
+                 , MENU_NM                   = #{MENU_NM}                     /*메뉴명*/  
+                 , MENU_ENG                  = #{MENU_ENG}                    /*메뉴명(영어)*/  
+                 , MENU_CH                   = #{MENU_CH}                     /*메뉴명(중국어)*/  
+                 , MENU_JP                   = #{MENU_JP}                     /*메뉴명(일어)*/  
+                 , MENU_ETC                  = #{MENU_ETC}                    /*메뉴명(기타언어)*/  
+                 , MENU_DC                   = #{MENU_DC}                     /*메뉴설명*/  
+                 , MENU_LVL                  = #{MENU_LVL}                    /*메뉴레벨*/  
+                 , MENU_DIV                  = #{MENU_DIV}                    /*메뉴구분*/  
+                 , LINK_YN                   = #{LINK_YN}                     /*연결여부*/  
+                 , MENU_SORT                 = #{MENU_SORT}                   /*메뉴순서*/  
+                 , MENU_CD_1                 = #{MENU_CD_1}                   /*메뉴코드1*/  
+                 , MENU_CD_2                 = #{MENU_CD_2}                   /*메뉴코드2*/  
+                 , MENU_CD_3                 = #{MENU_CD_3}                   /*메뉴코드3*/  
+                 , MENU_CD_4                 = #{MENU_CD_4}                   /*메뉴코드4*/  
+                 , REG_ID                    = #{REG_ID}                      /*등록자*/  
+                 , REG_DT                    = SYSDATE                        /*등록일시*/  
+                 , MOD_ID                    = #{MOD_ID}                      /*수정자*/  
+                 , MOD_DT                    = SYSDATE                        /*수정일시*/  
+                 , PROG_ID                   = #{PROG_ID}                     /*프로그램ID(프로젝트 + 0001)*/  
+             WHERE 1=1                                                   						                        
+               AND MENU_ID         = #{MENU_ID}  
+        ]]>  	                                   							                            				
+        /* SYS002MenuMasterDAO.updateMenuMasterList 기초메뉴정보 수정 */								
+    </update>                                                           												
+	
+	<delete id="SYS002MenuMasterDAO.deleteUserFavoriteMenuList" parameterType="map">    
+        <![CDATA[                                                           												  
+           DELETE FROM COMM.XBT_MYMENU_INFO                                                  							      
+            WHERE 1=1                              																	          
+              AND MENU_ID 	= #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS002MenuMasterDAO.deleteUserFavoriteMenuList 사용자 즐겨찾기 메뉴 삭제 */								       
+    </delete>
+	
+	<delete id="SYS002MenuMasterDAO.deleteUserMenuButtonAuthList" parameterType="map">    
+        <![CDATA[                                                           												  
+           DELETE FROM COMM.XBT_BUTTON_AUTH
+            WHERE 1=1                              																	          
+              AND MENU_ID 	= #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS002MenuMasterDAO.deleteUserMenuButtonAuthList 사용자메뉴별버튼권한 삭제 */								       
+    </delete>
+    
+    <delete id="SYS002MenuMasterDAO.deleteAuthMasterList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_AUTH_MENU                                                  							      
+             WHERE 1=1                              																	          
+               AND MENU_ID   = #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS002MenuMasterDAO.deleteAuthMasterList 메뉴권한 삭제 */								       
+    </delete>	
+    
+    <delete id="SYS002MenuMasterDAO.deleteMenuMasterList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COMM.XBT_MENU_INFO                                                  							      
+             WHERE 1=1                              																	          
+               AND MENU_ID   = #{MENU_ID}  
+        ]]>                                                															           
+        /* SYS002MenuMasterDAO.deleteMenuMasterList 기초메뉴정보 삭제 */								       
+    </delete>                                                          													   
+</mapper>

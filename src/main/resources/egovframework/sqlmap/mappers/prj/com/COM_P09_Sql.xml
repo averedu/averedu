@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>									
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="COM_P09_DAO">									                            
+
+    <select id="COM_P09_DAO.retrieve_P09" parameterType="map" resultType="egovMap"> 
+		 SELECT JAGYEOK_CD
+			   , JAGYEOK_NM
+			   , BALGEUP_GIGWAN
+			   , JAGYEOK_GBCD
+			   , COMM.SF_XBT_STD_CD_DETAIL('00601', JAGYEOK_GBCD, 'CD_NM') AS JAGYEOK_GBNM
+		  FROM CARE.CA_JAGYEOK_C
+		WHERE 1 = 1
+		    AND SAYONG_YN = 'Y'
+		<if test="JAGYEOK_CD_NM != null and JAGYEOK_CD_NM != ''">
+		    AND (JAGYEOK_CD LIKE '%' || #{JAGYEOK_CD_NM} || '%' OR JAGYEOK_NM LIKE '%' || #{JAGYEOK_CD_NM} || '%')
+	    </if>
+		ORDER BY JAGYEOK_NM ASC                                                                                                   
+        /* COM_P09_DAO.retrieve_P09 자격증 조회 */	                                 
+    </select> 	                                                        													 
+	                                                          													   
+</mapper>                                                                 													   
+                                                                 															   

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="Popup_005" width="1000" height="485" titletext="차량및장비상세보기">
+    <Layouts>
+      <Layout height="485" width="1000">
+        <Static id="Static00" taborder="0" text="차량및장비상세보기" left="20" top="20" width="200" height="22" cssclass="sta_WF_Title01"/>
+        <Button id="Button00" taborder="1" text="저장" top="23" width="46" height="22" cssclass="btn_WF_Crud" right="68"/>
+        <Button id="Button01" taborder="2" text="닫기" top="23" width="46" height="22" cssclass="btn_WF_Crud" right="20"/>
+        <Static id="stc_41" taborder="3" left="20" top="112" height="28" cssclass="sta_WF_DetailBg" width="111" text=""/>
+        <Static id="stc_40" taborder="4" text="등록일" left="20" top="85" height="28" cssclass="sta_WF_DetailTi_CP" width="111"/>
+        <Static id="stc_42" taborder="5" left="20" top="60" height="22" text="기본정보" width="220" cssclass="sta_WF_Title02"/>
+        <Static id="stc_12" taborder="6" left="20" top="166" height="28" cssclass="sta_WF_DetailBg" width="111"/>
+        <Static id="stc_13" taborder="7" text="구분" left="20" top="139" height="28" cssclass="sta_WF_DetailTi_CP" width="111"/>
+        <Static id="stc_28" taborder="8" left="660" top="60" height="22" text="Moving Arp Info" width="220" cssclass="sta_WF_Title03"/>
+        <Static id="stc_71" taborder="9" left="320" top="436" height="28" cssclass="sta_WF_DetailBg" width="320"/>
+        <Static id="stc_72" taborder="10" text="비고" left="320" top="409" height="28" cssclass="sta_WF_DetailTi_C" width="320"/>
+        <Edit id="edt_29" taborder="11" left="323" top="439" height="22" width="314"/>
+        <Static id="stc_75" taborder="13" left="660" top="150" height="22" text="Etc Info" width="220" cssclass="sta_WF_Title03"/>
+        <Static id="stc_85" taborder="15" left="20" top="257" height="22" text="Maintenace IN/OUT Info" width="190" cssclass="sta_WF_Title02"/>
+        <Grid id="Grid00" taborder="16" left="20" top="283" width="280" height="181" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="110"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" text="입고일"/>
+                <Cell col="2" text="출고일"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static05" taborder="17" text="20" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0" right="0"/>
+        <Static id="Static01" taborder="18" text="20" left="0" top="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0"/>
+        <Static id="Static04" taborder="19" text="20" left="0" top="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" width="20" bottom="0"/>
+        <Static id="Static03" taborder="20" text="20" left="0" height="20" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" right="0" bottom="0"/>
+        <Static id="Static02" taborder="21" text="5" top="45" height="5" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" left="0" right="0"/>
+        <Button id="Button07" taborder="22" text="삭제" top="22" width="46" height="23" cssclass="btn_WF_Crud" right="116"/>
+        <Static id="stc_00" taborder="23" left="130" top="112" height="29" cssclass="sta_WF_DetailBg" width="170"/>
+        <Edit id="edt_02" taborder="24" left="133" top="115" height="22" width="164" cssclass="point"/>
+        <Static id="stc_01" taborder="25" left="130" top="166" height="28" cssclass="sta_WF_DetailBg" width="170"/>
+        <Static id="stc_02" taborder="26" text="용도" left="130" top="139" height="28" cssclass="sta_WF_DetailTi_CP" width="170"/>
+        <Button id="Button02" taborder="27" left="277" top="115" width="20" height="20" cssclass="btn_WF_EditSrch"/>
+        <Static id="stc_03" taborder="28" text="업체" left="130" top="85" height="28" cssclass="sta_WF_DetailTi_CP" width="170"/>
+        <Calendar id="cal_01" taborder="29" left="23" top="115" width="105" height="22" cssclass="point" value="20181012" dateformat="yyyy-MM-dd"/>
+        <Static id="stc_04" taborder="30" left="20" top="220" height="28" cssclass="sta_WF_DetailBg" width="141"/>
+        <Static id="stc_05" taborder="31" text="등록번호" left="20" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="141"/>
+        <Edit id="edt_05" taborder="32" left="23" top="223" height="22" width="53" value="000" text="000"/>
+        <Static id="stc_14" taborder="33" left="160" top="220" height="28" cssclass="sta_WF_DetailBg" width="140"/>
+        <Static id="stc_15" taborder="34" text="분류번호" left="160" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="140"/>
+        <Combo id="Combo00" taborder="35" text="업무용 1500-1999 CC" left="133" top="169" width="164" height="22" value="" index="-1" cssclass="point"/>
+        <Combo id="Combo02" taborder="36" text="차량" left="23" top="169" width="105" height="22" value="" index="-1" cssclass="point"/>
+        <Edit id="edt_00" taborder="37" left="78" top="223" height="22" width="24" value="1" text="1"/>
+        <Edit id="edt_01" taborder="38" left="104" top="223" height="22" width="54" value="407" text="407"/>
+        <Edit id="edt_03" taborder="39" left="189" top="223" height="22" width="43" value="000" text="000"/>
+        <Edit id="edt_06" taborder="40" left="163" top="223" height="22" width="24" value="1" text="1"/>
+        <Edit id="edt_08" taborder="41" left="234" top="223" height="22" width="63" value="407" text="407"/>
+        <Static id="stc_06" taborder="42" left="320" top="112" height="28" cssclass="sta_WF_DetailBg" width="121" text=""/>
+        <Static id="stc_07" taborder="43" text="장비명" left="320" top="85" height="28" cssclass="sta_WF_DetailTi_CP" width="121"/>
+        <Static id="stc_08" taborder="44" left="320" top="60" height="22" text="Car &amp; Equipment Detail Information" width="277" cssclass="sta_WF_Title02"/>
+        <Static id="stc_09" taborder="45" left="320" top="166" height="28" cssclass="sta_WF_DetailBg" width="240"/>
+        <Static id="stc_10" taborder="46" text="제작사" left="320" top="139" height="28" cssclass="sta_WF_DetailTi_C" width="240"/>
+        <Static id="stc_11" taborder="47" left="440" top="112" height="28" cssclass="sta_WF_DetailBg" width="95"/>
+        <Edit id="edt_04" taborder="48" left="323" top="115" height="22" width="115" cssclass="point" value="SM5(김대석)" text="SM5(김대석)"/>
+        <Static id="stc_16" taborder="49" left="559" top="166" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_17" taborder="50" text="제작년" left="559" top="139" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Static id="stc_18" taborder="51" text="형식" left="440" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="95"/>
+        <Static id="stc_23" taborder="52" text="차종" left="534" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="106"/>
+        <Static id="stc_24" taborder="53" left="534" top="112" height="28" cssclass="sta_WF_DetailBg" width="106"/>
+        <Edit id="edt_16" taborder="54" left="323" top="169" height="22" width="234" value="삼성" text="삼성"/>
+        <Edit id="edt_17" taborder="55" left="562" top="169" height="22" width="75" text="407"/>
+        <Static id="stc_19" taborder="56" left="320" top="220" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_20" taborder="57" text="총중량kg" left="320" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Edit id="edt_07" taborder="58" left="323" top="223" height="22" width="75" text="407"/>
+        <Static id="stc_21" taborder="59" left="400" top="220" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_22" taborder="60" text="최대적재kg" left="400" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Edit id="edt_09" taborder="61" left="403" top="223" height="22" width="75" text="407"/>
+        <Static id="stc_25" taborder="62" left="480" top="220" height="28" cssclass="sta_WF_DetailBg" width="80"/>
+        <Static id="stc_29" taborder="63" text="승차정원" left="480" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="80"/>
+        <Edit id="edt_10" taborder="64" left="483" top="223" height="22" width="74" text="407"/>
+        <Static id="stc_30" taborder="65" left="559" top="220" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_33" taborder="66" text="안전점검" left="559" top="193" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Static id="stc_34" taborder="67" left="320" top="274" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_35" taborder="68" text="중량kg" left="320" top="247" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Edit id="edt_13" taborder="69" left="323" top="277" height="22" width="75" text="407"/>
+        <Static id="stc_36" taborder="70" left="400" top="274" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_37" taborder="71" text="길이" left="400" top="247" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Edit id="edt_15" taborder="72" left="403" top="277" height="22" width="75" text="407"/>
+        <Static id="stc_38" taborder="73" left="480" top="274" height="28" cssclass="sta_WF_DetailBg" width="80"/>
+        <Static id="stc_39" taborder="74" text="폭" left="480" top="247" height="28" cssclass="sta_WF_DetailTi_C" width="80"/>
+        <Edit id="edt_18" taborder="75" left="483" top="277" height="22" width="74" text="407"/>
+        <Static id="stc_43" taborder="76" left="559" top="274" height="28" cssclass="sta_WF_DetailBg" width="81"/>
+        <Static id="stc_44" taborder="77" text="높이" left="559" top="247" height="28" cssclass="sta_WF_DetailTi_C" width="81"/>
+        <Edit id="edt_19" taborder="78" left="562" top="277" height="22" width="75" text="407"/>
+        <Combo id="Combo01" taborder="79" text="승용.승합차" left="536" top="115" width="101" height="22" value="" index="-1"/>
+        <Edit id="edt_12" taborder="80" left="443" top="115" height="22" width="89" value="e1m20-4A-0" text="e1m20-4A-0"/>
+        <Combo id="Combo03" taborder="81" left="562" top="223" width="75" height="22" value="" index="-1"/>
+        <Static id="stc_45" taborder="82" left="320" top="328" height="28" cssclass="sta_WF_DetailBg" width="210"/>
+        <Static id="stc_46" taborder="83" text="차대번호" left="320" top="301" height="28" cssclass="sta_WF_DetailTi_C" width="210"/>
+        <Static id="stc_47" taborder="84" left="529" top="328" height="28" cssclass="sta_WF_DetailBg" width="111"/>
+        <Static id="stc_48" taborder="85" text="검사예정일" left="529" top="301" height="28" cssclass="sta_WF_DetailTi_C" width="111"/>
+        <Edit id="edt_20" taborder="86" left="323" top="331" height="22" width="204" value="KNMA4C2BM8P311080" text="KNMA4C2BM8P311080"/>
+        <Calendar id="cal_00" taborder="87" left="532" top="331" width="105" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Static id="stc_49" taborder="88" left="540" top="382" height="28" cssclass="sta_WF_DetailBg" width="100"/>
+        <Static id="stc_50" taborder="89" text="사용연료" left="540" top="355" height="28" cssclass="sta_WF_DetailTi_C" width="100"/>
+        <Static id="stc_51" taborder="90" left="320" top="382" height="28" cssclass="sta_WF_DetailBg" width="111"/>
+        <Static id="stc_52" taborder="91" text="장비구분" left="320" top="355" height="28" cssclass="sta_WF_DetailTi_C" width="111"/>
+        <Static id="stc_53" taborder="92" left="430" top="382" height="28" cssclass="sta_WF_DetailBg" width="111"/>
+        <Static id="stc_54" taborder="93" text="검사예정일" left="430" top="355" height="28" cssclass="sta_WF_DetailTi_C" width="111"/>
+        <Calendar id="cal_04" taborder="94" left="433" top="385" width="105" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Combo id="Combo04" taborder="95" left="323" top="385" width="105" height="22" value="" index="-1"/>
+        <Combo id="Combo07" taborder="96" left="543" top="385" width="94" height="22" value="" index="-1" text="휘발유"/>
+        <Static id="stc_56" taborder="97" left="660" top="112" height="28" cssclass="sta_WF_DetailBg" width="91" text=""/>
+        <Static id="stc_57" taborder="98" text="전출여부" left="660" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="91"/>
+        <Static id="stc_58" taborder="99" left="750" top="112" height="28" cssclass="sta_WF_DetailBg" width="115"/>
+        <Static id="stc_59" taborder="100" text="전출일자" left="750" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="115"/>
+        <Static id="stc_60" taborder="101" text="전출공항" left="864" top="85" height="28" cssclass="sta_WF_DetailTi_C" width="116"/>
+        <Static id="stc_61" taborder="102" left="864" top="112" height="28" cssclass="sta_WF_DetailBg" width="116"/>
+        <Combo id="Combo05" taborder="103" left="866" top="115" width="111" height="22" value="" index="-1"/>
+        <CheckBox id="CheckBox02" taborder="14" left="698" top="115" width="22" height="22" value="true" tooltiptype="hover"/>
+        <Calendar id="cal_02" taborder="104" left="753" top="115" width="109" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Static id="stc_26" taborder="105" left="768" top="202" height="28" cssclass="sta_WF_DetailBg" width="107"/>
+        <Static id="stc_27" taborder="106" text="전출일자" left="768" top="175" height="28" cssclass="sta_WF_DetailTi_C" width="107"/>
+        <Static id="stc_31" taborder="107" text="전출공항" left="874" top="175" height="28" cssclass="sta_WF_DetailTi_C" width="106"/>
+        <Static id="stc_32" taborder="108" left="874" top="202" height="28" cssclass="sta_WF_DetailBg" width="106"/>
+        <Calendar id="cal_03" taborder="109" left="771" top="205" width="101" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Static id="stc_62" taborder="110" left="660" top="202" height="28" cssclass="sta_WF_DetailBg" width="109" text=""/>
+        <Static id="stc_74" taborder="12" text="결항여부" left="660" top="175" height="28" cssclass="sta_WF_DetailTi_C" width="109"/>
+        <Calendar id="cal_05" taborder="111" left="663" top="205" width="103" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Edit id="edt_11" taborder="112" left="877" top="205" height="22" width="100" text="407"/>
+        <Static id="stc_63" taborder="113" left="768" top="256" height="28" cssclass="sta_WF_DetailBg" width="212"/>
+        <Static id="stc_64" taborder="114" text="말소사유" left="768" top="229" height="28" cssclass="sta_WF_DetailTi_C" width="212"/>
+        <Static id="stc_67" taborder="115" left="660" top="256" height="28" cssclass="sta_WF_DetailBg" width="109" text=""/>
+        <Static id="stc_68" taborder="116" text="말소일" left="660" top="229" height="28" cssclass="sta_WF_DetailTi_C" width="109"/>
+        <Calendar id="cal_07" taborder="117" left="663" top="259" width="103" height="22" value="20181012" dateformat="yyyy-MM-dd "/>
+        <Edit id="edt_14" taborder="118" left="771" top="259" height="22" width="205" text="407"/>
+        <Static id="stc_55" taborder="119" left="660" top="293" height="22" text="File Info" width="151" cssclass="sta_WF_Title02"/>
+        <Grid id="Grid01" taborder="120" left="660" top="319" width="320" height="145" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="318"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="파일명"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button06" taborder="121" top="294" width="22" height="22" cssclass="btn_WF_CalBtnP" right="44"/>
+        <Button id="Button03" taborder="122" top="294" width="22" height="22" cssclass="btn_WF_CalBtnM" text="" right="20"/>
+        <Button id="Button04" taborder="123" left="254" top="258" width="22" height="22" cssclass="btn_WF_CalBtnP"/>
+        <Button id="Button05" taborder="124" left="278" top="258" width="22" height="22" cssclass="btn_WF_CalBtnM" text=""/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DS_GridSample">
+        <ColumnInfo>
+          <Column id="Column25" type="STRING" size="256"/>
+          <Column id="Column24" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256"/>
+          <Column id="Column22" type="STRING" size="256"/>
+          <Column id="Column21" type="STRING" size="256"/>
+          <Column id="Column20" type="STRING" size="256"/>
+          <Column id="Column19" type="STRING" size="256"/>
+          <Column id="Column18" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

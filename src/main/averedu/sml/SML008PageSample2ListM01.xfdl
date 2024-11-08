@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="samplePaging" width="1640" height="800" titletext="PAGING(스크롤 형식의 페이징처리)" onload="form_onload">
+    <Layouts>
+      <Layout height="800" mobileorientation="landscape" width="1640">
+        <Static id="sta03" taborder="0" left="20" top="53" height="144" background="cornsilk" right="30" verticalAlign="top" font="bold 12px/normal &quot;Gulim&quot;" text="* 조회버튼을 클릭 하거나 조회조건을 변경시 초기화 처리를 한다.&#13;&#10;this.OnePageRecordsNum  = 10;     //현재 페이지 한번에 조회할 권수.  전역변수를 셋팅하면 아래 풀어주거나 삭제할 부분&#13;&#10;this.fn_formInit = function()&#13;&#10;{&#9;//this.OnePageRecordsNum  = 10; 셋팅하면 아래 부분을 삭제(샘풀용)&#13;&#10;&#9;this.ds_input.setColumn(0,&quot;PAGE_RECORDS_SIZE&quot;,10);&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;this.ds_input.applyChange();&#13;&#10;&#9;//=============================================================&#13;&#10;};&#13;&#10; //this.ds_input.setColumn(0, &quot;PAGE_RECORDS_SIZE&quot;, vPageSize);       //패이지당 레코드 사이즈(샘풀상에 콤보사용않할때는 주석을 풀어주고:원하는레코드수만큼 this.OnePageRecordsNum=10셋팅 )"/>
+        <Grid id="grdMaster" taborder="1" left="20" top="333" right="30" binddataset="dsMaster" autofittype="col" bottom="20" onvscroll="grdMaster_onvscroll">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="97"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="No."/>
+                <Cell col="1" text="RON_NUM"/>
+                <Cell col="2" text="CODE"/>
+                <Cell col="3" text="NAME"/>
+                <Cell col="4" text="USER_ID"/>
+                <Cell col="5" text="CREATED"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow + 1"/>
+                <Cell col="1" text="bind:RON_NUM"/>
+                <Cell col="2" text="bind:CODE"/>
+                <Cell col="3" text="bind:NAME"/>
+                <Cell col="4" text="bind:USER_ID"/>
+                <Cell col="5" text="bind:CREATED"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="divSearch" taborder="2" text="" left="20" top="258" right="30" height="43" cssclass="div_WF_SearchBox">
+          <Layouts>
+            <Layout>
+              <Button id="btnSearch" taborder="0" text="조회" top="8" width="60" height="25" right="11" onclick="divSearch_btnSearch_onclick" uWord="search" cssclass="btn_WF_Search"/>
+              <Static id="Static01" taborder="1" text="목록갯수" left="19" top="9" width="100" height="21" cssclass="sta_WF_SearchLbl" uWord="listcount" fittocontents="width" minwidth="100" maxwidth=""/>
+              <Combo id="cboCnt" taborder="2" text="2" left="Static01:-19" top="9" width="112" height="21" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="2">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">10</Col>
+                      <Col id="datacolumn">10</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">20</Col>
+                      <Col id="datacolumn">20</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">30</Col>
+                      <Col id="datacolumn">30</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">40</Col>
+                      <Col id="datacolumn">40</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static06" taborder="3" text="- 페이징을 처리하는 샘플 프로그램(스크롤 형식의 샘풀처리) -" top="6" height="44" textAlign="center" background="#f80626" color="#ffffff" font="bold 18px/normal &quot;Gulim&quot;" left="5" right="2"/>
+        <Grid id="Grid00" taborder="4" left="339" top="201" width="571" height="53" binddataset="ds_input" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="122"/>
+                <Column size="154"/>
+                <Column size="117"/>
+                <Column size="130"/>
+                <Column size="95"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CURRENT_PAGE"/>
+                <Cell col="1" text="PAGE_RECORDS_SIZE"/>
+                <Cell col="2" text="TOT_ROW_CNT"/>
+                <Cell col="3" text="TOT_PAGE_CNT"/>
+                <Cell col="4" text="ROW_TYPE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CURRENT_PAGE"/>
+                <Cell col="1" text="bind:PAGE_RECORDS_SIZE"/>
+                <Cell col="2" text="bind:TOT_ROW_CNT"/>
+                <Cell col="3" text="bind:TOT_PAGE_CNT"/>
+                <Cell col="4" expr="expr:dataset.getRowType(currow)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="5" text="패이징처리시 필요한인자값 및 조회조건/서버에 정보조회" left="1" top="219" width="330" height="21" cssclass="sta_WF_SearchLbl" uWord="listcount" fittocontents="width" minwidth="100" maxwidth=""/>
+        <Static id="Static00" taborder="6" text="현페이지/전체페이지/전체레코드 수 : " left="2" top="308" width="230" height="21" cssclass="sta_WF_SearchLbl" uWord="listcount" fittocontents="width" minwidth="100" maxwidth=""/>
+        <Static id="stRecordInfo" taborder="7" left="253" top="305" width="227" height="27"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMaster">
+        <ColumnInfo>
+          <Column id="RON_NUM" type="BIGDECIMAL" size="16"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="USER_ID" type="BIGDECIMAL" size="16"/>
+          <Column id="CREATED" type="DATETIME" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="CURRENT_PAGE" type="STRING" size="256"/>
+          <Column id="PAGE_RECORDS_SIZE" type="STRING" size="256"/>
+          <Column id="TOT_ROW_CNT" type="STRING" size="256"/>
+          <Column id="TOT_PAGE_CNT" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CURRENT_PAGE"/>
+            <Col id="PAGE_RECORDS_SIZE"/>
+            <Col id="TOT_ROW_CNT"/>
+            <Col id="TOT_PAGE_CNT"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="CURRENT_PAGE_NUM" type="STRING" size="32"/>
+          <Column id="RECORDS_NUM" type="STRING" size="32"/>
+          <Column id="TOTAL_RECORD_CNT" type="BIGDECIMAL" size="16"/>
+          <Column id="TOTAL_PAGE_CNT" type="BIGDECIMAL" size="16"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMasterTemp">
+        <ColumnInfo>
+          <Column id="RON_NUM" type="BIGDECIMAL" size="16"/>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="NAME" type="STRING" size="32"/>
+          <Column id="USER_ID" type="BIGDECIMAL" size="16"/>
+          <Column id="CREATED" type="DATETIME" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  컨설팅 표준화 작업
+*  @MenuPath    샘플 > 페이징
+*  @FileName 	samplePaging.xfdl 
+*  @Creator 	jiback
+*  @CreateDate 	2017.11.13
+*  @Desction    스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2017.11.13     	jiback 	                최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.CurrentPageNum 	= 1;      //현재 페이지 넘버 (처음 초기화 번호)
+this.OnePageRecordsNum  = 10;     //현재 페이지 한번에 조회할 권수.
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//폼에 공통으로 로드시 사용하는 함수.
+	this.gfn_formOnload(obj.e);
+	//사용자 화면  초기화 함수
+	this.fn_formInit();
+};
+/**
+ * 기능 : 폼언 로드(닫기전 셋팅)  Setting
+ */
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	
+};
+/**********************************************************************
+	04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+	//this.OnePageRecordsNum  = 10; 셋팅하면 아래 부분을 삭제(샘풀용)
+	this.ds_input.setColumn(0,"PAGE_RECORDS_SIZE",10);							
+	this.ds_input.applyChange();
+	//=============================================================
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description TRANSACTION콜백 트랜젝션 후, 반드시페이지 메이킹 함수 호출
+*/
+/**
+ * 기능 : 콜백함수(후처리) 
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg) 
+{
+
+	if(nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else
+	{
+		/*sSvcId (Transaction Id)*/
+		switch(sSvcId)
+		{
+			case "Search":
+			    this.postSearch();
+			  	break;
+			default:
+				break;
+		}
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 조회버튼이벤트
+*/
+this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Pageing("Y");
+};
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.preSearch = function()
+{
+	// 조회조건 셋팅
+	return true;
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+
+this.fn_Search = function()
+{
+	if (!this.preSearch())
+	{
+		return false;
+	}
+	
+	var strSvc 		= "Search";
+	var strUrl 		= "/prj/sml/RetrievePageSample2List.do";                                     
+	var strInDs  	= "ds_input=ds_input";                                         
+	var strOutDs 	= "dsMasterTemp=dsMasterTemp ds_input=ds_input";    
+	var strArg 		= "";               
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+	var strASync    = true;			     //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
+	this.gfn_Transaction( strSvc
+				        , strUrl
+				        , strInDs
+				        , strOutDs
+				        , strArg
+				        , strCallBack
+				        , strASync);	
+};
+
+this.postSearch = function()
+{
+	this.dsMaster.appendData(this.dsMasterTemp);
+	this.ds_input.applyChange();	
+
+	this.stRecordInfo.set_text(this.ds_input.getColumn(0,"CURRENT_PAGE") + " / " + this.ds_input.getColumn(0,"TOT_PAGE_CNT") + " / " + this.ds_input.getColumn(0,"TOT_ROW_CNT") );
+	
+	var nVscNum = 24 * (nexacro.toNumber(this.ds_input.getColumn(0,"CURRENT_PAGE"))-1) * nexacro.toNumber(this.ds_input.getColumn(0,"PAGE_RECORDS_SIZE"));
+	//this.grdMaster.scrollTo(0,nVscNum);	
+}
+
+
+this.grdMaster_onvscroll = function(obj:nexacro.Grid,e:nexacro.ScrollEventInfo)
+{
+    //스크롤의 마지막 일 시에 실행 한다.(wheellastover, lastover, tracklastover)
+    if(e.pos >= obj.vscrollbar.max && e.type=='none' || e.type == 'wheellastover' ||  e.type =='trackend' ||e.type == 'last')
+	{
+		//trace("e.type >>>> "+ e.type);
+		if(this.ds_input.getRowType(0) == 1)    //조회조건이 변경돼면 초기화 셋팅
+		{
+			//끝 페이지인지 확인
+			var nTotalCnt = nexacro.toNumber(this.ds_input.getColumn(0,"TOT_ROW_CNT"));         // 전체 레크드 수
+			var nCurrPage = nexacro.toNumber(this.ds_input.getColumn(0,"CURRENT_PAGE")) + 1;	// 다음페이지
+			
+			if(this.dsMaster.rowcount != nTotalCnt)
+			{
+				this.fn_Pageing("N",nCurrPage);
+			}
+		}else
+		{
+			this.fn_Pageing("Y");
+		}
+	}
+};
+
+
+/*
+ * 현재 페이지를 리턴한다.
+ */
+this.fn_Pageing = function(initYn,currPageCnt)
+{
+	var vPageNum 	= 0;
+	var vPageSize 	= 0;
+	
+	if(initYn=="Y")  													// 조회버튼을 클릭시,조건을 번경시 기본조회(1페이지 시작)
+	{
+		this.dsMaster.clearData();										
+		this.dsMasterTemp.clearData();
+		vPageNum  = this.CurrentPageNum;								// 처음 초기화 페이지
+		vPageSize = this.OnePageRecordsNum;
+	
+	}else																// 조회후 페이지를 드래그시 다음 페이지를 처리시(스크롤바를 드래그할때 처리
+	{
+		vPageNum  = currPageCnt;
+		vPageSize = this.OnePageRecordsNum;
+	}
+	
+	this.ds_input.setColumn(0, "CURRENT_PAGE", 		vPageNum); 			//현재 페이지 처리
+//	trace("=============================================>" + this.ds_input.getRowType(0)); 
+	//this.ds_input.setColumn(0, "PAGE_RECORDS_SIZE", vPageSize);       //패이지당 레코드 사이즈(샘풀상에 콤보사용않할때는 주석을 풀어주고:원하는레코드수만큼 this.OnePageRecordsNum=10셋팅 )
+	
+	this.fn_Search();
+};
+
+
+this.fn_beforeclose = function()
+{
+    return (this.gfn_isUpdate(this.dsMaster));
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboCnt" propid="value" datasetid="ds_input" columnid="PAGE_RECORDS_SIZE"/>
+    </Bind>
+  </Form>
+</FDL>

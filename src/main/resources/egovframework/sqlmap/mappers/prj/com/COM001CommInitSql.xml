@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="COM001CommInitDAO">
+	
+	<select id="retrieveCommInitListT" parameterType="map" resultType="egovMap">                  									
+		/* COM001CommInitDAO.retrieveCommInitListS 공통코드 조회(전체) */
+		<![CDATA[                                                													
+		  SELECT                                                  											
+                 CLASS_ID                                     AS CLASS_ID             /*클래스*/        
+               , CD			                                  AS CODE	                /*코드*/        
+               , CASE WHEN #{LANGUAGE}=N'en' THEN CD_NM_ENG                           
+                      WHEN #{LANGUAGE}=N'ch' THEN CD_NM_CH                            
+                      WHEN #{LANGUAGE}=N'jp' THEN CD_NM_JP                            
+                      WHEN #{LANGUAGE}=N'ec' THEN CD_NM_ETC                           
+                 ELSE CD_NM  END                              AS CODE_NM              /*코드명*/
+               , SORT                                         AS SORT                 /*순서*/        
+               , ADDR                                         AS ADDR                 /*약어*/
+               , CD_DC                                        AS CD_DC                /*설명*/ 
+               , REF_1                                        AS REF_1                /*참조1*/        
+               , REF_2                                        AS REF_2                /*참조2*/        
+               , REF_3                                        AS REF_3                /*참조3*/  
+               , REF_4                                        AS REF_4                /*참조4*/        
+               , REF_5                                        AS REF_5                /*참조5*/        
+               , REF_6                                        AS REF_6                /*참조6*/     
+               , REF_7                                        AS REF_7                /*참조7*/        
+               , REF_8                                        AS REF_8                /*참조8*/        
+               , REF_9                                        AS REF_9                /*참조9*/     
+               , REF_10                                       AS REF_10               /*참조10*/        
+               , USE_YN                                       AS USE_YN               /*사용여부*/        
+               , REG_ID                                       AS REG_ID               /*등록자*/        
+               , REG_DT                                       AS REG_DT               /*등록일시*/        
+               , MOD_ID                                       AS MOD_ID               /*수정자*/        
+               , MOD_DT                                       AS MOD_DT               /*수정일시*/        
+               , AUTO_PLUS                                    AS AUTO_PLUS            /*자동증가*/        
+		    FROM COMM.XBT_STD_CD_DETAIL                                             								 
+           WHERE 1=1                                             												 
+             AND CLASS_ID    = #{CLASS_ID} 
+		   UNION ALL
+		  SELECT                                                  											
+                 UNISTR(#{CLASS_ID})                          AS CLASS_ID             /*클래스*/        
+               , N''                                          AS CODE	                /*코드*/        
+               , CASE WHEN #{LANGUAGE}=N'en' THEN N'ALL' 
+                      WHEN #{LANGUAGE}=N'ch' THEN N'ALL' 
+                      WHEN #{LANGUAGE}=N'jp' THEN N'ALL' 
+                      WHEN #{LANGUAGE}=N'ec' THEN N'ALL' 
+                 ELSE N'전체' END                               AS CODE_NM              /*코드명*/
+               , -1                                           AS SORT                 /*순서*/        
+               , N''                                          AS ADDR                 /*약어*/        
+               , N''                                          AS CD_DC                /*설명*/ 
+               , N''                                          AS REF_1                /*참조1*/        
+               , N''                                          AS REF_2                /*참조2*/        
+               , N''                                          AS REF_3                /*참조3*/  
+               , N''                                          AS REF_4                /*참조4*/        
+               , N''                                          AS REF_5                /*참조5*/        
+               , N''                                          AS REF_6                /*참조6*/     
+               , N''                                          AS REF_7                /*참조7*/        
+               , N''                                          AS REF_8                /*참조8*/        
+               , N''                                          AS REF_9                /*참조9*/     
+               , N''                                          AS REF_10               /*참조10*/          
+               , N''                                          AS USE_YN               /*사용여부*/        
+               , N''                                          AS REG_ID               /*등록자*/        
+               , SYSDATE                                      AS REG_DT               /*등록일시*/        
+               , N''                                          AS MOD_ID               /*수정자*/        
+               , SYSDATE                                      AS MOD_DT               /*수정일시*/        
+               , 0                                            AS AUTO_PLUS            /*자동증가*/              
+			FROM DUAL                                             								 
+           WHERE 1=1 
+           ORDER BY SORT,CODE_NM
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveCommInitListS" parameterType="map" resultType="egovMap">                									
+		/* COM001CommInitDAO.retrieveCommInitListS 공통코드 조회(선택) */
+		<![CDATA[                                                													
+			SELECT                                                  											
+			       CLASS_ID                                   AS CLASS_ID             /*클래스*/        
+			     , CD			                              AS CODE	              /*코드*/        
+                 , CASE WHEN #{LANGUAGE}=N'en' THEN CD_NM_ENG                         
+                        WHEN #{LANGUAGE}=N'ch' THEN CD_NM_CH                          
+                        WHEN #{LANGUAGE}=N'jp' THEN CD_NM_JP                          
+                        WHEN #{LANGUAGE}=N'ec' THEN CD_NM_ETC                         
+                   ELSE CD_NM  END                            AS CODE_NM              /*코드명*/
+			     , SORT                                       AS SORT                 /*순서*/        
+			     , ADDR                                       AS ADDR                 /*약어*/        
+			     , CD_DC                                      AS CD_DC                /*설명*/ 
+			     , REF_1                                      AS REF_1                /*참조1*/        
+			     , REF_2                                      AS REF_2                /*참조2*/        
+			     , REF_3                                      AS REF_3                /*참조3*/  
+			     , REF_4                                      AS REF_4                /*참조4*/        
+			     , REF_5                                      AS REF_5                /*참조5*/        
+			     , REF_6                                      AS REF_6                /*참조6*/     
+			     , REF_7                                      AS REF_7                /*참조7*/        
+			     , REF_8                                      AS REF_8                /*참조8*/        
+			     , REF_9                                      AS REF_9                /*참조9*/     
+			     , REF_10                                     AS REF_10               /*참조10*/        
+			     , USE_YN                                     AS USE_YN               /*사용여부*/        
+			     , REG_ID                                     AS REG_ID               /*등록자*/        
+			     , REG_DT                                     AS REG_DT               /*등록일시*/        
+			     , MOD_ID                                     AS MOD_ID               /*수정자*/        
+			     , MOD_DT                                     AS MOD_DT               /*수정일시*/        
+			     , AUTO_PLUS                                  AS AUTO_PLUS            /*자동증가*/        
+              FROM COMM.XBT_STD_CD_DETAIL                                             								 
+             WHERE 1=1                                             												 
+               AND CLASS_ID    = #{CLASS_ID} 
+             UNION ALL
+            SELECT                                                  											
+			       UNISTR(#{CLASS_ID})                        AS CLASS_ID             /*클래스*/        
+			     , N''                                        AS CODE	              /*코드*/        
+		         , CASE WHEN #{LANGUAGE}=N'en' THEN N'ALL' 
+                        WHEN #{LANGUAGE}=N'ch' THEN N'ALL' 
+                        WHEN #{LANGUAGE}=N'jp' THEN N'ALL' 
+                        WHEN #{LANGUAGE}=N'ec' THEN N'ALL' 
+                   ELSE N'선택' END                             AS CODE_NM              /*코드명*/
+			     , -1                                         AS SORT                 /*순서*/        
+			     , N''                                        AS ADDR                 /*약어*/        
+			     , N''                                        AS CD_DC                /*설명*/ 
+			     , N''                                        AS REF_1                /*참조1*/        
+			     , N''                                        AS REF_2                /*참조2*/        
+			     , N''                                        AS REF_3                /*참조3*/  
+			     , N''                                        AS REF_4                /*참조4*/        
+			     , N''                                        AS REF_5                /*참조5*/        
+			     , N''                                        AS REF_6                /*참조6*/     
+			     , N''                                        AS REF_7                /*참조7*/        
+			     , N''                                        AS REF_8                /*참조8*/        
+			     , N''                                        AS REF_9                /*참조9*/     
+			     , N''                                        AS REF_10               /*참조10*/          
+			     , N''                                        AS USE_YN               /*사용여부*/        
+			     , N''                                        AS REG_ID               /*등록자*/        
+			     , SYSDATE                                    AS REG_DT               /*등록일시*/        
+			     , N''                                        AS MOD_ID               /*수정자*/        
+			     , SYSDATE                                    AS MOD_DT               /*수정일시*/        
+			     , 0                                          AS AUTO_PLUS            /*자동증가*/      
+              FROM DUAL                                             								 
+             WHERE 1=1 
+             ORDER BY SORT,CODE_NM
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveCommInitListN" parameterType="map" resultType="egovMap">               									
+		/* COM001CommInitDAO.retrieveCommInitListN 공통코드 조회(공백) */
+		<![CDATA[                                                													
+			SELECT                                                  											
+                   CLASS_ID                                   AS CLASS_ID             /*클래스*/        
+			     , CD			                              AS CODE	              /*코드*/        
+			     , CASE WHEN #{LANGUAGE}=N'en' THEN CD_NM_ENG                         
+                        WHEN #{LANGUAGE}=N'ch' THEN CD_NM_CH                          
+                        WHEN #{LANGUAGE}=N'jp' THEN CD_NM_JP                          
+                        WHEN #{LANGUAGE}=N'ec' THEN CD_NM_ETC                         
+                   ELSE CD_NM END                            AS CODE_NM               /*코드명*/
+			     , SORT                                      AS SORT                  /*순서*/        
+			     , ADDR                                      AS ADDR                  /*약어*/        
+			     , CD_DC                                     AS CD_DC                 /*설명*/ 
+			     , REF_1                                     AS REF_1                 /*참조1*/        
+			     , REF_2                                     AS REF_2                 /*참조2*/        
+			     , REF_3                                     AS REF_3                 /*참조3*/  
+			     , REF_4                                     AS REF_4                 /*참조4*/        
+			     , REF_5                                     AS REF_5                 /*참조5*/        
+			     , REF_6                                     AS REF_6                 /*참조6*/     
+			     , REF_7                                     AS REF_7                 /*참조7*/        
+			     , REF_8                                     AS REF_8                 /*참조8*/        
+			     , REF_9                                     AS REF_9                 /*참조9*/     
+			     , REF_10                                    AS REF_10                /*참조10*/         
+			     , USE_YN                                    AS USE_YN                /*사용여부*/        
+			     , REG_ID                                    AS REG_ID                /*등록자*/        
+			     , REG_DT                                    AS REG_DT                /*등록일시*/        
+			     , MOD_ID                                    AS MOD_ID                /*수정자*/        
+			     , MOD_DT                                    AS MOD_DT                /*수정일시*/        
+			     , AUTO_PLUS                                 AS AUTO_PLUS             /*자동증가*/        
+              FROM COMM.XBT_STD_CD_DETAIL                                             								 
+             WHERE 1=1                                             												 
+               AND CLASS_ID = #{CLASS_ID} 
+             UNION ALL
+            SELECT                                                  											
+			       UNISTR(#{CLASS_ID})                        AS CLASS_ID             /*클래스*/        
+			     , N''                                        AS CODE	          	  /*코드*/        
+		         , N''                                        AS CODE_NM              /*설명*/        
+			     , -1                                         AS SORT                 /*순서*/        
+			     , N''                                        AS ADDR                 /*약어*/        
+			     , N''                                        AS CD_DC                /*설명*/ 
+			     , N''                                        AS REF_1                /*참조1*/        
+			     , N''                                        AS REF_2                /*참조2*/        
+			     , N''                                        AS REF_3                /*참조3*/  
+			     , N''                                        AS REF_4                /*참조4*/        
+			     , N''                                        AS REF_5                /*참조5*/        
+			     , N''                                        AS REF_6                /*참조6*/     
+			     , N''                                        AS REF_7                /*참조7*/        
+			     , N''                                        AS REF_8                /*참조8*/        
+			     , N''                                        AS REF_9                /*참조9*/     
+			     , N''                                        AS REF_10               /*참조10*/         
+			     , N''                                        AS USE_YN               /*사용여부*/        
+			     , N''                                        AS REG_ID               /*등록자*/        
+			     , SYSDATE                                    AS REG_DT               /*등록일시*/        
+			     , N''                                        AS MOD_ID               /*수정자*/        
+			     , SYSDATE                                    AS MOD_DT               /*수정일시*/        
+			     , 0                                          AS AUTO_PLUS            /*자동증가*/      
+		      FROM DUAL                                             								 
+		     WHERE 1=1 
+		     ORDER BY SORT,CODE_NM
+		]]>                                                      												 
+	</select>
+							
+	<select id="retrieveCommInitListX" parameterType="map" resultType="egovMap">                   									
+		/* COM001CommInitDAO.retrieveCommInitListX 공통코드 조회(없음) */
+		<![CDATA[                                                													
+			SELECT                                                  											
+			       CLASS_ID                                   AS CLASS_ID             /*클래스*/        
+			     , CD			                              AS CODE	              /*코드*/        
+			     , CASE WHEN #{LANGUAGE}=N'en' THEN CD_NM_ENG                            
+                        WHEN #{LANGUAGE}=N'ch' THEN CD_NM_CH                             
+                        WHEN #{LANGUAGE}=N'jp' THEN CD_NM_JP                             
+                        WHEN #{LANGUAGE}=N'ec' THEN CD_NM_ETC                            
+                   ELSE CD_NM END                             AS CODE_NM              /*코드명*/
+			     , SORT                                       AS SORT                 /*순서*/        
+			     , ADDR                                       AS ADDR                 /*약어*/        
+			     , CD_DC                                      AS CD_DC                /*설명*/ 
+			     , REF_1                                      AS REF_1                /*참조1*/        
+			     , REF_2                                      AS REF_2                /*참조2*/        
+			     , REF_3                                      AS REF_3                /*참조3*/  
+			     , REF_4                                      AS REF_4                /*참조4*/        
+			     , REF_5                                      AS REF_5                /*참조5*/        
+			     , REF_6                                      AS REF_6                /*참조6*/     
+			     , REF_7                                      AS REF_7                /*참조7*/        
+			     , REF_8                                      AS REF_8                /*참조8*/        
+			     , REF_9                                      AS REF_9                /*참조9*/     
+			     , REF_10                                     AS REF_10               /*참조10*/        
+			     , USE_YN                                     AS USE_YN               /*사용여부*/        
+			     , REG_ID                                     AS REG_ID               /*등록자*/        
+			     , REG_DT                                     AS REG_DT               /*등록일시*/        
+			     , MOD_ID                                     AS MOD_ID               /*수정자*/        
+			     , MOD_DT                                     AS MOD_DT               /*수정일시*/        
+			     , AUTO_PLUS                                  AS AUTO_PLUS            /*자동증가*/        
+			  FROM COMM.XBT_STD_CD_DETAIL                                             								 
+		     WHERE 1=1                                             												 
+			   AND CLASS_ID = #{CLASS_ID}
+		     ORDER BY SORT,CODE_NM
+		]]>                                                      												 
+	</select> 
+	
+	<!-- ************************************인사_계열사 조회 시작(사용가능한것만:샘풀)*************************************-->   
+	<select id="retrieveThrAffltsListT" parameterType="map" resultType="egovMap">                    									
+		/* COM001CommInitDAO.retrieveThrAffltsListT 인사_계열사(전체) */
+		<![CDATA[                                                													
+            SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+               AND A.USE_YN = 'Y'
+             UNION ALL
+            SELECT ''     AFFLTS_CD
+                 , '전체' AFFLTS_NM
+              FROM DUAL  
+             ORDER BY AFFLTS_CD DESC    
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveThrAffltsListS" parameterType="map" resultType="egovMap">                   									
+		/* COM001CommInitDAO.retrieveThrAffltsListS 인사_계열사(선택) */
+		<![CDATA[                                                													
+			SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+               AND A.USE_YN = 'Y'
+             UNION ALL
+            SELECT ''    AFFLTS_CD
+                 , '선택' AFFLTS_NM
+              FROM DUAL  
+             ORDER BY AFFLTS_CD DESC  
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveThrAffltsListN" parameterType="map" resultType="egovMap">                    									
+		 /* COM001CommInitDAO.retrieveThrAffltsListN 인사_계열사(공백) */
+		 <![CDATA[
+                 SELECT                                                  											    
+                        A.AFFLTS_CD                   /*계열사코드*/             
+                      , A.AFFLTS_NM                   /*계열사명*/             
+                   FROM COMM.XBT_THR_AFFLTS A                                             							 
+                  WHERE 1=1     
+                    AND A.USE_YN = 'Y'
+                  UNION ALL
+                 SELECT '' AFFLTS_CD
+                      , '' AFFLTS_NM
+                   FROM DUAL  
+                   ORDER BY AFFLTS_CD DESC  
+              ]]>                                   												 
+	</select>
+	<select id="retrieveThrAffltsListX" parameterType="map" resultType="egovMap">                    									
+		/* COM001CommInitDAO.retrieveThrAffltsListX 인사_계열사(없음) */
+		<![CDATA[                                                													
+            SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+               AND A.USE_YN = 'Y'
+		]]>                                                      												 
+	</select> 
+	<!-- ************************************인사_계열사 조회 종료(사용가능한것만:샘풀)*************************************-->
+	<!-- ************************************인사_계열사 조회 시작(전체계열사:샘풀)*************************************-->   
+	<select id="retrieveThrAffltsAllListT" parameterType="map" resultType="egovMap">                    									
+		/* COM001CommInitDAO.retrieveThrAffltsAllListT 인사_계열사(전체) */
+		<![CDATA[                                                													
+            SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+             UNION ALL
+            SELECT ''     AFFLTS_CD
+                 , '전체' AFFLTS_NM
+              FROM DUAL  
+             ORDER BY AFFLTS_CD DESC  
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveThrAffltsAllListS" parameterType="map" resultType="egovMap">                   									
+		/* COM001CommInitDAO.retrieveThrAffltsAllListS 인사_계열사(선택) */
+		<![CDATA[                                                													
+			SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+             UNION ALL
+            SELECT ''     AFFLTS_CD
+                 , '선택' AFFLTS_NM
+             FROM DUAL  
+            ORDER BY AFFLTS_CD DESC      
+              
+		]]>                                                      												 
+	</select>
+								
+	<select id="retrieveThrAffltsAllListN" parameterType="map" resultType="egovMap">                    									
+		 /* COM001CommInitDAO.retrieveThrAffltsAllListN 인사_계열사(공백) */
+		 <![CDATA[
+                 SELECT                                                  											    
+                        A.AFFLTS_CD                   /*계열사코드*/             
+                      , A.AFFLTS_NM                   /*계열사명*/             
+                   FROM COMM.XBT_THR_AFFLTS A                                             							 
+                  WHERE 1=1     
+                  UNION ALL
+                 SELECT '' AFFLTS_CD
+                      , '' AFFLTS_NM
+                   FROM DUAL  
+                  ORDER BY AFFLTS_CD DESC  
+              ]]>                                   												 
+	</select>
+	<select id="retrieveThrAffltsAllListX" parameterType="map" resultType="egovMap">                    									
+		/* COM001CommInitDAO.retrieveThrAffltsAllListX 인사_계열사(없음) */
+		<![CDATA[                                                													
+            SELECT                                                  											    
+                   A.AFFLTS_CD                   /*계열사코드*/             
+                 , A.AFFLTS_NM                   /*계열사명*/             
+              FROM COMM.XBT_THR_AFFLTS A                                             							 
+             WHERE 1=1     
+             
+		]]>                                                      												 
+	</select> 
+	<!-- ************************************인사_계열사 조회 종료(전체계열사:샘풀)*************************************-->
+		
+</mapper>

@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="form" width="1640" height="780" titletext="위원회 정보관리" onclose="form_onclose" onload="form_onload" onclick="form_onclick">
+    <Layouts>
+      <Layout description="위원회 정보관리" height="780" mobileorientation="landscape" width="1640">
+        <Static id="stc_19_00_00_01_00_00" taborder="18" left="0" height="28" cssclass="sta_WF_DetailBg" text="" width="1640" bottom="138"/>
+        <Grid id="grdMaster" taborder="0" left="0" top="35" binddataset="dsMaster" autofittype="col" autoenter="select" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autoupdatetype="itemselect" cellclickbound="cell" onheadclick="grdMaster_onheadclick" minheight="150" maxheight="" right="0" bottom="stc_19_00_00_01_00_00:8">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35" band="left"/>
+                <Column size="48" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="240" band="left"/>
+                <Column size="50"/>
+                <Column size="60"/>
+                <Column size="240"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="NO"/>
+                <Cell col="2" text="위원회 코드"/>
+                <Cell col="3" text="위원회명"/>
+                <Cell col="4" text="순서" suppressalign="first"/>
+                <Cell col="5" text="사용여부"/>
+                <Cell col="6" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" expr="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center" edittype="none"/>
+                <Cell col="2" text="bind:WIWONHOE_CD"/>
+                <Cell col="3" text="bind:WIWONHOE_NM" textAlign="left"/>
+                <Cell col="4" text="bind:SORT"/>
+                <Cell col="5" text="bind:USE_YN" combodataset="USE_YN" combodatacol="LABEL" combocodecol="CD" displaytype="combotext"/>
+                <Cell col="6" text="bind:BIGO" textAlign="left"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_09" taborder="7" left="0" top="10" height="22" text="위원회 정보관리" width="125" cssclass="sta_WF_Title02"/>
+        <Static id="stc_05_01" taborder="2" left="0" height="58" cssclass="sta_WF_DetailBg" width="1640" bottom="54"/>
+        <Static id="stc_06_01" taborder="3" text="비고" left="0" height="58" cssclass="sta_WF_DetailTi" width="150" bottom="54"/>
+        <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="125" top="9" height="24" usedecorate="true" width="233"/>
+        <TextArea id="txtBigo" taborder="1" left="153" height="52" maxlength="1333" width="1483" bottom="57"/>
+        <Static id="Static01" taborder="5" text="↑&#13;&#10;35&#13;&#10;↓" left="500" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 7pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_01_00_00" taborder="6" text="8" left="0" top="27" width="320" height="8" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Static id="stc_19_00_00_00" taborder="8" left="0" height="28" cssclass="sta_WF_DetailBg" text="" width="1640" bottom="0"/>
+        <Static id="stc_21_00_00_00_01" taborder="9" text="용도컬럼5" left="500" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="0"/>
+        <Static id="stc_20_00_00_00" taborder="10" text="용도컬럼4" left="0" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="0"/>
+        <Static id="stc_19_00_00_01" taborder="11" left="0" height="28" cssclass="sta_WF_DetailBg" text="" width="1640" bottom="27"/>
+        <Static id="stc_21_00_00_01" taborder="12" text="용도컬럼3" left="1000" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="27"/>
+        <Static id="stc_21_00_00_00_02" taborder="13" text="용도컬럼2" left="500" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="27"/>
+        <Static id="stc_20_00_00_01" taborder="14" text="용도컬럼1" left="0" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="27"/>
+        <Static id="stc_19_00_00_01_00" taborder="15" left="0" height="28" cssclass="sta_WF_DetailBg" text="" width="1640" bottom="111"/>
+        <Static id="stc_20_00_00_01_00" taborder="16" text="순서" left="0" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="111"/>
+        <Static id="stc_21_00_00_00_02_00" taborder="17" text="사용여부" left="500" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="111"/>
+        <Static id="stc_21_00_00_00_02_00_00" taborder="19" text="위원회명" left="500" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="138"/>
+        <Static id="stc_20_00_00_01_00_00" taborder="20" text="위원회코드" left="0" height="28" cssclass="sta_WF_DetailTi" width="150" bottom="138"/>
+        <Combo id="cboUseYn" taborder="21" text="핵심역량" left="653" width="150" height="22" innerdataset="dsUseYn" codecolumn="CODE" datacolumn="CODE_NM" index="-1" value="1" bottom="114"/>
+        <Edit id="edtSort" taborder="22" left="153" height="22" maxlength="166" width="300" bottom="114"/>
+        <Edit id="edtWiwonhoeCd" taborder="23" left="153" height="22" maxlength="166" width="300" bottom="141"/>
+        <Edit id="edtWiwonheoNm" taborder="24" left="653" height="22" maxlength="166" width="300" bottom="141"/>
+        <Edit id="edtYongdoCol1" taborder="25" left="153" height="22" maxlength="166" width="300" bottom="30"/>
+        <Edit id="edtYongdoCol4" taborder="26" left="153" height="22" maxlength="166" width="300" bottom="3"/>
+        <Edit id="edtYongdoCol2" taborder="27" left="653" height="22" maxlength="166" width="300" bottom="30"/>
+        <Edit id="edtYongdoCol5" taborder="28" left="653" height="22" maxlength="166" width="300" bottom="3"/>
+        <Edit id="edtYongdoCol3" taborder="29" left="1153" height="22" maxlength="166" width="300" bottom="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset enableevent="true" firefirstcount="0" firenextcount="0" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged" oncolumnchanged="dsMaster_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="WIWONHOE_CD" type="STRING" size="10"/>
+          <Column id="WIWONHOE_NM" type="STRING" size="100"/>
+          <Column id="SORT" type="BIGDECIMAL" size="22"/>
+          <Column id="USE_YN" type="STRING" size="1"/>
+          <Column id="BIGO" type="STRING" size="1000"/>
+          <Column id="YONGDO_COLUMN1" type="STRING" size="100"/>
+          <Column id="YONGDO_COLUMN2" type="STRING" size="100"/>
+          <Column id="YONGDO_COLUMN3" type="STRING" size="100"/>
+          <Column id="YONGDO_COLUMN4" type="STRING" size="100"/>
+          <Column id="YONGDO_COLUMN5" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_input" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="BIGYOGWA_PROGRAM_NM" type="STRING" size="100"/>
+          <Column id="SINCHEONG_SIJAK_DT" type="STRING" size="8"/>
+          <Column id="SINCHEONG_JONGRYO_DT" type="STRING" size="8"/>
+          <Column id="SEUNGIN_SANGTAE" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="BIGYOGWA_PROGRAM_NM"/>
+            <Col id="SINCHEONG_JONGRYO_DT"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="32"/>
+          <Column id="CODE_NM" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**********************************************************************
+* FormID(화면   ID명): AM01_3010110_M.xfdl(위원회 정보관리)
+* 작 성         일 명: 정진호
+* 작 성         일 자: 2022/09/26
+* 변 경         일 자:
+* 변 경         자 명:
+* 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
+*/
+/**********************************************************************
+        01. 전처리 공통 함수 선언
+***********************************************************************/
+/**********************************************************************
+        02. 폼 변수 정의
+***********************************************************************/
+this.lvchkColidDs   = "WIWONHOE_NM"; // 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs = "위원회명";
+/**********************************************************************
+        03. 폼 로드 및 닫을때(폼이 포커스 갈때)
+***********************************************************************/
+/**
+ * 기능 : 폼 로드 완료후 초기값 Setting
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    //폼에 공통으로 로드시 사용하는 함수.
+    this.gfn_formOnload(obj.e);
+    //사용자 화면  초기화 함수
+    this.fn_formInit();
+};
+
+/**********************************************************************
+        04. 공통 코드 및 콤보 데이타 조회
+***********************************************************************/
+this.fn_formInit = function()
+{
+    var strDs    = "dsUseYn";	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
+    var strLgcd  = "00801"; 	// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
+    var strComb  = "X"; 		// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
+    var strOptn  = ""; 			// 조건문 " AND COMM_IT02 = '" + vip + "'|||";
+    var svcId    = "Init";
+	// gfn_CmmnMultiComboLoad(데이터셋 리스트, 대분류코드 , 콤보 옵션);
+	// 서비스 ID : 코드 조회 실행 후 CALLBACK 함수 지정.
+    this.gfn_CmmnMultiComboLoad(strDs, strLgcd, strComb, strOptn, svcId);
+};
+
+/**
+ * 기능 : 콜백함수(후처리)
+ */
+this.fn_callBack = function(sSvcId,nErrorCode, sErrorMsg)
+{
+
+    this.gfn_clearSortAll(this.grdMaster);
+    if(nErrorCode != 0)
+    {
+        this.gfn_alert(sErrorMsg,"에러정보","","error");
+        return false;
+    }else
+    {
+        /*sSvcId (Transaction Id)*/
+        switch(sSvcId)
+        {
+            case "Init":
+                    this.fn_PostformInit();
+                break;
+            case "singleInit":
+                    this.fn_PostSingleInt();
+                break;
+            case "Ret":
+                    this.fn_PostRet();
+                break;
+            case "Save":
+                    this.fn_PostSave();
+                break;
+            case "Del":
+                    this.fn_PostDel();
+                break;
+            default:
+                break;
+        }
+    }
+};
+
+/************************************************************************************************;
+ * 공통 버튼 호출 영역(공통버튼 사용에만사용);
+ ************************************************************************************************/;
+/*;
+ * _gfn_btnClick여기서 호출시 버튼을 클릭처릭(개인폼에 모든스크립터 복사함);
+ */;
+this.fn_cmmBtnClick = function(sBtn)
+{
+    switch(sBtn)
+    {
+        case "ret" :        // 조회
+                this.fn_Ret();
+            break;
+        case "new" :         // 신규
+                this.fn_New();
+            break;
+        case "del" :         // 삭제
+                this.fn_Del();
+            break;
+        case "save" :        // 저장
+                this.fn_Save();
+            break;
+        case "tmp1" :        // 팁
+                 this.fn_Tip();
+            break;
+        default :
+            break;
+    };
+};;
+
+/**********************************************************************
+        05. 조회 함수 선언(마스터 함수)
+***********************************************************************/
+/**
+ * 기능 : 조회 전 실행
+ */
+this.fn_PreRet = function()
+{
+    // 조회조건 셋팅
+    return true;
+};
+
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+    if(!this.fn_PreRet())
+    {
+        return false;
+    }
+    var strSvc      = "Ret";
+    var strUrl      = "/prj/AM/AM01/Retrieve_3010110_MList.do";
+    var strInDs     = "ds_input=ds_input";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //생략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+/**
+ * 기능 : 조회 후 실행
+ */
+this.fn_PostRet = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        06. 추가 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 추가 전 실행(기본체크사항)
+ */
+this.fn_PreNew = function()
+{
+    return true;
+};
+
+/**
+ * 기능 : 마스터 추가 실행
+ */
+this.fn_New = function()
+{
+    if(!this.fn_PreNew())
+    {
+        return false;
+    }
+	
+    var nRow = this.dsMaster.addRow();
+    this.dsMaster.setColumn(nRow,"USE_YN", "1"); // 사용여부
+};
+
+/**********************************************************************
+        07. 삭제 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 삭제 버튼 실행
+ */
+this.fn_PreDel = function()
+{
+    //멀티삭제용도
+    if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
+    {
+        this.gfn_alert("삭제할 데이터가 없습니다.","삭제정보","","warning");
+        return false;
+    }
+    var result = this.gfn_confirm( "현재선택행을 삭제하시겠습니까?", "삭제정보","","question" );
+
+    if(result == 0)
+    {
+        return false;
+    }
+
+    //다중삭제 용도
+    this.dsMaster.set_enableevent(false);
+    for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+    {
+        if(this.dsMaster.getColumn(i,"CHK") == "1" || this.dsMaster.getRowType(i) == 2)
+        {
+            this.dsMaster.deleteRow(i);
+        }
+    }
+    this.dsMaster.set_enableevent(true);
+
+    //개별삭제시
+    //this.dsMaster.deleteRow(this.dsMaster.rowposition);
+    return true;
+};
+
+/**
+ * 기능 : Row 삭제 또는 Transaction 삭제 처리
+ */
+this.fn_Del = function()
+{
+    if(!this.fn_PreDel())
+    {
+        return false;
+    }
+    var strSvc      = "Del";
+    var strUrl      = "/prj/AM/AM01/Delete_3010110_MList.do";
+    var strInDs     = "dsMaster=dsMaster:u";
+    var strOutDs    = "";
+    var strArg      = "";
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;                                   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+
+this.fn_PostDel = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        08. 저장 함수 선언
+***********************************************************************/
+/**
+ * 기능 : 저장 전 실행
+ */
+this.fn_PreSave = function()
+{
+    if(this.dsMaster.rowcount > 0)
+    {
+        for(var i=0;i<this.dsMaster.rowcount; i++)
+        {
+            if(this.dsMaster.getColumn(i,"CHK") == "0")
+            {
+                continue;
+            }
+            this.dsMaster.setColumn(i,"CHK","0");
+        }
+    }
+
+    if(!this.gfn_isUpdate(this.dsMaster))
+    {
+        this.gfn_alert("변경된 이력이 없습니다.","저장정보","","question");
+        return false;
+    }
+
+    // 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
+    var chkFocusFlg = true;
+    var result      = this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+
+    if (result[0] != "success")
+    {
+        this.gfn_alert(result[0],"저장정보","","question");
+        this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        return false;
+     }
+
+     var result = this.gfn_confirm( "저장 하시겠습니까?", "저장","", "question" );
+     if(result == 0)
+     {
+         return false;
+     }
+     return true;
+
+};
+
+/**
+ * 기능 : 저장 실행
+ */
+this.fn_Save = function()
+{
+    if(!this.fn_PreSave())
+    {
+        return false;
+    }
+    var strSvc      = "Save";
+    var strUrl      = "/prj/AM/AM01/Save_3010110_MList.do";
+    var strInDs     = "ds_input=ds_input:a ";
+        strInDs    += "dsMaster=dsMaster:u";
+    var strOutDs    = "dsMaster=dsMaster";
+    var strArg      = "";
+    var GBV_MENUID    = objApp.gv_cutPrgId;
+    if(! this.gfn_isNull(this.gfn_trim(GBV_MENUID)))
+    {
+    	strArg += "GBV_MENUID=" + GBV_MENUID + " " + strArg;
+    }
+    var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+    var strASync    = true;             //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+    this.gfn_Transaction(strSvc
+                       , strUrl
+                       , strInDs
+                       , strOutDs
+                       , strArg
+                       , strCallBack
+                       , strASync);
+};
+/**
+ *      기능 : 저장시 후처리
+ */
+this.fn_PostSave = function()
+{
+    this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+};
+
+/**********************************************************************
+        09. 초기화
+***********************************************************************/
+/**********************************************************************
+        10. 출력 함수 선언
+***********************************************************************/
+/**********************************************************************
+        11. ExcelDnwn 엑셀로 출력
+***********************************************************************/
+/**********************************************************************
+        13. Get, Set Method
+***********************************************************************/
+/**********************************************************************
+        14. 기타 Control Event
+***********************************************************************/
+
+/**
+ *      그리드멀티 체크
+ */
+this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+    {
+        this.gfn_checkAll(obj, e);
+    }
+};
+
+/**
+ *      그리드멀티 소트정열
+ */
+this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
+    {
+        this.gfn_gridSort(obj,e);
+    }
+};
+
+/**
+  * 닫을시 사용자가 변경유무를 체크(공통처리)
+ **/
+this.fn_beforeclose = function()
+{
+    //return this.gfn_isUpdate(this.dsMaster);
+};
+
+this.fn_Tip = function()
+{
+	this.alert("도움말 준비중입니다.");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item15" compid="txtBigo" propid="value" datasetid="dsMaster" columnid="BIGO"/>
+      <BindItem id="item0" compid="cboUseYn" propid="value" datasetid="dsMaster" columnid="USE_YN"/>
+      <BindItem id="item2" compid="edtSort" propid="value" datasetid="dsMaster" columnid="SORT"/>
+      <BindItem id="item4" compid="edtWiwonhoeCd" propid="value" datasetid="dsMaster" columnid="WIWONHOE_CD"/>
+      <BindItem id="item6" compid="edtWiwonheoNm" propid="value" datasetid="dsMaster" columnid="WIWONHOE_NM"/>
+      <BindItem id="item8" compid="edtYongdoCol1" propid="value" datasetid="dsMaster" columnid="YONGDO_COLUMN1"/>
+      <BindItem id="item10" compid="edtYongdoCol4" propid="value" datasetid="dsMaster" columnid="YONGDO_COLUMN4"/>
+      <BindItem id="item12" compid="edtYongdoCol2" propid="value" datasetid="dsMaster" columnid="YONGDO_COLUMN2"/>
+      <BindItem id="item14" compid="edtYongdoCol5" propid="value" datasetid="dsMaster" columnid="YONGDO_COLUMN5"/>
+      <BindItem id="item17" compid="edtYongdoCol3" propid="value" datasetid="dsMaster" columnid="YONGDO_COLUMN3"/>
+    </Bind>
+  </Form>
+</FDL>

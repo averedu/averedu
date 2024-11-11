@@ -15,7 +15,7 @@ public class NPFrmVO implements RowType{
     private String serverIp;
     private String userPgm;
     private String menuId;
-    private String sysGb;
+    private String sysGb; 
 
 	public String getSysGb() {
 		return sysGb;

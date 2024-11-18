@@ -54,7 +54,7 @@
 	     , A.UPPER_MENU_ID AS PMENU_ID    /* 상위메뉴ID */
 	     , A.MENU_NM                      /* 메뉴명 */
 	     , '1' AS MENU_LVL
-	  FROM COM.SSYS200 A  -- 메뉴마스터테이블
+	  FROM COM.CSYS210 A  -- 메뉴마스터테이블
 	</select>
 	
 	<select id="retrieveLoginMenuData_1" parameterType="map" resultType="egovMap">
@@ -644,7 +644,7 @@
                            , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 2)         AS FORM_ID            /*FORMID(xfdl)*/
                            , B.PGM_NM                                           AS FORM_NM            /*FORM명(한글명)*/
                            , CASE WHEN A.PGM_ID = ' ' THEN 1 ELSE 2 END         AS MENU_LVL           /*메뉴레벨*/
-                           , A.BUSNS_SE_CODE                                    AS MENU_DIV           /*메뉴구분*/
+                           , A.BUSNS_SE_CD                                    AS MENU_DIV           /*메뉴구분*/
                            , '1'                                                AS LINK_YN            /*연결여부*/
                            , A.SORT_SN                                          AS MENU_SORT          /*메뉴순서*/
                            , ''                                                 AS REG_YN             /*등록*/
@@ -653,8 +653,8 @@
                            , ''                                                 AS AUTH_CD            /*권한코드*/
                            , ''                                                 AS AUTH_NM            /*권한명*/
                            , '0'                                                AS MY_MENU_FG         /*즐겨찾기 메뉴여부 */      
-						FROM COM.SSYS200 A
-						LEFT OUTER JOIN COM.SSYS100 B
+						FROM COM.CSYS210 A
+						LEFT OUTER JOIN COM.CSYS200 B
 						  ON A.PGM_ID = B.PGM_ID
 						 AND B.USE_AT = '1'
 )  , VW_TEMP_MENU (LVL

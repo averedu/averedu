@@ -9,17 +9,17 @@
          , A.PGM_ID AS PROG_ID    /* 프로그램ID */
          , A.PGM_PATH_NM          /* 프로그램경로명 */
          , A.PGM_NM               /* 프로그램명 */
-         , A.PGM_KND_SE_CODE      /* 프로그램종류구분코드 */
-         , A.SYS_SE_CODE          /* 시스템구분코드 */
-         , A.BUSNS_LCLAS_CODE     /* 업무대분류코드 */
-         , A.BUSNS_MLSFC_CODE     /* 업무중분류코드 */
+         , A.PGM_KND_SE_CD      /* 프로그램종류구분코드 */
+         , A.SYS_SE_CD          /* 시스템구분코드 */
+         , A.BUSNS_LCLAS_CD     /* 업무대분류코드 */
+         , A.BUSNS_MLSFC_CD     /* 업무중분류코드 */
          , A.USE_AT               /* 사용여부 */
          , A.SORT_SN              /* 정렬순번 */
          , A.FRST_INPTR_ID        /* 최초입력자ID */
          , A.FRST_INPUT_DT        /* 최초입력일시 */
-         , A.LAST_UPDSR           /* 최종수정입력자ID */
-         , A.LAST_MODF_CODE       /* 최종수정일시 */
-      FROM COM.SSYS100 A
+         , A.LAST_MODF_ID           /* 최종수정입력자ID */
+         , A.LAST_MODF_DT       /* 최종수정일시 */
+      FROM COM.CSYS200 A
      WHERE 1 = 1
 	   <if test="PROG_ID != null and PROG_ID != ''" >
        AND A.PGM_ID LIKE '%' || #{PROG_ID} || '%'
@@ -72,7 +72,7 @@
 	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListPKey" parameterType="map" resultType="egovMap">
 	/* SYS001ProgramMasterDAO.retrieveProgramMasterListPKey 프로그램 키값을 추출 조회 */                    									
 	SELECT 'P' || LPAD(TO_NUMBER(SUBSTR(MAX(A.PGM_ID), 2, 7)) + 1, 6, 0) AS KEY_CODE
-      FROM COM.SSYS100 A
+      FROM COM.CSYS200 A
 	</select>
 							
 	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListPKey_1" parameterType="map" resultType="egovMap">                    									
@@ -88,7 +88,7 @@
 	<select id="SYS001ProgramMasterDAO.retrieveProgramMasterListKey" parameterType="map" resultType="egovMap">
 	/* SYS001ProgramMasterDAO.retrieveProgramMasterListKey 프로그램 중복 체크 */
 	SELECT COUNT(1) AS CNT
-      FROM COM.SSYS100 A
+      FROM COM.CSYS200 A
      WHERE A.PGM_ID = #{PROG_ID}
 	</select>
 	
@@ -105,24 +105,24 @@
 	
 	<insert id="insertProgramMasterList" parameterType="map">
 	/* SYS001ProgramMasterDAO.insertProgramMasterList 프로그램 생성 */
-	INSERT INTO COM.SSYS100
+	INSERT INTO COM.CSYS200
 	(
 	       PGM_ID				/* 프로그램ID */
          , PGM_NM				/* 프로그램명 */
          , PGM_PATH_NM			/* 프로그램경로명 */
-         , PGM_KND_SE_CODE		/* 프로그램종류구분코드 */
-         , SYS_SE_CODE			/* 시스템구분코드 */
-         , BUSNS_LCLAS_CODE		/* 업무대분류코드 */
-         , BUSNS_MLSFC_CODE		/* 업무중분류코드 */
+         , PGM_KND_SE_CD		/* 프로그램종류구분코드 */
+         , SYS_SE_CD			/* 시스템구분코드 */
+         , BUSNS_LCLAS_CD		/* 업무대분류코드 */
+         , BUSNS_MLSFC_CD		/* 업무중분류코드 */
          , USE_AT				/* 사용여부 */
          , SORT_SN				/* 정렬순번 */
          , FRST_INPTR_ID		/* 최초입력자ID */
          , FRST_INPUT_DT		/* 최초입력일시 */
          , FRST_INPUT_MENU_ID	/* 최초입력메뉴ID */
          , FRST_INPUT_IP		/* 최초입력IP */
-         , LAST_UPDSR			/* 최종수정입력자ID */
-         , LAST_MODF_CODE		/* 최종수정일시 */
-         , LAST_MODF_CODE_ID	/* 최종수정메뉴ID */
+         , LAST_MODF_ID			/* 최종수정입력자ID */
+         , LAST_MODF_DT		/* 최종수정일시 */
+         , LAST_MODF_MENU_ID	/* 최종수정메뉴ID */
          , LAST_MODF_IP			/* 최종수정IP */
 	) VALUES (
 	       #{PROG_ID}           /* 프로그램ID */
@@ -177,13 +177,13 @@
 
 	<update id="updateProgramMasterList" parameterType="map">
 	/* SYS001ProgramMasterDAO.updateProgramMasterList 프로그램 수정 */
-	UPDATE COM.SSYS100
+	UPDATE COM.CSYS200
 	   SET PGM_PATH_NM       = #{PGM_PATH_NM}   /* 프로그램경로명 */
 	     , PGM_NM            = #{PGM_NM}        /* 프로그램명 */
 	     , USE_AT            = #{USE_AT}        /* 사용여부 */
-         , LAST_UPDSR		 = #{MOD_ID}        /* 최종수정입력자ID */
-         , LAST_MODF_CODE	 = SYSDATE          /* 최종수정일시 */
-         , LAST_MODF_CODE_ID = #{IP_ADDRESS}    /* 최종수정메뉴ID */
+         , LAST_MODF_ID		 = #{MOD_ID}        /* 최종수정입력자ID */
+         , LAST_MODF_DT	 = SYSDATE          /* 최종수정일시 */
+         , LAST_MODF_MENU_ID = #{IP_ADDRESS}    /* 최종수정메뉴ID */
          , LAST_MODF_IP		 = #{MENU_ID}       /* 최종수정IP */
 	 WHERE 1 = 1
 	   AND PGM_ID = #{PROG_ID}
@@ -206,7 +206,7 @@
 
 	<delete id="SYS001ProgramMasterDAO.deleteProgramMasterList" parameterType="map">
 	/* SYS001ProgramMasterDAO.deleteProgramMasterList 프로그램 삭제 */
-	DELETE FROM COM.SSYS100
+	DELETE FROM COM.CSYS200
 	 WHERE 1 = 1
 	   AND PGM_ID = #{PROG_ID}
 	</delete>

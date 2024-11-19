@@ -51,7 +51,7 @@
 	
 	<select id="retrieveLoginMenuData" parameterType="map" resultType="egovMap">
 	SELECT A.MENU_ID                      /* 메뉴ID */
-	     , A.UPPER_MENU_ID AS PMENU_ID    /* 상위메뉴ID */
+	     , A.UP_MENU_ID AS PMENU_ID    /* 상위메뉴ID */
 	     , A.MENU_NM                      /* 메뉴명 */
 	     , '1' AS MENU_LVL
 	  FROM COM.CSYS210 A  -- 메뉴마스터테이블
@@ -631,32 +631,32 @@
 	
 	<select id="retrieveLoginLeftMenuList" parameterType="map" resultType="egovMap">
 	WITH VW_LEFT_MENU AS (SELECT A.MENU_ID                                          AS MENU_ID            /*메뉴아이디*/
-                           , A.UPPER_MENU_ID                                    AS PMENU_ID           /*상위메뉴아이디*/
+                           , A.UP_MENU_ID                                    AS PMENU_ID           /*상위메뉴아이디*/
                            , A.MENU_NM                                          AS MENU_NM            /*메뉴명*/
                            , ''                                         		AS MENU_EN            /*메뉴명(영어)*/
                            , ''                                          		AS MENU_CH            /*메뉴명(중국어)*/
                            , ''                                          		AS MENU_JP            /*메뉴명(일어)*/
                            , ''                                         		AS MENU_EC            /*메뉴명(기타언어)*/
-                           , A.RM_DTLS                                          AS MENU_DC            /*메뉴설명*/
+                           , A.REMK_CTNT                                          AS MENU_DC            /*메뉴설명*/
                            , A.PGM_ID                                           AS PROG_ID            /*프로그램ID(프로젝트 + 0001)*/
                            , CASE WHEN A.PGM_ID IS NULL THEN '0' ELSE '1' END   AS PROG_FG            /*화면출력메뉴 유무체크*/ 
                            , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 1)         AS FORM_PATH          /*FORM위치명(PREFIX)*/
                            , REGEXP_SUBSTR(B.PGM_PATH_NM,'[^/]+', 1, 2)         AS FORM_ID            /*FORMID(xfdl)*/
                            , B.PGM_NM                                           AS FORM_NM            /*FORM명(한글명)*/
                            , CASE WHEN A.PGM_ID = ' ' THEN 1 ELSE 2 END         AS MENU_LVL           /*메뉴레벨*/
-                           , A.BUSNS_SE_CD                                    AS MENU_DIV           /*메뉴구분*/
+                           , A.BUSS_FG_CD                                    AS MENU_DIV           /*메뉴구분*/
                            , '1'                                                AS LINK_YN            /*연결여부*/
-                           , A.SORT_SN                                          AS MENU_SORT          /*메뉴순서*/
+                           , A.SORT_SEQ                                          AS MENU_SORT          /*메뉴순서*/
                            , ''                                                 AS REG_YN             /*등록*/
                            , ''                                                 AS PRT_YN             /*출력*/
                            , ''                                                 AS DOWN_YN            /*다운로드*/
-                           , ''                                                 AS AUTH_CD            /*권한코드*/
-                           , ''                                                 AS AUTH_NM            /*권한명*/
-                           , '0'                                                AS MY_MENU_FG         /*즐겨찾기 메뉴여부 */      
+                           , ''                                                 AS AUTH_CD            /*권한코드.*/
+                           , ''                                                 AS AUTH_NM            /*권한명 */
+                           , '0'                                                AS MY_MENU_FG         /*즐겨찾기 메뉴여부*/      
 						FROM COM.CSYS210 A
 						LEFT OUTER JOIN COM.CSYS200 B
 						  ON A.PGM_ID = B.PGM_ID
-						 AND B.USE_AT = '1'
+						 AND B.USE_YN = '1'
 )  , VW_TEMP_MENU (LVL
                 , MENU_ID
                 , PMENU_ID

@@ -9,13 +9,13 @@
          , A.PGM_ID AS PROG_ID    /* 프로그램ID */
          , A.PGM_PATH_NM          /* 프로그램경로명 */
          , A.PGM_NM               /* 프로그램명 */
-         , A.PGM_KND_SE_CD      /* 프로그램종류구분코드 */
-         , A.SYS_SE_CD          /* 시스템구분코드 */
-         , A.BUSNS_LCLAS_CD     /* 업무대분류코드 */
-         , A.BUSNS_MLSFC_CD     /* 업무중분류코드 */
-         , A.USE_AT               /* 사용여부 */
-         , A.SORT_SN              /* 정렬순번 */
-         , A.FRST_INPTR_ID        /* 최초입력자ID */
+         , A.PGM_KND_FG_CD      /* 프로그램종류구분코드 */
+         , A.SYSTEM_FG_CD          /* 시스템구분코드 */
+         , A.BUSS_LCLAS_CD     /* 업무대분류코드 */
+         , A.BUSS_MCLSF_CD     /* 업무중분류코드 */
+         , A.USE_YN               /* 사용여부 */
+         , A.SORT_SEQ              /* 정렬순번 */
+         , A.FRST_INPUT_ID        /* 최초입력자ID */
          , A.FRST_INPUT_DT        /* 최초입력일시 */
          , A.LAST_MODF_ID           /* 최종수정입력자ID */
          , A.LAST_MODF_DT       /* 최종수정일시 */
@@ -28,7 +28,7 @@
        AND A.PGM_NM LIKE '%' || #{PGM_NM} || '%'
        </if>
 	   <if test="USER_YN != null and USER_YN != ''" >
-       AND A.USE_AT = #{USER_YN}
+       AND A.USE_YN = #{USER_YN}
        </if>
      ORDER BY A.PGM_ID
     </select>
@@ -111,12 +111,12 @@
          , PGM_NM				/* 프로그램명 */
          , PGM_PATH_NM			/* 프로그램경로명 */
          , PGM_KND_SE_CD		/* 프로그램종류구분코드 */
-         , SYS_SE_CD			/* 시스템구분코드 */
-         , BUSNS_LCLAS_CD		/* 업무대분류코드 */
-         , BUSNS_MLSFC_CD		/* 업무중분류코드 */
-         , USE_AT				/* 사용여부 */
-         , SORT_SN				/* 정렬순번 */
-         , FRST_INPTR_ID		/* 최초입력자ID */
+         , SYSTEM_FG_CD			/* 시스템구분코드 */
+         , BUSS_LCLAS_CD		/* 업무대분류코드 */
+         , BUSS_MCLSF_CD		/* 업무중분류코드 */
+         , USE_YN				/* 사용여부 */
+         , SORT_SEQ				/* 정렬순번 */
+         , FRST_INPUT_ID		/* 최초입력자ID */   
          , FRST_INPUT_DT		/* 최초입력일시 */
          , FRST_INPUT_MENU_ID	/* 최초입력메뉴ID */
          , FRST_INPUT_IP		/* 최초입력IP */
@@ -176,11 +176,11 @@
 	</insert>
 
 	<update id="updateProgramMasterList" parameterType="map">
-	/* SYS001ProgramMasterDAO.updateProgramMasterList 프로그램 수정 */
+	/* SYS001ProgramMasterDAO.updateProgramMasterList 프로그램 수정. */
 	UPDATE COM.CSYS200
 	   SET PGM_PATH_NM       = #{PGM_PATH_NM}   /* 프로그램경로명 */
 	     , PGM_NM            = #{PGM_NM}        /* 프로그램명 */
-	     , USE_AT            = #{USE_AT}        /* 사용여부 */
+	     , USE_YN            = #{USE_AT}        /* 사용여부 */
          , LAST_MODF_ID		 = #{MOD_ID}        /* 최종수정입력자ID */
          , LAST_MODF_DT	 = SYSDATE          /* 최종수정일시 */
          , LAST_MODF_MENU_ID = #{IP_ADDRESS}    /* 최종수정메뉴ID */

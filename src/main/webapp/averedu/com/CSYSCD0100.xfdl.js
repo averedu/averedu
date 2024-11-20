@@ -66,7 +66,7 @@
             obj.set_preload("true");
             obj.set_updatecontrol("true");
             obj.set_useclientlayout("false");
-            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID_NM\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID_NM_ENG\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID_NM_CH\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID_NM_JP\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID_NM_ETC\" type=\"STRING\" size=\"32\"/><Column id=\"AUTO_PLUS\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"COM_CD\" type=\"STRING\" size=\"32\"/><Column id=\"COM_CD_NM\" type=\"STRING\" size=\"32\"/><Column id=\"USE_AT\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -90,17 +90,17 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grdMaster","5","80",null,"363","3",null,null,null,null,null,this);
+            obj = new Grid("grdMaster","5","123",null,"363","3",null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("dsMaster");
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
             obj.set_cellsizingtype("col");
             obj.set_autofittype("col");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"92\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell text=\"No.\"/><Cell col=\"1\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"2\" text=\"공통코드명\" cssclass=\"point\"/><Cell col=\"3\" text=\"영어\"/><Cell col=\"4\" text=\"중국어\"/><Cell col=\"5\" text=\"일어\"/><Cell col=\"6\" text=\"기타언어\"/><Cell col=\"7\" text=\"사용여부\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:CLASS_ID\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"2\" text=\"bind:CLASS_ID_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"3\" text=\"bind:CLASS_ID_NM_ENG\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:CLASS_ID_NM_CH\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:USE_YN\" displaytype=\"combotext\" edittype=\"combo\" combodataset=\"dsGYn\" combocodecol=\"CODE\" combodatacol=\"CODE_NM\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"3\" text=\"bind:CLASS_ID_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:CLASS_ID_NM_ENG\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:CLASS_ID_NM_CH\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdDetail","5","490",null,null,"3","-7",null,null,null,null,this);
+            obj = new Grid("grdDetail","5","521",null,null,"3","3",null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsDetail");
             obj.set_autoenter("select");
@@ -109,9 +109,10 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"48\"/><Column size=\"87\"/><Column size=\"81\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"No.\"/><Cell col=\"2\" text=\"공통코드\"/><Cell col=\"3\" text=\"상세코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"코드명(한국)\" cssclass=\"point\"/><Cell col=\"5\" text=\"코드명(영어)\"/><Cell col=\"6\" text=\"코드명(중국어)\"/><Cell col=\"7\" text=\"코드명(일어)\"/><Cell col=\"8\" text=\"코드명(기타언어)\"/><Cell col=\"9\" text=\"순서\"/><Cell col=\"10\" text=\"약어\"/><Cell col=\"11\" text=\"설명\"/><Cell col=\"12\" text=\"참조1\"/><Cell col=\"13\" text=\"참조2\"/><Cell col=\"14\" text=\"참조3\"/><Cell col=\"15\" text=\"참조4\"/><Cell col=\"16\" text=\"참조5\"/><Cell col=\"17\" text=\"참조6\"/><Cell col=\"18\" text=\"참조7\"/><Cell col=\"19\" text=\"참조8\"/><Cell col=\"20\" text=\"참조9\"/><Cell col=\"21\" text=\"참조10\"/><Cell col=\"22\" text=\"사용여부\"/><Cell col=\"23\" text=\"등록자\"/><Cell col=\"24\" text=\"등록일자\"/><Cell col=\"25\" text=\"수정자\"/><Cell col=\"26\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\" displaytype=\"text\"/><Cell col=\"2\" text=\"bind:CLASS_ID\" displaytype=\"text\" edittype=\"none\"/><Cell col=\"3\" text=\"bind:CD\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"4\" text=\"bind:CD_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:CD_NM_ENG\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CD_NM_CH\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:CD_NM_JP\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:CD_NM_ETC\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"9\" text=\"bind:SORT\" displaytype=\"number\" edittype=\"mask\" maskeditformat=\"expr:##\" textAlign=\"right\"/><Cell col=\"10\" displaytype=\"text\" edittype=\"text\" text=\"bind:ADDR\" textAlign=\"left\"/><Cell col=\"11\" displaytype=\"text\" edittype=\"text\" text=\"bind:CD_DC\" textAlign=\"left\"/><Cell col=\"12\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_1\" textAlign=\"left\"/><Cell col=\"13\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_2\" textAlign=\"left\"/><Cell col=\"14\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_3\" textAlign=\"left\"/><Cell col=\"15\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_4\" textAlign=\"left\"/><Cell col=\"16\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_5\" textAlign=\"left\"/><Cell col=\"17\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_6\" textAlign=\"left\"/><Cell col=\"18\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_7\" textAlign=\"left\"/><Cell col=\"19\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_8\" textAlign=\"left\"/><Cell col=\"20\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_9\" textAlign=\"left\"/><Cell col=\"21\" displaytype=\"text\" edittype=\"text\" text=\"bind:REF_10\" textAlign=\"left\"/><Cell col=\"22\" displaytype=\"combotext\" edittype=\"combo\" text=\"bind:USE_YN\" combodataset=\"dsDGYn\" combocodecol=\"CODE\" combodatacol=\"CODE_NM\"/><Cell col=\"23\" edittype=\"none\" displaytype=\"text\" text=\"bind:REG_ID\"/><Cell col=\"24\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" text=\"bind:REG_DT\" calendardisplaynulltype=\"none\"/><Cell col=\"25\" displaytype=\"text\" text=\"bind:MOD_ID\"/><Cell col=\"26\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" text=\"bind:MOD_DT\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Div("divSearch","0","0",null,"44","0",null,null,null,null,null,this);
+            obj = new Div("divSearch","0","0",null,"88","3",null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_cssclass("div_WF_SearchBox");
+            obj.set_text("");
             this.addChild(obj.name, obj);
 
             obj = new Static("staSubTitle01","0","9","73","26",null,null,null,null,null,null,this.divSearch.form);
@@ -120,31 +121,25 @@
             obj.set_cssclass("sta_WF_SearchLbl");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Edit("edtClassId","74","11","127","22",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("1");
-            obj.set_imemode("alpha");
-            obj.set_inputmode("upper");
-            this.divSearch.addChild(obj.name, obj);
-
             obj = new Static("staSubTitle04","203","9","83","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("2");
-            obj.set_text("공통코드명 ");
+            obj.set_text("공통코드/명 ");
             obj.set_cssclass("sta_WF_SearchLbl");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Edit("edtClassNm","289","11","307","22",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Edit("edtClassNm","350","11","123","22",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("3");
             obj.set_imemode("alpha");
             obj.set_inputmode("upper");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("staSubTitle05","596","9","78","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Static("staSubTitle05","473","9","120","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("4");
-            obj.set_text("사용여부");
+            obj.set_text("공통코드사용여부");
             obj.set_cssclass("sta_WF_SearchLbl");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Combo("cboUserYn","677","11","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Combo("cboUserYn","593","9","123","22",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("5");
             obj.set_innerdataset("dsYn");
             obj.set_codecolumn("CODE");
@@ -152,38 +147,92 @@
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("staRowCnt","6","53","60","22",null,null,null,null,null,null,this);
+            obj = new Static("staSubTitle01_00","0","49","73","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("6");
+            obj.set_text("코드값명");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Edit("edtClassId00","74","51","127","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("7");
+            obj.set_imemode("alpha");
+            obj.set_inputmode("upper");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("staSubTitle04_00","203","49","130","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("8");
+            obj.set_text("공통코드값사용여부");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboUserYn00","350","51","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("9");
+            obj.set_innerdataset("dsYn");
+            obj.set_codecolumn("CODE");
+            obj.set_datacolumn("CODE_NM");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Button("btnSearch",null,"25","90","22","5",null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("10");
+            obj.set_text("조회");
+            obj.set_cssclass("btn_WF_Crud");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboCommCode","74","11","127","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("1");
+            obj.set_innerdataset("dsYn");
+            obj.set_codecolumn("CODE");
+            obj.set_datacolumn("CODE_NM");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("staSubTitle05_00","716","9","78","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("11");
+            obj.set_text("구코드");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("edtOldCd","794","9","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("12");
+            obj.set_innerdataset("dsYn");
+            obj.set_codecolumn("CODE");
+            obj.set_datacolumn("CODE_NM");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("staRowCnt","6","95","60","22",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
             obj.set_usedecorate("true");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDAdd",null,"452","60","22","165",null,null,null,null,null,this);
+            obj = new Button("btnDDel",null,"490","60","22","165",null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("추가");
+            obj.set_text("삭제");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDExcelDn",null,"452","90","22","5",null,null,null,null,null,this);
+            obj = new Button("btnDExcelDn",null,"490","90","22","5",null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("엑셀다운로드");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Static("staRowCnt1","4","452",null,"24","1553",null,null,null,null,null,this);
+            obj = new Static("staRowCnt1","4","490",null,"24","1553",null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDDel",null,"452","60","22","100",null,null,null,null,null,this);
+            obj = new Button("btnD",null,"490","60","22","100",null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("삭제");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","515","45","100","35",null,null,null,null,null,null,this);
+            obj = new Static("Static01","515","88","100","35",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("35");
             obj.set_cssclass("sta_GU_space");
@@ -193,6 +242,12 @@
             obj.set_textAlign("center");
             obj.set_wordWrap("char");
             this.addChild(obj.name, obj);
+
+            obj = new Button("btnDAdd",null,"490","60","22","230",null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("추가");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1640,800,this,function(p){});
@@ -201,15 +256,23 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-            obj = new BindItem("item0","divSearch.form.edtClassId","value","ds_input","CLASS_ID");
-            this.addChild(obj.name, obj);
-            obj.bind();
-
             obj = new BindItem("item1","divSearch.form.edtClassNm","value","ds_input","CLASS_ID_NM");
             this.addChild(obj.name, obj);
             obj.bind();
 
             obj = new BindItem("item2","divSearch.form.cboUserYn","value","ds_input","USE_YN");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item4","divSearch.form.cboUserYn00","value","ds_input","USE_YN");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item5","divSearch.form.cboCommCode","value","ds_input","USE_YN");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item0","divSearch.form.edtOldCd","value","ds_input","USE_YN");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -411,7 +474,7 @@
         	}
 
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/sys/CommCodeMasterList.do";
+        	var strUrl 		= "/prj/sys/RetrieveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
@@ -439,7 +502,7 @@
         ***********************************************************************/
         this.dsMaster_onrowposchanged = function(obj,e)
         {
-        	//이후 코드 상세 처리후 해제 this.fn_DRet();
+        	this.fn_DRet();
         };
 
         /**
@@ -768,7 +831,7 @@
         	this.dsMaster.set_enableevent(false);
 
         	var strSvc 		= "Save";
-        	var strUrl 		= "/prj/sys/InsertCommCodeMasterList.do";
+        	var strUrl 		= "/prj/sys/SaveCommCodeMasterList.do";
         	var strInDs     = "ds_input=ds_input ";
         		strInDs    += "dsMaster=dsMaster:u ";
         		strInDs    += "dsDetail=dsDetail:u";
@@ -1008,12 +1071,18 @@
             this.grdMaster.addEventHandler("onheaddblclick",this.grdMaster_onheaddblclick,this);
             this.grdDetail.addEventHandler("onheadclick",this.grdDetail_onheadclick,this);
             this.grdDetail.addEventHandler("onheaddblclick",this.grdDetail_onheaddblclick,this);
-            this.divSearch.form.edtClassId.addEventHandler("onkeyup",this.divSearch_edtClassId_onkeyup,this);
+            this.divSearch.form.staSubTitle04.addEventHandler("onclick",this.divSearch_staSubTitle04_onclick,this);
             this.divSearch.form.edtClassNm.addEventHandler("onkeyup",this.divSearch_edtClassNm_onkeyup,this);
             this.divSearch.form.cboUserYn.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
-            this.btnDAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.divSearch.form.edtClassId00.addEventHandler("onkeyup",this.divSearch_edtClassId_onkeyup,this);
+            this.divSearch.form.cboUserYn00.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
+            this.divSearch.form.btnSearch.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
+            this.divSearch.form.cboCommCode.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
+            this.divSearch.form.edtOldCd.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
+            this.btnDDel.addEventHandler("onclick",this.btnDAdd_onclick,this);
             this.btnDExcelDn.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
-            this.btnDDel.addEventHandler("onclick",this.btnDDel_onclick,this);
+            this.btnD.addEventHandler("onclick",this.btnDDel_onclick,this);
+            this.btnDAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
             this.dsMaster.addEventHandler("canrowposchange",this.dsMaster_canrowposchange,this);
             this.dsMaster.addEventHandler("onrowposchanged",this.dsMaster_onrowposchanged,this);
             this.dsDetail.addEventHandler("cancolumnchange",this.dsDetail_cancolumnchange,this);

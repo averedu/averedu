@@ -51,7 +51,7 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/sys/CommCodeMasterList.do")
+	@RequestMapping(value = "/prj/com/CommCodeMasterList.do")
 	public ModelAndView actionRetrieveCommCodeMasterList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
@@ -87,7 +87,7 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/sys/InsertCommCodeMasterList.do")
+	@RequestMapping(value = "/prj/com/InsertCommCodeMasterList.do")
 	public ModelAndView actionSaveCommCodeMasterList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");

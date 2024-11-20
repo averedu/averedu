@@ -226,10 +226,11 @@
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnD",null,"490","60","22","100",null,null,null,null,null,this);
+            obj = new Button("btnDSave",null,"490","60","22","100",null,null,null,null,null,this);
             obj.set_taborder("7");
-            obj.set_text("삭제");
+            obj.set_text("저장");
             obj.set_cssclass("btn_WF_Crud");
+            obj.set_tabstop("false");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","515","88","100","35",null,null,null,null,null,null,this);
@@ -245,6 +246,30 @@
 
             obj = new Button("btnDAdd",null,"490","60","22","230",null,null,null,null,null,this);
             obj.set_taborder("9");
+            obj.set_text("추가");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnMDel",null,"95","60","22","164",null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("삭제");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnMExcelDn",null,"95","90","22","4",null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("엑셀다운로드");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnMSave",null,"95","60","22","99",null,null,null,null,null,this);
+            obj.set_taborder("12");
+            obj.set_text("저장");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnMAdd",null,"95","60","22","229",null,null,null,null,null,this);
+            obj.set_taborder("13");
             obj.set_text("추가");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
@@ -451,7 +476,7 @@
         	}
         	this.dsMaster.set_enableevent(false);
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/sys/RetrieveProgramMasterList.do";
+        	var strUrl 		= "/prj/com/CommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
@@ -784,8 +809,12 @@
             this.divSearch.form.edtOldCd.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.btnDDel.addEventHandler("onclick",this.btnDAdd_onclick,this);
             this.btnDExcelDn.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
-            this.btnD.addEventHandler("onclick",this.btnDDel_onclick,this);
+            this.btnDSave.addEventHandler("onclick",this.btnDDel_onclick,this);
             this.btnDAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.btnMDel.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.btnMExcelDn.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
+            this.btnMSave.addEventHandler("onclick",this.btnDDel_onclick,this);
+            this.btnMAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
             this.dsMaster.addEventHandler("canrowposchange",this.dsMaster_canrowposchange,this);
             this.dsMaster.addEventHandler("onrowposchanged",this.dsMaster_onrowposchanged,this);
             this.dsDetail.addEventHandler("cancolumnchange",this.dsDetail_cancolumnchange,this);

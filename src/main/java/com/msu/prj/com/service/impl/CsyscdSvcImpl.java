@@ -60,7 +60,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 		return;
 	}
-	
+
 	/**
 	 * 기초표준코드1,2리스트 저장/수정(saveCommCodeMasterList)
 	 * 
@@ -88,16 +88,19 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 				if (rowType == DataSet.ROW_TYPE_INSERTED) {
 					// pk레코드조회
-				 /* List<Map> recordKeyList = csyscdDAO.retrieveCommCodeMasterListPKey(outMap);
-					Map<String, Object> mapKeyValue = (Map<String, Object>) recordKeyList.get(0);
-					recordKeyValue = DataUtil.nvl(mapKeyValue.get("CLASS_ID")).toString();
-						
-					outMap.put("CLASS_ID", recordKeyValue);
+					/*
+					 * List<Map> recordKeyList =
+					 * csyscdDAO.retrieveCommCodeMasterListPKey(outMap);
+					 * Map<String, Object> mapKeyValue = (Map<String, Object>)
+					 * recordKeyList.get(0); recordKeyValue =
+					 * DataUtil.nvl(mapKeyValue.get("CLASS_ID")).toString();
+					 * 
+					 * outMap.put("CLASS_ID", recordKeyValue);
+					 * 
+					 * if (checkExistPK(outMap)) { throw new CommException("1",
+					 * "공통코드가 중복 되었습니다.", ""); }
+					 */
 
-					if (checkExistPK(outMap)) {
-						throw new CommException("1", "공통코드가 중복 되었습니다.", "");
-					}*/
-					
 					outMap.put("REG_ID", sessionVO.getUserId().toString());
 					outMap.put("MOD_ID", sessionVO.getUserId().toString());
 
@@ -112,7 +115,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 				}
 			}
-		} 
+		}
 
 		// 서버에서 시퀀스 제조회시
 		List<Map> records = csyscdDAO.retrieveCommCodeMasterList(inMap);
@@ -123,5 +126,86 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		outDataset.put("dsMaster", dsOut);
 
 		return;
+	}
+
+	/**
+	 * 부서코드관리 리스트 조회 (deptCdMngList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdMngList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
+			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+	}
+
+	/**
+	 * 부서코드관리 저장/수정 (deptCdMngSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdMngSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
+			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+	}
+
+	/**
+	 * 부서코드관리 삭제 (deptCdMngDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdMngDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
+			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+	}
+
+	/**
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+
+	}
+
+	/**
+	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+
+	}
+
+	/**
+	 * 부서코드연계속성정보 삭제 (deptCdConnAttrDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+
 	}
 }

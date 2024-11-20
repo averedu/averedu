@@ -411,7 +411,7 @@
         	}
 
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/sys/CommCodeMasterList.do";
+        	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
@@ -464,7 +464,7 @@
 
 
         	var strSvc 		= "DRet";
-        	var strUrl 		= "/prj/sys/RetrieveCommCodeDetailList.do";
+        	var strUrl 		= "/prj/com/RetrieveCommCodeDetailList.do";
         	var strInDs  	= "ds_input1=ds_input1";
         	var strOutDs 	= "dsDetail=dsDetail";
         	var strArg 		= "";
@@ -614,7 +614,7 @@
         		return false;
         	}
         	var strSvc 		= "Delete";
-        	var strUrl 		= "/prj/sys/DeleteCommCodeMasterList.do";
+        	var strUrl 		= "/prj/com/DeleteCommCodeMasterList.do";
         	var strInDs  	= "dsMaster=dsMaster:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
@@ -683,7 +683,7 @@
         	}
 
         	var strSvc 		= "DDelete";
-        	var strUrl 		= "/prj/sys/DeleteCommCodeDetailList.do";
+        	var strUrl 		= "/prj/com/DeleteCommCodeDetailList.do";
         	var strInDs  	= "dsDetail=dsDetail:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
@@ -768,7 +768,7 @@
         	this.dsMaster.set_enableevent(false);
 
         	var strSvc 		= "Save";
-        	var strUrl 		= "/prj/sys/InsertCommCodeMasterList.do";
+        	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";
         	var strInDs     = "ds_input=ds_input ";
         		strInDs    += "dsMaster=dsMaster:u ";
         		strInDs    += "dsDetail=dsDetail:u";

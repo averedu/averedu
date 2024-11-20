@@ -476,7 +476,7 @@
         	}
         	this.dsMaster.set_enableevent(false);
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/com/CommCodeMasterList.do";
+        	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
@@ -581,7 +581,7 @@
         	}
 
         	var strSvc 		= "Del";
-        	var strUrl 		= "/prj/sys/DeleteProgramMasterList.do";
+        	var strUrl 		= "/prj/com/DeleteProgramMasterList.do";
         	var strInDs  	= "dsMaster=dsMaster:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
@@ -659,7 +659,7 @@
         		return false;
         	}
         	var strSvc 		= "Save";
-        	var strUrl 		= "/prj/sys/SaveProgramMasterList.do";
+        	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input:a ";
         		strInDs    += "dsMaster=dsMaster:u";
         	var strOutDs 	= "dsMaster=dsMaster";

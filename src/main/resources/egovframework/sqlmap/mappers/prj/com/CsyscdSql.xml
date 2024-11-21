@@ -7,11 +7,11 @@
         <![CDATA[                                                													
   			 SELECT                                                  											    
                    '0' AS CHK                    	/*CHK*/        		                
-	                 , A.COM_CD AS CLASS_ID         /*공통코드*/	
-	                 , A.COM_CD_NM AS CLASS_ID_NM   /*공통코드명*/    
-	                 , A.USE_AT AS USE_YN           /*사용여부*/
-	                 , A.RM_DTLS 			        /*비고내역*/    
-	                 , A.BF_COM_CD                  /*이전공통코드*/
+	                 , A.CMMN_CD AS CLASS_ID         /*공통코드*/	
+	                 , A.CMMN_CD_NM AS CLASS_ID_NM   /*공통코드명*/    
+	                 , A.USE_YN 		            /*사용여부*/
+	                 , A.REMK_CTNT 			        /*비고내역*/    
+	                 , A.BF_CMMN_CD                  /*이전공통코드*/
 	                 , A.FRST_INPUT_ID AS REG_ID    /*최초입력자ID*/    
 	                 , A.FRST_INPUT_DT AS REG_DT    /*최초입력일시*/    
 	                 , A.FRST_INPUT_MENU_ID         /*최초입력메뉴ID*/    
@@ -33,21 +33,44 @@
 <!--                AND A.CLASS_ID_NM LIKE '%' || #{CLASS_ID_NM} || '%'  -->
 <!--             ]]>                                           													 -->
 <!--         </if>       -->
-<!--            <if test="USE_YN != null and USE_YN != ''">     -->
-<!--             <![CDATA[                                         							                         -->
-<!--                AND A.USE_YN  LIKE '%' || #{USE_YN} || '%'   -->
-<!--             ]]>                                           													 -->
-<!--         </if> -->                                                                                                   
+           <if test="USE_YN != null and USE_YN != ''">    
+            <![CDATA[                                         							                        
+                AND A.USE_YN  LIKE '%' || #{USE_YN} || '%'   
+             ]]>                                           													
+         </if>                                                                                                    
         /* CsyscdDAO.retrieveCommCodeMasterList 기초표준코드1 조회 */	                                 
     </select> 
+    
+    <select id="CsyscdDAO.retrieveCommCodeDetailList">
+		SELECT 
+			A.CMMN_CD
+			,A.CMMN_DETA_CD
+			,A.CMMN_DETA_CD_NM
+			,A.CMMN_DETA_CD_ABBNM
+			,B.LANG_FG_CD
+			,B.LANG_FG_NM
+			,B.LANG_ABBNM
+			,B.USE_YN
+			,B.REMK_CTNT
+			,B.FRST_INPUT_ID
+			,B.FRST_INPUT_DT
+			,B.FRST_INPUT_MENU_ID
+			,B.FRST_INPUT_IP
+			,B.LAST_MODF_ID
+			,B.LAST_MODF_DT
+			,B.LAST_MODF_MENU_ID
+			,B.LAST_MODF_IP
+		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
+		ON A.COM_CD =B.COM_CD AND A.COM_DETL_CD  = B.COM_DETL_CD 
+    </select>
     
      <insert id="CsyscdDAO.insertCommCodeMasterList" parameterType="map"> 
         <![CDATA[                                                														  
             INSERT INTO COM.CSYS100                                       										  
             (                                       																	  
-                   COM_CD                    /*공통코드*/ 
-                 , COM_CD_NM                 /*공통코드명*/ 
-                 , USE_AT                      /*사용여부*/ 
+                   CMMN_CD                    /*공통코드*/ 
+                 , CMMN_CD_NM                 /*공통코드명*/ 
+                 , USE_YN                      /*사용여부*/ 
                  , FRST_INPUT_ID                      /*등록자*/ 
                  , FRST_INPUT_DT                      /*등록일시*/ 
                  , LAST_MODF_ID                      /*수정자*/ 
@@ -72,8 +95,8 @@
         <![CDATA[                                                						
             UPDATE COM.CSYS100                                			        
                SET                                                      				
-                   COM_CD_NM               = #{CLASS_ID_NM}                 /*공통코드명*/  
-                 , USE_AT                    = #{USE_YN}                      /*사용여부*/  
+                   CMMN_CD_NM               = #{CLASS_ID_NM}                 /*공통코드명*/  
+                 , USE_YN                    = #{USE_YN}                      /*사용여부*/  
                  , FRST_INPUT_ID                    = #{REG_ID}                      /*등록자*/  
                  , FRST_INPUT_DT                    = SYSDATE                        /*등록일시*/  
                  , LAST_MODF_ID                    = #{MOD_ID}                      /*수정자*/  

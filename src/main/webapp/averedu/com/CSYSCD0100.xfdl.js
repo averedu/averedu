@@ -35,7 +35,7 @@
             obj.set_loadkeymode("keep");
             obj.set_loadfiltermode("keep");
             obj.set_reversesubsum("false");
-            obj._setContents("<ColumnInfo><Column id=\"CLASS_ID\" type=\"STRING\" size=\"32\"/><Column id=\"CODE\" type=\"STRING\" size=\"32\"/><Column id=\"CODE_NM\" type=\"STRING\" size=\"32\"/><Column id=\"SORT\" type=\"BIGDECIMAL\" size=\"16\"/><Column id=\"ADDR\" type=\"STRING\" size=\"32\"/><Column id=\"CD_DC\" type=\"STRING\" size=\"32\"/><Column id=\"REF_1\" type=\"STRING\" size=\"32\"/><Column id=\"REF_2\" type=\"STRING\" size=\"32\"/><Column id=\"REF_3\" type=\"STRING\" size=\"32\"/><Column id=\"REF_4\" type=\"STRING\" size=\"32\"/><Column id=\"REF_5\" type=\"STRING\" size=\"32\"/><Column id=\"REF_6\" type=\"STRING\" size=\"32\"/><Column id=\"REF_7\" type=\"STRING\" size=\"32\"/><Column id=\"REF_8\" type=\"STRING\" size=\"32\"/><Column id=\"REF_9\" type=\"STRING\" size=\"32\"/><Column id=\"REF_10\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"AUTO_PLUS\" type=\"BIGDECIMAL\" size=\"16\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"CLASS_ID\" type=\"STRING\" size=\"32\"/><Column id=\"CODE\" type=\"STRING\" size=\"32\"/><Column id=\"CODE_NM\" type=\"STRING\" size=\"32\"/><Column id=\"SORT\" type=\"BIGDECIMAL\" size=\"16\"/><Column id=\"ADDR\" type=\"STRING\" size=\"32\"/><Column id=\"CD_DC\" type=\"STRING\" size=\"32\"/><Column id=\"REF_1\" type=\"STRING\" size=\"32\"/><Column id=\"REF_2\" type=\"STRING\" size=\"32\"/><Column id=\"REF_3\" type=\"STRING\" size=\"32\"/><Column id=\"REF_4\" type=\"STRING\" size=\"32\"/><Column id=\"REF_5\" type=\"STRING\" size=\"32\"/><Column id=\"REF_6\" type=\"STRING\" size=\"32\"/><Column id=\"REF_7\" type=\"STRING\" size=\"32\"/><Column id=\"REF_8\" type=\"STRING\" size=\"32\"/><Column id=\"REF_9\" type=\"STRING\" size=\"32\"/><Column id=\"REF_10\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"AUTO_PLUS\" type=\"BIGDECIMAL\" size=\"16\"/></ColumnInfo><Rows><Row><Col id=\"CLASS_ID\">1</Col><Col id=\"CODE\">Y</Col><Col id=\"CODE_NM\">Y</Col></Row><Row><Col id=\"CLASS_ID\">0</Col><Col id=\"CODE\">N</Col><Col id=\"CODE_NM\">N</Col></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -88,6 +88,11 @@
             obj.set_useclientlayout("true");
             obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"CLASS_ID\" type=\"STRING\" size=\"32\"/><Column id=\"CD\" type=\"STRING\" size=\"32\"/><Column id=\"SORT\" type=\"BIGDECIMAL\" size=\"16\"/><Column id=\"CD_NM\" type=\"STRING\" size=\"32\"/><Column id=\"CD_NM_ENG\" type=\"STRING\" size=\"32\"/><Column id=\"CD_NM_CH\" type=\"STRING\" size=\"32\"/><Column id=\"CD_NM_JP\" type=\"STRING\" size=\"32\"/><Column id=\"CD_NM_ETC\" type=\"STRING\" size=\"32\"/><Column id=\"ADDR\" type=\"STRING\" size=\"32\"/><Column id=\"REF_1\" type=\"STRING\" size=\"32\"/><Column id=\"REF_2\" type=\"STRING\" size=\"32\"/><Column id=\"REF_3\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"AUTO_PLUS\" type=\"STRING\" size=\"32\"/><Column id=\"REF_4\" type=\"STRING\" size=\"32\"/><Column id=\"REF_5\" type=\"STRING\" size=\"32\"/><Column id=\"REF_6\" type=\"STRING\" size=\"32\"/><Column id=\"REF_7\" type=\"STRING\" size=\"32\"/><Column id=\"REF_8\" type=\"STRING\" size=\"32\"/><Column id=\"REF_9\" type=\"STRING\" size=\"32\"/><Column id=\"REF_10\" type=\"STRING\" size=\"32\"/><Column id=\"CD_DC\" type=\"STRING\" size=\"32\"/><Column id=\"TCODE\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("ds_use_yn", this);
+            obj._setContents("<ColumnInfo><Column id=\"CD\" type=\"STRING\" size=\"256\"/><Column id=\"YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CD\">1</Col><Col id=\"YN\">Y</Col></Row><Row><Col id=\"CD\">0</Col><Col id=\"YN\">N</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
             obj = new Grid("grdMaster","5","123",null,"363","3",null,null,null,null,null,this);
@@ -97,7 +102,7 @@
             obj.set_autoupdatetype("itemselect");
             obj.set_cellsizingtype("col");
             obj.set_autofittype("col");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"3\" text=\"bind:COM_CD\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:COM_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:CLASS_ID_NM_CH\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"3\" text=\"bind:COM_CD\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:COM_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:USE_AT\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"ds_use_yn\" combodatacol=\"YN\" combocodecol=\"CD\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdDetail","5","521",null,null,"3","3",null,null,null,null,this);
@@ -141,9 +146,9 @@
 
             obj = new Combo("cboUserYn","593","9","123","22",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("5");
-            obj.set_innerdataset("dsYn");
-            obj.set_codecolumn("CODE");
-            obj.set_datacolumn("CODE_NM");
+            obj.set_innerdataset("ds_use_yn");
+            obj.set_codecolumn("CD");
+            obj.set_datacolumn("YN");
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
@@ -167,9 +172,9 @@
 
             obj = new Combo("cboUserYn00","350","51","123","22",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("9");
-            obj.set_innerdataset("dsYn");
-            obj.set_codecolumn("CODE");
-            obj.set_datacolumn("CODE_NM");
+            obj.set_innerdataset("ds_use_yn");
+            obj.set_codecolumn("CD");
+            obj.set_datacolumn("YN");
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
@@ -1088,11 +1093,6 @@
         };
 
 
-        this.grdMaster_oncellposchanged = function(obj,e)
-        {
-        	var oBindDs = obj.getBindDataset();
-        	//console.log(oBindDs.getColumn(e.row, "COM_CD"));
-        };
 
         });
         
@@ -1102,7 +1102,6 @@
             this.addEventHandler("onclose",this.form_onclose,this);
             this.addEventHandler("onload",this.form_onload,this);
             this.grdMaster.addEventHandler("onheaddblclick",this.grdMaster_onheaddblclick,this);
-            this.grdMaster.addEventHandler("oncellposchanged",this.grdMaster_oncellposchanged,this);
             this.grdDetail.addEventHandler("onheadclick",this.grdDetail_onheadclick,this);
             this.grdDetail.addEventHandler("onheaddblclick",this.grdDetail_onheaddblclick,this);
             this.divSearch.form.staSubTitle04.addEventHandler("onclick",this.divSearch_staSubTitle04_onclick,this);
@@ -1110,7 +1109,6 @@
             this.divSearch.form.cboUserYn.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.divSearch.form.edtClassId00.addEventHandler("onkeyup",this.divSearch_edtClassId_onkeyup,this);
             this.divSearch.form.cboUserYn00.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
-            this.divSearch.form.btnSearch.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
             this.divSearch.form.cboCommCode.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.divSearch.form.edtOldCd.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.btnDDel.addEventHandler("onclick",this.btnDAdd_onclick,this);

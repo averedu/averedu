@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CSYSCD0201" width="1920" height="830" titletext="New Form">
+    <Layouts>
+      <Layout height="830" mobileorientation="landscape" width="1920">
+        <Static id="stc_Dept_Title_01" taborder="1" left="13" top="15" height="45" text="&lt;b v='true'&gt;부서코드연계속성정보&lt;/b&gt; " cssclass="stc_Dept_Title_01" right="1060" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false"/>
+        <Static id="stc_dept_01" taborder="2" text="&lt;b v='true'&gt;부서연계 속성명&lt;/b&gt; " left="10" top="69" width="106" height="45" cssclass="stc_dept_01" usedecorate="true" onclick="stc_dept_01_onclick"/>
+        <Edit id="edt_dept_01" taborder="3" left="110" top="76" width="200" height="30" cssclass="edt_dept_01"/>
+        <Static id="stc_dept_02" taborder="4" text="&lt;b v='true'&gt;부서명&lt;/b&gt; " left="10" top="124" width="77" height="45" cssclass="stc_dept_02" onclick="stc01_01_onclick" usedecorate="true"/>
+        <Edit id="edt_dept_02" taborder="5" left="70" top="131" width="120" height="30" cssclass="edt_dept_02"/>
+        <Static id="stc_dept_03" taborder="6" text="&lt;b v='true'&gt;부서코드&lt;/b&gt; " left="200" top="123" width="77" height="45" cssclass="stc_dept_03" usedecorate="true"/>
+        <Edit id="edt_dept_03" taborder="7" left="260" top="131" width="107" height="30" cssclass="edt_dept_03"/>
+        <Static id="stc_dept_04" taborder="8" text="&lt;b v='true'&gt;기관구분&lt;/b&gt; " left="373" top="124" width="77" height="45" cssclass="stc_dept_04" onclick="stc01_00_onclick" usedecorate="true"/>
+        <Combo id="cbo_dept_01" taborder="9" text="Combo00" left="433" top="128" width="75" height="32" onitemchanged="cbo_dept_01_onitemchanged"/>
+        <Static id="stc_dept_05" taborder="10" text="&lt;b v='true'&gt;최종조직여부&lt;/b&gt; " left="514" top="124" width="77" height="45" cssclass="stc_dept_05" onclick="stc01_02_onclick" usedecorate="true"/>
+        <Combo id="cbo_dept_02" taborder="11" text="Combo00" left="591" top="131" width="149" height="32" onitemchanged="cbo_dept_01_onitemchanged"/>
+        <Static id="stc_dept_06" taborder="12" text="&lt;b v='true'&gt;학사조직여부&lt;/b&gt; " left="753" top="123" width="77" height="45" cssclass="stc_dept_06" onclick="stc_dept_07_onclick" usedecorate="true"/>
+        <Combo id="cbo_dept_03" taborder="13" text="Combo00" left="840" top="130" width="140" height="32" onitemchanged="cbo_dept_01_onitemchanged"/>
+        <Button id="btn_dept_01" taborder="14" left="1290" top="75" width="99" height="35" text="⌕ 조회" escapebutton="true" background="#e1b01d" onclick="btn_dept_01_onclick"/>
+        <Static id="stc_dept_07" taborder="0" left="10" top="190" height="45" text="&lt;b v='true'&gt;부서코드 연계속성 정보&lt;/b&gt; " cssclass="stc_dept_07" right="1143" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false"/>
+        <Static id="stc_dept_07_00" taborder="15" left="200" top="190" height="45" text="* 부서코드 연계속성 정보 삭제 시 해당 정보의 연계속성 값이 같이 삭제됩니다." cssclass="stc_dept_07" right="840" onclick="stc_09_00_onclick" color="#ff1e1e" usedecorate="true" enableevent="false"/>
+        <Grid id="grdMaster1" taborder="16" left="13" top="233" width="1382" height="257" binddataset="dsMaster1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="37"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="207"/>
+                <Column size="117"/>
+                <Column size="236"/>
+                <Column size="228"/>
+                <Column size="123"/>
+                <Column size="272"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="상태"/>
+                <Cell col="2" text="순번"/>
+                <Cell col="3" text="부서연계속성코드"/>
+                <Cell col="4" text="공통코드여부"/>
+                <Cell col="5" text="부서연계속성명"/>
+                <Cell col="6" text="관리부서"/>
+                <Cell col="7" text="정렬순서"/>
+                <Cell col="8" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" background="#ffffff"/>
+                <Cell col="1" text="bind:상태" background="#ffffff"/>
+                <Cell col="2" text="bind:순번" background="#ffffff"/>
+                <Cell col="3" text="bind:부서연계속성코드" background="#ffffff"/>
+                <Cell col="4" text="bind:공통코드여부" displaytype="checkboxcontrol" edittype="checkbox" background="#ffffff"/>
+                <Cell col="5" text="bind:부서연계속성명" displaytype="editcontrol" edittype="text" background="#ffffff"/>
+                <Cell col="6" text="bind:관리부서" background="#ffffff"/>
+                <Cell col="7" text="bind:정렬순서" background="#ffffff"/>
+                <Cell col="8" text="bind:비고" displaytype="editcontrol" edittype="text" background="#ffffff"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_dept_1" taborder="17" text="⊕ 추가" top="199" width="65" height="31" cssclass="btn_dept_04" right="825" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Button id="btn_dept_3" taborder="18" text="저장" top="200" width="65" height="31" cssclass="btn_dept_04" right="690" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Button id="btn_dept_4" taborder="19" text="엑셀" top="199" width="65" height="31" cssclass="btn_dept_04" right="620" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Button id="btn_dept_2" taborder="20" text="⊝ 삭제" top="199" width="65" height="31" cssclass="btn_dept_04" right="757" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Static id="stc_dept_08" taborder="21" text="&lt;b v='true'&gt;총건수 : &lt;/b&gt; " left="1305" top="191" width="130" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" onclick="stc_dept_08_onclick"/>
+        <Static id="stc_dept_09" taborder="22" left="13" top="500" height="45" text="&lt;b v='true'&gt;부서코드 연계속성 값 &lt;/b&gt; " cssclass="stc_dept_07" right="1140" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false"/>
+        <Grid id="grdMaster2" taborder="23" left="13" top="550" width="1377" height="263" binddataset="dsMaster2">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="38"/>
+                <Column size="65"/>
+                <Column size="64"/>
+                <Column size="104"/>
+                <Column size="197"/>
+                <Column size="80"/>
+                <Column size="173"/>
+                <Column size="123"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="상태"/>
+                <Cell col="2" text="순번"/>
+                <Cell col="3" text="부서코드"/>
+                <Cell col="4" text="부서명"/>
+                <Cell col="5" text="사용여부"/>
+                <Cell col="6" text="급여회계매핑"/>
+                <Cell col="7" text="부서연계속성코드"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" background="#ffffff"/>
+                <Cell col="1" text="bind:상태" background="#ffffff"/>
+                <Cell col="2" text="bind:순번" background="#ffffff"/>
+                <Cell col="3" text="bind:부서코드" background="#ffffff"/>
+                <Cell col="4" text="bind:부서명" background="#ffffff"/>
+                <Cell col="5" text="bind:사용여부" background="#ffffff"/>
+                <Cell col="6" text="bind:급여회계매핑" displaytype="combocontrol" edittype="combo" background="#ffffff"/>
+                <Cell col="7" text="bind:부서연계속성코드" background="#ffffff"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_dept_10_00_03" taborder="24" text="엑셀" top="514" width="65" cssclass="btn_dept_05" right="610" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
+        <Button id="btn_dept_5" taborder="25" text="저장" top="514" width="65" cssclass="btn_dept_05" right="680" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
+        <Static id="stc_dept_10" taborder="26" text="&lt;b v='true'&gt;총건수 : &lt;/b&gt; " left="1315" top="510" width="130" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;"/>
+      </Layout>
+    </Layouts>
+    <InitValue>
+      <Static id="stc_Dept_Title_01" font="14pt/normal &quot;Arial&quot;"/>
+      <Static id="stc_dept_07" font="12pt/normal &quot;Arial&quot;"/>
+      <Static id="stc_dept_07_00" font="10pt/normal &quot;Arial&quot;"/>
+      <Static id="stc_dept_09" font="12pt/normal &quot;Arial&quot;"/>
+    </InitValue>
+    <Script type="xscript5.1"><![CDATA[
+this.stc_dept_08_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsMaster1">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="상태" type="STRING" size="256"/>
+          <Column id="순번" type="STRING" size="256"/>
+          <Column id="부서연계속성코드" type="STRING" size="256"/>
+          <Column id="공통코드여부" type="STRING" size="256"/>
+          <Column id="부서연계속성명" type="STRING" size="256"/>
+          <Column id="관리부서" type="STRING" size="256"/>
+          <Column id="정렬순서" type="STRING" size="256"/>
+          <Column id="비고" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMaster2">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="상태" type="STRING" size="256"/>
+          <Column id="순번" type="STRING" size="256"/>
+          <Column id="부서코드" type="STRING" size="256"/>
+          <Column id="부서명" type="STRING" size="256"/>
+          <Column id="사용여부" type="STRING" size="256"/>
+          <Column id="급여회계매핑" type="STRING" size="256"/>
+          <Column id="부서연계속성코드" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

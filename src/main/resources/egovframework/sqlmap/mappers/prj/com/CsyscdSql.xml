@@ -7,9 +7,9 @@
         <![CDATA[                                                													
   			 SELECT                                                  											    
                    '0' AS CHK                    	/*CHK*/        		                
-	                 , A.CMMN_CD AS CLASS_ID         /*공통코드*/	
-	                 , A.CMMN_CD_NM AS CLASS_ID_NM   /*공통코드명*/    
-	                 , A.USE_YN 		            /*사용여부*/
+	                 , A.CMMN_CD AS COM_CD          /*공통코드*/	
+	                 , A.CMMN_CD_NM AS COM_CD_NM    /*공통코드명*/    
+	                 , A.USE_YN AS USE_AT           /*사용여부*/
 	                 , A.REMK_CTNT 			        /*비고내역*/    
 	                 , A.BF_CMMN_CD                  /*이전공통코드*/
 	                 , A.FRST_INPUT_ID AS REG_ID    /*최초입력자ID*/    
@@ -41,11 +41,11 @@
         /* CsyscdDAO.retrieveCommCodeMasterList 기초표준코드1 조회 */	                                 
     </select> 
     
-    <select id="CsyscdDAO.retrieveCommCodeDetailList">
+    <select id="CsyscdDAO.retrieveCommCodeDetailList" parameterType="map" resultType="egovMap">
 		SELECT 
-			A.CMMN_CD
-			,A.CMMN_DETA_CD
-			,A.CMMN_DETA_CD_NM
+			A.CMMN_CD AS CLASS_ID
+			,A.CMMN_DETA_CD AS CD
+			,A.CMMN_DETA_CD_NM AS CD_NM
 			,A.CMMN_DETA_CD_ABBNM
 			,B.LANG_FG_CD
 			,B.LANG_FG_NM
@@ -61,7 +61,33 @@
 			,B.LAST_MODF_MENU_ID
 			,B.LAST_MODF_IP
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
-		ON A.COM_CD =B.COM_CD AND A.COM_DETL_CD  = B.COM_DETL_CD 
+		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
+		WHERE A.CMMN_CD = #{CLASS_ID}
+		/* CsyscdDAO.retrieveCommCodeDetailList 세부코드 조회 */	              
+    </select>
+    
+    <select id="CsyscdDAO.retrieveCommCodeGropList" parameterType="map" resultType="egovMap">
+		SELECT 
+			A.CMMN_CD
+			,A.CMMN_GRP_CD
+			,A.CMMN_GRP_CD_NM
+			,A.ADD_ATT_VAL
+			,A.REMK_WPC
+			,B.ADD_ATT_VAL
+			,B.SORT_SEQ
+			,B.USE_YN
+			,B.REMK_WPC
+			,B.FRST_INPUT_ID
+			,B.FRST_INPUT_DT
+			,B.FRST_INPUT_MENU_ID
+			,B.FRST_INPUT_IP
+			,B.LAST_MODF_ID
+			,B.LAST_MODF_DT
+			,B.LAST_MODF_MENU_ID
+			,B.LAST_MODF_IP
+		FROM COM.CSYS120 A LEFT JOIN COM.CSYS121 B 
+		ON A.CMMN_CD = B.CMMN_CD AND A.CMMN_GRP_CD = B.CMMN_GRP_CD
+		/*CsyscdDAO.retrieveCommCodeGropList 코드 그룹 조회 */	 
     </select>
     
      <insert id="CsyscdDAO.insertCommCodeMasterList" parameterType="map"> 

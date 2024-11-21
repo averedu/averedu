@@ -40,7 +40,19 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public List<Map> retrieveCommCodeMasterList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveCommCodeMasterList", map);          
+    }          
+    
+    /**                                                                                                      
+     * 세부코드 리스트 조회(retrieveCommCodeDetailList)                                            
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   	
+     */                                                                                                     	
+    public List<Map> retrieveCommCodeDetailList(Map<String, Object> map) throws Exception {                   
+                                                                                                             
+     	return selectList("CsyscdDAO.retrieveCommCodeDetailList", map);          
     }                         
+    
     
     
     /**                                                                                                      	

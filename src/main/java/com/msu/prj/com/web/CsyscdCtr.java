@@ -29,7 +29,6 @@ import com.msu.common.exception.CommExceptionUtil;
 import com.msu.common.util.SessionUtil;
 import com.msu.common.vo.SessionVO;
 import com.msu.prj.com.service.CsyscdSvc;
-import com.nexacro17.xapi.data.DataSet;
 
 import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;
 import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
@@ -79,9 +78,45 @@ public class CsyscdCtr {
 
 		return mav;
 	}
+	
+	/**
+	 * 세부코드 리스트 조회 (actionRetrieveCommCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/RetrieveCommCodeDetailList.do")
+	public ModelAndView actionRetrieveCommCodeDetailList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.retrieveCommCodeDetailList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
 
 	/**
-	 * 기초표준코드1,2리스트 저장/수정(actionSaveCommCodeMasterList)
+	 * 기초표준코드1리스트 저장/수정(actionSaveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return

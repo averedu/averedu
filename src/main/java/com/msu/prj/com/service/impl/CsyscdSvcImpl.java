@@ -60,6 +60,27 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 		return;
 	}
+	
+	/**
+	 * 세부코드 리스트 조회(retrieveCommCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void retrieveCommCodeDetailList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input1");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(map);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsDetail", dsOut);
+
+		return;
+	}
 
 	/**
 	 * 기초표준코드1,2리스트 저장/수정(saveCommCodeMasterList)

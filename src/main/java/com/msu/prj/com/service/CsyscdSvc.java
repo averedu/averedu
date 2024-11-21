@@ -15,16 +15,9 @@ package com.msu.prj.com.service;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.msu.common.vo.SessionVO;
 
 import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
-import egovframework.rte.cmmn.ria.nexacroplatform.map.NexacroPlatformMapDTO;
 
 public interface CsyscdSvc {                                                                        
 	                                                                                                                
@@ -35,6 +28,15 @@ public interface CsyscdSvc {
      * @throws Exception                                                                                         
      */                                                                                                          
     public void retrieveCommCodeMasterList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                 	
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception; 
+    
+    /**
+     * 세부코드리스트 조회(retrieveCommCodeDetailList)                                                                                                    
+  	 * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception 
+     */
+    public void retrieveCommCodeDetailList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                 	
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception; 
     
     /**                                                                                                          

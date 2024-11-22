@@ -148,6 +148,55 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 		return;
 	}
+	
+	/**
+	 * 기초표준코드1리스트 삭제(deleteCommCodeMasterList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deleteCommCodeMasterList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
+
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsMaster");
+
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deleteCommCodeMasterList(map);
+				csyscdDAO.deleteCommCodeAllList(map);
+			}
+		}
+		return;
+	}
+	
+	/**
+	 * 기초표준코드2리스트 삭제(deleteCommCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deleteCommCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
+
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsDetail");
+		
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deleteCommCodeDetailList(map);
+			}
+		}
+		return;
+	}
 
 	/**
 	 * 부서코드관리 리스트 조회 (deptCdMngList)

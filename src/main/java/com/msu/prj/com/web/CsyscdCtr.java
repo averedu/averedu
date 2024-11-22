@@ -150,6 +150,76 @@ public class CsyscdCtr {
 
 		return mav;
 	}
+	
+	/**                                                                                                                		
+	 * 기초표준코드1리스트 삭제(actionDeleteCommCodeMasterList)                                                            
+	 * @param input                                                                                                 			
+	 * @return                                                                                                      			
+	 * @throws Exception                                                                                           				
+	 */                                                                                                             			
+	@RequestMapping(value = "/prj/com/DeleteCommCodeMasterList.do")        
+	public ModelAndView actionDeleteCommCodeMasterList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)throws Exception {  
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");                                    
+		try                                                                                                     				
+	    {                                                                                                           			
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);                                          					
+	                                                                                                               				
+	        DataSetMap tranInfo 				= nxDto.getTranInfoMap();                                          				
+			Map <String, Object> inVar          = nxDto.getInVariableMap();                                          			
+			Map <String, DataSetMap> inDataset  = nxDto.getInDataSetMap();                                   					
+			Map <String, Object> outVar         = nxDto.getOutVariableMap();                                        			
+			Map <String, DataSetMap> outDataset = nxDto.getOutDataSetMap();                                 					
+	                                                                                                               				
+			csyscdSvc.deleteCommCodeMasterList(inDataset, sessionVO);                 				                
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);                                				
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME,   outDataset);                            				
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");                                       
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");                                  
+		                                                                                                        				
+		}  catch ( Exception e ) {                                                                                                       				
+			e.printStackTrace();     
+			CommExceptionUtil.setError(e, mav); 
+		}    
+		                                                                                                  					
+		return mav;                                                                                             				
+	}   
+	
+	/**                                                                                                                		
+	 * 기초표준코드2리스트 삭제(actionDeleteCommCodeDetailList)                                                            
+	 * @param input                                                                                                 			
+	 * @return                                                                                                      			
+	 * @throws Exception                                                                                           				
+	 */                                                                                                             			
+	@RequestMapping(value = "/prj/com/DeleteCommCodeDetailList.do")        
+	public ModelAndView actionDeleteCommCodeDetailList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)throws Exception {  
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");                                    
+		try                                                                                                     				
+	    {                                                                                                           			
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);                                          					
+	                                                                                                               				
+	        DataSetMap tranInfo 				= nxDto.getTranInfoMap();                                          				
+			Map <String, Object> inVar          = nxDto.getInVariableMap();                                          			
+			Map <String, DataSetMap> inDataset  = nxDto.getInDataSetMap();                                   					
+			Map <String, Object> outVar         = nxDto.getOutVariableMap();                                        			
+			Map <String, DataSetMap> outDataset = nxDto.getOutDataSetMap();                                 					
+	                                                                                                               				
+			csyscdSvc.deleteCommCodeDetailList(inDataset, sessionVO);                 				                
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);                                				
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME,   outDataset);                            				
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");                                       
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");                                  
+		                                                                                                        				
+		}  catch ( Exception e ) {                                                                                                       				
+			e.printStackTrace();     
+			CommExceptionUtil.setError(e, mav); 
+		}    
+		                                                                                                    					
+		return mav;                                                                                             				
+	}
 
 	/**
 	 * 부서코드관리 리스트 조회 (deptCdMngList)

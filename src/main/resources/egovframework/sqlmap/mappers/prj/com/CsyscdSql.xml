@@ -104,9 +104,9 @@
   
             )VALUES                                                  														
             (                                                        														
-                   #{CLASS_ID} 
-                 , #{CLASS_ID_NM}   
-                 , #{USE_YN}  
+                   #{COM_CD} 
+                 , #{COM_CD_NM}   
+                 , #{USE_AT}  
                  , #{REG_ID}  
                  , SYSDATE                                   
                  , #{MOD_ID}  
@@ -121,15 +121,63 @@
         <![CDATA[                                                						
             UPDATE COM.CSYS100                                			        
                SET                                                      				
-                   CMMN_CD_NM               = #{CLASS_ID_NM}                 /*공통코드명*/  
-                 , USE_YN                    = #{USE_YN}                      /*사용여부*/  
+                   CMMN_CD_NM               = #{COM_CD_NM}                 /*공통코드명*/  
+                 , USE_YN                    = #{USE_AT}                      /*사용여부*/  
                  , FRST_INPUT_ID                    = #{REG_ID}                      /*등록자*/  
                  , FRST_INPUT_DT                    = SYSDATE                        /*등록일시*/  
                  , LAST_MODF_ID                    = #{MOD_ID}                      /*수정자*/  
                  , LAST_MODF_DT                   = SYSDATE                        /*수정일시*/  
              WHERE 1=1                                                   						                        
-               AND COM_CD        = #{CLASS_ID}  
+               AND CMMN_CD        = #{COM_CD}  
         ]]>  	                                   							                            				
         /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
-    </update>	                                                        													                                                           													                                                             													   
+    </update>	  
+    
+    <delete id="CsyscdDAO.deleteCommCodeMasterList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS100                                                  							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{COM_CD}  
+        ]]>                                                															           
+        /* CsyscdDAO.deleteCommCodeMasterList 기초표준코드1 삭제 */								       
+    </delete>
+    
+    <delete id="CsyscdDAO.deleteCommCodeAllList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS110                                                  							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{COM_CD}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
+    </delete>
+    
+    <delete id="CsyscdDAO.deleteCommCodeDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS110                                                 							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{CLASS_ID}  
+               AND CMMN_DETA_CD   = #{CD}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+    </delete>	
+    
+    
+    <delete id="CsyscdDAO.deleteCommCodeAllList2" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS111                                                  							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{COM_CD}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
+    </delete>
+    
+    <delete id="CsyscdDAO.deleteCommCodeDetailList2" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS111                                                 							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{CLASS_ID}  
+               AND CMMN_DETA_CD   = #{CD}  
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+    </delete>                                                      													                                                           													                                                             													   
 </mapper>

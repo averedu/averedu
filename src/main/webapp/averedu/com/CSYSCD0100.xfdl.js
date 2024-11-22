@@ -102,7 +102,7 @@
             obj.set_autoupdatetype("itemselect");
             obj.set_cellsizingtype("col");
             obj.set_autofittype("col");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"3\" text=\"bind:COM_CD\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:COM_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:USE_AT\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"ds_use_yn\" combodatacol=\"YN\" combocodecol=\"CD\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"52\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"순번\"/><Cell col=\"2\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통코드명\" background=\"#e1eaf3 url(&apos;file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png&apos;) no-repeat left top\"/><Cell col=\"4\" text=\"사용여부\"/><Cell col=\"5\" text=\"비고내역\"/><Cell col=\"6\" text=\"이전공통코드\"/><Cell col=\"7\" text=\"등록자\"/><Cell col=\"8\" text=\"등록일자\"/><Cell col=\"9\" text=\"수정자\"/><Cell col=\"10\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:COM_CD\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"3\" text=\"bind:COM_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:USE_AT\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"ds_use_yn\" combodatacol=\"YN\" combocodecol=\"CD\"/><Cell col=\"5\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"9\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"10\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdDetail","5","521",null,null,"3","3",null,null,null,null,this);
@@ -823,22 +823,21 @@
 
         	// 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
         	var chkFocusFlg = true;
-        	var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
-        	if (result[0] != "success")
-        	{
+        	//var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+        	//if (result[0] != "success")
+        	/*{
         		this.gfn_alert(result[0]);
         		this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
         		return false;
         	}
-
-          	var chkFocusFlg1 = true;
+         	var chkFocusFlg1 = true;
             var result1 	= this.gfn_cmmnChkEssentialItem(this.dsDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
             if(result1[0] != "success")
         	{
         		this.gfn_alert(result1[0]);
         		this.dsDetail.set_rowposition(result1[1]); //데이터셋 변경
         		return false;
-        	}
+        	}*/
 
         	var result = this.gfn_confirm("저장 하시겠습니까?", "저장","", "question" );
 
@@ -864,7 +863,6 @@
         	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";
         	var strInDs     = "ds_input=ds_input ";
         		strInDs    += "dsMaster=dsMaster:u ";
-        		strInDs    += "dsDetail=dsDetail:u";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
@@ -1094,6 +1092,26 @@
 
 
 
+        this.btnMAdd_onclick = function(obj,e)
+        {
+        	this.fn_New();
+        };
+
+        this.btnMDel_onclick = function(obj,e)
+        {
+        	this.fn_Del();
+        };
+
+        this.btnMSave_onclick = function(obj,e)
+        {
+        	this.fn_Save();
+        };
+
+        this.btnMExcelDn_onclick = function(obj,e)
+        {
+        	this.fn_Excel();
+        };
+
         });
         
         // Regist UI Components Event
@@ -1111,14 +1129,14 @@
             this.divSearch.form.cboUserYn00.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.divSearch.form.cboCommCode.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
             this.divSearch.form.edtOldCd.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
-            this.btnDDel.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.btnDDel.addEventHandler("onclick",this.btnDDel_onclick,this);
             this.btnDExcelDn.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
             this.btnDSave.addEventHandler("onclick",this.btnDDel_onclick,this);
             this.btnDAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
-            this.btnMDel.addEventHandler("onclick",this.btnDAdd_onclick,this);
-            this.btnMExcelDn.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
-            this.btnMSave.addEventHandler("onclick",this.btnDDel_onclick,this);
-            this.btnMAdd.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.btnMDel.addEventHandler("onclick",this.btnMDel_onclick,this);
+            this.btnMExcelDn.addEventHandler("onclick",this.btnMExcelDn_onclick,this);
+            this.btnMSave.addEventHandler("onclick",this.btnMSave_onclick,this);
+            this.btnMAdd.addEventHandler("onclick",this.btnMAdd_onclick,this);
             this.dsMaster.addEventHandler("canrowposchange",this.dsMaster_canrowposchange,this);
             this.dsMaster.addEventHandler("onrowposchanged",this.dsMaster_onrowposchanged,this);
             this.dsDetail.addEventHandler("cancolumnchange",this.dsDetail_cancolumnchange,this);

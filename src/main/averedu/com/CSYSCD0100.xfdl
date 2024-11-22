@@ -9,7 +9,6 @@
               <Columns>
                 <Column size="48" band="left"/>
                 <Column size="52"/>
-                <Column size="91"/>
                 <Column size="174"/>
                 <Column size="181"/>
                 <Column size="175"/>
@@ -26,31 +25,29 @@
               </Rows>
               <Band id="head">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="상태"/>
-                <Cell col="2" text="순번" cssclass="point"/>
-                <Cell col="3" text="공통코드" cssclass="point"/>
-                <Cell col="4" text="공통코드명"/>
-                <Cell col="5" text="사용여부"/>
-                <Cell col="6" text="비고내역"/>
-                <Cell col="7" text="이전공통코드"/>
-                <Cell col="8" text="등록자"/>
-                <Cell col="9" text="등록일자"/>
-                <Cell col="10" text="수정자"/>
-                <Cell col="11" text="수정일자"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="공통코드" cssclass="point"/>
+                <Cell col="3" text="공통코드명" background="#e1eaf3 url('file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png') no-repeat left top"/>
+                <Cell col="4" text="사용여부"/>
+                <Cell col="5" text="비고내역"/>
+                <Cell col="6" text="이전공통코드"/>
+                <Cell col="7" text="등록자"/>
+                <Cell col="8" text="등록일자"/>
+                <Cell col="9" text="수정자"/>
+                <Cell col="10" text="수정일자"/>
               </Band>
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" textAlign="center"/>
-                <Cell col="2" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':currow+1" displaytype="text" edittype="text"/>
-                <Cell col="3" text="bind:CLASS_ID_NM" displaytype="text" edittype="text" textAlign="left"/>
-                <Cell col="4" text="bind:CLASS_ID_NM_ENG" edittype="text" displaytype="text" textAlign="left"/>
-                <Cell col="5" text="bind:CLASS_ID_NM_CH" edittype="text" displaytype="text" textAlign="left"/>
-                <Cell col="6" text="bind:CLASS_ID_NM_JP" edittype="text" displaytype="text" textAlign="left"/>
-                <Cell col="7" text="bind:CLASS_ID_NM_ETC" edittype="text" displaytype="text" textAlign="left"/>
-                <Cell col="8" text="bind:REG_ID" displaytype="text" textAlign="center"/>
-                <Cell col="9" text="bind:REG_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
-                <Cell col="10" text="bind:MOD_ID" displaytype="text" textAlign="center"/>
-                <Cell col="11" text="bind:MOD_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+                <Cell col="2" text="bind:COM_CD" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="3" text="bind:COM_CD_NM" edittype="text" displaytype="text" textAlign="left"/>
+                <Cell col="4" text="bind:USE_AT" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="ds_use_yn" combodatacol="YN" combocodecol="CD"/>
+                <Cell col="5" text="bind:CLASS_ID_NM_JP" edittype="text" displaytype="text" textAlign="left"/>
+                <Cell col="6" text="bind:CLASS_ID_NM_ETC" edittype="text" displaytype="text" textAlign="left"/>
+                <Cell col="7" text="bind:REG_ID" displaytype="text" textAlign="center"/>
+                <Cell col="8" text="bind:REG_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+                <Cell col="9" text="bind:MOD_ID" displaytype="text" textAlign="center"/>
+                <Cell col="10" text="bind:MOD_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
               </Band>
             </Format>
           </Formats>
@@ -159,12 +156,12 @@
               <Static id="staSubTitle04" taborder="2" text="공통코드/명 " left="203" top="9" width="83" height="26" cssclass="sta_WF_SearchLbl" onclick="divSearch_staSubTitle04_onclick"/>
               <Edit id="edtClassNm" taborder="3" left="350" top="11" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassNm_onkeyup"/>
               <Static id="staSubTitle05" taborder="4" text="공통코드사용여부" left="473" top="9" width="120" height="26" cssclass="sta_WF_SearchLbl"/>
-              <Combo id="cboUserYn" taborder="5" left="593" top="9" width="123" height="22" text="" innerdataset="dsYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
+              <Combo id="cboUserYn" taborder="5" left="593" top="9" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
               <Static id="staSubTitle01_00" taborder="6" text="코드값명" left="0" top="49" width="73" height="26" cssclass="sta_WF_SearchLbl"/>
               <Edit id="edtClassId00" taborder="7" left="74" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassId_onkeyup"/>
               <Static id="staSubTitle04_00" taborder="8" text="공통코드값사용여부" left="203" top="49" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
-              <Combo id="cboUserYn00" taborder="9" left="350" top="51" width="123" height="22" text="" innerdataset="dsYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
-              <Button id="btnSearch" taborder="10" text="조회" top="25" width="90" height="22" right="5" onclick="btnDExcelDn_onclick" cssclass="btn_WF_Crud"/>
+              <Combo id="cboUserYn00" taborder="9" left="350" top="51" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
+              <Button id="btnSearch" taborder="10" text="조회" top="25" width="90" height="22" right="5" cssclass="btn_WF_Crud"/>
               <Combo id="cboCommCode" taborder="1" left="74" top="11" width="127" height="22" text="" innerdataset="dsYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
               <Static id="staSubTitle05_00" taborder="11" text="구코드" left="716" top="9" width="78" height="26" cssclass="sta_WF_SearchLbl"/>
               <Combo id="edtOldCd" taborder="12" left="794" top="9" width="123" height="22" text="" innerdataset="dsYn" codecolumn="CODE" datacolumn="CODE_NM" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
@@ -172,12 +169,16 @@
           </Layouts>
         </Div>
         <Static id="staRowCnt" taborder="3" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="6" top="95" height="22" usedecorate="true" cssclass="btn_WF_Crud" width="60"/>
-        <Button id="btnDDel" taborder="4" text="삭제" top="490" width="60" height="22" right="165" onclick="btnDAdd_onclick" cssclass="btn_WF_Crud"/>
+        <Button id="btnDDel" taborder="4" text="삭제" top="490" width="60" height="22" right="165" onclick="btnDDel_onclick" cssclass="btn_WF_Crud"/>
         <Button id="btnDExcelDn" taborder="5" text="엑셀다운로드" top="490" width="90" height="22" right="5" onclick="btnDExcelDn_onclick" cssclass="btn_WF_Crud"/>
         <Static id="staRowCnt1" taborder="6" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="4" top="490" height="24" usedecorate="true" right="1553"/>
-        <Button id="btnD" taborder="7" text="삭제" top="490" width="60" height="22" right="100" onclick="btnDDel_onclick" cssclass="btn_WF_Crud"/>
+        <Button id="btnDSave" taborder="7" text="저장" top="490" width="60" height="22" right="100" onclick="btnDDel_onclick" cssclass="btn_WF_Crud" tabstop="false"/>
         <Static id="Static01" taborder="8" text="35" left="515" top="88" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
         <Button id="btnDAdd" taborder="9" text="추가" top="490" width="60" height="22" right="230" onclick="btnDAdd_onclick" cssclass="btn_WF_Crud"/>
+        <Button id="btnMDel" taborder="10" text="삭제" top="95" width="60" height="22" right="164" cssclass="btn_WF_Crud" onclick="btnMDel_onclick"/>
+        <Button id="btnMExcelDn" taborder="11" text="엑셀다운로드" top="95" width="90" height="22" right="4" cssclass="btn_WF_Crud" onclick="btnMExcelDn_onclick"/>
+        <Button id="btnMSave" taborder="12" text="저장" top="95" width="60" height="22" right="99" cssclass="btn_WF_Crud" onclick="btnMSave_onclick"/>
+        <Button id="btnMAdd" taborder="13" text="추가" top="95" width="60" height="22" right="229" cssclass="btn_WF_Crud" onclick="btnMAdd_onclick"/>
       </Layout>
     </Layouts>
     <Bind>
@@ -239,6 +240,18 @@
           <Column id="MOD_DT" type="DATETIME" size="17"/>
           <Column id="AUTO_PLUS" type="BIGDECIMAL" size="16"/>
         </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CLASS_ID">1</Col>
+            <Col id="CODE">Y</Col>
+            <Col id="CODE_NM">Y</Col>
+          </Row>
+          <Row>
+            <Col id="CLASS_ID">0</Col>
+            <Col id="CODE">N</Col>
+            <Col id="CODE_NM">N</Col>
+          </Row>
+        </Rows>
       </Dataset>
       <Dataset id="ds_input1" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
         <ColumnInfo>
@@ -334,9 +347,25 @@
           <Column id="TCODE" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
+      <Dataset id="ds_use_yn">
+        <ColumnInfo>
+          <Column id="CD" type="STRING" size="256"/>
+          <Column id="YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CD">1</Col>
+            <Col id="YN">Y</Col>
+          </Row>
+          <Row>
+            <Col id="CD">0</Col>
+            <Col id="YN">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[/**********************************************************************
-* FormID(화면   ID명): COMM000005S.xfdl(공통코드조회/등록/수정/삭제)
+* FormID(화면   ID명): CSYSCD0100.xfdl(공통코드조회/등록/수정/삭제)
 * 작 성			일 명: jiback
 * 작 성	    	일 자: 2018/09/05
 * 변 경     	일 자:
@@ -521,7 +550,7 @@ this.fn_Ret = function()
 	}    
 	
 	var strSvc 		= "Ret";
-	var strUrl 		= "/prj/sys/RetrieveCommCodeMasterList.do";                                     
+	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";                                     
 	var strInDs  	= "ds_input=ds_input";                                         
 	var strOutDs 	= "dsMaster=dsMaster";    
 	var strArg 		= "";               
@@ -556,9 +585,9 @@ this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSR
  * 기능 : 조회 전 실행
  */
 this.preDSearch = function()
-{ 
+{ 	
 	// 조회조건 셋팅
-	this.ds_input1.setColumn(0,"CLASS_ID",this.dsMaster.getColumn(this.dsMaster.rowposition,"CLASS_ID"));
+	this.ds_input1.setColumn(0,"CLASS_ID",this.dsMaster.getColumn(this.dsMaster.rowposition,"COM_CD"));
 	return true;
 };
 
@@ -574,8 +603,8 @@ this.fn_DRet = function()
 	
 	
 	var strSvc 		= "DRet";
-	var strUrl 		= "/prj/sys/RetrieveCommCodeDetailList.do";                                 
-	var strInDs  	= "ds_input1=ds_input1";                                         
+	var strUrl 		= "/prj/com/RetrieveCommCodeDetailList.do";                                 
+	var strInDs  	= "ds_input1=ds_input1";
 	var strOutDs 	= "dsDetail=dsDetail";    
 	var strArg 		= "";               
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
@@ -724,7 +753,7 @@ this.fn_Del = function()
 		return false;                                               
 	} 
 	var strSvc 		= "Delete"; 
-	var strUrl 		= "/prj/sys/DeleteCommCodeMasterList.do";                                     
+	var strUrl 		= "/prj/com/DeleteCommCodeMasterList.do";                                     
 	var strInDs  	= "dsMaster=dsMaster:u";                                         
 	var strOutDs 	= "";    
 	var strArg 		= "";
@@ -793,7 +822,7 @@ this.btnDDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	}
 	
 	var strSvc 		= "DDelete";
-	var strUrl 		= "/prj/sys/DeleteCommCodeDetailList.do";                                   
+	var strUrl 		= "/prj/com/DeleteCommCodeDetailList.do";                                   
 	var strInDs  	= "dsDetail=dsDetail:u";                                         
 	var strOutDs 	= "";    
 	var strArg 		= "";
@@ -840,22 +869,21 @@ this.fn_PreSave = function()
 	
 	// 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
 	var chkFocusFlg = true;
-	var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
-	if (result[0] != "success") 
-	{
+	//var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+	//if (result[0] != "success") 
+	/*{
 		this.gfn_alert(result[0]);
 		this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
 		return false;
 	}
-  	
-  	var chkFocusFlg1 = true;
+ 	var chkFocusFlg1 = true;
     var result1 	= this.gfn_cmmnChkEssentialItem(this.dsDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
     if(result1[0] != "success") 
 	{
 		this.gfn_alert(result1[0]);
 		this.dsDetail.set_rowposition(result1[1]); //데이터셋 변경
 		return false;
-	}
+	}*/
   
 	var result = this.gfn_confirm("저장 하시겠습니까?", "저장","", "question" );
 	
@@ -878,10 +906,9 @@ this.fn_Save = function()
 	this.dsMaster.set_enableevent(false);
 	
 	var strSvc 		= "Save";
-	var strUrl 		= "/prj/sys/SaveCommCodeMasterList.do";                                
+	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";                                
 	var strInDs     = "ds_input=ds_input ";                                         
-		strInDs    += "dsMaster=dsMaster:u ";
-		strInDs    += "dsDetail=dsDetail:u";   
+		strInDs    += "dsMaster=dsMaster:u "; 
 	var strOutDs 	= "dsMaster=dsMaster";    
 	var strArg 		= "";                       
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack  
@@ -1107,6 +1134,29 @@ this.dsDetail_cancolumnchange = function(obj:Dataset, e:nexacro.DSColChangeEvent
 this.fn_beforeclose = function()
 {
     return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail));
-};]]></Script>
+};
+
+
+
+this.btnMAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_New();
+};
+
+this.btnMDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Del();
+};
+
+this.btnMSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Save();
+};
+
+this.btnMExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Excel();
+};
+]]></Script>
   </Form>
 </FDL>

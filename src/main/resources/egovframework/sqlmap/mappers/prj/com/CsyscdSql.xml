@@ -23,7 +23,8 @@
              FROM COM.CSYS100 A                                                                       							 
              WHERE 1=1                                                                                							 
         ]]>                                                      												 
-        <if test="CMMN_CD != null and CMMN_CD != ''">    
+
+        <if test="CMMN_CD != null and CMMN_CD != ''"> 
             <![CDATA[                                         							                        
 	                AND A.CMMN_CD        = #{CMMN_CD}   
 	             ]]>                                           													 
@@ -317,7 +318,274 @@
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
-        ]]>                                                															           
-        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 언어코드 삭제 */								       
-    </delete>                                                      													                                                           													                                                             													   
+        ]]>                                                															           							                                                     													                                                           													                                                             													   								       
+    </delete>         
+    
+    <select id="CsyscdDAO.deptList" parameterType="map" resultType="egovMap"> 
+    	SELECT 
+    		'0' as CHK,
+			A.DEPT_CD,
+			A.UP_DEPT_CD, 
+			A.DEPT_GRP_FG_CD,
+			A.DEPT_TYP_CD,
+			A.UNIV_CD,
+			A.SUST_CD,
+			A.DEPT_NM,
+			A.DEPT_ABBNM,
+			A.SHAF_FORMA_YN,
+			A.DAN_FG,
+			A.FR_DT,
+			A.ABLN_DT,
+			A.ABLN_EXPC_DT,
+			A.PRN_ORD,
+			A.CYBER_FORMA_YN,
+			A.USE_YN,
+			A.FL_DEPT_YN,
+			A.REMK,
+			A.CAMP_FG_CD,
+			A.FRST_INPUT_ID,
+			A.FRST_INPUT_DT,
+			A.FRST_INPUT_MENU_ID,
+			A.FRST_INPUT_IP,
+			A.LAST_MODF_ID,
+			A.LAST_MODF_DT,
+			A.LAST_MODF_MENU_ID,
+			A.LAST_MODF_IP, BREU_FG,
+			A.FORMA_TYP,
+			A.DEPT_ENG_NM,
+			A.DEPT_ENG_ABB_NM,
+			A.DEPT_CHN_NM,
+			A.DEPT_CHN_ABB_NM,
+			A.DEPT_ID, 
+			A.COLG_NM, 
+			A.SUST_TEAM_NM,
+			A.CERT_DEPT_NM,
+			A.DAYTM_SUST_CD, 
+			A.INFO_ANNC_PART, 
+			A.SHAF_DEGR,
+			A.MASTER_DEGR,
+			A.PHD_DEGR, MJ_CLSF,
+			A.CONN_MJ, ACHV_PART,
+			A.REG_PART,
+			A.GRDT_DEGR_IDCD_PRN_NM,
+			A.LSN_YR,
+			A.ACHV_SCRN_UNIV,
+			A.GRSC_CLSF,
+			A.SUST_NM,
+			A.GW_DEPT_CONN_YN,
+			A.SPRF_GW_DEPT_CD,
+			A.EMP_GW_DEPT_CD,
+			A.DEPT_SORT_SEQ,
+			A.SUB_CHANC_MISS_CD
+		FROM COM.CSYS300 A
+		ORDER BY DEPT_CD
+    </select>
+    
+    <select id="CsyscdDAO.deptHistList" parameterType="map" resultType="egovMap">
+    	SELECT 
+    		'0' as CHK,
+			A.BF_DEPT_CD,
+			A.AF_DEPT_CD,
+			A.REMK
+		FROM COM.CSYS311 A
+		ORDER BY FRST_INPUT_DT DESC
+    </select>
+    
+    <insert id="CsyscdDAO.deptListIns" parameterType="map">
+    	INSERT INTO COM.CSYS300 A(
+			A.DEPT_CD,
+			A.UP_DEPT_CD,
+			A.DEPT_GRP_FG_CD,
+			A.DEPT_TYP_CD, 
+			A.UNIV_CD, 
+			A.SUST_CD, 
+			A.DEPT_NM,
+			A.DEPT_ABBNM, 
+			A.SHAF_FORMA_YN, 
+			A.DAN_FG, 
+			A.FR_DT, 
+			A.ABLN_DT,
+			A.ABLN_EXPC_DT,
+			A.PRN_ORD,
+			A.CYBER_FORMA_YN,
+			A.USE_YN,
+			A.FL_DEPT_YN,
+			A.REMK,
+			A.CAMP_FG_CD,
+			A.FRST_INPUT_ID,
+			A.FRST_INPUT_DT,
+			A.BREU_FG, 
+			A.FORMA_TYP, 
+			A.DEPT_ENG_NM, 
+			A.DEPT_ENG_ABB_NM,
+			A.DEPT_CHN_NM, 
+			A.DEPT_CHN_ABB_NM, 
+			A.DEPT_ID, 
+			A.COLG_NM, 
+			A.SUST_TEAM_NM, 
+			A.CERT_DEPT_NM, 
+			A.DAYTM_SUST_CD,
+			A.INFO_ANNC_PART, 
+			A.SHAF_DEGR, 
+			A.MASTER_DEGR,
+			A.PHD_DEGR, 
+			A.MJ_CLSF, 
+			A.CONN_MJ, 
+			A.ACHV_PART, 
+			A.REG_PART,
+			A.GRDT_DEGR_IDCD_PRN_NM, 
+			A.LSN_YR, 
+			A.ACHV_SCRN_UNIV, 
+			A.GRSC_CLSF, 
+			A.SUST_NM, 
+			A.GW_DEPT_CONN_YN, 
+			A.SPRF_GW_DEPT_CD, 
+			A.EMP_GW_DEPT_CD, 
+			A.DEPT_SORT_SEQ, 
+			A.SUB_CHANC_MISS_CD
+		)
+		VALUES(
+			#{DEPT_CD}, 
+			#{UP_DEPT_CD}, 
+			#{DEPT_GRP_FG_CD}, 
+			#{DEPT_TYP_CD}, 
+			#{UNIV_CD}, 
+			#{SUST_CD}, 
+			#{DEPT_NM},
+			#{DEPT_ABBNM}, 
+			#{SHAF_FORMA_YN}, 
+			#{DAN_FG}, 
+			#{FR_DT}, 
+			#{ABLN_DT},
+			#{ABLN_EXPC_DT},
+			#{PRN_ORD},
+			#{CYBER_FORMA_YN},
+			#{USE_YN},
+			#{FL_DEPT_YN},
+			#{REMK},
+			#{CAMP_FG_CD},
+			#{FRST_INPUT_ID},
+			SYSDATE,
+			#{BREU_FG}, 
+			#{FORMA_TYP}, 
+			#{DEPT_ENG_NM}, 
+			#{DEPT_ENG_ABB_NM},
+			#{DEPT_CHN_NM}, 
+			#{DEPT_CHN_ABB_NM}, 
+			#{DEPT_ID}, 
+			#{COLG_NM}, 
+			#{SUST_TEAM_NM}, 
+			#{CERT_DEPT_NM}, 
+			#{DAYTM_SUST_CD},
+			#{INFO_ANNC_PART}, 
+			#{SHAF_DEGR}, 
+			#{MASTER_DEGR},
+			#{PHD_DEGR}, 
+			#{MJ_CLSF}, 
+			#{CONN_MJ}, 
+			#{ACHV_PART}, 
+			#{REG_PART},
+			#{GRDT_DEGR_IDCD_PRN_NM}, 
+			#{LSN_YR}, 
+			#{ACHV_SCRN_UNIV}, 
+			#{GRSC_CLSF}, 
+			#{SUST_NM}, 
+			#{GW_DEPT_CONN_YN}, 
+			#{SPRF_GW_DEPT_CD}, 
+			#{EMP_GW_DEPT_CD}, 
+			#{DEPT_SORT_SEQ}, 
+			#{SUB_CHANC_MISS_CD}
+		)
+    </insert>
+    
+    <update id="CsyscdDAO.deptListUpd" parameterType="map">
+    	UPDATE COM.CSYS300 A
+		SET 
+			A.UP_DEPT_CD = #{UP_DEPT_CD}, 
+			A.DEPT_GRP_FG_CD=#{DEPT_GRP_FG_CD}, 
+			A.DEPT_TYP_CD=#{DEPT_TYP_CD}, 
+			A.UNIV_CD=#{UNIV_CD}, 
+			A.SUST_CD=#{SUST_CD}, 
+			A.DEPT_NM=#{DEPT_NM}, 
+			A.DEPT_ABBNM=#{DEPT_ABBNM},
+			A.SHAF_FORMA_YN=#{SHAF_FORMA_YN},
+			A.DAN_FG=#{DAN_FG}, 
+			A.FR_DT=#{FR_DT}, 
+			A.ABLN_DT=#{ABLN_DT},
+			A.ABLN_EXPC_DT=#{ABLN_EXPC_DT},
+			A.PRN_ORD=0, 
+			A.CYBER_FORMA_YN=#{CYBER_FORMA_YN}, 
+			A.USE_YN=#{USE_YN}, 
+			A.FL_DEPT_YN=#{FL_DEPT_YN}, 
+			A.REMK=#{REMK}, 
+			A.CAMP_FG_CD=#{CAMP_FG_CD}, 
+			A.FRST_INPUT_ID=#{FRST_INPUT_ID}, 
+			A.FRST_INPUT_DT=SYSDATE, 
+			A.BREU_FG=#{BREU_FG},
+			A.FORMA_TYP=#{FORMA_TYP}, 
+			A.DEPT_ENG_NM=#{DEPT_ENG_NM},
+			A.DEPT_ENG_ABB_NM=#{DEPT_ENG_ABB_NM},
+			A.DEPT_CHN_NM=#{DEPT_CHN_NM}, 
+			A.DEPT_CHN_ABB_NM=#{DEPT_CHN_ABB_NM}, 
+			A.DEPT_ID=#{DEPT_ID}, 
+			A.COLG_NM=#{COLG_NM}, 
+			A.SUST_TEAM_NM=#{SUST_TEAM_NM}, 
+			A.CERT_DEPT_NM=#{CERT_DEPT_NM}, 
+			A.DAYTM_SUST_CD=#{DAYTM_SUST_CD}, 
+			A.INFO_ANNC_PART=#{INFO_ANNC_PART},
+			A.SHAF_DEGR=#{SHAF_DEGR}, 
+			A.MASTER_DEGR=#{MASTER_DEGR}, 
+			A.PHD_DEGR=#{PHD_DEGR}, 
+			A.MJ_CLSF=#{MJ_CLSF}, 
+			A.CONN_MJ=#{CONN_MJ}, 
+			A.ACHV_PART=#{ACHV_PART}, 
+			A.REG_PART=#{REG_PART}, 
+			A.GRDT_DEGR_IDCD_PRN_NM=#{GRDT_DEGR_IDCD_PRN_NM}, 
+			A.LSN_YR=#{LSN_YR}, 
+			A.ACHV_SCRN_UNIV=#{ACHV_SCRN_UNIV}, 
+			A.GRSC_CLSF=#{GRSC_CLSF}, 
+			A.SUST_NM=#{SUST_NM}, 
+			A.GW_DEPT_CONN_YN=#{GW_DEPT_CONN_YN}, 
+			A.SPRF_GW_DEPT_CD=#{SPRF_GW_DEPT_CD},
+			A.EMP_GW_DEPT_CD=#{EMP_GW_DEPT_CD},
+			A.DEPT_SORT_SEQ=#{DEPT_SORT_SEQ},
+			A.SUB_CHANC_MISS_CD=#{SUB_CHANC_MISS_CD}
+		WHERE A.DEPT_CD=#{DEPT_CD}
+    </update>
+    
+    <delete id="CsyscdDAO.deptListDel" parameterType="map">
+    	DELETE FROM COM.CSYS300 A
+		WHERE A.DEPT_CD=#{DEPT_CD}
+    </delete>
+    
+    <insert id="CsyscdDAO.deptHistListIns" parameterType="map">
+    	INSERT INTO COM.CSYS311 A(
+			A.BF_DEPT_CD,
+			A.AF_DEPT_CD,
+			A.REMK,
+			A.FRST_INPUT_ID,
+			A.FRST_INPUT_DT)
+		VALUES(
+		#{BF_DEPT_CD}, 
+		#{AF_DEPT_CD},
+		#{REMK},
+		#{FRST_INPUT_ID},
+		SYSDATE
+		)
+    </insert>
+    
+    <update id="CsyscdDAO.deptHistListUpd" parameterType="map">
+    	UPDATE COM.CSYS311 A
+		SET 
+		A.REMK=#{REMK}, 
+		A.LAST_MODF_ID=#{LAST_MODF_ID}, 
+		A.LAST_MODF_DT=SYSDATE
+		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD} AND A.AF_DEPT_CD=#{AF_DEPT_CD}
+    	
+    </update>             
+    
+    <delete id="CsyscdDAO.deptHistListDel" parameterType="map">
+    	DELETE FROM COM.CSYS311 A
+		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD} AND A.AF_DEPT_CD=#{AF_DEPT_CD}
+    </delete>                 													                                                           													                                                             													   
 </mapper>

@@ -146,4 +146,89 @@ public class CsyscdDAO extends EgovAbstractMapper {
      	delete("CsyscdDAO.deleteCommCodeAllList", map);  
      	delete("CsyscdDAO.deleteCommCodeAllList2", map);  
     }  
+    
+    /**                                                                                                      	
+     * 부서코드관리 부서목록(deptList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                   
+    // 
+    public List<Map> deptList(Map<String, Object> map) throws Exception {                   
+     	return selectList("CsyscdDAO.deptList", map);          
+    }     
+    
+    /**                                                                                                      	
+     * 부서코드관리 부서이력등록(deptListIns)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                   
+    // 
+    public void deptListIns(Map<String, Object> map){
+    	insert("CsyscdDAO.deptListIns", map);
+    }
+    
+    /**                                                                                                      	
+     * 부서코드관리 부서이력수정(deptListUpd)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                   
+    // 
+    public void deptListUpd(Map<String, Object> map){
+    	insert("CsyscdDAO.deptListUpd", map);
+    }
+    
+    /**                                                                                                      	
+     * 부서코드관리 부서이력삭제(deptListDel)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                   
+    // 
+    public void deptListDel(Map<String, Object> map) {
+    	delete("CsyscdDAO.deptListDel", map);
+    }
+    
+    /**                                                                                                      	
+     * 부서이력목록 부서이력목록(deptHistList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                   
+    public List<Map> deptHistList(Map<String, Object> map) throws Exception {                   
+     	return selectList("CsyscdDAO.deptHistList", map);          
+    }
+    
+    /**                                                                                                      	
+     * 부서이력목록 부서이력등록(deptHistList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */  
+    public void deptHistListIns(Map<String, Object> map){                   
+     	insert("CsyscdDAO.deptHistListIns", map);          
+    }
+    
+    /**                                                                                                      	
+     * 부서이력목록 부서이력수정(deptHistList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */  
+    public void deptHistListUpd(Map<String, Object> map){                   
+     	update("CsyscdDAO.deptHistListUpd", map);          
+    }
+    
+    /**                                                                                                      	
+     * 부서이력목록 부서이력삭제(deptHistList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */  
+    public void deptHistListDel(Map<String, Object> map){                   
+     	delete("CsyscdDAO.deptHistListDel", map);          
+    }
+    
 }                                                                                                            

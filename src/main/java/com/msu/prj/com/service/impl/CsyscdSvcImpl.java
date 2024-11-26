@@ -248,6 +248,22 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	public void deptCdMngList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
 			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
 		
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		
+		List<Map> recordsMaster = csyscdDAO.deptList(map);
+		DataSetMap dsOutMaster = new DataSetMap();
+		dsOutMaster.setRowMaps(recordsMaster);
+		
+		
+		List<Map> recordsSub = csyscdDAO.deptHistList(map);
+		DataSetMap dsOutSub = new DataSetMap();
+		dsOutSub.setRowMaps(recordsSub);
+		
+		outDataset.put("dsMaster", dsOutMaster);
+		outDataset.put("dsSub", dsOutSub);
+		return;
+		
 	}
 
 	/**
@@ -260,7 +276,36 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	@Override
 	public void deptCdMngSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
 			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		
+				// 조회조건
+				int rowType;
+				String recordKeyValue = "";
+
+				DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+				Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+				// 저장데이타셋
+				DataSetMap dsMapMaster = (DataSetMap) inDataset.get("dsMaster");
+
+				if (dsMapMaster.size() > 0) {
+
+					for (int i = 0; i < dsMapMaster.size(); i++) {
+						Map<String, Object> outMap = (Map<String, Object>) dsMapMaster.get(i);
+						rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+						if (rowType == DataSet.ROW_TYPE_INSERTED) {
+						
+							outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+							csyscdDAO.deptListIns(outMap);
+
+						} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+							outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+
+							recordKeyValue = DataUtil.nvl(outMap.get("CLASS_ID")).toString();
+							csyscdDAO.deptListUpd(outMap);
+
+						}
+					}
+				}
 	}
 
 	/**
@@ -273,6 +318,88 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	@Override
 	public void deptCdMngDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
 			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsMaster");
+		
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deptListDel(map);
+			}
+		}
+		return;
+	}
+	
+	
+	/**
+	 * 부서이력목록 저장 (deptHistSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptHistSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
+			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		// 조회조건
+		int rowType;
+		String recordKeyValue = "";
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+		// 저장데이타셋
+		DataSetMap dsMapSub = (DataSetMap) inDataset.get("dsSub");
+
+		if (dsMapSub.size() > 0) {
+
+			for (int i = 0; i < dsMapSub.size(); i++) {
+				Map<String, Object> outMap = (Map<String, Object>) dsMapSub.get(i);
+				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+				
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+					csyscdDAO.deptHistListIns(outMap);
+
+				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+
+					recordKeyValue = DataUtil.nvl(outMap.get("CLASS_ID")).toString();
+					csyscdDAO.deptHistListUpd(outMap);
+
+				}
+			}
+		}
+		
+	}
+
+	/**
+	 * 부서이력목록 삭제 (deptHistDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptHistDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
+			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+			int rowType;
+			DataSetMap dsMap = (DataSetMap) inDataset.get("dsSub");
+		
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deptHistListDel(map);
+			}
+		}
+		return;
 		
 	}
 
@@ -317,4 +444,6 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		
 
 	}
+
+	
 }

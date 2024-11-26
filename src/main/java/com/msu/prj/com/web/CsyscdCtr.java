@@ -375,6 +375,93 @@ public class CsyscdCtr {
 
 		return mav;
 	}
+	
+	
+	
+	/**
+	 * 부서이력목록 저장/수정 (deptHistSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/deptHistSave.do")
+	public ModelAndView deptHistSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session) throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.deptHistSave(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+
+	/**
+	 * 부서이력목록 삭제(deptHistDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws LException
+	 */
+	@RequestMapping(value = "/prj/com/deptHistDel.do")
+	public ModelAndView deptHistDel(NexacroPlatformMapDTO xpDto, Model model, HttpSession session) throws Exception {
+
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = xpDto.getTranInfoMap();
+			Map<String, Object> inVar = xpDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = xpDto.getInDataSetMap();
+			Map<String, Object> outVar = xpDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = xpDto.getOutDataSetMap();
+
+			/*
+			 * System.out.println(
+			 * "/=========================start(duBug:print)====================/"
+			 * ); DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+			 * System.out.println("====================>inVar" + inVar);
+			 * System.out.println("====================>inDataset.size()" +
+			 * dsMap.size()); System.out.println(
+			 * "/=========================end===================================/"
+			 * );
+			 */
+
+			csyscdSvc.deptHistDel(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, xpDto.getOutVariableMap());
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, xpDto.getOutDataSetMap());
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
+	
 
 	/**
 	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrList)

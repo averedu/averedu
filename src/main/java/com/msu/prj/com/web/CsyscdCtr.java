@@ -44,7 +44,7 @@ public class CsyscdCtr {
 	private CsyscdSvc csyscdSvc;
 
 	/**
-	 * 기초표준코드1리스트 조회 (actionRetrieveCommCodeMasterList)
+	 * 공통코드 리스트 조회 (actionRetrieveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -116,7 +116,7 @@ public class CsyscdCtr {
 	}
 
 	/**
-	 * 기초표준코드1리스트 저장/수정(actionSaveCommCodeMasterList)
+	 * 공통코드 리스트 저장/수정(actionSaveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -151,8 +151,45 @@ public class CsyscdCtr {
 		return mav;
 	}
 	
+	
+	/**
+	 * 상세코드리스트 저장/수정(actionSaveCommCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/SaveCommCodeDetailList.do")
+	public ModelAndView actionSaveCommCodeDetailList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.saveCommCodeDetailList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
 	/**                                                                                                                		
-	 * 기초표준코드1리스트 삭제(actionDeleteCommCodeMasterList)                                                            
+	 * 공통코드 리스트 삭제(actionDeleteCommCodeMasterList)                                                            
 	 * @param input                                                                                                 			
 	 * @return                                                                                                      			
 	 * @throws Exception                                                                                           				
@@ -187,7 +224,7 @@ public class CsyscdCtr {
 	}   
 	
 	/**                                                                                                                		
-	 * 기초표준코드2리스트 삭제(actionDeleteCommCodeDetailList)                                                            
+	 * 세부코드 리스트 삭제(actionDeleteCommCodeDetailList)                                                            
 	 * @param input                                                                                                 			
 	 * @return                                                                                                      			
 	 * @throws Exception                                                                                           				

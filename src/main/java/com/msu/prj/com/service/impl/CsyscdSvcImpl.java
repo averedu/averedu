@@ -41,7 +41,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	private CsyscdDAO csyscdDAO;
 
 	/**
-	 * 기초표준코드1리스트 조회(retrieveCommCodeMasterList)
+	 * 공통코드리스트 조회(retrieveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -83,7 +83,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 
 	/**
-	 * 기초표준코드1,2리스트 저장/수정(saveCommCodeMasterList)
+	 * 공통코드 저장/수정(saveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -99,8 +99,6 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
 		// 저장데이타셋
 		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsMaster"); // 마스터
-		DataSetMap dsMap2 = (DataSetMap) inDataset.get("dsDetail"); // 디테일
-
 		if (dsMap1.size() > 0) {
 
 			for (int i = 0; i < dsMap1.size(); i++) {
@@ -108,30 +106,17 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
 
 				if (rowType == DataSet.ROW_TYPE_INSERTED) {
-					// pk레코드조회
-					/*
-					 * List<Map> recordKeyList =
-					 * csyscdDAO.retrieveCommCodeMasterListPKey(outMap);
-					 * Map<String, Object> mapKeyValue = (Map<String, Object>)
-					 * recordKeyList.get(0); recordKeyValue =
-					 * DataUtil.nvl(mapKeyValue.get("CLASS_ID")).toString();
-					 * 
-					 * outMap.put("CLASS_ID", recordKeyValue);
-					 * 
-					 * if (checkExistPK(outMap)) { throw new CommException("1",
-					 * "공통코드가 중복 되었습니다.", ""); }
-					 */
 
-					outMap.put("REG_ID", sessionVO.getUserId().toString());
-					outMap.put("MOD_ID", sessionVO.getUserId().toString());
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 
 					csyscdDAO.insertCommCodeMasterList(outMap);
 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
 
-					outMap.put("MOD_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 
-					recordKeyValue = DataUtil.nvl(outMap.get("CLASS_ID")).toString();
+					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
 					csyscdDAO.updateCommCodeMasterList(outMap);
 
 				}
@@ -150,7 +135,60 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 	
 	/**
-	 * 기초표준코드1리스트 삭제(deleteCommCodeMasterList)
+	 * 상세코드 저장/수정(saveCommCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveCommCodeDetailList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		// 조회조건
+		int rowType;
+		String recordKeyValue = "";
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input1");
+		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+		// 저장데이타셋
+		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsDetail"); // 마스터
+		if (dsMap1.size() > 0) {
+
+			for (int i = 0; i < dsMap1.size(); i++) {
+				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
+				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
+					
+
+					csyscdDAO.insertCommCodeDetailList(outMap);
+
+				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+
+					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
+					csyscdDAO.updateCommCodeDetailList(outMap);
+
+				}
+			}
+		}
+		// 서버에서 시퀀스 제조회시
+		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
+		outVar.put("strKeyValue", recordKeyValue);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsDetail", dsOut);
+
+		return;
+	}
+	
+	/**
+	 * 공통코드리스트 삭제(deleteCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -175,7 +213,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 	
 	/**
-	 * 기초표준코드2리스트 삭제(deleteCommCodeDetailList)
+	 * 상세코드 삭제(deleteCommCodeDetailList)
 	 * 
 	 * @param input
 	 * @return
@@ -192,9 +230,10 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
 			
 			if (rowType == DataSet.ROW_TYPE_DELETED) {
-				csyscdDAO.deleteCommCodeDetailList(map);
+				csyscdDAO.deleteCommCodeDetailList2(map);
 			}
 		}
+		csyscdDAO.deleteEmptyCodeDetailList();
 		return;
 	}
 

@@ -44,7 +44,7 @@ public class CsyscdCtr {
 	private CsyscdSvc csyscdSvc;
 
 	/**
-	 * 기초표준코드1리스트 조회 (actionRetrieveCommCodeMasterList)
+	 * 공통코드 리스트 조회 (actionRetrieveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -116,7 +116,7 @@ public class CsyscdCtr {
 	}
 
 	/**
-	 * 기초표준코드1리스트 저장/수정(actionSaveCommCodeMasterList)
+	 * 공통코드 리스트 저장/수정(actionSaveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -189,7 +189,7 @@ public class CsyscdCtr {
 	}
 	
 	/**                                                                                                                		
-	 * 기초표준코드1리스트 삭제(actionDeleteCommCodeMasterList)                                                            
+	 * 공통코드 리스트 삭제(actionDeleteCommCodeMasterList)                                                            
 	 * @param input                                                                                                 			
 	 * @return                                                                                                      			
 	 * @throws Exception                                                                                           				
@@ -224,7 +224,7 @@ public class CsyscdCtr {
 	}   
 	
 	/**                                                                                                                		
-	 * 기초표준코드2리스트 삭제(actionDeleteCommCodeDetailList)                                                            
+	 * 세부코드 리스트 삭제(actionDeleteCommCodeDetailList)                                                            
 	 * @param input                                                                                                 			
 	 * @return                                                                                                      			
 	 * @throws Exception                                                                                           				

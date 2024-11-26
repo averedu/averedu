@@ -43,16 +43,16 @@
 				AND A.BF_CMMN_CD  LIKE '%' || #{BF_CMMN_CD} || '%'   
 			]]>                                           													
 		</if>                                                                                                      
-        /* CsyscdDAO.retrieveCommCodeMasterList 기초표준코드1 조회 */	                                 
+        /* CsyscdDAO.retrieveCommCodeMasterList 공통코드 조회 */	                                 
     </select> 
     
     <select id="CsyscdDAO.retrieveCommCodeDetailList" parameterType="map" resultType="egovMap">
 		SELECT 
 			'0' AS CHK 									  /*CHK*/
 			, A.CMMN_CD                                   /*공통코드*/
-			, A.CMMN_DETA_CD                              /*공통세부코드*/
-			, A.CMMN_DETA_CD_NM                           /*공통세부코드명*/
-			, A.CMMN_DETA_CD_ABBNM                        /*공통세부코드약명*/
+			, A.CMMN_DETA_CD                              /*공통상세코드*/
+			, A.CMMN_DETA_CD_NM                           /*공통상세코드명*/
+			, A.CMMN_DETA_CD_ABBNM                        /*공통상세코드약명*/
 			, B.LANG_FG_CD                                /*언어구분코드*/
 			, B.LANG_FG_NM                                /*언어코드명*/
 			, B.LANG_ABBNM                                /*언어코드약명*/
@@ -69,7 +69,7 @@
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
 		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
 		WHERE A.CMMN_CD = #{CMMN_CD}
-		/* CsyscdDAO.retrieveCommCodeDetailList 세부코드 조회 */	              
+		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
     <select id="CsyscdDAO.countDetailList" parameterType="map" resultType="egovMap">
@@ -79,7 +79,7 @@
 		FROM COM.CSYS110 
 		WHERE CMMN_CD = #{CMMN_CD}
 		AND CMMN_DETA_CD = #{CMMN_DETA_CD}
-		/* CsyscdDAO.retrieveCommCodeDetailList 세부코드 조회 */	              
+		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
     <select id="CsyscdDAO.retrieveCommCodeGropList" parameterType="map" resultType="egovMap">
@@ -134,7 +134,7 @@
                                  
             )	                                                      						
         ]]>                                    											
-        /* CsyscdDAO.insertCommCodeMasterList 기초표준코드1 저장 */	
+        /* CsyscdDAO.insertCommCodeMasterList 공통코드 저장 */	
     </insert>
     
     
@@ -143,9 +143,9 @@
             INSERT INTO COM.CSYS110                                       										  
             (                                       																	  
                  CMMN_CD                    /*공통코드*/ 
-                 , CMMN_DETA_CD               /*공통세부코드*/
-                 , CMMN_DETA_CD_NM            /*공통세부코드명*/
-                 , CMMN_DETA_CD_ABBNM         /*공통세부코드약명*/
+                 , CMMN_DETA_CD               /*공통상세코드*/
+                 , CMMN_DETA_CD_NM            /*공통상세코드명*/
+                 , CMMN_DETA_CD_ABBNM         /*공통상세코드약명*/
                  , USE_YN                     /*사용여부*/
                  , SORT_SEQ                   /*정렬순번*/
                  , FRST_INPUT_ID              /*등록자*/ 
@@ -166,7 +166,7 @@
                  , SYSDATE           
 					)	                                                      						
         ]]>                                    											
-        /* CsyscdDAO.insertCommCodeDetailList 상세코드메인 저장 */	
+        /* CsyscdDAO.insertCommCodeDetailList 상세코드 저장 */	
     </insert>
     
      <insert id="CsyscdDAO.insertCommCodeDetailList2" parameterType="map"> 
@@ -174,7 +174,7 @@
             INSERT INTO COM.CSYS111                                       										  
             (                                       																	  
                  CMMN_CD                      /*공통코드*/
-                 , CMMN_DETA_CD               /*공통세부코드*/
+                 , CMMN_DETA_CD               /*공통상세코드*/
                  , LANG_FG_CD                 /*언어구분코드*/
                  , LANG_FG_NM                 /*언어코드명*/
                  , LANG_ABBNM                 /*언어코드약명*/
@@ -201,7 +201,7 @@
                                  
             )	                                                      						
         ]]>                                    											
-        /* CsyscdDAO.insertCommCodeDetailList2 상세코드언어구분 저장 */	
+        /* CsyscdDAO.insertCommCodeDetailList2 언어코드 저장 */	
     </insert>                                                             					
 
     <update id="CsyscdDAO.updateCommCodeMasterList" parameterType="map"> 
@@ -219,7 +219,7 @@
              WHERE 1=1                                                   						                        
                AND CMMN_CD        = #{CMMN_CD}  
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+        /* CsyscdDAO.updateCommCodeMasterList 공통코드 수정 */								
     </update>	  
     
         <update id="CsyscdDAO.updateCommCodeDetailList" parameterType="map"> 
@@ -239,7 +239,7 @@
                AND CMMN_CD        = #{CMMN_CD}
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+        /* CsyscdDAO.updateCommCodeMasterList 상세코드 수정 */								
     </update>	
     
         <update id="CsyscdDAO.updateCommCodeDetailList2" parameterType="map"> 
@@ -261,7 +261,7 @@
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}
                AND LANG_FG_CD     = #{LANG_FG_CD}  
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+        /* CsyscdDAO.updateCommCodeMasterList 언어코드 수정 */								
     </update>	
     
     <delete id="CsyscdDAO.deleteCommCodeMasterList" parameterType="map">    
@@ -270,7 +270,7 @@
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
-        /* CsyscdDAO.deleteCommCodeMasterList 기초표준코드1 삭제 */								       
+        /* CsyscdDAO.deleteCommCodeMasterList 공통코드 삭제 */								       
     </delete>
     
     <delete id="CsyscdDAO.deleteCommCodeAllList" parameterType="map">    
@@ -279,7 +279,7 @@
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
-        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
+        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 상세코드 전체삭제*/								       
     </delete>
     
     <delete id="CsyscdDAO.deleteCommCodeDetailList" parameterType="map">    
@@ -289,7 +289,7 @@
                AND CMMN_CD        = #{CMMN_CD}  
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>                                                															           
-        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 상세코드 삭제 */								       
     </delete>	
     
     <delete id="CsyscdDAO.deleteEmptyCodeDetailList">    
@@ -308,7 +308,7 @@
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
-        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
+        /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 상세코드 전체삭제*/								       
     </delete>
     
     <delete id="CsyscdDAO.deleteCommCodeDetailList2" parameterType="map">    
@@ -318,6 +318,6 @@
                AND CMMN_CD        = #{CMMN_CD}  
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>                                                															           
-        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 언어코드 삭제 */								       
     </delete>                                                      													                                                           													                                                             													   
 </mapper>

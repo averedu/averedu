@@ -41,7 +41,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	private CsyscdDAO csyscdDAO;
 
 	/**
-	 * 기초표준코드1리스트 조회(retrieveCommCodeMasterList)
+	 * 공통코드리스트 조회(retrieveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -83,7 +83,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 
 	/**
-	 * 기초표준코드 저장/수정(saveCommCodeMasterList)
+	 * 공통코드 저장/수정(saveCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return
@@ -188,7 +188,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 	
 	/**
-	 * 기초표준코드1리스트 삭제(deleteCommCodeMasterList)
+	 * 공통코드리스트 삭제(deleteCommCodeMasterList)
 	 * 
 	 * @param input
 	 * @return

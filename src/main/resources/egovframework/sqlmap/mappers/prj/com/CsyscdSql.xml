@@ -7,62 +7,78 @@
         <![CDATA[                                                													
   			 SELECT                                                  											    
                    '0' AS CHK                    	/*CHK*/        		                
-	                 , A.CMMN_CD AS COM_CD          /*공통코드*/	
-	                 , A.CMMN_CD_NM AS COM_CD_NM    /*공통코드명*/    
-	                 , A.USE_YN AS USE_AT           /*사용여부*/
+	                 , A.CMMN_CD          			/*공통코드*/	
+	                 , A.CMMN_CD_NM        			/*공통코드명*/    
+	                 , A.USE_YN            			/*사용여부*/
 	                 , A.REMK_CTNT 			        /*비고내역*/    
-	                 , A.BF_CMMN_CD                  /*이전공통코드*/
-	                 , A.FRST_INPUT_ID AS REG_ID    /*최초입력자ID*/    
-	                 , A.FRST_INPUT_DT AS REG_DT    /*최초입력일시*/    
+	                 , A.BF_CMMN_CD                 /*이전공통코드*/
+	                 , A.FRST_INPUT_ID 			    /*최초입력자ID*/    
+	                 , A.FRST_INPUT_DT 			    /*최초입력일시*/    
 	                 , A.FRST_INPUT_MENU_ID         /*최초입력메뉴ID*/    
 	                 , A.FRST_INPUT_IP              /*최초입력IP*/    
-	                 , A.LAST_MODF_ID AS MOD_ID     /*최종수정입력자ID*/    
-	                 , A.LAST_MODF_DT AS MOD_DT     /*최종수정일시*/    
+	                 , A.LAST_MODF_ID			    /*최종수정입력자ID*/    
+	                 , A.LAST_MODF_DT		        /*최종수정일시*/    
 	                 , A.LAST_MODF_MENU_ID          /*최종수정메뉴ID*/    
 	                 , A.LAST_MODF_IP               /*최종수정IP*/    
              FROM COM.CSYS100 A                                                                       							 
              WHERE 1=1                                                                                							 
         ]]>                                                      												 
-<!--         <if test="CLASS_ID != null and CLASS_ID != ''">     -->
-<!--             <![CDATA[                                         							                         -->
-<!--                AND A.CLASS_ID        = #{CLASS_ID}   -->
-<!--             ]]>                                           													 -->
-<!--         </if>    -->
-<!--            <if test="CLASS_ID_NM != null and CLASS_ID_NM != ''">     -->
-<!--             <![CDATA[                                         							                         -->
-<!--                AND A.CLASS_ID_NM LIKE '%' || #{CLASS_ID_NM} || '%'  -->
-<!--             ]]>                                           													 -->
-<!--         </if>       -->
-           <if test="USE_YN != null and USE_YN != ''">    
+        <if test="CMMN_CD != null and CMMN_CD != ''">    
             <![CDATA[                                         							                        
-                AND A.USE_YN  LIKE '%' || #{USE_YN} || '%'   
-             ]]>                                           													
-         </if>                                                                                                    
+	                AND A.CMMN_CD        = #{CMMN_CD}   
+	             ]]>                                           													 
+        </if>   
+           <if test="CMMN_CD_NM != null and CMMN_CD_NM != ''">    
+            <![CDATA[                                         							                        
+	                AND A.CMMN_CD_NM LIKE '%' || #{CMMN_CD_NM} || '%'  
+	             ]]>                                           													 
+        </if>      
+		<if test="USE_YN != null and USE_YN != ''">    
+			<![CDATA[                                         							                        
+				AND A.USE_YN  LIKE '%' || #{USE_YN} || '%'   
+			]]>                                           													
+		</if>    
+		<if test="BF_CMMN_CD != null and BF_CMMN_CD != ''">    
+			<![CDATA[                                         							                        
+				AND A.BF_CMMN_CD  LIKE '%' || #{BF_CMMN_CD} || '%'   
+			]]>                                           													
+		</if>                                                                                                      
         /* CsyscdDAO.retrieveCommCodeMasterList 기초표준코드1 조회 */	                                 
     </select> 
     
     <select id="CsyscdDAO.retrieveCommCodeDetailList" parameterType="map" resultType="egovMap">
 		SELECT 
-			A.CMMN_CD AS CLASS_ID
-			,A.CMMN_DETA_CD AS CD
-			,A.CMMN_DETA_CD_NM
-			,A.CMMN_DETA_CD_ABBNM 
-			,B.LANG_FG_CD 
-			,B.LANG_FG_NM AS CD_NM
-			,B.LANG_ABBNM
-			,B.USE_YN
-			,B.REMK_CTNT
-			,B.FRST_INPUT_ID
-			,B.FRST_INPUT_DT
-			,B.FRST_INPUT_MENU_ID
-			,B.FRST_INPUT_IP
-			,B.LAST_MODF_ID
-			,B.LAST_MODF_DT
-			,B.LAST_MODF_MENU_ID
-			,B.LAST_MODF_IP
+			'0' AS CHK 									  /*CHK*/
+			, A.CMMN_CD                                   /*공통코드*/
+			, A.CMMN_DETA_CD                              /*공통세부코드*/
+			, A.CMMN_DETA_CD_NM                           /*공통세부코드명*/
+			, A.CMMN_DETA_CD_ABBNM                        /*공통세부코드약명*/
+			, B.LANG_FG_CD                                /*언어구분코드*/
+			, B.LANG_FG_NM                                /*언어코드명*/
+			, B.LANG_ABBNM                                /*언어코드약명*/
+			, B.USE_YN                                    /*사용여부*/
+			, B.REMK_CTNT                                 /*비고내역*/
+			, B.FRST_INPUT_ID                             /*최초입력자ID*/
+			, B.FRST_INPUT_DT                             /*최초입력일시*/
+			, B.FRST_INPUT_MENU_ID                        /*최초입력메뉴ID*/
+			, B.FRST_INPUT_IP                             /*최초입력IP*/
+			, B.LAST_MODF_ID                              /*최종수정입력ID*/
+			, B.LAST_MODF_DT                              /*최종수정일시*/
+			, B.LAST_MODF_MENU_ID                         /*최종수정메뉴ID*/
+			, B.LAST_MODF_IP                              /*최종수정IP*/
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
 		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
-		WHERE A.CMMN_CD = #{CLASS_ID}
+		WHERE A.CMMN_CD = #{CMMN_CD}
+		/* CsyscdDAO.retrieveCommCodeDetailList 세부코드 조회 */	              
+    </select>
+    
+    <select id="CsyscdDAO.countDetailList" parameterType="map" resultType="egovMap">
+		SELECT 
+			CMMN_CD
+			, CMMN_DETA_CD
+		FROM COM.CSYS110 
+		WHERE CMMN_CD = #{CMMN_CD}
+		AND CMMN_DETA_CD = #{CMMN_DETA_CD}
 		/* CsyscdDAO.retrieveCommCodeDetailList 세부코드 조회 */	              
     </select>
     
@@ -96,48 +112,163 @@
             (                                       																	  
                    CMMN_CD                    /*공통코드*/ 
                  , CMMN_CD_NM                 /*공통코드명*/ 
-                 , USE_YN                      /*사용여부*/ 
-                 , FRST_INPUT_ID                      /*등록자*/ 
-                 , FRST_INPUT_DT                      /*등록일시*/ 
-                 , LAST_MODF_ID                      /*수정자*/ 
-                 , LAST_MODF_DT                      /*수정일시*/ 
+                 , USE_YN                     /*사용여부*/ 
+                 , REMK_CTNT 			      /*비고내역*/
+                 , BF_CMMN_CD                 /*이전공통코드*/
+                 , FRST_INPUT_ID              /*등록자*/ 
+                 , FRST_INPUT_DT              /*등록일시*/ 
+                 , LAST_MODF_ID               /*수정자*/ 
+                 , LAST_MODF_DT               /*수정일시*/ 
   
             )VALUES                                                  														
             (                                                        														
-                   #{COM_CD} 
-                 , #{COM_CD_NM}   
-                 , #{USE_AT}  
-                 , #{REG_ID}  
+                   #{CMMN_CD} 
+                 , #{CMMN_CD_NM} 
+                 , #{USE_YN} 
+                 , #{REMK_CTNT}  
+                 , #{BF_CMMN_CD} 
+                 , #{FRST_INPUT_ID}  
                  , SYSDATE                                   
-                 , #{MOD_ID}  
+                 , #{LAST_MODF_ID}  
                  , SYSDATE                                   
                                  
             )	                                                      						
         ]]>                                    											
         /* CsyscdDAO.insertCommCodeMasterList 기초표준코드1 저장 */	
-    </insert>                                                           					
+    </insert>
+    
+    
+    <insert id="CsyscdDAO.insertCommCodeDetailList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COM.CSYS110                                       										  
+            (                                       																	  
+                 CMMN_CD                    /*공통코드*/ 
+                 , CMMN_DETA_CD               /*공통세부코드*/
+                 , CMMN_DETA_CD_NM            /*공통세부코드명*/
+                 , CMMN_DETA_CD_ABBNM         /*공통세부코드약명*/
+                 , USE_YN                     /*사용여부*/
+                 , SORT_SEQ                   /*정렬순번*/
+                 , FRST_INPUT_ID              /*등록자*/ 
+                 , FRST_INPUT_DT              /*등록일시*/ 
+                 , LAST_MODF_ID               /*수정자*/ 
+                 , LAST_MODF_DT               /*수정일시*/ 
+  
+            )VALUES( 
+            	 #{CMMN_CD}                    
+                 , #{CMMN_DETA_CD}            
+                 , #{CMMN_DETA_CD_NM}         
+                 , #{CMMN_DETA_CD_ABBNM}      
+                 , #{USE_YN}                  
+                 , #{SORT_SEQ}                
+                 , #{FRST_INPUT_ID}           
+                 , SYSDATE         
+                 , #{LAST_MODF_ID}            
+                 , SYSDATE           
+					)	                                                      						
+        ]]>                                    											
+        /* CsyscdDAO.insertCommCodeDetailList 상세코드메인 저장 */	
+    </insert>
+    
+     <insert id="CsyscdDAO.insertCommCodeDetailList2" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COM.CSYS111                                       										  
+            (                                       																	  
+                 CMMN_CD                      /*공통코드*/
+                 , CMMN_DETA_CD               /*공통세부코드*/
+                 , LANG_FG_CD                 /*언어구분코드*/
+                 , LANG_FG_NM                 /*언어코드명*/
+                 , LANG_ABBNM                 /*언어코드약명*/
+                 , USE_YN                     /*사용여부*/
+                 , REMK_CTNT                  /*비고내역*/
+                 , FRST_INPUT_ID              /*등록자*/ 
+                 , FRST_INPUT_DT              /*등록일시*/ 
+                 , LAST_MODF_ID               /*수정자*/ 
+                 , LAST_MODF_DT               /*수정일시*/ 
+  
+            )VALUES                                                  														
+            (                                                        														
+                   #{CMMN_CD} 
+                 , #{CMMN_DETA_CD} 
+                 , #{LANG_FG_CD}  
+                 , #{LANG_FG_NM} 
+                 , #{LANG_ABBNM}
+                 , #{USE_YN}
+                 , #{REMK_CTNT}  
+                 , #{FRST_INPUT_ID}  
+                 , SYSDATE                                   
+                 , #{LAST_MODF_ID}  
+                 , SYSDATE                                   
+                                 
+            )	                                                      						
+        ]]>                                    											
+        /* CsyscdDAO.insertCommCodeDetailList2 상세코드언어구분 저장 */	
+    </insert>                                                             					
 
     <update id="CsyscdDAO.updateCommCodeMasterList" parameterType="map"> 
         <![CDATA[                                                						
             UPDATE COM.CSYS100                                			        
                SET                                                      				
-                   CMMN_CD_NM               = #{COM_CD_NM}                 /*공통코드명*/  
-                 , USE_YN                    = #{USE_AT}                      /*사용여부*/  
-                 , FRST_INPUT_ID                    = #{REG_ID}                      /*등록자*/  
-                 , FRST_INPUT_DT                    = SYSDATE                        /*등록일시*/  
-                 , LAST_MODF_ID                    = #{MOD_ID}                      /*수정자*/  
-                 , LAST_MODF_DT                   = SYSDATE                        /*수정일시*/  
+                   CMMN_CD_NM               = #{CMMN_CD_NM}                 /*공통코드명*/  
+                 , USE_YN                   = #{USE_YN}                     /*사용여부*/  
+                 , REMK_CTNT                = #{REMK_CTNT}					/*비고내역*/
+                 , BF_CMMN_CD               = #{BF_CMMN_CD}					/*이전공통코드*/
+                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
+                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
              WHERE 1=1                                                   						                        
-               AND CMMN_CD        = #{COM_CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
         ]]>  	                                   							                            				
         /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
     </update>	  
+    
+        <update id="CsyscdDAO.updateCommCodeDetailList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COM.CSYS110                                			        
+               SET                                 
+                 CMMN_DETA_CD               = #{CMMN_DETA_CD}
+                 , CMMN_DETA_CD_NM          = #{CMMN_DETA_CD_NM}
+                 , CMMN_DETA_CD_ABBNM       = #{CMMN_DETA_CD_ABBNM}
+                 , USE_YN                   = #{USE_YN}
+                 , SORT_SEQ	                = #{SORT_SEQ}
+                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
+                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CMMN_CD        = #{CMMN_CD}
+               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
+        ]]>  	                                   							                            				
+        /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+    </update>	
+    
+        <update id="CsyscdDAO.updateCommCodeDetailList2" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COM.CSYS111                                			        
+               SET                                                      				
+                 CMMN_DETA_CD               = #{CMMN_DETA_CD}
+                 , LANG_FG_CD               = #{LANG_FG_CD}
+                 , LANG_FG_NM               = #{LANG_FG_NM}
+                 , LANG_ABBNM               = #{LANG_ABBNM}
+                 , USE_YN                   = #{USE_YN}
+                 , REMK_CTNT                = #{REMK_CTNT}
+                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
+                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CMMN_CD        = #{CMMN_CD}
+               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}
+               AND LANG_FG_CD     = #{LANG_FG_CD}  
+        ]]>  	                                   							                            				
+        /* CsyscdDAO.updateCommCodeMasterList 기초표준코드1 수정 */								
+    </update>	
     
     <delete id="CsyscdDAO.deleteCommCodeMasterList" parameterType="map">    
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS100                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{COM_CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
         /* CsyscdDAO.deleteCommCodeMasterList 기초표준코드1 삭제 */								       
     </delete>
@@ -146,7 +277,7 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS110                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{COM_CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
     </delete>
@@ -155,10 +286,19 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS110                                                 							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{CLASS_ID}  
-               AND CMMN_DETA_CD   = #{CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
+               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>                                                															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
+    </delete>	
+    
+    <delete id="CsyscdDAO.deleteEmptyCodeDetailList">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS110                                                 							      
+             WHERE 1=1                              																	          
+               AND CMMN_DETA_CD NOT IN (SELECT CMMN_DETA_CD FROM COM.CSYS111 GROUP BY CMMN_DETA_CD) 
+        ]]>                                                															           
+        /* CsyscdDAO.deleteEmptyCodeDetailList 언어코드가 없는 상세코드 삭제 */								       
     </delete>	
     
     
@@ -166,7 +306,7 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS111                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{COM_CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
         ]]>                                                															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 기초표준코드2 전체삭제*/								       
     </delete>
@@ -175,8 +315,8 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS111                                                 							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{CLASS_ID}  
-               AND CMMN_DETA_CD   = #{CD}  
+               AND CMMN_CD        = #{CMMN_CD}  
+               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>                                                															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 기초표준코드2 삭제 */								       
     </delete>                                                      													                                                           													                                                             													   

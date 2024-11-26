@@ -40,7 +40,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public List<Map> retrieveCommCodeMasterList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveCommCodeMasterList", map);          
-    }          
+    } 
+    
     
     /**                                                                                                      
      * 세부코드 리스트 조회(retrieveCommCodeDetailList)                                            
@@ -51,8 +52,7 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public List<Map> retrieveCommCodeDetailList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveCommCodeDetailList", map);          
-    }                         
-    
+    }   
     
     /**                                                                                                      	
      * 기초표준코드1 리스트 저장(insertCommCodeMasterList)                                                 
@@ -64,7 +64,21 @@ public class CsyscdDAO extends EgovAbstractMapper {
                                                                                                              
      	insert("CsyscdDAO.insertCommCodeMasterList", map);                       
     }                                                                                                        
-                                                                                                             
+                
+    
+    /**                                                                                                      	
+     * 상세코드 리스트 저장(insertCommCodeDetailList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void insertCommCodeDetailList(Map<String, Object> map) throws Exception {                          
+     if(selectList("CsyscdDAO.countDetailList", map).size()<1){
+    	 insert("CsyscdDAO.insertCommCodeDetailList", map); 
+     } 	 
+     	insert("CsyscdDAO.insertCommCodeDetailList2", map);
+    } 
+    
     /**                                                                                                      	
      * 기초표준코드1 리스트 수정(updateCommCodeMasterList)                                                 
      * @param input                                                                                         	
@@ -74,10 +88,22 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public void updateCommCodeMasterList(Map<String, Object> map) throws Exception {                          
                                                                                                              
      	update("CsyscdDAO.updateCommCodeMasterList", map);                       
-    }    
+    } 
     
     /**                                                                                                      	
-     * 기초표준코드1 리스트 삭제(deleteCommCodeMasterList)                                                 
+     * 상세코드 리스트 수정(updateCommCodeMasterList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void updateCommCodeDetailList(Map<String, Object> map) throws Exception {                          
+                                                                                                             
+     	update("CsyscdDAO.updateCommCodeDetailList", map);             
+     	update("CsyscdDAO.updateCommCodeDetailList2", map);
+    }  
+    
+    /**                                                                                                      	
+     * 상세코드 삭제(deleteCommCodeMasterList)                                                 
      * @param input                                                                                         	
      * @return                                                                                              	
      * @throws Exception                                                                                   		
@@ -88,14 +114,23 @@ public class CsyscdDAO extends EgovAbstractMapper {
     }      
     
     /**                                                                                                      	
-     * 기초표준코드2 리스트 삭제(deleteCommCodeDetailList)                                                 
+     * 비어있는 상세코드 삭제(deleteEmptyCodeDetailList)                                                 
      * @param input                                                                                         	
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */                                                                                                     	
-    public void deleteCommCodeDetailList(Map<String, Object> map) throws Exception {                          
+    public void deleteEmptyCodeDetailList() throws Exception {                          
                                                                                                              
-     	delete("CsyscdDAO.deleteCommCodeDetailList", map);    
+     	delete("CsyscdDAO.deleteEmptyCodeDetailList");    
+    }
+    
+    /**                                                                                                      	
+     * 상세언어코드 삭제(deleteCommCodeDetailList2)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void deleteCommCodeDetailList2(Map<String, Object> map) throws Exception {                          
      	delete("CsyscdDAO.deleteCommCodeDetailList2", map);    
     }
     

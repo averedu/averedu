@@ -3,23 +3,22 @@
   <Form id="Sample_005" width="1606" height="830" titletext="공통코드등록관리" onload="form_onload" onclose="form_onclose">
     <Layouts>
       <Layout height="830" width="1606">
-        <Button id="btn_03" taborder="0" text="도움말" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="58"/>
-        <Button id="btn_02" taborder="1" text="필터" top="3" height="22" cssclass="btn_WF_Crud" right="60" width="46"/>
-        <Button id="btn_01" taborder="2" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="108" width="46"/>
-        <Button id="btn_00" taborder="3" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="156" width="46"/>
-        <Static id="stc_09" taborder="4" left="0" top="15" height="22" text="그리드등록리스트" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
-        <Static id="Static10" taborder="5" text="7" left="0" top="37" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
-        <Static id="Static00" taborder="6" text="35" left="415" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
-        <Static id="Static02" taborder="7" text="15" left="0" top="0" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
-        <Button id="btn_134" taborder="8" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="204" width="46"/>
-        <Button id="btn_132" taborder="9" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="252" width="46"/>
-        <Grid id="Grid00" taborder="10" left="0" top="44" binddataset="dsGrpCd" height="350" right="0">
+        <Button id="btn_Grp_Excel" taborder="0" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="46" onclick="btn_Grp_Excel_onclick"/>
+        <Button id="btn_Grp_Save" taborder="1" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="51" width="46" onclick="btn_Grp_Save_onclick"/>
+        <Static id="stc_09" taborder="2" left="0" top="15" height="22" text="그리드등록리스트" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
+        <Static id="Static10" taborder="3" text="7" left="0" top="37" width="100" height="7" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static00" taborder="4" text="35" left="415" top="0" width="100" height="35" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Static id="Static02" taborder="5" text="15" left="0" top="0" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
+        <Button id="btn_Grp_Del" taborder="6" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="102" width="46" onclick="btn_Grp_Del_onclick"/>
+        <Button id="btn_Grp_Add" taborder="7" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="153" width="46" onclick="btn_Grp_Add_onclick"/>
+        <Grid id="grdGrdList" taborder="8" left="0" top="44" binddataset="dsGrp" height="350" right="0" autofittype="col" onheaddblclick="dsGrp_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="48"/>
                 <Column size="150"/>
                 <Column size="300"/>
-                <Column size="80"/>
+                <Column size="140"/>
                 <Column size="300"/>
                 <Column size="80"/>
               </Columns>
@@ -28,26 +27,28 @@
                 <Row size="30"/>
               </Rows>
               <Band id="head">
-                <Cell text="그룹코드" cssclass="point"/>
-                <Cell col="1" text="그룹명" cssclass="point"/>
-                <Cell col="2" text="순서" cssclass="point"/>
-                <Cell col="3" text="설명"/>
-                <Cell col="4" text="사용여부"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="상태" cssclass="point"/>
+                <Cell col="2" text="공통코드그룹ID" cssclass="point"/>
+                <Cell col="3" text="콩통코드그룹명" cssclass="point"/>
+                <Cell col="4" text="비고"/>
+                <Cell col="5" text="추가속성명"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:Column0"/>
-                <Cell col="1" text="bind:Column1"/>
-                <Cell col="2"/>
-                <Cell col="3"/>
-                <Cell col="4"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''"/>
+                <Cell col="2" text="bind:CMMN_GRP_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'"/>
+                <Cell col="3" text="bind:CMMN_GRP_CD_NM" edittype="text"/>
+                <Cell col="4" text="bind:REMK_WPC" edittype="text"/>
+                <Cell col="5" text="bind:ADD_ATT_VAL" edittype="text"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Static id="stc_01" taborder="11" left="stc_09:0" top="15" height="22" text="&lt;b v='true'&gt;&lt;fc v='#ff3300'&gt;0&lt;/fc&gt;&lt;/b&gt; 건" width="50" usedecorate="true" cssclass="sta_WF_TotalSta"/>
-        <Tab id="Tab00" taborder="12" tabindex="0" left="0" top="430" height="400" onchanged="Tab00_onchanged" right="0">
+        <Static id="staRowCnt" taborder="9" left="stc_09:0" top="15" height="22" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" width="70" usedecorate="true" cssclass="sta_WF_TotalSta"/>
+        <Tab id="Tab00" taborder="10" tabindex="0" left="0" top="430" height="400" onchanged="Tab00_onchanged" right="0">
           <Tabpages>
-            <Tabpage id="Tabpage1" text="Tabpage1">
+            <Tabpage id="Tabpage1" text="코드그룹매핑">
               <Layouts>
                 <Layout>
                   <Static id="stc_00" taborder="0" left="7" top="22" height="22" text="권한그룹매핑" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
@@ -138,31 +139,78 @@
                       </Layout>
                     </Layouts>
                   </Div>
-                  <Button id="Button00" taborder="12" text="조회" top="22" width="46" height="22" right="297"/>
-                  <Button id="Button01" taborder="13" text="추가" top="22" width="46" height="22" right="249"/>
-                  <Button id="Button02" taborder="14" text="삭제" top="22" width="46" height="22" right="201"/>
-                  <Button id="Button03" taborder="15" text="저장" top="22" width="46" height="22" right="153"/>
-                  <Button id="Button04" taborder="16" text="엑셀" top="22" width="46" height="22" right="105"/>
-                  <Button id="Button05" taborder="17" text="필터" top="22" width="46" height="22" right="57"/>
-                  <Button id="Button06" taborder="18" text="도움말" top="22" width="58" height="22" right="-3"/>
-                  <Button id="Button07" taborder="19" text="조회" top="22" width="46" height="22" left="456"/>
-                  <Button id="Button08" taborder="20" text="추가" top="22" width="46" height="22" left="504"/>
-                  <Button id="Button09" taborder="21" text="삭제" top="22" width="46" height="22" left="552"/>
-                  <Button id="Button10" taborder="22" text="저장" top="22" width="46" height="22" left="600"/>
-                  <Button id="Button11" taborder="23" text="엑셀" top="22" width="46" height="22" left="648"/>
-                  <Button id="Button12" taborder="24" text="필터" top="22" width="46" height="22" left="696"/>
-                  <Button id="Button13" taborder="25" text="도움말" top="22" width="58" height="22" left="744"/>
+                  <Button id="Button09" taborder="12" text="삭제" top="22" width="46" height="22" left="696"/>
+                  <Button id="Button10" taborder="13" text="저장" top="22" width="46" height="22" left="744"/>
                 </Layout>
               </Layouts>
             </Tabpage>
-            <Tabpage id="Tabpage2" text="Tabpage2"/>
+            <Tabpage id="Tabpage2" text="공통코드그룹추가속성값">
+              <Layouts>
+                <Layout>
+                  <Button id="btn_Grp_Deta_Add" taborder="0" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="153" width="46" onclick="btnDAdd_onclick"/>
+                  <Button id="btn_Grp_Deta_Del" taborder="1" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="102" width="46" onclick="btnDDel_onclick"/>
+                  <Button id="btn_Grp_Deta_Save" taborder="2" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="51" width="46" onclick="btn_Grp_Deta_Save_onclick"/>
+                  <Button id="btn_Grp_Deta_Excel" taborder="3" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="46" onclick="btnDExcelDn_onclick"/>
+                  <Grid id="grdMaster" taborder="4" left="5" top="47" right="5" binddataset="dsGrpDetail" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheaddblclick="grdDetail_onheaddblclick" autofittype="col" onheadclick="grdDetail_onheadclick" bottom="5">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="48"/>
+                          <Column size="48"/>
+                          <Column size="170"/>
+                          <Column size="170"/>
+                          <Column size="100"/>
+                          <Column size="100"/>
+                          <Column size="100"/>
+                          <Column size="79"/>
+                          <Column size="102"/>
+                          <Column size="88"/>
+                          <Column size="106"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                          <Cell col="1" text="상태"/>
+                          <Cell col="2" text="공통코드그룹ID" cssclass="point"/>
+                          <Cell col="3" text="공통세부코드" background="#e1eaf3 url('file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png') no-repeat left top"/>
+                          <Cell col="4" text="추가속성값"/>
+                          <Cell col="5" text="정렬순번"/>
+                          <Cell col="6" text="사용여부"/>
+                          <Cell col="7" text="등록자"/>
+                          <Cell col="8" text="등록일자"/>
+                          <Cell col="9" text="수정자"/>
+                          <Cell col="10" text="수정일자"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
+                          <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
+                          <Cell col="2" text="bind:CMMN_GRP_CD" displaytype="text" edittype="none" textAlign="left"/>
+                          <Cell col="3" text="bind:CMMN_GRP_DETA_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" displaytype="text" textAlign="left"/>
+                          <Cell col="4" text="bind:ADD_ATT_VAL" displaytype="text" edittype="text"/>
+                          <Cell col="5" text="bind:SORT_SEQ" displaytype="text" edittype="text"/>
+                          <Cell col="6" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="dsUseYn" combodatacol="Yn" combocodecol="YnCd"/>
+                          <Cell col="7" text="bind:FRST_INPUT_ID" displaytype="text" textAlign="center"/>
+                          <Cell col="8" text="bind:FRST_INPUT_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+                          <Cell col="9" text="bind:LAST_MODF_ID" displaytype="text" textAlign="center"/>
+                          <Cell col="10" text="bind:LAST_MODF_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
           </Tabpages>
         </Tab>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="dsGrpCd">
+      <Dataset id="dsGrp" onrowposchanged="dsGrp_onrowposchanged" useclientlayout="true">
         <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
           <Column id="CMMN_CD" type="STRING" size="256"/>
           <Column id="CMMN_GRP_CD" type="STRING" size="256"/>
           <Column id="CMMN_GRP_CD_NM" type="STRING" size="256"/>
@@ -179,13 +227,16 @@
           <Column id="LAST_MODF_IP" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="dsCmomnCd">
+      <Dataset id="dsGrpDetail" useclientlayout="true">
         <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
           <Column id="CMMN_CD" type="STRING" size="256"/>
-          <Column id="CMMN_CD_NM" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_CD" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_DETA_CD" type="STRING" size="256"/>
+          <Column id="ADD_ATT_VAL" type="STRING" size="256"/>
+          <Column id="SORT_SEQ" type="STRING" size="256"/>
           <Column id="USE_YN" type="STRING" size="256"/>
-          <Column id="REMK_CTNT" type="STRING" size="256"/>
-          <Column id="BF_CMMN_CD" type="STRING" size="256"/>
+          <Column id="REMK_WPC" type="STRING" size="256"/>
           <Column id="FRST_INPUT_ID" type="STRING" size="256"/>
           <Column id="FRST_INPUT_DT" type="STRING" size="256"/>
           <Column id="FRST_INPUT_MENU_ID" type="STRING" size="256"/>
@@ -195,6 +246,65 @@
           <Column id="LAST_MODF_MENU_ID" type="STRING" size="256"/>
           <Column id="LAST_MODF_IP" type="STRING" size="256"/>
         </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGrpInput">
+        <ColumnInfo>
+          <Column id="CMMN_CD" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_CD" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_CD_NM" type="STRING" size="256"/>
+          <Column id="ADD_ATT_VAL" type="STRING" size="256"/>
+          <Column id="REMK_WPC" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_ID" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_DT" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_MENU_ID" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_IP" type="STRING" size="256"/>
+          <Column id="LAST_MODF_ID" type="STRING" size="256"/>
+          <Column id="LAST_MODF_DT" type="STRING" size="256"/>
+          <Column id="LAST_MODF_MENU_ID" type="STRING" size="256"/>
+          <Column id="LAST_MODF_IP" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGrpDetaInput">
+        <ColumnInfo>
+          <Column id="CMMN_CD" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_CD" type="STRING" size="256"/>
+          <Column id="CMMN_GRP_DETA_CD" type="STRING" size="256"/>
+          <Column id="ADD_ATT_VAL" type="STRING" size="256"/>
+          <Column id="SORT_SEQ" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="REMK_WPC" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_ID" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_DT" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_MENU_ID" type="STRING" size="256"/>
+          <Column id="FRST_INPUT_IP" type="STRING" size="256"/>
+          <Column id="LAST_MODF_ID" type="STRING" size="256"/>
+          <Column id="LAST_MODF_DT" type="STRING" size="256"/>
+          <Column id="LAST_MODF_MENU_ID" type="STRING" size="256"/>
+          <Column id="LAST_MODF_IP" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="Yn" type="STRING" size="256"/>
+          <Column id="YnCd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Yn">Y</Col>
+            <Col id="YnCd">1</Col>
+          </Row>
+          <Row>
+            <Col id="Yn">N</Col>
+            <Col id="YnCd">0</Col>
+          </Row>
+        </Rows>
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[/**********************************************************************
@@ -212,11 +322,11 @@
 	02. 폼 변수 정의 
 ***********************************************************************/
 //GRID 전용 필수항목체크
-this.lvchkColidDs   		= "CMMN_CD$CMMN_CD_NM";         		// 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
-this.lvchkColNameDs 		= "공통코드$공통코드명";  
+this.lvchkColidDs   		= "CMMN_GRP_CD$CMMN_GRP_CD_NM";         		// 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs 		= "공통그룹코드$공통그룹코드명";  
 
-this.lvchkColidDs_Detail   	= "CMMN_DETA_CD$CMMN_DETA_CD_NM$LANG_FG_CD";        					// 디테일 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
-this.lvchkColNameDs_Detail 	= "상세코드$코드명$언어구분코드";  
+this.lvchkColidDs_Detail   	= "CMMN_GRP_DETA_CD$ADD_ATT_VAL";        					// 디테일 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+this.lvchkColNameDs_Detail 	= "공통세부코드$추가속성값";  
 
 /*전역변수*/
 this.strKeyValue			= "";
@@ -228,6 +338,7 @@ this.strKeyValue			= "";
  */
 this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
+	this.dsGrpInput.setColumn(0,"CMMN_CD",this.parent.CMMN_CD);
 	//폼에 공통으로 로드시 사용하는 함수.
 	this.gfn_formOnload(obj.e);
 	//사용자 화면  초기화 함수
@@ -247,9 +358,9 @@ this.fn_formInit = function()
 {
 	
 var strSvc 		= "Ret";
-	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";                                     
-	var strInDs  	= " ";                                         
-	var strOutDs 	= "dsGrpCd=dsGrpCd";
+	var strUrl 		= "/prj/com/RetrieveGrpCodeList.do";                                     
+	var strInDs  	= "dsGrpInput=dsGrpInput";                                         
+	var strOutDs 	= "dsGrp=dsGrp";
 	var strArg 		= "";               
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -266,7 +377,7 @@ var strSvc 		= "Ret";
 
 this.fn_PostformInit = function()
 {
-	this.ds_input.setColumn(this.ds_input.rowposition,"USE_YN",'1');
+	//this.ds_input.setColumn(this.ds_input.rowposition,"USE_YN",'1');
 	this.fn_Ret();
 };
 
@@ -370,8 +481,8 @@ this.fn_cmmBtnClick = function(sBtn)
 this.fn_PreRet = function()
 { 
 	// 조회조건 셋팅
-	this.dsMaster.clearData();
-	this.dsDetail.clearData();
+	this.dsGrp.clearData();
+	this.dsGrpDetail.clearData();
 	return true;
 };
 
@@ -386,10 +497,9 @@ this.fn_Ret = function()
 	}    
 	
 	var strSvc 		= "Ret";
-	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";                                     
+	var strUrl 		= "/prj/com/RetrieveGrpCodeList.do";                                     
 	var strInDs  	= "ds_input=ds_input";                                         
-	var strOutDs 	= "dsMaster=dsMaster";
-	//	strOutDs	+= "dsMaster=dsMaster";
+	var strOutDs 	= "dsGrp=dsGrp";
 	var strArg 		= "";               
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -407,13 +517,13 @@ this.fn_Ret = function()
 this.fn_PostRet = function()
 { 
 	//trace(this.dsMaster.saveXML());
-	this.gfn_clearSortAll(this.grdMaster);
-	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+	this.gfn_clearSortAll(this.grdGrdList);
+	this.gfn_getRowCount(this.staRowCnt,this.dsGrp);
 };
 /**********************************************************************
 	05-1. 조회 함수 선언  
 ***********************************************************************/
-this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+this.dsGrp_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
 {
 	this.fn_DRet();
 };
@@ -424,7 +534,7 @@ this.dsMaster_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSR
 this.preDSearch = function()
 { 	
 	// 조회조건 셋팅
-	this.ds_input1.setColumn(0,"CMMN_CD",this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD"));
+	this.dsGrpDetaInput.setColumn(0,"CMMN_GRP_CD",this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_GRP_CD"));
 	
 	return true;
 };
@@ -439,11 +549,10 @@ this.fn_DRet = function()
 		return false;                                               
 	}     
 	
-	
 	var strSvc 		= "DRet";
-	var strUrl 		= "/prj/com/RetrieveCommCodeDetailList.do";                                 
-	var strInDs  	= "ds_input1=ds_input1";
-	var strOutDs 	= "dsDetail=dsDetail";    
+	var strUrl 		= "/prj/com/RetrieveGrpDetailCodeList.do";                                 
+	var strInDs  	= "dsGrpDetaInput=dsGrpDetaInput";
+	var strOutDs 	= "dsGrpDetail=dsGrpDetail";    
 	var strArg 		= "";               
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -461,8 +570,8 @@ this.fn_DRet = function()
 this.fn_PostDRet = function()
 { 
 	//trace(this.dsDetail.saveXML());
-	this.gfn_clearSortAll(this.grdDetail);
-	this.gfn_getRowCount(this.staRowCnt1,this.dsDetail);
+	this.gfn_clearSortAll(this.grdGrdDetail);
+	//this.gfn_getRowCount(this.staRowCnt1,this.dsGrpDetail);
 };
 
 /**********************************************************************
@@ -484,29 +593,30 @@ this.fn_New = function()
 	{                                                             
 		return false;                                               
 	}	
-	
 	var result;
 	var nRow=-1
-	if(this.gfn_isUpdateD(this.dsMaster) == true)
+	if(this.gfn_isUpdateD(this.dsGrp) == true)
 	{
 		result = this.gfn_confirm("MSG00010", "저장정보","", "question" );
 		
 		if(result == true)
 		{	
-			this.dsMaster.set_enableevent(false);
-			this.gfn_reSetDs(this.dsMaster,this.dsMaster.rowposition);
-			nRow = this.dsMaster.addRow(); 
-			this.dsMaster.set_enableevent(true);
-		
+			this.dsGrp.set_enableevent(false);
+			this.gfn_reSetDs(this.dsGrp,this.dsGrp.rowposition);
+			nRow = this.dsGrp.addRow(); 
+			this.dsGrp.set_enableevent(true);
 		}else
 		{
 			return false;
 		}
 	}else
 	{
-		nRow = this.dsMaster.addRow(); 
+		nRow = this.dsGrp.addRow(); 
 	}
-	this.dsMaster.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
+	this.dsGrp.setColumn(nRow,"CMMN_CD", this.parent.CMMN_CD); 	//기본키값
+	this.dsGrp.setColumn(nRow,"CHK", 	   	  "0"); 
+	this.dsGrp.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
+	this.dsGrp.set_enableevent(true);
 };
  
 /**
@@ -524,7 +634,7 @@ this.postAdd = function()
  */
 this.fn_PreDAdd = function()
 { 
-	if(this.dsMaster.rowcount < 1)
+	if(this.dsGrp.rowcount < 1)
 	{
 		this.gfn_alert("MSG00014","마스터 정보","","information");
 		return false;
@@ -542,11 +652,12 @@ this.btnDAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		return false;                                               
 	}	
 	
-	var nRow = this.dsDetail.addRow(); 
+	var nRow = this.dsGrpDetail.addRow(); 
 	
-	this.dsDetail.setColumn(nRow,"CMMN_CD", this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")); 	//기본키값
-	this.dsDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
-	this.dsDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
+	this.dsGrpDetail.setColumn(nRow,"CMMN_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_CD"));
+	this.dsGrpDetail.setColumn(nRow,"CMMN_GRP_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_GRP_CD")); 	//기본키값
+	this.dsGrpDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
+	this.dsGrpDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
 };
 /**
  * 기능 : 처리 후 실행
@@ -564,7 +675,7 @@ this.postDAdd = function()
  */
 this.fn_PreDel = function()
 {
-	if(this.dsMaster.rowcount < 1)
+	if(this.dsGrp.rowcount < 1)
 	{
 		this.gfn_alert("삭제할 데이타가 없습니다.!");
 		return false;
@@ -576,7 +687,7 @@ this.fn_PreDel = function()
 	{
 	   return false;
 	}
-	this.dsMaster.deleteRow(this.dsMaster.rowposition); 
+	this.dsGrp.deleteRow(this.dsGrp.rowposition); 
 	//개별삭제시 
 	return true;
 };
@@ -591,8 +702,8 @@ this.fn_Del = function()
 		return false;                                               
 	} 
 	var strSvc 		= "Del"; 
-	var strUrl 		= "/prj/com/DeleteCommCodeMasterList.do";                                     
-	var strInDs  	= "dsMaster=dsMaster:u";                                         
+	var strUrl 		= "/prj/com/DeleteGrpCodeList.do";                                     
+	var strInDs  	= "dsGrp=dsGrp:u";                                         
 	var strOutDs 	= "";    
 	var strArg 		= "";
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack  
@@ -609,7 +720,7 @@ this.fn_Del = function()
 };
 this.fn_PostDel = function() 
 {
-	this.dsMaster_onrowposchanged(this.dsMaster);
+	this.dsGrp_onrowposchanged(this.dsGrp);
 };
 /**********************************************************************
 	07-1. 디테일 삭제 함수 선언  
@@ -621,7 +732,7 @@ this.preDDel = function()
 {
 	 
 	//멀티삭제용도
-	if(this.dsDetail.rowcount < 1 || this.dsDetail.findRow("CHK",1) == -1)
+	if(this.dsGrpDetail.rowcount < 1 || this.dsGrpDetail.findRow("CHK",1) == -1)
 	{
 		this.gfn_alert("삭제할 데이타가 없습니다.!");
 		return false;
@@ -635,15 +746,15 @@ this.preDDel = function()
 	}
 
 	//다중삭제 용도
-	this.dsDetail.set_enableevent(false);
-	for(var i=this.dsDetail.rowcount-1;i>-1;i--)
+	this.dsGrpDetail.set_enableevent(false);
+	for(var i=this.dsGrpDetail.rowcount-1;i>-1;i--)
 	{
-		if(this.dsDetail.getColumn(i,"CHK") == "1")
+		if(this.dsGrpDetail.getColumn(i,"CHK") == "1")
 		{
-			this.dsDetail.deleteRow(i);
+			this.dsGrpDetail.deleteRow(i);
 		}
 	}
-	this.dsDetail.set_enableevent(true);
+	this.dsGrpDetail.set_enableevent(true);
 	
 	//개별삭제시 
 	return true;
@@ -660,8 +771,8 @@ this.btnDDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	}
 	
 	var strSvc 		= "DDel";
-	var strUrl 		= "/prj/com/DeleteCommCodeDetailList.do";                                   
-	var strInDs  	= "dsDetail=dsDetail:u";                                         
+	var strUrl 		= "/prj/com/DeleteGrpCodeDetailList.do";                                   
+	var strInDs  	= "dsGrpDetail=dsGrpDetail:u";                                         
 	var strOutDs 	= "";    
 	var strArg 		= "";
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack  
@@ -687,19 +798,19 @@ this.postDDel = function()
  */
 this.fn_PreSave = function()
 {
-	if(this.dsDetail.rowcount > 0)
+	if(this.dsGrpDetail.rowcount > 0)
 	{
-		for(var i=0;i<this.dsDetail.rowcount; i++)
+		for(var i=0;i<this.dsGrpDetail.rowcount; i++)
 		{
-			if(this.dsDetail.getColumn(i,"CHK") == 0)
+			if(this.dsGrpDetail.getColumn(i,"CHK") == 0)
 			{
 				continue;
 			}
-			this.dsDetail.setColumn(i,"CHK","0");
+			this.dsGrpDetail.setColumn(i,"CHK","0");
 		}
 	}
 
-	if(!this.gfn_isUpdate(this.dsMaster) && !this.gfn_isUpdate(this.dsDetail)) 
+	if(!this.gfn_isUpdate(this.dsGrp) && !this.gfn_isUpdate(this.dsGrpDetail)) 
     {
         this.gfn_alert("변경된 이력이 없습니다.");
         return false;
@@ -707,19 +818,19 @@ this.fn_PreSave = function()
 	
 	// 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
 	var chkFocusFlg = true;
-	var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+	var result 		= this.gfn_cmmnChkEssentialItem(this.dsGrp, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
 	if (result[0] != "success") 
 	{
 		this.gfn_alert(result[0]);
-		this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+		this.dsGrp.set_rowposition(result[1]); //데이터셋 변경
 		return false;
 	}
  	var chkFocusFlg1 = true;
-    var result1 	= this.gfn_cmmnChkEssentialItem(this.dsDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
+    var result1 	= this.gfn_cmmnChkEssentialItem(this.dsGrpDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
     if(result1[0] != "success") 
 	{
 		this.gfn_alert(result1[0]);
-		this.dsDetail.set_rowposition(result1[1]); //데이터셋 변경
+		this.dsGrpDetail.set_rowposition(result1[1]); //데이터셋 변경
 		return false;
 	}
   
@@ -741,13 +852,13 @@ this.fn_Save = function()
 	{                                                             
 		return false;                                               
 	}  
-	this.dsMaster.set_enableevent(false);
+	this.dsGrp.set_enableevent(false);
 	
 	var strSvc 		= "Save";
-	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";                                
-	var strInDs     = "ds_input=ds_input ";                                         
-		strInDs    += "dsMaster=dsMaster:u "; 
-	var strOutDs 	= "dsMaster=dsMaster";    
+	var strUrl 		= "/prj/com/SaveGrpCodeList.do";                                
+	var strInDs     = "dsGrpInput=dsGrpInput ";                                         
+		strInDs    += "dsGrp=dsGrp:u "; 
+	var strOutDs 	= "dsGrp=dsGrp";    
 	var strArg 		= "";                       
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack  
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -765,14 +876,14 @@ this.fn_Save = function()
  */
 this.fn_PostSave = function()
 {
-	this.dsMaster.set_enableevent(true);
-	this.dsMaster_onrowposchanged(this.dsMaster);
+	this.dsGrp.set_enableevent(true);
+	this.dsGrp_onrowposchanged(this.dsGrp);
 };
 
 this.fn_PostDSave = function()
 {
-	this.dsDetail.set_enableevent(true);
-	this.dsMaster_onrowposchanged(this.dsMaster);
+	this.dsGrpDetail.set_enableevent(true);
+	this.dsGrp_onrowposchanged(this.dsGrp);
 };
 
 /**********************************************************************
@@ -788,7 +899,7 @@ this.fn_PostDSave = function()
 
 this.fn_Excel = function()
 {
-	if(this.dsMaster.rowcount < 1)
+	if(this.dsGrp.rowcount < 1)
 	{
 		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
 		return false;
@@ -799,13 +910,13 @@ this.fn_Excel = function()
 	{
 	   return false;
 	}
-	this.gfn_excelExport(this.grdMaster);
+	this.gfn_excelExport(this.grdGrdList);
 };
 
 //디테일 다운로드
 this.btnDExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	if(this.dsDetail.rowcount < 1)
+	if(this.dsGrpDetail.rowcount < 1)
 	{
 		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
 		return false;
@@ -815,7 +926,7 @@ this.btnDExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	{
 	   return false;
 	}
-	this.gfn_excelExport(this.grdDetail);
+	this.gfn_excelExport(this.dsGrp);
 };
 
 /**********************************************************************
@@ -879,7 +990,7 @@ this.divSearch_cboUserYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.It
 /*
  *	그리드멀티 소트정열
  */
-this.grdMaster_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+this.dsGrp_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
 {
 	if(e.cell != 0)
 	{
@@ -912,7 +1023,7 @@ this.grdDetail_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
 /**
  *	행변경시 현제 데이타가 변경돼었는지 체크
  */
-this.dsMaster_canrowposchange = function(obj:Dataset, e:nexacro.DSRowPosChangeEventInfo)
+this.dsGrp_canrowposchange = function(obj:Dataset, e:nexacro.DSRowPosChangeEventInfo)
 {
 
 	if(obj.getRowType(e.newrow) != 2)
@@ -945,22 +1056,22 @@ this.dsMaster_canrowposchange = function(obj:Dataset, e:nexacro.DSRowPosChangeEv
 
 }
 
-this.dsDetail_cancolumnchange = function(obj:Dataset, e:nexacro.DSColChangeEventInfo)
+this.dsGrpDetail_cancolumnchange = function(obj:Dataset, e:nexacro.DSColChangeEventInfo)
 {
 	if(e.columnid == "LANG_FG_CD")
 	{
-		var nRow = this.dsDetail.findRowExpr("TCODE == '" + e.newvalue + "' && currow != '" +e.row+"'");
+		var nRow = this.dsGrpDetail.findRowExpr("TCODE == '" + e.newvalue + "' && currow != '" +e.row+"'");
 		if(nRow > -1)
 		{
 			this.gfn_alert("중복된 키를 입력할수 없습니다.");
 			return false;
 		}else
 		{
-			if(this.dsDetail.getRowType(e.row) == 2)
+			if(this.dsGrpDetail.getRowType(e.row) == 2)
 			{
-				this.dsDetail.set_enableevent(false);
-				this.dsDetail.setColumn(e.row,"TCODE",e.newvalue);
-				this.dsDetail.set_enableevent(true);
+				this.dsGrpDetail.set_enableevent(false);
+				this.dsGrpDetail.setColumn(e.row,"TCODE",e.newvalue);
+				this.dsGrpDetail.set_enableevent(true);
 			}
 		}
 
@@ -972,78 +1083,43 @@ this.dsDetail_cancolumnchange = function(obj:Dataset, e:nexacro.DSColChangeEvent
  **/
 this.fn_beforeclose = function()
 {
-    return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail));
+    return (this.gfn_isUpdate(this.dsGrp) || this.gfn_isUpdate(this.dsGrpDetail));
 };
 
-
-
-this.btnMAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+this.btn_Grp_Add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-this.fn_New();
+	this.fn_New();
 };
 
-this.btnMDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+this.btn_Grp_Del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fn_Del();
 };
 
-this.btnMSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+this.btn_Grp_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fn_Save();
 };
 
-this.btnMExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+this.btn_Grp_Excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fn_Excel();
 };
 
-this.btnPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+
+this.btn_Grp_Deta_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var nW = 500;
-var nH = 400;
 
-var objApp = nexacro.getApplication();
-var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
-var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;        
-nLeft = system.clientToScreenX(this, nLeft);
-nTop  = system.clientToScreenY(this, nTop);
-
-
-var sOpenStyle = "dragmovetype=all"
-             + " resizable=true"
-             + " titletext=Modeless"
-             + " showtitlebar=true"
-             + " showstatusbar=false";
-
-nexacro.open("chf_popup3"
-           , "com::CSYSCD0100_pop.xfdl"
-           , this.getOwnerFrame()
-           , ''
-           , sOpenStyle
-           , nLeft
-           , nTop
-           , nW
-           , nH
-           , this);
-};
-
-this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	this.fn_Ret();
-};
-
-this.btnDSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
 	if(!this.fn_PreSave())                                                
 	{                                                             
 		return false;                                               
 	}  
-	this.dsDetail.set_enableevent(false);
+	this.dsGrpDetail.set_enableevent(false);
 	var strSvc 		= "DSave";
-	var strUrl 		= "/prj/com/SaveCommCodeDetailList.do";                                
-	var strInDs     = "ds_input1=ds_input1 ";                                         
-		strInDs    += "dsDetail=dsDetail:u "; 
-	var strOutDs 	= "dsDetail=dsDetail";    
+	var strUrl 		= "/prj/com/SaveGrpCodeDeatilList.do";                                
+	var strInDs     = "dsGrpDetaInput=dsGrpDetaInput ";                                         
+		strInDs    += "dsGrpDetail=dsGrpDetail:u "; 
+	var strOutDs 	= "dsGrpDetail=dsGrpDetail";    
 	var strArg 		= "";                       
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack  
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -1054,6 +1130,7 @@ this.btnDSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 				   , strArg
 				   , strCallBack
 				   , strASync);
+
 };
 ]]></Script>
   </Form>

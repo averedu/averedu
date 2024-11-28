@@ -23,8 +23,7 @@
              FROM COM.CSYS100 A                                                                       							 
              WHERE 1=1                                                                                							 
         ]]>                                                      												 
-
-        <if test="CMMN_CD != null and CMMN_CD != ''"> 
+        <if test="CMMN_CD != null and CMMN_CD != ''">    
             <![CDATA[                                         							                        
 	                AND A.CMMN_CD        = #{CMMN_CD}   
 	             ]]>                                           													 
@@ -83,28 +82,48 @@
 		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
-    <select id="CsyscdDAO.retrieveCommCodeGropList" parameterType="map" resultType="egovMap">
+    <select id="CsyscdDAO.retrieveGrpCodeList" parameterType="map" resultType="egovMap">
 		SELECT 
-			A.CMMN_CD
-			,A.CMMN_GRP_CD
-			,A.CMMN_GRP_CD_NM
-			,A.ADD_ATT_VAL
-			,A.REMK_WPC
-			,B.ADD_ATT_VAL
-			,B.SORT_SEQ
-			,B.USE_YN
-			,B.REMK_WPC
-			,B.FRST_INPUT_ID
-			,B.FRST_INPUT_DT
-			,B.FRST_INPUT_MENU_ID
-			,B.FRST_INPUT_IP
-			,B.LAST_MODF_ID
-			,B.LAST_MODF_DT
-			,B.LAST_MODF_MENU_ID
-			,B.LAST_MODF_IP
-		FROM COM.CSYS120 A LEFT JOIN COM.CSYS121 B 
-		ON A.CMMN_CD = B.CMMN_CD AND A.CMMN_GRP_CD = B.CMMN_GRP_CD
-		/*CsyscdDAO.retrieveCommCodeGropList 코드 그룹 조회 */	 
+			'0' AS CHK 									  /*CHK*/
+			, A.CMMN_CD                                   /*공통코드*/
+			, A.CMMN_GRP_CD                               /*공통그룹코드*/
+			, A.CMMN_GRP_CD_NM                            /*공통그룹코드명*/
+			, A.ADD_ATT_VAL                               /*추가속성값*/
+			, A.REMK_WPC                                  /*비고내역*/
+			, A.FRST_INPUT_ID                             /*최초입력자ID*/
+			, A.FRST_INPUT_DT                             /*최초입력일시*/
+			, A.FRST_INPUT_MENU_ID                        /*최초입력메뉴ID*/
+			, A.FRST_INPUT_IP                             /*최초입력IP*/
+			, A.LAST_MODF_ID                              /*최종수정입력자ID*/
+			, A.LAST_MODF_DT                              /*최종수정일시*/
+			, A.LAST_MODF_MENU_ID                         /*최종수정메뉴ID*/
+			, A.LAST_MODF_IP                              /*최종수정IP*/
+		FROM COM.CSYS120 A
+		WHERE A.CMMN_CD = #{CMMN_CD}
+		/*CsyscdDAO.retrieveGrpCodeList 그룹 코드 조회 */	 
+    </select>
+    
+    <select id="CsyscdDAO.retrieveGrpDetailCodeList" parameterType="map" resultType="egovMap">
+		SELECT 
+			'0' AS CHK 									  /*CHK*/
+			, A.CMMN_CD                                   /*공통코드*/
+			, A.CMMN_GRP_CD                               /*공통그룹코드*/
+			, A.CMMN_GRP_DETA_CD                          /*공통세부코드*/
+			, A.ADD_ATT_VAL                               /*추가속성값*/
+			, A.SORT_SEQ                                  /*정렬순번*/
+			, A.USE_YN                                    /*사용여부*/
+			, A.REMK_WPC                                  /*비고내역*/
+			, A.FRST_INPUT_ID                             /*최초입력자ID*/
+			, A.FRST_INPUT_DT                             /*최초입력일시*/
+			, A.FRST_INPUT_MENU_ID                        /*최초입력메뉴ID*/
+			, A.FRST_INPUT_IP                             /*최초입력IP*/
+			, A.LAST_MODF_ID                              /*최종수정입력자ID*/
+			, A.LAST_MODF_DT                              /*최종수정일시*/
+			, A.LAST_MODF_MENU_ID                         /*최종수정메뉴ID*/
+			, A.LAST_MODF_IP                              /*최종수정IP*/
+		FROM COM.CSYS121 A                                
+		WHERE A.CMMN_GRP_CD = #{CMMN_GRP_CD}
+		/*CsyscdDAO.retrieveGrpDetailCodeList 그룹 상세 코드  조회 */	 
     </select>
     
      <insert id="CsyscdDAO.insertCommCodeMasterList" parameterType="map"> 
@@ -203,6 +222,70 @@
             )	                                                      						
         ]]>                                    											
         /* CsyscdDAO.insertCommCodeDetailList2 언어코드 저장 */	
+    </insert>
+    
+    <insert id="CsyscdDAO.insertGrpCodeList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COM.CSYS120                                       										  
+            (                                       																	  
+                CMMN_CD                     /*공통코드*/
+                , CMMN_GRP_CD               /*공통그룹코드*/
+                , CMMN_GRP_CD_NM            /*공통그룹코드명*/
+                , ADD_ATT_VAL               /*추가속성값*/
+                , REMK_WPC                  /*비고내역*/
+                , FRST_INPUT_ID             /*최초입력자ID*/
+                , FRST_INPUT_DT             /*최초입력일시*/
+                , LAST_MODF_ID              /*최종수정입력자ID*/
+                , LAST_MODF_DT              /*최종수정일시*/
+            )VALUES                                                  														
+            (                                                        														
+                   #{CMMN_CD} 
+                 , #{CMMN_GRP_CD} 
+                 , #{CMMN_GRP_CD_NM}  
+                 , #{ADD_ATT_VAL} 
+                 , #{REMK_WPC} 
+                 , #{FRST_INPUT_ID}  
+                 , SYSDATE                                   
+                 , #{LAST_MODF_ID}  
+                 , SYSDATE                                   
+                                 
+            )	                                                      						
+        ]]>                                    											
+        /* CsyscdDAO.insertGrpCodeList 그룹 코드 저장 */	
+    </insert>
+    
+    <insert id="CsyscdDAO.insertGrpCodeDeatilList" parameterType="map"> 
+        <![CDATA[                                                														  
+            INSERT INTO COM.CSYS121                                       										  
+            (                                       																	  
+                CMMN_CD                     /*공통코드*/
+                , CMMN_GRP_CD               /*공통그룹코드*/
+                , CMMN_GRP_DETA_CD          /*공통세부코드*/
+                , ADD_ATT_VAL               /*추가속성값*/
+                , SORT_SEQ                  /*정렬순번*/
+                , USE_YN                    /*사용여부*/
+                , REMK_WPC                  /*비고내역*/
+                , FRST_INPUT_ID             /*최초입력자ID*/
+                , FRST_INPUT_DT             /*최초입력일시*/
+                , LAST_MODF_ID              /*최종수정입력자ID*/
+                , LAST_MODF_DT              /*최종수정일시*/
+            )VALUES                                                  														
+            (                                                        														
+                   #{CMMN_CD} 
+                 , #{CMMN_GRP_CD} 
+                 , #{CMMN_GRP_DETA_CD}  
+                 , #{ADD_ATT_VAL}
+                 , #{SORT_SEQ}
+                 , #{USE_YN} 
+                 , #{REMK_WPC} 
+                 , #{FRST_INPUT_ID}  
+                 , SYSDATE                                   
+                 , #{LAST_MODF_ID}  
+                 , SYSDATE                                   
+                                 
+            )	                                                      						
+        ]]>                                    											
+        /* CsyscdDAO.insertGrpCodeDeatilList 그룹 상세 코드 저장 */	
     </insert>                                                             					
 
     <update id="CsyscdDAO.updateCommCodeMasterList" parameterType="map"> 
@@ -240,10 +323,10 @@
                AND CMMN_CD        = #{CMMN_CD}
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateCommCodeMasterList 상세코드 수정 */								
+        /* CsyscdDAO.updateCommCodeDetailList 상세코드 수정 */								
     </update>	
     
-        <update id="CsyscdDAO.updateCommCodeDetailList2" parameterType="map"> 
+	<update id="CsyscdDAO.updateCommCodeDetailList2" parameterType="map"> 
         <![CDATA[                                                						
             UPDATE COM.CSYS111                                			        
                SET                                                      				
@@ -262,7 +345,48 @@
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}
                AND LANG_FG_CD     = #{LANG_FG_CD}  
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateCommCodeMasterList 언어코드 수정 */								
+        /* CsyscdDAO.updateCommCodeDetailList2 언어코드 수정 */								
+    </update>
+    
+    <update id="CsyscdDAO.updateGrpCodeList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COM.CSYS120                                			        
+               SET                                                      			
+                 CMMN_GRP_CD               	= #{CMMN_GRP_CD}                /*공통그룹코드*/
+                 , CMMN_GRP_CD_NM    		= #{CMMN_GRP_CD_NM}             /*공통그룹코드명*/
+                 , ADD_ATT_VAL           	= #{ADD_ATT_VAL}                /*추가속성값*/
+                 , REMK_WPC               	= #{REMK_WPC}                   /*비고내역*/
+                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
+                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CMMN_CD        			= #{CMMN_CD}
+               AND CMMN_GRP_CD   			= #{CMMN_GRP_CD}
+        ]]>  	                                   							                            				
+        /* CsyscdDAO.updateGrpCodeList 그룹 코드 수정 */								
+    </update>
+    
+    <update id="CsyscdDAO.updateGrpCodeDeatilList" parameterType="map"> 
+        <![CDATA[                                                						
+            UPDATE COM.CSYS121                                			        
+               SET                                                      				
+                 CMMN_GRP_CD               	= #{CMMN_GRP_CD}                /*공통그룹코드*/
+                 , CMMN_GRP_DETA_CD 		= #{CMMN_GRP_DETA_CD}           /*공통세부코드*/
+                 , ADD_ATT_VAL         		= #{ADD_ATT_VAL}                /*추가속성값*/
+                 , SORT_SEQ               	= #{SORT_SEQ}                   /*정렬순번*/
+                 , USE_YN                   = #{USE_YN}                     /*사용여부*/
+                 , REMK_WPC                	= #{REMK_WPC}                   /*비고내역*/
+                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
+                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+             WHERE 1=1                                                   						                        
+               AND CMMN_CD        			= #{CMMN_CD}
+               AND CMMN_GRP_CD   			= #{CMMN_GRP_CD}
+               AND CMMN_GRP_DETA_CD   		= #{CMMN_GRP_DETA_CD}
+        ]]>  	                                   							                            				
+        /* CsyscdDAO.updateGrpCodeDeatilList 그룹 상세 코드 수정 */								
     </update>	
     
     <delete id="CsyscdDAO.deleteCommCodeMasterList" parameterType="map">    
@@ -318,7 +442,29 @@
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
-        ]]>                                                															           							                                                     													                                                           													                                                             													   								       
+        ]]>                                                															           
+        /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 언어코드 삭제 */								       
+    </delete>
+    
+    <delete id="CsyscdDAO.deleteGrpCodeList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS120                                                 							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        = #{CMMN_CD}  
+               AND CMMN_GRP_CD   = #{CMMN_GRP_CD}  
+        ]]>                                                															           
+        /* CsyscdDAO.deleteGrpCodeList 공통 코드 삭제 */								       
+    </delete>
+    
+    <delete id="CsyscdDAO.deleteGrpCodeDetailList" parameterType="map">    
+        <![CDATA[                                                           												  
+            DELETE FROM COM.CSYS121                                                 							      
+             WHERE 1=1                              																	          
+               AND CMMN_CD        		= #{CMMN_CD}  
+               AND CMMN_GRP_CD   		= #{CMMN_GRP_CD}
+               AND CMMN_GRP_DETA_CD   	= #{CMMN_GRP_DETA_CD}    
+        ]]>                                                															           
+        /* CsyscdDAO.deleteGrpCodeDetailList 공통 상세 코드 삭제 */								       
     </delete>         
     
     <select id="CsyscdDAO.deptList" parameterType="map" resultType="egovMap"> 

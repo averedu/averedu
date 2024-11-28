@@ -21,7 +21,7 @@ import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
 
 
 public interface CsyscdSvc {                                                                        
-	                                                                                                                
+    
     /**                                                                                                          
      * 공통코드 리스트 조회(retrieveCommCodeMasterList)                                                 
      * @param input                                                                                              
@@ -38,7 +38,26 @@ public interface CsyscdSvc {
      * @throws Exception 
      */
     public void retrieveCommCodeDetailList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                 	
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception; 
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    
+    /**                                                                                                          
+     * 그룹 코드 리스트 조회(retrieveGrpCodeList)                                                 
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void retrieveGrpCodeList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                 	
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    
+    
+    /**                                                                                                          
+     * 그룹 상세 코드 리스트 조회(retrieveGrpCodeList)                                                 
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void retrieveGrpDetailCodeList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                 	
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 공통코드 리스트 저장/수정(saveCommCodeMasterList)                                               
@@ -50,7 +69,25 @@ public interface CsyscdSvc {
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception; 
     
     /**                                                                                                          
-     * 공통코드 리스트 저장/수정(saveCommCodeDetailList)                                               
+     * 공통상세코드 리스트 저장/수정(saveGrpCodeList)                                               
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void saveGrpCodeList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                      
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    
+    /**                                                                                                          
+     * 그룹코드 리스트 저장/수정(saveGrpCodeDeatilList)                                               
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void saveGrpCodeDeatilList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                      
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    
+    /**                                                                                                          
+     * 그룹상세코드 리스트 저장/수정(saveCommCodeDetailList)                                               
      * @param input                                                                                              
      * @return                                                                                                   
      * @throws Exception                                                                                         
@@ -74,6 +111,22 @@ public interface CsyscdSvc {
      * @throws Exception                                                                                         
      */                                                                                                          
     public void deleteCommCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception;
+    
+    /**                                                                                                          
+     * 그룹코드 리스트 삭제(deleteCommCodeDetailList)                                                   
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void deleteGrpCodeList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception;
+    
+    /**                                                                                                          
+     * 그룹 상세 코드 삭제(deleteCommCodeDetailList)                                                   
+     * @param input                                                                                              
+     * @return                                                                                                   
+     * @throws Exception                                                                                         
+     */                                                                                                          
+    public void deleteGrpCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception;
     
     
     /**                                                                                                               

@@ -17,49 +17,54 @@
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-            obj = new Dataset("dsGrpCd", this);
-            obj._setContents("<ColumnInfo><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD_NM\" type=\"STRING\" size=\"256\"/><Column id=\"ADD_ATT_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_WPC\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj = new Dataset("dsGrp", this);
+            obj.set_useclientlayout("true");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD_NM\" type=\"STRING\" size=\"256\"/><Column id=\"ADD_ATT_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_WPC\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
-            obj = new Dataset("dsCmomnCd", this);
-            obj._setContents("<ColumnInfo><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_CD_NM\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_CTNT\" type=\"STRING\" size=\"256\"/><Column id=\"BF_CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj = new Dataset("dsGrpDetail", this);
+            obj.set_useclientlayout("true");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_DETA_CD\" type=\"STRING\" size=\"256\"/><Column id=\"ADD_ATT_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"SORT_SEQ\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_WPC\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsGrpInput", this);
+            obj._setContents("<ColumnInfo><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD_NM\" type=\"STRING\" size=\"256\"/><Column id=\"ADD_ATT_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_WPC\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsGrpDetaInput", this);
+            obj._setContents("<ColumnInfo><Column id=\"CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"CMMN_GRP_DETA_CD\" type=\"STRING\" size=\"256\"/><Column id=\"ADD_ATT_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"SORT_SEQ\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"REMK_WPC\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsUseYn", this);
+            obj._setContents("<ColumnInfo><Column id=\"Yn\" type=\"STRING\" size=\"256\"/><Column id=\"YnCd\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Yn\">Y</Col><Col id=\"YnCd\">1</Col></Row><Row><Col id=\"Yn\">N</Col><Col id=\"YnCd\">0</Col></Row></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btn_03",null,"3","58","22","0",null,null,null,null,null,this);
+            obj = new Button("btn_Grp_Excel",null,"3","46","22","0",null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("도움말");
-            obj.set_cssclass("btn_WF_Crud");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_02",null,"3","46","22","60",null,null,null,null,null,this);
-            obj.set_taborder("1");
-            obj.set_text("필터");
-            obj.set_cssclass("btn_WF_Crud");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_01",null,"3","46","22","108",null,null,null,null,null,this);
-            obj.set_taborder("2");
             obj.set_text("엑셀");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_00",null,"3","46","22","156",null,null,null,null,null,this);
-            obj.set_taborder("3");
+            obj = new Button("btn_Grp_Save",null,"3","46","22","51",null,null,null,null,null,this);
+            obj.set_taborder("1");
             obj.set_text("저장");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
             obj = new Static("stc_09","0","15","150","22",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
+            obj.set_taborder("2");
             obj.set_text("그리드등록리스트");
             obj.set_cssclass("sta_WF_Title02");
             obj.set_fittocontents("width");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static10","0","37","100","7",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
+            obj.set_taborder("3");
             obj.set_text("7");
             obj.set_cssclass("sta_GU_space");
             obj.set_visible("false");
@@ -70,7 +75,7 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00","415","0","100","35",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
+            obj.set_taborder("4");
             obj.set_text("35");
             obj.set_cssclass("sta_GU_space");
             obj.set_visible("false");
@@ -81,7 +86,7 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("Static02","0","0","100","15",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj.set_taborder("5");
             obj.set_text("15");
             obj.set_cssclass("sta_GU_space");
             obj.set_visible("false");
@@ -91,38 +96,39 @@
             obj.set_wordWrap("char");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_134",null,"3","46","22","204",null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj = new Button("btn_Grp_Del",null,"3","46","22","102",null,null,null,null,null,this);
+            obj.set_taborder("6");
             obj.set_text("삭제");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_132",null,"3","46","22","252",null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj = new Button("btn_Grp_Add",null,"3","46","22","153",null,null,null,null,null,this);
+            obj.set_taborder("7");
             obj.set_text("추가");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","0","44",null,"350","0",null,null,null,null,null,this);
-            obj.set_taborder("10");
-            obj.set_binddataset("dsGrpCd");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"150\"/><Column size=\"300\"/><Column size=\"80\"/><Column size=\"300\"/><Column size=\"80\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell text=\"그룹코드\" cssclass=\"point\"/><Cell col=\"1\" text=\"그룹명\" cssclass=\"point\"/><Cell col=\"2\" text=\"순서\" cssclass=\"point\"/><Cell col=\"3\" text=\"설명\"/><Cell col=\"4\" text=\"사용여부\"/></Band><Band id=\"body\"><Cell text=\"bind:Column0\"/><Cell col=\"1\" text=\"bind:Column1\"/><Cell col=\"2\"/><Cell col=\"3\"/><Cell col=\"4\"/></Band></Format></Formats>");
+            obj = new Grid("grdGrdList","0","44",null,"350","0",null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_binddataset("dsGrp");
+            obj.set_autofittype("col");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"150\"/><Column size=\"300\"/><Column size=\"140\"/><Column size=\"300\"/><Column size=\"80\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\" cssclass=\"point\"/><Cell col=\"2\" text=\"공통코드그룹ID\" cssclass=\"point\"/><Cell col=\"3\" text=\"콩통코드그룹명\" cssclass=\"point\"/><Cell col=\"4\" text=\"비고\"/><Cell col=\"5\" text=\"추가속성명\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:&apos;&apos;\"/><Cell col=\"2\" text=\"bind:CMMN_GRP_CD\" edittype=\"expr:dataset.getRowType(currow)==2?&apos;normal&apos;:&apos;none&apos;\"/><Cell col=\"3\" text=\"bind:CMMN_GRP_CD_NM\" edittype=\"text\"/><Cell col=\"4\" text=\"bind:REMK_WPC\" edittype=\"text\"/><Cell col=\"5\" text=\"bind:ADD_ATT_VAL\" edittype=\"text\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_01","stc_09:0","15","50","22",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_text("<b v=\'true\'><fc v=\'#ff3300\'>0</fc></b> 건");
+            obj = new Static("staRowCnt","stc_09:0","15","70","22",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
             obj.set_usedecorate("true");
             obj.set_cssclass("sta_WF_TotalSta");
             this.addChild(obj.name, obj);
 
             obj = new Tab("Tab00","0","430",null,"400","0",null,null,null,null,null,this);
-            obj.set_taborder("12");
+            obj.set_taborder("10");
             obj.set_tabindex("0");
             this.addChild(obj.name, obj);
 
             obj = new Tabpage("Tabpage1",this.Tab00);
-            obj.set_text("Tabpage1");
+            obj.set_text("코드그룹매핑");
             this.Tab00.addChild(obj.name, obj);
 
             obj = new Static("stc_00","7","22","130","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
@@ -228,79 +234,53 @@
             obj.set_text("");
             this.Tab00.Tabpage1.form.Div03.addChild(obj.name, obj);
 
-            obj = new Button("Button00",null,"22","46","22","297",null,null,null,null,null,this.Tab00.Tabpage1.form);
+            obj = new Button("Button09","696","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("12");
-            obj.set_text("조회");
+            obj.set_text("삭제");
             this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Button("Button01",null,"22","46","22","249",null,null,null,null,null,this.Tab00.Tabpage1.form);
+            obj = new Button("Button10","744","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("13");
-            obj.set_text("추가");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button02",null,"22","46","22","201",null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("14");
-            obj.set_text("삭제");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button03",null,"22","46","22","153",null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("15");
             obj.set_text("저장");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button04",null,"22","46","22","105",null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("16");
-            obj.set_text("엑셀");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button05",null,"22","46","22","57",null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("17");
-            obj.set_text("필터");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button06",null,"22","58","22","-3",null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("18");
-            obj.set_text("도움말");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button07","456","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("19");
-            obj.set_text("조회");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button08","504","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("20");
-            obj.set_text("추가");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button09","552","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("21");
-            obj.set_text("삭제");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button10","600","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("22");
-            obj.set_text("저장");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button11","648","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("23");
-            obj.set_text("엑셀");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button12","696","22","46","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("24");
-            obj.set_text("필터");
-            this.Tab00.Tabpage1.addChild(obj.name, obj);
-
-            obj = new Button("Button13","744","22","58","22",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
-            obj.set_taborder("25");
-            obj.set_text("도움말");
             this.Tab00.Tabpage1.addChild(obj.name, obj);
 
             obj = new Tabpage("Tabpage2",this.Tab00);
-            obj.set_text("Tabpage2");
+            obj.set_text("공통코드그룹추가속성값");
             this.Tab00.addChild(obj.name, obj);
+
+            obj = new Button("btn_Grp_Deta_Add",null,"3","46","22","153",null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("0");
+            obj.set_text("추가");
+            obj.set_cssclass("btn_WF_Crud");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Button("btn_Grp_Deta_Del",null,"3","46","22","102",null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("1");
+            obj.set_text("삭제");
+            obj.set_cssclass("btn_WF_Crud");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Button("btn_Grp_Deta_Save",null,"3","46","22","51",null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("2");
+            obj.set_text("저장");
+            obj.set_cssclass("btn_WF_Crud");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Button("btn_Grp_Deta_Excel",null,"3","46","22","0",null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("3");
+            obj.set_text("엑셀");
+            obj.set_cssclass("btn_WF_Crud");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Grid("grdMaster","5","47",null,null,"5","5",null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("4");
+            obj.set_binddataset("dsGrpDetail");
+            obj.set_autoenter("select");
+            obj.set_autoupdatetype("itemselect");
+            obj.set_cellsizingtype("col");
+            obj.set_autofittype("col");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"48\"/><Column size=\"170\"/><Column size=\"170\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"공통코드그룹ID\" cssclass=\"point\"/><Cell col=\"3\" text=\"공통세부코드\" background=\"#e1eaf3 url(&apos;file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png&apos;) no-repeat left top\"/><Cell col=\"4\" text=\"추가속성값\"/><Cell col=\"5\" text=\"정렬순번\"/><Cell col=\"6\" text=\"사용여부\"/><Cell col=\"7\" text=\"등록자\"/><Cell col=\"8\" text=\"등록일자\"/><Cell col=\"9\" text=\"수정자\"/><Cell col=\"10\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:&apos;&apos;\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:CMMN_GRP_CD\" displaytype=\"text\" edittype=\"none\" textAlign=\"left\"/><Cell col=\"3\" text=\"bind:CMMN_GRP_DETA_CD\" edittype=\"expr:dataset.getRowType(currow)==2?&apos;normal&apos;:&apos;none&apos;\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:ADD_ATT_VAL\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"5\" text=\"bind:SORT_SEQ\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"6\" text=\"bind:USE_YN\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"dsUseYn\" combodatacol=\"Yn\" combocodecol=\"YnCd\"/><Cell col=\"7\" text=\"bind:FRST_INPUT_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:FRST_INPUT_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"9\" text=\"bind:LAST_MODF_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"10\" text=\"bind:LAST_MODF_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1606,830,this,function(p){});
@@ -335,11 +315,11 @@
         	02. 폼 변수 정의
         ***********************************************************************/
         //GRID 전용 필수항목체크
-        this.lvchkColidDs   		= "CMMN_CD$CMMN_CD_NM";         		// 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
-        this.lvchkColNameDs 		= "공통코드$공통코드명";
+        this.lvchkColidDs   		= "CMMN_GRP_CD$CMMN_GRP_CD_NM";         		// 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+        this.lvchkColNameDs 		= "공통그룹코드$공통그룹코드명";
 
-        this.lvchkColidDs_Detail   	= "CMMN_DETA_CD$CMMN_DETA_CD_NM$LANG_FG_CD";        					// 디테일 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
-        this.lvchkColNameDs_Detail 	= "상세코드$코드명$언어구분코드";
+        this.lvchkColidDs_Detail   	= "CMMN_GRP_DETA_CD$ADD_ATT_VAL";        					// 디테일 필수 입력사항 칼럼ID  예)  "commSmcd$commName"
+        this.lvchkColNameDs_Detail 	= "공통세부코드$추가속성값";
 
         /*전역변수*/
         this.strKeyValue			= "";
@@ -351,6 +331,7 @@
          */
         this.form_onload = function(obj,e)
         {
+        	this.dsGrpInput.setColumn(0,"CMMN_CD",this.parent.CMMN_CD);
         	//폼에 공통으로 로드시 사용하는 함수.
         	this.gfn_formOnload(obj.e);
         	//사용자 화면  초기화 함수
@@ -370,9 +351,9 @@
         {
 
         var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
-        	var strInDs  	= " ";
-        	var strOutDs 	= "dsGrpCd=dsGrpCd";
+        	var strUrl 		= "/prj/com/RetrieveGrpCodeList.do";
+        	var strInDs  	= "dsGrpInput=dsGrpInput";
+        	var strOutDs 	= "dsGrp=dsGrp";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -389,7 +370,7 @@
 
         this.fn_PostformInit = function()
         {
-        	this.ds_input.setColumn(this.ds_input.rowposition,"USE_YN",'1');
+        	//this.ds_input.setColumn(this.ds_input.rowposition,"USE_YN",'1');
         	this.fn_Ret();
         };
 
@@ -493,8 +474,8 @@
         this.fn_PreRet = function()
         {
         	// 조회조건 셋팅
-        	this.dsMaster.clearData();
-        	this.dsDetail.clearData();
+        	this.dsGrp.clearData();
+        	this.dsGrpDetail.clearData();
         	return true;
         };
 
@@ -509,10 +490,9 @@
         	}
 
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
+        	var strUrl 		= "/prj/com/RetrieveGrpCodeList.do";
         	var strInDs  	= "ds_input=ds_input";
-        	var strOutDs 	= "dsMaster=dsMaster";
-        	//	strOutDs	+= "dsMaster=dsMaster";
+        	var strOutDs 	= "dsGrp=dsGrp";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -530,13 +510,13 @@
         this.fn_PostRet = function()
         {
         	//trace(this.dsMaster.saveXML());
-        	this.gfn_clearSortAll(this.grdMaster);
-        	this.gfn_getRowCount(this.staRowCnt,this.dsMaster);
+        	this.gfn_clearSortAll(this.grdGrdList);
+        	this.gfn_getRowCount(this.staRowCnt,this.dsGrp);
         };
         /**********************************************************************
         	05-1. 조회 함수 선언
         ***********************************************************************/
-        this.dsMaster_onrowposchanged = function(obj,e)
+        this.dsGrp_onrowposchanged = function(obj,e)
         {
         	this.fn_DRet();
         };
@@ -547,7 +527,7 @@
         this.preDSearch = function()
         {
         	// 조회조건 셋팅
-        	this.ds_input1.setColumn(0,"CMMN_CD",this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD"));
+        	this.dsGrpDetaInput.setColumn(0,"CMMN_GRP_CD",this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_GRP_CD"));
 
         	return true;
         };
@@ -562,11 +542,10 @@
         		return false;
         	}
 
-
         	var strSvc 		= "DRet";
-        	var strUrl 		= "/prj/com/RetrieveCommCodeDetailList.do";
-        	var strInDs  	= "ds_input1=ds_input1";
-        	var strOutDs 	= "dsDetail=dsDetail";
+        	var strUrl 		= "/prj/com/RetrieveGrpDetailCodeList.do";
+        	var strInDs  	= "dsGrpDetaInput=dsGrpDetaInput";
+        	var strOutDs 	= "dsGrpDetail=dsGrpDetail";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -584,8 +563,8 @@
         this.fn_PostDRet = function()
         {
         	//trace(this.dsDetail.saveXML());
-        	this.gfn_clearSortAll(this.grdDetail);
-        	this.gfn_getRowCount(this.staRowCnt1,this.dsDetail);
+        	this.gfn_clearSortAll(this.grdGrdDetail);
+        	//this.gfn_getRowCount(this.staRowCnt1,this.dsGrpDetail);
         };
 
         /**********************************************************************
@@ -607,29 +586,30 @@
         	{
         		return false;
         	}
-
         	var result;
         	var nRow=-1
-        	if(this.gfn_isUpdateD(this.dsMaster) == true)
+        	if(this.gfn_isUpdateD(this.dsGrp) == true)
         	{
         		result = this.gfn_confirm("MSG00010", "저장정보","", "question" );
 
         		if(result == true)
         		{
-        			this.dsMaster.set_enableevent(false);
-        			this.gfn_reSetDs(this.dsMaster,this.dsMaster.rowposition);
-        			nRow = this.dsMaster.addRow();
-        			this.dsMaster.set_enableevent(true);
-
+        			this.dsGrp.set_enableevent(false);
+        			this.gfn_reSetDs(this.dsGrp,this.dsGrp.rowposition);
+        			nRow = this.dsGrp.addRow();
+        			this.dsGrp.set_enableevent(true);
         		}else
         		{
         			return false;
         		}
         	}else
         	{
-        		nRow = this.dsMaster.addRow();
+        		nRow = this.dsGrp.addRow();
         	}
-        	this.dsMaster.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
+        	this.dsGrp.setColumn(nRow,"CMMN_CD", this.parent.CMMN_CD); 	//기본키값
+        	this.dsGrp.setColumn(nRow,"CHK", 	   	  "0");
+        	this.dsGrp.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
+        	this.dsGrp.set_enableevent(true);
         };
 
         /**
@@ -647,7 +627,7 @@
          */
         this.fn_PreDAdd = function()
         {
-        	if(this.dsMaster.rowcount < 1)
+        	if(this.dsGrp.rowcount < 1)
         	{
         		this.gfn_alert("MSG00014","마스터 정보","","information");
         		return false;
@@ -665,11 +645,12 @@
         		return false;
         	}
 
-        	var nRow = this.dsDetail.addRow();
+        	var nRow = this.dsGrpDetail.addRow();
 
-        	this.dsDetail.setColumn(nRow,"CMMN_CD", this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")); 	//기본키값
-        	this.dsDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
-        	this.dsDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
+        	this.dsGrpDetail.setColumn(nRow,"CMMN_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_CD"));
+        	this.dsGrpDetail.setColumn(nRow,"CMMN_GRP_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_GRP_CD")); 	//기본키값
+        	this.dsGrpDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
+        	this.dsGrpDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
         };
         /**
          * 기능 : 처리 후 실행
@@ -687,7 +668,7 @@
          */
         this.fn_PreDel = function()
         {
-        	if(this.dsMaster.rowcount < 1)
+        	if(this.dsGrp.rowcount < 1)
         	{
         		this.gfn_alert("삭제할 데이타가 없습니다.!");
         		return false;
@@ -699,7 +680,7 @@
         	{
         	   return false;
         	}
-        	this.dsMaster.deleteRow(this.dsMaster.rowposition);
+        	this.dsGrp.deleteRow(this.dsGrp.rowposition);
         	//개별삭제시
         	return true;
         };
@@ -714,8 +695,8 @@
         		return false;
         	}
         	var strSvc 		= "Del";
-        	var strUrl 		= "/prj/com/DeleteCommCodeMasterList.do";
-        	var strInDs  	= "dsMaster=dsMaster:u";
+        	var strUrl 		= "/prj/com/DeleteGrpCodeList.do";
+        	var strInDs  	= "dsGrp=dsGrp:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
@@ -732,7 +713,7 @@
         };
         this.fn_PostDel = function()
         {
-        	this.dsMaster_onrowposchanged(this.dsMaster);
+        	this.dsGrp_onrowposchanged(this.dsGrp);
         };
         /**********************************************************************
         	07-1. 디테일 삭제 함수 선언
@@ -744,7 +725,7 @@
         {
 
         	//멀티삭제용도
-        	if(this.dsDetail.rowcount < 1 || this.dsDetail.findRow("CHK",1) == -1)
+        	if(this.dsGrpDetail.rowcount < 1 || this.dsGrpDetail.findRow("CHK",1) == -1)
         	{
         		this.gfn_alert("삭제할 데이타가 없습니다.!");
         		return false;
@@ -758,15 +739,15 @@
         	}
 
         	//다중삭제 용도
-        	this.dsDetail.set_enableevent(false);
-        	for(var i=this.dsDetail.rowcount-1;i>-1;i--)
+        	this.dsGrpDetail.set_enableevent(false);
+        	for(var i=this.dsGrpDetail.rowcount-1;i>-1;i--)
         	{
-        		if(this.dsDetail.getColumn(i,"CHK") == "1")
+        		if(this.dsGrpDetail.getColumn(i,"CHK") == "1")
         		{
-        			this.dsDetail.deleteRow(i);
+        			this.dsGrpDetail.deleteRow(i);
         		}
         	}
-        	this.dsDetail.set_enableevent(true);
+        	this.dsGrpDetail.set_enableevent(true);
 
         	//개별삭제시
         	return true;
@@ -783,8 +764,8 @@
         	}
 
         	var strSvc 		= "DDel";
-        	var strUrl 		= "/prj/com/DeleteCommCodeDetailList.do";
-        	var strInDs  	= "dsDetail=dsDetail:u";
+        	var strUrl 		= "/prj/com/DeleteGrpCodeDetailList.do";
+        	var strInDs  	= "dsGrpDetail=dsGrpDetail:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
@@ -810,19 +791,19 @@
          */
         this.fn_PreSave = function()
         {
-        	if(this.dsDetail.rowcount > 0)
+        	if(this.dsGrpDetail.rowcount > 0)
         	{
-        		for(var i=0;i<this.dsDetail.rowcount; i++)
+        		for(var i=0;i<this.dsGrpDetail.rowcount; i++)
         		{
-        			if(this.dsDetail.getColumn(i,"CHK") == 0)
+        			if(this.dsGrpDetail.getColumn(i,"CHK") == 0)
         			{
         				continue;
         			}
-        			this.dsDetail.setColumn(i,"CHK","0");
+        			this.dsGrpDetail.setColumn(i,"CHK","0");
         		}
         	}
 
-        	if(!this.gfn_isUpdate(this.dsMaster) && !this.gfn_isUpdate(this.dsDetail))
+        	if(!this.gfn_isUpdate(this.dsGrp) && !this.gfn_isUpdate(this.dsGrpDetail))
             {
                 this.gfn_alert("변경된 이력이 없습니다.");
                 return false;
@@ -830,19 +811,19 @@
 
         	// 필수 입력사항 체크 =>grid 필수항목체크할거냐:true,일반 컴포넌트에 필수항목을 할거냐false)
         	var chkFocusFlg = true;
-        	var result 		= this.gfn_cmmnChkEssentialItem(this.dsMaster, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
+        	var result 		= this.gfn_cmmnChkEssentialItem(this.dsGrp, this.lvchkColidDs, this.lvchkColNameDs, this.grdMaster, chkFocusFlg, this);
         	if (result[0] != "success")
         	{
         		this.gfn_alert(result[0]);
-        		this.dsMaster.set_rowposition(result[1]); //데이터셋 변경
+        		this.dsGrp.set_rowposition(result[1]); //데이터셋 변경
         		return false;
         	}
          	var chkFocusFlg1 = true;
-            var result1 	= this.gfn_cmmnChkEssentialItem(this.dsDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
+            var result1 	= this.gfn_cmmnChkEssentialItem(this.dsGrpDetail, this.lvchkColidDs_Detail, this.lvchkColNameDs_Detail,this.grdDetail,chkFocusFlg1,this);
             if(result1[0] != "success")
         	{
         		this.gfn_alert(result1[0]);
-        		this.dsDetail.set_rowposition(result1[1]); //데이터셋 변경
+        		this.dsGrpDetail.set_rowposition(result1[1]); //데이터셋 변경
         		return false;
         	}
 
@@ -864,13 +845,13 @@
         	{
         		return false;
         	}
-        	this.dsMaster.set_enableevent(false);
+        	this.dsGrp.set_enableevent(false);
 
         	var strSvc 		= "Save";
-        	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";
-        	var strInDs     = "ds_input=ds_input ";
-        		strInDs    += "dsMaster=dsMaster:u ";
-        	var strOutDs 	= "dsMaster=dsMaster";
+        	var strUrl 		= "/prj/com/SaveGrpCodeList.do";
+        	var strInDs     = "dsGrpInput=dsGrpInput ";
+        		strInDs    += "dsGrp=dsGrp:u ";
+        	var strOutDs 	= "dsGrp=dsGrp";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -888,14 +869,14 @@
          */
         this.fn_PostSave = function()
         {
-        	this.dsMaster.set_enableevent(true);
-        	this.dsMaster_onrowposchanged(this.dsMaster);
+        	this.dsGrp.set_enableevent(true);
+        	this.dsGrp_onrowposchanged(this.dsGrp);
         };
 
         this.fn_PostDSave = function()
         {
-        	this.dsDetail.set_enableevent(true);
-        	this.dsMaster_onrowposchanged(this.dsMaster);
+        	this.dsGrpDetail.set_enableevent(true);
+        	this.dsGrp_onrowposchanged(this.dsGrp);
         };
 
         /**********************************************************************
@@ -911,7 +892,7 @@
 
         this.fn_Excel = function()
         {
-        	if(this.dsMaster.rowcount < 1)
+        	if(this.dsGrp.rowcount < 1)
         	{
         		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
         		return false;
@@ -922,13 +903,13 @@
         	{
         	   return false;
         	}
-        	this.gfn_excelExport(this.grdMaster);
+        	this.gfn_excelExport(this.grdGrdList);
         };
 
         //디테일 다운로드
         this.btnDExcelDn_onclick = function(obj,e)
         {
-        	if(this.dsDetail.rowcount < 1)
+        	if(this.dsGrpDetail.rowcount < 1)
         	{
         		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
         		return false;
@@ -938,7 +919,7 @@
         	{
         	   return false;
         	}
-        	this.gfn_excelExport(this.grdDetail);
+        	this.gfn_excelExport(this.dsGrp);
         };
 
         /**********************************************************************
@@ -1002,7 +983,7 @@
         /*
          *	그리드멀티 소트정열
          */
-        this.grdMaster_onheaddblclick = function(obj, e)
+        this.dsGrp_onheaddblclick = function(obj, e)
         {
         	if(e.cell != 0)
         	{
@@ -1035,7 +1016,7 @@
         /**
          *	행변경시 현제 데이타가 변경돼었는지 체크
          */
-        this.dsMaster_canrowposchange = function(obj, e)
+        this.dsGrp_canrowposchange = function(obj, e)
         {
 
         	if(obj.getRowType(e.newrow) != 2)
@@ -1068,22 +1049,22 @@
 
         }
 
-        this.dsDetail_cancolumnchange = function(obj, e)
+        this.dsGrpDetail_cancolumnchange = function(obj, e)
         {
         	if(e.columnid == "LANG_FG_CD")
         	{
-        		var nRow = this.dsDetail.findRowExpr("TCODE == '" + e.newvalue + "' && currow != '" +e.row+"'");
+        		var nRow = this.dsGrpDetail.findRowExpr("TCODE == '" + e.newvalue + "' && currow != '" +e.row+"'");
         		if(nRow > -1)
         		{
         			this.gfn_alert("중복된 키를 입력할수 없습니다.");
         			return false;
         		}else
         		{
-        			if(this.dsDetail.getRowType(e.row) == 2)
+        			if(this.dsGrpDetail.getRowType(e.row) == 2)
         			{
-        				this.dsDetail.set_enableevent(false);
-        				this.dsDetail.setColumn(e.row,"TCODE",e.newvalue);
-        				this.dsDetail.set_enableevent(true);
+        				this.dsGrpDetail.set_enableevent(false);
+        				this.dsGrpDetail.setColumn(e.row,"TCODE",e.newvalue);
+        				this.dsGrpDetail.set_enableevent(true);
         			}
         		}
 
@@ -1095,78 +1076,43 @@
          **/
         this.fn_beforeclose = function()
         {
-            return (this.gfn_isUpdate(this.dsMaster) || this.gfn_isUpdate(this.dsDetail));
+            return (this.gfn_isUpdate(this.dsGrp) || this.gfn_isUpdate(this.dsGrpDetail));
         };
 
-
-
-        this.btnMAdd_onclick = function(obj,e)
+        this.btn_Grp_Add_onclick = function(obj,e)
         {
-        this.fn_New();
+        	this.fn_New();
         };
 
-        this.btnMDel_onclick = function(obj,e)
+        this.btn_Grp_Del_onclick = function(obj,e)
         {
         	this.fn_Del();
         };
 
-        this.btnMSave_onclick = function(obj,e)
+        this.btn_Grp_Save_onclick = function(obj,e)
         {
         	this.fn_Save();
         };
 
-        this.btnMExcelDn_onclick = function(obj,e)
+        this.btn_Grp_Excel_onclick = function(obj,e)
         {
         	this.fn_Excel();
         };
 
-        this.btnPopup_onclick = function(obj,e)
+
+        this.btn_Grp_Deta_Save_onclick = function(obj,e)
         {
-        	var nW = 500;
-        var nH = 400;
 
-        var objApp = nexacro.getApplication();
-        var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
-        var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;
-        nLeft = system.clientToScreenX(this, nLeft);
-        nTop  = system.clientToScreenY(this, nTop);
-
-
-        var sOpenStyle = "dragmovetype=all"
-                     + " resizable=true"
-                     + " titletext=Modeless"
-                     + " showtitlebar=true"
-                     + " showstatusbar=false";
-
-        nexacro.open("chf_popup3"
-                   , "com::CSYSCD0100_pop.xfdl"
-                   , this.getOwnerFrame()
-                   , ''
-                   , sOpenStyle
-                   , nLeft
-                   , nTop
-                   , nW
-                   , nH
-                   , this);
-        };
-
-        this.divSearch_btnSearch_onclick = function(obj,e)
-        {
-        	this.fn_Ret();
-        };
-
-        this.btnDSave_onclick = function(obj,e)
-        {
         	if(!this.fn_PreSave())
         	{
         		return false;
         	}
-        	this.dsDetail.set_enableevent(false);
+        	this.dsGrpDetail.set_enableevent(false);
         	var strSvc 		= "DSave";
-        	var strUrl 		= "/prj/com/SaveCommCodeDetailList.do";
-        	var strInDs     = "ds_input1=ds_input1 ";
-        		strInDs    += "dsDetail=dsDetail:u ";
-        	var strOutDs 	= "dsDetail=dsDetail";
+        	var strUrl 		= "/prj/com/SaveGrpCodeDeatilList.do";
+        	var strInDs     = "dsGrpDetaInput=dsGrpDetaInput ";
+        		strInDs    += "dsGrpDetail=dsGrpDetail:u ";
+        	var strOutDs 	= "dsGrpDetail=dsGrpDetail";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -1177,6 +1123,7 @@
         				   , strArg
         				   , strCallBack
         				   , strASync);
+
         };
 
         });
@@ -1186,7 +1133,19 @@
         {
             this.addEventHandler("onload",this.form_onload,this);
             this.addEventHandler("onclose",this.form_onclose,this);
+            this.btn_Grp_Excel.addEventHandler("onclick",this.btn_Grp_Excel_onclick,this);
+            this.btn_Grp_Save.addEventHandler("onclick",this.btn_Grp_Save_onclick,this);
+            this.btn_Grp_Del.addEventHandler("onclick",this.btn_Grp_Del_onclick,this);
+            this.btn_Grp_Add.addEventHandler("onclick",this.btn_Grp_Add_onclick,this);
+            this.grdGrdList.addEventHandler("onheaddblclick",this.dsGrp_onheaddblclick,this);
             this.Tab00.addEventHandler("onchanged",this.Tab00_onchanged,this);
+            this.Tab00.Tabpage2.form.btn_Grp_Deta_Add.addEventHandler("onclick",this.btnDAdd_onclick,this);
+            this.Tab00.Tabpage2.form.btn_Grp_Deta_Del.addEventHandler("onclick",this.btnDDel_onclick,this);
+            this.Tab00.Tabpage2.form.btn_Grp_Deta_Save.addEventHandler("onclick",this.btn_Grp_Deta_Save_onclick,this);
+            this.Tab00.Tabpage2.form.btn_Grp_Deta_Excel.addEventHandler("onclick",this.btnDExcelDn_onclick,this);
+            this.Tab00.Tabpage2.form.grdMaster.addEventHandler("onheaddblclick",this.grdDetail_onheaddblclick,this);
+            this.Tab00.Tabpage2.form.grdMaster.addEventHandler("onheadclick",this.grdDetail_onheadclick,this);
+            this.dsGrp.addEventHandler("onrowposchanged",this.dsGrp_onrowposchanged,this);
         };
         this.loadIncludeScript("CSYSCD0100_pop.xfdl");
         this.loadPreloadList();

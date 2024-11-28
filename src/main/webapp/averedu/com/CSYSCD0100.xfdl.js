@@ -32,7 +32,7 @@
             obj.set_enableevent("true");
             obj.set_preload("true");
             obj.set_updatecontrol("true");
-            obj.set_useclientlayout("false");
+            obj.set_useclientlayout("true");
             obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"CMMN_CD\" type=\"STRING\" size=\"32\"/><Column id=\"CMMN_CD_NM\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REMK_CTNT\" type=\"STRING\" size=\"256\"/><Column id=\"BF_CMMN_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"32\"/><Column id=\"FRST_INPUT_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"32\"/><Column id=\"LAST_MODF_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
@@ -74,7 +74,7 @@
             obj.set_autoupdatetype("itemselect");
             obj.set_cellsizingtype("col");
             obj.set_autofittype("col");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"48\"/><Column size=\"52\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\" background=\"#e1eaf3 url(&apos;file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png&apos;) no-repeat left top\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:&apos;&apos;\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:currow+1\" textAlign=\"center\" edittype=\"none\"/><Cell col=\"3\" text=\"bind:CMMN_CD\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:CMMN_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:USE_YN\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"ds_use_yn\" combodatacol=\"YN\" combocodecol=\"CD\"/><Cell col=\"6\" text=\"bind:REMK_CTNT\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:BF_CMMN_CD\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:FRST_INPUT_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:FRST_INPUT_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:LAST_MODF_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:LAST_MODF_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"48\"/><Column size=\"52\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\"/><Cell col=\"3\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"4\" text=\"공통코드명\" background=\"#e1eaf3 url(&apos;file://C:/avereduProjectTool/workspace-averedu/src/main/webapp/averedu/_resource_/_theme_/default/images/point.png&apos;) no-repeat left top\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"비고내역\"/><Cell col=\"7\" text=\"이전공통코드\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:&apos;&apos;\" textAlign=\"center\"/><Cell col=\"2\" text=\"expr:currow+1\" textAlign=\"center\" edittype=\"none\"/><Cell col=\"3\" text=\"bind:CMMN_CD\" displaytype=\"text\" edittype=\"expr:dataset.getRowType(currow)==2?&apos;normal&apos;:&apos;none&apos;\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:CMMN_CD_NM\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:USE_YN\" edittype=\"combo\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"ds_use_yn\" combodatacol=\"YN\" combocodecol=\"CD\"/><Cell col=\"6\" text=\"bind:REMK_CTNT\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:BF_CMMN_CD\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:FRST_INPUT_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:FRST_INPUT_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:LAST_MODF_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:LAST_MODF_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdDetail","5","521",null,null,"3","3",null,null,null,null,this);
@@ -83,6 +83,7 @@
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
             obj.set_cellsizingtype("col");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"48\"/><Column size=\"48\"/><Column size=\"87\"/><Column size=\"81\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"118\"/><Column size=\"89\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\"/><Cell col=\"3\" text=\"공통코드\"/><Cell col=\"4\" text=\"상세코드\" cssclass=\"point\"/><Cell col=\"5\" text=\"상세코드명\" cssclass=\"point\"/><Cell col=\"6\" text=\"상세코드약명\"/><Cell col=\"7\" text=\"언어구분코드\"/><Cell col=\"8\" text=\"언어코드명\"/><Cell col=\"9\" text=\"언어코드약명\"/><Cell col=\"10\" text=\"사용여부\"/><Cell col=\"11\" text=\"비고내역\"/><Cell col=\"12\" text=\"등록자\"/><Cell col=\"13\" text=\"등록일자\"/><Cell col=\"14\" text=\"수정자\"/><Cell col=\"15\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:CHK\"/><Cell col=\"1\" text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:&apos;&apos;\" textAlign=\"center\" displaytype=\"text\"/><Cell col=\"2\" text=\"expr:currow+1\" textAlign=\"center\" displaytype=\"normal\" edittype=\"none\"/><Cell col=\"3\" text=\"bind:CMMN_CD\" displaytype=\"text\" edittype=\"none\"/><Cell col=\"4\" text=\"bind:CMMN_DETA_CD\" displaytype=\"text\" edittype=\"expr:dataset.getRowType(currow)==2?&apos;normal&apos;:&apos;none&apos;\"/><Cell col=\"5\" text=\"bind:CMMN_DETA_CD_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CMMN_DETA_CD_ABBNM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:LANG_FG_CD\" displaytype=\"text\" edittype=\"expr:dataset.getRowType(currow)==2?&apos;normal&apos;:&apos;none&apos;\" textAlign=\"left\"/><Cell col=\"8\" text=\"bind:LANG_FG_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"9\" text=\"bind:LANG_ABBNM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"10\" text=\"bind:USE_YN\" displaytype=\"combocontrol\" edittype=\"combo\" maskeditformat=\"expr:##\" textAlign=\"right\" combodataset=\"ds_use_yn\" combocodecol=\"CD\" combodatacol=\"YN\"/><Cell col=\"11\" displaytype=\"text\" edittype=\"text\" text=\"bind:REMK_CTNT\" textAlign=\"left\"/><Cell col=\"12\" displaytype=\"text\" text=\"bind:FRST_INPUT_ID\"/><Cell col=\"13\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" text=\"bind:FRST_INPUT_DT\" calendardisplaynulltype=\"none\"/><Cell col=\"14\" displaytype=\"text\" text=\"bind:LAST_MODF_ID\"/><Cell col=\"15\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" text=\"bind:LAST_MODF_DT\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -150,7 +151,7 @@
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Button("btnSearch",null,"25","90","22","5",null,null,null,null,null,this.divSearch.form);
+            obj = new Button("btnSearch","1540","25","90","22",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("10");
             obj.set_text("조회");
             obj.set_cssclass("btn_WF_Crud");
@@ -482,7 +483,6 @@
         	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
-        	//	strOutDs	+= "dsMaster=dsMaster";
         	var strArg 		= "";
         	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
         	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
@@ -577,28 +577,7 @@
         	{
         		return false;
         	}
-
-        	var result;
-        	var nRow=-1
-        	if(this.gfn_isUpdateD(this.dsMaster) == true)
-        	{
-        		result = this.gfn_confirm("MSG00010", "저장정보","", "question" );
-
-        		if(result == true)
-        		{
-        			this.dsMaster.set_enableevent(false);
-        			this.gfn_reSetDs(this.dsMaster,this.dsMaster.rowposition);
-        			nRow = this.dsMaster.addRow();
-        			this.dsMaster.set_enableevent(true);
-
-        		}else
-        		{
-        			return false;
-        		}
-        	}else
-        	{
-        		nRow = this.dsMaster.addRow();
-        	}
+        	var nRow = this.dsMaster.addRow();
         	this.dsMaster.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
         };
 
@@ -617,7 +596,7 @@
          */
         this.fn_PreDAdd = function()
         {
-        	if(this.dsMaster.rowcount < 1)
+        	if(this.dsMaster.rowcount < 1 || this.dsMaster.getRowType(this.dsMaster.rowposition) == 2)
         	{
         		this.gfn_alert("MSG00014","마스터 정보","","information");
         		return false;
@@ -657,7 +636,8 @@
          */
         this.fn_PreDel = function()
         {
-        	if(this.dsMaster.rowcount < 1)
+        	//멀티삭제용도
+        	if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
         	{
         		this.gfn_alert("삭제할 데이타가 없습니다.!");
         		return false;
@@ -669,7 +649,18 @@
         	{
         	   return false;
         	}
-        	this.dsMaster.deleteRow(this.dsMaster.rowposition);
+
+        	//다중삭제 용도
+        	this.dsMaster.set_enableevent(false);
+        	for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+        	{
+        		if(this.dsMaster.getColumn(i,"CHK") == "1")
+        		{
+        			this.dsMaster.deleteRow(i);
+        		}
+        	}
+        	this.dsMaster.set_enableevent(true);
+
         	//개별삭제시
         	return true;
         };
@@ -701,6 +692,10 @@
 
         };
         this.fn_PostDel = function()
+        {
+        	this.fn_Ret();
+        };
+        this.fn_PostDDel = function()
         {
         	this.dsMaster_onrowposchanged(this.dsMaster);
         };
@@ -979,6 +974,18 @@
         		this.gfn_gridSort(obj,e);
         	}
         }
+
+        /**
+         *	그리드 체크박스 올체크
+         */
+        this.grdMaster_onheadclick = function(obj, e)
+        {
+        	if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+        	{
+        		this.gfn_checkAll(obj, e,true);
+
+        	}
+        };
         /**
          *	그리드 체크박스 올체크
          */
@@ -1072,7 +1079,7 @@
 
         this.btnMAdd_onclick = function(obj,e)
         {
-        this.fn_New();
+        	this.fn_New();
         };
 
         this.btnMDel_onclick = function(obj,e)
@@ -1092,32 +1099,34 @@
 
         this.btnPopup_onclick = function(obj,e)
         {
+
+        	var objParam = {CMMN_CD:this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")};
         	var nW = 500;
-        var nH = 400;
+        	var nH = 400;
 
-        var objApp = nexacro.getApplication();
-        var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
-        var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;
-        nLeft = system.clientToScreenX(this, nLeft);
-        nTop  = system.clientToScreenY(this, nTop);
+        	var objApp = nexacro.getApplication();
+        	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+        	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;
+        	nLeft = system.clientToScreenX(this, nLeft);
+        	nTop  = system.clientToScreenY(this, nTop);
 
 
-        var sOpenStyle = "dragmovetype=all"
-                     + " resizable=true"
-                     + " titletext=Modeless"
-                     + " showtitlebar=true"
-                     + " showstatusbar=false";
+        	var sOpenStyle = "dragmovetype=all"
+        				 + " resizable=true"
+        				 + " titletext=공통코드그룹"
+        				 + " showtitlebar=true"
+        				 + " showstatusbar=false";
 
-        nexacro.open("chf_popup3"
-                   , "com::CSYSCD0100_pop.xfdl"
-                   , this.getOwnerFrame()
-                   , ''
-                   , sOpenStyle
-                   , nLeft
-                   , nTop
-                   , nW
-                   , nH
-                   , this);
+        	nexacro.open("chf_popup3"
+        			   , "com::CSYSCD0100_pop.xfdl"
+        			   , this.getOwnerFrame()
+        			   , objParam
+        			   , sOpenStyle
+        			   , nLeft
+        			   , nTop
+        			   , nW
+        			   , nH
+        			   , this);
         };
 
         this.divSearch_btnSearch_onclick = function(obj,e)
@@ -1157,6 +1166,7 @@
             this.addEventHandler("onclose",this.form_onclose,this);
             this.addEventHandler("onload",this.form_onload,this);
             this.grdMaster.addEventHandler("onheaddblclick",this.grdMaster_onheaddblclick,this);
+            this.grdMaster.addEventHandler("onheadclick",this.grdMaster_onheadclick,this);
             this.grdDetail.addEventHandler("onheadclick",this.grdDetail_onheadclick,this);
             this.grdDetail.addEventHandler("onheaddblclick",this.grdDetail_onheaddblclick,this);
             this.divSearch.form.staSubTitle04.addEventHandler("onclick",this.divSearch_staSubTitle04_onclick,this);
@@ -1176,7 +1186,6 @@
             this.btnMSave.addEventHandler("onclick",this.btnMSave_onclick,this);
             this.btnMAdd.addEventHandler("onclick",this.btnMAdd_onclick,this);
             this.btnPopup.addEventHandler("onclick",this.btnPopup_onclick,this);
-            this.dsMaster.addEventHandler("canrowposchange",this.dsMaster_canrowposchange,this);
             this.dsMaster.addEventHandler("onrowposchanged",this.dsMaster_onrowposchanged,this);
             this.dsDetail.addEventHandler("cancolumnchange",this.dsDetail_cancolumnchange,this);
         };

@@ -79,6 +79,7 @@ public class CsyscdCtr {
 		return mav;
 	}
 	
+	
 	/**
 	 * 세부코드 리스트 조회 (actionRetrieveCommCodeDetailList)
 	 * 
@@ -100,6 +101,78 @@ public class CsyscdCtr {
 			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
 
 			csyscdSvc.retrieveCommCodeDetailList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
+	/**
+	 * 그룹 코드 리스트 조회 (actionRetrieveGrpCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/RetrieveGrpCodeList.do")
+	public ModelAndView actionRetrieveGrpCodeList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.retrieveGrpCodeList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
+	/**
+	 * 그룹 상세 코드 리스트 조회 (actionRetrieveGrpDetailCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/RetrieveGrpDetailCodeList.do")
+	public ModelAndView actionRetrieveGrpDetailCodeList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.retrieveGrpDetailCodeList(inVar, inDataset, outVar, outDataset, sessionVO);
 
 			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
 			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
@@ -188,6 +261,78 @@ public class CsyscdCtr {
 		return mav;
 	}
 	
+	/**
+	 * 그룹 리스트 저장/수정(actionSaveGrpCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/SaveGrpCodeList.do")
+	public ModelAndView actionSaveGrpCodeList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.saveGrpCodeList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
+	/**
+	 * 그룹 상세 코드리스트 저장/수정(actionSaveGrpCodeDeatilList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/SaveGrpCodeDeatilList.do")
+	public ModelAndView actionSaveGrpCodeDeatilList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.saveGrpCodeDeatilList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
 	/**                                                                                                                		
 	 * 공통코드 리스트 삭제(actionDeleteCommCodeMasterList)                                                            
 	 * @param input                                                                                                 			
@@ -243,6 +388,76 @@ public class CsyscdCtr {
 			Map <String, DataSetMap> outDataset = nxDto.getOutDataSetMap();                                 					
 	                                                                                                               				
 			csyscdSvc.deleteCommCodeDetailList(inDataset, sessionVO);                 				                
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);                                				
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME,   outDataset);                            				
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");                                       
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");                                  
+		                                                                                                        				
+		}  catch ( Exception e ) {                                                                                                       				
+			e.printStackTrace();     
+			CommExceptionUtil.setError(e, mav); 
+		}    
+		                                                                                                    					
+		return mav;                                                                                             				
+	}
+	
+	/**                                                                                                                		
+	 * 그룹코드 리스트 삭제(actionDeleteCommCodeDetailList)                                                            
+	 * @param input                                                                                                 			
+	 * @return                                                                                                      			
+	 * @throws Exception                                                                                           				
+	 */                                                                                                             			
+	@RequestMapping(value = "/prj/com/DeleteGrpCodeList.do")        
+	public ModelAndView actionDeleteGrpCodeList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)throws Exception {  
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");                                    
+		try                                                                                                     				
+	    {                                                                                                           			
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);                                          					
+	                                                                                                               				
+	        DataSetMap tranInfo 				= nxDto.getTranInfoMap();                                          				
+			Map <String, Object> inVar          = nxDto.getInVariableMap();                                          			
+			Map <String, DataSetMap> inDataset  = nxDto.getInDataSetMap();                                   					
+			Map <String, Object> outVar         = nxDto.getOutVariableMap();                                        			
+			Map <String, DataSetMap> outDataset = nxDto.getOutDataSetMap();                                 					
+	                                                                                                               				
+			csyscdSvc.deleteGrpCodeList(inDataset, sessionVO);                 				                
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);                                				
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME,   outDataset);                            				
+			                                                                                                					
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");                                       
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");                                  
+		                                                                                                        				
+		}  catch ( Exception e ) {                                                                                                       				
+			e.printStackTrace();     
+			CommExceptionUtil.setError(e, mav); 
+		}    
+		                                                                                                    					
+		return mav;                                                                                             				
+	}
+	
+	/**                                                                                                                		
+	 * 그룹세부코드 리스트 삭제(actionDeleteCommCodeDetailList)                                                            
+	 * @param input                                                                                                 			
+	 * @return                                                                                                      			
+	 * @throws Exception                                                                                           				
+	 */                                                                                                             			
+	@RequestMapping(value = "/prj/com/DeleteGrpCodeDetailList.do")        
+	public ModelAndView actionDeleteGrpCodeDetailList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)throws Exception {  
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");                                    
+		try                                                                                                     				
+	    {                                                                                                           			
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);                                          					
+	                                                                                                               				
+	        DataSetMap tranInfo 				= nxDto.getTranInfoMap();                                          				
+			Map <String, Object> inVar          = nxDto.getInVariableMap();                                          			
+			Map <String, DataSetMap> inDataset  = nxDto.getInDataSetMap();                                   					
+			Map <String, Object> outVar         = nxDto.getOutVariableMap();                                        			
+			Map <String, DataSetMap> outDataset = nxDto.getOutDataSetMap();                                 					
+	                                                                                                               				
+			csyscdSvc.deleteGrpCodeDetailList(inDataset, sessionVO);                 				                
 			                                                                                                					
 			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);                                				
 			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME,   outDataset);                            				

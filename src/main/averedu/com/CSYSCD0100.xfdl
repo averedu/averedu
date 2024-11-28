@@ -3,11 +3,11 @@
   <Form id="form" width="1640" height="800" titletext="공통코드관리" onclose="form_onclose" onload="form_onload">
     <Layouts>
       <Layout height="800" width="1640" description="공통코드관리" mobileorientation="landscape">
-        <Grid id="grdMaster" taborder="0" left="5" top="123" height="363" right="3" binddataset="dsMaster" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autofittype="col">
+        <Grid id="grdMaster" taborder="0" left="5" top="123" height="363" right="3" binddataset="dsMaster" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheaddblclick="grdMaster_onheaddblclick" autofittype="col" onheadclick="grdMaster_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="48" band="left"/>
+                <Column size="48"/>
                 <Column size="48"/>
                 <Column size="52"/>
                 <Column size="174"/>
@@ -42,7 +42,7 @@
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
                 <Cell col="2" text="expr:currow+1" textAlign="center" edittype="none"/>
-                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="left"/>
                 <Cell col="4" text="bind:CMMN_CD_NM" edittype="text" displaytype="text" textAlign="left"/>
                 <Cell col="5" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="ds_use_yn" combodatacol="YN" combocodecol="CD"/>
                 <Cell col="6" text="bind:REMK_CTNT" edittype="text" displaytype="text" textAlign="left"/>
@@ -55,7 +55,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Grid id="grdDetail" taborder="1" left="5" top="521" right="3" bottom="3" binddataset="dsDetail" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheadclick="grdDetail_onheadclick" onheaddblclick="grdDetail_onheaddblclick">
+        <Grid id="grdDetail" taborder="1" left="5" top="521" right="3" bottom="3" binddataset="dsDetail" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheadclick="grdDetail_onheadclick" onheaddblclick="grdDetail_onheaddblclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -131,7 +131,7 @@
               <Edit id="edtClassId00" taborder="7" left="74" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassId_onkeyup"/>
               <Static id="staSubTitle04_00" taborder="8" text="공통코드값사용여부" left="203" top="49" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
               <Combo id="cboComUserYn" taborder="9" left="350" top="51" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
-              <Button id="btnSearch" taborder="10" text="조회" top="25" width="90" height="22" right="5" cssclass="btn_WF_Crud" onclick="divSearch_btnSearch_onclick"/>
+              <Button id="btnSearch" taborder="10" text="조회" top="25" width="90" height="22" cssclass="btn_WF_Crud" onclick="divSearch_btnSearch_onclick" left="1540"/>
               <Combo id="cboCommCode" taborder="1" left="74" top="11" width="127" height="22" text="" innerdataset="dsCmmnCd" codecolumn="CMMN_CD" datacolumn="CMMN_CD" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
               <Static id="staSubTitle05_00" taborder="11" text="구코드" left="716" top="9" width="78" height="26" cssclass="sta_WF_SearchLbl"/>
               <Edit id="edtBfCmmnCd" taborder="12" left="794" top="9" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassNm_onkeyup"/>
@@ -161,7 +161,7 @@
           <Row/>
         </Rows>
       </Dataset>
-      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="false" canrowposchange="dsMaster_canrowposchange" onrowposchanged="dsMaster_onrowposchanged">
+      <Dataset enableevent="true" id="dsMaster" preload="true" updatecontrol="true" useclientlayout="true" onrowposchanged="dsMaster_onrowposchanged">
         <ColumnInfo>
           <Column id="CHK" type="STRING" size="32"/>
           <Column id="CMMN_CD" type="STRING" size="32"/>
@@ -431,7 +431,6 @@ this.fn_Ret = function()
 	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";                                     
 	var strInDs  	= "ds_input=ds_input";                                         
 	var strOutDs 	= "dsMaster=dsMaster";
-	//	strOutDs	+= "dsMaster=dsMaster";
 	var strArg 		= "";               
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
 	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로 
@@ -526,28 +525,7 @@ this.fn_New = function()
 	{                                                             
 		return false;                                               
 	}	
-	
-	var result;
-	var nRow=-1
-	if(this.gfn_isUpdateD(this.dsMaster) == true)
-	{
-		result = this.gfn_confirm("MSG00010", "저장정보","", "question" );
-		
-		if(result == true)
-		{	
-			this.dsMaster.set_enableevent(false);
-			this.gfn_reSetDs(this.dsMaster,this.dsMaster.rowposition);
-			nRow = this.dsMaster.addRow(); 
-			this.dsMaster.set_enableevent(true);
-		
-		}else
-		{
-			return false;
-		}
-	}else
-	{
-		nRow = this.dsMaster.addRow(); 
-	}
+	var nRow = this.dsMaster.addRow(); 
 	this.dsMaster.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
 };
  
@@ -566,7 +544,7 @@ this.postAdd = function()
  */
 this.fn_PreDAdd = function()
 { 
-	if(this.dsMaster.rowcount < 1)
+	if(this.dsMaster.rowcount < 1 || this.dsMaster.getRowType(this.dsMaster.rowposition) == 2)
 	{
 		this.gfn_alert("MSG00014","마스터 정보","","information");
 		return false;
@@ -585,7 +563,7 @@ this.btnDAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	}	
 	
 	var nRow = this.dsDetail.addRow(); 
-	
+
 	this.dsDetail.setColumn(nRow,"CMMN_CD", this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")); 	//기본키값
 	this.dsDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
 	this.dsDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
@@ -606,19 +584,31 @@ this.postDAdd = function()
  */
 this.fn_PreDel = function()
 {
-	if(this.dsMaster.rowcount < 1)
+	//멀티삭제용도
+	if(this.dsMaster.rowcount < 1 || this.dsMaster.findRow("CHK",1) == -1)
 	{
 		this.gfn_alert("삭제할 데이타가 없습니다.!");
 		return false;
 	}
-
+	
 	var result = this.gfn_confirm("현재선택행을 삭제하시겠습니까?", "저장","", "question" );
-
+	
 	if(result == 0)	
 	{
 	   return false;
 	}
-	this.dsMaster.deleteRow(this.dsMaster.rowposition); 
+
+	//다중삭제 용도
+	this.dsMaster.set_enableevent(false);
+	for(var i=this.dsMaster.rowcount-1;i>-1;i--)
+	{
+		if(this.dsMaster.getColumn(i,"CHK") == "1")
+		{
+			this.dsMaster.deleteRow(i);
+		}
+	}
+	this.dsMaster.set_enableevent(true);
+	
 	//개별삭제시 
 	return true;
 };
@@ -650,6 +640,10 @@ this.fn_Del = function()
 						
 };
 this.fn_PostDel = function() 
+{
+	this.fn_Ret();
+};
+this.fn_PostDDel = function() 
 {
 	this.dsMaster_onrowposchanged(this.dsMaster);
 };
@@ -928,6 +922,18 @@ this.grdMaster_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
 		this.gfn_gridSort(obj,e);
 	}
 }
+
+/**
+ *	그리드 체크박스 올체크
+ */
+this.grdMaster_onheadclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	
+	}
+};
 /**
  *	그리드 체크박스 올체크
  */
@@ -1020,8 +1026,8 @@ this.fn_beforeclose = function()
 
 
 this.btnMAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-this.fn_New();
+{	
+	this.fn_New();
 };
 
 this.btnMDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -1041,32 +1047,34 @@ this.btnMExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 this.btnPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+
+	var objParam = {CMMN_CD:this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")};
 	var nW = 500;
-var nH = 400;
+	var nH = 400;
 
-var objApp = nexacro.getApplication();
-var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
-var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;        
-nLeft = system.clientToScreenX(this, nLeft);
-nTop  = system.clientToScreenY(this, nTop);
+	var objApp = nexacro.getApplication();
+	var nLeft = (objApp.mainframe.width  / 2) - Math.round(nW / 2);
+	var nTop  = (objApp.mainframe.height / 2) - Math.round(nH / 2) ;        
+	nLeft = system.clientToScreenX(this, nLeft);
+	nTop  = system.clientToScreenY(this, nTop);
 
 
-var sOpenStyle = "dragmovetype=all"
-             + " resizable=true"
-             + " titletext=Modeless"
-             + " showtitlebar=true"
-             + " showstatusbar=false";
+	var sOpenStyle = "dragmovetype=all"
+				 + " resizable=true"
+				 + " titletext=공통코드그룹"
+				 + " showtitlebar=true"
+				 + " showstatusbar=false";
 
-nexacro.open("chf_popup3"
-           , "com::CSYSCD0100_pop.xfdl"
-           , this.getOwnerFrame()
-           , ''
-           , sOpenStyle
-           , nLeft
-           , nTop
-           , nW
-           , nH
-           , this);
+	nexacro.open("chf_popup3"
+			   , "com::CSYSCD0100_pop.xfdl"
+			   , this.getOwnerFrame()
+			   , objParam
+			   , sOpenStyle
+			   , nLeft
+			   , nTop
+			   , nW
+			   , nH
+			   , this);
 };
 
 this.divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

@@ -81,6 +81,48 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 		return;
 	}
+	
+	/**
+	 * 그룹 코드 리스트 조회(retrieveGrpCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void retrieveGrpCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpInput");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		List<Map> records = csyscdDAO.retrieveGrpCodeList(map);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsGrp", dsOut);
+
+		return;
+	}
+	
+	/**
+	 * 그룹 상세 코드  리스트 조회(retrieveGrpDetailCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void retrieveGrpDetailCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetaInput");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		List<Map> records = csyscdDAO.retrieveGrpDetailCodeList(map);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsGrpDetail", dsOut);
+
+		return;
+	}
 
 	/**
 	 * 공통코드 저장/수정(saveCommCodeMasterList)
@@ -188,6 +230,114 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 	
 	/**
+	 * 그룹코드 저장/수정(saveGrpCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveGrpCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		// 조회조건
+		int rowType;
+		String recordKeyValue = "";
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpInput");
+		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+		// 저장데이타셋
+		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsGrp"); // 마스터
+		if (dsMap1.size() > 0) {
+
+			for (int i = 0; i < dsMap1.size(); i++) {
+				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
+				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
+					
+
+					csyscdDAO.insertGrpCodeList(outMap);
+
+				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+
+					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
+					csyscdDAO.updateGrpCodeList(outMap);
+
+				}
+			}
+		}
+		// 서버에서 시퀀스 제조회시
+		List<Map> records = csyscdDAO.retrieveGrpCodeList(inMap);
+		outVar.put("strKeyValue", recordKeyValue);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsGrp", dsOut);
+
+		return;
+	}
+	
+	
+	/**
+	 * 그룹상세코드 저장/수정(saveGrpCodeDeatilList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveGrpCodeDeatilList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		// 조회조건
+		int rowType;
+		String recordKeyValue = "";
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetaInput");
+		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+		// 저장데이타셋
+		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsGrpDetail"); // 마스터
+		if (dsMap1.size() > 0) {
+
+			for (int i = 0; i < dsMap1.size(); i++) {
+				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
+				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
+					
+
+					csyscdDAO.insertGrpCodeDeatilList(outMap);
+
+				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+
+					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
+					csyscdDAO.updateGrpCodeDeatilList(outMap);
+
+				}
+			}
+		}
+		// 서버에서 시퀀스 제조회시
+		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
+		outVar.put("strKeyValue", recordKeyValue);
+
+		DataSetMap dsOut = new DataSetMap();
+		dsOut.setRowMaps(records);
+		outDataset.put("dsGrpDetail", dsOut);
+
+		return;
+	}
+	
+	
+	/**
 	 * 공통코드리스트 삭제(deleteCommCodeMasterList)
 	 * 
 	 * @param input
@@ -234,6 +384,53 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			}
 		}
 		csyscdDAO.deleteEmptyCodeDetailList();
+		return;
+	}
+	
+	/**
+	 * 그룹코드 삭제(deleteGrpCodeList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deleteGrpCodeList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
+
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrp");
+		
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deleteGrpCodeList(map);
+			}
+		}
+		return;
+	}
+	
+	/**
+	 * 그룹상세코드 삭제(deleteGrpCodeDetailList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deleteGrpCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
+
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetail");
+		
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deleteGrpCodeDetailList(map);
+			}
+		}
 		return;
 	}
 

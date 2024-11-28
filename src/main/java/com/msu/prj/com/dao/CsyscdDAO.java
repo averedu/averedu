@@ -25,7 +25,7 @@ import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
                                                                                                              
 @Repository("CsyscdDAO")                                                          	
 public class CsyscdDAO extends EgovAbstractMapper {                                              
-                                                                                                             
+    
     @Resource(name = "sqlSession")                                                     
     public void setSqlSessionFactory(SqlSessionFactory sqlSession) {                                         
         super.setSqlSessionFactory(sqlSession);                                                              
@@ -54,6 +54,28 @@ public class CsyscdDAO extends EgovAbstractMapper {
      	return selectList("CsyscdDAO.retrieveCommCodeDetailList", map);          
     }   
     
+    /**                                                                                                      
+     * 그룹 코드 리스트 조회(retrieveGrpCodeList)                                            
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   	
+     */                                                                                                     	
+    public List<Map> retrieveGrpCodeList(Map<String, Object> map) throws Exception {                   
+                                                                                                             
+     	return selectList("CsyscdDAO.retrieveGrpCodeList",map);          
+    }
+    
+    /**                                                                                                      
+     * 그룹 상세 코드 리스트 조회(retrieveGrpDetailCodeList)                                            
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   	
+     */                                                                                                     	
+    public List<Map> retrieveGrpDetailCodeList(Map<String, Object> map) throws Exception {                   
+                                                                                                             
+     	return selectList("CsyscdDAO.retrieveGrpDetailCodeList",map);          
+    } 
+    
     /**                                                                                                      	
      * 기초표준코드1 리스트 저장(insertCommCodeMasterList)                                                 
      * @param input                                                                                         	
@@ -77,7 +99,29 @@ public class CsyscdDAO extends EgovAbstractMapper {
     	 insert("CsyscdDAO.insertCommCodeDetailList", map); 
      } 	 
      	insert("CsyscdDAO.insertCommCodeDetailList2", map);
-    } 
+    }
+    
+    /**                                                                                                      	
+     * 그룹코드 리스트 저장(insertCommCodeDetailList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void insertGrpCodeList(Map<String, Object> map) throws Exception {                           	 
+     	
+    	insert("CsyscdDAO.insertGrpCodeList", map);
+    }
+    
+    /**                                                                                                      	
+     * 그룹상세코드 리스트 저장(insertCommCodeDetailList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void insertGrpCodeDeatilList(Map<String, Object> map) throws Exception {                          
+    
+     	insert("CsyscdDAO.insertGrpCodeDeatilList", map);
+    }
     
     /**                                                                                                      	
      * 기초표준코드1 리스트 수정(updateCommCodeMasterList)                                                 
@@ -100,7 +144,29 @@ public class CsyscdDAO extends EgovAbstractMapper {
                                                                                                              
      	update("CsyscdDAO.updateCommCodeDetailList", map);             
      	update("CsyscdDAO.updateCommCodeDetailList2", map);
-    }  
+    }
+    
+    /**                                                                                                      	
+     * 그룹 코드 리스트 수정(updateGrpCodeList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void updateGrpCodeList(Map<String, Object> map) throws Exception {                          
+                                                                                                             
+     	update("CsyscdDAO.updateGrpCodeList", map);             
+    }
+    
+    /**                                                                                                      	
+     * 그룹 상세 코드 리스트 수정(updateGrpCodeDeatilList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void updateGrpCodeDeatilList(Map<String, Object> map) throws Exception {                          
+                                                                                                             
+     	update("CsyscdDAO.updateGrpCodeDeatilList", map);             
+    }
     
     /**                                                                                                      	
      * 상세코드 삭제(deleteCommCodeMasterList)                                                 
@@ -145,6 +211,28 @@ public class CsyscdDAO extends EgovAbstractMapper {
                                                                                                              
      	delete("CsyscdDAO.deleteCommCodeAllList", map);  
      	delete("CsyscdDAO.deleteCommCodeAllList2", map);  
+    }  
+    
+    /**                                                                                                      	
+     * 그룹코드 리스트 삭제(deleteGrpCodeList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void deleteGrpCodeList(Map<String, Object> map) throws Exception {                          
+                                                                                                             
+     	delete("CsyscdDAO.deleteGrpCodeList", map);  
+    }
+    
+    /**                                                                                                      	
+     * 그룹 상세 코드 삭제(deleteGrpCodeDetailList)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */                                                                                                     	
+    public void deleteGrpCodeDetailList(Map<String, Object> map) throws Exception {                          
+                                                                                                             
+     	delete("CsyscdDAO.deleteGrpCodeDetailList", map);  
     }  
     
     /**                                                                                                      	

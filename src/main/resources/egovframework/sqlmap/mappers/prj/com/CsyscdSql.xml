@@ -524,7 +524,29 @@
 			A.DEPT_SORT_SEQ,
 			A.SUB_CHANC_MISS_CD
 		FROM COM.CSYS300 A
-		ORDER BY DEPT_CD
+		WHERE 1 = 1
+		<if test="DEPT_NM != null and DEPT_NM != ''"> 			                                         							                        
+	    	AND A.DEPT_NM LIKE '%' || #{DEPT_NM} || '%'                                            													 
+        </if>   
+        <if test="DEPT_CD != null and DEPT_CD != ''">                                                     							                        
+	    	AND A.DEPT_CD LIKE '%' || #{DEPT_CD} || '%'                                           													 
+        </if>
+        <if test="DEPT_ID != null and DEPT_ID != ''">       		                                                   							                        
+	    	AND A.DEPT_ID LIKE '%' || #{DEPT_ID} || '%'                                           													 
+        </if>
+        <if test="USE_YN != null and USE_YN != ''">                                                 							                        
+	    	AND A.USE_YN        = #{USE_YN}                                            													 
+        </if>
+        <if test="BREU_FG != null and BREU_FG != ''">                                                 							                        
+	    	AND A.BREU_FG        =  #{BREU_FG}                                            													 
+        </if>
+        <if test="FL_DEPT_YN != null and FL_DEPT_YN != ''">                                                 							                        
+	    	AND A.FL_DEPT_YN        = #{FL_DEPT_YN}                                            													 
+        </if>
+        <if test="SHAF_FORMA_YN != null and SHAF_FORMA_YN != ''">                                                 							                        
+	    	AND A.SHAF_FORMA_YN        = #{SHAF_FORMA_YN}                                           													 
+        </if>
+		ORDER BY A.DEPT_CD
     </select>
     
     <select id="CsyscdDAO.deptHistList" parameterType="map" resultType="egovMap">

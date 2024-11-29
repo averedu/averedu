@@ -3,26 +3,11 @@
   <Form id="CSYSCD0200" width="1640" height="910" titletext="부서코드관리" onload="form_onload">
     <Layouts>
       <Layout height="910" mobileorientation="landscape" width="1640">
-        <Static id="stc_Dept_Title_01" taborder="1" left="13" top="15" height="35" text="&lt;b v='true'&gt;부서코드관리&lt;/b&gt; " cssclass="stc_Dept_Title_01" right="1420" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false"/>
-        <Static id="stc_dept_01" taborder="0" text="&lt;b v='true'&gt;부서명&lt;/b&gt; " left="10" top="69" width="77" height="45" cssclass="stc_dept_01" usedecorate="true"/>
-        <Static id="stc_dept_05" taborder="2" text="&lt;b v='true'&gt;기관구분&lt;/b&gt; " left="10" top="113" width="77" height="45" cssclass="stc_dept_05" onclick="stc01_00_onclick" usedecorate="true"/>
-        <Static id="stc_dept_02" taborder="3" text="&lt;b v='true'&gt;부서코드&lt;/b&gt; " left="157" top="68" width="77" height="45" cssclass="stc_dept_02" onclick="stc01_01_onclick" usedecorate="true"/>
-        <Static id="stc_dept_06" taborder="4" text="&lt;b v='true'&gt;최종조직여부&lt;/b&gt; " left="155" top="113" width="77" height="45" cssclass="stc_dept_06" onclick="stc01_02_onclick" usedecorate="true"/>
-        <Static id="stc_dept_04" taborder="5" text="&lt;b v='true'&gt;사용여부&lt;/b&gt; " left="533" top="68" width="77" height="45" cssclass="stc_dept_04" onclick="stc_dept_04_onclick" usedecorate="true"/>
-        <Static id="stc_dept_07" taborder="6" text="&lt;b v='true'&gt;학사조직여부&lt;/b&gt; " left="330" top="117" width="77" height="45" cssclass="stc_dept_07" onclick="stc_dept_07_onclick" usedecorate="true"/>
-        <Static id="stc_dept_03" taborder="7" text="&lt;b v='true'&gt;부서ID&lt;/b&gt; " left="330" top="71" width="77" height="45" cssclass="stc_dept_03" usedecorate="true"/>
-        <Edit id="edt_dept_01" taborder="8" left="68" top="77" width="82" height="30" cssclass="edt_dept_01"/>
-        <Edit id="edt_dept_02" taborder="9" left="242" top="78" width="82" height="30" cssclass="edt_dept_02"/>
-        <Edit id="edt_dept_03" taborder="10" left="428" top="75" width="82" height="30" cssclass="edt_dept_03"/>
-        <Combo id="cbo_dept_01" taborder="11" text="Combo00" left="600" top="75" width="80" height="32"/>
-        <Combo id="cbo_dept_03" taborder="12" text="Combo00" left="244" top="120" width="80" height="32"/>
-        <Combo id="cbo_dept_02" taborder="13" text="Combo00" left="68" top="123" width="80" height="32"/>
-        <Combo id="cbo_dept_04" taborder="14" text="Combo00" left="430" top="120" width="80" height="32"/>
-        <Grid id="grdMaster" taborder="15" left="10" top="211" width="664" height="629" binddataset="dsMaster" oncellclick="dsMasterOnCellClick">
+        <Grid id="grdMaster" taborder="0" left="5" top="151" binddataset="dsMaster" autoenter="select" autofittype="col" autoupdatetype="itemselect" width="450" bottom="139">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="412"/>
+                <Column size="664"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -37,130 +22,127 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="stc_dept_08" taborder="16" text="&lt;b v='true'&gt;부서목록&lt;/b&gt; " left="10" top="168" width="74" height="39" usedecorate="true" onclick="stc_dept_08_onclick"/>
-        <Button id="btn_dept_02" taborder="17" text="부서엑셀다운" top="185" width="95" height="32" cssclass="btn_dept_02" right="513" onclick="divHakgwa_btnJeongong_onclick"/>
-        <Button id="btn_dept_01" taborder="18" left="1456" top="78" width="99" height="35" text="⌕ 조회" escapebutton="true" background="#e1b01d" onclick="btn_dept_01_onclick"/>
-        <Static id="stc_dept_09" taborder="19" text="&lt;b v='true'&gt;부서정보&lt;/b&gt; " left="721" top="171" width="74" height="39" usedecorate="true" onclick="stc_dept_08_onclick"/>
-        <Button id="btn_dept_03" taborder="20" text="부서엑셀다운" top="185" width="95" height="33" cssclass="btn_dept_03" right="413" onclick="divHakgwa_btnJeongong_onclick"/>
-        <Button id="add_dept_list_btn" taborder="21" text="⊕ 추가" top="185" width="57" height="34" cssclass="add_dept_list_btn" right="353" cursor="auto" onclick="add_dept_list_btn_onclick"/>
-        <Button id="del_dept_list_btn" taborder="22" text="⊝ 삭제" top="185" width="53" height="32" cssclass="del_dept_list_btn" right="296" onclick="del_dept_list_btn_onclick"/>
-        <Button id="save_dept_list_btn" taborder="23" text="저장" top="185" width="57" height="32" cssclass="save_dept_list_btn" right="236" onclick="save_dept_list_btn_onclick"/>
-        <Static id="stc_dept_10" taborder="24" text="&lt;b v='true'&gt;총건수 :  &lt;/b&gt; " left="1409" top="178" width="96" height="45" cssclass="stc_dept_10" usedecorate="true" font="15px/normal &quot;Malgun Gothic&quot;" onclick="stc_dept_10_onclick"/>
-        <Static id="stc_13_00_00_00_00" taborder="25" top="219" height="29" cssclass="sta_WF_DetailBg" width="836" right="83" onclick="stc_13_00_00_00_00_onclick"/>
-        <Static id="stc_13_00" taborder="26" top="248" height="28" cssclass="sta_WF_DetailBg" width="836" right="83" text="" onclick="stc_13_00_onclick"/>
-        <Static id="stc_dept_11" taborder="27" text="부서코드" top="218" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Edit id="edt_dept_04" taborder="28" top="221" height="22" width="173" enable="true" right="623" cssclass="point" onchanged="edt_dept_04_onchanged"/>
-        <Static id="stc_13_00_00_00_00_00" taborder="29" top="276" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_dept_14" taborder="30" text="기관구분" top="246" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" onclick="stc_12_onclick" textAlign="center"/>
-        <Static id="stc_13" taborder="31" top="304" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_dept_17" taborder="32" text="부서명" top="274" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_13_01" taborder="33" top="332" height="28" cssclass="sta_WF_DetailBg" width="836" right="83" onclick="stc_13_01_onclick"/>
-        <Static id="stc_13_02" taborder="34" top="414" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_13_03" taborder="35" top="386" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_13_04" taborder="36" top="358" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_dept_20" taborder="37" text="부서영문명" top="302" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_23" taborder="38" text="부서중문명" top="330" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_26" taborder="39" text="생성일자" top="358" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center" onclick="stc_dept_26_onclick"/>
-        <Static id="stc_dept_29" taborder="40" text="폐지일자" top="386" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" onclick="stc_12_04_onclick" textAlign="center"/>
-        <Static id="stc_dept_32" taborder="41" text="폐지예정일자" top="414" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Edit id="edt_dept_06" taborder="42" top="223" height="22" width="90" enable="true" right="348" onchanged="edtJanghakNm_onchanged"/>
-        <Static id="stc_dept_12" taborder="43" text="상위부서" top="220" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Button id="btn_dept_07" taborder="44" top="223" width="22" height="22" cssclass="btn_WF_PopSrch" text="" enable="false" onclick="btnJanghak_onclick" right="323"/>
-        <Static id="stc_dept_13" taborder="45" text="사용여부" top="219" height="29" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Edit id="edt_dept_05" taborder="46" top="223" height="22" width="53" enable="false" right="440"/>
-        <CheckBox id="che_dept_01" taborder="47" left="1447" top="218" width="40" height="30" onclick="CheckBox00_onclick" text=""/>
-        <Static id="stc_dept_15" taborder="48" text="조직유형" top="248" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_34" taborder="49" text="비고" top="414" height="28" cssclass="sta_WF_DetailTi" width="120" right="246" textAlign="center"/>
-        <Static id="stc_dept_22" taborder="50" text="최종조직여부" top="302" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Static id="stc_dept_19" taborder="51" text="가상조직여부" top="276" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Static id="stc_dept_16" taborder="52" text="학사조직여부" top="248" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Static id="stc_dept_33" taborder="53" text="부총장보직코드" top="414" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_30" taborder="54" text="학부(팀)" top="386" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_27" taborder="55" text="대학(처)" top="360" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_24" taborder="56" text="부서중문약어명" top="332" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_21" taborder="57" text="부서영문약어명" top="304" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_18" taborder="58" text="부서약어명" top="276" height="28" cssclass="sta_WF_DetailTi" width="120" right="495" textAlign="center"/>
-        <Static id="stc_dept_31" taborder="59" text="부서졍렬순번" top="386" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Static id="stc_dept_28" taborder="60" text="주야구분" top="360" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Static id="stc_dept_25" taborder="61" text="부서ID" top="332" height="28" cssclass="sta_WF_DetailTi" width="120" right="197" textAlign="center"/>
-        <Combo id="cbo_dept_05" taborder="62" top="251" width="173" height="22" value="" index="-1" datacolumn="BREU_NM" codecolumn="BREU_FG" enable="true" right="623" innerdataset="dsCboBreuFg" text=""/>
-        <Combo id="cbo_dept_06" taborder="63" top="249" width="170" height="22" value="" index="-1" datacolumn="FORMA_TYP_NM" codecolumn="FORMA_TYP" enable="true" right="323" innerdataset="dsCboFormaTyp" onitemchanged="cbo_dept_06_onitemchanged"/>
-        <CheckBox id="che_dept_02" taborder="64" left="1447" top="246" width="40" height="30" onclick="CheckBox00_onclick" text=""/>
-        <CheckBox id="che_dept_04" taborder="65" left="1447" top="301" width="40" height="30" onclick="CheckBox00_onclick" text=""/>
-        <CheckBox id="che_dept_03" taborder="66" left="1447" top="274" width="40" height="30" onclick="CheckBox00_onclick" text=""/>
-        <Combo id="cbo_dept_07" taborder="67" top="361" width="100" height="22" value="" index="-1" datacolumn="DAN_NM" codecolumn="DAN_FG" enable="true" right="93" innerdataset="dsCboDanFg"/>
-        <Combo id="cbo_dept_08" taborder="68" top="418" width="120" height="22" value="" index="-1" datacolumn="SUB_CHANC_MISS_NM" codecolumn="SUB_CHANC_MISS_CD" enable="true" right="373" innerdataset="dsCboSubChancMissCd"/>
-        <Edit id="edt_dept_07" taborder="69" top="279" height="22" width="173" enable="true" right="623" cssclass="point"/>
-        <Edit id="edt_dept_08" taborder="70" top="280" height="22" width="170" enable="true" right="323"/>
-        <Edit id="edt_dept_12" taborder="71" top="334" height="22" width="170" enable="true" right="323"/>
-        <Edit id="edt_dept_10" taborder="72" top="307" height="22" width="170" enable="true" right="323"/>
-        <Edit id="edt_dept_11" taborder="73" top="335" height="22" width="173" enable="true" right="623"/>
-        <Edit id="edt_dept_09" taborder="74" top="306" height="22" width="173" enable="true" right="623"/>
-        <Edit id="edt_dept_13" taborder="75" top="335" height="22" width="101" enable="true" right="93" cssclass="point"/>
-        <Edit id="edt_dept_14" taborder="76" top="361" height="22" width="55" enable="false" right="438"/>
-        <Edit id="edt_dept_15" taborder="77" top="361" height="22" width="90" enable="true" right="345"/>
-        <Edit id="edt_dept_16" taborder="78" top="389" height="22" width="55" enable="false" right="438"/>
-        <Edit id="edt_dept_17" taborder="79" top="389" height="22" width="89" enable="true" right="345"/>
-        <Button id="btn_dept_09" taborder="80" top="389" width="22" height="22" cssclass="btn_WF_PopSrch" text="" right="321" enable="false" onclick="btnJanghak_onclick"/>
-        <Button id="btn_dept_08" taborder="81" top="361" width="22" height="22" cssclass="btn_WF_PopSrch" text="" right="321" enable="false" onclick="btnJanghak_onclick"/>
-        <MaskEdit id="edt_dept_18" taborder="82" left="1428" top="389" width="103" height="22" format="9,999"/>
-        <Calendar id="cal_dept_01" taborder="83" left="827" top="361" width="100" onkeydown="fn_Enter" height="22"/>
-        <Calendar id="cal_dept_02" taborder="84" left="827" top="388" width="100" height="22" onkeydown="fn_Enter"/>
-        <Calendar id="cal_dept_03" taborder="85" left="827" top="416" width="100" height="22" onkeydown="fn_Enter"/>
-        <Static id="stc_dept_35" taborder="86" text="&lt;b v='true'&gt;부서코드연계정보&lt;/b&gt; " left="720" top="452" width="194" height="39" usedecorate="true" onclick="stc_dept_08_onclick"/>
-        <Static id="stc_13_00_00_00" taborder="87" top="576" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_13_00_00_00_01" taborder="88" top="549" height="28" cssclass="sta_WF_DetailBg" width="836" right="83"/>
-        <Static id="stc_13_00_00_00_02" taborder="89" top="521" height="28" cssclass="sta_WF_DetailBg" width="835" right="83"/>
-        <Static id="stc_13_00_00_00_03" taborder="90" top="604" height="28" cssclass="sta_WF_DetailBg" width="837" right="81"/>
-        <Static id="stc_13_00_00_00_04" taborder="91" top="632" height="28" cssclass="sta_WF_DetailBg" width="836" right="81" text=""/>
-        <Static id="stc_13_00_00_00_05" taborder="92" top="493" height="28" cssclass="sta_WF_DetailBg" width="835" right="83"/>
-        <Static id="stc_dept_36" taborder="93" text="증명서부서명" top="491" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_48" taborder="94" text="업적심사대학" top="603" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_45" taborder="95" text="등록계열" top="575" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_41" taborder="96" text="박사학위" top="522" height="28" cssclass="sta_WF_DetailTi" width="120" right="253" textAlign="center"/>
-        <Static id="stc_dept_42" taborder="97" text="전공분류" top="547" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_51" taborder="98" text="그룹웨어부서연계여부" top="631" height="28" cssclass="sta_WF_DetailTi" width="156" right="763" textAlign="center"/>
-        <Static id="stc_dept_39" taborder="99" text="학사학위" top="519" height="28" cssclass="sta_WF_DetailTi" width="120" right="799" textAlign="center"/>
-        <Static id="stc_dept_38" taborder="100" text="정보공시계열" top="494" height="28" cssclass="sta_WF_DetailTi" width="120" right="253" textAlign="center"/>
-        <Static id="stc_dept_37" taborder="101" text="주간학과코드" top="493" height="28" cssclass="sta_WF_DetailTi" width="120" right="523" textAlign="center"/>
-        <Static id="stc_dept_44" taborder="102" text="업적계열" top="550" height="28" cssclass="sta_WF_DetailTi" width="120" right="253" textAlign="center"/>
-        <Static id="stc_dept_40" taborder="103" text="석사학위" top="521" height="28" cssclass="sta_WF_DetailTi" width="120" right="523" textAlign="center"/>
-        <Static id="stc_dept_46" taborder="104" text="졸업학위증출력명" top="575" height="28" cssclass="sta_WF_DetailTi" width="120" right="523" textAlign="center"/>
-        <Static id="stc_dept_43" taborder="105" text="연계전공" top="549" height="28" cssclass="sta_WF_DetailTi" width="120" right="523" textAlign="center"/>
-        <Static id="stc_dept_52" taborder="106" text="교원그룹웨어부서코드" top="632" height="28" cssclass="sta_WF_DetailTi" width="172" right="471" textAlign="center" onclick="stc_dept_52_onclick"/>
-        <Static id="stc_dept_49" taborder="107" text="대학원분류" top="604" height="28" cssclass="sta_WF_DetailTi" width="120" right="523" textAlign="center"/>
-        <Static id="stc_dept_50" taborder="108" text="학부(과)" top="604" height="28" cssclass="sta_WF_DetailTi" width="120" right="253" textAlign="center"/>
-        <Static id="stc_dept_47" taborder="109" text="수업년한" top="576" height="28" cssclass="sta_WF_DetailTi" width="120" right="253" textAlign="center"/>
-        <Static id="stc_dept_53" taborder="110" text="직원그룹웨어부서코드" top="632" height="28" cssclass="sta_WF_DetailTi" width="176" right="197" textAlign="center"/>
-        <Edit id="edt_dept_20" taborder="111" top="497" height="22" width="143" enable="true" right="653"/>
-        <Edit id="edt_dept_22" taborder="112" top="497" height="22" width="95" enable="false" right="378"/>
-        <Edit id="edt_dept_21" taborder="113" top="497" height="22" width="48" enable="true" right="474"/>
-        <Edit id="edt_dept_24" taborder="114" top="553" height="22" width="95" enable="false" right="378"/>
-        <Edit id="edt_dept_23" taborder="115" top="553" height="22" width="48" enable="true" right="474"/>
-        <Edit id="edt_dept_27" taborder="116" top="579" height="22" width="86" enable="true" right="163"/>
-        <Edit id="edt_dept_26" taborder="117" top="578" height="22" width="143" enable="true" right="378"/>
-        <Edit id="edt_dept_25" taborder="118" top="578" height="22" width="73" enable="true" right="723"/>
-        <Edit id="edt_dept_29" taborder="119" top="635" height="22" width="113" enable="true" right="83"/>
-        <Edit id="edt_dept_28" taborder="120" top="635" height="22" width="93" enable="true" right="376"/>
-        <Edit id="edtJanghakNm09" taborder="121" top="607" height="22" width="103" enable="false" right="83"/>
-        <Edit id="edtJanghakNm10" taborder="122" top="607" height="22" width="66" enable="true" right="187"/>
-        <CheckBox id="che_dept_05" taborder="123" left="880" top="629" width="40" height="30" onclick="CheckBox00_onclick" text=""/>
-        <Combo id="cboJeyakGbcd" taborder="124" top="497" width="156" height="22" value="" index="-1" datacolumn="INFO_ANNC_PART_NM" codecolumn="INFO_ANNC_PART" enable="true" right="93" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboInfoAnncPart"/>
-        <Combo id="cboJeyakGbcd00" taborder="125" top="525" width="143" height="22" value="" index="-1" datacolumn="SHAF_DEGR_NM" codecolumn="SHAF_DEGR" enable="true" right="653" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboShafDegr"/>
-        <Combo id="cboJeyakGbcd01" taborder="126" top="524" width="156" height="22" value="" index="-1" datacolumn="PHD_DEGR_NM" codecolumn="PHD_DEGR" enable="true" right="93" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboPhdDegr"/>
-        <Combo id="cboJeyakGbcd02" taborder="127" top="553" width="156" height="22" value="" index="-1" datacolumn="ACHV_PART_NM" codecolumn="ACHV_PART" enable="true" right="93" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboAchvPart"/>
-        <Combo id="cboJeyakGbcd00_00" taborder="128" top="555" width="143" height="22" value="" index="-1" datacolumn="MJ_CLSF__NM" codecolumn="MJ_CLSF" enable="true" right="654" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboMjClsf"/>
-        <Combo id="cboJeyakGbcd00_00_00" taborder="129" top="605" width="143" height="22" value="" index="-1" datacolumn="ACHV_SCRN_UNIV_NM" codecolumn="ACHV_SCRN_UNIV" enable="true" right="653" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboScrnUniv"/>
-        <Combo id="cboJeyakGbcd00_00_01" taborder="130" top="525" width="143" height="22" value="" index="-1" datacolumn="MASTER_DEGR_NM" codecolumn="MASTER_DEGR" enable="true" right="379" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboMasterDegr"/>
-        <Combo id="cboJeyakGbcd00_00_02" taborder="131" top="604" width="143" height="22" value="" index="-1" datacolumn="GRSC_CLSF_NM" codecolumn="GRSC_CLSF" enable="true" right="378" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboGrscClsf"/>
-        <Static id="stc_dept_54" taborder="132" text="&lt;b v='true'&gt;부서이력목록&lt;/b&gt; " left="726" top="677" width="194" height="39" usedecorate="true" onclick="stc_dept_08_onclick"/>
-        <Static id="stc_dept_55" taborder="133" left="880" top="677" width="365" height="39" usedecorate="true" onclick="stc_dept_08_onclick" text="* 부서가 통·폐합되거나 명칭 변경등으로 신규 부서를 등록한 경우 &#13;&#10;이력 관리를 위해 부서 이력 목록을 등록해주십시오."/>
-        <Button id="add_dept_hist_btn" taborder="134" text="⊕ 추가" top="681" width="65" height="31" cssclass="add_dept_hist_btn" right="358" cursor="auto" onclick="add_dept_hist_btn_onclick"/>
-        <Button id="btn_dept_13" taborder="135" text="엑셀" top="681" width="65" height="31" cssclass="btn_dept_04" right="155" cursor="auto"/>
-        <Button id="del_dept_hist_btn" taborder="136" text="⊝ 삭제" top="681" width="65" height="31" cssclass="del_dept_hist_btn" right="291" cursor="auto" onclick="del_dept_hist_btn_onclick"/>
-        <Button id="save_dept_hist_btn" taborder="137" text="저장" top="681" width="65" height="31" cssclass="save_dept_hist_btn" right="223" cursor="auto" onclick="save_dept_hist_btn_onclick"/>
-        <Static id="stc_dept_10_00" taborder="138" text="&lt;b v='true'&gt;총건수 : &lt;/b&gt; " left="1495" top="676" width="96" height="45" cssclass="stc_dept_10" usedecorate="true" font="15px/normal &quot;Malgun Gothic&quot;"/>
-        <Grid id="grdSub" taborder="139" left="724" top="726" width="835" height="106" binddataset="dsSub">
+        <Static id="stc_dept_08" taborder="1" text="&lt;b v='true'&gt;부서목록&lt;/b&gt; " left="10" top="108" width="74" height="39" usedecorate="true" onclick="stc_dept_08_onclick"/>
+        <Button id="btn_dept_02" taborder="2" text="부서엑셀다운" top="115" width="95" height="32" cssclass="btn_WF_Crud" onclick="divHakgwa_btnJeongong_onclick" left="785"/>
+        <Static id="stc_dept_09" taborder="3" text="&lt;b v='true'&gt;부서정보&lt;/b&gt; " top="108" height="39" usedecorate="true" onclick="stc_dept_08_onclick" left="496" width="120"/>
+        <Button id="btn_dept_03" taborder="4" text="부서엑셀다운" top="115" width="95" height="33" cssclass="btn_WF_Crud" onclick="divHakgwa_btnJeongong_onclick" left="882"/>
+        <Button id="add_dept_list_btn" taborder="5" text="⊕ 추가" top="115" width="57" height="34" cssclass="btn_WF_Crud" cursor="auto" onclick="add_dept_list_btn_onclick" left="982"/>
+        <Button id="del_dept_list_btn" taborder="6" text="⊝삭제" top="115" width="57" height="34" cssclass="btn_WF_Crud" onclick="del_dept_list_btn_onclick" left="1042"/>
+        <Button id="save_dept_list_btn" taborder="7" text="저장" top="115" width="57" height="34" cssclass="btn_WF_Crud" onclick="save_dept_list_btn_onclick" left="1102"/>
+        <Static id="stc_13_00_00_00_00" taborder="8" cssclass="sta_WF_DetailBg" onclick="stc_13_00_00_00_00_onclick" top="156" height="29" text="" right="308" left="496"/>
+        <Static id="stc_13_00" taborder="9" cssclass="sta_WF_DetailBg" text="" onclick="stc_13_00_onclick" left="496" top="185" height="28" right="308"/>
+        <Static id="stc_dept_11" taborder="10" text="부서코드" cssclass="sta_WF_DetailTi" textAlign="center" top="155" height="28" left="496" width="120"/>
+        <Edit id="edt_dept_04" taborder="11" enable="true" cssclass="point" onchanged="edt_dept_04_onchanged" top="159" width="173" height="22" left="618"/>
+        <Static id="stc_13_00_00_00_00_00" taborder="12" height="28" cssclass="sta_WF_DetailBg" right="308" top="213" left="496"/>
+        <Static id="stc_dept_14" taborder="13" text="기관구분" cssclass="sta_WF_DetailTi" onclick="stc_12_onclick" textAlign="center" top="183" width="120" height="28" left="496"/>
+        <Static id="stc_13" taborder="14" cssclass="sta_WF_DetailBg" left="496" top="241" right="308" height="28"/>
+        <Static id="stc_dept_17" taborder="15" text="부서명" cssclass="sta_WF_DetailTi" width="120" textAlign="center" top="211" height="28" left="496"/>
+        <Static id="stc_13_01" taborder="16" cssclass="sta_WF_DetailBg" onclick="stc_13_01_onclick" top="269" left="496" height="28" right="308"/>
+        <Static id="stc_13_02" taborder="17" cssclass="sta_WF_DetailBg" left="496" top="351" height="28" right="308"/>
+        <Static id="stc_13_03" taborder="18" cssclass="sta_WF_DetailBg" left="496" top="323" right="308" height="28"/>
+        <Static id="stc_13_04" taborder="19" cssclass="sta_WF_DetailBg" text="" left="496" top="295" right="308" height="28"/>
+        <Static id="stc_dept_20" taborder="20" text="부서영문명" cssclass="sta_WF_DetailTi" textAlign="center" height="28" width="120" top="239" left="496"/>
+        <Static id="stc_dept_23" taborder="21" text="부서중문명" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" top="267" left="496"/>
+        <Static id="stc_dept_26" taborder="22" text="생성일자" top="295" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" onclick="stc_dept_26_onclick" left="496"/>
+        <Static id="stc_dept_29" taborder="23" text="폐지일자" top="323" height="28" cssclass="sta_WF_DetailTi" width="120" onclick="stc_12_04_onclick" textAlign="center" left="496"/>
+        <Static id="stc_dept_32" taborder="24" text="폐지예정일자" top="351" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="496"/>
+        <Edit id="edt_dept_06" taborder="25" enable="true" onchanged="edtJanghakNm_onchanged" top="160" width="90" height="22" left="977"/>
+        <Static id="stc_dept_12" taborder="26" text="상위부서" cssclass="sta_WF_DetailTi" textAlign="center" top="157" width="120" height="28" left="800"/>
+        <Button id="btn_dept_07" taborder="27" cssclass="btn_WF_PopSrch" text="" enable="false" onclick="btnJanghak_onclick" top="160" width="22" height="22" left="1070"/>
+        <Static id="stc_dept_13" taborder="28" text="사용여부" cssclass="sta_WF_DetailTi" textAlign="center" top="156" width="120" height="29" left="1098"/>
+        <Edit id="edt_dept_05" taborder="29" enable="false" top="160" width="53" height="22" left="922"/>
+        <CheckBox id="cheUseYn" taborder="30" top="155" width="40" height="30" onclick="CheckBox00_onclick" text="" left="1222"/>
+        <Static id="stc_dept_15" taborder="31" text="조직유형" cssclass="sta_WF_DetailTi" textAlign="center" top="185" width="120" height="28" left="800"/>
+        <Static id="stc_dept_34" taborder="32" text="비고" top="351" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1049"/>
+        <Static id="stc_dept_22" taborder="33" text="최종부서여부" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" top="239" left="1098"/>
+        <Static id="stc_dept_19" taborder="34" text="가상조직여부" cssclass="sta_WF_DetailTi" textAlign="center" top="213" width="120" height="28" left="1098"/>
+        <Static id="stc_dept_16" taborder="35" text="학사조직여부" cssclass="sta_WF_DetailTi" textAlign="center" top="185" width="120" height="28" left="1098"/>
+        <Static id="stc_dept_33" taborder="36" text="부총장보직코드" top="351" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="800"/>
+        <Static id="stc_dept_30" taborder="37" text="학부(팀)" top="323" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="800"/>
+        <Static id="stc_dept_27" taborder="38" text="대학(처)" top="297" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="800"/>
+        <Static id="stc_dept_24" taborder="39" text="부서중문약어명" top="269" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="800"/>
+        <Static id="stc_dept_21" taborder="40" text="부서영문약어명" cssclass="sta_WF_DetailTi" textAlign="center" width="120" top="241" height="28" left="800"/>
+        <Static id="stc_dept_18" taborder="41" text="부서약어명" cssclass="sta_WF_DetailTi" textAlign="center" top="213" width="120" height="28" left="800"/>
+        <Static id="stc_dept_31" taborder="42" text="부서졍렬순번" top="323" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1098"/>
+        <Static id="stc_dept_28" taborder="43" text="주야구분" top="297" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1098"/>
+        <Static id="stc_dept_25" taborder="44" text="부서ID" top="269" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1098"/>
+        <Combo id="cbo_dept_05" taborder="45" value="" index="-1" datacolumn="BREU_NM" codecolumn="BREU_FG" enable="true" innerdataset="dsCboBreuFg" text="" top="188" width="173" height="22" left="619" onitemchanged="cbo_dept_05_onitemchanged"/>
+        <Combo id="cbo_dept_06" taborder="46" value="" index="-1" datacolumn="FORMA_TYP_NM" codecolumn="FORMA_TYP" enable="true" innerdataset="dsCboFormaTyp" onitemchanged="cbo_dept_06_onitemchanged" top="186" width="170" height="22" left="922"/>
+        <CheckBox id="cheShafFormaFg" taborder="47" top="183" width="40" height="30" onclick="CheckBox00_onclick" text="" left="1222"/>
+        <CheckBox id="che_dept_04" taborder="48" top="238" width="40" height="30" onclick="CheckBox00_onclick" text="" left="1222"/>
+        <CheckBox id="che_dept_03" taborder="49" top="211" width="40" height="30" onclick="CheckBox00_onclick" text="" left="1222"/>
+        <Combo id="cbo_dept_07" taborder="50" top="298" width="100" height="22" value="" index="-1" datacolumn="DAN_NM" codecolumn="DAN_FG" enable="true" innerdataset="dsCboDanFg" left="1222" onitemchanged="cbo_dept_07_onitemchanged"/>
+        <Combo id="cbo_dept_08" taborder="51" top="355" width="120" height="22" value="" index="-1" datacolumn="SUB_CHANC_MISS_NM" codecolumn="SUB_CHANC_MISS_CD" enable="true" innerdataset="dsCboSubChancMissCd" left="922"/>
+        <Edit id="edt_dept_07" taborder="52" height="22" width="173" enable="true" cssclass="point" top="216" left="619"/>
+        <Edit id="edt_dept_08" taborder="53" enable="true" top="217" width="170" height="22" left="922"/>
+        <Edit id="edt_dept_12" taborder="54" top="271" height="22" width="170" enable="true" left="922"/>
+        <Edit id="edt_dept_10" taborder="55" enable="true" top="244" width="170" height="22" left="922"/>
+        <Edit id="edt_dept_11" taborder="56" enable="true" height="22" top="272" width="173" left="619"/>
+        <Edit id="edt_dept_09" taborder="57" width="173" enable="true" top="243" height="22" left="619"/>
+        <Edit id="edt_dept_13" taborder="58" top="272" height="22" width="101" enable="true" cssclass="point" left="1221"/>
+        <Edit id="edt_dept_14" taborder="59" top="298" height="22" width="55" enable="false" left="922"/>
+        <Edit id="edt_dept_15" taborder="60" top="298" height="22" width="90" enable="true" left="980"/>
+        <Edit id="edt_dept_16" taborder="61" top="326" height="22" width="55" enable="false" left="922"/>
+        <Edit id="edt_dept_17" taborder="62" top="326" height="22" width="89" enable="true" left="981"/>
+        <Button id="btn_dept_09" taborder="63" top="326" width="22" height="22" cssclass="btn_WF_PopSrch" text="" enable="false" onclick="btnJanghak_onclick" left="1072"/>
+        <Button id="btn_dept_08" taborder="64" top="298" width="22" height="22" cssclass="btn_WF_PopSrch" text="" enable="false" onclick="btnJanghak_onclick" left="1072"/>
+        <MaskEdit id="edt_dept_18" taborder="65" top="326" width="103" height="22" format="9,999" left="1221"/>
+        <Calendar id="cal_dept_01" taborder="66" top="298" width="100" onkeydown="fn_Enter" height="22" left="619"/>
+        <Calendar id="cal_dept_02" taborder="67" top="325" width="100" height="22" onkeydown="fn_Enter" left="619"/>
+        <Calendar id="cal_dept_03" taborder="68" top="353" width="100" height="22" onkeydown="fn_Enter" left="619"/>
+        <Static id="stc_dept_35" taborder="69" text="&lt;b v='true'&gt;부서코드연계정보&lt;/b&gt; " top="389" width="194" height="39" usedecorate="true" onclick="stc_dept_08_onclick" left="495"/>
+        <Static id="stc_13_00_00_00" taborder="70" top="513" height="28" cssclass="sta_WF_DetailBg" left="496" right="308"/>
+        <Static id="stc_13_00_00_00_01" taborder="71" top="486" height="28" cssclass="sta_WF_DetailBg" left="496" right="308"/>
+        <Static id="stc_13_00_00_00_02" taborder="72" top="458" height="28" cssclass="sta_WF_DetailBg" left="497" right="308"/>
+        <Static id="stc_13_00_00_00_03" taborder="73" top="541" height="28" cssclass="sta_WF_DetailBg" right="306" left="497"/>
+        <Static id="stc_13_00_00_00_04" taborder="74" top="569" height="28" cssclass="sta_WF_DetailBg" text="" left="498" right="306"/>
+        <Static id="stc_13_00_00_00_05" taborder="75" top="430" height="28" cssclass="sta_WF_DetailBg" right="308" left="497"/>
+        <Static id="stc_dept_36" taborder="76" text="증명서부서명" height="28" cssclass="sta_WF_DetailTi" textAlign="center" top="428" width="120" left="496"/>
+        <Static id="stc_dept_48" taborder="77" text="업적심사대학" top="540" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="496"/>
+        <Static id="stc_dept_45" taborder="78" text="등록계열" top="512" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="496"/>
+        <Static id="stc_dept_41" taborder="79" text="박사학위" top="459" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1042"/>
+        <Static id="stc_dept_42" taborder="80" text="전공분류" top="484" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="496"/>
+        <Static id="stc_dept_51" taborder="81" text="그룹웨어부서연계여부" top="568" height="28" cssclass="sta_WF_DetailTi" width="156" textAlign="center" left="496"/>
+        <Static id="stc_dept_39" taborder="82" text="학사학위" top="456" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="496"/>
+        <Static id="stc_dept_38" taborder="83" text="정보공시계열" top="431" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1042"/>
+        <Static id="stc_dept_37" taborder="84" text="주간학과코드" top="430" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="772"/>
+        <Static id="stc_dept_44" taborder="85" text="업적계열" top="487" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1042"/>
+        <Static id="stc_dept_40" taborder="86" text="석사학위" top="458" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="772"/>
+        <Static id="stc_dept_46" taborder="87" text="졸업학위증출력명" top="512" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="772"/>
+        <Static id="stc_dept_43" taborder="88" text="연계전공" top="486" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="772"/>
+        <Static id="stc_dept_52" taborder="89" text="교원그룹웨어부서코드" top="569" height="28" cssclass="sta_WF_DetailTi" width="172" textAlign="center" onclick="stc_dept_52_onclick" left="772"/>
+        <Static id="stc_dept_49" taborder="90" text="대학원분류" top="541" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="772"/>
+        <Static id="stc_dept_50" taborder="91" text="학부(과)" top="541" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1042"/>
+        <Static id="stc_dept_47" taborder="92" text="수업년한" top="513" height="28" cssclass="sta_WF_DetailTi" width="120" textAlign="center" left="1042"/>
+        <Static id="stc_dept_53" taborder="93" text="직원그룹웨어부서코드" top="569" height="28" cssclass="sta_WF_DetailTi" width="176" textAlign="center" left="1042"/>
+        <Edit id="edt_dept_20" taborder="94" top="434" height="22" width="143" enable="true" left="619"/>
+        <Edit id="edt_dept_22" taborder="95" top="434" height="22" width="95" enable="false" left="942"/>
+        <Edit id="edt_dept_21" taborder="96" top="434" height="22" width="48" enable="true" left="893"/>
+        <Edit id="edt_dept_24" taborder="97" top="490" height="22" width="95" enable="false" left="942"/>
+        <Edit id="edt_dept_23" taborder="98" top="490" height="22" width="48" enable="true" left="893"/>
+        <Edit id="edt_dept_27" taborder="99" top="516" height="22" width="86" enable="true" left="1166"/>
+        <Edit id="edt_dept_26" taborder="100" top="515" height="22" width="143" enable="true" left="894"/>
+        <Edit id="edt_dept_25" taborder="101" top="515" height="22" width="73" enable="true" left="619"/>
+        <Edit id="edt_dept_29" taborder="102" top="572" height="22" width="113" enable="true" left="1219"/>
+        <Edit id="edt_dept_28" taborder="103" top="572" height="22" width="93" enable="true" left="946"/>
+        <Edit id="edtJanghakNm09" taborder="104" top="544" height="22" width="103" enable="false" left="1229"/>
+        <Edit id="edtJanghakNm10" taborder="105" top="544" height="22" width="66" enable="true" left="1162"/>
+        <CheckBox id="che_dept_05" taborder="106" top="566" width="40" height="30" onclick="CheckBox00_onclick" text="" left="655"/>
+        <Combo id="cboJeyakGbcd" taborder="107" top="434" width="156" height="22" value="" index="-1" datacolumn="INFO_ANNC_PART_NM" codecolumn="INFO_ANNC_PART" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboInfoAnncPart" left="1166"/>
+        <Combo id="cboJeyakGbcd00" taborder="108" top="462" width="143" height="22" value="" index="-1" datacolumn="SHAF_DEGR_NM" codecolumn="SHAF_DEGR" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboShafDegr" left="619"/>
+        <Combo id="cboJeyakGbcd01" taborder="109" top="461" width="156" height="22" value="" index="-1" datacolumn="PHD_DEGR_NM" codecolumn="PHD_DEGR" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboPhdDegr" left="1166"/>
+        <Combo id="cboJeyakGbcd02" taborder="110" top="490" width="156" height="22" value="" index="-1" datacolumn="ACHV_PART_NM" codecolumn="ACHV_PART" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboAchvPart" left="1166"/>
+        <Combo id="cboJeyakGbcd00_00" taborder="111" top="492" width="143" height="22" value="" index="-1" datacolumn="MJ_CLSF__NM" codecolumn="MJ_CLSF" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboMjClsf" left="618"/>
+        <Combo id="cboJeyakGbcd00_00_00" taborder="112" top="542" width="143" height="22" value="" index="-1" datacolumn="ACHV_SCRN_UNIV_NM" codecolumn="ACHV_SCRN_UNIV" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboScrnUniv" left="619"/>
+        <Combo id="cboJeyakGbcd00_00_01" taborder="113" top="462" width="143" height="22" value="" index="-1" datacolumn="MASTER_DEGR_NM" codecolumn="MASTER_DEGR" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboMasterDegr" left="893"/>
+        <Combo id="cboJeyakGbcd00_00_02" taborder="114" top="541" width="143" height="22" value="" index="-1" datacolumn="GRSC_CLSF_NM" codecolumn="GRSC_CLSF" enable="true" readonly="false" onitemchanged="cboSilseup_onitemchanged" innerdataset="dsCboGrscClsf" left="894"/>
+        <Static id="stc_dept_54" taborder="115" text="&lt;b v='true'&gt;부서이력목록&lt;/b&gt; " top="614" width="194" height="39" usedecorate="true" onclick="stc_dept_08_onclick" left="501"/>
+        <Static id="stc_dept_55" taborder="116" top="614" width="365" height="39" usedecorate="true" onclick="stc_dept_08_onclick" text="* 부서가 통·폐합되거나 명칭 변경등으로 신규 부서를 등록한 경우 &#13;&#10;이력 관리를 위해 부서 이력 목록을 등록해주십시오." left="655"/>
+        <Button id="add_dept_hist_btn" taborder="117" text="⊕ 추가" top="618" width="65" height="31" cssclass="btn_WF_Crud" cursor="auto" onclick="add_dept_hist_btn_onclick" left="992"/>
+        <Button id="btn_dept_13" taborder="118" text="엑셀" top="618" height="31" cssclass="btn_WF_Crud" cursor="auto" width="65" left="1195"/>
+        <Button id="del_dept_hist_btn" taborder="119" text="⊝ 삭제" top="618" width="65" height="31" cssclass="btn_WF_Crud" cursor="auto" onclick="del_dept_hist_btn_onclick" left="1059"/>
+        <Button id="save_dept_hist_btn" taborder="120" text="저장" top="618" height="31" cssclass="btn_WF_Crud" cursor="auto" onclick="save_dept_hist_btn_onclick" width="65" left="1127"/>
+        <Grid id="grdSub" taborder="121" top="663" binddataset="dsSub" width="835" autoenter="select" autofittype="col" autoupdatetype="itemselect" left="499" height="100">
           <Formats>
             <Format id="default">
               <Columns>
@@ -194,7 +176,30 @@
             </Format>
           </Formats>
         </Grid>
-        <Edit id="edt_dept_19" taborder="140" left="1375" top="417" width="154" height="21" onchanged="Edit00_onchanged"/>
+        <Edit id="edt_dept_19" taborder="122" top="354" width="154" height="21" onchanged="Edit00_onchanged" left="1172"/>
+        <Div id="divSearch" taborder="123" left="0" top="0" height="88" cssclass="div_WF_SearchBox" text="" right="3">
+          <Layouts>
+            <Layout>
+              <Static id="stcDeptNm" taborder="0" text="부서명" left="0" top="9" width="73" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Static id="stcDeptCd" taborder="1" text="부서코드" left="203" top="9" width="83" height="26" cssclass="sta_WF_SearchLbl" onclick="divSearch_staSubTitle04_onclick"/>
+              <Edit id="edtDeptCd" taborder="2" left="350" top="11" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptCd_onkeyup"/>
+              <Static id="stcDeptId" taborder="3" text="부서ID" left="483" top="9" width="120" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Static id="stcBreuFg" taborder="4" text="기관구분" left="0" top="49" width="73" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Static id="stcFlFormaFg" taborder="5" text="최종부서여부" left="203" top="49" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Combo id="cboFlFormaFg" taborder="6" left="350" top="51" width="123" height="22" text="" innerdataset="dsFlDeptYn" codecolumn="FL_DEPT_YN" datacolumn="FL_DEPT_YN" onitemchanged="divSearch_cboFlFormaFg_onitemchanged"/>
+              <Button id="btnSearch" taborder="7" text="조회" top="25" width="90" height="22" cssclass="btn_WF_Crud" onclick="divSearch_btnSearch_onclick" left="1540"/>
+              <Static id="stcUseYn" taborder="8" text="사용여부" left="716" top="9" width="78" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Edit id="edtDeptId" taborder="9" left="584" top="12" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptId_onkeyup"/>
+              <Combo id="cboUseYn" taborder="10" left="802" top="12" width="123" height="22" text="" innerdataset="dscheUseYn" codecolumn="USE_YN" datacolumn="USE_YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
+              <Static id="stcBdFormaFg" taborder="11" text="학사조직여부" left="480" top="48" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Combo id="cboBdFormaFg" taborder="12" left="584" top="47" width="123" height="22" text="" innerdataset="dsCheShafFormaFg" codecolumn="SHAF_FORMA_YN" datacolumn="SHAF_FORMA_YN" onitemchanged="divSearch_cboBdFormaFg_onitemchanged"/>
+              <Edit id="edtDeptNm" taborder="13" left="77" top="9" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptNm_onkeyup" onchanged="divSearch_edtDeptNm_onchanged"/>
+              <Combo id="cboBreuFg" taborder="14" left="77" top="49" width="123" height="22" text="" innerdataset="dsCboBreuFg" codecolumn="BREU_FG" datacolumn="BREU_FG" onitemchanged="divSearch_cboBreuFg_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stRowCnt" taborder="124" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="80" top="115" height="22" usedecorate="true" cssclass="btn_WF_Crud" width="60"/>
+        <Static id="stRowCnt2" taborder="125" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" left="1270" top="622" height="22" usedecorate="true" cssclass="btn_WF_Crud" width="60"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**********************************************************************
@@ -357,7 +362,10 @@ this.fn_PostRet = function()
 {
 	this.dsMaster.set_enableevent(true);
 	//trace(this.dsMaster.saveXML());
+	
 	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+	this.gfn_getRowCount(this.stRowCnt2,this.dsSub);
+	
 };
 /**********************************************************************
 	06. 추가 함수 선언
@@ -653,24 +661,72 @@ this.fn_beforeclose = function()
 
 
 
+this.divSearch_edtDeptNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_edtDeptCd_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_edtDeptId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_cboUserYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_Ret();
+};
+
+this.divSearch_cboBreuFg_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_Ret();
+};
+
+this.divSearch_cboFlFormaFg_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_Ret();
+};
+
+this.divSearch_cboBdFormaFg_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_Ret();
+};
+
+
+
 this.add_dept_list_btn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.dsMaster.addRow();
 };
+
 
 /**
  * 기능 : 마스터 조회 실행
  */
 this.fn_Ret = function()
 {	
-// 	if(!this.fn_PreRet())
-// 	{
-// 		return false;
-// 	}
-	// this.dsMaster.set_enableevent(false);
+
+	if(!this.fn_PreRet())                                                
+	{                                                             
+		return false;                                               
+	}    
+	
 	var strSvc 		= "Ret";                                                                                                                                               
 	var strUrl 		= "/prj/com/deptCdMngList.do";                                                                                             
-	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
+	var strInDs  	= "ds_input=ds_input"; 
 	var strOutDs 	= "dsMaster=dsMaster dsSub=dsSub";                                                                                                                                            
 	var strArg 		= "";                                                                                                                                                     
 	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
@@ -835,9 +891,10 @@ this.fn_dsSubSave = function()
 	var chkFocusFlg = true;
 	
 	return true;
-};]]></Script>
+};
+
+]]></Script>
     <InitValue>
-      <Static id="stc_Dept_Title_01" font="14pt/normal &quot;Arial&quot;"/>
       <Static id="stc_dept_08" font="15px/normal &quot;Malgun Gothic&quot;"/>
       <Static id="stc_dept_09" font="15px/normal &quot;Malgun Gothic&quot;"/>
       <Static id="stc_dept_35" font="15px/normal &quot;Malgun Gothic&quot;"/>
@@ -905,6 +962,9 @@ this.fn_dsSubSave = function()
           <Column id="DEPT_SORT_SEQ" type="STRING" size="256"/>
           <Column id="SUB_CHANC_MISS_CD" type="STRING" size="256"/>
         </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
       </Dataset>
       <Dataset id="dsSub">
         <ColumnInfo>
@@ -1113,6 +1173,72 @@ this.fn_dsSubSave = function()
           </Row>
         </Rows>
       </Dataset>
+      <Dataset id="ds_input">
+        <ColumnInfo>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_ID" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="BREU_FG" type="STRING" size="256"/>
+          <Column id="FL_DEPT_YN" type="STRING" size="256"/>
+          <Column id="SHAF_FORMA_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dscheUseYn">
+        <ColumnInfo>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="USE_YN">Y</Col>
+          </Row>
+          <Row>
+            <Col id="USE_YN">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCheShafFormaFg">
+        <ColumnInfo>
+          <Column id="SHAF_FORMA_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="SHAF_FORMA_YN">Y</Col>
+          </Row>
+          <Row>
+            <Col id="SHAF_FORMA_YN">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCyberFormaYn">
+        <ColumnInfo>
+          <Column id="CYBER_FORMA_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CYBER_FORMA_YN">Y</Col>
+          </Row>
+          <Row>
+            <Col id="CYBER_FORMA_YN">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFlDeptYn">
+        <ColumnInfo>
+          <Column id="FL_DEPT_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="FL_DEPT_YN">Y</Col>
+          </Row>
+          <Row>
+            <Col id="FL_DEPT_YN">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="edt_dept_04" propid="value" datasetid="dsMaster" columnid="DEPT_CD"/>
@@ -1156,12 +1282,19 @@ this.fn_dsSubSave = function()
       <BindItem id="item43" compid="cboJeyakGbcd00_00_00" propid="value" datasetid="dsMaster" columnid="ACHV_SCRN_UNIV"/>
       <BindItem id="item44" compid="cboJeyakGbcd00_00_01" propid="value" datasetid="dsMaster" columnid="MASTER_DEGR"/>
       <BindItem id="item45" compid="cboJeyakGbcd00_00_02" propid="value" datasetid="dsMaster" columnid="GRSC_CLSF"/>
-      <BindItem id="item46" compid="che_dept_01" propid="value" datasetid="dsMaster" columnid="USE_YN"/>
-      <BindItem id="item47" compid="che_dept_02" propid="value" datasetid="dsMaster" columnid="SHAF_FORMA_YN"/>
+      <BindItem id="item46" compid="cheUseYn" propid="value" datasetid="dsMaster" columnid="USE_YN"/>
+      <BindItem id="item47" compid="cheShafFormaFg" propid="value" datasetid="dsMaster" columnid="SHAF_FORMA_YN"/>
       <BindItem id="item48" compid="che_dept_03" propid="value" datasetid="dsMaster" columnid="CYBER_FORMA_YN"/>
       <BindItem id="item49" compid="che_dept_04" propid="value" datasetid="dsMaster" columnid="FL_DEPT_YN"/>
       <BindItem id="item3" compid="che_dept_05" propid="value" datasetid="dsMaster" columnid="GW_DEPT_CONN_YN"/>
       <BindItem id="item22" compid="edt_dept_19" propid="value" datasetid="dsMaster" columnid="REMK"/>
+      <BindItem id="item36" compid="divSearch.form.edtDeptCd" propid="value" datasetid="ds_input" columnid="DEPT_CD"/>
+      <BindItem id="item27" compid="divSearch.form.edtDeptId" propid="value" datasetid="ds_input" columnid="DEPT_ID"/>
+      <BindItem id="item29" compid="divSearch.form.edtDeptNm" propid="value" datasetid="ds_input" columnid="DEPT_NM"/>
+      <BindItem id="item50" compid="divSearch.form.cboUseYn" propid="value" datasetid="ds_input" columnid="USE_YN"/>
+      <BindItem id="item51" compid="divSearch.form.cboBreuFg" propid="value" datasetid="ds_input" columnid="BREU_FG"/>
+      <BindItem id="item52" compid="divSearch.form.cboFlFormaFg" propid="value" datasetid="ds_input" columnid="FL_DEPT_YN"/>
+      <BindItem id="item53" compid="divSearch.form.cboBdFormaFg" propid="value" datasetid="ds_input" columnid="SHAF_FORMA_YN"/>
     </Bind>
   </Form>
 </FDL>

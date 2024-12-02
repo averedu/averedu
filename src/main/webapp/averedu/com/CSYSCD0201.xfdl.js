@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsMaster", this);
-            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"상태\" type=\"STRING\" size=\"256\"/><Column id=\"순번\" type=\"STRING\" size=\"256\"/><Column id=\"부서연계속성코드\" type=\"STRING\" size=\"256\"/><Column id=\"공통코드여부\" type=\"STRING\" size=\"256\"/><Column id=\"부서연계속성명\" type=\"STRING\" size=\"256\"/><Column id=\"관리부서\" type=\"STRING\" size=\"256\"/><Column id=\"정렬순서\" type=\"STRING\" size=\"256\"/><Column id=\"비고\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"상태\" type=\"STRING\" size=\"256\"/><Column id=\"순번\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ATTR_CD\" type=\"STRING\" size=\"256\"/><Column id=\"공통코드여부\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ATTR_VAL\" type=\"STRING\" size=\"256\"/><Column id=\"관리부서\" type=\"STRING\" size=\"256\"/><Column id=\"정렬순서\" type=\"STRING\" size=\"256\"/><Column id=\"비고\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -401,7 +401,7 @@
         	}
         	this.dsMaster.set_enableevent(false);
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/sys/RetrieveProgramMasterList.do";
+        	var strUrl 		= "/prj/com/deptCdConnAttrList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";

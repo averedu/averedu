@@ -177,40 +177,34 @@
             obj.set_inputmode("upper");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("staRowCnt","6","95","60","22",null,null,null,null,null,null,this);
+            obj = new Static("staRowCnt",null,"94","60","22","10",null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
             obj.set_usedecorate("true");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDDel",null,"490","60","22","165",null,null,null,null,null,this);
+            obj = new Button("btnDDel",null,"490","60","22","235",null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("삭제");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDExcelDn",null,"490","90","22","5",null,null,null,null,null,this);
+            obj = new Button("btnDExcelDn",null,"490","90","22","75",null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("엑셀다운로드");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Static("staRowCnt1","4","490",null,"24","1553",null,null,null,null,null,this);
+            obj = new Button("btnDSave",null,"490","60","22","170",null,null,null,null,null,this);
             obj.set_taborder("6");
-            obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btnDSave",null,"490","60","22","100",null,null,null,null,null,this);
-            obj.set_taborder("7");
             obj.set_text("저장");
             obj.set_cssclass("btn_WF_Crud");
             obj.set_tabstop("false");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","515","88","100","35",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj.set_taborder("7");
             obj.set_text("35");
             obj.set_cssclass("sta_GU_space");
             obj.set_visible("false");
@@ -220,40 +214,58 @@
             obj.set_wordWrap("char");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnDAdd",null,"490","60","22","230",null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj = new Button("btnDAdd",null,"490","60","22","300",null,null,null,null,null,this);
+            obj.set_taborder("8");
             obj.set_text("추가");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnMDel",null,"95","60","22","164",null,null,null,null,null,this);
-            obj.set_taborder("10");
+            obj = new Button("btnMDel",null,"94","60","22","235",null,null,null,null,null,this);
+            obj.set_taborder("9");
             obj.set_text("삭제");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnMExcelDn",null,"95","90","22","4",null,null,null,null,null,this);
-            obj.set_taborder("11");
+            obj = new Button("btnMExcelDn",null,"94","90","22","75",null,null,null,null,null,this);
+            obj.set_taborder("10");
             obj.set_text("엑셀다운로드");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnMSave",null,"95","60","22","99",null,null,null,null,null,this);
-            obj.set_taborder("12");
+            obj = new Button("btnMSave",null,"94","60","22","170",null,null,null,null,null,this);
+            obj.set_taborder("11");
             obj.set_text("저장");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnMAdd",null,"95","60","22","229",null,null,null,null,null,this);
-            obj.set_taborder("13");
+            obj = new Button("btnMAdd",null,"94","60","22","300",null,null,null,null,null,this);
+            obj.set_taborder("12");
             obj.set_text("추가");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnPopup",null,"95","81","22","299",null,null,null,null,null,this);
-            obj.set_taborder("14");
+            obj = new Button("btnPopup",null,"94","81","22","365",null,null,null,null,null,this);
+            obj.set_taborder("13");
             obj.set_text("임시팝업");
             obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("staSubTitle","6","95","120","22",null,null,null,null,null,null,this);
+            obj.set_taborder("14");
+            obj.set_text("공통코드 목록");
+            obj.set_cssclass("sta_WF_Title02");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("staRowCnt1",null,"490","60","22","10",null,null,null,null,null,this);
+            obj.set_taborder("15");
+            obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
+            obj.set_usedecorate("true");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("staSubTitle00","4","490","140","22",null,null,null,null,null,null,this);
+            obj.set_taborder("16");
+            obj.set_text("콩통코드값 목록");
+            obj.set_cssclass("sta_WF_Title02");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

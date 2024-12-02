@@ -612,6 +612,27 @@ this.add_dept_info_list_btn_onclick = function(obj:nexacro.Button,e:nexacro.Clic
 this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 	var cellClickDeptCD = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEPT_CD");
+	this.ds_input.setColumn(0, "DEPT_CD", cellClickDeptCD);
+	
+	if(!this.fn_PreRet())
+	{
+		return false;
+	}
+	
+	var strSvc 		= "Ret";                                                                                                                                               
+	var strUrl 		= "/prj/com/deptCdConnAttrValList.do";                                                                                             
+	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
+	var strOutDs 	= "dsDetail=dsDetail";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync);
 	
 };
 ]]></Script>
@@ -650,7 +671,7 @@ this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
       </Dataset>
       <Dataset id="ds_input">
         <ColumnInfo>
-          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="DEPT_CD" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>

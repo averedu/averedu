@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsMaster", this);
-            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"UP_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_GRP_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_TYP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"UNIV_CD\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ABBNM\" type=\"STRING\" size=\"256\"/><Column id=\"SHAF_FORMA_YN\" type=\"STRING\" size=\"256\"/><Column id=\"DAN_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FR_DT\" type=\"DATE\" size=\"256\"/><Column id=\"ABLN_DT\" type=\"DATE\" size=\"256\"/><Column id=\"ABLN_EXPC_DT\" type=\"DATE\" size=\"256\"/><Column id=\"PRN_ORD\" type=\"STRING\" size=\"256\"/><Column id=\"CYBER_FORMA_YN\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"FL_DEPT_YN\" type=\"STRING\" size=\"256\"/><Column id=\"REMK\" type=\"STRING\" size=\"256\"/><Column id=\"CAMP_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"DATE\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"DATE\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/><Column id=\"BREU_FG\" type=\"STRING\" size=\"256\"/><Column id=\"FORMA_TYP\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ENG_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ENG_ABB_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CHN_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CHN_ABB_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"COLG_NM\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_TEAM_NM\" type=\"STRING\" size=\"256\"/><Column id=\"CERT_DEPT_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DAYTM_SUST_CD\" type=\"STRING\" size=\"256\"/><Column id=\"INFO_ANNC_PART\" type=\"STRING\" size=\"256\"/><Column id=\"SHAF_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"MASTER_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"PHD_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"MJ_CLSF\" type=\"STRING\" size=\"256\"/><Column id=\"CONN_MJ\" type=\"STRING\" size=\"256\"/><Column id=\"ACHV_PART\" type=\"STRING\" size=\"256\"/><Column id=\"REG_PART\" type=\"STRING\" size=\"256\"/><Column id=\"GRDT_DEGR_IDCD_PRN_NM\" type=\"STRING\" size=\"256\"/><Column id=\"LSN_YR\" type=\"STRING\" size=\"256\"/><Column id=\"ACHV_SCRN_UNIV\" type=\"STRING\" size=\"256\"/><Column id=\"GRSC_CLSF\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_NM\" type=\"STRING\" size=\"256\"/><Column id=\"GW_DEPT_CONN_YN\" type=\"STRING\" size=\"256\"/><Column id=\"SPRF_GW_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"EMP_GW_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_SORT_SEQ\" type=\"STRING\" size=\"256\"/><Column id=\"SUB_CHANC_MISS_CD\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"UP_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_GRP_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_TYP_CD\" type=\"STRING\" size=\"256\"/><Column id=\"UNIV_CD\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ABBNM\" type=\"STRING\" size=\"256\"/><Column id=\"SHAF_FORMA_YN\" type=\"STRING\" size=\"256\"/><Column id=\"DAN_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FR_DT\" type=\"DATE\" size=\"256\"/><Column id=\"ABLN_DT\" type=\"DATE\" size=\"256\"/><Column id=\"ABLN_EXPC_DT\" type=\"DATE\" size=\"256\"/><Column id=\"PRN_ORD\" type=\"STRING\" size=\"256\"/><Column id=\"CYBER_FORMA_YN\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"FL_DEPT_YN\" type=\"STRING\" size=\"256\"/><Column id=\"REMK\" type=\"STRING\" size=\"256\"/><Column id=\"CAMP_FG_CD\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"DATE\" size=\"256\"/><Column id=\"FRST_INPUT_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_IP\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_DT\" type=\"DATE\" size=\"256\"/><Column id=\"LAST_MODF_MENU_ID\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_IP\" type=\"STRING\" size=\"256\"/><Column id=\"BREU_FG\" type=\"STRING\" size=\"256\"/><Column id=\"FORMA_TYP\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ENG_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ENG_ABB_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CHN_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CHN_ABB_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"COLG_NM\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_TEAM_NM\" type=\"STRING\" size=\"256\"/><Column id=\"CERT_DEPT_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DAYTM_SUST_CD\" type=\"STRING\" size=\"256\"/><Column id=\"INFO_ANNC_PART\" type=\"STRING\" size=\"256\"/><Column id=\"SHAF_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"MASTER_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"PHD_DEGR\" type=\"STRING\" size=\"256\"/><Column id=\"MJ_CLSF\" type=\"STRING\" size=\"256\"/><Column id=\"CONN_MJ\" type=\"STRING\" size=\"256\"/><Column id=\"ACHV_PART\" type=\"STRING\" size=\"256\"/><Column id=\"REG_PART\" type=\"STRING\" size=\"256\"/><Column id=\"GRDT_DEGR_IDCD_PRN_NM\" type=\"STRING\" size=\"256\"/><Column id=\"LSN_YR\" type=\"STRING\" size=\"256\"/><Column id=\"ACHV_SCRN_UNIV\" type=\"STRING\" size=\"256\"/><Column id=\"GRSC_CLSF\" type=\"STRING\" size=\"256\"/><Column id=\"SUST_NM\" type=\"STRING\" size=\"256\"/><Column id=\"GW_DEPT_CONN_YN\" type=\"STRING\" size=\"256\"/><Column id=\"SPRF_GW_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"EMP_GW_DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_SORT_SEQ\" type=\"STRING\" size=\"256\"/><Column id=\"SUB_CHANC_MISS_CD\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -85,407 +85,328 @@
             obj = new Dataset("dsCboInfoAnncPart", this);
             obj._setContents("<ColumnInfo><Column id=\"INFO_ANNC_PART\" type=\"STRING\" size=\"256\"/><Column id=\"INFO_ANNC_PART_NM\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"INFO_ANNC_PART\">Y</Col><Col id=\"INFO_ANNC_PART_NM\">계열</Col></Row><Row><Col id=\"INFO_ANNC_PART\">N</Col><Col id=\"INFO_ANNC_PART_NM\">미계열</Col></Row></Rows>");
             this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("ds_input", this);
+            obj._setContents("<ColumnInfo><Column id=\"DEPT_NM\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_CD\" type=\"STRING\" size=\"256\"/><Column id=\"DEPT_ID\" type=\"STRING\" size=\"256\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/><Column id=\"BREU_FG\" type=\"STRING\" size=\"256\"/><Column id=\"FL_DEPT_YN\" type=\"STRING\" size=\"256\"/><Column id=\"SHAF_FORMA_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dscheUseYn", this);
+            obj._setContents("<ColumnInfo><Column id=\"USE_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"USE_YN\">Y</Col></Row><Row><Col id=\"USE_YN\">N</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsCheShafFormaFg", this);
+            obj._setContents("<ColumnInfo><Column id=\"SHAF_FORMA_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"SHAF_FORMA_YN\">Y</Col></Row><Row><Col id=\"SHAF_FORMA_YN\">N</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsCyberFormaYn", this);
+            obj._setContents("<ColumnInfo><Column id=\"CYBER_FORMA_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CYBER_FORMA_YN\">Y</Col></Row><Row><Col id=\"CYBER_FORMA_YN\">N</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsFlDeptYn", this);
+            obj._setContents("<ColumnInfo><Column id=\"FL_DEPT_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"FL_DEPT_YN\">Y</Col></Row><Row><Col id=\"FL_DEPT_YN\">N</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("stc_Dept_Title_01","13","15",null,"35","1420",null,null,null,null,null,this);
-            obj.set_font("14pt/normal \"Arial\"");
-            obj.set_taborder("1");
-            obj.set_text("<b v=\'true\'>부서코드관리</b> ");
-            obj.set_cssclass("stc_Dept_Title_01");
-            obj.set_color("#000000");
-            obj.set_usedecorate("true");
-            obj.set_enableevent("false");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_01","10","69","77","45",null,null,null,null,null,null,this);
+            obj = new Grid("grdMaster","5","151","450",null,null,"139",null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("<b v=\'true\'>부서명</b> ");
-            obj.set_cssclass("stc_dept_01");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_05","10","113","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
-            obj.set_text("<b v=\'true\'>기관구분</b> ");
-            obj.set_cssclass("stc_dept_05");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_02","157","68","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("3");
-            obj.set_text("<b v=\'true\'>부서코드</b> ");
-            obj.set_cssclass("stc_dept_02");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_06","155","113","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
-            obj.set_text("<b v=\'true\'>최종조직여부</b> ");
-            obj.set_cssclass("stc_dept_06");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_04","533","68","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
-            obj.set_text("<b v=\'true\'>사용여부</b> ");
-            obj.set_cssclass("stc_dept_04");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_07","330","117","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
-            obj.set_text("<b v=\'true\'>학사조직여부</b> ");
-            obj.set_cssclass("stc_dept_07");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_03","330","71","77","45",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
-            obj.set_text("<b v=\'true\'>부서ID</b> ");
-            obj.set_cssclass("stc_dept_03");
-            obj.set_usedecorate("true");
-            this.addChild(obj.name, obj);
-
-            obj = new Edit("edt_dept_01","68","77","82","30",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
-            obj.set_cssclass("edt_dept_01");
-            this.addChild(obj.name, obj);
-
-            obj = new Edit("edt_dept_02","242","78","82","30",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
-            obj.set_cssclass("edt_dept_02");
-            this.addChild(obj.name, obj);
-
-            obj = new Edit("edt_dept_03","428","75","82","30",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
-            obj.set_cssclass("edt_dept_03");
-            this.addChild(obj.name, obj);
-
-            obj = new Combo("cbo_dept_01","600","75","80","32",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_text("Combo00");
-            this.addChild(obj.name, obj);
-
-            obj = new Combo("cbo_dept_03","244","120","80","32",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
-            obj.set_text("Combo00");
-            this.addChild(obj.name, obj);
-
-            obj = new Combo("cbo_dept_02","68","123","80","32",null,null,null,null,null,null,this);
-            obj.set_taborder("13");
-            obj.set_text("Combo00");
-            this.addChild(obj.name, obj);
-
-            obj = new Combo("cbo_dept_04","430","120","80","32",null,null,null,null,null,null,this);
-            obj.set_taborder("14");
-            obj.set_text("Combo00");
-            this.addChild(obj.name, obj);
-
-            obj = new Grid("grdMaster","10","211","664","629",null,null,null,null,null,null,this);
-            obj.set_taborder("15");
             obj.set_binddataset("dsMaster");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"412\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell/></Band><Band id=\"body\"><Cell text=\"bind:DEPT_NM\" displaytype=\"treeitemcontrol\" edittype=\"tree\" treecheck=\"bind:CHK\" treelevel=\"bind:DEPT_SORT_SEQ\"/></Band></Format></Formats>");
+            obj.set_autoenter("select");
+            obj.set_autofittype("col");
+            obj.set_autoupdatetype("itemselect");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"664\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell/></Band><Band id=\"body\"><Cell text=\"bind:DEPT_NM\" displaytype=\"treeitemcontrol\" edittype=\"tree\" treecheck=\"bind:CHK\" treelevel=\"bind:DEPT_SORT_SEQ\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_08","10","168","74","39",null,null,null,null,null,null,this);
+            obj = new Static("stc_dept_08","10","108","74","39",null,null,null,null,null,null,this);
             obj.set_font("15px/normal \"Malgun Gothic\"");
-            obj.set_taborder("16");
+            obj.set_taborder("1");
             obj.set_text("<b v=\'true\'>부서목록</b> ");
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_02",null,"185","95","32","513",null,null,null,null,null,this);
-            obj.set_taborder("17");
+            obj = new Button("btn_dept_02","785","115","95","32",null,null,null,null,null,null,this);
+            obj.set_taborder("2");
             obj.set_text("부서엑셀다운");
-            obj.set_cssclass("btn_dept_02");
+            obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_01","1456","78","99","35",null,null,null,null,null,null,this);
-            obj.set_taborder("18");
-            obj.set_text("⌕ 조회");
-            obj.set_escapebutton("true");
-            obj.set_background("#e1b01d");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_dept_09","721","171","74","39",null,null,null,null,null,null,this);
+            obj = new Static("stc_dept_09","496","108","120","39",null,null,null,null,null,null,this);
             obj.set_font("15px/normal \"Malgun Gothic\"");
-            obj.set_taborder("19");
+            obj.set_taborder("3");
             obj.set_text("<b v=\'true\'>부서정보</b> ");
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_03",null,"185","95","33","413",null,null,null,null,null,this);
-            obj.set_taborder("20");
+            obj = new Button("btn_dept_03","882","115","95","33",null,null,null,null,null,null,this);
+            obj.set_taborder("4");
             obj.set_text("부서엑셀다운");
-            obj.set_cssclass("btn_dept_03");
+            obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("add_dept_list_btn",null,"185","57","34","353",null,null,null,null,null,this);
-            obj.set_taborder("21");
+            obj = new Button("add_dept_list_btn","982","115","57","34",null,null,null,null,null,null,this);
+            obj.set_taborder("5");
             obj.set_text("⊕ 추가");
-            obj.set_cssclass("add_dept_list_btn");
+            obj.set_cssclass("btn_WF_Crud");
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Button("del_dept_list_btn",null,"185","53","32","296",null,null,null,null,null,this);
-            obj.set_taborder("22");
-            obj.set_text("⊝ 삭제");
-            obj.set_cssclass("del_dept_list_btn");
+            obj = new Button("del_dept_list_btn","1042","115","57","34",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_text("⊝삭제");
+            obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Button("save_dept_list_btn",null,"185","57","32","236",null,null,null,null,null,this);
-            obj.set_taborder("23");
+            obj = new Button("save_dept_list_btn","1102","115","57","34",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
             obj.set_text("저장");
-            obj.set_cssclass("save_dept_list_btn");
+            obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_10","1409","178","96","45",null,null,null,null,null,null,this);
-            obj.set_taborder("24");
-            obj.set_text("<b v=\'true\'>총건수 :  </b> ");
-            obj.set_cssclass("stc_dept_10");
-            obj.set_usedecorate("true");
-            obj.set_font("15px/normal \"Malgun Gothic\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_13_00_00_00_00",null,"219","836","29","83",null,null,null,null,null,this);
-            obj.set_taborder("25");
-            obj.set_cssclass("sta_WF_DetailBg");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("stc_13_00",null,"248","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("26");
+            obj = new Static("stc_13_00_00_00_00","496","156",null,"29","308",null,null,null,null,null,this);
+            obj.set_taborder("8");
             obj.set_cssclass("sta_WF_DetailBg");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_11",null,"218","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("27");
+            obj = new Static("stc_13_00","496","185",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_cssclass("sta_WF_DetailBg");
+            obj.set_text("");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("stc_dept_11","496","155","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
             obj.set_text("부서코드");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_04",null,"221","173","22","623",null,null,null,null,null,this);
-            obj.set_taborder("28");
+            obj = new Edit("edt_dept_04","618","159","173","22",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
             obj.set_enable("true");
             obj.set_cssclass("point");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_00_00",null,"276","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("29");
+            obj = new Static("stc_13_00_00_00_00_00","496","213",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("12");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_14",null,"246","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("30");
+            obj = new Static("stc_dept_14","496","183","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("13");
             obj.set_text("기관구분");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13",null,"304","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("31");
+            obj = new Static("stc_13","496","241",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("14");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_17",null,"274","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("32");
+            obj = new Static("stc_dept_17","496","211","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("15");
             obj.set_text("부서명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_01",null,"332","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("33");
+            obj = new Static("stc_13_01","496","269",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("16");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_02",null,"414","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("34");
+            obj = new Static("stc_13_02","496","351",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("17");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_03",null,"386","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("35");
+            obj = new Static("stc_13_03","496","323",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("18");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_04",null,"358","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("36");
+            obj = new Static("stc_13_04","496","295",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("19");
             obj.set_cssclass("sta_WF_DetailBg");
+            obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_20",null,"302","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("37");
+            obj = new Static("stc_dept_20","496","239","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("20");
             obj.set_text("부서영문명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_23",null,"330","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("38");
+            obj = new Static("stc_dept_23","496","267","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("21");
             obj.set_text("부서중문명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_26",null,"358","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("39");
+            obj = new Static("stc_dept_26","496","295","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("22");
             obj.set_text("생성일자");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_29",null,"386","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("40");
+            obj = new Static("stc_dept_29","496","323","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("23");
             obj.set_text("폐지일자");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_32",null,"414","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("41");
+            obj = new Static("stc_dept_32","496","351","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("24");
             obj.set_text("폐지예정일자");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_06",null,"223","90","22","348",null,null,null,null,null,this);
-            obj.set_taborder("42");
+            obj = new Edit("edt_dept_06","977","160","90","22",null,null,null,null,null,null,this);
+            obj.set_taborder("25");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_12",null,"220","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("43");
+            obj = new Static("stc_dept_12","800","157","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("26");
             obj.set_text("상위부서");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_07",null,"223","22","22","323",null,null,null,null,null,this);
-            obj.set_taborder("44");
+            obj = new Button("btn_dept_07","1070","160","22","22",null,null,null,null,null,null,this);
+            obj.set_taborder("27");
             obj.set_cssclass("btn_WF_PopSrch");
             obj.set_text("");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_13",null,"219","120","29","197",null,null,null,null,null,this);
-            obj.set_taborder("45");
+            obj = new Static("stc_dept_13","1098","156","120","29",null,null,null,null,null,null,this);
+            obj.set_taborder("28");
             obj.set_text("사용여부");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_05",null,"223","53","22","440",null,null,null,null,null,this);
-            obj.set_taborder("46");
+            obj = new Edit("edt_dept_05","922","160","53","22",null,null,null,null,null,null,this);
+            obj.set_taborder("29");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new CheckBox("che_dept_01","1447","218","40","30",null,null,null,null,null,null,this);
-            obj.set_taborder("47");
+            obj = new CheckBox("cheUseYn","1222","155","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("30");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_15",null,"248","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("48");
+            obj = new Static("stc_dept_15","800","185","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("31");
             obj.set_text("조직유형");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_34",null,"414","120","28","246",null,null,null,null,null,this);
-            obj.set_taborder("49");
+            obj = new Static("stc_dept_34","1049","351","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("32");
             obj.set_text("비고");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_22",null,"302","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("50");
-            obj.set_text("최종조직여부");
+            obj = new Static("stc_dept_22","1098","239","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("33");
+            obj.set_text("최종부서여부");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_19",null,"276","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("51");
+            obj = new Static("stc_dept_19","1098","213","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("34");
             obj.set_text("가상조직여부");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_16",null,"248","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("52");
+            obj = new Static("stc_dept_16","1098","185","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("35");
             obj.set_text("학사조직여부");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_33",null,"414","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("53");
+            obj = new Static("stc_dept_33","800","351","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("36");
             obj.set_text("부총장보직코드");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_30",null,"386","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("54");
+            obj = new Static("stc_dept_30","800","323","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("37");
             obj.set_text("학부(팀)");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_27",null,"360","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("55");
+            obj = new Static("stc_dept_27","800","297","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("38");
             obj.set_text("대학(처)");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_24",null,"332","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("56");
+            obj = new Static("stc_dept_24","800","269","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("39");
             obj.set_text("부서중문약어명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_21",null,"304","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("57");
+            obj = new Static("stc_dept_21","800","241","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("40");
             obj.set_text("부서영문약어명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_18",null,"276","120","28","495",null,null,null,null,null,this);
-            obj.set_taborder("58");
+            obj = new Static("stc_dept_18","800","213","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("41");
             obj.set_text("부서약어명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_31",null,"386","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("59");
+            obj = new Static("stc_dept_31","1098","323","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("42");
             obj.set_text("부서졍렬순번");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_28",null,"360","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("60");
+            obj = new Static("stc_dept_28","1098","297","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("43");
             obj.set_text("주야구분");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_25",null,"332","120","28","197",null,null,null,null,null,this);
-            obj.set_taborder("61");
+            obj = new Static("stc_dept_25","1098","269","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("44");
             obj.set_text("부서ID");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cbo_dept_05",null,"251","173","22","623",null,null,null,null,null,this);
-            obj.set_taborder("62");
+            obj = new Combo("cbo_dept_05","619","188","173","22",null,null,null,null,null,null,this);
+            obj.set_taborder("45");
             obj.set_datacolumn("BREU_NM");
             obj.set_codecolumn("BREU_FG");
             obj.set_enable("true");
@@ -495,8 +416,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cbo_dept_06",null,"249","170","22","323",null,null,null,null,null,this);
-            obj.set_taborder("63");
+            obj = new Combo("cbo_dept_06","922","186","170","22",null,null,null,null,null,null,this);
+            obj.set_taborder("46");
             obj.set_datacolumn("FORMA_TYP_NM");
             obj.set_codecolumn("FORMA_TYP");
             obj.set_enable("true");
@@ -505,23 +426,23 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new CheckBox("che_dept_02","1447","246","40","30",null,null,null,null,null,null,this);
-            obj.set_taborder("64");
+            obj = new CheckBox("cheShafFormaFg","1222","183","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("47");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new CheckBox("che_dept_04","1447","301","40","30",null,null,null,null,null,null,this);
-            obj.set_taborder("65");
+            obj = new CheckBox("che_dept_04","1222","238","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("48");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new CheckBox("che_dept_03","1447","274","40","30",null,null,null,null,null,null,this);
-            obj.set_taborder("66");
+            obj = new CheckBox("che_dept_03","1222","211","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("49");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cbo_dept_07",null,"361","100","22","93",null,null,null,null,null,this);
-            obj.set_taborder("67");
+            obj = new Combo("cbo_dept_07","1222","298","100","22",null,null,null,null,null,null,this);
+            obj.set_taborder("50");
             obj.set_datacolumn("DAN_NM");
             obj.set_codecolumn("DAN_FG");
             obj.set_enable("true");
@@ -530,8 +451,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cbo_dept_08",null,"418","120","22","373",null,null,null,null,null,this);
-            obj.set_taborder("68");
+            obj = new Combo("cbo_dept_08","922","355","120","22",null,null,null,null,null,null,this);
+            obj.set_taborder("51");
             obj.set_datacolumn("SUB_CHANC_MISS_NM");
             obj.set_codecolumn("SUB_CHANC_MISS_CD");
             obj.set_enable("true");
@@ -540,325 +461,325 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_07",null,"279","173","22","623",null,null,null,null,null,this);
-            obj.set_taborder("69");
+            obj = new Edit("edt_dept_07","619","216","173","22",null,null,null,null,null,null,this);
+            obj.set_taborder("52");
             obj.set_enable("true");
             obj.set_cssclass("point");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_08",null,"280","170","22","323",null,null,null,null,null,this);
-            obj.set_taborder("70");
+            obj = new Edit("edt_dept_08","922","217","170","22",null,null,null,null,null,null,this);
+            obj.set_taborder("53");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_12",null,"334","170","22","323",null,null,null,null,null,this);
-            obj.set_taborder("71");
+            obj = new Edit("edt_dept_12","922","271","170","22",null,null,null,null,null,null,this);
+            obj.set_taborder("54");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_10",null,"307","170","22","323",null,null,null,null,null,this);
-            obj.set_taborder("72");
+            obj = new Edit("edt_dept_10","922","244","170","22",null,null,null,null,null,null,this);
+            obj.set_taborder("55");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_11",null,"335","173","22","623",null,null,null,null,null,this);
-            obj.set_taborder("73");
+            obj = new Edit("edt_dept_11","619","272","173","22",null,null,null,null,null,null,this);
+            obj.set_taborder("56");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_09",null,"306","173","22","623",null,null,null,null,null,this);
-            obj.set_taborder("74");
+            obj = new Edit("edt_dept_09","619","243","173","22",null,null,null,null,null,null,this);
+            obj.set_taborder("57");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_13",null,"335","101","22","93",null,null,null,null,null,this);
-            obj.set_taborder("75");
+            obj = new Edit("edt_dept_13","1221","272","101","22",null,null,null,null,null,null,this);
+            obj.set_taborder("58");
             obj.set_enable("true");
             obj.set_cssclass("point");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_14",null,"361","55","22","438",null,null,null,null,null,this);
-            obj.set_taborder("76");
+            obj = new Edit("edt_dept_14","922","298","55","22",null,null,null,null,null,null,this);
+            obj.set_taborder("59");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_15",null,"361","90","22","345",null,null,null,null,null,this);
-            obj.set_taborder("77");
+            obj = new Edit("edt_dept_15","980","298","90","22",null,null,null,null,null,null,this);
+            obj.set_taborder("60");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_16",null,"389","55","22","438",null,null,null,null,null,this);
-            obj.set_taborder("78");
+            obj = new Edit("edt_dept_16","922","326","55","22",null,null,null,null,null,null,this);
+            obj.set_taborder("61");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_17",null,"389","89","22","345",null,null,null,null,null,this);
-            obj.set_taborder("79");
+            obj = new Edit("edt_dept_17","981","326","89","22",null,null,null,null,null,null,this);
+            obj.set_taborder("62");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_09",null,"389","22","22","321",null,null,null,null,null,this);
-            obj.set_taborder("80");
+            obj = new Button("btn_dept_09","1072","326","22","22",null,null,null,null,null,null,this);
+            obj.set_taborder("63");
             obj.set_cssclass("btn_WF_PopSrch");
             obj.set_text("");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_08",null,"361","22","22","321",null,null,null,null,null,this);
-            obj.set_taborder("81");
+            obj = new Button("btn_dept_08","1072","298","22","22",null,null,null,null,null,null,this);
+            obj.set_taborder("64");
             obj.set_cssclass("btn_WF_PopSrch");
             obj.set_text("");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new MaskEdit("edt_dept_18","1428","389","103","22",null,null,null,null,null,null,this);
-            obj.set_taborder("82");
+            obj = new MaskEdit("edt_dept_18","1221","326","103","22",null,null,null,null,null,null,this);
+            obj.set_taborder("65");
             obj.set_format("9,999");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_dept_01","827","361","100","22",null,null,null,null,null,null,this);
-            obj.set_taborder("83");
+            obj = new Calendar("cal_dept_01","619","298","100","22",null,null,null,null,null,null,this);
+            obj.set_taborder("66");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_dept_02","827","388","100","22",null,null,null,null,null,null,this);
-            obj.set_taborder("84");
+            obj = new Calendar("cal_dept_02","619","325","100","22",null,null,null,null,null,null,this);
+            obj.set_taborder("67");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_dept_03","827","416","100","22",null,null,null,null,null,null,this);
-            obj.set_taborder("85");
+            obj = new Calendar("cal_dept_03","619","353","100","22",null,null,null,null,null,null,this);
+            obj.set_taborder("68");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_35","720","452","194","39",null,null,null,null,null,null,this);
+            obj = new Static("stc_dept_35","495","389","194","39",null,null,null,null,null,null,this);
             obj.set_font("15px/normal \"Malgun Gothic\"");
-            obj.set_taborder("86");
+            obj.set_taborder("69");
             obj.set_text("<b v=\'true\'>부서코드연계정보</b> ");
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00",null,"576","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("87");
+            obj = new Static("stc_13_00_00_00","496","513",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("70");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_01",null,"549","836","28","83",null,null,null,null,null,this);
-            obj.set_taborder("88");
+            obj = new Static("stc_13_00_00_00_01","496","486",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("71");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_02",null,"521","835","28","83",null,null,null,null,null,this);
-            obj.set_taborder("89");
+            obj = new Static("stc_13_00_00_00_02","497","458",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("72");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_03",null,"604","837","28","81",null,null,null,null,null,this);
-            obj.set_taborder("90");
+            obj = new Static("stc_13_00_00_00_03","497","541",null,"28","306",null,null,null,null,null,this);
+            obj.set_taborder("73");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_04",null,"632","836","28","81",null,null,null,null,null,this);
-            obj.set_taborder("91");
+            obj = new Static("stc_13_00_00_00_04","498","569",null,"28","306",null,null,null,null,null,this);
+            obj.set_taborder("74");
             obj.set_cssclass("sta_WF_DetailBg");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_13_00_00_00_05",null,"493","835","28","83",null,null,null,null,null,this);
-            obj.set_taborder("92");
+            obj = new Static("stc_13_00_00_00_05","497","430",null,"28","308",null,null,null,null,null,this);
+            obj.set_taborder("75");
             obj.set_cssclass("sta_WF_DetailBg");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_36",null,"491","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("93");
+            obj = new Static("stc_dept_36","496","428","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("76");
             obj.set_text("증명서부서명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_48",null,"603","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("94");
+            obj = new Static("stc_dept_48","496","540","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("77");
             obj.set_text("업적심사대학");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_45",null,"575","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("95");
+            obj = new Static("stc_dept_45","496","512","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("78");
             obj.set_text("등록계열");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_41",null,"522","120","28","253",null,null,null,null,null,this);
-            obj.set_taborder("96");
+            obj = new Static("stc_dept_41","1042","459","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("79");
             obj.set_text("박사학위");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_42",null,"547","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("97");
+            obj = new Static("stc_dept_42","496","484","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("80");
             obj.set_text("전공분류");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_51",null,"631","156","28","763",null,null,null,null,null,this);
-            obj.set_taborder("98");
+            obj = new Static("stc_dept_51","496","568","156","28",null,null,null,null,null,null,this);
+            obj.set_taborder("81");
             obj.set_text("그룹웨어부서연계여부");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_39",null,"519","120","28","799",null,null,null,null,null,this);
-            obj.set_taborder("99");
+            obj = new Static("stc_dept_39","496","456","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("82");
             obj.set_text("학사학위");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_38",null,"494","120","28","253",null,null,null,null,null,this);
-            obj.set_taborder("100");
+            obj = new Static("stc_dept_38","1042","431","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("83");
             obj.set_text("정보공시계열");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_37",null,"493","120","28","523",null,null,null,null,null,this);
-            obj.set_taborder("101");
+            obj = new Static("stc_dept_37","772","430","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("84");
             obj.set_text("주간학과코드");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_44",null,"550","120","28","253",null,null,null,null,null,this);
-            obj.set_taborder("102");
+            obj = new Static("stc_dept_44","1042","487","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("85");
             obj.set_text("업적계열");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_40",null,"521","120","28","523",null,null,null,null,null,this);
-            obj.set_taborder("103");
+            obj = new Static("stc_dept_40","772","458","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("86");
             obj.set_text("석사학위");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_46",null,"575","120","28","523",null,null,null,null,null,this);
-            obj.set_taborder("104");
+            obj = new Static("stc_dept_46","772","512","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("87");
             obj.set_text("졸업학위증출력명");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_43",null,"549","120","28","523",null,null,null,null,null,this);
-            obj.set_taborder("105");
+            obj = new Static("stc_dept_43","772","486","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("88");
             obj.set_text("연계전공");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_52",null,"632","172","28","471",null,null,null,null,null,this);
-            obj.set_taborder("106");
+            obj = new Static("stc_dept_52","772","569","172","28",null,null,null,null,null,null,this);
+            obj.set_taborder("89");
             obj.set_text("교원그룹웨어부서코드");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_49",null,"604","120","28","523",null,null,null,null,null,this);
-            obj.set_taborder("107");
+            obj = new Static("stc_dept_49","772","541","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("90");
             obj.set_text("대학원분류");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_50",null,"604","120","28","253",null,null,null,null,null,this);
-            obj.set_taborder("108");
+            obj = new Static("stc_dept_50","1042","541","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("91");
             obj.set_text("학부(과)");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_47",null,"576","120","28","253",null,null,null,null,null,this);
-            obj.set_taborder("109");
+            obj = new Static("stc_dept_47","1042","513","120","28",null,null,null,null,null,null,this);
+            obj.set_taborder("92");
             obj.set_text("수업년한");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_53",null,"632","176","28","197",null,null,null,null,null,this);
-            obj.set_taborder("110");
+            obj = new Static("stc_dept_53","1042","569","176","28",null,null,null,null,null,null,this);
+            obj.set_taborder("93");
             obj.set_text("직원그룹웨어부서코드");
             obj.set_cssclass("sta_WF_DetailTi");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_20",null,"497","143","22","653",null,null,null,null,null,this);
-            obj.set_taborder("111");
+            obj = new Edit("edt_dept_20","619","434","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("94");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_22",null,"497","95","22","378",null,null,null,null,null,this);
-            obj.set_taborder("112");
+            obj = new Edit("edt_dept_22","942","434","95","22",null,null,null,null,null,null,this);
+            obj.set_taborder("95");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_21",null,"497","48","22","474",null,null,null,null,null,this);
-            obj.set_taborder("113");
+            obj = new Edit("edt_dept_21","893","434","48","22",null,null,null,null,null,null,this);
+            obj.set_taborder("96");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_24",null,"553","95","22","378",null,null,null,null,null,this);
-            obj.set_taborder("114");
+            obj = new Edit("edt_dept_24","942","490","95","22",null,null,null,null,null,null,this);
+            obj.set_taborder("97");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_23",null,"553","48","22","474",null,null,null,null,null,this);
-            obj.set_taborder("115");
+            obj = new Edit("edt_dept_23","893","490","48","22",null,null,null,null,null,null,this);
+            obj.set_taborder("98");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_27",null,"579","86","22","163",null,null,null,null,null,this);
-            obj.set_taborder("116");
+            obj = new Edit("edt_dept_27","1166","516","86","22",null,null,null,null,null,null,this);
+            obj.set_taborder("99");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_26",null,"578","143","22","378",null,null,null,null,null,this);
-            obj.set_taborder("117");
+            obj = new Edit("edt_dept_26","894","515","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("100");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_25",null,"578","73","22","723",null,null,null,null,null,this);
-            obj.set_taborder("118");
+            obj = new Edit("edt_dept_25","619","515","73","22",null,null,null,null,null,null,this);
+            obj.set_taborder("101");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_29",null,"635","113","22","83",null,null,null,null,null,this);
-            obj.set_taborder("119");
+            obj = new Edit("edt_dept_29","1219","572","113","22",null,null,null,null,null,null,this);
+            obj.set_taborder("102");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_28",null,"635","93","22","376",null,null,null,null,null,this);
-            obj.set_taborder("120");
+            obj = new Edit("edt_dept_28","946","572","93","22",null,null,null,null,null,null,this);
+            obj.set_taborder("103");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtJanghakNm09",null,"607","103","22","83",null,null,null,null,null,this);
-            obj.set_taborder("121");
+            obj = new Edit("edtJanghakNm09","1229","544","103","22",null,null,null,null,null,null,this);
+            obj.set_taborder("104");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtJanghakNm10",null,"607","66","22","187",null,null,null,null,null,this);
-            obj.set_taborder("122");
+            obj = new Edit("edtJanghakNm10","1162","544","66","22",null,null,null,null,null,null,this);
+            obj.set_taborder("105");
             obj.set_enable("true");
             this.addChild(obj.name, obj);
 
-            obj = new CheckBox("che_dept_05","880","629","40","30",null,null,null,null,null,null,this);
-            obj.set_taborder("123");
+            obj = new CheckBox("che_dept_05","655","566","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("106");
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd",null,"497","156","22","93",null,null,null,null,null,this);
-            obj.set_taborder("124");
+            obj = new Combo("cboJeyakGbcd","1166","434","156","22",null,null,null,null,null,null,this);
+            obj.set_taborder("107");
             obj.set_datacolumn("INFO_ANNC_PART_NM");
             obj.set_codecolumn("INFO_ANNC_PART");
             obj.set_enable("true");
@@ -868,8 +789,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd00",null,"525","143","22","653",null,null,null,null,null,this);
-            obj.set_taborder("125");
+            obj = new Combo("cboJeyakGbcd00","619","462","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("108");
             obj.set_datacolumn("SHAF_DEGR_NM");
             obj.set_codecolumn("SHAF_DEGR");
             obj.set_enable("true");
@@ -879,8 +800,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd01",null,"524","156","22","93",null,null,null,null,null,this);
-            obj.set_taborder("126");
+            obj = new Combo("cboJeyakGbcd01","1166","461","156","22",null,null,null,null,null,null,this);
+            obj.set_taborder("109");
             obj.set_datacolumn("PHD_DEGR_NM");
             obj.set_codecolumn("PHD_DEGR");
             obj.set_enable("true");
@@ -890,8 +811,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd02",null,"553","156","22","93",null,null,null,null,null,this);
-            obj.set_taborder("127");
+            obj = new Combo("cboJeyakGbcd02","1166","490","156","22",null,null,null,null,null,null,this);
+            obj.set_taborder("110");
             obj.set_datacolumn("ACHV_PART_NM");
             obj.set_codecolumn("ACHV_PART");
             obj.set_enable("true");
@@ -901,8 +822,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd00_00",null,"555","143","22","654",null,null,null,null,null,this);
-            obj.set_taborder("128");
+            obj = new Combo("cboJeyakGbcd00_00","618","492","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("111");
             obj.set_datacolumn("MJ_CLSF__NM");
             obj.set_codecolumn("MJ_CLSF");
             obj.set_enable("true");
@@ -912,8 +833,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd00_00_00",null,"605","143","22","653",null,null,null,null,null,this);
-            obj.set_taborder("129");
+            obj = new Combo("cboJeyakGbcd00_00_00","619","542","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("112");
             obj.set_datacolumn("ACHV_SCRN_UNIV_NM");
             obj.set_codecolumn("ACHV_SCRN_UNIV");
             obj.set_enable("true");
@@ -923,8 +844,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd00_00_01",null,"525","143","22","379",null,null,null,null,null,this);
-            obj.set_taborder("130");
+            obj = new Combo("cboJeyakGbcd00_00_01","893","462","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("113");
             obj.set_datacolumn("MASTER_DEGR_NM");
             obj.set_codecolumn("MASTER_DEGR");
             obj.set_enable("true");
@@ -934,8 +855,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cboJeyakGbcd00_00_02",null,"604","143","22","378",null,null,null,null,null,this);
-            obj.set_taborder("131");
+            obj = new Combo("cboJeyakGbcd00_00_02","894","541","143","22",null,null,null,null,null,null,this);
+            obj.set_taborder("114");
             obj.set_datacolumn("GRSC_CLSF_NM");
             obj.set_codecolumn("GRSC_CLSF");
             obj.set_enable("true");
@@ -945,64 +866,177 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_54","726","677","194","39",null,null,null,null,null,null,this);
+            obj = new Static("stc_dept_54","501","614","194","39",null,null,null,null,null,null,this);
             obj.set_font("15px/normal \"Malgun Gothic\"");
-            obj.set_taborder("132");
+            obj.set_taborder("115");
             obj.set_text("<b v=\'true\'>부서이력목록</b> ");
             obj.set_usedecorate("true");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_55","880","677","365","39",null,null,null,null,null,null,this);
+            obj = new Static("stc_dept_55","655","614","365","39",null,null,null,null,null,null,this);
             obj.set_font("10px/normal \"Malgun Gothic\"");
-            obj.set_taborder("133");
+            obj.set_taborder("116");
             obj.set_usedecorate("true");
             obj.set_text("* 부서가 통·폐합되거나 명칭 변경등으로 신규 부서를 등록한 경우 \r\n이력 관리를 위해 부서 이력 목록을 등록해주십시오.");
             this.addChild(obj.name, obj);
 
-            obj = new Button("add_dept_hist_btn",null,"681","65","31","358",null,null,null,null,null,this);
-            obj.set_taborder("134");
+            obj = new Button("add_dept_hist_btn","992","618","65","31",null,null,null,null,null,null,this);
+            obj.set_taborder("117");
             obj.set_text("⊕ 추가");
-            obj.set_cssclass("add_dept_hist_btn");
+            obj.set_cssclass("btn_WF_Crud");
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_13",null,"681","65","31","155",null,null,null,null,null,this);
-            obj.set_taborder("135");
+            obj = new Button("btn_dept_13","1195","618","65","31",null,null,null,null,null,null,this);
+            obj.set_taborder("118");
             obj.set_text("엑셀");
-            obj.set_cssclass("btn_dept_04");
+            obj.set_cssclass("btn_WF_Crud");
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Button("del_dept_hist_btn",null,"681","65","31","291",null,null,null,null,null,this);
-            obj.set_taborder("136");
+            obj = new Button("del_dept_hist_btn","1059","618","65","31",null,null,null,null,null,null,this);
+            obj.set_taborder("119");
             obj.set_text("⊝ 삭제");
-            obj.set_cssclass("del_dept_hist_btn");
+            obj.set_cssclass("btn_WF_Crud");
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Button("save_dept_hist_btn",null,"681","65","31","223",null,null,null,null,null,this);
-            obj.set_taborder("137");
+            obj = new Button("save_dept_hist_btn","1127","618","65","31",null,null,null,null,null,null,this);
+            obj.set_taborder("120");
             obj.set_text("저장");
-            obj.set_cssclass("save_dept_hist_btn");
+            obj.set_cssclass("btn_WF_Crud");
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_dept_10_00","1495","676","96","45",null,null,null,null,null,null,this);
-            obj.set_taborder("138");
-            obj.set_text("<b v=\'true\'>총건수 : </b> ");
-            obj.set_cssclass("stc_dept_10");
-            obj.set_usedecorate("true");
-            obj.set_font("15px/normal \"Malgun Gothic\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Grid("grdSub","724","726","835","106",null,null,null,null,null,null,this);
-            obj.set_taborder("139");
+            obj = new Grid("grdSub","499","663","835","100",null,null,null,null,null,null,this);
+            obj.set_taborder("121");
             obj.set_binddataset("dsSub");
+            obj.set_autoenter("select");
+            obj.set_autofittype("col");
+            obj.set_autoupdatetype("itemselect");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"44\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"167\"/><Column size=\"172\"/><Column size=\"291\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"CHK\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\"/><Cell col=\"3\" text=\"이전부서\"/><Cell col=\"4\" text=\"이후부서\"/><Cell col=\"5\" text=\"비고\"/></Band><Band id=\"body\"><Cell text=\"bind:CHK\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"bind:상태\"/><Cell col=\"2\" expr=\"currow+1\"/><Cell col=\"3\" text=\"bind:BF_DEPT_CD\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"4\" text=\"bind:AF_DEPT_CD\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"5\" text=\"bind:REMK\" displaytype=\"text\" edittype=\"text\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_dept_19","1375","417","154","21",null,null,null,null,null,null,this);
-            obj.set_taborder("140");
+            obj = new Edit("edt_dept_19","1172","354","154","21",null,null,null,null,null,null,this);
+            obj.set_taborder("122");
+            this.addChild(obj.name, obj);
+
+            obj = new Div("divSearch","0","0",null,"88","3",null,null,null,null,null,this);
+            obj.set_taborder("123");
+            obj.set_cssclass("div_WF_SearchBox");
+            obj.set_text("");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("stcDeptNm","0","9","73","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("0");
+            obj.set_text("부서명");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcDeptCd","203","9","83","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("1");
+            obj.set_text("부서코드");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Edit("edtDeptCd","350","11","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("2");
+            obj.set_imemode("alpha");
+            obj.set_inputmode("upper");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcDeptId","483","9","120","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("3");
+            obj.set_text("부서ID");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcBreuFg","0","49","73","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("4");
+            obj.set_text("기관구분");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcFlFormaFg","203","49","130","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("5");
+            obj.set_text("최종부서여부");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboFlFormaFg","350","51","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("6");
+            obj.set_innerdataset("dsFlDeptYn");
+            obj.set_codecolumn("FL_DEPT_YN");
+            obj.set_datacolumn("FL_DEPT_YN");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Button("btnSearch","1540","25","90","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("7");
+            obj.set_text("조회");
+            obj.set_cssclass("btn_WF_Crud");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcUseYn","716","9","78","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("8");
+            obj.set_text("사용여부");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Edit("edtDeptId","584","12","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("9");
+            obj.set_imemode("alpha");
+            obj.set_inputmode("upper");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboUseYn","802","12","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("10");
+            obj.set_innerdataset("dscheUseYn");
+            obj.set_codecolumn("USE_YN");
+            obj.set_datacolumn("USE_YN");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stcBdFormaFg","480","48","130","26",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("11");
+            obj.set_text("학사조직여부");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboBdFormaFg","584","47","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("12");
+            obj.set_innerdataset("dsCheShafFormaFg");
+            obj.set_codecolumn("SHAF_FORMA_YN");
+            obj.set_datacolumn("SHAF_FORMA_YN");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Edit("edtDeptNm","77","9","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("13");
+            obj.set_imemode("alpha");
+            obj.set_inputmode("upper");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Combo("cboBreuFg","77","49","123","22",null,null,null,null,null,null,this.divSearch.form);
+            obj.set_taborder("14");
+            obj.set_innerdataset("dsCboBreuFg");
+            obj.set_codecolumn("BREU_FG");
+            obj.set_datacolumn("BREU_FG");
+            obj.set_text("");
+            this.divSearch.addChild(obj.name, obj);
+
+            obj = new Static("stRowCnt","80","115","60","22",null,null,null,null,null,null,this);
+            obj.set_taborder("124");
+            obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
+            obj.set_usedecorate("true");
+            obj.set_cssclass("btn_WF_Crud");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("stRowCnt2","1270","622","60","22",null,null,null,null,null,null,this);
+            obj.set_taborder("125");
+            obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
+            obj.set_usedecorate("true");
+            obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -1175,11 +1209,11 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item46","che_dept_01","value","dsMaster","USE_YN");
+            obj = new BindItem("item46","cheUseYn","value","dsMaster","USE_YN");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item47","che_dept_02","value","dsMaster","SHAF_FORMA_YN");
+            obj = new BindItem("item47","cheShafFormaFg","value","dsMaster","SHAF_FORMA_YN");
             this.addChild(obj.name, obj);
             obj.bind();
 
@@ -1196,6 +1230,34 @@
             obj.bind();
 
             obj = new BindItem("item22","edt_dept_19","value","dsMaster","REMK");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item36","divSearch.form.edtDeptCd","value","ds_input","DEPT_CD");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item27","divSearch.form.edtDeptId","value","ds_input","DEPT_ID");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item29","divSearch.form.edtDeptNm","value","ds_input","DEPT_NM");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item50","divSearch.form.cboUseYn","value","ds_input","USE_YN");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item51","divSearch.form.cboBreuFg","value","ds_input","BREU_FG");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item52","divSearch.form.cboFlFormaFg","value","ds_input","FL_DEPT_YN");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item53","divSearch.form.cboBdFormaFg","value","ds_input","SHAF_FORMA_YN");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -1370,7 +1432,10 @@
         {
         	this.dsMaster.set_enableevent(true);
         	//trace(this.dsMaster.saveXML());
+
         	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+        	this.gfn_getRowCount(this.stRowCnt2,this.dsSub);
+
         };
         /**********************************************************************
         	06. 추가 함수 선언
@@ -1666,21 +1731,69 @@
 
 
 
+        this.divSearch_edtDeptNm_onkeyup = function(obj,e)
+        {
+        	if(e.keycode == 13)
+        	{
+        		this.fn_Ret();
+        	}
+        };
+
+        this.divSearch_edtDeptCd_onkeyup = function(obj,e)
+        {
+        	if(e.keycode == 13)
+        	{
+        		this.fn_Ret();
+        	}
+        };
+
+        this.divSearch_edtDeptId_onkeyup = function(obj,e)
+        {
+        	if(e.keycode == 13)
+        	{
+        		this.fn_Ret();
+        	}
+        };
+
+        this.divSearch_cboUserYn_onitemchanged = function(obj,e)
+        {
+        	this.fn_Ret();
+        };
+
+        this.divSearch_cboBreuFg_onitemchanged = function(obj,e)
+        {
+        	this.fn_Ret();
+        };
+
+        this.divSearch_cboFlFormaFg_onitemchanged = function(obj,e)
+        {
+        	this.fn_Ret();
+        };
+
+        this.divSearch_cboBdFormaFg_onitemchanged = function(obj,e)
+        {
+        	this.fn_Ret();
+        };
+
+
+
         this.add_dept_list_btn_onclick = function(obj,e)
         {
         	this.dsMaster.addRow();
         };
+
 
         /**
          * 기능 : 마스터 조회 실행
          */
         this.fn_Ret = function()
         {
-        // 	if(!this.fn_PreRet())
-        // 	{
-        // 		return false;
-        // 	}
-        	// this.dsMaster.set_enableevent(false);
+
+        	if(!this.fn_PreRet())
+        	{
+        		return false;
+        	}
+
         	var strSvc 		= "Ret";
         	var strUrl 		= "/prj/com/deptCdMngList.do";
         	var strInDs  	= "ds_input=ds_input";
@@ -1849,28 +1962,21 @@
 
         	return true;
         };
+
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.form_onload,this);
-            this.stc_Dept_Title_01.addEventHandler("onclick",this.stc_09_00_onclick,this);
-            this.stc_dept_05.addEventHandler("onclick",this.stc01_00_onclick,this);
-            this.stc_dept_02.addEventHandler("onclick",this.stc01_01_onclick,this);
-            this.stc_dept_06.addEventHandler("onclick",this.stc01_02_onclick,this);
-            this.stc_dept_04.addEventHandler("onclick",this.stc_dept_04_onclick,this);
-            this.stc_dept_07.addEventHandler("onclick",this.stc_dept_07_onclick,this);
-            this.grdMaster.addEventHandler("oncellclick",this.dsMasterOnCellClick,this);
             this.stc_dept_08.addEventHandler("onclick",this.stc_dept_08_onclick,this);
             this.btn_dept_02.addEventHandler("onclick",this.divHakgwa_btnJeongong_onclick,this);
-            this.btn_dept_01.addEventHandler("onclick",this.btn_dept_01_onclick,this);
             this.stc_dept_09.addEventHandler("onclick",this.stc_dept_08_onclick,this);
             this.btn_dept_03.addEventHandler("onclick",this.divHakgwa_btnJeongong_onclick,this);
             this.add_dept_list_btn.addEventHandler("onclick",this.add_dept_list_btn_onclick,this);
             this.del_dept_list_btn.addEventHandler("onclick",this.del_dept_list_btn_onclick,this);
             this.save_dept_list_btn.addEventHandler("onclick",this.save_dept_list_btn_onclick,this);
-            this.stc_dept_10.addEventHandler("onclick",this.stc_dept_10_onclick,this);
             this.stc_13_00_00_00_00.addEventHandler("onclick",this.stc_13_00_00_00_00_onclick,this);
             this.stc_13_00.addEventHandler("onclick",this.stc_13_00_onclick,this);
             this.edt_dept_04.addEventHandler("onchanged",this.edt_dept_04_onchanged,this);
@@ -1880,11 +1986,13 @@
             this.stc_dept_29.addEventHandler("onclick",this.stc_12_04_onclick,this);
             this.edt_dept_06.addEventHandler("onchanged",this.edtJanghakNm_onchanged,this);
             this.btn_dept_07.addEventHandler("onclick",this.btnJanghak_onclick,this);
-            this.che_dept_01.addEventHandler("onclick",this.CheckBox00_onclick,this);
+            this.cheUseYn.addEventHandler("onclick",this.CheckBox00_onclick,this);
+            this.cbo_dept_05.addEventHandler("onitemchanged",this.cbo_dept_05_onitemchanged,this);
             this.cbo_dept_06.addEventHandler("onitemchanged",this.cbo_dept_06_onitemchanged,this);
-            this.che_dept_02.addEventHandler("onclick",this.CheckBox00_onclick,this);
+            this.cheShafFormaFg.addEventHandler("onclick",this.CheckBox00_onclick,this);
             this.che_dept_04.addEventHandler("onclick",this.CheckBox00_onclick,this);
             this.che_dept_03.addEventHandler("onclick",this.CheckBox00_onclick,this);
+            this.cbo_dept_07.addEventHandler("onitemchanged",this.cbo_dept_07_onitemchanged,this);
             this.btn_dept_09.addEventHandler("onclick",this.btnJanghak_onclick,this);
             this.btn_dept_08.addEventHandler("onclick",this.btnJanghak_onclick,this);
             this.cal_dept_01.addEventHandler("onkeydown",this.fn_Enter,this);
@@ -1907,6 +2015,16 @@
             this.del_dept_hist_btn.addEventHandler("onclick",this.del_dept_hist_btn_onclick,this);
             this.save_dept_hist_btn.addEventHandler("onclick",this.save_dept_hist_btn_onclick,this);
             this.edt_dept_19.addEventHandler("onchanged",this.Edit00_onchanged,this);
+            this.divSearch.form.stcDeptCd.addEventHandler("onclick",this.divSearch_staSubTitle04_onclick,this);
+            this.divSearch.form.edtDeptCd.addEventHandler("onkeyup",this.divSearch_edtDeptCd_onkeyup,this);
+            this.divSearch.form.cboFlFormaFg.addEventHandler("onitemchanged",this.divSearch_cboFlFormaFg_onitemchanged,this);
+            this.divSearch.form.btnSearch.addEventHandler("onclick",this.divSearch_btnSearch_onclick,this);
+            this.divSearch.form.edtDeptId.addEventHandler("onkeyup",this.divSearch_edtDeptId_onkeyup,this);
+            this.divSearch.form.cboUseYn.addEventHandler("onitemchanged",this.divSearch_cboUserYn_onitemchanged,this);
+            this.divSearch.form.cboBdFormaFg.addEventHandler("onitemchanged",this.divSearch_cboBdFormaFg_onitemchanged,this);
+            this.divSearch.form.edtDeptNm.addEventHandler("onkeyup",this.divSearch_edtDeptNm_onkeyup,this);
+            this.divSearch.form.edtDeptNm.addEventHandler("onchanged",this.divSearch_edtDeptNm_onchanged,this);
+            this.divSearch.form.cboBreuFg.addEventHandler("onitemchanged",this.divSearch_cboBreuFg_onitemchanged,this);
         };
         this.loadIncludeScript("CSYSCD0200.xfdl");
         this.loadPreloadList();

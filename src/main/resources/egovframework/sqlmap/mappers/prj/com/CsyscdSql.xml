@@ -53,6 +53,7 @@
 			, A.CMMN_DETA_CD                              /*공통상세코드*/
 			, A.CMMN_DETA_CD_NM                           /*공통상세코드명*/
 			, A.CMMN_DETA_CD_ABBNM                        /*공통상세코드약명*/
+			, A.SORT_SEQ								  /*순번*/
 			, B.LANG_FG_CD                                /*언어구분코드*/
 			, B.LANG_FG_NM                                /*언어코드명*/
 			, B.LANG_ABBNM                                /*언어코드약명*/
@@ -69,6 +70,7 @@
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
 		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
 		WHERE A.CMMN_CD = #{CMMN_CD}
+		ORDER BY A.SORT_SEQ
 		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
@@ -123,6 +125,7 @@
 			, A.LAST_MODF_IP                              /*최종수정IP*/
 		FROM COM.CSYS121 A                                
 		WHERE A.CMMN_GRP_CD = #{CMMN_GRP_CD}
+		ORDER BY A.SORT_SEQ 
 		/*CsyscdDAO.retrieveGrpDetailCodeList 그룹 상세 코드  조회 */	 
     </select>
     

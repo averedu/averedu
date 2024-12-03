@@ -42,7 +42,8 @@
 			<![CDATA[                                         							                        
 				AND A.BF_CMMN_CD  LIKE '%' || #{BF_CMMN_CD} || '%'   
 			]]>                                           													
-		</if>                                                                                                      
+		</if>                                                   
+		ORDER BY A.FRST_INPUT_DT                                                   
         /* CsyscdDAO.retrieveCommCodeMasterList 공통코드 조회 */	                                 
     </select> 
     
@@ -70,7 +71,7 @@
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
 		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
 		WHERE A.CMMN_CD = #{CMMN_CD}
-		ORDER BY A.SORT_SEQ
+		ORDER BY B.FRST_INPUT_DT
 		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
@@ -102,6 +103,7 @@
 			, A.LAST_MODF_IP                              /*최종수정IP*/
 		FROM COM.CSYS120 A
 		WHERE A.CMMN_CD = #{CMMN_CD}
+		ORDER BY A.FRST_INPUT_DT 
 		/*CsyscdDAO.retrieveGrpCodeList 그룹 코드 조회 */	 
     </select>
     

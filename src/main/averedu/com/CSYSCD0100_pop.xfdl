@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Sample_005" width="1606" height="830" titletext="그룹코드관리" onload="form_onload" onclose="form_onclose">
+  <Form id="Sample_005" width="1400" height="600" titletext="그룹코드관리" onload="form_onload" onclose="form_onclose">
     <Layouts>
-      <Layout height="830" width="1606">
+      <Layout height="600" width="1400">
         <Button id="btn_Grp_Excel" taborder="0" text="엑셀" top="3" height="22" cssclass="btn_WF_Crud" right="0" width="46" onclick="btn_Grp_Excel_onclick"/>
         <Button id="btn_Grp_Save" taborder="1" text="저장" top="3" height="22" cssclass="btn_WF_Crud" right="51" width="46" onclick="btn_Grp_Save_onclick"/>
         <Static id="stc_09" taborder="2" left="0" top="15" height="22" text="그룹코드리스트" width="150" cssclass="sta_WF_Title02" fittocontents="width"/>
@@ -11,7 +11,7 @@
         <Static id="Static02" taborder="5" text="15" left="0" top="0" width="100" height="15" cssclass="sta_GU_space" visible="false" background="aqua" opacity="0.5" textAlign="center" wordWrap="char"/>
         <Button id="btn_Grp_Del" taborder="6" text="삭제" top="3" height="22" cssclass="btn_WF_Crud" right="102" width="46" onclick="btn_Grp_Del_onclick"/>
         <Button id="btn_Grp_Add" taborder="7" text="추가" top="3" height="22" cssclass="btn_WF_Crud" right="153" width="46" onclick="btn_Grp_Add_onclick"/>
-        <Grid id="grdGrdList" taborder="8" left="0" top="44" binddataset="dsGrp" height="350" right="0" autofittype="col" onheaddblclick="dsGrp_onheaddblclick" cellsizingtype="col" autoenter="select" autoupdatetype="itemselect">
+        <Grid id="grdGrdList" taborder="8" left="0" top="44" binddataset="dsGrp" height="350" right="0" autofittype="col" onheaddblclick="dsGrp_onheaddblclick" cellsizingtype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="grdGrdList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -128,10 +128,10 @@
             <Tabpage id="Tabpage2" text="공통코드그룹추가속성값">
               <Layouts>
                 <Layout>
-                  <Button id="btnGrpDetaAdd" taborder="0" text="추가" top="8" height="22" cssclass="btn_WF_Crud" right="153" width="46" onclick="btnDAdd_onclick"/>
-                  <Button id="btnGrpDetaDel" taborder="1" text="삭제" top="8" height="22" cssclass="btn_WF_Crud" right="102" width="46" onclick="btnDDel_onclick"/>
-                  <Button id="btnGrpDetaSave" taborder="2" text="저장" top="8" height="22" cssclass="btn_WF_Crud" right="51" width="46" onclick="btn_Grp_Deta_Save_onclick"/>
-                  <Button id="btnGrpDetaExcel" taborder="3" text="엑셀" top="8" height="22" cssclass="btn_WF_Crud" right="0" width="46" onclick="btnGrpDetaExcel_onclick"/>
+                  <Button id="btnGrpDetaAdd" taborder="0" text="추가" top="8" height="22" cssclass="btn_WF_Crud" right="230" width="45" onclick="btnDAdd_onclick"/>
+                  <Button id="btnGrpDetaDel" taborder="1" text="삭제" top="8" height="22" cssclass="btn_WF_Crud" right="180" width="45" onclick="btnDDel_onclick"/>
+                  <Button id="btnGrpDetaSave" taborder="2" text="저장" top="8" height="22" cssclass="btn_WF_Crud" right="130" width="45" onclick="btn_Grp_Deta_Save_onclick"/>
+                  <Button id="btnGrpDetaExcel" taborder="3" text="엑셀" top="8" height="22" cssclass="btn_WF_Crud" right="80" width="45" onclick="btnGrpDetaExcel_onclick"/>
                   <Grid id="grdGrdDeta" taborder="4" left="5" top="35" right="5" binddataset="dsGrpDetail" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" onheaddblclick="grdGrdDeta_onheaddblclick" autofittype="col" onheadclick="grdGrdDeta_onheadclick" bottom="5">
                     <Formats>
                       <Format id="default">
@@ -181,11 +181,14 @@
                       </Format>
                     </Formats>
                   </Grid>
+                  <Static id="stc_00" taborder="5" left="5" top="12" height="22" text="그룹상세코드" width="130" cssclass="sta_WF_Title03" fittocontents="width"/>
+                  <Static id="staRowCnt1" taborder="6" top="8" height="22" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" usedecorate="true" cssclass="sta_WF_TotalSta" width="70" right="5"/>
                 </Layout>
               </Layouts>
             </Tabpage>
           </Tabpages>
         </Tab>
+        <Static id="Static01" taborder="11" text="*속성값을 추가하기 위해서는 추가속성명을 입력후 저장하면 가능합니다." left="310" top="433" width="700" height="22" onclick="Static01_onclick" font="bold 14px/normal &quot;Malgun Gothic&quot;" usedecorate="false" color="blue"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -619,6 +622,7 @@ this.fn_PostDRet = function()
 	this.gfn_clearSortAll(this.Tab00.Tabpage2.form.grdGrdDeta);
 	this.gfn_clearSortAll(this.Tab00.Tabpage1.form.grdGrdDeta2);
 	this.gfn_getRowCount(this.Tab00.Tabpage1.form.staRowCnt1,this.dsGrpDetail);
+	this.gfn_getRowCount(this.Tab00.Tabpage2.form.staRowCnt1,this.dsGrpDetail);
 };
 
 /**********************************************************************
@@ -640,26 +644,8 @@ this.fn_New = function()
 	{                                                             
 		return false;                                               
 	}	
-	var result;
-	var nRow=-1
-	if(this.gfn_isUpdateD(this.dsGrp) == true)
-	{
-		result = this.gfn_confirm("MSG00010", "저장정보","", "question" );
-		
-		if(result == true)
-		{	
-			this.dsGrp.set_enableevent(false);
-			this.gfn_reSetDs(this.dsGrp,this.dsGrp.rowposition);
-			nRow = this.dsGrp.addRow(); 
-			this.dsGrp.set_enableevent(true);
-		}else
-		{
-			return false;
-		}
-	}else
-	{
-		nRow = this.dsGrp.addRow(); 
-	}
+	
+	var nRow = this.dsGrp.addRow(); 
 	this.dsGrp.setColumn(nRow,"CMMN_CD", this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")); 	//기본키값
 	this.dsGrp.setColumn(nRow,"CHK", 	   	  "0"); 
 	this.dsGrp.setColumn(nRow,"USE_YN", 		   "1"); 		//사용유무
@@ -703,8 +689,9 @@ this.btnDAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	this.dsGrpDetail.setColumn(nRow,"CMMN_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_CD"));
 	this.dsGrpDetail.setColumn(nRow,"CMMN_GRP_CD", this.dsGrp.getColumn(this.dsGrp.rowposition,"CMMN_GRP_CD")); 	//기본키값
-	this.dsGrpDetail.setColumn(nRow,"CHK", 	   	  "0"); 														//체크
+	this.dsGrpDetail.setColumn(nRow,"CHK", 	   	  "0"); 															//체크
 	this.dsGrpDetail.setColumn(nRow,"USE_YN", 		  "1"); 														//사용유무
+	this.dsGrpDetail.setColumn(nRow,"SORT_SEQ",this.dsGrpDetail.getCount()); 										//순번
 };
 /**
  * 기능 : 처리 후 실행
@@ -766,7 +753,8 @@ this.fn_Del = function()
 						
 };
 this.fn_PostDel = function() 
-{
+{	
+	this.fn_Ret();
 	this.dsGrp_onrowposchanged(this.dsGrp);
 };
 /**********************************************************************
@@ -833,9 +821,9 @@ this.btnDDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 				   , strASync);	
 };
 
-this.postDDel = function() 
-{
-	
+this.fn_PostDDel = function() 
+{	
+	this.fn_DRet();
 };
 /**********************************************************************
 	08. 저장 함수 선언  
@@ -1076,17 +1064,6 @@ this.dsGrp_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
 		this.gfn_gridSort(obj,e);
 	}
 }
-/**
- *	그리드 체크박스 올체크
- */
-this.grdGrdDeta_onheadclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
-{
-	if(e.cell == this.grdDetail.getBindCellIndex("body","CHK"))
-	{
-		this.gfn_checkAll(obj, e,true);
-	
-	}
-};
 
 /**
  *	그리드멀티 소트정열
@@ -1210,6 +1187,28 @@ this.btn_Grp_Deta_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 				   , strCallBack
 				   , strASync);
 
+};
+
+/**
+ *	그리드 체크박스 올체크
+ */
+this.grdGrdList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == this.grdGrdList.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	
+	}
+	
+};
+
+this.grdGrdDeta_onheadclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == this.grdGrdDeta.getBindCellIndex("body","CHK"))
+	{
+		this.gfn_checkAll(obj, e,true);
+	
+	}
 };
 ]]></Script>
   </Form>

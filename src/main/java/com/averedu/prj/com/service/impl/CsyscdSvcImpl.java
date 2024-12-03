@@ -601,49 +601,6 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 
 	/**
-	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrList)
-	 * 
-	 * @param input
-	 * @return
-	 * @throws Exception
-	 */
-	@Override
-	public void deptCdConnAttrList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		
-
-	}
-
-	/**
-	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
-	 * 
-	 * @param input
-	 * @return
-	 * @throws Exception
-	 */
-	@Override
-	public void deptCdConnAttrSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		
-
-	}
-
-	/**
-	 * 부서코드연계속성정보 삭제 (deptCdConnAttrDel)
-	 * 
-	 * @param input
-	 * @return
-	 * @throws Exception
-	 */
-	@Override
-	public void deptCdConnAttrDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		
-
-	}
-	
-	
-	/**
 	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
 	 * 
 	 * @param input
@@ -685,6 +642,93 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		return;
 		
 	}
+	
+	/**
+	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrInfoSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+		int rowType;
+
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+		
+		DataSetMap dsMaster = (DataSetMap) inDataset.get("dsMaster");
+
+		if (dsMaster.size() > 0) {
+
+			for (int i = 0; i < dsMaster.size(); i++) {
+				Map<String, Object> outMap = (Map<String, Object>) dsMaster.get(i);
+				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+
+				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+					
+					// outMap.put("", sessionVO.getUserId().toString());
+					// 부서코드 연계속성 정보(DEPT_CD 시퀀스)
+					String deptCdKeyCode = deptCdConnAttrValKeyCode();
+					outMap.put("DEPT_CD", deptCdKeyCode);
+					csyscdDAO.deptCdConnAttrInfoIns(outMap);
+
+				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+
+					// outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					csyscdDAO.deptCdConnAttrInfoUpd(outMap);
+
+				}
+			}  
+		}
+
+	}
+
+	/**
+	 * 부서코드연계속성정보 삭제 (deptCdConnAttrDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrInfoDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsMaster");
+
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+		
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deptCdConnAttrInfoDel(map);
+				csyscdDAO.deptCdConnAttrValDel(map);
+			}
+		}
+		return;
+	}
+	
+	
+	 /**
+   	 * 부서코드연계속성정보  부서코드 시퀀스(deptCdConnAttrValKeyCode)
+   	 * 
+   	 * @param input
+   	 * @return 
+   	 * @return
+   	 * @throws Exception
+   	 */
+    private String deptCdConnAttrValKeyCode(){
+    	return csyscdDAO.deptCdConnAttrInfoKeyCode();
+    }
+
+	
+
+
 
 	
 }

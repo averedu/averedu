@@ -789,5 +789,56 @@
 		INNER JOIN COM.CSYS311 B
 		ON A.DEPT_CD = B.DEPT_CD
 		WHERE A.DEPT_CD = #{DEPT_CD}
-    </select>										                                                           													                                                             													   
+    </select>
+    
+    <select id="CsyscdDAO.deptCdConnAttrInfoKeyCode" resultType="string"> 
+    	SELECT 'D' || LPAD(TO_NUMBER(SUBSTR(MAX(A.DEPT_CD), 2, 7)) + 1, 6, 0) AS KEY_CODE
+		FROM COM.CSYS310 A
+    </select>			
+    
+    <insert id="CsyscdDAO.deptCdConnAttrInfoIns" parameterType="map">
+    	INSERT INTO COM.CSYS310 A
+		(
+			DEPT_CD,
+			DEPT_CONN_ATTR_CD,
+			CMMN_CD_YN,
+			DEPT_CONN_ATTR_NM,
+			MNG_DEPT,
+			SORT_SEQ,
+			REMK
+		)
+		VALUES
+		(
+			#{DEPT_CD},
+			#{DEPT_CONN_ATTR_CD},
+			#{CMMN_CD_YN},
+			#{DEPT_CONN_ATTR_NM},
+			#{MNG_DEPT},
+			#{SORT_SEQ},
+			#{REMK}
+		)
+    </insert>
+    
+    <update id="CsyscdDAO.deptCdConnAttrInfoUpd" parameterType="map">
+    	UPDATE COM.CSYS310 A
+		SET 
+		A.DEPT_CONN_ATTR_CD=#{DEPT_CONN_ATTR_CD}, 
+		A.CMMN_CD_YN=#{CMMN_CD_YN}, 
+		A.DEPT_CONN_ATTR_NM=#{DEPT_CONN_ATTR_NM}, 
+		A.MNG_DEPT=#{MNG_DEPT}, 
+		A.SORT_SEQ=#{SORT_SEQ},
+		A.REMK=#{REMK}
+		WHERE A.DEPT_CD=#{DEPT_CD}
+    </update>
+    
+    <delete id="CsyscdDAO.deptCdConnAttrInfoDel" parameterType="map">
+    	DELETE FROM COM.CSYS310 A
+    	WHERE A.DEPT_CD = #{DEPT_CD}
+    </delete>
+    
+    <delete id="CsyscdDAO.deptCdConnAttrValDel" parameterType="map">
+    	DELETE FROM COM.CSYS311 A
+    	WHERE A.DEPT_CD = #{DEPT_CD}
+    </delete>
+							                                                           													                                                             													   
 </mapper>

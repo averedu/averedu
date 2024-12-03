@@ -641,6 +641,50 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		
 
 	}
+	
+	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void deptCdConnAttrInfoList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		
+		List<Map> recordsMaster = csyscdDAO.deptCdConnAttrInfoList(map);
+		DataSetMap dsOutMaster = new DataSetMap();
+		dsOutMaster.setRowMaps(recordsMaster);
+		
+		outDataset.put("dsMaster", dsOutMaster);
+		return;
+
+	}
+	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deptCdConnAttrValList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+		
+		List<Map> recordsMaster = csyscdDAO.deptCdConnAttrValList(map);
+		DataSetMap dsOutMaster = new DataSetMap();
+		dsOutMaster.setRowMaps(recordsMaster);
+		
+		outDataset.put("dsDetail", dsOutMaster);
+		return;
+		
+	}
 
 	
 }

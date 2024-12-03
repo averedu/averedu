@@ -758,5 +758,34 @@
     <delete id="CsyscdDAO.deptHistListDel" parameterType="map">
     	DELETE FROM COM.CSYS311 A
 		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD} AND A.AF_DEPT_CD=#{AF_DEPT_CD}
-    </delete>                 													                                                           													                                                             													   
+    </delete>                 					
+    
+    <select id="CsyscdDAO.deptCdConnAttrInfoList" parameterType="map" resultType="egovMap">		
+    	SELECT
+    		'0' AS CHK,
+    		A.DEPT_CD,
+			A.DEPT_CONN_ATTR_CD,
+			A.CMMN_CD_YN,
+			A.DEPT_CONN_ATTR_NM,
+			A.MNG_DEPT,
+			A.SORT_SEQ,
+			A.REMK
+		FROM com.CSYS310 A
+		ORDER BY A.SORT_SEQ
+    </select>			
+    	
+     <select id="CsyscdDAO.deptCdConnAttrValList" parameterType="map" resultType="egovMap">		
+    	SELECT
+    		'0' AS CHK,
+			A.DEPT_CD,
+			B.DEPT_NM,
+			B.USE_YN,
+			B.SALY_ACNT,
+			B.DEPT_CONN_ATTR_CD
+		FROM
+		COM.CSYS310 A
+		INNER JOIN COM.CSYS311 B
+		ON A.DEPT_CD = B.DEPT_CD
+		WHERE A.DEPT_CD = #{DEPT_CD}
+    </select>										                                                           													                                                             													   
 </mapper>

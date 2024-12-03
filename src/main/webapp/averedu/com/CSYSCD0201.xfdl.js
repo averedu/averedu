@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_input", this);
-            obj._setContents("<ColumnInfo><Column id=\"Column0\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"DEPT_CD\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -732,6 +732,27 @@
         this.grdMaster_oncellclick = function(obj,e)
         {
         	var cellClickDeptCD = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEPT_CD");
+        	this.ds_input.setColumn(0, "DEPT_CD", cellClickDeptCD);
+
+        	if(!this.fn_PreRet())
+        	{
+        		return false;
+        	}
+
+        	var strSvc 		= "Ret";
+        	var strUrl 		= "/prj/com/deptCdConnAttrValList.do";
+        	var strInDs  	= "ds_input=ds_input";
+        	var strOutDs 	= "dsDetail=dsDetail";
+        	var strArg 		= "";
+        	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+        	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로
+        	this.gfn_Transaction(strSvc
+        				   		, strUrl
+        				   		, strInDs
+        				   		, strOutDs
+        				   		, strArg
+        				   		, strCallBack
+        				   		, strASync);
 
         };
 

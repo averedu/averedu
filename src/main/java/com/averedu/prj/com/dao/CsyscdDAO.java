@@ -319,4 +319,28 @@ public class CsyscdDAO extends EgovAbstractMapper {
      	delete("CsyscdDAO.deptHistListDel", map);          
     }
     
+    /**
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
+	 * 
+	 * @param input
+	 * @return 
+	 * @return
+	 * @throws Exception
+	 */
+    public List<Map> deptCdConnAttrInfoList(Map<String, Object> map){
+    	return selectList("CsyscdDAO.deptCdConnAttrInfoList", map);
+    }
+    
+    /**
+	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrInfoList)
+	 * 
+	 * @param input
+	 * @return 
+	 * @return
+	 * @throws Exception
+	 */
+    public List<Map> deptCdConnAttrValList(Map<String, Object> map){
+    	return selectList("CsyscdDAO.deptCdConnAttrValList", map);
+    }
+    
 }                                                                                                            

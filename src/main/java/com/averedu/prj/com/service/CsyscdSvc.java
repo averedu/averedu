@@ -209,4 +209,24 @@ public interface CsyscdSvc {
 	public void deptCdConnAttrDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deptCdConnAttrInfoList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deptCdConnAttrValList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	
 }

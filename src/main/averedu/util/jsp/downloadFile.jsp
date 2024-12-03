@@ -10,7 +10,7 @@
 <%@ page import="javax.servlet.ServletOutputStream"%>
 <%@ page import="javax.servlet.http.HttpServletRequest"%>
 <%@ page import="javax.servlet.http.HttpServletResponse"%>
-<%@ page import="com.msu.common.util.XSSUtil"%>
+<%@ page import="com.averedu.common.util.XSSUtil"%>
 
 <%
 	String userAgent = request.getHeader("User-Agent");

@@ -6,7 +6,7 @@
 <%@ page import="java.io.FileInputStream" %>
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.io.IOException" %>
-<%@ page import="com.msu.common.util.XSSUtil"%>
+<%@ page import="com.averedu.common.util.XSSUtil"%>
 
 <% 
 	PlatformData platformData = new PlatformData();

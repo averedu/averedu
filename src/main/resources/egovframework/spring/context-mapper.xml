@@ -12,14 +12,14 @@
 	-->
 	<!-- oracle -->  
 	
-	<bean id="sqlSession" class="com.msu.common.RefreshableSqlSessionFactoryBean">
+	<bean id="sqlSession" class="com.averedu.common.RefreshableSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceDev" />
 		<property name="mapperLocations" value="classpath:egovframework/sqlmap/mappers/**/*.xml" />
 		<property name="configLocation" value="classpath:egovframework/mybatis-config.xml"/>
 	</bean>
 	<!-- Tibero -->
 	<!-- 
-	<bean id="sqlSessionTibero" class="com.msu.common.RefreshableSqlSessionFactoryBean">
+	<bean id="sqlSessionTibero" class="com.averedu.common.RefreshableSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceTbDev" />
 		<property name="mapperLocations" value="classpath:egovframework/sqlmap/mappers/**/*.xml" />
 		<property name="configLocation" value="classpath:egovframework/mybatis-config.xml"/>

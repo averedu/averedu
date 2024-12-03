@@ -100,7 +100,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"52\"/><Column size=\"91\"/><Column size=\"174\"/><Column size=\"181\"/><Column size=\"175\"/><Column size=\"186\"/><Column size=\"188\"/><Column size=\"92\"/><Column size=\"79\"/><Column size=\"102\"/><Column size=\"88\"/><Column size=\"106\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell text=\"No.\"/><Cell col=\"1\" text=\"공통코드\" cssclass=\"point\"/><Cell col=\"2\" text=\"공통코드명\" cssclass=\"point\"/><Cell col=\"3\" text=\"영어\"/><Cell col=\"4\" text=\"중국어\"/><Cell col=\"5\" text=\"일어\"/><Cell col=\"6\" text=\"기타언어\"/><Cell col=\"7\" text=\"사용여부\"/><Cell col=\"8\" text=\"등록자\"/><Cell col=\"9\" text=\"등록일자\"/><Cell col=\"10\" text=\"수정자\"/><Cell col=\"11\" text=\"수정일자\"/></Band><Band id=\"body\"><Cell text=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:CLASS_ID\" displaytype=\"text\" edittype=\"text\"/><Cell col=\"2\" text=\"bind:CLASS_ID_NM\" displaytype=\"text\" edittype=\"text\" textAlign=\"left\"/><Cell col=\"3\" text=\"bind:CLASS_ID_NM_ENG\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"4\" text=\"bind:CLASS_ID_NM_CH\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"5\" text=\"bind:CLASS_ID_NM_JP\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:CLASS_ID_NM_ETC\" edittype=\"text\" displaytype=\"text\" textAlign=\"left\"/><Cell col=\"7\" text=\"bind:USE_YN\" displaytype=\"combotext\" edittype=\"combo\" combodataset=\"dsGYn\" combocodecol=\"CODE\" combodatacol=\"CODE_NM\"/><Cell col=\"8\" text=\"bind:REG_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:REG_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"10\" text=\"bind:MOD_ID\" displaytype=\"text\" textAlign=\"center\"/><Cell col=\"11\" text=\"bind:MOD_DT\" displaytype=\"date\" textAlign=\"center\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdDetail","5","490",null,null,"3","-7",null,null,null,null,this);
+            obj = new Grid("grdDetail","5","480",null,null,"3","3",null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsDetail");
             obj.set_autoenter("select");
@@ -411,7 +411,7 @@
         	}
 
         	var strSvc 		= "Ret";
-        	var strUrl 		= "/prj/com/RetrieveCommCodeMasterList.do";
+        	var strUrl 		= "/prj/sys/RetrieveCommCodeMasterList.do";
         	var strInDs  	= "ds_input=ds_input";
         	var strOutDs 	= "dsMaster=dsMaster";
         	var strArg 		= "";
@@ -439,7 +439,7 @@
         ***********************************************************************/
         this.dsMaster_onrowposchanged = function(obj,e)
         {
-        	//이후 코드 상세 처리후 해제 this.fn_DRet();
+        	this.fn_DRet();
         };
 
         /**
@@ -464,7 +464,7 @@
 
 
         	var strSvc 		= "DRet";
-        	var strUrl 		= "/prj/com/RetrieveCommCodeDetailList.do";
+        	var strUrl 		= "/prj/sys/RetrieveCommCodeDetailList.do";
         	var strInDs  	= "ds_input1=ds_input1";
         	var strOutDs 	= "dsDetail=dsDetail";
         	var strArg 		= "";
@@ -614,7 +614,7 @@
         		return false;
         	}
         	var strSvc 		= "Delete";
-        	var strUrl 		= "/prj/com/DeleteCommCodeMasterList.do";
+        	var strUrl 		= "/prj/sys/DeleteCommCodeMasterList.do";
         	var strInDs  	= "dsMaster=dsMaster:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
@@ -683,7 +683,7 @@
         	}
 
         	var strSvc 		= "DDelete";
-        	var strUrl 		= "/prj/com/DeleteCommCodeDetailList.do";
+        	var strUrl 		= "/prj/sys/DeleteCommCodeDetailList.do";
         	var strInDs  	= "dsDetail=dsDetail:u";
         	var strOutDs 	= "";
         	var strArg 		= "";
@@ -768,7 +768,7 @@
         	this.dsMaster.set_enableevent(false);
 
         	var strSvc 		= "Save";
-        	var strUrl 		= "/prj/com/SaveCommCodeMasterList.do";
+        	var strUrl 		= "/prj/sys/SaveCommCodeMasterList.do";
         	var strInDs     = "ds_input=ds_input ";
         		strInDs    += "dsMaster=dsMaster:u ";
         		strInDs    += "dsDetail=dsDetail:u";

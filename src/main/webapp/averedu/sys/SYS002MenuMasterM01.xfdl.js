@@ -585,9 +585,9 @@
         // User Script
         this.registerScript("SYS002MenuMasterM01.xfdl", function() {
         /**********************************************************************
-        * FormID(화면   ID명): SYS002MenuM01.xfdl(메뉴관리)
-        * 작 성			일 명: admin
-        * 작 성	    	일 자: 2024/06/25
+        * FormID(화면   ID명): COMM000002S.xfdl(메뉴관리)
+        * 작 성			일 명: jiback
+        * 작 성	    	일 자: 2018/09/04
         * 변 경     	일 자:
         * 변 경			자 명:
         * 변경 및 수정 로그 : 일자별로 변경자 및 변경사항을 간략히 기술
@@ -630,7 +630,6 @@
         ***********************************************************************/
         this.fn_formInit = function()
         {
-        /*
         	var strDs   = "dsMenuCd01|dsMenuDeth|dsPrntYn|dsMenuFg";	// 데이터를 받을 데이터셋리스트     예) "DS_CODE01|DS_CODE02|DS_CODE03"
         	var strLgcd = "000004|000005|000006|000007";           		// 공통코드 중분류 코드, 데이터셋 개수와 같아야 한다. 예) "Z01|Z02|Z03"
         	var strComb = "X|X|X|X";   									// 콤보옵션 (T:전체, S:선택, N:공백, X:해당사항없음)
@@ -645,7 +644,8 @@
         						    , strComb
         						    , strOptn
         						    , svcId);
-        */
+
+
         };
 
         this.fn_PostformInit = function()

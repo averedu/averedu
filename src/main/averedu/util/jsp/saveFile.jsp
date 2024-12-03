@@ -48,7 +48,7 @@ limitations under the License.
 <%@ page import="com.nexacro17.xapi.tx.PlatformException"%>
 <%@ page import="com.nexacro17.xapi.tx.HttpPlatformRequest"%>
 
-<%@ page import="com.msu.common.util.XSSUtil"%>
+<%@ page import="com.averedu.common.util.XSSUtil"%>
 
 <%
 	PlatformData resData = new PlatformData();

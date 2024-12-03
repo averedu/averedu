@@ -89,7 +89,7 @@
         this.form_onload = function(obj,e)
         {
         	//웹브라우저 주소 셋팅
-        	this.brw_addr.set_url(nexacro.getEnvironment().services["svcurl"].url + "msu/util/jsp/address.jsp");
+        	this.brw_addr.set_url(nexacro.getEnvironment().services["svcurl"].url + "averedu/util/jsp/address.jsp");
 
         };
 

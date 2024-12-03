@@ -109,7 +109,7 @@
 
             obj = new Static("staSubTitle01_00","edUiId:0","10","89","22",null,null,null,null,null,null,this.dvSearch.form);
             obj.set_taborder("5");
-            obj.set_text("폼명");
+            obj.set_text("폼 명");
             obj.set_cssclass("sta_WF_SearchLbl");
             this.dvSearch.addChild(obj.name, obj);
 

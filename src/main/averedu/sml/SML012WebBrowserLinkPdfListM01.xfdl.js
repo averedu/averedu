@@ -76,7 +76,7 @@
         this.fn_setInitLink = function (fvFile)
         {
         	var svcUrl = nexacro.getEnvironment().services["svcurl"].url;
-        	var sPath  = "msu/file/"
+        	var sPath  = "averedu/file/"
 
         	if(this.gfn_isNull(fvFile))
         	{

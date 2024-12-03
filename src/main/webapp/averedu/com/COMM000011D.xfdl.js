@@ -73,13 +73,13 @@
         	/************************운영 처리 시작*******************************/
         	var objEnv 	  = nexacro.getEnvironment();
          	var service     = objEnv.services["svcurl"].url;	// TypeDefinition 접근하기위한객체
-        	//this.webChart.set_url(service.url+"msu/rMateChart/rMateChart.html");
+        	//this.webChart.set_url(service.url+"averedu/rMateChart/rMateChart.html");
         	/************************운영 처리 종료*******************************/
 
         // 	if(nexacro._Browser == "Runtime")
         // 	{
         //
-        // 		this.ExtCommPath 	= "C:\\eGovFrame-3.6\\workspace\\msu\\src\\main\\msu\\install\\ExtCommonV17_64.dll";
+        // 		this.ExtCommPath 	= "C:\\eGovFrame-3.6\\workspace\\averedu\\src\\main\\averedu\\install\\ExtCommonV17_64.dll";
         // 		this.gvExtComm   	= nexacro._addExtensionModule(this.ExtCommPath);
         // 		var arr             = this.gvExtComm._ext_getIPAddress();
         // 		/*
@@ -91,13 +91,13 @@
         // 		trace("load ExtComm.DLL Test : " + this.gvExtComm._ext_getMACAddress());
         // 		*/
         //
-        // 		var strIp = "http://" +  arr[0] + ":8080/msu/rMateChart/rMateChart.html";
+        // 		var strIp = "http://" +  arr[0] + ":8080/averedu/rMateChart/rMateChart.html";
         // 		this.webChart.set_url(strIp);
         // 	}else
         // 	{
-        // 		this.webChart.set_url(""+service+"/msu/rMateChart/rMateChart.html");
+        // 		this.webChart.set_url(""+service+"/averedu/rMateChart/rMateChart.html");
         //	}
-        	this.webChart.set_url(""+service+"/msu/rMateChart/rMateChart.html");
+        	this.webChart.set_url(""+service+"/averedu/rMateChart/rMateChart.html");
 
         }
 

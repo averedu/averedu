@@ -656,7 +656,7 @@
         	this.divSearch.form.edtWorkName.set_value("CommonCode");
         	this.divSearch.form.edtWorkName1.set_value("List");
 
-        	this.divSearch.form.edtPackage.set_value("com.msu" + "." +  this.gfn_trim(this.divSearch.form.cbProjectName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + this.gfn_trim(this.divSearch.form.edBuisNum.text));
+        	this.divSearch.form.edtPackage.set_value("com.averedu" + "." +  this.gfn_trim(this.divSearch.form.cbProjectName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + this.gfn_trim(this.divSearch.form.edBuisNum.text));
         	this.divSearch.form.edClassName.set_value(this.divSearch.form.cbWorkName.value.toLocaleUpperCase() + this.gfn_trim(this.divSearch.form.edBuisNum.text) + this.gfn_trim(this.divSearch.form.edtWorkName.text));
         	this.divSearch.form.edMethodName.set_value(this.gfn_trim(this.divSearch.form.edtWorkName.text) + this.gfn_trim(this.divSearch.form.edtWorkName1.text));
 
@@ -993,8 +993,8 @@
         	strContoller += "import org.springframework.web.bind.annotation.RequestMapping;                                                         		\n";
         	strContoller += "import org.springframework.web.servlet.ModelAndView;                                                                   		\n";
         	strContoller += "                                                                                                                       		\n";
-        	strContoller += "import com.msu.common.util.SessionUtil;                                                                    	                \n";
-        	strContoller += "import com.msu.common.vo.SessionVO;                                                                            		        \n";
+        	strContoller += "import com.averedu.common.util.SessionUtil;                                                                    	                \n";
+        	strContoller += "import com.averedu.common.vo.SessionVO;                                                                            		        \n";
         	strContoller += "import " + strPath + ".service." + strServiceName + ";                                                                         \n";
         	strContoller += "import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;                                                     \n";
         	strContoller += "import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;                                                 				\n";
@@ -1156,7 +1156,7 @@
         	strService += "                                                                                                                 \n";
         	strService += "import java.util.Map;                                                                                            \n";
         	strService += "                                                                                                                 \n";
-        	strService += "import com.msu.common.vo.SessionVO;																                \n";
+        	strService += "import com.averedu.common.vo.SessionVO;																                \n";
         	strService += "import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;                                                \n";
         	strService += "                                                                                                                 \n";
         	strService += "public interface " + strServiceName + " {                                                                        \n";
@@ -1238,8 +1238,8 @@
         	strServiceImpl += "                                                                                                                             \n";
         	strServiceImpl += "import com.nexacro17.xapi.data.DataSet;                                                                                      \n";
         	strServiceImpl += "                                                                                                                             \n";
-        	strServiceImpl += "import com.msu.common.exception.CommException;                                                                               \n";
-        	strServiceImpl += "import com.msu.common.vo.SessionVO;                                                                                   	    \n";
+        	strServiceImpl += "import com.averedu.common.exception.CommException;                                                                               \n";
+        	strServiceImpl += "import com.averedu.common.vo.SessionVO;                                                                                   	    \n";
         	strServiceImpl += "import " + strPath + ".dao."+ strServiceDAO + ";                                                                             \n";
         	strServiceImpl += "import " + strPath + ".service."+ strServiceName + ";                                                                        \n";
         	strServiceImpl += "import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;                                                   \n";
@@ -2757,7 +2757,7 @@
         	strVo += "                                                                                   \n";
         	strVo += "import org.apache.ibatis.type.Alias;                                               \n";
         	strVo += "                                                                                   \n";
-        	strVo += "import com.msu.cmmn.vo.DefaultVO;                                            \n";
+        	strVo += "import com.averedu.cmmn.vo.DefaultVO;                                            \n";
         	strVo += "                                                                                   \n";
         	strVo += "@Alias( " + "\"" + strVoName + "\"" + " )                                          \n";
         	strVo += "@Data                                                                              \n";
@@ -2909,7 +2909,7 @@
         this.commObjectPro = function()
         {
 
-        	this.divSearch.form.edtPackage.set_value("com.msu" + "." +  this.gfn_trim(this.divSearch.form.cbProjectName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + this.gfn_trim(this.divSearch.form.edBuisNum.text));
+        	this.divSearch.form.edtPackage.set_value("com.averedu" + "." +  this.gfn_trim(this.divSearch.form.cbProjectName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + "." + this.gfn_trim(this.divSearch.form.cbWorkName.value) + this.gfn_trim(this.divSearch.form.edBuisNum.text));
         	this.divSearch.form.edClassName.set_value(this.divSearch.form.cbWorkName.value.toLocaleUpperCase() + this.gfn_trim(this.divSearch.form.edBuisNum.text) + this.gfn_trim(this.divSearch.form.edtWorkName.text));
         	this.divSearch.form.edMethodName.set_value(this.gfn_trim(this.divSearch.form.edtWorkName.text) + this.gfn_trim(this.divSearch.form.edtWorkName1.text));
 

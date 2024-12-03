@@ -196,8 +196,8 @@
          	var appUrl      = objApp.xadl;
          	/*
         	//trace("1.appUrl   : " + appUrl);
-        	//RUNTIME :1.appUrl : file://C:/eGovFrame-3.2/workspace/gan/src/main/webapp/msu/App_Desktop.xadl.js
-        	//EI      :2.appUrl : http://localhost/msu/App_Desktop.xadl.js
+        	//RUNTIME :1.appUrl : file://C:/eGovFrame-3.2/workspace/gan/src/main/webapp/averedu/App_Desktop.xadl.js
+        	//EI      :2.appUrl : http://localhost/averedu/App_Desktop.xadl.js
         	*/
         	var appUrlSplit = appUrl.split("/");
         	var objEnv 		= nexacro.getEnvironment();

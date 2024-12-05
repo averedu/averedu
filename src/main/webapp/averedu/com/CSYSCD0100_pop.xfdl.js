@@ -130,7 +130,7 @@
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdGrdList","0","44",null,"350","0",null,null,null,null,null,this);
+            obj = new Grid("grdGrdList","5","44",null,"350","5",null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_binddataset("dsGrp");
             obj.set_autofittype("col");
@@ -147,7 +147,7 @@
             obj.set_cssclass("sta_WF_TotalSta");
             this.addChild(obj.name, obj);
 
-            obj = new Tab("Tab00","0","430",null,"400","0",null,null,null,null,null,this);
+            obj = new Tab("Tab00","0","grdGrdList:35",null,null,"0","0",null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_tabindex("0");
             this.addChild(obj.name, obj);

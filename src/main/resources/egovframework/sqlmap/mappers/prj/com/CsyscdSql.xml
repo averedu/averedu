@@ -765,7 +765,7 @@
     <select id="CsyscdDAO.deptCdConnAttrInfoList" parameterType="map" resultType="egovMap">		
     	SELECT
     		'0' AS CHK,
-    		A.DEPT_CD,
+    		A.BF_DEPT_CD,
 			A.DEPT_CONN_ATTR_CD,
 			A.CMMN_CD_YN,
 			A.DEPT_CONN_ATTR_NM,
@@ -773,22 +773,32 @@
 			A.SORT_SEQ,
 			A.REMK
 		FROM com.CSYS310 A
+		WHERE 1 = 1
+		<if test="DEPT_CONN_ATTR_NM != null and DEPT_CONN_ATTR_NM != ''">                                        							                        
+			AND A.DEPT_CONN_ATTR_NM  LIKE '%' || #{DEPT_CONN_ATTR_NM} || '%'                                           													
+		</if>   
+		<if test="DEPT_NM != null and DEPT_NM != ''">                                        							                        
+			AND A.DEPT_NM  LIKE '%' || #{DEPT_NM} || '%'                                           													
+		</if>   
+		<if test="BF_DEPT_CD != null and BF_DEPT_CD != ''">                                        							                        
+			AND A.BF_DEPT_CD  LIKE '%' || #{BF_DEPT_CD} || '%'                                           													
+		</if>   
 		ORDER BY A.SORT_SEQ
     </select>			
     	
      <select id="CsyscdDAO.deptCdConnAttrValList" parameterType="map" resultType="egovMap">		
     	SELECT
     		'0' AS CHK,
-			A.DEPT_CD,
+			A.BF_DEPT_CD,
 			B.DEPT_NM,
 			B.USE_YN,
 			B.SALY_ACNT,
-			B.DEPT_CONN_ATTR_CD
+			B.AF_DEPT_CD
 		FROM
 		COM.CSYS310 A
 		INNER JOIN COM.CSYS311 B
-		ON A.DEPT_CD = B.DEPT_CD
-		WHERE A.DEPT_CD = #{DEPT_CD}
+		ON A.BF_DEPT_CD = B.BF_DEPT_CD
+		WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </select>
     
     <select id="CsyscdDAO.deptCdConnAttrInfoKeyCode" resultType="string"> 
@@ -822,23 +832,23 @@
     <update id="CsyscdDAO.deptCdConnAttrInfoUpd" parameterType="map">
     	UPDATE COM.CSYS310 A
 		SET 
-		A.DEPT_CONN_ATTR_CD=#{DEPT_CONN_ATTR_CD}, 
+		A.DEPT_CONN_ATTR_CD=#{DEPT_CONN_ATTR_CD},
 		A.CMMN_CD_YN=#{CMMN_CD_YN}, 
 		A.DEPT_CONN_ATTR_NM=#{DEPT_CONN_ATTR_NM}, 
 		A.MNG_DEPT=#{MNG_DEPT}, 
 		A.SORT_SEQ=#{SORT_SEQ},
 		A.REMK=#{REMK}
-		WHERE A.DEPT_CD=#{DEPT_CD}
+		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD}
     </update>
     
     <delete id="CsyscdDAO.deptCdConnAttrInfoDel" parameterType="map">
     	DELETE FROM COM.CSYS310 A
-    	WHERE A.DEPT_CD = #{DEPT_CD}
+    	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </delete>
     
     <delete id="CsyscdDAO.deptCdConnAttrValDel" parameterType="map">
     	DELETE FROM COM.CSYS311 A
-    	WHERE A.DEPT_CD = #{DEPT_CD}
+    	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </delete>
 							                                                           													                                                             													   
 </mapper>

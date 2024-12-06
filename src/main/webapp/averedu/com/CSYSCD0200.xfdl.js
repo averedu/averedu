@@ -1038,11 +1038,6 @@
             obj.set_usedecorate("true");
             obj.set_cssclass("btn_WF_Crud");
             this.addChild(obj.name, obj);
-
-            obj = new Static("Static00","184","96","212","49",null,null,null,null,null,null,this);
-            obj.set_taborder("126");
-            obj.set_text("Static00");
-            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1650,910,this,function(p){});
@@ -1541,7 +1536,6 @@
 
         this.fn_PostDel = function()
         {
-
         };
         /**********************************************************************
         	08. 저장 함수 선언

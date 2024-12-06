@@ -630,7 +630,9 @@
 			A.SPRF_GW_DEPT_CD, 
 			A.EMP_GW_DEPT_CD, 
 			A.DEPT_SORT_SEQ, 
-			A.SUB_CHANC_MISS_CD
+			A.SUB_CHANC_MISS_CD,
+			A.FRST_INPUT_IP
+			
 		)
 		VALUES(
 			#{DEPT_CD}, 
@@ -682,7 +684,8 @@
 			#{SPRF_GW_DEPT_CD}, 
 			#{EMP_GW_DEPT_CD}, 
 			#{DEPT_SORT_SEQ}, 
-			#{SUB_CHANC_MISS_CD}
+			#{SUB_CHANC_MISS_CD},
+			#{FRST_INPUT_IP}
 		)
     </insert>
     
@@ -737,7 +740,10 @@
 			A.SPRF_GW_DEPT_CD=#{SPRF_GW_DEPT_CD},
 			A.EMP_GW_DEPT_CD=#{EMP_GW_DEPT_CD},
 			A.DEPT_SORT_SEQ=#{DEPT_SORT_SEQ},
-			A.SUB_CHANC_MISS_CD=#{SUB_CHANC_MISS_CD}
+			A.SUB_CHANC_MISS_CD=#{SUB_CHANC_MISS_CD},
+			A.LAST_MODF_ID=#{LAST_MODF_ID},
+			A.LAST_MODF_DT=SYSDATE,
+			A.LAST_MODF_IP=#{LAST_MODF_IP}
 		WHERE A.DEPT_CD=#{DEPT_CD}
     </update>
     
@@ -752,13 +758,17 @@
 			A.AF_DEPT_CD,
 			A.REMK,
 			A.FRST_INPUT_ID,
-			A.FRST_INPUT_DT)
-		VALUES(
+			A.FRST_INPUT_DT,
+			A.FRST_INPUT_IP
+		)
+		VALUES
+		(
 		#{BF_DEPT_CD}, 
 		#{AF_DEPT_CD},
 		#{REMK},
 		#{FRST_INPUT_ID},
-		SYSDATE
+		SYSDATE,
+		#{FRST_INPUT_IP}
 		)
     </insert>
     
@@ -767,7 +777,8 @@
 		SET 
 		A.REMK=#{REMK}, 
 		A.LAST_MODF_ID=#{LAST_MODF_ID}, 
-		A.LAST_MODF_DT=SYSDATE
+		A.LAST_MODF_DT=SYSDATE,
+		A.LAST_MODF_IP=#{LAST_MODF_IP}
 		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD} AND A.AF_DEPT_CD=#{AF_DEPT_CD}
     	
     </update>             
@@ -817,30 +828,36 @@
     </select>
     
     <select id="CsyscdDAO.deptCdConnAttrInfoKeyCode" resultType="string"> 
-    	SELECT 'D' || LPAD(TO_NUMBER(SUBSTR(MAX(A.DEPT_CD), 2, 7)) + 1, 6, 0) AS KEY_CODE
+    	SELECT 'D' || LPAD(TO_NUMBER(SUBSTR(MAX(A.BF_DEPT_CD), 2, 7)) + 1, 6, 0) AS KEY_CODE
 		FROM COM.CSYS310 A
     </select>			
     
     <insert id="CsyscdDAO.deptCdConnAttrInfoIns" parameterType="map">
     	INSERT INTO COM.CSYS310 A
 		(
-			DEPT_CD,
-			DEPT_CONN_ATTR_CD,
-			CMMN_CD_YN,
-			DEPT_CONN_ATTR_NM,
-			MNG_DEPT,
-			SORT_SEQ,
-			REMK
+			A.BF_DEPT_CD,
+			A.DEPT_CONN_ATTR_CD,
+			A.CMMN_CD_YN,
+			A.DEPT_CONN_ATTR_NM,
+			A.MNG_DEPT,
+			A.SORT_SEQ,
+			A.REMK,
+			A.FRST_INPUT_ID,
+			A.FRST_INPUT_DT,
+			A.FRST_INPUT_IP
 		)
 		VALUES
 		(
-			#{DEPT_CD},
+			#{BF_DEPT_CD},
 			#{DEPT_CONN_ATTR_CD},
 			#{CMMN_CD_YN},
 			#{DEPT_CONN_ATTR_NM},
 			#{MNG_DEPT},
 			#{SORT_SEQ},
-			#{REMK}
+			#{REMK},
+			#{FRST_INPUT_ID},
+			SYSDATE,
+			#{FRST_INPUT_IP}
 		)
     </insert>
     
@@ -852,7 +869,10 @@
 		A.DEPT_CONN_ATTR_NM=#{DEPT_CONN_ATTR_NM}, 
 		A.MNG_DEPT=#{MNG_DEPT}, 
 		A.SORT_SEQ=#{SORT_SEQ},
-		A.REMK=#{REMK}
+		A.REMK=#{REMK},
+		A.LAST_MODF_ID=#{LAST_MODF_ID},
+		A.LAST_MODF_DT=SYSDATE,
+		A.LAST_MODF_IP=#{LAST_MODF_IP}
 		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD}
     </update>
     

@@ -504,14 +504,13 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 						rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
 
 						if (rowType == DataSet.ROW_TYPE_INSERTED) {
-						
 							outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+							outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
 							csyscdDAO.deptListIns(outMap);
-
+								
 						} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-
 							outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-
+							outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 							recordKeyValue = DataUtil.nvl(outMap.get("CLASS_ID")).toString();
 							csyscdDAO.deptListUpd(outMap);
 
@@ -572,14 +571,13 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
 
 				if (rowType == DataSet.ROW_TYPE_INSERTED) {
-				
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
 					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					csyscdDAO.deptHistListIns(outMap);
 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					recordKeyValue = DataUtil.nvl(outMap.get("CLASS_ID")).toString();
 					csyscdDAO.deptHistListUpd(outMap);
 
@@ -659,7 +657,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 	
 	/**
-	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
+	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrInfoSave)
 	 * 
 	 * @param input
 	 * @return
@@ -684,15 +682,16 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 				if (rowType == DataSet.ROW_TYPE_INSERTED) {
 					
-					// outMap.put("", sessionVO.getUserId().toString());
+					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					// 부서코드 연계속성 정보(DEPT_CD 시퀀스)
 					String deptCdKeyCode = deptCdConnAttrValKeyCode();
-					outMap.put("DEPT_CD", deptCdKeyCode);
+					outMap.put("BF_DEPT_CD", deptCdKeyCode);
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
 					csyscdDAO.deptCdConnAttrInfoIns(outMap);
 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-
-					// outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					csyscdDAO.deptCdConnAttrInfoUpd(outMap);
 
 				}
@@ -702,7 +701,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	}
 
 	/**
-	 * 부서코드연계속성정보 삭제 (deptCdConnAttrDel)
+	 * 부서코드연계속성정보 삭제 (deptCdConnAttrInfoDel)
 	 * 
 	 * @param input
 	 * @return
@@ -719,7 +718,6 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
 			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-		
 			if (rowType == DataSet.ROW_TYPE_DELETED) {
 				csyscdDAO.deptCdConnAttrInfoDel(map);
 				csyscdDAO.deptCdConnAttrValDel(map);

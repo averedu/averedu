@@ -117,7 +117,7 @@
           </Layouts>
         </Div>
         <Edit id="edtDeptNm" taborder="12" left="81" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="edtDeptNm_onkeyup"/>
-        <Button id="add_dept_info_list_btn00" taborder="13" text="⊕ 삭제" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="275" cursor="auto" onclick="del_dept_info_list_btn"/>
+        <Button id="del_dept_info_list_btn_00" taborder="13" text="⊕ 삭제" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="275" cursor="auto" onclick="del_dept_info_list_btn"/>
         <Button id="add_dept_info_list_btn01" taborder="14" text="⊕ 저장" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="207" cursor="auto" onclick="save_dept_info_list_btn"/>
       </Layout>
     </Layouts>
@@ -387,7 +387,7 @@ this.fn_Del = function()
  
 this.fn_PostDel = function()
 {
-	this.fn_Ret();
+
 };
 /**********************************************************************
 	08. 저장 함수 선언
@@ -437,6 +437,7 @@ this.fn_PreSave = function()
 	*/
 	return true;
 };
+
 /**
  * 기능 : 저장 실행
  */

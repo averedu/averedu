@@ -23,6 +23,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.averedu.common.util.DataUtil;
+import com.averedu.common.util.EgovWebUtil;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.dao.CsyscdDAO;
 import com.averedu.prj.com.service.CsyscdSvc;
@@ -151,12 +152,17 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					
+					
 
 					csyscdDAO.insertCommCodeMasterList(outMap);
 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
 
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 
 					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
 					csyscdDAO.updateCommCodeMasterList(outMap);
@@ -203,6 +209,8 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
 					
 
@@ -211,6 +219,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
 
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 
 					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
 					csyscdDAO.updateCommCodeDetailList(outMap);
@@ -257,6 +266,8 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					
 
 					csyscdDAO.insertGrpCodeList(outMap);
@@ -264,6 +275,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
 
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 
 					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
 					csyscdDAO.updateGrpCodeList(outMap);
@@ -310,6 +322,8 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 
 					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
 					
 
@@ -318,6 +332,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
 
 					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 
 					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
 					csyscdDAO.updateGrpCodeDeatilList(outMap);

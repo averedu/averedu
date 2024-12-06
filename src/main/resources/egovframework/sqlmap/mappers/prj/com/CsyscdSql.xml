@@ -142,8 +142,10 @@
                  , BF_CMMN_CD                 /*이전공통코드*/
                  , FRST_INPUT_ID              /*등록자*/ 
                  , FRST_INPUT_DT              /*등록일시*/ 
+                 , FRST_INPUT_IP			  /*등록자ip*/
                  , LAST_MODF_ID               /*수정자*/ 
                  , LAST_MODF_DT               /*수정일시*/ 
+                 , LAST_MODF_IP				  /*수정자IP*/
   
             )VALUES                                                  														
             (                                                        														
@@ -153,9 +155,11 @@
                  , #{REMK_CTNT}  
                  , #{BF_CMMN_CD} 
                  , #{FRST_INPUT_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE              
+                 , #{FRST_INPUT_IP}                     
                  , #{LAST_MODF_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE
+                 , #{LAST_MODF_IP}                                   
                                  
             )	                                                      						
         ]]>                                    											
@@ -175,8 +179,10 @@
                  , SORT_SEQ                   /*정렬순번*/
                  , FRST_INPUT_ID              /*등록자*/ 
                  , FRST_INPUT_DT              /*등록일시*/ 
+                 , FRST_INPUT_IP			  /*등록자ip*/
                  , LAST_MODF_ID               /*수정자*/ 
                  , LAST_MODF_DT               /*수정일시*/ 
+                 , LAST_MODF_IP				  /*수정자IP*/
   
             )VALUES( 
             	 #{CMMN_CD}                    
@@ -185,10 +191,12 @@
                  , #{CMMN_DETA_CD_ABBNM}      
                  , #{USE_YN}                  
                  , #{SORT_SEQ}                
-                 , #{FRST_INPUT_ID}           
-                 , SYSDATE         
-                 , #{LAST_MODF_ID}            
-                 , SYSDATE           
+                 , #{FRST_INPUT_ID}  
+                 , SYSDATE              
+                 , #{FRST_INPUT_IP}                     
+                 , #{LAST_MODF_ID}  
+                 , SYSDATE
+                 , #{LAST_MODF_IP}             
 					)	                                                      						
         ]]>                                    											
         /* CsyscdDAO.insertCommCodeDetailList 상세코드 저장 */	
@@ -207,8 +215,10 @@
                  , REMK_CTNT                  /*비고내역*/
                  , FRST_INPUT_ID              /*등록자*/ 
                  , FRST_INPUT_DT              /*등록일시*/ 
+                 , FRST_INPUT_IP			  /*등록자ip*/
                  , LAST_MODF_ID               /*수정자*/ 
                  , LAST_MODF_DT               /*수정일시*/ 
+                 , LAST_MODF_IP				  /*수정자IP*/
   
             )VALUES                                                  														
             (                                                        														
@@ -220,9 +230,11 @@
                  , #{USE_YN}
                  , #{REMK_CTNT}  
                  , #{FRST_INPUT_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE              
+                 , #{FRST_INPUT_IP}                     
                  , #{LAST_MODF_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE
+                 , #{LAST_MODF_IP}                                  
                                  
             )	                                                      						
         ]]>                                    											
@@ -238,10 +250,12 @@
                 , CMMN_GRP_CD_NM            /*공통그룹코드명*/
                 , ADD_ATT_VAL               /*추가속성값*/
                 , REMK_WPC                  /*비고내역*/
-                , FRST_INPUT_ID             /*최초입력자ID*/
-                , FRST_INPUT_DT             /*최초입력일시*/
-                , LAST_MODF_ID              /*최종수정입력자ID*/
-                , LAST_MODF_DT              /*최종수정일시*/
+                 , FRST_INPUT_ID              /*등록자*/ 
+                 , FRST_INPUT_DT              /*등록일시*/ 
+                 , FRST_INPUT_IP			  /*등록자ip*/
+                 , LAST_MODF_ID               /*수정자*/ 
+                 , LAST_MODF_DT               /*수정일시*/ 
+                 , LAST_MODF_IP				  /*수정자IP*/
             )VALUES                                                  														
             (                                                        														
                    #{CMMN_CD} 
@@ -250,9 +264,11 @@
                  , #{ADD_ATT_VAL} 
                  , #{REMK_WPC} 
                  , #{FRST_INPUT_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE              
+                 , #{FRST_INPUT_IP}                     
                  , #{LAST_MODF_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE
+                 , #{LAST_MODF_IP}                                   
                                  
             )	                                                      						
         ]]>                                    											
@@ -270,10 +286,12 @@
                 , SORT_SEQ                  /*정렬순번*/
                 , USE_YN                    /*사용여부*/
                 , REMK_WPC                  /*비고내역*/
-                , FRST_INPUT_ID             /*최초입력자ID*/
-                , FRST_INPUT_DT             /*최초입력일시*/
-                , LAST_MODF_ID              /*최종수정입력자ID*/
-                , LAST_MODF_DT              /*최종수정일시*/
+                 , FRST_INPUT_ID              /*등록자*/ 
+                 , FRST_INPUT_DT              /*등록일시*/ 
+                 , FRST_INPUT_IP			  /*등록자ip*/
+                 , LAST_MODF_ID               /*수정자*/ 
+                 , LAST_MODF_DT               /*수정일시*/ 
+                 , LAST_MODF_IP				  /*수정자IP*/
             )VALUES                                                  														
             (                                                        														
                    #{CMMN_CD} 
@@ -284,9 +302,11 @@
                  , #{USE_YN} 
                  , #{REMK_WPC} 
                  , #{FRST_INPUT_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE              
+                 , #{FRST_INPUT_IP}                     
                  , #{LAST_MODF_ID}  
-                 , SYSDATE                                   
+                 , SYSDATE
+                 , #{LAST_MODF_IP}                             
                                  
             )	                                                      						
         ]]>                                    											
@@ -301,10 +321,9 @@
                  , USE_YN                   = #{USE_YN}                     /*사용여부*/  
                  , REMK_CTNT                = #{REMK_CTNT}					/*비고내역*/
                  , BF_CMMN_CD               = #{BF_CMMN_CD}					/*이전공통코드*/
-                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
-                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
                  , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
                  , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+                 , LAST_MODF_IP             = #{LAST_MODF_IP}               /*수정자IP*/  
              WHERE 1=1                                                   						                        
                AND CMMN_CD        = #{CMMN_CD}  
         ]]>  	                                   							                            				
@@ -319,11 +338,10 @@
                  , CMMN_DETA_CD_NM          = #{CMMN_DETA_CD_NM}
                  , CMMN_DETA_CD_ABBNM       = #{CMMN_DETA_CD_ABBNM}
                  , USE_YN                   = #{USE_YN}
-                 , SORT_SEQ	                = #{SORT_SEQ}
-                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
-                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , SORT_SEQ	                = #{SORT_SEQ} 
                  , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
-                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/ 
+                 , LAST_MODF_IP             = #{LAST_MODF_IP}               /*수정자IP*/ 
              WHERE 1=1                                                   						                        
                AND CMMN_CD        = #{CMMN_CD}
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
@@ -340,11 +358,10 @@
                  , LANG_FG_NM               = #{LANG_FG_NM}
                  , LANG_ABBNM               = #{LANG_ABBNM}
                  , USE_YN                   = #{USE_YN}
-                 , REMK_CTNT                = #{REMK_CTNT}
-                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
-                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , REMK_CTNT                = #{REMK_CTNT} 
                  , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
-                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/ 
+                 , LAST_MODF_IP             = #{LAST_MODF_IP}               /*수정자IP*/ 
              WHERE 1=1                                                   						                        
                AND CMMN_CD        = #{CMMN_CD}
                AND CMMN_DETA_CD   = #{CMMN_DETA_CD}
@@ -361,10 +378,9 @@
                  , CMMN_GRP_CD_NM    		= #{CMMN_GRP_CD_NM}             /*공통그룹코드명*/
                  , ADD_ATT_VAL           	= #{ADD_ATT_VAL}                /*추가속성값*/
                  , REMK_WPC               	= #{REMK_WPC}                   /*비고내역*/
-                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
-                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
                  , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
-                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/ 
+                 , LAST_MODF_IP             = #{LAST_MODF_IP}               /*수정자IP*/ 
              WHERE 1=1                                                   						                        
                AND CMMN_CD        			= #{CMMN_CD}
                AND CMMN_GRP_CD   			= #{CMMN_GRP_CD}
@@ -381,11 +397,10 @@
                  , ADD_ATT_VAL         		= #{ADD_ATT_VAL}                /*추가속성값*/
                  , SORT_SEQ               	= #{SORT_SEQ}                   /*정렬순번*/
                  , USE_YN                   = #{USE_YN}                     /*사용여부*/
-                 , REMK_WPC                	= #{REMK_WPC}                   /*비고내역*/
-                 , FRST_INPUT_ID            = #{FRST_INPUT_ID}              /*등록자*/  
-                 , FRST_INPUT_DT            = SYSDATE                       /*등록일시*/  
+                 , REMK_WPC                	= #{REMK_WPC}                   /*비고내역*/ 
                  , LAST_MODF_ID             = #{LAST_MODF_ID}               /*수정자*/  
-                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/  
+                 , LAST_MODF_DT             = SYSDATE                       /*수정일시*/ 
+                 , LAST_MODF_IP             = #{LAST_MODF_IP}               /*수정자IP*/ 
              WHERE 1=1                                                   						                        
                AND CMMN_CD        			= #{CMMN_CD}
                AND CMMN_GRP_CD   			= #{CMMN_GRP_CD}

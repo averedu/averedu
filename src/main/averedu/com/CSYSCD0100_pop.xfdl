@@ -38,9 +38,9 @@
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''"/>
                 <Cell col="2" text="bind:CMMN_GRP_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'"/>
-                <Cell col="3" text="bind:CMMN_GRP_CD_NM" edittype="text"/>
-                <Cell col="4" text="bind:REMK_WPC" edittype="text"/>
-                <Cell col="5" text="bind:ADD_ATT_VAL" edittype="text"/>
+                <Cell col="3" text="bind:CMMN_GRP_CD_NM" edittype="text" displaytype="editcontrol"/>
+                <Cell col="4" text="bind:REMK_WPC" edittype="text" displaytype="editcontrol"/>
+                <Cell col="5" text="bind:ADD_ATT_VAL" edittype="text" displaytype="editcontrol"/>
               </Band>
             </Format>
           </Formats>
@@ -168,10 +168,10 @@
                         <Band id="body">
                           <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                           <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
-                          <Cell col="2" text="bind:CMMN_GRP_CD" displaytype="text" edittype="none" textAlign="left"/>
-                          <Cell col="3" text="bind:CMMN_GRP_DETA_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" displaytype="text" textAlign="left"/>
-                          <Cell col="4" text="bind:ADD_ATT_VAL" displaytype="text" edittype="text"/>
-                          <Cell col="5" text="bind:SORT_SEQ" displaytype="text" edittype="text"/>
+                          <Cell col="2" text="bind:CMMN_GRP_CD" displaytype="text" edittype="none" textAlign="center"/>
+                          <Cell col="3" text="bind:CMMN_GRP_DETA_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" displaytype="text" textAlign="center"/>
+                          <Cell col="4" text="bind:ADD_ATT_VAL" displaytype="editcontrol" edittype="text"/>
+                          <Cell col="5" text="bind:SORT_SEQ" displaytype="editcontrol" edittype="text"/>
                           <Cell col="6" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="dsUseYn" combodatacol="Yn" combocodecol="YnCd"/>
                           <Cell col="7" text="bind:FRST_INPUT_ID" displaytype="text" textAlign="center"/>
                           <Cell col="8" text="bind:FRST_INPUT_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>

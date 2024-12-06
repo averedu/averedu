@@ -56,7 +56,7 @@ public class CsyscdCtr {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
 		try {
 			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
+			
 			DataSetMap tranInfo = nxDto.getTranInfoMap();
 			Map<String, Object> inVar = nxDto.getInVariableMap();
 			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();

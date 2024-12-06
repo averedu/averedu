@@ -42,11 +42,11 @@
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
                 <Cell col="2" text="expr:currow+1" textAlign="center" edittype="none" displaytype="normal"/>
-                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="left"/>
-                <Cell col="4" text="bind:CMMN_CD_NM" edittype="text" displaytype="text" textAlign="left"/>
+                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="4" text="bind:CMMN_CD_NM" edittype="text" displaytype="editcontrol" textAlign="left"/>
                 <Cell col="5" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="ds_use_yn" combodatacol="YN" combocodecol="CD"/>
-                <Cell col="6" text="bind:REMK_CTNT" edittype="text" displaytype="text" textAlign="left"/>
-                <Cell col="7" text="bind:BF_CMMN_CD" edittype="text" displaytype="text" textAlign="left"/>
+                <Cell col="6" text="bind:REMK_CTNT" edittype="text" displaytype="editcontrol" textAlign="left"/>
+                <Cell col="7" text="bind:BF_CMMN_CD" edittype="text" displaytype="editcontrol" textAlign="left"/>
                 <Cell col="8" text="bind:FRST_INPUT_ID" displaytype="text" textAlign="center"/>
                 <Cell col="9" text="bind:FRST_INPUT_DT" displaytype="date" textAlign="center" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="none"/>
                 <Cell col="10" text="bind:LAST_MODF_ID" displaytype="text" textAlign="center"/>
@@ -102,18 +102,18 @@
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center" displaytype="text"/>
                 <Cell col="2" text="expr:currow+1" textAlign="center" displaytype="normal" edittype="normal"/>
-                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="none"/>
-                <Cell col="4" text="bind:CMMN_DETA_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'"/>
-                <Cell col="5" text="bind:CMMN_DETA_CD_NM" displaytype="text" edittype="text" textAlign="left"/>
-                <Cell col="6" text="bind:CMMN_DETA_CD_ABBNM" displaytype="text" edittype="text" textAlign="left"/>
-                <Cell col="7" text="bind:LANG_FG_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="left"/>
-                <Cell col="8" text="bind:LANG_FG_NM" displaytype="text" edittype="text" textAlign="left"/>
-                <Cell col="9" text="bind:LANG_ABBNM" displaytype="text" edittype="text" textAlign="left"/>
+                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="none" textAlign="center"/>
+                <Cell col="4" text="bind:CMMN_DETA_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="5" text="bind:CMMN_DETA_CD_NM" displaytype="editcontrol" edittype="text" textAlign="left"/>
+                <Cell col="6" text="bind:CMMN_DETA_CD_ABBNM" displaytype="editcontrol" edittype="text" textAlign="left"/>
+                <Cell col="7" text="bind:LANG_FG_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="8" text="bind:LANG_FG_NM" displaytype="editcontrol" edittype="text" textAlign="left"/>
+                <Cell col="9" text="bind:LANG_ABBNM" displaytype="editcontrol" edittype="text" textAlign="left"/>
                 <Cell col="10" text="bind:USE_YN" displaytype="combocontrol" edittype="combo" maskeditformat="expr:##" textAlign="right" combodataset="ds_use_yn" combocodecol="CD" combodatacol="YN"/>
-                <Cell col="11" displaytype="text" edittype="text" text="bind:REMK_CTNT" textAlign="left"/>
-                <Cell col="12" displaytype="text" text="bind:FRST_INPUT_ID"/>
+                <Cell col="11" displaytype="editcontrol" edittype="text" text="bind:REMK_CTNT" textAlign="left"/>
+                <Cell col="12" displaytype="text" text="bind:FRST_INPUT_ID" textAlign="center"/>
                 <Cell col="13" displaytype="date" calendardateformat="yyyy-MM-dd" text="bind:FRST_INPUT_DT" calendardisplaynulltype="none"/>
-                <Cell col="14" displaytype="text" text="bind:LAST_MODF_ID"/>
+                <Cell col="14" displaytype="text" text="bind:LAST_MODF_ID" textAlign="center"/>
                 <Cell col="15" displaytype="date" calendardateformat="yyyy-MM-dd" text="bind:LAST_MODF_DT" calendardisplaynulltype="none"/>
               </Band>
             </Format>

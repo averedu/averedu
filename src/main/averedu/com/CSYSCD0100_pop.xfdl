@@ -37,7 +37,7 @@
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''"/>
-                <Cell col="2" text="bind:CMMN_GRP_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'"/>
+                <Cell col="2" text="bind:CMMN_GRP_CD" edittype="expr:dataset.getRowType(currow)==2?'text':'none'" displaytype="expr:dataset.getRowType(currow)==2?'editcontrol':'text'"/>
                 <Cell col="3" text="bind:CMMN_GRP_CD_NM" edittype="text" displaytype="editcontrol"/>
                 <Cell col="4" text="bind:REMK_WPC" edittype="text" displaytype="editcontrol"/>
                 <Cell col="5" text="bind:ADD_ATT_VAL" edittype="text" displaytype="editcontrol"/>
@@ -169,7 +169,7 @@
                           <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                           <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
                           <Cell col="2" text="bind:CMMN_GRP_CD" displaytype="text" edittype="none" textAlign="center"/>
-                          <Cell col="3" text="bind:CMMN_GRP_DETA_CD" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" displaytype="text" textAlign="center"/>
+                          <Cell col="3" text="bind:CMMN_GRP_DETA_CD" edittype="expr:dataset.getRowType(currow)==2?'text':'none'" displaytype="expr:dataset.getRowType(currow)==2?'editcontrol':'text'" textAlign="center"/>
                           <Cell col="4" text="bind:ADD_ATT_VAL" displaytype="editcontrol" edittype="text"/>
                           <Cell col="5" text="bind:SORT_SEQ" displaytype="editcontrol" edittype="text"/>
                           <Cell col="6" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="dsUseYn" combodatacol="Yn" combocodecol="YnCd"/>

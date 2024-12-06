@@ -42,7 +42,7 @@
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:CHK"/>
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center"/>
                 <Cell col="2" text="expr:currow+1" textAlign="center" edittype="none" displaytype="normal"/>
-                <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="3" text="bind:CMMN_CD" displaytype="expr:dataset.getRowType(currow)==2?'editcontrol':'text'" edittype="expr:dataset.getRowType(currow)==2?'text':'none'" textAlign="center"/>
                 <Cell col="4" text="bind:CMMN_CD_NM" edittype="text" displaytype="editcontrol" textAlign="left"/>
                 <Cell col="5" text="bind:USE_YN" edittype="combo" displaytype="combocontrol" textAlign="left" combodataset="ds_use_yn" combodatacol="YN" combocodecol="CD"/>
                 <Cell col="6" text="bind:REMK_CTNT" edittype="text" displaytype="editcontrol" textAlign="left"/>
@@ -103,10 +103,10 @@
                 <Cell col="1" text="expr:(dataset.getRowType(currow)) == '2' ? '+':(dataset.getRowType(currow)) == '4' ? 'U':''" textAlign="center" displaytype="text"/>
                 <Cell col="2" text="expr:currow+1" textAlign="center" displaytype="normal" edittype="normal"/>
                 <Cell col="3" text="bind:CMMN_CD" displaytype="text" edittype="none" textAlign="center"/>
-                <Cell col="4" text="bind:CMMN_DETA_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="4" text="bind:CMMN_DETA_CD" displaytype="expr:dataset.getRowType(currow)==2?'editcontrol':'text'" edittype="expr:dataset.getRowType(currow)==2?'text':'none'" textAlign="center"/>
                 <Cell col="5" text="bind:CMMN_DETA_CD_NM" displaytype="editcontrol" edittype="text" textAlign="left"/>
                 <Cell col="6" text="bind:CMMN_DETA_CD_ABBNM" displaytype="editcontrol" edittype="text" textAlign="left"/>
-                <Cell col="7" text="bind:LANG_FG_CD" displaytype="text" edittype="expr:dataset.getRowType(currow)==2?'normal':'none'" textAlign="center"/>
+                <Cell col="7" text="bind:LANG_FG_CD" displaytype="expr:dataset.getRowType(currow)==2?'editcontrol':'text'" edittype="expr:dataset.getRowType(currow)==2?'text':'none'" textAlign="center"/>
                 <Cell col="8" text="bind:LANG_FG_NM" displaytype="editcontrol" edittype="text" textAlign="left"/>
                 <Cell col="9" text="bind:LANG_ABBNM" displaytype="editcontrol" edittype="text" textAlign="left"/>
                 <Cell col="10" text="bind:USE_YN" displaytype="combocontrol" edittype="combo" maskeditformat="expr:##" textAlign="right" combodataset="ds_use_yn" combocodecol="CD" combodatacol="YN"/>
@@ -996,10 +996,10 @@ this.dsMaster_canrowposchange = function(obj:Dataset, e:nexacro.DSRowPosChangeEv
 }
 
 this.dsDetail_cancolumnchange = function(obj:Dataset, e:nexacro.DSColChangeEventInfo)
-{
+{	console.log(obj.getColumn(e.row, "CMMN_DETA_CD"));
 	if(e.columnid == "LANG_FG_CD")
-	{
-		var nRow = this.dsDetail.findRowExpr("LANG_FG_CD == '" + e.newvalue + "' && currow != '" +e.row+"'");
+	{	
+		var nRow = this.dsDetail.findRowExpr("LANG_FG_CD == '" + e.newvalue + "' && currow != '" +e.row+ "' && CMMN_DETA_CD == '" +obj.getColumn(e.row, "CMMN_DETA_CD")+"'");
 		if(nRow > -1)
 		{
 			this.gfn_alert("중복된 언어구분코드를 입력할수 없습니다.");
@@ -1048,8 +1048,11 @@ this.btnMExcelDn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 };
 
 this.btnPopup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-
+{	
+	console.log(this.dsMaster.getRowType(this.dsMaster.rowposition));
+	if(this.dsMaster.getRowType(this.dsMaster.rowposition) != 1){
+		return false;
+	}
 	var objParam = {CMMN_CD:this.dsMaster.getColumn(this.dsMaster.rowposition,"CMMN_CD")};
 	var nW = 500;
 	var nH = 400;

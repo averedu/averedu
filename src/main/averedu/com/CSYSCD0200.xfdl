@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="CSYSCD0200" width="1640" height="910" titletext="부서코드관리" onload="form_onload">
+  <Form id="CSYSCD0200" width="1650" height="910" titletext="부서코드관리" onload="form_onload">
     <Layouts>
-      <Layout height="910" mobileorientation="landscape" width="1640">
+      <Layout height="910" mobileorientation="landscape" width="1650">
         <Grid id="grdMaster" taborder="0" left="5" top="151" binddataset="dsMaster" autoenter="select" autofittype="col" autoupdatetype="itemselect" width="450" bottom="139">
           <Formats>
             <Format id="default">
@@ -185,9 +185,9 @@
               <Edit id="edtDeptCd" taborder="2" left="350" top="11" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptCd_onkeyup"/>
               <Static id="stcDeptId" taborder="3" text="부서ID" left="483" top="9" width="120" height="26" cssclass="sta_WF_SearchLbl"/>
               <Static id="stcBreuFg" taborder="4" text="기관구분" left="0" top="49" width="73" height="26" cssclass="sta_WF_SearchLbl"/>
-              <Static id="stcFlFormaFg" taborder="5" text="최종부서여부" left="203" top="49" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
-              <Combo id="cboFlFormaFg" taborder="6" left="350" top="51" width="123" height="22" text="" innerdataset="dsFlDeptYn" codecolumn="FL_DEPT_YN" datacolumn="FL_DEPT_YN" onitemchanged="divSearch_cboFlFormaFg_onitemchanged"/>
-              <Button id="btnSearch" taborder="7" text="조회" top="25" width="90" height="22" cssclass="btn_WF_Crud" onclick="divSearch_btnSearch_onclick" left="1540"/>
+              <Static id="stcFlFormaFg" taborder="6" text="최종부서여부" left="203" top="49" width="130" height="26" cssclass="sta_WF_SearchLbl"/>
+              <Combo id="cboFlFormaFg" taborder="7" left="350" top="51" width="123" height="22" text="" innerdataset="dsFlDeptYn" codecolumn="FL_DEPT_YN" datacolumn="FL_DEPT_YN" onitemchanged="divSearch_cboFlFormaFg_onitemchanged"/>
+              <Button id="btnSearch" taborder="5" text="조회" top="25" width="90" height="22" cssclass="btn_WF_Crud" onclick="divSearch_btnSearch_onclick" left="1540"/>
               <Static id="stcUseYn" taborder="8" text="사용여부" left="716" top="9" width="78" height="26" cssclass="sta_WF_SearchLbl"/>
               <Edit id="edtDeptId" taborder="9" left="584" top="12" width="123" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptId_onkeyup"/>
               <Combo id="cboUseYn" taborder="10" left="802" top="12" width="123" height="22" text="" innerdataset="dscheUseYn" codecolumn="USE_YN" datacolumn="USE_YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
@@ -466,7 +466,6 @@ this.fn_Del = function()
  
 this.fn_PostDel = function()
 {
-
 };
 /**********************************************************************
 	08. 저장 함수 선언

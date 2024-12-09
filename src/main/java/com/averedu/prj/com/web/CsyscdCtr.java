@@ -56,7 +56,7 @@ public class CsyscdCtr {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
 		try {
 			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
+			
 			DataSetMap tranInfo = nxDto.getTranInfoMap();
 			Map<String, Object> inVar = nxDto.getInVariableMap();
 			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
@@ -679,14 +679,14 @@ public class CsyscdCtr {
 	
 
 	/**
-	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrList)
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrList.do")
-	public ModelAndView deptCdConnAttrList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoList.do")
+	public ModelAndView deptCdConnAttrInfoList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
 		try {
@@ -698,7 +698,7 @@ public class CsyscdCtr {
 			Map<String, Object> outVar = nxDto.getOutVariableMap();
 			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
 
-			csyscdSvc.deptCdConnAttrList(inVar, inDataset, outVar, outDataset, sessionVO);
+			csyscdSvc.deptCdConnAttrInfoList(inVar, inDataset, outVar, outDataset, sessionVO);
 
 			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
 			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
@@ -715,14 +715,14 @@ public class CsyscdCtr {
 	}
 
 	/**
-	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
+	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrInfoSave)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrSave.do")
-	public ModelAndView deptCdConnAttrSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoSave.do")
+	public ModelAndView deptCdConnAttrInfoSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
 		try {
@@ -734,7 +734,7 @@ public class CsyscdCtr {
 			Map<String, Object> outVar = nxDto.getOutVariableMap();
 			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
 
-			csyscdSvc.deptCdConnAttrSave(inVar, inDataset, outVar, outDataset, sessionVO);
+			csyscdSvc.deptCdConnAttrInfoSave(inVar, inDataset, outVar, outDataset, sessionVO);
 
 			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
 			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
@@ -751,14 +751,14 @@ public class CsyscdCtr {
 	}
 
 	/**
-	 * 부서코드관리 삭제(deptCdConnAttrDel)
+	 * 부서코드연계속성정보 삭제(deptCdConnAttrInfoDel)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws LException
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrDel.do")
-	public ModelAndView deptCdConnAttrDel(NexacroPlatformMapDTO xpDto, Model model, HttpSession session)
+	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoDel.do")
+	public ModelAndView deptCdConnAttrInfoDel(NexacroPlatformMapDTO xpDto, Model model, HttpSession session)
 			throws Exception {
 
 		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
@@ -771,22 +771,47 @@ public class CsyscdCtr {
 			Map<String, DataSetMap> inDataset = xpDto.getInDataSetMap();
 			Map<String, Object> outVar = xpDto.getOutVariableMap();
 			Map<String, DataSetMap> outDataset = xpDto.getOutDataSetMap();
-
-			/*
-			 * System.out.println(
-			 * "/=========================start(duBug:print)====================/"
-			 * ); DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-			 * System.out.println("====================>inVar" + inVar);
-			 * System.out.println("====================>inDataset.size()" +
-			 * dsMap.size()); System.out.println(
-			 * "/=========================end===================================/"
-			 * );
-			 */
-
-			csyscdSvc.deptCdConnAttrDel(inVar, inDataset, outVar, outDataset, sessionVO);
+			
+			csyscdSvc.deptCdConnAttrInfoDel(inVar, inDataset, outVar, outDataset, sessionVO);
 
 			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, xpDto.getOutVariableMap());
 			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, xpDto.getOutDataSetMap());
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
+	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/deptCdConnAttrValList.do")
+	public ModelAndView deptCdConnAttrValList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.deptCdConnAttrValList(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
 
 			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
 			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");

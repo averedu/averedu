@@ -6,12 +6,10 @@
         <Static id="stc_dept_07" taborder="0" left="5" top="112" text="&lt;b v='true'&gt;부서코드 연계속성 정보&lt;/b&gt; " cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false" width="190" height="45"/>
         <Static id="stc_dept_07_00" taborder="1" left="195" top="112" text="* 부서코드 연계속성 정보 삭제 시 해당 정보의 연계속성 값이 같이 삭제됩니다." cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#ff1e1e" usedecorate="true" enableevent="false" width="512" height="45"/>
         <Button id="add_dept_info_list_btn" taborder="2" text="⊕ 추가" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="342" onclick="add_dept_info_list_btn_onclick" cursor="auto"/>
-        <Button id="save_dept_info_list_btn" taborder="3" text="저장" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="202" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
-        <Button id="btn_dept_4" taborder="4" text="엑셀" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="134" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
-        <Button id="del_dept_info_list_btn" taborder="5" text="⊝ 삭제" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="272" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
-        <Static id="stc_dept_08" taborder="6" text="&lt;b v='true'&gt;총건수 : &lt;/b&gt; " top="130" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" onclick="stc_dept_08_onclick" width="96" right="19"/>
-        <Static id="stc_dept_09" taborder="7" left="5" top="443" height="45" text="&lt;b v='true'&gt;부서코드 연계속성 값 &lt;/b&gt; " cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false" width="190"/>
-        <Grid id="grdDetail" taborder="8" left="0" top="492" binddataset="dsDetail" right="2" autoupdatetype="itemselect" autoenter="select" autofittype="col" height="175">
+        <Button id="btn_dept_4" taborder="3" text="엑셀" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="140" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" top="130" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" onclick="stc_dept_08_onclick" width="96" right="19" cssclass="btn_WF_Crud"/>
+        <Static id="stc_dept_09" taborder="5" left="5" top="443" height="45" text="&lt;b v='true'&gt;부서코드 연계속성 값 &lt;/b&gt; " cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false" width="190"/>
+        <Grid id="grdDetail" taborder="6" left="0" top="492" binddataset="dsDetail" right="2" autoupdatetype="itemselect" autoenter="select" autofittype="col" height="175">
           <Formats>
             <Format id="default">
               <Columns>
@@ -41,20 +39,20 @@
               <Band id="body">
                 <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
                 <Cell col="1" text="bind:상태"/>
-                <Cell col="2" text="bind:순번"/>
-                <Cell col="3" text="bind:DEPT_CD"/>
+                <Cell col="2" expr="currow+1"/>
+                <Cell col="3" text="bind:BF_DEPT_CD"/>
                 <Cell col="4" text="bind:DEPT_NM"/>
                 <Cell col="5" text="bind:USE_YN"/>
                 <Cell col="6" text="bind:SALY_ACNT" displaytype="combocontrol" edittype="combo"/>
-                <Cell col="7" text="bind:DEPT_CONN_ATTR_CD"/>
+                <Cell col="7" text="bind:AF_DEPT_CD"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_dept_10_00_03" taborder="9" text="엑셀" top="451" width="65" cssclass="btn_WF_Crud" right="95" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
-        <Button id="btn_dept_5" taborder="10" text="저장" top="451" width="65" cssclass="btn_WF_Crud" right="164" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
-        <Static id="stc_dept_10" taborder="11" text="&lt;b v='true'&gt;총건수 : &lt;/b&gt; " top="446" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" right="6" width="79"/>
-        <Grid id="grdMaster" taborder="12" left="0" top="176" right="3" binddataset="dsMaster" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" autofittype="col" onheadclick="grdMaster_onheadclick" height="251" oncellclick="grdMaster_oncellclick">
+        <Button id="btn_dept_10_00_03" taborder="7" text="엑셀" top="451" width="65" cssclass="btn_WF_Crud" right="95" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
+        <Button id="btn_dept_5" taborder="8" text="저장" top="451" width="65" cssclass="btn_WF_Crud" right="164" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
+        <Static id="stRowCnt2" taborder="9" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" top="446" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" right="6" width="79" cssclass="btn_WF_Crud"/>
+        <Grid id="grdMaster" taborder="10" left="0" top="176" right="3" binddataset="dsMaster" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" autofittype="col" onheadclick="grdMaster_onheadclick" height="251" oncellclick="grdMaster_oncellclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -88,19 +86,19 @@
               <Band id="body">
                 <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
                 <Cell col="1" text="bind:상태"/>
-                <Cell col="2" text="bind:순번"/>
-                <Cell col="3" text="bind:DEPT_CONN_ATTR_CD"/>
-                <Cell col="4" text="bind:CMMN_CD_YN"/>
-                <Cell col="5" text="bind:DEPT_CONN_ATTR_NM"/>
-                <Cell col="6" text="bind:MNG_DEPT"/>
-                <Cell col="7" text="bind:SORT_SEQ"/>
-                <Cell col="8" text="bind:REMK"/>
-                <Cell col="9" text="bind:DEPT_CD"/>
+                <Cell col="2" expr="currow+1"/>
+                <Cell col="3" text="bind:DEPT_CONN_ATTR_CD" displaytype="text" edittype="text"/>
+                <Cell col="4" text="bind:CMMN_CD_YN" edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="5" text="bind:DEPT_CONN_ATTR_NM" displaytype="text" edittype="text"/>
+                <Cell col="6" text="bind:MNG_DEPT" displaytype="text" edittype="text"/>
+                <Cell col="7" text="bind:SORT_SEQ" edittype="text" displaytype="number"/>
+                <Cell col="8" text="bind:REMK" displaytype="text" edittype="text"/>
+                <Cell col="9" text="bind:BF_DEPT_CD"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Div id="divSearch" taborder="13" left="0" top="0" height="88" cssclass="div_WF_SearchBox" text="" right="3">
+        <Div id="divSearch" taborder="11" left="0" top="0" height="88" cssclass="div_WF_SearchBox" text="" right="3">
           <Layouts>
             <Layout>
               <Static id="stcDeptConn" taborder="0" text="부서연계 속성명" left="0" top="9" width="143" height="26" cssclass="sta_WF_SearchLbl"/>
@@ -113,12 +111,14 @@
               <Combo id="cboBreuFg" taborder="7" left="498" top="51" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
               <Combo id="cboFlFormaFg" taborder="8" left="706" top="51" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
               <Combo id="cboBdFormaFg" taborder="9" left="929" top="51" width="123" height="22" text="" innerdataset="ds_use_yn" codecolumn="CD" datacolumn="YN" onitemchanged="divSearch_cboUserYn_onitemchanged"/>
-              <Edit id="edtDeptConn" taborder="10" left="119" top="11" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassId_onkeyup"/>
-              <Edit id="edtDeptCd" taborder="11" left="286" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassId_onkeyup"/>
+              <Edit id="edtDeptConn" taborder="10" left="119" top="11" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptConn_onkeyup"/>
+              <Edit id="edtDeptCd" taborder="11" left="286" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtDeptCd_onkeyup"/>
             </Layout>
           </Layouts>
         </Div>
-        <Edit id="edtDeptNm" taborder="14" left="81" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="divSearch_edtClassId_onkeyup"/>
+        <Edit id="edtDeptNm" taborder="12" left="81" top="51" width="127" height="22" imemode="alpha" inputmode="upper" onkeyup="edtDeptNm_onkeyup"/>
+        <Button id="del_dept_info_list_btn_00" taborder="13" text="⊕ 삭제" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="275" cursor="auto" onclick="del_dept_info_list_btn"/>
+        <Button id="add_dept_info_list_btn01" taborder="14" text="⊕ 저장" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="207" cursor="auto" onclick="save_dept_info_list_btn"/>
       </Layout>
     </Layouts>
     <InitValue>
@@ -279,32 +279,6 @@ this.fn_PreRet = function()
 };
 
 /**
- * 기능 : 마스터 조회 실행
- */
-this.fn_Ret = function()
-{
-	if(!this.fn_PreRet())
-	{
-		return false;
-	}
-	// this.dsMaster.set_enableevent(false);
-	var strSvc 		= "Ret";                                                                                                                                               
-	var strUrl 		= "/prj/com/deptCdConnAttrInfoList.do";                                                                                             
-	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
-	var strOutDs 	= "dsMaster=dsMaster";                                                                                                                                            
-	var strArg 		= "";                                                                                                                                                     
-	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
-	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
-	this.gfn_Transaction(strSvc                                                                                                                                                                                  
-				   		, strUrl                                                                                                                                                                     
-				   		, strInDs                                                                                                                                                                    
-				   		, strOutDs                                                                                                                                                                   
-				   		, strArg                                                                                                                                                                     
-				   		, strCallBack                                                                                                                                                                
-				   		, strASync);	                                                                                                                                                                
-};
-
-/**
  * 기능 : 조회 후 실행
  */
 this.fn_PostRet = function()
@@ -312,6 +286,7 @@ this.fn_PostRet = function()
 	this.dsMaster.set_enableevent(true);
 	//trace(this.dsMaster.saveXML());
 	this.gfn_getRowCount(this.stRowCnt,this.dsMaster);
+	this.gfn_getRowCount(this.stRowCnt2,this.dsDetail);
 };
 /**********************************************************************
 	06. 추가 함수 선언
@@ -462,6 +437,7 @@ this.fn_PreSave = function()
 	*/
 	return true;
 };
+
 /**
  * 기능 : 저장 실행
  */
@@ -493,6 +469,7 @@ this.fn_Save = function()
  */
 this.fn_PostSave = function()
 {
+	//this.fn_Ret();
 };
 /**********************************************************************
 	09. 초기화
@@ -525,7 +502,7 @@ this.fn_Excel = function()
 ***********************************************************************/
 /*
  *	그리를 더블 클릭시 멀티소팅처리하는이벤트
- */
+
 this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 	if(e.cell != this.grdMaster.getBindCellIndex("body","CHK") && e.cell != 1)
@@ -533,9 +510,10 @@ this.grdMaster_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEve
 		this.gfn_gridSort(obj,e);
 	}
 };
+ */
 /*
  *	그리헤더에 올체크어리하는 이벤트
- */
+
 this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 	if(e.cell == this.grdMaster.getBindCellIndex("body","CHK"))
@@ -543,7 +521,7 @@ this.grdMaster_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
 		this.gfn_checkAll(obj, e,true);
 	}
 };
-
+ */
 /*
  * 조회조건을 콤보의 내영이 변경될때 바로 조회하는 이벤트
  */
@@ -564,36 +542,6 @@ this.dvSearch_edFormName_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventI
 	}	
 };
 
-/*
- * 조회조건을 콤보의 내영이 변경될때 바로 조회하는 이벤트
- */
-this.dvSearch_cboUseYn_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
-{
-	this.fn_Ret();
-};
-
-
-/*
- * 조회조건을 Enter(엔터)를 첫을 바로 조회하는 이벤트	
- */
-this.dvSearch_edFormId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
-{
-	if(e.keycode == 13)
-	{
-		this.fn_Ret();
-	}
-};
-/*
- * 조회조건을 Enter(엔터)를 첫을 바로 조회하는 이벤트	
- */
-this.dvSearch_edUiId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
-{
-	if(e.keycode == 13)							// Enter:13 코드
-	{
-		this.fn_Ret();
-	}	
-};
-
 /**
   * 닫을시 사용자가 변경유무를 체크(공통처리)
  **/
@@ -609,10 +557,36 @@ this.add_dept_info_list_btn_onclick = function(obj:nexacro.Button,e:nexacro.Clic
 	this.dsMaster.addRow();
 };
 
+/**
+ * 기능 : 마스터 조회 실행
+ */
+this.fn_Ret = function()
+{
+	if(!this.fn_PreRet())
+	{
+		return false;
+	}
+	// this.dsMaster.set_enableevent(false);
+	var strSvc 		= "Ret";                                                                                                                                               
+	var strUrl 		= "/prj/com/deptCdConnAttrInfoList.do";                                                                                             
+	var strInDs  	= "ds_input=ds_input";                                                                                                                                            
+	var strOutDs 	= "dsMaster=dsMaster";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync);	                                                                                                                                                                
+};
+
 this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	var cellClickDeptCD = this.dsMaster.getColumn(this.dsMaster.rowposition, "DEPT_CD");
-	this.ds_input.setColumn(0, "DEPT_CD", cellClickDeptCD);
+	var cellClickDeptCD = this.dsMaster.getColumn(this.dsMaster.rowposition, "BF_DEPT_CD");
+	this.ds_input.setColumn(0, "BF_DEPT_CD", cellClickDeptCD);
 	
 	if(!this.fn_PreRet())
 	{
@@ -635,6 +609,76 @@ this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
 				   		, strASync);
 	
 };
+
+this.save_dept_info_list_btn = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.fn_PreSave())
+	{
+		return false;
+	}
+	var strSvc 		= "Save";                                                                                                                                                 
+	var strUrl 		= "/prj/com/deptCdConnAttrInfoSave.do";                                                                                                 
+	var strInDs  	= "ds_input=ds_input:a ";                                                                                                                                         
+		strInDs    += "dsMaster=dsMaster:u";                                                                                                                                     
+	var strOutDs 	= "dsMaster=dsMaster";                                                                                                                                            
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync); 
+};
+
+this.del_dept_info_list_btn = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.fn_PreDel())
+	{
+		return false;
+	}
+
+	var strSvc 		= "Del";                                                                                                                                               
+	var strUrl 		= "/prj/com/deptCdConnAttrInfoDel.do";                                                                                               
+	var strInDs  	= "dsMaster=dsMaster:u";                                                                                                                                          
+	var strOutDs 	= "";                                                                                                                                                             
+	var strArg 		= "";                                                                                                                                                     
+	var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack                                                                                                                    
+	var strASync    = true;			   //샏략이나 공백일시에는 ASync=true,싱크시는 false로                                                                                                          
+	this.gfn_Transaction(strSvc                                                                                                                                                                                  
+				   		, strUrl                                                                                                                                                                     
+				   		, strInDs                                                                                                                                                                    
+				   		, strOutDs                                                                                                                                                                   
+				   		, strArg                                                                                                                                                                     
+				   		, strCallBack                                                                                                                                                                
+				   		, strASync);
+};
+
+this.divSearch_edtDeptConn_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
+
+this.divSearch_edtDeptCd_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
+
+this.edtDeptNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fn_Ret();
+	}	
+};
 ]]></Script>
     <Objects>
       <Dataset id="dsMaster">
@@ -648,7 +692,7 @@ this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
           <Column id="MNG_DEPT" type="STRING" size="256"/>
           <Column id="SORT_SEQ" type="STRING" size="256"/>
           <Column id="REMK" type="STRING" size="256"/>
-          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="BF_DEPT_CD" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -659,11 +703,11 @@ this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
           <Column id="CHK" type="STRING" size="256"/>
           <Column id="상태" type="STRING" size="256"/>
           <Column id="순번" type="STRING" size="256"/>
-          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="BF_DEPT_CD" type="STRING" size="256"/>
           <Column id="DEPT_NM" type="STRING" size="256"/>
           <Column id="USE_YN" type="STRING" size="256"/>
           <Column id="SALY_ACNT" type="STRING" size="256"/>
-          <Column id="DEPT_CONN_ATTR_CD" type="STRING" size="256"/>
+          <Column id="AF_DEPT_CD" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -671,12 +715,19 @@ this.grdMaster_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
       </Dataset>
       <Dataset id="ds_input">
         <ColumnInfo>
-          <Column id="DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_CONN_ATTR_NM" type="STRING" size="256"/>
+          <Column id="BF_DEPT_CD" type="STRING" size="256"/>
+          <Column id="DEPT_NM" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
         </Rows>
       </Dataset>
     </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtDeptConn" propid="value" datasetid="ds_input" columnid="DEPT_CONN_ATTR_NM"/>
+      <BindItem id="item1" compid="edtDeptNm" propid="value" datasetid="ds_input" columnid="DEPT_NM"/>
+      <BindItem id="item2" compid="divSearch.form.edtDeptCd" propid="value" datasetid="ds_input" columnid="DEPT_CD"/>
+    </Bind>
   </Form>
 </FDL>

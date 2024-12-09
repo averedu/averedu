@@ -179,16 +179,37 @@ public interface CsyscdSvc {
 	public void deptHistDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
 			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 
+	
 	/**
-	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrList)
+	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+	public void deptCdConnAttrInfoList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
-
+	
+	/**
+	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deptCdConnAttrValList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    
+    
+    /**                                                                                                      	
+     * 부서코드연계속성정보 삭제(deptCdConnAttrInfoDel)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */  
+    public void deptCdConnAttrInfoDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;         
+    
 	/**
 	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
 	 * 
@@ -196,17 +217,11 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+	public void deptCdConnAttrInfoSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 
-	/**
-	 * 부서코드연계속성정보 삭제 (deptCdConnAttrDel)
-	 * 
-	 * @param input
-	 * @return
-	 * @throws Exception
-	 */
-	public void deptCdConnAttrDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 	
+	
+           
+   
 }

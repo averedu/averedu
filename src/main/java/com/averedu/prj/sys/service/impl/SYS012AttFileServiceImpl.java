@@ -436,11 +436,15 @@ public class SYS012AttFileServiceImpl extends EgovAbstractServiceImpl implements
 			for (Map<String, Object> mapDt : attFileDetailMapList )
 			{
                 //pk레코드조회                                                                                          	
-                List <Map> recordDtKeyValue = sys012AttFileDAO.retrieveAttFileDetailListPKey(mapDt);                           
+                //List <Map> recordDtKeyValue = sys012AttFileDAO.retrieveAttFileDetailListPKey(mapDt);                           
                                                                                                                              
-                Map<String, Object> mapKeyValue = (Map<String, Object>)recordDtKeyValue.get(0);                               
-                mapDt.put("ATTFL_SN", mapKeyValue.get("KEY_CODE").toString());
-                
+                //Map<String, Object> mapKeyValue = (Map<String, Object>)recordDtKeyValue.get(0);                               
+                //mapDt.put("ATTFL_SN", mapKeyValue.get("KEY_CODE").toString());
+				mapDt.put("REG_ID", sessionVO.getUserId().toString());
+				mapDt.put("MOD_ID", sessionVO.getUserId().toString());
+				mapDt.put("SESSION_IP", sessionVO.getIpAddress().toString());
+				mapDt.put("ATTFL_NO", ATTFL_NO);
+				
                 sys012AttFileDAO.insertAttFileDetailList(mapDt);
 			}
 			
@@ -450,7 +454,7 @@ public class SYS012AttFileServiceImpl extends EgovAbstractServiceImpl implements
 		} 
 		
 		// 첨부여부 반영		
-		sys012AttFileDAO.update02AttFileList(map);
+		//sys012AttFileDAO.update02AttFileList(map);
 		
 		
 		// DataSet 결과 반환 
@@ -841,14 +845,11 @@ public class SYS012AttFileServiceImpl extends EgovAbstractServiceImpl implements
 					            
 			if ( rowType == DataSet.ROW_TYPE_DELETED ) {        
 				// 파일삭제
-				String filePath = map.get("ATTFL_PATH_NM").toString() + map.get("ATTFL_PHYSC_NM").toString();  				
-				deleteFilePhy(filePath);
+//				String filePath = map.get("ATTFL_PATH_NM").toString() + map.get("ATTFL_PHYSC_NM").toString();  				
+//				deleteFilePhy(filePath);
 				
 				// DB삭제
-				sys012AttFileDAO.deleteAttFileDetailList(map);
-				
-				// 첨부여부 반영
-				sys012AttFileDAO.update02AttFileList(map);				
+				sys012AttFileDAO.deleteAttFileDetailList(map);				
 			}
 		}
 				

@@ -13,7 +13,7 @@
             this.set_titletext("부서코드관리");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1640,910);
+                this._setFormPosition(1650,910);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -958,13 +958,13 @@
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Static("stcFlFormaFg","203","49","130","26",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("5");
+            obj.set_taborder("6");
             obj.set_text("최종부서여부");
             obj.set_cssclass("sta_WF_SearchLbl");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Combo("cboFlFormaFg","350","51","123","22",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("6");
+            obj.set_taborder("7");
             obj.set_innerdataset("dsFlDeptYn");
             obj.set_codecolumn("FL_DEPT_YN");
             obj.set_datacolumn("FL_DEPT_YN");
@@ -972,7 +972,7 @@
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Button("btnSearch","1540","25","90","22",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("7");
+            obj.set_taborder("5");
             obj.set_text("조회");
             obj.set_cssclass("btn_WF_Crud");
             this.divSearch.addChild(obj.name, obj);
@@ -1040,7 +1040,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1640,910,this,function(p){});
+            obj = new Layout("default","",1650,910,this,function(p){});
             obj.set_mobileorientation("landscape");
             this.addLayout(obj.name, obj);
             
@@ -1536,7 +1536,6 @@
 
         this.fn_PostDel = function()
         {
-
         };
         /**********************************************************************
         	08. 저장 함수 선언

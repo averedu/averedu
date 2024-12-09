@@ -308,7 +308,7 @@
         };
         
         // User Script
-        this.registerScript("CSYSCD0100_pop_copy0.xfdl", function() {
+        this.registerScript("CSYSCD0100_pop_bak.xfdl", function() {
         /**********************************************************************
         * FormID(화면   ID명): CSYSCD0100_pop.xfdl(공통코드조회/등록/수정/삭제)
         * 작 성			일 명: jiback
@@ -1157,7 +1157,7 @@
             this.dsGrp.addEventHandler("onrowposchanged",this.dsGrp_onrowposchanged,this);
             this.dsMaster.addEventHandler("onrowposchanged",this.dsMaster_onrowposchanged,this);
         };
-        this.loadIncludeScript("CSYSCD0100_pop_copy0.xfdl");
+        this.loadIncludeScript("CSYSCD0100_pop_bak.xfdl");
         this.loadPreloadList();
         
         // Remove Reference

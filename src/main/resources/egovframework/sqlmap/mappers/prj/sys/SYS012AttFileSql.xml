@@ -68,7 +68,7 @@
         <![CDATA[
             SELECT
                    COUNT(1) AS CNT
-              FROM COMM.XBT_ATTFL_MASTER
+              FROM COM.CSYS511
              WHERE 1=1
                AND ATTFL_NO             = #{ATTFL_NO}
         ]]>
@@ -77,26 +77,32 @@
     <!-- SYS012AttFileDAO.insertAttFileList 첨부파일마스터 저장 -->	
     <insert id="SYS012AttFileDAO.insertAttFileList" parameterType="map"> 
         <![CDATA[                                                														  
-            INSERT INTO COMM.XBT_ATTFL_MASTER                                       										  
+            INSERT INTO COM.CSYS510                                       										  
             (                                       																	  
-                   ATTFL_NO                      /*첨부파일번호*/ 
-                 , ATTFL_DC                      /*첨부파일설명*/ 
-                 , USE_YN                        /*사용여부*/ 
-                 , NLOGN_SVC_TRGET_YN            /*비로그인서비스대상여부*/ 
-                 , REG_ID                        /*등록자*/ 
-                 , REG_DT                        /*등록일시*/ 
-                 , MOD_ID                        /*수정자*/ 
-                 , MOD_DT                        /*수정일시*/ 
+				 ATCH_FILE_ID
+				,ATCH_FILE_TABLE_NM
+				,USE_YN
+				,FRST_INPUT_ID
+				,FRST_INPUT_DT
+				,FRST_INPUT_MENU_ID
+				,FRST_INPUT_IP
+				,LAST_MODF_ID
+				,LAST_MODF_DT
+				,LAST_MODF_MENU_ID
+				,LAST_MODF_IP
             )VALUES                                                  														
-            (                                                        														
-                   #{ATTFL_NO} 
-                 , #{ATTFL_DC}  
-                 , #{USE_YN}  
-                 , #{NLOGN_SVC_TRGET_YN}  
-                 , #{REG_ID}  
-                 , SYSDATE                                   
-                 , #{MOD_ID}  
-                 , SYSDATE                                   
+            (
+                  (SELECT LPAD(NVL(MAX(TO_NUMBER(ATCH_FILE_ID))+1,'1'),31,'0') FROM COM.CSYS510) 
+                 , #{attflFileTableNm}  
+                 , #{useYn}
+                 , #{MOD_ID}
+                 , SYSDATE  
+                 , ''     
+                 , ''                                        
+                 , #{MOD_ID}
+                 , SYSDATE  
+                 , ''     
+                 , ''                           
             )	                                                      						
         ]]>                                    											
     </insert>                                                           					
@@ -172,7 +178,7 @@
     <!-- SYS012AttFileDAO.deleteAttFileList 첨부파일마스터 삭제 -->								       
     <delete id="SYS012AttFileDAO.deleteAttFileList" parameterType="map">    
         <![CDATA[                                                           												  
-            DELETE FROM COMM.XBT_ATTFL_MASTER                                                  							      
+            DELETE FROM COM.CSYS511                                                  							      
              WHERE 1=1
                AND ATTFL_NO             = #{ATTFL_NO}  
         ]]>
@@ -182,45 +188,41 @@
     <!-- SYS012AttFileDAO.retrieveAttFileDetailList 첨부파일상세 조회 -->	                                 
     <select id="SYS012AttFileDAO.retrieveAttFileDetailList" parameterType="map" resultType="egovMap"> 
         <![CDATA[                                                													
-            SELECT                                                  											    
-                   '0' AS CHK                      /*CHK*/        		                
-                 , A.ATTFL_NO                      /*첨부파일번호*/             
-                 , A.ATTFL_SN                      /*첨부파일순번*/             
-                 , A.ATTFL_LOGIC_NM                /*첨부파일논리명*/             
-                 , A.ATTFL_PATH_NM                 /*첨부파일경로명*/             
-                 , A.ATTFL_PHYSC_NM                /*첨부파일물리명*/             
-                 , A.ATTFL_EXTSN_NM                /*첨부파일확장자명*/             
-                 , A.ATTFL_BYTE_SIZE               /*첨부파일바이트사이즈*/
-                 , CEIL(TO_NUMBER(A.ATTFL_BYTE_SIZE) / 1024) AS FILE_SIZE             
-                 , A.INDCT_ORD                     /*표시순서*/             
-                 , A.REG_ID                        /*등록자*/             
-                 , A.REG_DT                        /*등록일시*/             
-                 , A.MOD_ID                        /*수정자*/             
-                 , A.MOD_DT                        /*수정일시*/
-                 , B.ATTFL_DC
-                 , B.NLOGN_SVC_TRGET_YN
-              FROM COMM.XBT_ATTFL_DETAIL A
-                 , COMM.XBT_ATTFL_MASTER B
-             WHERE A.ATTFL_NO = B.ATTFL_NO
-               AND A.ATTFL_NO             = #{ATTFL_NO}                        
+				SELECT
+				'0' AS CHK                      /*CHK*/ 			
+				,A.ATCH_FILE_ID
+				,A.ATCH_FILE_TABLE_NM
+				,A.USE_YN
+				,B.ATTFL_FILE_SEQ      AS INDCT_ORD
+				,B.ATCH_FILE_FG_CD
+				,B.ATCH_FILE_LOGIC_NM  AS ATTFL_LOGIC_NM
+				,B.ATCH_FILE_PHYSIC_NM AS ATTFL_PHYSC_NM
+				,B.ATCH_FILE_PATH_NM
+				,B.ATCH_FILE_SIZE      AS FILE_SIZE
+				,B.ATCH_FILE_ADD_NM
+				,B.PRN_SEQ			  
+				,B.ATTFL_NO
+				FROM COM.CSYS510 A 
+				    ,COM.CSYS511 B
+				WHERE 1=1 
+				AND A.ATCH_FILE_ID = B.ATCH_FILE_ID                        
         ]]>
-                                                         												                                                                                                    
-        <if test="ATTFL_SN != null and ATTFL_SN != ''">    
+        <if test="atchFileId != null and atchFileId != ''">    
             <![CDATA[                                         							                        
-               AND A.ATTFL_SN             = #{ATTFL_SN}  
+               AND A.ATCH_FILE_ID       = #{atchFileId}  
             ]]>                                           													
         </if>
        <if test="attflLogicNm != null and attflLogicNm != ''">
             <![CDATA[       
-   		  	   AND A.ATTFL_LOGIC_NM = #{attflLogicNm}
+   		  	   AND A.ATCH_FILE_LOGIC_NM = #{attflLogicNm}
             ]]>
        </if>
        <if test="attflPhyscNm != null and attflPhyscNm != ''">
             <![CDATA[
-       	   	   AND A.ATTFL_PHYSC_NM = #{attflPhyscNm}
+       	   	   AND A.ATCH_FILE_PHYSIC_NM = #{attflPhyscNm}
             ]]>
        </if>       
-          ORDER BY A.INDCT_ORD, A.ATTFL_LOGIC_NM
+          ORDER BY B.ATTFL_FILE_SEQ, A.ATCH_FILE_TABLE_NM
     </select> 	
     
 
@@ -229,7 +231,7 @@
         <![CDATA[                                                													 
             SELECT                                                  											     
                    LPAD(NVL(MAX(TO_NUMBER(ATTFL_SN))+1,'1'),3,'0') AS KEY_CODE        								     
-              FROM COMM.XBT_ATTFL_DETAIL                                             								 
+              FROM COM.CSYS511                                             								 
              WHERE 1=1                                             												     
                AND ATTFL_NO             = #{ATTFL_NO}        
         ]]>                                                      												             
@@ -240,7 +242,7 @@
         <![CDATA[
             SELECT
                    COUNT(1) AS CNT
-              FROM COMM.XBT_ATTFL_DETAIL
+              FROM COM.CSYS511
              WHERE 1=1
                AND ATTFL_NO             = #{ATTFL_NO}
         ]]>
@@ -249,39 +251,48 @@
     <!-- SYS012AttFileDAO.insertAttFileDetailList 첨부파일상세 저장 -->	
     <insert id="SYS012AttFileDAO.insertAttFileDetailList" parameterType="map"> 
         <![CDATA[                                                														  
-            INSERT INTO COMM.XBT_ATTFL_DETAIL                                       										  
-            (                                       																	  
-                   ATTFL_NO                      /*첨부파일번호*/ 
-                 , ATTFL_SN                      /*첨부파일순번*/ 
-                 , ATTFL_LOGIC_NM                /*첨부파일논리명*/ 
-                 , ATTFL_PATH_NM                 /*첨부파일경로명*/ 
-                 , ATTFL_PHYSC_NM                /*첨부파일물리명*/ 
-                 , ATTFL_EXTSN_NM                /*첨부파일확장자명*/ 
-                 , ATTFL_BYTE_SIZE               /*첨부파일바이트사이즈*/ 
-                 , INDCT_ORD                     /*표시순서*/ 
-                 , REG_ID                        /*등록자*/ 
-                 , REG_DT                        /*등록일시*/ 
-                 , MOD_ID                        /*수정자*/ 
-                 , MOD_DT                        /*수정일시*/ 
-            )VALUES                                                  														
-            (                                                        														
-                   #{ATTFL_NO} 
-                 , #{ATTFL_SN}  
-                 , #{ATTFL_LOGIC_NM}  
-                 , #{ATTFL_PATH_NM}  
-                 , #{ATTFL_PHYSC_NM}  
-                 , #{ATTFL_EXTSN_NM}  
-                 , #{ATTFL_BYTE_SIZE}  
-                 , (
-                     SELECT NVL(MAX(S.INDCT_ORD), 0) + 1 
-                       FROM COMM.XBT_ATTFL_DETAIL S
-                      WHERE S.ATTFL_NO = #{ATTFL_NO} 
-                   ) 
-                 , #{REG_ID}  
-                 , SYSDATE                                   
-                 , #{MOD_ID}  
-                 , SYSDATE                                   
-            )	                                                      						
+	INSERT INTO COM.CSYS511
+	(
+	ATCH_FILE_ID
+	,ATTFL_FILE_SEQ
+	,ATCH_FILE_FG_CD
+	,ATCH_FILE_LOGIC_NM
+	,ATCH_FILE_PHYSIC_NM
+	,ATCH_FILE_PATH_NM
+	,ATCH_FILE_SIZE
+	,ATCH_FILE_ADD_NM
+	,PRN_SEQ
+	,FRST_INPUT_ID
+	,FRST_INPUT_DT
+	,FRST_INPUT_MENU_ID
+	,FRST_INPUT_IP
+	,LAST_MODF_ID
+	,LAST_MODF_DT
+	,LAST_MODF_MENU_ID
+	,LAST_MODF_IP
+	,ATTFL_NO
+	)
+	VALUES
+	(
+ 	  (SELECT NVL(MAX(ATCH_FILE_ID),'') FROM COM.CSYS510)
+	 ,(SELECT NVL(MAX(ATTFL_FILE_SEQ), 0) + 1 FROM COM.CSYS511)  
+	 ,#{atchFileFgCd}
+	 ,#{ATTFL_LOGIC_NM} -- WHILE LOOP 에서 가져온 파일정보
+	 ,#{ATTFL_PHYSC_NM} -- WHILE LOOP 에서 가져온 파일정보
+	 ,#{ATTFL_PATH_NM}  -- WHILE LOOP 에서 가져온 파일정보
+	 ,#{ATTFL_BYTE_SIZE} -- WHILE LOOP 에서 가져온 파일정보
+	 ,#{atchFileAddNm}
+	 ,#{prnSeq}
+	 , #{REG_ID}
+	 , SYSDATE
+	 ,''
+	 ,#{SESSION_IP}
+	 ,#{REG_ID}
+	 ,SYSDATE
+	 ,''
+	 ,#{SESSION_IP}
+	 ,#{ATTFL_NO}
+	)                                                     						
         ]]>                                    											
     </insert>                                                           					
 
@@ -356,10 +367,9 @@
     <!-- SYS012AttFileDAO.deleteAttFileDetailList 첨부파일상세 삭제 -->								       
     <delete id="SYS012AttFileDAO.deleteAttFileDetailList" parameterType="map">    
         <![CDATA[                                                           												  
-            DELETE FROM COMM.XBT_ATTFL_DETAIL                                                  							      
+            DELETE FROM COM.CSYS511                                                  							      
              WHERE 1=1
-               AND ATTFL_NO             = #{ATTFL_NO}  
-               AND ATTFL_SN             = #{ATTFL_SN}  
+               AND ATTFL_NO             = #{ATTFL_NO}                  
         ]]>
     </delete>
     

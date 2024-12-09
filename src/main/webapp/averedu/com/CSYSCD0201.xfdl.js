@@ -59,7 +59,7 @@
             obj.set_cursor("auto");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_4",null,"136","65","31","140",null,null,null,null,null,this);
+            obj = new Button("btn_grdMaster_excel",null,"136","65","31","140",null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("엑셀");
             obj.set_cssclass("btn_WF_Crud");
@@ -93,7 +93,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"37\"/><Column size=\"68\"/><Column size=\"60\"/><Column size=\"122\"/><Column size=\"215\"/><Column size=\"75\"/><Column size=\"126\"/><Column size=\"141\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"CHK\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"상태\"/><Cell col=\"2\" text=\"순번\"/><Cell col=\"3\" text=\"부서코드\"/><Cell col=\"4\" text=\"부서명\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"급여회계매핑\"/><Cell col=\"7\" text=\"부서연계속성코드\"/></Band><Band id=\"body\"><Cell text=\"bind:CHK\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"bind:상태\"/><Cell col=\"2\" expr=\"currow+1\"/><Cell col=\"3\" text=\"bind:BF_DEPT_CD\"/><Cell col=\"4\" text=\"bind:DEPT_NM\"/><Cell col=\"5\" text=\"bind:USE_YN\"/><Cell col=\"6\" text=\"bind:SALY_ACNT\" displaytype=\"combocontrol\" edittype=\"combo\"/><Cell col=\"7\" text=\"bind:AF_DEPT_CD\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_dept_10_00_03",null,"451","65","31","95",null,null,null,null,null,this);
+            obj = new Button("btn_grdDetail_excel",null,"451","65","31","95",null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("엑셀");
             obj.set_cssclass("btn_WF_Crud");
@@ -812,6 +812,48 @@
         	}
         };
 
+        this.fn_Excel = function()
+        {
+        	if(this.dsMaster.rowcount < 1)
+        	{
+        		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
+        		return false;
+        	}
+        	var result = this.gfn_confirm("Excel을 출력하시겠습니까?", "EXCEL 출력","", "question" );
+
+        	if(result == 0)
+        	{
+        	   return false;
+        	}
+        	this.gfn_excelExport(this.grdMaster);
+        };
+
+        this.fn_ExcelSub = function()
+        {
+        	if(this.dsDetail.rowcount < 1)
+        	{
+        		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
+        		return false;
+        	}
+        	var result = this.gfn_confirm("Excel을 출력하시겠습니까?", "EXCEL 출력","", "question" );
+
+        	if(result == 0)
+        	{
+        	   return false;
+        	}
+        	this.gfn_excelExport(this.dsDetail);
+        };
+
+        this.btn_grdMaster_excel_onclick = function(obj,e)
+        {
+        	this.fn_Excel();
+        };
+
+        this.btn_grdDetail_excel_onclick = function(obj,e)
+        {
+        	this.fn_ExcelSub();
+        };
+
         });
         
         // Regist UI Components Event
@@ -821,10 +863,10 @@
             this.stc_dept_07.addEventHandler("onclick",this.stc_09_00_onclick,this);
             this.stc_dept_07_00.addEventHandler("onclick",this.stc_09_00_onclick,this);
             this.add_dept_info_list_btn.addEventHandler("onclick",this.add_dept_info_list_btn_onclick,this);
-            this.btn_dept_4.addEventHandler("onclick",this.divHakgwa_btnJeongong_onclick,this);
+            this.btn_grdMaster_excel.addEventHandler("onclick",this.btn_grdMaster_excel_onclick,this);
             this.stRowCnt.addEventHandler("onclick",this.stc_dept_08_onclick,this);
             this.stc_dept_09.addEventHandler("onclick",this.stc_09_00_onclick,this);
-            this.btn_dept_10_00_03.addEventHandler("onclick",this.divHakgwa_btnJeongong_onclick,this);
+            this.btn_grdDetail_excel.addEventHandler("onclick",this.btn_grdDetail_excel_onclick,this);
             this.btn_dept_5.addEventHandler("onclick",this.divHakgwa_btnJeongong_onclick,this);
             this.grdMaster.addEventHandler("onheadclick",this.grdMaster_onheadclick,this);
             this.grdMaster.addEventHandler("oncellclick",this.grdMaster_oncellclick,this);

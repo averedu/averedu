@@ -6,7 +6,7 @@
         <Static id="stc_dept_07" taborder="0" left="5" top="112" text="&lt;b v='true'&gt;부서코드 연계속성 정보&lt;/b&gt; " cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false" width="190" height="45"/>
         <Static id="stc_dept_07_00" taborder="1" left="195" top="112" text="* 부서코드 연계속성 정보 삭제 시 해당 정보의 연계속성 값이 같이 삭제됩니다." cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#ff1e1e" usedecorate="true" enableevent="false" width="512" height="45"/>
         <Button id="add_dept_info_list_btn" taborder="2" text="⊕ 추가" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="342" onclick="add_dept_info_list_btn_onclick" cursor="auto"/>
-        <Button id="btn_dept_4" taborder="3" text="엑셀" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="140" onclick="divHakgwa_btnJeongong_onclick" cursor="auto"/>
+        <Button id="btn_grdMaster_excel" taborder="3" text="엑셀" top="136" width="65" height="31" cssclass="btn_WF_Crud" right="140" cursor="auto" onclick="btn_grdMaster_excel_onclick"/>
         <Static id="stRowCnt" taborder="4" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" top="130" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" onclick="stc_dept_08_onclick" width="96" right="19" cssclass="btn_WF_Crud"/>
         <Static id="stc_dept_09" taborder="5" left="5" top="443" height="45" text="&lt;b v='true'&gt;부서코드 연계속성 값 &lt;/b&gt; " cssclass="stc_dept_07" onclick="stc_09_00_onclick" color="#000000" usedecorate="true" enableevent="false" width="190"/>
         <Grid id="grdDetail" taborder="6" left="0" top="492" binddataset="dsDetail" right="2" autoupdatetype="itemselect" autoenter="select" autofittype="col" height="175">
@@ -49,7 +49,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_dept_10_00_03" taborder="7" text="엑셀" top="451" width="65" cssclass="btn_WF_Crud" right="95" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
+        <Button id="btn_grdDetail_excel" taborder="7" text="엑셀" top="451" width="65" cssclass="btn_WF_Crud" right="95" cursor="auto" height="31" onclick="btn_grdDetail_excel_onclick"/>
         <Button id="btn_dept_5" taborder="8" text="저장" top="451" width="65" cssclass="btn_WF_Crud" right="164" onclick="divHakgwa_btnJeongong_onclick" cursor="auto" height="31"/>
         <Static id="stRowCnt2" taborder="9" text="[총 &lt;fc v='red'&gt;&lt;b v='true'&gt;0 &lt;/b&gt;&lt;/fc&gt;건]" top="446" height="42" usedecorate="true" font="13px/normal &quot;Malgun Gothic&quot;" right="6" width="79" cssclass="btn_WF_Crud"/>
         <Grid id="grdMaster" taborder="10" left="0" top="176" right="3" binddataset="dsMaster" autoenter="select" autoupdatetype="itemselect" cellsizingtype="col" autofittype="col" onheadclick="grdMaster_onheadclick" height="251" oncellclick="grdMaster_oncellclick">
@@ -678,6 +678,48 @@ this.edtDeptNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
 	{
 		this.fn_Ret();
 	}	
+};
+
+this.fn_Excel = function()
+{
+	if(this.dsMaster.rowcount < 1)
+	{
+		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
+		return false;
+	}
+	var result = this.gfn_confirm("Excel을 출력하시겠습니까?", "EXCEL 출력","", "question" );
+	
+	if(result == 0)
+	{
+	   return false;
+	}
+	this.gfn_excelExport(this.grdMaster);
+};
+
+this.fn_ExcelSub = function()
+{
+	if(this.dsDetail.rowcount < 1)
+	{
+		this.gfn_alert("출력할 엑셀데이터가 없습니다.!", "EXCEL 정보" ,"information");
+		return false;
+	}
+	var result = this.gfn_confirm("Excel을 출력하시겠습니까?", "EXCEL 출력","", "question" );
+	
+	if(result == 0)
+	{
+	   return false;
+	}
+	this.gfn_excelExport(this.dsDetail);
+};
+
+this.btn_grdMaster_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Excel();
+};
+
+this.btn_grdDetail_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_ExcelSub();
 };
 ]]></Script>
     <Objects>

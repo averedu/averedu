@@ -19,12 +19,12 @@
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsMaster", this);
             obj.set_useclientlayout("true");
-            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"PROG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_PATH_NM\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_NM\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_KND_SE_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"SYS_SE_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"BUSNS_LCLAS_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"BUSNS_MLSFC_CODE\" type=\"DATETIME\" size=\"17\"/><Column id=\"USE_AT\" type=\"STRING\" size=\"32\"/><Column id=\"SORT_SN\" type=\"DATETIME\" size=\"17\"/><Column id=\"FRST_INPTR_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_UPDSR\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_CODE\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CHK\"/><Col id=\"PROG_ID\"/><Col id=\"PGM_PATH_NM\"/><Col id=\"PGM_NM\"/><Col id=\"PGM_KND_SE_CODE\"/><Col id=\"SYS_SE_CODE\"/><Col id=\"BUSNS_LCLAS_CODE\"/><Col id=\"BUSNS_MLSFC_CODE\"/><Col id=\"USE_AT\"/><Col id=\"SORT_SN\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"32\"/><Column id=\"PROG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_PATH_NM\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_NM\" type=\"STRING\" size=\"32\"/><Column id=\"PGM_KND_SE_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"SYS_SE_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"BUSNS_LCLAS_CODE\" type=\"STRING\" size=\"32\"/><Column id=\"BUSNS_MLSFC_CODE\" type=\"DATETIME\" size=\"17\"/><Column id=\"USE_AT\" type=\"STRING\" size=\"32\"/><Column id=\"SORT_SN\" type=\"DATETIME\" size=\"17\"/><Column id=\"FRST_INPTR_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FRST_INPUT_DT\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_UPDSR\" type=\"STRING\" size=\"256\"/><Column id=\"LAST_MODF_CODE\" type=\"STRING\" size=\"256\"/><Column id=\"ATTFL_NM\" type=\"STRING\" size=\"256\"/><Column id=\"ATTFL_NO\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CHK\"/><Col id=\"PROG_ID\"/><Col id=\"PGM_PATH_NM\"/><Col id=\"PGM_NM\"/><Col id=\"PGM_KND_SE_CODE\"/><Col id=\"SYS_SE_CODE\"/><Col id=\"BUSNS_LCLAS_CODE\"/><Col id=\"BUSNS_MLSFC_CODE\"/><Col id=\"USE_AT\"/><Col id=\"SORT_SN\"/></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("ds_input", this);
-            obj._setContents("<ColumnInfo><Column id=\"PROG_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FORM_ID\" type=\"STRING\" size=\"256\"/><Column id=\"PGM_NM\" type=\"STRING\" size=\"256\"/><Column id=\"USER_YN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"PROG_ID\"/><Col id=\"FORM_ID\"/><Col id=\"PGM_NM\"/><Col id=\"USER_YN\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"PROG_ID\" type=\"STRING\" size=\"256\"/><Column id=\"FORM_ID\" type=\"STRING\" size=\"256\"/><Column id=\"PGM_NM\" type=\"STRING\" size=\"256\"/><Column id=\"USER_YN\" type=\"STRING\" size=\"256\"/><Column id=\"ATTFL_NO\" type=\"STRING\" size=\"256\"/><Column id=\"ATTFL_NM\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"PROG_ID\"/><Col id=\"FORM_ID\"/><Col id=\"PGM_NM\"/><Col id=\"USER_YN\"/></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -46,9 +46,19 @@
             obj = new Dataset("dsGPrefix", this);
             obj._setContents("<ColumnInfo><Column id=\"CLASS_ID\" type=\"STRING\" size=\"32\"/><Column id=\"CODE\" type=\"STRING\" size=\"32\"/><Column id=\"CODE_NM\" type=\"STRING\" size=\"32\"/><Column id=\"SORT\" type=\"BIGDECIMAL\" size=\"16\"/><Column id=\"ADDR\" type=\"STRING\" size=\"32\"/><Column id=\"CD_DC\" type=\"STRING\" size=\"32\"/><Column id=\"REF_1\" type=\"STRING\" size=\"32\"/><Column id=\"REF_2\" type=\"STRING\" size=\"32\"/><Column id=\"REF_3\" type=\"STRING\" size=\"32\"/><Column id=\"REF_4\" type=\"STRING\" size=\"32\"/><Column id=\"REF_5\" type=\"STRING\" size=\"32\"/><Column id=\"REF_6\" type=\"STRING\" size=\"32\"/><Column id=\"REF_7\" type=\"STRING\" size=\"32\"/><Column id=\"REF_8\" type=\"STRING\" size=\"32\"/><Column id=\"REF_9\" type=\"STRING\" size=\"32\"/><Column id=\"REF_10\" type=\"STRING\" size=\"32\"/><Column id=\"USE_YN\" type=\"STRING\" size=\"32\"/><Column id=\"REG_ID\" type=\"STRING\" size=\"32\"/><Column id=\"REG_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"MOD_ID\" type=\"STRING\" size=\"32\"/><Column id=\"MOD_DT\" type=\"DATETIME\" size=\"17\"/><Column id=\"AUTO_PLUS\" type=\"BIGDECIMAL\" size=\"16\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsDummy", this);
+            obj.set_enableevent("true");
+            obj.getSetter("firefirstcount").set("0");
+            obj.set_preload("true");
+            obj.set_updatecontrol("true");
+            obj.set_useclientlayout("false");
+            obj._setContents("<ColumnInfo><Column id=\"CHK\" type=\"STRING\" size=\"1\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grdMaster","0","80",null,null,"0","0",null,null,null,null,this);
+            obj = new Grid("grdMaster","0","157",null,null,"0","0",null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("dsMaster");
             obj.set_autofittype("col");
@@ -59,9 +69,10 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"47\"/><Column size=\"48\"/><Column size=\"80\"/><Column size=\"157\"/><Column size=\"160\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/><Column size=\"80\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"No.\"/><Cell col=\"2\" text=\"프로그램Id\"/><Cell col=\"3\" text=\"FORMID\" cssclass=\"point\"/><Cell col=\"4\" text=\"폼명\" cssclass=\"point\"/><Cell col=\"5\" text=\"사용여부\"/><Cell col=\"6\" text=\"등록자\"/><Cell col=\"7\" text=\"등록일\"/><Cell col=\"8\" text=\"수정자\"/><Cell col=\"9\" text=\"수정일\"/></Band><Band id=\"body\"><Cell text=\"bind:CHK\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" editmaxlength=\"1\"/><Cell col=\"1\" expr=\"expr:(dataset.getRowType(currow)) == &apos;2&apos; ? &apos;+&apos;:(dataset.getRowType(currow)) == &apos;4&apos; ? &apos;U&apos;:currow+1\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:PROG_ID\" displaytype=\"text\"/><Cell col=\"3\" text=\"bind:PGM_PATH_NM\" displaytype=\"editcontrol\" edittype=\"text\"/><Cell col=\"4\" text=\"bind:PGM_NM\" displaytype=\"editcontrol\" edittype=\"text\"/><Cell col=\"5\" text=\"bind:USE_AT\" displaytype=\"combocontrol\" edittype=\"combo\" combodataset=\"dsUseYn\" combocodecol=\"CODE\" combodatacol=\"CODE_NM\"/><Cell col=\"6\" text=\"bind:FRST_INPTR_ID\" displaytype=\"text\"/><Cell col=\"7\" text=\"bind:FRST_INPUT_DT\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/><Cell col=\"8\" text=\"bind:LAST_UPDSR\" displaytype=\"text\"/><Cell col=\"9\" text=\"bind:LAST_MODF_CODE\" displaytype=\"date\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Div("dvSearch","0","0",null,"44","0",null,null,null,null,null,this);
+            obj = new Div("dvSearch","0","0",null,"98","0",null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_cssclass("div_WF_SearchBox");
+            obj.set_text("");
             this.addChild(obj.name, obj);
 
             obj = new Static("staSubTitle01","0","10","89","22",null,null,null,null,null,null,this.dvSearch.form);
@@ -109,11 +120,44 @@
 
             obj = new Static("staSubTitle01_00","edUiId:0","10","89","22",null,null,null,null,null,null,this.dvSearch.form);
             obj.set_taborder("5");
-            obj.set_text("폼 명");
+            obj.set_text("폼명");
             obj.set_cssclass("sta_WF_SearchLbl");
             this.dvSearch.addChild(obj.name, obj);
 
-            obj = new Static("stRowCnt","6","53","233","24",null,null,null,null,null,null,this);
+            obj = new Static("staSubTitle01_00_00","628","11","89","22",null,null,null,null,null,null,this.dvSearch.form);
+            obj.set_taborder("7");
+            obj.set_text("fileUpload");
+            obj.set_cssclass("sta_WF_SearchLbl");
+            this.dvSearch.addChild(obj.name, obj);
+
+            obj = new Static("Static00_00","623","3","20","41",null,null,null,null,null,null,this.dvSearch.form);
+            obj.set_taborder("8");
+            obj.set_text("20");
+            obj.set_cssclass("sta_GU_space");
+            obj.set_visible("false");
+            obj.set_background("aqua");
+            obj.set_opacity("0.5");
+            obj.set_textAlign("center");
+            obj.set_wordWrap("char");
+            this.dvSearch.addChild(obj.name, obj);
+
+            obj = new Edit("edtAttflNm","712","9","252","22",null,null,null,null,null,"26",this.dvSearch.form);
+            obj.set_taborder("9");
+            obj.set_maxlength("50");
+            obj.set_autoselect("true");
+            obj.set_enable("true");
+            obj.set_readonly("true");
+            obj.set_text("Edit");
+            this.dvSearch.addChild(obj.name, obj);
+
+            obj = new Button("btnAttFilePopup","971","9","22","22",null,null,null,null,null,null,this.dvSearch.form);
+            obj.set_taborder("10");
+            obj.set_cssclass("btn_WF_PopSrch");
+            obj.set_enable("true");
+            obj.set_text("");
+            this.dvSearch.addChild(obj.name, obj);
+
+            obj = new Static("stRowCnt","6","133","233","24",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("[총 <fc v=\'red\'><b v=\'true\'>0 </b></fc>건]");
             obj.set_usedecorate("true");
@@ -141,7 +185,7 @@
             obj.set_wordWrap("char");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","515","45","100","35",null,null,null,null,null,null,this);
+            obj = new Static("Static01","515","95","100","35",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("35");
             obj.set_cssclass("sta_GU_space");
@@ -170,6 +214,14 @@
             obj = new BindItem("item0","dvSearch.form.edUiId00","value","ds_input","PGM_NM");
             this.addChild(obj.name, obj);
             obj.bind();
+
+            obj = new BindItem("item1","dvSearch.form.edtAttflNm","value","dsMaster","ATTFL_NM");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item3","dvSearch.form.btnAttFilePopup","enable","dsReadOnlyYn","itemYn");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -177,7 +229,7 @@
         
         this.loadPreloadList = function()
         {
-
+            this._addPreloadList("data","","dsDummy");
         };
         
         // User Script
@@ -658,6 +710,101 @@
             return this.gfn_isUpdate(this.dsMaster);
         };
 
+
+        //Popup callback영역
+        this.fn_popupCallback = function(strId, strVal)
+        {
+        	switch(strId)
+        	{
+        		// 파일업로드
+        		case "FileUpload" :
+        			if(!this.gfn_isNull(strVal))
+        			{
+        				//일반
+        				var sRtn = strVal.split(",");
+        				if(sRtn[0] == "S")
+        				{
+        				    // 첨부파일번호가 바뀌면 저장한다.
+        				    if (this.dsMaster.getColumn(this.dsMaster.rowposition, "ATTFL_NO") != sRtn[1])
+        					{
+        						this.dsMaster.setColumn(this.dsMaster.rowposition, "ATTFL_NO", sRtn[1]);
+        						this.dsMaster.setColumn(this.dsMaster.rowposition, "ATTFL_NM", sRtn[2]);
+
+        						// 첨부파일번호 업데이트
+        // 						this.ds_input.setColumn(0, "BIGYOGWA_PROGRAM_CD", this.dsMaster.getColumn(this.dsMaster.rowposition, "BIGYOGWA_PROGRAM_CD"));
+        // 						this.ds_input.setColumn(0, "YYYY",                this.dsMaster.getColumn(this.dsMaster.rowposition, "YYYY"));
+        // 						this.ds_input.setColumn(0, "HAKGI",               this.dsMaster.getColumn(this.dsMaster.rowposition, "HAKGI"));
+        // 						this.ds_input.setColumn(0, "GAESEOL_SEQ",         this.dsMaster.getColumn(this.dsMaster.rowposition, "GAESEOL_SEQ"));
+        						this.ds_input.setColumn(0, "ATTFL_NO",            this.dsMaster.getColumn(this.dsMaster.rowposition, "ATTFL_NO"));
+
+        						//받아온 첨부파일정보 업데이트 트렌젝션 실행
+        // 						var strSvc      = "Save02";
+        // 						var strUrl      = "/prj/UY/UY01/Save02_2100103_M.do";
+        // 						var strInDs     = "ds_input1=ds_input1:a";
+        // 						var strOutDs    = "";
+        // 						var strArg      = "";
+        // 						var strCallBack = "fn_callBack";    //공백일시 기본 fn_callBack
+        // 						var strASync    = false;            //생략이나 공백일시에는 ASync=true,싱크시는 false로
+        // 						this.gfn_Transaction(strSvc
+        // 										   , strUrl
+        // 										   , strInDs
+        // 										   , strOutDs
+        // 										   , strArg
+        // 										   , strCallBack
+        // 										   , strASync);
+        					}
+
+        				} else if(sRtn[0] == "M")
+        				{
+        				} else if(sRtn[0] == "CLOSE")
+        				{
+
+        				} else if(sRtn[0] == "EXIT")
+        				{
+        				}
+        			}
+        		    break;
+        		default:
+                    break;
+        	}
+         };
+
+
+        /*첨부파일 업로드*/
+        this.btnAttFilePopup_onclick = function(obj,e)
+        {
+        	var multFlg     = "S"; 	// 멀티처리 : 싱글처리/멀티처리 S:한로우처리/M:멀티로처리
+        	var lv_sFlag01 			= "Y";						// (필수)부모에서 파라미터를 넘길지의 여부 (Y:파라미터넘김 / N:넘기지 않음)
+        	var lv_sFlag02			= "Y";						// (필수)팝업이 열렸을때 자동조회를 할 것인가 여부.(Y:자동조회 / N:수동조회)
+        	var lv_sFlag03			= multFlg;					// 멀티처리 : 싱글처리/멀티처리 S:한로우처리/M:멀티로처리
+        	var lv_sValue01 		= "";				        // 부모에서 넘어가는 파라미터(첨부파일번호)
+        	var lv_sValue02 		= "1";						// 부모에서 넘어가는 파라미터(파일허용갯수)
+        	var lv_sValue03 		= "all";					// 부모에서 넘어가는 파라미터(파일허용유형 all,text,image)
+        	var lv_sValue04 		= "";						// 부모에서 넘어가는 파라미터(확장자 ext)
+        	var lv_sValue05 		= "univ_upload";			// 부모에서 넘어가는 파라미터(도메인네임)
+        	var lv_sValue06 		= "Y";                      // 부모에서 넘어가는 파라미터(추가/삭제 보이기)
+        	var sPopId 			= "FileUpload";
+        	var sUrl 			= "pop::POP102FileUploadP01.xfdl";
+        	var oArg 			= { pv_sOp01:lv_sFlag01      	// 조회조건 : 조회조건셋팅/조회조건에 미셋팅 Y:조회조건셋팅/조회조건자동셋팅않함.
+        						  , pv_sOp02:lv_sFlag02       	// 자동조회 : 바로조회/미조회   Y:자동조회/N:자동조회않임
+        						  , pv_sOp03:lv_sFlag03      	// 멀티처리 : 싱글처리/멀티처리 S:한로우처리/M:멀티로처리
+        						  , pv_sVal01:lv_sValue01      	// 파라미터1
+        						  , pv_sVal02:lv_sValue02       // 파라미터2
+        						  , pv_sVal03:lv_sValue03       // 파라미터3
+        						  , pv_sVal04:lv_sValue04       // 파라미터4
+        						  , pv_sVal05:lv_sValue05       // 파라미터5
+        						  , pv_sVal06:lv_sValue06};     // 파라미터6
+        	var sPopupCallBack 	= "fn_popupCallback";
+        	var oOption 		= {};
+        	//
+        	this.dsDummy.clearData();
+        	this.gfn_openPopup( sPopId
+        					  , sUrl
+        					  , oArg
+        					  , sPopupCallBack
+        					  , oOption);
+        };
+
         });
         
         // Regist UI Components Event
@@ -671,6 +818,9 @@
             this.dvSearch.form.edUiId00.addEventHandler("onkeyup",this.dvSearch_edUiId_onkeyup,this);
             this.dvSearch.form.cboUseYn.addEventHandler("onitemchanged",this.dvSearch_cboUseYn_onitemchanged,this);
             this.dvSearch.form.staSubTitle01_00.addEventHandler("onclick",this.dvSearch_staSubTitle01_00_onclick,this);
+            this.dvSearch.form.staSubTitle01_00_00.addEventHandler("onclick",this.dvSearch_staSubTitle01_00_onclick,this);
+            this.dvSearch.form.btnAttFilePopup.addEventHandler("onclick",this.btnAttFilePopup_onclick,this);
+            this.Static01.addEventHandler("onclick",this.Static01_onclick,this);
         };
         this.loadIncludeScript("SYS001ProgramM01.xfdl");
         this.loadPreloadList();

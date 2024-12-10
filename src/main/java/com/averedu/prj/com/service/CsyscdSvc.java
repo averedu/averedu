@@ -211,13 +211,22 @@ public interface CsyscdSvc {
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;         
     
 	/**
-	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrSave)
+	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrInfoSave)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
 	public void deptCdConnAttrInfoSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	/**
+	 * 부서코드연계속성값 저장/수정(deptCdConnAttrValSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public void deptCdConnAttrValSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 
 	

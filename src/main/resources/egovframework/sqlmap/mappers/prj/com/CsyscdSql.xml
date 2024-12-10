@@ -820,10 +820,15 @@
 			B.USE_YN,
 			B.SALY_ACNT,
 			B.AF_DEPT_CD
-		FROM
-		COM.CSYS310 A
-		INNER JOIN COM.CSYS311 B
-		ON A.BF_DEPT_CD = B.BF_DEPT_CD
+		FROM COM.CSYS310 A
+		INNER JOIN(SELECT 
+						B.BF_DEPT_CD,
+						B.DEPT_NM,
+						B.USE_YN,
+						B.SALY_ACNT,
+						B.AF_DEPT_CD
+				   FROM COM.CSYS311 B) B
+		ON (A.BF_DEPT_CD = B.BF_DEPT_CD)
 		WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </select>
     
@@ -885,5 +890,14 @@
     	DELETE FROM COM.CSYS311 A
     	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </delete>
+    
+    <update id="CsyscdDAO.deptCdConnAttrValUpd" parameterType="map">
+    	UPDATE COM.CSYS311 A
+    	SET
+    	A.SALY_ACNT = #{SALY_ACNT},
+    	A.LAST_MODF_ID = #{LAST_MODF_ID},
+    	A.LAST_MODF_IP = #{LAST_MODF_IP}
+    	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
+    </update>
 							                                                           													                                                             													   
 </mapper>

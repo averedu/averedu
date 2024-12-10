@@ -823,5 +823,41 @@ public class CsyscdCtr {
 
 		return mav;
 	}
+	
+	/**
+	 * 부서코드연계속성값 저장/수정(deptCdConnAttrValSave)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/prj/com/deptCdConnAttrValSave.do")
+	public ModelAndView deptCdConnAttrValSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
+		try {
+			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+
+			DataSetMap tranInfo = nxDto.getTranInfoMap();
+			Map<String, Object> inVar = nxDto.getInVariableMap();
+			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
+			Map<String, Object> outVar = nxDto.getOutVariableMap();
+			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
+
+			csyscdSvc.deptCdConnAttrValSave(inVar, inDataset, outVar, outDataset, sessionVO);
+
+			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
+			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
+
+			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
+			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommExceptionUtil.setError(e, mav);
+		}
+
+		return mav;
+	}
 
 }

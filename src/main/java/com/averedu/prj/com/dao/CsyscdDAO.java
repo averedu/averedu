@@ -394,5 +394,17 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public void deptCdConnAttrValDel(Map<String, Object> map){                   
      	delete("CsyscdDAO.deptCdConnAttrValDel", map);          
     }     
+    
+    /**                                                                                                      	
+     * 부서코드연계속성값 수정(deptCdConnAttrValUpd)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */    
+    public void deptCdConnAttrValUpd(Map<String, Object> map){                   
+     	update("CsyscdDAO.deptCdConnAttrValUpd", map);          
+    }     
+    
+ 
    
 }                                                                                                             

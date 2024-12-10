@@ -1138,7 +1138,7 @@
         				 + " showstatusbar=false";
 
         	nexacro.open("chf_popup3"
-        			   , "com::CSYSCD0100_pop.xfdl"
+        			   , "pop::POPCSYSCD0100.xfdl"
         			   , this.getOwnerFrame()
         			   , objParam
         			   , sOpenStyle

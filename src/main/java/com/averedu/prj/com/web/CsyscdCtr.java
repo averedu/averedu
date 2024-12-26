@@ -13,6 +13,8 @@
  *------------------------------------------------------------------------------*/
 package com.averedu.prj.com.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,16 +22,22 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.averedu.common.exception.CommExceptionUtil;
 import com.averedu.common.util.SessionUtil;
+import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.service.CsyscdSvc;
 
+import antlr.collections.List;
 import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;
 import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
 import egovframework.rte.cmmn.ria.nexacroplatform.map.NexacroPlatformMapDTO;
@@ -858,6 +866,14 @@ public class CsyscdCtr {
 		}
 
 		return mav;
+	}
+	
+	@RequestMapping(value = "/restApi/prj/com/menuList.do", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<java.util.List<MenuVO>> menuList(){
+		java.util.List<MenuVO> menuList = csyscdSvc.menuList();
+		return new ResponseEntity<java.util.List<MenuVO>>(menuList, HttpStatus.OK);
+		
 	}
 
 }

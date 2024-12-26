@@ -896,8 +896,16 @@
     	SET
     	A.SALY_ACNT = #{SALY_ACNT},
     	A.LAST_MODF_ID = #{LAST_MODF_ID},
-    	A.LAST_MODF_IP = #{LAST_MODF_IP}
+    	A.LAST_MODF_IP = #{LAST_MODF_IP},
+    	A.LAST_MODF_DT = SYSDATE
     	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </update>
+    
+    <select id="CsyscdDAO.menuList" resultType="com.averedu.common.vo.MenuVO">
+    	SELECT 
+    		A.MENU_ID,
+    		A.MENU_NM FROM
+    	COM.CSYS210 A
+    </select>
 							                                                           													                                                             													   
 </mapper>

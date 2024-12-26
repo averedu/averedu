@@ -13,6 +13,7 @@
  *------------------------------------------------------------------------------*/                           
 package com.averedu.prj.com.dao;                                                                   	            
                                                                                                              
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
+
+import com.averedu.common.vo.MenuVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;                                                  
                                                                                                              
@@ -404,6 +407,10 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public void deptCdConnAttrValUpd(Map<String, Object> map){                   
      	update("CsyscdDAO.deptCdConnAttrValUpd", map);          
     }     
+    
+    public List<MenuVO> menuList(){
+    	return selectList("CsyscdDAO.menuList");
+    }
     
  
    

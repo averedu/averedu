@@ -13,8 +13,10 @@
  *------------------------------------------------------------------------------*/
 package com.averedu.prj.com.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 
 import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
@@ -230,7 +232,7 @@ public interface CsyscdSvc {
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 
 	
-	
+	public List<MenuVO> menuList ();
            
    
 }

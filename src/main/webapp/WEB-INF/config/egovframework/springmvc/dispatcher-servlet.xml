@@ -12,7 +12,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
-		
+    
+    <!-- restApi 요청 시  해당  controller 경로로 매핑 -->
+	<mvc:annotation-driven />	
 		<!--
 		- The form-based controllers within this application provide @RequestMapping 
 		- annotations at the type level for path mapping URLs and @RequestMapping 

@@ -13,6 +13,7 @@
  *------------------------------------------------------------------------------*/
 package com.averedu.prj.com.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import com.averedu.common.util.DataUtil;
 import com.averedu.common.util.EgovWebUtil;
+import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.dao.CsyscdDAO;
 import com.averedu.prj.com.service.CsyscdSvc;
@@ -785,6 +787,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			}  
 		}
 		
+	}
+
+	@Override
+	public List<MenuVO> menuList() {
+		List<MenuVO> menuList = csyscdDAO.menuList();
+		return menuList;
 	}
 
 	

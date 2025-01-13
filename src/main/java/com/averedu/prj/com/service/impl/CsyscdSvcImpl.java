@@ -25,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 import com.averedu.common.util.DataUtil;
 import com.averedu.common.util.EgovWebUtil;
+import com.averedu.common.vo.Csys310VO;
+import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.dao.CsyscdDAO;
@@ -623,18 +625,16 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @throws Exception
 	 */
 	@Override
-	public void deptCdConnAttrInfoList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+	public List<Csys310VO> deptCdConnAttrInfoList(Csys310VO csys310VO, SessionVO sessionVO){
+		try{
+			List<Csys310VO> deptCdConnAttrInfoList = csyscdDAO.deptCdConnAttrInfoList(csys310VO);
+			return deptCdConnAttrInfoList;
+		}catch(Exception e){
+			log.info("error : " + e.getMessage());
+		}
 		
-		List<Map> recordsMaster = csyscdDAO.deptCdConnAttrInfoList(map);
-		DataSetMap dsOutMaster = new DataSetMap();
-		dsOutMaster.setRowMaps(recordsMaster);
-		
-		outDataset.put("dsMaster", dsOutMaster);
-		return;
-
+		return null;
+	
 	}
 	
 	/**
@@ -644,18 +644,15 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrValList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
+	public List<Csys311VO> deptCdConnAttrValList(String bfDeptCd, SessionVO sessionVO){
+		try {
+			List<Csys311VO> deptCdConnAttrValList = csyscdDAO.deptCdConnAttrValList(bfDeptCd);
+			return deptCdConnAttrValList;
+		}catch(Exception e){
+			log.info("error : " + e.getMessage());
+		}
 		
-		List<Map> recordsMaster = csyscdDAO.deptCdConnAttrValList(map);
-		DataSetMap dsOutMaster = new DataSetMap();
-		dsOutMaster.setRowMaps(recordsMaster);
-		
-		outDataset.put("dsDetail", dsOutMaster);
-		return;
-		
+		return null;
 	}
 	
 	/**
@@ -788,16 +785,6 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 		}
 		
 	}
-
-	@Override
-	public List<MenuVO> menuList() {
-		List<MenuVO> menuList = csyscdDAO.menuList();
-		return menuList;
-	}
-
-	
-
-
 
 	
 }

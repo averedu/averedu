@@ -788,7 +788,8 @@
 		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD} AND A.AF_DEPT_CD=#{AF_DEPT_CD}
     </delete>                 					
     
-    <select id="CsyscdDAO.deptCdConnAttrInfoList" parameterType="map" resultType="egovMap">		
+    <!-- 부서코드 연계속성 정보 리스트 -->
+    <select id="CsyscdDAO.deptCdConnAttrInfoList" parameterType="com.averedu.common.vo.Csys310VO" resultType="com.averedu.common.vo.Csys310VO">		
     	SELECT
     		'0' AS CHK,
     		A.BF_DEPT_CD,
@@ -800,19 +801,21 @@
 			A.REMK
 		FROM com.CSYS310 A
 		WHERE 1 = 1
-		<if test="DEPT_CONN_ATTR_NM != null and DEPT_CONN_ATTR_NM != ''">                                        							                        
-			AND A.DEPT_CONN_ATTR_NM  LIKE '%' || #{DEPT_CONN_ATTR_NM} || '%'                                           													
-		</if>   
-		<if test="DEPT_NM != null and DEPT_NM != ''">                                        							                        
+		
+		<if test="deptConnAttrNm != null and deptConnAttrNm != ''">                                        							                        
+			AND A.DEPT_CONN_ATTR_NM  LIKE '%' || #{deptConnAttrNm} || '%'                                           													
+		</if>     
+		<if test="deptCd != null and deptCd != ''">                                        							                        
+			AND A.BF_DEPT_CD  LIKE '%' || #{deptCd} || '%'                                           													
+		</if> 
+		<!-- <if test="deptNm != null and deptNm != ''">                                        							                        
 			AND A.DEPT_NM  LIKE '%' || #{DEPT_NM} || '%'                                           													
-		</if>   
-		<if test="BF_DEPT_CD != null and BF_DEPT_CD != ''">                                        							                        
-			AND A.BF_DEPT_CD  LIKE '%' || #{BF_DEPT_CD} || '%'                                           													
-		</if>   
+		</if>  -->
 		ORDER BY A.SORT_SEQ
     </select>			
-    	
-     <select id="CsyscdDAO.deptCdConnAttrValList" parameterType="map" resultType="egovMap">		
+    
+    <!-- 부서코드 연꼐속성 값 리스트 -->
+     <select id="CsyscdDAO.deptCdConnAttrValList" parameterType="string" resultType="com.averedu.common.vo.Csys311VO">		
     	SELECT
     		'0' AS CHK,
 			A.BF_DEPT_CD,
@@ -829,7 +832,7 @@
 						B.AF_DEPT_CD
 				   FROM COM.CSYS311 B) B
 		ON (A.BF_DEPT_CD = B.BF_DEPT_CD)
-		WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
+		WHERE A.BF_DEPT_CD = #{bfDeptCd}
     </select>
     
     <select id="CsyscdDAO.deptCdConnAttrInfoKeyCode" resultType="string"> 
@@ -900,12 +903,5 @@
     	A.LAST_MODF_DT = SYSDATE
     	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </update>
-    
-    <select id="CsyscdDAO.menuList" resultType="com.averedu.common.vo.MenuVO">
-    	SELECT 
-    		A.MENU_ID,
-    		A.MENU_NM FROM
-    	COM.CSYS210 A
-    </select>
-							                                                           													                                                             													   
+    			                                                           													                                                             													   
 </mapper>

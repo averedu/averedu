@@ -22,6 +22,8 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.averedu.common.vo.Csys310VO;
+import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.MenuVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;                                                  
@@ -330,20 +332,20 @@ public class CsyscdDAO extends EgovAbstractMapper {
 	 * @return
 	 * @throws Exception
 	 */
-    public List<Map> deptCdConnAttrInfoList(Map<String, Object> map){
-    	return selectList("CsyscdDAO.deptCdConnAttrInfoList", map);
+    public List<Csys310VO> deptCdConnAttrInfoList(Csys310VO csys310VO){
+    	return selectList("CsyscdDAO.deptCdConnAttrInfoList", csys310VO);
     }
     
     /**
-	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrInfoList)
+	 * 부서코드연계속성값 리스트 조회(디테일)(deptCdConnAttrValList)
 	 * 
 	 * @param input
 	 * @return 
 	 * @return
 	 * @throws Exception
 	 */
-    public List<Map> deptCdConnAttrValList(Map<String, Object> map){
-    	return selectList("CsyscdDAO.deptCdConnAttrValList", map);
+    public List<Csys311VO> deptCdConnAttrValList(String bfDeptCd){
+    	return selectList("CsyscdDAO.deptCdConnAttrValList", bfDeptCd);
     }
     
     /**
@@ -407,11 +409,6 @@ public class CsyscdDAO extends EgovAbstractMapper {
     public void deptCdConnAttrValUpd(Map<String, Object> map){                   
      	update("CsyscdDAO.deptCdConnAttrValUpd", map);          
     }     
-    
-    public List<MenuVO> menuList(){
-    	return selectList("CsyscdDAO.menuList");
-    }
-    
  
    
 }                                                                                                             

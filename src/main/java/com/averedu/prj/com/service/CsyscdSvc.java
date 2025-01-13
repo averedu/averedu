@@ -16,6 +16,8 @@ package com.averedu.prj.com.service;
 import java.util.List;
 import java.util.Map;
 
+import com.averedu.common.vo.Csys310VO;
+import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 
@@ -189,8 +191,7 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrInfoList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	public List<Csys310VO> deptCdConnAttrInfoList(Csys310VO csys310vo, SessionVO sessionVO);
 	
 	/**
 	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
@@ -199,8 +200,7 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrValList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	public List<Csys311VO> deptCdConnAttrValList(String bfDeptCd, SessionVO sessionVO);
     
     
     /**                                                                                                      	
@@ -232,7 +232,4 @@ public interface CsyscdSvc {
 			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
 
 	
-	public List<MenuVO> menuList ();
-           
-   
 }

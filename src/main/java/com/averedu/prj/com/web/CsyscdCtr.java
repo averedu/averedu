@@ -26,6 +26,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +34,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.averedu.common.exception.CommExceptionUtil;
 import com.averedu.common.util.SessionUtil;
+import com.averedu.common.vo.Csys310VO;
+import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.service.CsyscdSvc;
@@ -685,7 +688,6 @@ public class CsyscdCtr {
 	}
 	
 	
-
 	/**
 	 * 부서코드연계속성정보 리스트 조회(deptCdConnAttrInfoList)
 	 * 
@@ -693,34 +695,18 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoList.do")
-	public ModelAndView deptCdConnAttrInfoList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
-			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csyscdSvc.deptCdConnAttrInfoList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoList.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<java.util.List<Csys310VO>> deptCdConnAttrInfoList(@RequestBody Csys310VO csys310VO, HttpSession session){
+		
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		java.util.List<Csys310VO> deptCdConnAttrInfoList = csyscdSvc.deptCdConnAttrInfoList(csys310VO, sessionVO);
+		return new ResponseEntity<java.util.List<Csys310VO>>(deptCdConnAttrInfoList, HttpStatus.OK);
+		
 	}
+	
+	
+	
 
 	/**
 	 * 부서코드연계속성정보 저장/수정(deptCdConnAttrInfoSave)
@@ -797,39 +783,21 @@ public class CsyscdCtr {
 	}
 	
 	/**
-	 * 부서코드연계속성정보 리스트 조회(디테일)(deptCdConnAttrValList)
+	 * 부서코드연계속성값 리스트 조회(디테일)(deptCdConnAttrValList)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrValList.do")
-	public ModelAndView deptCdConnAttrValList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
-			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csyscdSvc.deptCdConnAttrValList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrValList.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<java.util.List<Csys311VO>> deptCdConnAttrValList(@RequestBody String bfDeptCd, HttpSession session){
+		logger.info("bf1 : " + bfDeptCd);
+		String bfDeptCd2 = bfDeptCd.replace("=", "");
+		logger.info("bf2 : " + bfDeptCd);
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		java.util.List<Csys311VO> deptCdConnAttrValList =  csyscdSvc.deptCdConnAttrValList(bfDeptCd2, sessionVO);
+		return new ResponseEntity<java.util.List<Csys311VO>>(deptCdConnAttrValList, HttpStatus.OK);
 	}
 	
 	/**
@@ -868,12 +836,7 @@ public class CsyscdCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/restApi/prj/com/menuList.do", method=RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<java.util.List<MenuVO>> menuList(){
-		java.util.List<MenuVO> menuList = csyscdSvc.menuList();
-		return new ResponseEntity<java.util.List<MenuVO>>(menuList, HttpStatus.OK);
-		
-	}
+
+	
 
 }

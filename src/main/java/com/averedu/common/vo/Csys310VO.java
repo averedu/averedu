@@ -1,6 +1,7 @@
 package com.averedu.common.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Csys310VO extends SearchVO{
 	private int chk;
@@ -122,6 +123,7 @@ public class Csys310VO extends SearchVO{
 	public void setDeptConnAttrNm(String deptConnAttrNm) {
 		this.deptConnAttrNm = deptConnAttrNm;
 	}
+
     
 	
 	

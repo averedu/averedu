@@ -36,9 +36,9 @@ import com.averedu.common.exception.CommExceptionUtil;
 import com.averedu.common.util.SessionUtil;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
-import com.averedu.common.vo.MenuVO;
 import com.averedu.common.vo.SessionVO;
 import com.averedu.prj.com.service.CsyscdSvc;
+import com.averedu.prj.sys.vo.MenuVO;
 
 import antlr.collections.List;
 import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;
@@ -751,35 +751,12 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws LException
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoDel.do")
-	public ModelAndView deptCdConnAttrInfoDel(NexacroPlatformMapDTO xpDto, Model model, HttpSession session)
-			throws Exception {
-
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = xpDto.getTranInfoMap();
-			Map<String, Object> inVar = xpDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = xpDto.getInDataSetMap();
-			Map<String, Object> outVar = xpDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = xpDto.getOutDataSetMap();
-			
-			csyscdSvc.deptCdConnAttrInfoDel(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, xpDto.getOutVariableMap());
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, xpDto.getOutDataSetMap());
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoDel.do", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean deptCdConnAttrInfoDel(@RequestBody java.util.List<Csys310VO> csys310VO, HttpSession session){
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		boolean deptCdConnAttrInfoDelType = csyscdSvc.deptCdConnAttrInfoDel(csys310VO, sessionVO);
+		return deptCdConnAttrInfoDelType;
 	}
 	
 	/**

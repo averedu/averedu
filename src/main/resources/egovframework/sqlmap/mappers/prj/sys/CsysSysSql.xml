@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CsysSysDAO">		
+<select id="CsysSysDAO.sysMenuList" resultType="com.averedu.prj.sys.vo.MenuVO">
+	SELECT
+		A.PGM_ID,
+		A.PGM_NM,
+		B.MENU_ID,
+		B.MENU_NM,
+		A.PGM_PATH_NM,
+		A.PGM_KND_FG_CD,
+		B.SORT_SEQ
+	FROM COM.CSYS200 A
+	INNER JOIN(SELECT
+			B.PGM_ID,
+			B.MENU_ID,
+			B.MENU_NM,
+			B.SORT_SEQ
+		   FROM COM.CSYS210 B) B 
+	ON(A.PGM_ID = B.PGM_ID)
+	WHERE A.PGM_KND_FG_CD = '2'
+	ORDER BY B.SORT_SEQ	
+</select>
+</mapper>

@@ -1,9 +1,8 @@
 <template>
-  <LeftMenu></LeftMenu>
+   <LoginView></LoginView>
 </template>
 <script setup>
-import LeftMenu from './components/LeftMenu.vue';
-import { RouterView } from 'vue-router';
+import LoginView from './views/LoginView.vue';
 </script>
 
 <style lang="scss">

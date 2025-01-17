@@ -13,38 +13,36 @@
  *------------------------------------------------------------------------------*/
 package com.averedu.prj.com.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.ls.LSInput;
 
 import com.averedu.common.util.DataUtil;
 import com.averedu.common.util.EgovWebUtil;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.SessionVO;
-import com.averedu.prj.com.dao.CsyscdDAO;
-import com.averedu.prj.com.service.CsyscdSvc;
-import com.averedu.prj.sys.vo.MenuVO;
+import com.averedu.prj.com.dao.CsyscdApiDAO;
+import com.averedu.prj.com.service.CsysApicdSvc;
 import com.nexacro17.xapi.data.DataSet;
 
 import egovframework.rte.cmmn.ria.nexacroplatform.NexacroPlatformConstant;
 import egovframework.rte.cmmn.ria.nexacroplatform.map.DataSetMap;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
-@Service("CsyscdSvc")
-public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc {
+@Service("CsysApicdSvc")
+public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApicdSvc {
 	protected Log log = LogFactory.getLog(this.getClass());
 
 	/** csyscdDAO */
-	@Resource(name = "CsyscdDAO")
-	private CsyscdDAO csyscdDAO;
+	@Resource(name = "CsyscdApiDAO")
+	private CsyscdApiDAO csyscdDAO;
 
 	/**
 	 * 공통코드리스트 조회(retrieveCommCodeMasterList)
@@ -53,18 +51,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void retrieveCommCodeMasterList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public List<Map<String, Object>> retrieveCommCodeMasterList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
-		List<Map> records = csyscdDAO.retrieveCommCodeMasterList(map);
 
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsMaster", dsOut);
+		List<Map<String, Object>> records = csyscdDAO.retrieveCommCodeMasterList(myMap);
 
-		return;
+		return records;
 	}
 	
 	/**
@@ -74,18 +66,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void retrieveCommCodeDetailList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public List<Map<String, Object>> retrieveCommCodeDetailList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input1");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
-		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(map);
+		List<Map<String, Object>> records = csyscdDAO.retrieveCommCodeDetailList(myMap);
 
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsDetail", dsOut);
 
-		return;
+		return records;
 	}
 	
 	/**
@@ -95,18 +81,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void retrieveGrpCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public List<Map<String, Object>> retrieveGrpCodeList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpInput");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
-		List<Map> records = csyscdDAO.retrieveGrpCodeList(map);
+		List<Map<String, Object>> records = csyscdDAO.retrieveGrpCodeList(myMap);
 
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsGrp", dsOut);
 
-		return;
+		return records;
 	}
 	
 	/**
@@ -116,18 +96,11 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void retrieveGrpDetailCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public List<Map<String, Object>> retrieveGrpDetailCodeList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetaInput");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
-		List<Map> records = csyscdDAO.retrieveGrpDetailCodeList(map);
+		List<Map<String, Object>> records = csyscdDAO.retrieveGrpDetailCodeList(myMap);
 
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsGrpDetail", dsOut);
-
-		return;
+		return records;
 	}
 
 	/**
@@ -137,52 +110,51 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveCommCodeMasterList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public void saveCommCodeMasterList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
 		// 조회조건
-		int rowType;
-		String recordKeyValue = "";
-
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
-		// 저장데이타셋
-		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsMaster"); // 마스터
-		if (dsMap1.size() > 0) {
-
-			for (int i = 0; i < dsMap1.size(); i++) {
-				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
-				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-
-				if (rowType == DataSet.ROW_TYPE_INSERTED) {
-
-					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					
-					
-
-					csyscdDAO.insertCommCodeMasterList(outMap);
-
-				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-
-					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
-					csyscdDAO.updateCommCodeMasterList(outMap);
-
-				}
-			}
-		}
-
-		// 서버에서 시퀀스 제조회시
-		List<Map> records = csyscdDAO.retrieveCommCodeMasterList(inMap);
-		outVar.put("strKeyValue", recordKeyValue);
-
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsMaster", dsOut);
+//		int rowType;
+//		String recordKeyValue = "";
+//
+//		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
+//		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
+//		// 저장데이타셋
+//		DataSetMap dsMap1 = (DataSetMap) myMap.get("dsMaster"); // 마스터
+//		if (dsMap1.size() > 0) {
+//
+//			for (int i = 0; i < dsMap1.size(); i++) {
+//				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
+//				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+//
+//				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+//
+//					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+//					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+//					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+//					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+//					
+//					
+//
+//					csyscdDAO.insertCommCodeMasterList(outMap);
+//
+//				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+//
+//					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+//					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+//
+//					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
+//					csyscdDAO.updateCommCodeMasterList(outMap);
+//
+//				}
+//			}
+//		}
+//
+//		// 서버에서 시퀀스 제조회시
+////		List<Map> records = csyscdDAO.retrieveCommCodeMasterList(inMap);
+//		outVar.put("strKeyValue", recordKeyValue);
+//
+//		DataSetMap dsOut = new DataSetMap();
+////		dsOut.setRowMaps(records);
+//		outDataset.put("dsMaster", dsOut);
 
 		return;
 	}
@@ -233,12 +205,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			}
 		}
 		// 서버에서 시퀀스 제조회시
-		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
-		outVar.put("strKeyValue", recordKeyValue);
-
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsDetail", dsOut);
+//		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
+//		outVar.put("strKeyValue", recordKeyValue);
+//
+//		DataSetMap dsOut = new DataSetMap();
+//		dsOut.setRowMaps(records);
+//		outDataset.put("dsDetail", dsOut);
 
 		return;
 	}
@@ -289,12 +261,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			}
 		}
 		// 서버에서 시퀀스 제조회시
-		List<Map> records = csyscdDAO.retrieveGrpCodeList(inMap);
-		outVar.put("strKeyValue", recordKeyValue);
-
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsGrp", dsOut);
+//		List<Map> records = csyscdDAO.retrieveGrpCodeList(inMap);
+//		outVar.put("strKeyValue", recordKeyValue);
+//
+//		DataSetMap dsOut = new DataSetMap();
+//		dsOut.setRowMaps(records);
+//		outDataset.put("dsGrp", dsOut);
 
 		return;
 	}
@@ -346,12 +318,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 			}
 		}
 		// 서버에서 시퀀스 제조회시
-		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
-		outVar.put("strKeyValue", recordKeyValue);
-
-		DataSetMap dsOut = new DataSetMap();
-		dsOut.setRowMaps(records);
-		outDataset.put("dsGrpDetail", dsOut);
+//		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
+//		outVar.put("strKeyValue", recordKeyValue);
+//
+//		DataSetMap dsOut = new DataSetMap();
+//		dsOut.setRowMaps(records);
+//		outDataset.put("dsGrpDetail", dsOut);
 
 		return;
 	}
@@ -364,20 +336,10 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void deleteCommCodeMasterList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
-
-		int rowType;
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsMaster");
-
-		for (int i = 0; i < dsMap.size(); i++) {
-
-			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
-			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-
-			if (rowType == DataSet.ROW_TYPE_DELETED) {
-				csyscdDAO.deleteCommCodeMasterList(map);
-				csyscdDAO.deleteCommCodeAllList(map);
-			}
+	public void deleteCommCodeMasterList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+		for(Map<String, Object> map : list){
+			csyscdDAO.deleteCommCodeMasterList(map);
+			csyscdDAO.deleteCommCodeAllList(map);
 		}
 		return;
 	}
@@ -389,20 +351,12 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void deleteCommCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
-
-		int rowType;
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsDetail");
+	public void deleteCommCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
 		
-		for (int i = 0; i < dsMap.size(); i++) {
-
-			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
-			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-			
-			if (rowType == DataSet.ROW_TYPE_DELETED) {
-				csyscdDAO.deleteCommCodeDetailList2(map);
-			}
+		for(int i=0;i<list.size();i++){
+			csyscdDAO.deleteCommCodeDetailList2(list.get(i));
 		}
+		
 		csyscdDAO.deleteEmptyCodeDetailList();
 		return;
 	}
@@ -414,20 +368,11 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void deleteGrpCodeList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
-
-		int rowType;
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrp");
-		
-		for (int i = 0; i < dsMap.size(); i++) {
-
-			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
-			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-			
-			if (rowType == DataSet.ROW_TYPE_DELETED) {
-				csyscdDAO.deleteGrpCodeList(map);
-			}
+	public void deleteGrpCodeList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+		for(Map<String, Object> map : list){
+			csyscdDAO.deleteGrpCodeList(map);
 		}
+		
 		return;
 	}
 	
@@ -438,19 +383,11 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @return
 	 * @throws Exception
 	 */
-	public void deleteGrpCodeDetailList(Map<String, DataSetMap> inDataset, SessionVO sessionVO) throws Exception {
-
-		int rowType;
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetail");
-		
-		for (int i = 0; i < dsMap.size(); i++) {
-
-			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
-			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-			if (rowType == DataSet.ROW_TYPE_DELETED) {
-				csyscdDAO.deleteGrpCodeDetailList(map);
-			}
+	public void deleteGrpCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+		for(Map<String, Object> map : list){
+			csyscdDAO.deleteGrpCodeDetailList(map);
 		}
+		
 		return;
 	}
 
@@ -708,19 +645,22 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @throws Exception
 	 */
 	@Override
-	public boolean deptCdConnAttrInfoDel(List<Csys310VO> csys310VO, SessionVO sessionVO){
+	public void deptCdConnAttrInfoDel(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
+			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
 		
-		try {
-			for(int i = 0; i < csys310VO.size(); i++){
-				csyscdDAO.deptCdConnAttrInfoDel(csys310VO.get(i).getBfDeptCd());
-				csyscdDAO.deptCdConnAttrValDel(csys310VO.get(i).getBfDeptCd());
+		int rowType;
+		DataSetMap dsMap = (DataSetMap) inDataset.get("dsMaster");
+
+		for (int i = 0; i < dsMap.size(); i++) {
+
+			Map<String, Object> map = (Map<String, Object>) dsMap.get(i);
+			rowType = ((Integer) map.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			if (rowType == DataSet.ROW_TYPE_DELETED) {
+				csyscdDAO.deptCdConnAttrInfoDel(map);
+				csyscdDAO.deptCdConnAttrValDel(map);
 			}
-			
-		}catch(Exception e){
-			log.info("error : " + e.getMessage());
-			return false;
 		}
-		return true;
+		return;
 	}
 	
 	

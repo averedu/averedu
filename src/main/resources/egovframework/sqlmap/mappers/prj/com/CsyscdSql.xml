@@ -71,7 +71,7 @@
 		FROM COM.CSYS110 A LEFT JOIN COM.CSYS111 B
 		ON A.CMMN_CD =B.CMMN_CD AND A.CMMN_DETA_CD  = B.CMMN_DETA_CD 
 		WHERE A.CMMN_CD = #{CMMN_CD}
-		ORDER BY B.FRST_INPUT_DT
+		ORDER BY B.CMMN_DETA_CD
 		/* CsyscdDAO.retrieveCommCodeDetailList 상세코드 조회 */	              
     </select>
     
@@ -413,8 +413,8 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS100                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{CMMN_CD}  
-        ]]>                                                															           
+               AND CMMN_CD        = #{CMMN_CD}
+        ]]>                                             															           
         /* CsyscdDAO.deleteCommCodeMasterList 공통코드 삭제 */								       
     </delete>
     
@@ -422,8 +422,8 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS110                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{CMMN_CD}  
-        ]]>                                                															           
+               AND CMMN_CD = #{CMMN_CD}
+        ]]>                                            															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 상세코드 전체삭제*/								       
     </delete>
     
@@ -451,8 +451,8 @@
         <![CDATA[                                                           												  
             DELETE FROM COM.CSYS111                                                  							      
              WHERE 1=1                              																	          
-               AND CMMN_CD        = #{CMMN_CD}  
-        ]]>                                                															           
+               AND CMMN_CD       =#{CMMN_CD}
+        ]]>                                            															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeAllList 상세코드 전체삭제*/								       
     </delete>
     
@@ -461,7 +461,8 @@
             DELETE FROM COM.CSYS111                                                 							      
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
-               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}  
+               AND CMMN_DETA_CD   = #{CMMN_DETA_CD}
+               AND LANG_FG_CD     = #{LANG_FG_CD}
         ]]>                                                															           
         /* SYS005CommCodeDetailDAO.deleteCommCodeDetailList 언어코드 삭제 */								       
     </delete>
@@ -471,8 +472,8 @@
             DELETE FROM COM.CSYS120                                                 							      
              WHERE 1=1                              																	          
                AND CMMN_CD        = #{CMMN_CD}  
-               AND CMMN_GRP_CD   = #{CMMN_GRP_CD}  
-        ]]>                                                															           
+               AND CMMN_GRP_CD    = #{CMMN_GRP_CD}
+        ]]>                                            															           
         /* CsyscdDAO.deleteGrpCodeList 공통 코드 삭제 */								       
     </delete>
     
@@ -483,9 +484,10 @@
                AND CMMN_CD        		= #{CMMN_CD}  
                AND CMMN_GRP_CD   		= #{CMMN_GRP_CD}
                AND CMMN_GRP_DETA_CD   	= #{CMMN_GRP_DETA_CD}    
-        ]]>                                                															           
+        ]]>                              
+							           
         /* CsyscdDAO.deleteGrpCodeDetailList 공통 상세 코드 삭제 */								       
-    </delete>         
+    </delete>          
     
     <select id="CsyscdDAO.deptList" parameterType="map" resultType="egovMap"> 
     	SELECT 
@@ -884,17 +886,17 @@
 		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD}
     </update>
     
-    <delete id="CsyscdDAO.deptCdConnAttrInfoDel" parameterType="map">
+    <delete id="CsyscdDAO.deptCdConnAttrInfoDel" parameterType="string">
     	DELETE FROM COM.CSYS310 A
     	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </delete>
     
-    <delete id="CsyscdDAO.deptCdConnAttrValDel" parameterType="map">
+    <delete id="CsyscdDAO.deptCdConnAttrValDel" parameterType="string">
     	DELETE FROM COM.CSYS311 A
     	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
     </delete>
     
-    <update id="CsyscdDAO.deptCdConnAttrValUpd" parameterType="map">
+    <update id="CsyscdDAO.deptCdConnAttrValUpd" parameterType="com.averedu.common.vo.Csys310VO">
     	UPDATE COM.CSYS311 A
     	SET
     	A.SALY_ACNT = #{SALY_ACNT},

@@ -13,7 +13,6 @@
  *------------------------------------------------------------------------------*/                           
 package com.averedu.prj.com.dao;                                                                   	            
                                                                                                              
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +23,11 @@ import org.springframework.stereotype.Repository;
 
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
-import com.averedu.prj.sys.vo.MenuVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractMapper;                                                  
                                                                                                              
-@Repository("CsyscdDAO")                                                          	
-public class CsyscdDAO extends EgovAbstractMapper {                                              
+@Repository("CsyscdApiDAO")                                                          	
+public class CsyscdApiDAO extends EgovAbstractMapper {                                              
     
     @Resource(name = "sqlSession")                                                     
     public void setSqlSessionFactory(SqlSessionFactory sqlSession) {                                         
@@ -42,7 +40,7 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   	
      */                                                                                                     	
-    public List<Map> retrieveCommCodeMasterList(Map<String, Object> map) throws Exception {                   
+    public List<Map<String, Object>> retrieveCommCodeMasterList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveCommCodeMasterList", map);          
     } 
@@ -54,7 +52,7 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   	
      */                                                                                                     	
-    public List<Map> retrieveCommCodeDetailList(Map<String, Object> map) throws Exception {                   
+    public List<Map<String, Object>> retrieveCommCodeDetailList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveCommCodeDetailList", map);          
     }   
@@ -65,7 +63,7 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   	
      */                                                                                                     	
-    public List<Map> retrieveGrpCodeList(Map<String, Object> map) throws Exception {                   
+    public List<Map<String, Object>> retrieveGrpCodeList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveGrpCodeList",map);          
     }
@@ -76,7 +74,7 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   	
      */                                                                                                     	
-    public List<Map> retrieveGrpDetailCodeList(Map<String, Object> map) throws Exception {                   
+    public List<Map<String, Object>> retrieveGrpDetailCodeList(Map<String, Object> map) throws Exception {                   
                                                                                                              
      	return selectList("CsyscdDAO.retrieveGrpDetailCodeList",map);          
     } 
@@ -386,8 +384,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */  
-    public void deptCdConnAttrInfoDel(String dfDeptCd){                   
-     	delete("CsyscdDAO.deptCdConnAttrInfoDel", dfDeptCd);          
+    public void deptCdConnAttrInfoDel(Map<String, Object> map){                   
+     	delete("CsyscdDAO.deptCdConnAttrInfoDel", map);          
     }
     
     /**                                                                                                      	
@@ -396,8 +394,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */    
-    public void deptCdConnAttrValDel(String dfDeptCd){                   
-     	delete("CsyscdDAO.deptCdConnAttrValDel", dfDeptCd);          
+    public void deptCdConnAttrValDel(Map<String, Object> map){                   
+     	delete("CsyscdDAO.deptCdConnAttrValDel", map);          
     }     
     
     /**                                                                                                      	

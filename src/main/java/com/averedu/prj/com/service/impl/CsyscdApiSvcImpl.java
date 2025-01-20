@@ -110,51 +110,39 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveCommCodeMasterList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception {
-		// 조회조건
-//		int rowType;
-//		String recordKeyValue = "";
-//
-//		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-//		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
-//		// 저장데이타셋
-//		DataSetMap dsMap1 = (DataSetMap) myMap.get("dsMaster"); // 마스터
-//		if (dsMap1.size() > 0) {
-//
-//			for (int i = 0; i < dsMap1.size(); i++) {
-//				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
-//				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-//
-//				if (rowType == DataSet.ROW_TYPE_INSERTED) {
-//
-//					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-//					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-//					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
-//					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-//					
-//					
-//
-//					csyscdDAO.insertCommCodeMasterList(outMap);
-//
-//				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-//
-//					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-//					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-//
-//					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
-//					csyscdDAO.updateCommCodeMasterList(outMap);
-//
-//				}
-//			}
-//		}
-//
-//		// 서버에서 시퀀스 제조회시
-////		List<Map> records = csyscdDAO.retrieveCommCodeMasterList(inMap);
-//		outVar.put("strKeyValue", recordKeyValue);
-//
-//		DataSetMap dsOut = new DataSetMap();
-////		dsOut.setRowMaps(records);
-//		outDataset.put("dsMaster", dsOut);
+	public void saveCommCodeMasterList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+
+		if (list.size() > 0) {
+
+			for (int i = 0; i < list.size(); i++) {
+				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
+
+				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
+//					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("FRST_INPUT_ID", "");
+					myMap.put("LAST_MODF_ID", "");
+					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
+					csyscdDAO.insertCommCodeMasterList(myMap);
+				} else if(myMap.get("newYn")==null||myMap.get("newYn").equals("N")){
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("LAST_MODF_ID", "");
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					csyscdDAO.updateCommCodeMasterList(myMap);
+				}
+			}
+		}
 
 		return;
 	}
@@ -166,51 +154,44 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveCommCodeDetailList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		// 조회조건
-		int rowType;
-		String recordKeyValue = "";
+	public void saveCommCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input1");
-		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
-		// 저장데이타셋
-		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsDetail"); // 마스터
-		if (dsMap1.size() > 0) {
+		if (list.size() > 0) {
 
-			for (int i = 0; i < dsMap1.size(); i++) {
-				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
-				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+			for (int i = 0; i < list.size(); i++) {
+				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
-				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
 
-					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
-					
+//					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("FRST_INPUT_ID", "");
+					myMap.put("LAST_MODF_ID", "");
+					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
 
-					csyscdDAO.insertCommCodeDetailList(outMap);
+					csyscdDAO.insertCommCodeDetailList(myMap);
 
-				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
 
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-
-					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
-					csyscdDAO.updateCommCodeDetailList(outMap);
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("LAST_MODF_ID", "");
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					csyscdDAO.updateCommCodeDetailList(myMap);
 
 				}
 			}
 		}
-		// 서버에서 시퀀스 제조회시
-//		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
-//		outVar.put("strKeyValue", recordKeyValue);
-//
-//		DataSetMap dsOut = new DataSetMap();
-//		dsOut.setRowMaps(records);
-//		outDataset.put("dsDetail", dsOut);
 
 		return;
 	}
@@ -222,52 +203,43 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveGrpCodeList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		// 조회조건
-		int rowType;
-		String recordKeyValue = "";
+	public void saveGrpCodeList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+		if (list.size() > 0) {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpInput");
-		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
-		// 저장데이타셋
-		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsGrp"); // 마스터
-		if (dsMap1.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
-			for (int i = 0; i < dsMap1.size(); i++) {
-				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
-				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
+				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
 
-				if (rowType == DataSet.ROW_TYPE_INSERTED) {
+//					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("FRST_INPUT_ID", "");
+					myMap.put("LAST_MODF_ID", "");
+					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
 
-					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
-					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					
+					csyscdDAO.insertGrpCodeList(myMap);
 
-					csyscdDAO.insertGrpCodeList(outMap);
+				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
 
-				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
-
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-
-					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
-					csyscdDAO.updateGrpCodeList(outMap);
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("LAST_MODF_ID", "");
+					if(myMap.get("USE_YN").equals("Y")){
+						myMap.put("USE_YN", "1");
+					}else{
+						myMap.put("USE_YN", "0");
+					}
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					csyscdDAO.updateGrpCodeList(myMap);
 
 				}
 			}
 		}
-		// 서버에서 시퀀스 제조회시
-//		List<Map> records = csyscdDAO.retrieveGrpCodeList(inMap);
-//		outVar.put("strKeyValue", recordKeyValue);
-//
-//		DataSetMap dsOut = new DataSetMap();
-//		dsOut.setRowMaps(records);
-//		outDataset.put("dsGrp", dsOut);
-
 		return;
 	}
 	
@@ -279,51 +251,35 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveGrpCodeDeatilList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
-		// 조회조건
-		int rowType;
-		String recordKeyValue = "";
+	public void saveGrpCodeDeatilList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+		if (list.size() > 0) {
 
-		DataSetMap dsMap = (DataSetMap) inDataset.get("dsGrpDetaInput");
-		Map<String, Object> inMap = (Map<String, Object>) dsMap.get(0);
-		// 저장데이타셋
-		DataSetMap dsMap1 = (DataSetMap) inDataset.get("dsGrpDetail"); // 마스터
-		if (dsMap1.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
+				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
 
-			for (int i = 0; i < dsMap1.size(); i++) {
-				Map<String, Object> outMap = (Map<String, Object>) dsMap1.get(i);
-				rowType = ((Integer) outMap.get(NexacroPlatformConstant.DATASET_ROW_TYPE)).intValue();
-
-				if (rowType == DataSet.ROW_TYPE_INSERTED) {
-
-					outMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					outMap.put("CMMN_CD", inMap.get("CMMN_CD"));
+//					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("FRST_INPUT_ID", "");
+					myMap.put("LAST_MODF_ID", "");
+					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					
 
-					csyscdDAO.insertGrpCodeDeatilList(outMap);
+					csyscdDAO.insertGrpCodeDeatilList(myMap);
 
-				} else if (rowType == DataSet.ROW_TYPE_UPDATED) {
+				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
 
-					outMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
-					outMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
+					myMap.put("LAST_MODF_ID", "");
 
-					recordKeyValue = DataUtil.nvl(outMap.get("CMMN_CD")).toString();
-					csyscdDAO.updateGrpCodeDeatilList(outMap);
+					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
+					csyscdDAO.updateGrpCodeDeatilList(myMap);
 
 				}
 			}
 		}
-		// 서버에서 시퀀스 제조회시
-//		List<Map> records = csyscdDAO.retrieveCommCodeDetailList(inMap);
-//		outVar.put("strKeyValue", recordKeyValue);
-//
-//		DataSetMap dsOut = new DataSetMap();
-//		dsOut.setRowMaps(records);
-//		outDataset.put("dsGrpDetail", dsOut);
+
 
 		return;
 	}

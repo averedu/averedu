@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import CommonView from '../views/CommonView.vue'
+
 import ProgramMgmtView from '../views/ProgramMgmtView.vue'
 import MenuMgmtView from '../views/MenuMgmtView.vue'
 import CodeGrid from '../views/CodeGrid.vue'
@@ -18,6 +20,11 @@ const router = createRouter({
       component: LoginView,
     },
     */
+    {
+      path: '/CommonView',
+      name: 'CommonView',
+      component: CommonView,
+    },   
     {
       path: '/about',
       name: 'about',

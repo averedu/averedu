@@ -7,7 +7,7 @@
            <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드연계속성정보</h2>
            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
              
-               <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1">
+               <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1 ">
                   
                    <label class="p-1">부서연계속성명<input @keyup.enter="search()" v-model="param.deptConnAttrNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
                    <label class="p-1">부서명<input @keyup.enter="search()" v-model="param.deptNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>

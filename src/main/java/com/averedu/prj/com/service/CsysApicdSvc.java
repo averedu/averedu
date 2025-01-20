@@ -64,7 +64,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void saveCommCodeMasterList(Map<String, Object> myMap, SessionVO sessionVO) throws Exception; 
+    public void saveCommCodeMasterList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception; 
     
     /**                                                                                                          
      * 공통상세코드 리스트 저장/수정(saveGrpCodeList)                                               
@@ -72,8 +72,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void saveGrpCodeList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                      
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    public void saveGrpCodeList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 그룹코드 리스트 저장/수정(saveGrpCodeDeatilList)                                               
@@ -81,8 +80,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void saveGrpCodeDeatilList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                      
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    public void saveGrpCodeDeatilList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 그룹상세코드 리스트 저장/수정(saveCommCodeDetailList)                                               
@@ -90,8 +88,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void saveCommCodeDetailList(Map<String, Object> inVar, 	Map<String, DataSetMap> inDataset,                      
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+    public void saveCommCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     
     /**                                                                                                          
@@ -100,7 +97,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void deleteCommCodeMasterList(List<Map<String, Object>> myMap, SessionVO sessionVO) throws Exception;
+    public void deleteCommCodeMasterList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 세부코드 리스트 삭제(deleteCommCodeDetailList)                                                   
@@ -116,7 +113,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void deleteGrpCodeList(List<Map<String, Object>> myMap, SessionVO sessionVO) throws Exception;
+    public void deleteGrpCodeList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 그룹 상세 코드 삭제(deleteCommCodeDetailList)                                                   
@@ -124,7 +121,7 @@ public interface CsysApicdSvc {
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void deleteGrpCodeDetailList(List<Map<String, Object>> myMap, SessionVO sessionVO) throws Exception;
+    public void deleteGrpCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     
     /**                                                                                                               

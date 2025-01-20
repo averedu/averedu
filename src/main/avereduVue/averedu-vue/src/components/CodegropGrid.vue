@@ -4,6 +4,8 @@
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkGrpCodeDelete()">체크 삭제</button>
   <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpCodeAdd()">추가</button>
+  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpCodeUpdate">저장</button>
   </h2><br>
   <div>
     <ag-grid-vue
@@ -11,6 +13,7 @@
     :rowData="grpcodedatas"
     :gridOptions="gridOptions"
     @grid-ready="onGrpGridReady"
+    @cell-EditingStarted="edtiGrpEvent"
     @cell-clicked="onCellClicked"
     @grid-SizeChanged="resize"
     style="height: 300px;">
@@ -22,12 +25,15 @@
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkGrpDetailCodeDelete()">체크 삭제</button>
   <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  @click="grpDetailCodeAdd()">추가</button>
+  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpDetailCodeUpdate">저장</button>
   </h2><br>
   <ag-grid-vue
     :columnDefs="grpdetailcolumnDefs"
     :rowData="grpdetailcodedatas"
     :gridOptions="gridOptions"
     @grid-ready="onGrpDetailGridReady"
+     @cell-EditingStarted="edtiGrpDetailEvent"
     @grid-SizeChanged="resize"
     style="height: 300px;">
   </ag-grid-vue>
@@ -101,7 +107,7 @@ const grpCodeList = (cmmnCd)=>{
   param.value.CMMN_CD = cmmnCd;
     axios.post('/restApi/com/RetrieveGrpCodeList.do',param.value).then(res =>{
     grpcodedatas.value = res.data;
-    CMMN_CD = cmmnCd;
+    CMMN_CD.value = cmmnCd;
 }).catch(res=>{
   console.log(res);
 })
@@ -109,43 +115,26 @@ const grpCodeList = (cmmnCd)=>{
 const grpDetailCodeList = (cmmnGrpCd)=>{
     axios.post('/restApi/com/RetrieveGrpDetailCodeList.do',{CMMN_GRP_CD:cmmnGrpCd}).then(res =>{
     grpdetailcodedatas.value = res.data;
-    CMMN_GRP_CD = cmmnGrpCd;
+    CMMN_GRP_CD.value = cmmnGrpCd;
 }).catch(res=>{
   console.log(res);
 })
 }
-const grpCodeInsert = (item) =>{
-    item.CMMN_CD = CMMN_CD;
-    axios.post('/grp/code',item).then(res =>{
-        grpCodeList(CMMN_CD);
-    }).catch(res=>{
-    console.log(res);
-    })
 
-}
-const grpDetailCodeInsert = (item) =>{
-    item.CMMN_CD = CMMN_CD;
-    item.CMMN_GRP_CD = CMMN_GRP_CD;
-    axios.post('/grp/codedetail',item).then(res =>{
-        grpDetailCodeList(CMMN_GRP_CD);
-    }).catch(res=>{
-    console.log(res);
-    })
-
-}
 const grpCodeUpdate = (item)=>{
-    item.CMMN_CD = CMMN_CD;
-    axios.put('/grp/code',item).then(res =>{
-        grpCodeList(CMMN_CD);
+  const selectedData = grpGridApi.getSelectedRows();
+  console.log(selectedData);
+    axios.put('/restApi/com/SaveGrpCodeList.do',selectedData).then(res =>{
+        grpCodeList(CMMN_CD.value);
     }).catch(res=>{
     console.log(res);
     })
 }
 const grpDetailCodeUpdate = (item)=>{
-    item.CMMN_CD = CMMN_CD;
-    item.CMMN_GRP_CD = CMMN_GRP_CD;
-    axios.put('/grp/codedetail',item).then(res =>{
-        grpDetailCodeList(CMMN_GRP_CD);
+  const selectedData = grpDetailGridApi.getSelectedRows();
+  console.log(selectedData);
+    axios.put('/restApi/com/SaveGrpCodeDeatilList.do',selectedData).then(res =>{
+        grpDetailCodeList(CMMN_GRP_CD.value);
     }).catch(res=>{
     console.log(res);
     })
@@ -181,8 +170,9 @@ if(grpcodedatas.length>0&&grpcodedatas[grpcodedatas.length-1].newYn=='Y'){
   alert('한번에 하나씩 추가 가능합니다');
   return;
 }
+console.log(CMMN_CD.value);
 grpcodedatas.value.push({
-  CMMN_CD:CMMN_CD,
+  CMMN_CD:CMMN_CD.value,
   CMMN_GRP_CD:"",
   CMMN_GRP_CD_NM:"",
   ADD_ATT_VAL:"",
@@ -199,8 +189,8 @@ if(grpdetailcodedatas.length>0&&grpdetailcodedatas[grpdetailcodedatas.length-1].
   return;
 }
 grpdetailcodedatas.value.push({
-  CMMN_CD:CMMN_CD,
-  CMMN_GRP_CD:CMMN_GRP_CD,
+  CMMN_CD:CMMN_CD.value,
+  CMMN_GRP_CD:CMMN_GRP_CD.value,
   CMMN_GRP_DETA_CD:"",
   ADD_ATT_VAL:"",
   SORT_SEQ:"",
@@ -217,7 +207,14 @@ defineExpose({
   grpDetailCodeList,
   grpCodeList
 });
-
+const edtiGrpEvent = params =>{
+      let index  = grpGridApi .getFocusedCell(); 
+      grpGridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
+    }
+const edtiGrpDetailEvent = params =>{
+  let index  = grpDetailGridApi .getFocusedCell(); 
+  grpDetailGridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
+}
 </script>
 
 <style lang="scss" scoped>

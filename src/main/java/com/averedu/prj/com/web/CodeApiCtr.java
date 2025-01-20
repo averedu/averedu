@@ -120,15 +120,16 @@ public class CodeApiCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/com/SaveCommCodeMasterList.do")
-	public ResponseEntity<String> actionSaveCommCodeMasterList(@RequestBody Map<String, Object> mymap, Model model, HttpSession session)
+	@RequestMapping(value = "/restApi/com/SaveCommCodeMasterList.do", method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<String> actionSaveCommCodeMasterList(@RequestBody List<Map<String, Object>> list, HttpSession session)
 			throws Exception {
 		
 		SessionVO sessionVO = SessionUtil.getSessionVO(session);
 		
-		csysApicdSvc.saveCommCodeMasterList(mymap, sessionVO);
+		csysApicdSvc.saveCommCodeMasterList(list, sessionVO);
 		
-		return new ResponseEntity<String>("", HttpStatus.OK);
+		return new ResponseEntity<String>("수정/추가 완료했습니다", HttpStatus.OK);
 	}
 	
 	
@@ -139,33 +140,15 @@ public class CodeApiCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/com/SaveCommCodeDetailList.do")
-	public ModelAndView actionSaveCommCodeDetailList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+	@RequestMapping(value = "/restApi/com/SaveCommCodeDetailList.do", method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<String> actionSaveCommCodeDetailList(@RequestBody List<Map<String, Object>> list, HttpSession session)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		csysApicdSvc.saveCommCodeDetailList(list, sessionVO);
 
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csysApicdSvc.saveCommCodeDetailList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+		return new ResponseEntity<String>("수정/추가 완료했습니다", HttpStatus.OK);
 	}
 	
 	/**
@@ -175,33 +158,14 @@ public class CodeApiCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/com/SaveGrpCodeList.do")
-	public ModelAndView actionSaveGrpCodeList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+	@RequestMapping(value = "/restApi/com/SaveGrpCodeList.do", method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<String> actionSaveGrpCodeList(@RequestBody List<Map<String, Object>> list, HttpSession session)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csysApicdSvc.saveGrpCodeList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		csysApicdSvc.saveGrpCodeList(list, sessionVO);
+		
+		return new ResponseEntity<String>("수정/추가 완료했습니다", HttpStatus.OK);
 	}
 	
 	/**
@@ -211,33 +175,14 @@ public class CodeApiCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/com/SaveGrpCodeDeatilList.do")
-	public ModelAndView actionSaveGrpCodeDeatilList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
+	@RequestMapping(value = "/restApi/com/SaveGrpCodeDeatilList.do", method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<String> actionSaveGrpCodeDeatilList(@RequestBody List<Map<String, Object>> list, HttpSession session)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csysApicdSvc.saveGrpCodeDeatilList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		csysApicdSvc.saveGrpCodeDeatilList(list, sessionVO);
+	
+		return new ResponseEntity<String>("수정/추가 완료했습니다", HttpStatus.OK);
 	}
 	
 	/**                                                                                                                		

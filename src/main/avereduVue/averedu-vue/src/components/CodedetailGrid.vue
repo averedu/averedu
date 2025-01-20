@@ -4,12 +4,15 @@
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkDetailCodeDelete()" >체크 삭제</button>
   <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
   py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="detailAdd()" >추가</button>
+  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="saveCodeDetail">저장</button>
   </h2><br>
   <ag-grid-vue
     :columnDefs="codedetailColumnDefs"
     :rowData="codedetaildatas"
     :gridOptions="gridOptions"
     @grid-ready="onGridReady"
+    @cell-EditingStarted="edtiEvent"
     @grid-SizeChanged="resize"
     style="height: 300px;">
   </ag-grid-vue>
@@ -56,6 +59,20 @@ const onGridReady= (params) => {
 const resize = ()=>{
   gridApi.sizeColumnsToFit();
 }
+const saveCodeDetail = () => {
+      const selectedData = gridApi.getSelectedRows();
+      console.log(selectedData);
+      axios.put('/restApi/com/SaveCommCodeDetailList.do',selectedData)
+      .then(res =>{
+        if(res.status == 200){
+          alert('정상적으로 수정되었습니다');
+          detailCodeList(CMMN_CD.value)
+        }
+      }).catch(res=>{
+        console.log(res);
+      })
+
+    }
 const detailCodeList=(cmmnCd)=>{
   axios.post('/restApi/com/RetrieveCommCodeDetailList.do',{CMMN_CD:cmmnCd}).then(res =>{
     codedetaildatas.value = res.data;
@@ -66,6 +83,7 @@ const detailCodeList=(cmmnCd)=>{
 }
 const checkDetailCodeDelete=()=>{
   const selectedData = gridApi.getSelectedRows();
+  console.log(selectedData);
   axios.delete('/restApi/com/DeleteCommCodeDetailList.do',{data:selectedData}).then(res =>{
     checkedCodes = [];
     detailCodeList(CMMN_CD.value)
@@ -75,31 +93,20 @@ const checkDetailCodeDelete=()=>{
   })
 }
 const detailAdd=()=>{
-  if(CMMN_CD==null|| CMMN_CD==""){
-    return;
-  }
-  
-  if(codedetaildatas.length>0&&codedetaildatas[codedetaildatas.length-1].newYn=='Y'){
-    alert('한번에 하나씩 추가 가능합니다');
-    return;
-  }
-
-  codedetaildatas.push({
-    CMMN_CD:CMMN_CD,
-    CMMN_DETA_CD:"",
-    CMMN_DETA_CD_NM:"",
-    CMMN_DETA_CD_ABBNM:"",
-    USE_YN : 1,
-    LANG_FG_CD:"",
-    LANG_FG_NM:"",
-    LANG_ABBNM:"",
-    REMK_CTNT:"",
+console.log(CMMN_CD.value);
+  codedetaildatas.value.push({
+    CMMN_CD:CMMN_CD.value,
     newYn:'Y'})
 }
 
 defineExpose({
   detailCodeList
 });
+
+const edtiEvent = params =>{
+      let index  = gridApi .getFocusedCell(); 
+      gridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
+    }
 </script>
 
 <style>

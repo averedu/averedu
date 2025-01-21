@@ -13,7 +13,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import BaseButton from './BaseButton.vue';
 
-// Props 정의  ( 넘겨받는 URL )
+// Props 정의 ( 넘겨받는 URL )
 const props = defineProps({
   addUrl: String,    // 데이터 추가 URL (POST)
   deleteUrl: String, // 데이터 삭제 URL (DELETE)
@@ -27,31 +27,18 @@ const isAddRowInProgress = ref(false);
 const addRow = () => {
   if (isAddRowInProgress.value) return;
   isAddRowInProgress.value = true;
-
-  // 새로운 데이터 추가 (POST 요청)
-  axios.post(props.addUrl)
-    .then(() => {
-      emit('add-row');
-    })
-    .catch(error => {
-      console.error('Add failed', error);
-    })
-    .finally(() => {
-      isAddRowInProgress.value = false;
-    });
+  emit('add-row');
 };
 
 const deleteItem = () => {
-  const selectedRows = getSelectedRows();  // 선택된 행을 가져오는 함수 호출
+  const selectedRows = getSelectedRows();
   if (selectedRows.length === 0) {
     console.log('선택된 항목이 없습니다.');
     return;
   }
 
-  // 삭제할 데이터 준비 (GET 방식으로 URL에 쿼리 문자열 포함)
   const dataToDelete = selectedRows.map(row => `id=${row.id}&deptCd=${row.deptCd}&deptSn=${row.deptSn}`).join('&');
-
-  // 삭제 요청 (DELETE 요청)
+  
   axios.delete(`${props.deleteUrl}?${dataToDelete}`)
     .then(() => {
       emit('delete-item');
@@ -62,9 +49,8 @@ const deleteItem = () => {
 };
 
 const saveData = () => {
-  const dataToSave = getDataToSave(); // 저장할 데이터를 가져오는 함수 호출
+  const dataToSave = getDataToSave(); 
 
-  // 저장 요청 (PUT 요청)
   axios.put(props.saveUrl, dataToSave)
     .then(() => {
       emit('save-data');
@@ -74,8 +60,9 @@ const saveData = () => {
     });
 };
 
+
 const downloadExcel = () => {
-  // 엑셀 파일 다운로드 (GET 요청)
+  // 엑셀 파일 다운로드 (GET 요청) test중
   axios.get(props.downloadUrl, { responseType: 'blob' })
     .then(response => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -92,14 +79,12 @@ const downloadExcel = () => {
     });
 };
 
-// 선택된 행을 가져오는 함수 (예시)
 const getSelectedRows = () => {
-  return []; // 선택된 행을 리턴 (실제 구현 필요)
+  return [];
 };
 
-// 저장할 데이터를 가져오는 함수 (예시)
 const getDataToSave = () => {
-  return {}; // 저장할 데이터를 리턴 (실제 구현 필요)
+  return {}; 
 };
 </script>
 

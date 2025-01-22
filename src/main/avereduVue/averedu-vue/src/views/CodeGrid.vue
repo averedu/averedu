@@ -1,38 +1,50 @@
 <template>
-  <div class="black-bg" v-show="modalpoen">
+  <div class="flex h-screen bg-gray-200 font-roboto">
+    <LeftMenu/>
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <Header/>
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <div class="container mx-auto px-6 py-8">
+          <div class="black-bg" v-show="modalpoen">
     <div class="white-bg" >
       <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
         py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="modalinfo()">모달창닫기</button>
         <gropComponent ref="grpRef"/>
     </div>
   </div>
-  <div class="flex h-screen w-full bg-gray-100 dark:bg-[#1E2028]">
-  <LeftMenu></LeftMenu> 
+  
     <!-- Main Content -->
-    <div class="flex-1 overflow-y-auto">
+    <div class="flex-1 overflow-y-auto ">
        <div class="p-6" v-show="!modalpoen">
-           <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">공통코드</h2>
-           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-             
-               <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1 overflow-hidden whitespace-nowrap">
-                  
+          <h3 class="text-3xl font-medium text-gray-700">공통코드</h3>
+          
+            <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto">
                 <label class="p-1">코드명<input @keyup.enter="serachCode()" v-model="param.CMMN_CD" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
-              <button @click="serachCode()" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                        py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
-               </div>
-           </div><br>
-           <div>
-              <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">공통코드 
-                <!-- <strong class="float-right">총 : {{ mainRowData.length }} 건</strong> -->
-                <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkCodeDelete">삭제</button>
-                <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="addCode">추가</button>
-                <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="saveCode">저장</button>
-              </h2><br>
+                <label class="p-1">사용여부
+                  <select class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500" v-model="param.USE_YN">
+                    <option  value="1">사용</option>
+                    <option  value="0">미사용</option>
+                  </select>
+                </label>
+                <button @click="serachCode()" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+                            py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
+
             </div>
-            <ag-grid-vue 
+
+          <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+            <h2 class="text-xl font-semibold leading-tight text-gray-700">공통코드리스트</h2>
+            <div class="absolute top-0 right-0 z-10">
+              <ButtonTest @add-row="addRowToGridMain" 
+                            @delete-item="deleteItemMain"
+                            @save-data="saveDataMain" 
+                            @download-excel="downloadExcelMain" 
+                            :addUrl="addUrl" 
+                            :deleteUrl="deleteUrlMain" 
+                            :test = "gridApi"
+                            :saveUrl="saveUrlMain" 
+                            :downloadUrl="downloadUrlMain" />
+            </div>
+          <ag-grid-vue  
             :columnDefs="codeColumnDefs"
             :rowData="csys100datas"
             :gridOptions="gridOptions"
@@ -41,16 +53,28 @@
             @cell-doubleclicked="onCellDoubleClicked"
             @grid-SizeChanged="resize"
             @grid-ready="onGridReady"
-            style="height: 300px;" v-show="!modalpoen">
-          </ag-grid-vue ><br>
+            style="height: 300px;padding-top: 40px;" >
+          </ag-grid-vue >
+        </div>
           <detailComponent ref="detailRef" />
        </div>
    </div>
+
+
+        
+        </div>
+      </main>
+    </div>
   </div>
+  
+  
 </template>
 <!-- onCellClicked -->
 <script setup>
 import LeftMenu from '@/components/LeftMenu.vue';
+import ButtonTest from '../components/ButtonTest.vue';
+import Header from '@/components/Header.vue'
+
 import { RouterLink,RouterView } from 'vue-router'
 import detailComponent from '../components/CodedetailGrid.vue'
 import gropComponent from '../components/CodegropGrid.vue'
@@ -66,12 +90,44 @@ const grpRef = ref(null);
 let gridApi = null;
 let columnApi = null;
 
+const searchUrl = '/restApi/com/RetrieveCommCodeMasterList.do'; // 조회 URL
+const deleteUrlMain = '/restApi/com/DeleteCommCodeMasterList.do'; // 삭제 URL
+const saveUrlMain = '/restApi/com/SaveCommCodeMasterList.do'; // 저장 URL
+const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
+
 let  modalpoen = ref(false);
 let  param = ref({
   CMMN_CD : ""        
 }); 
 
+const addRowToGridMain = () => {
+  const newRow = { id: Date.now(), status: 'N' };
+  csys100datas.value.push(newRow);
+};
+
+const deleteItemMain = () => {
+  gridApi
+};
+
+const saveDataMain = () => {
+  gridApi
+};
+
+const downloadExcelMain = () => {
+  console.log('엑셀 다운로드');
+};
+
 const codeColumnDefs = [
+{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'X') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'U') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'N') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
   {field: 'CMMN_CD', headerName:'공통코드'},
   {field: 'CMMN_CD_NM', headerName:'공통코드명'},
   {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",
@@ -83,6 +139,7 @@ const codeColumnDefs = [
 ]
 
 const gridOptions = {
+  suppressHorizontalScroll:true,
     rowSelection: { 
         mode: 'multiRow',
         headerCheckbox: true,
@@ -90,15 +147,18 @@ const gridOptions = {
     },
     defaultColDef: {
     editable: true, // 셀 수정 가능
+   
   },
 }
 
 const  csys100datas = ref([]);
     //code 조회
 
-    const onGridReady= (params) => {
+    const onGridReady = (params) => {
         gridApi = params.api;
         columnApi = params.columnApi;
+        console.log(gridApi);
+
     }
 
     const resize = ()=>{

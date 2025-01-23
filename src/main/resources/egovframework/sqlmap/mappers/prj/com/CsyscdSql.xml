@@ -489,8 +489,10 @@
         /* CsyscdDAO.deleteGrpCodeDetailList 공통 상세 코드 삭제 */								       
     </delete>          
     
-    <select id="CsyscdDAO.deptList" parameterType="map" resultType="egovMap"> 
+    <select id="CsyscdDAO.deptList" parameterType="com.averedu.common.vo.Csys300VO" resultType="com.averedu.common.vo.Csys300VO"> 
     	SELECT 
+    		CONCAT(CONCAT(A.DEPT_NM, '('), CONCAT(A.DEPT_CD ,')')) AS GRID_NM,
+			LEVEL AS TREE_LEVEL,
     		'0' as CHK,
 			A.DEPT_CD,
 			A.UP_DEPT_CD, 
@@ -532,8 +534,10 @@
 			A.INFO_ANNC_PART, 
 			A.SHAF_DEGR,
 			A.MASTER_DEGR,
-			A.PHD_DEGR, MJ_CLSF,
-			A.CONN_MJ, ACHV_PART,
+			A.PHD_DEGR, 
+			A.MJ_CLSF,
+			A.CONN_MJ, 
+			A.ACHV_PART,
 			A.REG_PART,
 			A.GRDT_DEGR_IDCD_PRN_NM,
 			A.LSN_YR,
@@ -547,31 +551,33 @@
 			A.SUB_CHANC_MISS_CD
 		FROM COM.CSYS300 A
 		WHERE 1 = 1
-		<if test="DEPT_NM != null and DEPT_NM != ''"> 			                                         							                        
-	    	AND A.DEPT_NM LIKE '%' || #{DEPT_NM} || '%'                                            													 
+		<if test="deptNm != null and deptNm != ''"> 			                                         							                        
+	    	AND A.DEPT_NM LIKE '%' || #{deptNm} || '%'                                            													 
         </if>   
-        <if test="DEPT_CD != null and DEPT_CD != ''">                                                     							                        
-	    	AND A.DEPT_CD LIKE '%' || #{DEPT_CD} || '%'                                           													 
+        <if test="deptCd != null and deptCd != ''">                                                     							                        
+	    	AND A.DEPT_CD LIKE '%' || #{deptCd} || '%'                                           													 
         </if>
-        <if test="DEPT_ID != null and DEPT_ID != ''">       		                                                   							                        
-	    	AND A.DEPT_ID LIKE '%' || #{DEPT_ID} || '%'                                           													 
+        <if test="deptId != null and deptId != ''">       		                                                   							                        
+	    	AND A.DEPT_ID LIKE '%' || #{deptId} || '%'                                           													 
         </if>
-        <if test="USE_YN != null and USE_YN != ''">                                                 							                        
-	    	AND A.USE_YN        = #{USE_YN}                                            													 
+        <if test="useYn != null and useYn != ''">                                                 							                        
+	    	AND A.USE_YN        = #{useYn}                                            													 
         </if>
-        <if test="BREU_FG != null and BREU_FG != ''">                                                 							                        
-	    	AND A.BREU_FG        =  #{BREU_FG}                                            													 
+        <if test="breuFg != null and breuFg != ''">                                                 							                        
+	    	AND A.BREU_FG        =  #{breuFg}                                            													 
         </if>
-        <if test="FL_DEPT_YN != null and FL_DEPT_YN != ''">                                                 							                        
-	    	AND A.FL_DEPT_YN        = #{FL_DEPT_YN}                                            													 
+        <if test="flDeptYn != null and flDeptYn != ''">                                                 							                        
+	    	AND A.FL_DEPT_YN        = #{flDeptYn}                                            													 
         </if>
-        <if test="SHAF_FORMA_YN != null and SHAF_FORMA_YN != ''">                                                 							                        
-	    	AND A.SHAF_FORMA_YN        = #{SHAF_FORMA_YN}                                           													 
+        <if test="shafFormaYn != null and shafFormaYn != ''">                                                 							                        
+	    	AND A.SHAF_FORMA_YN        = #{shafFormaYn}                                           													 
         </if>
+		START WITH A.UP_DEPT_CD IS NULL
+		CONNECT BY PRIOR A.DEPT_CD = UP_DEPT_CD
 		ORDER BY A.DEPT_CD
     </select>
     
-    <select id="CsyscdDAO.deptHistList" parameterType="map" resultType="egovMap">
+    <select id="CsyscdDAO.deptHistList" parameterType="com.averedu.common.vo.Csys300VO" resultType="com.averedu.common.vo.Csys300VO">
     	SELECT 
     		'0' as CHK,
 			A.BF_DEPT_CD,
@@ -842,7 +848,7 @@
 		FROM COM.CSYS310 A
     </select>			
     
-    <insert id="CsyscdDAO.deptCdConnAttrInfoIns" parameterType="map">
+    <insert id="CsyscdDAO.deptCdConnAttrInfoIns" parameterType="com.averedu.common.vo.Csys310VO">
     	INSERT INTO COM.CSYS310 A
 		(
 			A.BF_DEPT_CD,
@@ -871,7 +877,7 @@
 		)
     </insert>
     
-    <update id="CsyscdDAO.deptCdConnAttrInfoUpd" parameterType="map">
+    <update id="CsyscdDAO.deptCdConnAttrInfoUpd" parameterType="com.averedu.common.vo.Csys310VO">
     	UPDATE COM.CSYS310 A
 		SET 
 		A.DEPT_CONN_ATTR_CD=#{DEPT_CONN_ATTR_CD},

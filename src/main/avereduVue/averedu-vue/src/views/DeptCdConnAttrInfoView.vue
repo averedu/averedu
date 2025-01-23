@@ -39,16 +39,25 @@
             <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드 연계속성 정보 
               <span class="text-red-400">* 부서코드 연계속성 정보 삭제 시 해당 정보의 연계속성 값이 같이 삭제됩니다.</span>
               <strong class="float-right">총 : {{ mainRowData.length }} 건</strong>
+              <!-- 메인 그리드 공통 버튼 시작-->
+              <div class="float-right">
+              <ButtonTest @add-row="addRowToGridMain" 
+                          @delete-item="deleteItemMain"
+                          @save-data="saveDataMain" 
+                          @download-excel="downloadExcelMain" />
+              </div>
+                <!--
                 <button type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
                 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">엑셀</button>
-                <button type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+                <button type="button" @click="mainGridSave()" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
                 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">저장</button>
                 <button type="button" @click="mainGridDel()" id="delGridBtn" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
                 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">삭제</button>
                 <button type="button" @click="mainGridAdd()" id="addGrid" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button>
+                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button>-->
             </h2><br>
             </div>
+            
              <ag-grid-vue
                 :columnDefs="mainColumnDefs"
                 :rowData="mainRowData"
@@ -59,10 +68,18 @@
              </ag-grid-vue><br>
              <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드 연계속성 값
               <strong class="float-right">총 : {{ subRowData.length }} 건</strong>
+               <!-- 서브 그리드 공통 버튼 시작-->
+               <div class="float-right">
+              <ButtonTest @add-row="addRowToGridMain" 
+                          @delete-item="deleteItemMain"
+                          @save-data="saveDataMain" 
+                          @download-excel="downloadExcelMain" />
+              </div>
+              <!--
               <button type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
                 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">엑셀</button>
                 <button type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">저장</button>
+                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">저장</button> -->
              </h2><br>
              <ag-grid-vue
                 :columnDefs="subColumnDefs"
@@ -81,6 +98,7 @@ import { ref } from 'vue';
 import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3' // Vue3 AgGrid Component
 import LeftMenu from '@/components/LeftMenu.vue';
+import ButtonTest from '@/components/ButtonTest.vue';
 ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
 
@@ -89,22 +107,23 @@ const gridOptions = {
         mode: 'multiRow',
         headerCheckbox: true
     },
-    defaultColDef: { headerClass: "centered", cellClass: "centered" },
+    defaultColDef: { 
+      headerClass: "centered",
+       cellClass: "centered",
+       editable: true,
+       editType: 'fullRow',
+    },
 
    
 }
-const onCellClicked = params => {
-    // console.log('cell click : ', params.data);
-    console.log('cell click : ', params.data.bfDeptCd);
-    subGridCall(params.data.bfDeptCd);
-}
-const grid = ref();
+const gridApi = ref();
+const columnApi = ref();
 const mainRowData = ref([]);
 const mainColumnDefs = [
-  { field: '', headerName: '상태', width: 100, cellStyle: {textAlign: "center"}},
+  { field: 'state', headerName: '상태', width: 100, cellStyle: {textAlign: "center"}},
   { field: 'mainRowNum', headerName: "순번", valueGetter: 'node.rowIndex + 1', cellEditorParams: { min: 0, max: 100 }, cellStyle: {textAlign: "center"}, width: 100,},
   { field: 'deptConnAttrCd', headerName: '부서연계 속성코드' , width: 300, cellStyle: {textAlign: "center"}}, 
-  { /*field: 'cmmnCdYn',*/ headerName: '공통코드 여부', width: 150, checkboxSelection: true, cellStyle: {textAlign: "center"}},
+  { field: 'cmmnCdYn', headerName: '공통코드 여부', width: 150, checkboxSelection: true, cellStyle: {textAlign: "center"}},
   { field: 'deptConnAttrNm', headerName: '부서연계 속성명', width: 200},
   { field: 'mngDept', headerName: '관리부서', width: 150},
   { field: 'sortSeq', headerName: '정렬순서', width: 150, cellStyle: {textAlign: "center"}},
@@ -124,18 +143,68 @@ const subColumnDefs = [
 ];
 
 const onGridReady = params => {
-    console.log('onGridReady : ', params.api);
-    grid.value = params.api;
+    // console.log('onGridReady : ', params.api);
+    gridApi.value = params.api;
+    columnApi.value = params.columnApi;
+    console.log('gridApi : ', gridApi.value);
+    console.log('columnApi : ' + columnApi.value);
+
+}
+
+const onCellClicked = params => {
+    // console.log('cell click : ', params.data);
+    console.log('cell click : ', params.data);
+    if(params.data.bfDeptCd === undefined || params.data.bfDeptCd === ''){
+      return false;
+    }
+    subGridCall(params.data.bfDeptCd);
+}
+
+const mainGridSave = () => {
+    mainRowData.value.gridApi.stopEditing(true);
+    console.log('save : ', mainRowData.value.gridApi.getEditingCells());
 }
 
 const mainGridAdd = () => {
-    console.log('addGrid');
-    mainRowData.value.push({});
+    console.log('addGrid : ', gridApi.value);
+
+    const newItems = {
+      state : 'in',
+      deptConnAttrCd : '',
+      cmmnCdYn : '',
+      deptConnAttrNm : '',
+      mngDept : '',
+      sortSeq : '',
+      remk : '',
+      bfDeptCd : ''
+    }
+
+
+    const test = gridApi.value.applyTransaction({ add: newItems/*, addIndex: newIndex*/});
+    console.log('test : ', test);
+    /*
+    mainRowData.value.push({
+      state : 'in',
+      deptConnAttrCd : '',
+      cmmnCdYn : '',
+      deptConnAttrNm : '',
+      mngDept : '',
+      sortSeq : '',
+      remk : '', 
+      bfDeptCd : ''
+    });
+    */
 }
 
 const mainGridDel = () => {
-    const delRow = JSON.parse(JSON.stringify(grid.value.getSelectedRows()));
+    const delRow = JSON.parse(JSON.stringify(gridApi.value.getSelectedRows()));
     console.log('delRow :', delRow);
+    console.log('columnApi : ', columnApi);
+   
+    if(delRow.length === 0){
+      alert('선택한 row가 없습니다.');
+      return false;
+    }
     
     axios
     .post("/restApi/prj/com/deptCdConnAttrInfoDel.do", delRow)

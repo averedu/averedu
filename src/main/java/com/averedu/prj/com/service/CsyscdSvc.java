@@ -18,6 +18,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.averedu.common.vo.Csys300VO;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.SessionVO;
@@ -142,8 +143,7 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdMngList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
-			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	public Map<String, Object> deptCdMngList(Csys300VO csys300VO, SessionVO sessionVO) throws Exception;
 
 	/**
 	 * 부서코드관리 저장/수정 (deptCdMngSave)
@@ -220,8 +220,7 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrInfoSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	public boolean deptCdConnAttrInfoSave(List<Csys310VO> csys310VoList, SessionVO sessionVO) throws Exception;
 	/**
 	 * 부서코드연계속성값 저장/수정(deptCdConnAttrValSave)
 	 * 

@@ -15,9 +15,9 @@ import BaseButton from './BaseButton.vue';
 
 // Props 정의 ( 넘겨받는 URL )
 const props = defineProps({
-  addUrl: String,    // 데이터 추가 URL (POST)
-  deleteUrl: String, // 데이터 삭제 URL (DELETE)
-  saveUrl: String,   // 데이터 저장 URL (PUT)
+  saveUrl: String,    // 데이터 저장 URL (PUT)
+  dataToSave: Array,  // 여러 데이터 저장
+
   downloadUrl: String, // 엑셀 다운로드 URL (GET)
 });
 
@@ -30,35 +30,68 @@ const addRow = () => {
   emit('add-row');
 };
 
-const deleteItem = () => {
-  const selectedRows = getSelectedRows();
-  if (selectedRows.length === 0) {
-    console.log('선택된 항목이 없습니다.');
+// 삭제
+// const deleteItem = () => {
+//   if (!props.deleteUrl || !props.dataToDelete || props.dataToDelete.length === 0) {
+//     console.error("삭제할 데이터가 없습니다.");
+//     return;
+//   }
+
+//   // 필드를 동적으로 처리하도록 수정
+//   const { deleteFields } = props;
+
+//   // dataToDelete에서 필드값을 추출하여 쿼리 문자열로 변환
+//   const dataToDelete = props.dataToDelete
+//     .map(row => {
+//       // deleteFields에서 필드명 가져와서 쿼리로 만듦
+//       return Object.entries(deleteFields).map(([key, value]) => `${key}=${row[value]}`).join('&');
+//     })
+//     .join('&');  // 여러 항목을 하나의 쿼리 문자열로 결합
+
+//   axios.delete(`${props.deleteUrl}?${dataToDelete}`)
+//     .then(() => {
+//       emit('delete-item'); // 삭제 완료 후 부모 컴포넌트로 이벤트 전달
+//     })
+//     .catch(error => {
+//       console.error('Delete failed', error);
+//     });
+// };
+
+// // 삭제(2)
+// const deleteData = () => {
+//   if (!props.deleteUrl || !props.dataToDelete || props.dataToDelete.length === 0) {
+//     console.error("삭제할 데이터가 없습니다.");
+//     return;
+//   }
+
+//   // PUT 요청으로 데이터 저장
+//   axios.delete(props.saveUrl, props.dataToSave)
+//     .then(() => {
+//       emit('delete-data'); 
+//     })
+//     .catch(error => {
+//       console.error('Save failed', error);
+//     });
+// };
+
+// 저장
+const saveData = () => {
+  if (!props.saveUrl || !props.dataToSave || props.dataToSave.length === 0) {
+    console.error("저장할 URL 또는 데이터가 없습니다.");
     return;
   }
 
-  const dataToDelete = selectedRows.map(row => `id=${row.id}&deptCd=${row.deptCd}&deptSn=${row.deptSn}`).join('&');
-  
-  axios.delete(`${props.deleteUrl}?${dataToDelete}`)
+  // PUT 요청으로 데이터 저장
+  axios.put(props.saveUrl, props.dataToSave)
     .then(() => {
-      emit('delete-item');
-    })
-    .catch(error => {
-      console.error('Delete failed', error);
-    });
-};
-
-const saveData = () => {
-  const dataToSave = getDataToSave(); 
-
-  axios.put(props.saveUrl, dataToSave)
-    .then(() => {
-      emit('save-data');
+      emit('save-data'); // 저장 완료 후 이벤트를 부모에게 전달
     })
     .catch(error => {
       console.error('Save failed', error);
     });
 };
+
+
 
 
 const downloadExcel = () => {
@@ -83,9 +116,6 @@ const getSelectedRows = () => {
   return [];
 };
 
-const getDataToSave = () => {
-  return {}; 
-};
 </script>
 
 <style scoped>

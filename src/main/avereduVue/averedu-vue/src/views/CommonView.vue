@@ -64,9 +64,8 @@
                         @delete-item="deleteItemMain"
                         @save-data="saveDataMain" 
                         @download-excel="downloadExcelMain" 
-                        :addUrl="addUrl" 
-                        :deleteUrl="deleteUrlMain" 
                         :saveUrl="saveUrlMain" 
+                        :dataToSave="dataToSaveMain"  
                         :downloadUrl="downloadUrlMain" />
         </div>
         <ag-grid-vue
@@ -108,10 +107,12 @@ import ButtonTest from '../components/ButtonTest.vue';
 // URL 설정
 const apiUrl = ref('/restApi/prj/com/deptCdConnAttrInfoList.do');  // 예시 URL
 
-const searchUrl = '/api/searchMain'; // 조회 URL
 const deleteUrlMain = '/api/deleteMain'; // 삭제 URL
 const saveUrlMain = '/api/saveMain'; // 저장 URL
 const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
+
+// 그리드에서 저장할 데이터 rowData에 맞춰 동적으로 설정
+const dataToSaveMain = ref([]);
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
@@ -245,7 +246,16 @@ const deleteItemSub = () => {
 
 };
 
-const saveDataMain = () => {
+//저장로직 
+// 1. apiUrl 호출 - saveUrlMain 
+// 2. 그리드에서 데이터를 가져와서 처리 (예시: 저장할 데이터) 데이터를 정의  - saveDataMain
+// 3. 데이터 트렌젝션처리 - dataToSaveMain 
+const saveDataMain = () => {  
+  dataToSaveMain.value = mainRowData.value.map(row => ({
+    deptCd: row.deptCd,
+    deptNm: row.deptNm,
+    useYn: row.useYn
+  }));  
 };
 
 const saveDataSub = () => {

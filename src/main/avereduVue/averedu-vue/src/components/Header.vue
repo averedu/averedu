@@ -30,6 +30,8 @@ const { isOpen } = useSidebar()
           />
         </svg>
       </button>
+
+      <h3 class="text-3xl font-medium text-gray-700">{{$route.name}}</h3>
     </div>
   </header>
 </template>

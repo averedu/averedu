@@ -25,7 +25,7 @@
                            <option value="N">미사용</option>
                        </select></label>
                    <label class="p-1">최종조직여부
-                       <select @change="search()" v-model="param.flFormaYn" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
+                       <select @change="search()" v-model="param.flDeptYn" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
                            <option selected></option>
                            <option value="Y">사용</option>
                            <option value="N">미사용</option>
@@ -323,8 +323,8 @@ const onGridReady = params => {
 }
 
 const onCellClicked = params => {
-console.log('cell click : ', params.data);
-deptDetaInfo.value = params.data;
+  console.log('cell click : ', params.data);
+  deptDetaInfo.value = params.data;
 }
 
 let param = ref({
@@ -337,13 +337,14 @@ let param = ref({
   shafFormaYn : ''
 });
 
-const search = param => {
+const search = () => {
   mainGridCall(param);
 }
 
 const mainGridCall = param => {
   
   console.log('param : ', param);
+
   const obj = Object.assign({}, param.value);
   console.log('obj : ', obj);
 

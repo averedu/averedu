@@ -16,7 +16,7 @@
       </div>
           <nav v-for="(menuList, idx) in sysMenuList" :key="idx" class="mt-10">
              <RouterLink :to="menuList.pgmPathNm" 
-             class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4" :class="['/'+$route.name === menuList.pgmPathNm ? activeClass : inactiveClass]">
+             class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4" :class="[$route.path === menuList.pgmPathNm ? activeClass : inactiveClass]">
               <span class="mx-4">{{ menuList.menuNm }}</span>
             </RouterLink>
           </nav>      

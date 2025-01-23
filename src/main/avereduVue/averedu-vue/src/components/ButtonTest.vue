@@ -38,26 +38,41 @@ const saveData = () => {
     return;
   }
 
-  // dataToSave 객체에 있는 각 데이터를 처리
-  Object.values(props.dataToSave).forEach(data => {
-    const apiUrl = data.stats === 'D' ? props.deleteUrl : props.saveUrl; // stats가 'D'이면 deleteUrl, 아니면 saveUrl
+    // 선택된 행들만 가져오기
+    const selectedRows = props.dataToSave.getSelectedRows();
 
-    const requestMethod = data.stats === 'D' ? axios.delete : axios.put;  // stats가 'D'면 delete, 아니면 put
+  // 선택된 행이 없으면 처리하지 않음
+  if (selectedRows.length === 0) {
+    console.error("선택된 행이 없습니다.");
+    return;
+  }
 
-    // Delete일 경우, id를 데이터로 전달
-    const requestData = data.stats === 'D' ? { data: { id: data.id } } : data;
-
-    requestMethod(apiUrl, requestData)
+  // 1. status가 'D'인 행은 삭제 처리
+  const deleteRows = selectedRows.filter(row => row.status === 'D');
+  deleteRows.forEach(row => {
+    axios.delete(props.deleteUrl, { data: row }) 
       .then(() => {
-        console.log(`${data.stats === 'D' ? '삭제' : '저장'} 완료:`, data);
-        emit(data.stats === 'D' ? 'delete-item' : 'save-data'); // 삭제 후 'delete-item', 저장 후 'save-data' 이벤트 발송
+        console.log('삭제 완료:', row);
+        emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
       })
       .catch(error => {
-        console.error(`${data.stats === 'D' ? '삭제' : '저장'} 실패:`, error);
+        console.error('삭제 실패:', error);
+      });
+  });
+
+  // 2. status가 'U' 또는 'N'인 행은 저장 처리
+  const saveRows = selectedRows.filter(row => row.status !== 'D');
+  saveRows.forEach(row => {
+    axios.put(props.saveUrl, row)  
+      .then(() => {
+        console.log('저장 완료:', row);
+        emit('save-data'); // 저장 후 'save-data' 이벤트 발송
+      })
+      .catch(error => {
+        console.error('저장 실패:', error);
       });
   });
 };
-
 
 
 

@@ -15,9 +15,10 @@ import BaseButton from './BaseButton.vue';
 
 // Props 정의 ( 넘겨받는 URL )
 const props = defineProps({
-  saveUrl: String,    // 데이터 저장 URL (PUT)
-  dataToSave: Array,  // 여러 데이터 저장
-
+  saveUrl: String,       // 저장할 URL (PUT 요청)
+  deleteUrl: String,     // 삭제할 URL (DELETE 요청)
+  dataToSave: Object,    // 저장할 데이터 (Object 형태로 받음)
+  dataToDelete: Object,  // 삭제할 데이터 (Object 형태로 받음)
   downloadUrl: String, // 엑셀 다운로드 URL (GET)
 });
 
@@ -30,65 +31,31 @@ const addRow = () => {
   emit('add-row');
 };
 
-// 삭제
-// const deleteItem = () => {
-//   if (!props.deleteUrl || !props.dataToDelete || props.dataToDelete.length === 0) {
-//     console.error("삭제할 데이터가 없습니다.");
-//     return;
-//   }
-
-//   // 필드를 동적으로 처리하도록 수정
-//   const { deleteFields } = props;
-
-//   // dataToDelete에서 필드값을 추출하여 쿼리 문자열로 변환
-//   const dataToDelete = props.dataToDelete
-//     .map(row => {
-//       // deleteFields에서 필드명 가져와서 쿼리로 만듦
-//       return Object.entries(deleteFields).map(([key, value]) => `${key}=${row[value]}`).join('&');
-//     })
-//     .join('&');  // 여러 항목을 하나의 쿼리 문자열로 결합
-
-//   axios.delete(`${props.deleteUrl}?${dataToDelete}`)
-//     .then(() => {
-//       emit('delete-item'); // 삭제 완료 후 부모 컴포넌트로 이벤트 전달
-//     })
-//     .catch(error => {
-//       console.error('Delete failed', error);
-//     });
-// };
-
-// // 삭제(2)
-// const deleteData = () => {
-//   if (!props.deleteUrl || !props.dataToDelete || props.dataToDelete.length === 0) {
-//     console.error("삭제할 데이터가 없습니다.");
-//     return;
-//   }
-
-//   // PUT 요청으로 데이터 저장
-//   axios.delete(props.saveUrl, props.dataToSave)
-//     .then(() => {
-//       emit('delete-data'); 
-//     })
-//     .catch(error => {
-//       console.error('Save failed', error);
-//     });
-// };
-
-// 저장
+// 삭제 o 저장 처리
 const saveData = () => {
-  if (!props.saveUrl || !props.dataToSave || props.dataToSave.length === 0) {
+  if (!props.saveUrl || !props.dataToSave || Object.keys(props.dataToSave).length === 0) {
     console.error("저장할 URL 또는 데이터가 없습니다.");
     return;
   }
 
-  // PUT 요청으로 데이터 저장
-  axios.put(props.saveUrl, props.dataToSave)
-    .then(() => {
-      emit('save-data'); // 저장 완료 후 이벤트를 부모에게 전달
-    })
-    .catch(error => {
-      console.error('Save failed', error);
-    });
+  // dataToSave 객체에 있는 각 데이터를 처리
+  Object.values(props.dataToSave).forEach(data => {
+    const apiUrl = data.stats === 'D' ? props.deleteUrl : props.saveUrl; // stats가 'D'이면 deleteUrl, 아니면 saveUrl
+
+    const requestMethod = data.stats === 'D' ? axios.delete : axios.put;  // stats가 'D'면 delete, 아니면 put
+
+    // Delete일 경우, id를 데이터로 전달
+    const requestData = data.stats === 'D' ? { data: { id: data.id } } : data;
+
+    requestMethod(apiUrl, requestData)
+      .then(() => {
+        console.log(`${data.stats === 'D' ? '삭제' : '저장'} 완료:`, data);
+        emit(data.stats === 'D' ? 'delete-item' : 'save-data'); // 삭제 후 'delete-item', 저장 후 'save-data' 이벤트 발송
+      })
+      .catch(error => {
+        console.error(`${data.stats === 'D' ? '삭제' : '저장'} 실패:`, error);
+      });
+  });
 };
 
 

@@ -1,24 +1,32 @@
 <template>
     <div class="flex h-screen w-full bg-gray-100 dark:bg-[#1E2028]">
-    <LeftMenu></LeftMenu>
-    <!-- Main Content -->
-    <div class="flex-1 overflow-y-auto">
-        <div class="p-6">
-            <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">메뉴 관리</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-              
-                <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1">
-                   <!-- 검색영역 -->
+    <LeftMenu/>
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <Header/>
+        <!-- Main Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+            <div class="flex-1 overflow-y-auto">
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+                    
+                        <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1">
+                        <!-- 검색영역 -->
+                        </div>
+                    </div>
+                    <!-- 바디영역-->
+                    <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+                        <h2 class="text-xl font-semibold leading-tight text-gray-700">메뉴 관리</h2>
+                    </div>
                 </div>
-            </div>
-             <!-- 바디영역-->
-             <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">메뉴 관리</h2>
-        </div>
+            </div>     
+        
+        </main>
     </div>
  </div>
  </template>
  
  <script setup>
+ import Header from '@/components/Header.vue'
  import LeftMenu from '@/components/LeftMenu.vue';
  import { RouterLink,RouterView } from 'vue-router'
  </script>

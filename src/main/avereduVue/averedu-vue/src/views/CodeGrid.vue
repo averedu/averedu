@@ -4,65 +4,59 @@
     <div class="flex-1 flex flex-col overflow-hidden">
       <Header/>
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8">
           <div class="black-bg" v-show="modalpoen">
-    <div class="white-bg" >
-      <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-        py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="modalinfo()">모달창닫기</button>
-        <gropComponent ref="grpRef"/>
-    </div>
-  </div>
-  
-    <!-- Main Content -->
-    <div class="flex-1 overflow-y-auto ">
-       <div class="p-6" v-show="!modalpoen">
-          <h3 class="text-3xl font-medium text-gray-700">공통코드</h3>
+            <div class="white-bg" >
+              <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="modalinfo()">모달창닫기</button>
+                <gropComponent ref="grpRef"/>
+            </div>
+          </div>
           
-            <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto">
-                <label class="p-1">코드명<input @keyup.enter="serachCode()" v-model="param.CMMN_CD" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
-                <label class="p-1">사용여부
-                  <select class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500" v-model="param.USE_YN">
-                    <option  value="1">사용</option>
-                    <option  value="0">미사용</option>
-                  </select>
-                </label>
-                <button @click="serachCode()" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                            py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
+    <!-- Main Content -->
+            <div class="flex-1 overflow-y-auto">
+              <div class="p-6" v-show="!modalpoen">                  
+                    <div class="bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto">
+                        <label class="p-1">공통코드<input @keyup.enter="serachCode()" v-model="param.CMMN_CD" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
+                        <label class="p-1">공통코드명<input @keyup.enter="serachCode()" v-model="param.CMMN_CD_NM" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
+                        <label class="p-1">사용여부
+                          <select class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500" v-model="param.USE_YN">
+                            <option  value="1">사용</option>
+                            <option  value="0">미사용</option>
+                          </select>
+                          <label class="p-1">이전코드<input @keyup.enter="serachCode()" v-model="param.BF_CMMN_CD" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900"/></label>
+                        </label>
+                        <button @click="serachCode()" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
+                                    py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
 
-            </div>
+                    </div>
 
-          <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
-            <h2 class="text-xl font-semibold leading-tight text-gray-700">공통코드리스트</h2>
-            <div class="absolute top-0 right-0 z-10">
-              <ButtonTest @add-row="addRowToGridMain" 
-                            @delete-item="deleteItemMain"
-                            @save-data="saveDataMain" 
-                            @download-excel="downloadExcelMain" 
-                            :addUrl="addUrl" 
-                            :deleteUrl="deleteUrlMain" 
-                            :test = "gridApi"
-                            :saveUrl="saveUrlMain" 
-                            :downloadUrl="downloadUrlMain" />
-            </div>
-          <ag-grid-vue  
-            :columnDefs="codeColumnDefs"
-            :rowData="csys100datas"
-            :gridOptions="gridOptions"
-            @cell-clicked="onCellClicked"
-            @cell-EditingStarted="edtiEvent"
-            @cell-doubleclicked="onCellDoubleClicked"
-            @grid-SizeChanged="resize"
-            @grid-ready="onGridReady"
-            style="height: 300px;padding-top: 40px;" >
-          </ag-grid-vue >
-        </div>
-          <detailComponent ref="detailRef" />
-       </div>
-   </div>
-
-
-        
-        </div>
+                  <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+                    <h2 class="text-xl font-semibold leading-tight text-gray-700">공통코드리스트</h2>
+                    <div class="absolute top-0 right-0 z-10">
+                      <ButtonTest @add-row="addRowToGridMain" 
+                                    @delete-item="deleteItemMain"
+                                    @save-data="saveDataMain" 
+                                    @download-excel="downloadExcelMain" 
+                                    :addUrl="addUrl" 
+                                    :deleteUrl="deleteUrlMain" 
+                                    :dataToSave = "dataToSaveMain"
+                                    :saveUrl="saveUrlMain" 
+                                    :downloadUrl="downloadUrlMain" />
+                    </div>
+                  <ag-grid-vue  
+                    :columnDefs="codeColumnDefs"
+                    :rowData="csys100datas"
+                    :gridOptions="gridOptions"
+                    @cell-clicked="onCellClicked"
+                    @cell-EditingStarted="edtiEvent"
+                    @cell-doubleclicked="onCellDoubleClicked"
+                    @grid-ready="onGridReady"
+                    style="height: 300px;padding-top: 40px;" >
+                  </ag-grid-vue >
+                </div>
+                  <detailComponent ref="detailRef" />
+              </div>
+          </div>
       </main>
     </div>
   </div>
@@ -90,6 +84,8 @@ const grpRef = ref(null);
 let gridApi = null;
 let columnApi = null;
 
+const dataToSaveMain = ref();
+
 const searchUrl = '/restApi/com/RetrieveCommCodeMasterList.do'; // 조회 URL
 const deleteUrlMain = '/restApi/com/DeleteCommCodeMasterList.do'; // 삭제 URL
 const saveUrlMain = '/restApi/com/SaveCommCodeMasterList.do'; // 저장 URL
@@ -97,7 +93,9 @@ const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
 
 let  modalpoen = ref(false);
 let  param = ref({
-  CMMN_CD : ""        
+  CMMN_CD : "",
+  CMMN_CD_NM : "",
+  BF_CMMN_CD : "",USE_YN : ""        
 }); 
 
 const addRowToGridMain = () => {
@@ -139,7 +137,6 @@ const codeColumnDefs = [
 ]
 
 const gridOptions = {
-  suppressHorizontalScroll:true,
     rowSelection: { 
         mode: 'multiRow',
         headerCheckbox: true,
@@ -157,8 +154,7 @@ const  csys100datas = ref([]);
     const onGridReady = (params) => {
         gridApi = params.api;
         columnApi = params.columnApi;
-        console.log(gridApi);
-
+        dataToSaveMain.value = gridApi;
     }
 
     const resize = ()=>{
@@ -170,46 +166,6 @@ const  csys100datas = ref([]);
       }).catch(res=>{
         console.log(res);
       })
-    }
-    //체크 code 삭제
-    const checkCodeDelete = () =>{
-      const selectedData = gridApi.getSelectedRows();
-      console.log(selectedData);
-
-      axios.delete('/restApi/com/DeleteCommCodeMasterList.do',{data:selectedData})
-      .then(res =>{
-        if(res.status == 200){
-          alert('정상적으로 삭제되었습니다');
-          serachCode();
-          serachCodeDetail('');
-        }
-      }).catch(res=>{
-        console.log(res);
-      })
-    }
-    //code 수정
-    const saveCode = () => {
-      const selectedData = gridApi.getSelectedRows();
-      console.log(selectedData);
-      axios.put('/restApi/com/SaveCommCodeMasterList.do',selectedData)
-      .then(res =>{
-        if(res.status == 200){
-          alert('정상적으로 수정되었습니다');
-          serachCode()
-        }
-      }).catch(res=>{
-        console.log(res);
-      })
-
-    }
-    const addCode = () => {
-    //  gridApi.updateRowData({add: [{}], addIndex:0});
-      csys100datas.value.push({newYn:'Y'})
-    }
-    const savedCode = () => {
-      console.log(gridApi)
-      console.log(gridApi)
-      //csys100datas.value.push({newYn:'Y'})
     }
 
     const modalinfo = (item) => {

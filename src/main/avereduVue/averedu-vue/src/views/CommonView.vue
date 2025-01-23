@@ -1,103 +1,98 @@
 <template>
-      <div class="flex h-screen w-full bg-gray-100 dark:bg-[#1E2028]">
-        <LeftMenu></LeftMenu>
-  <!-- Main Content -->
-  <div class="flex-1 overflow-y-auto">
-    <div class="p-6">
-      <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드연계속성정보</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-        
-        
-        <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1">
-          <label class="p-1">입력(inputBox)
-            <input @keyup.enter="search" v-model="param.deptNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900" />
-          </label>
-        
-          <!-- 공통 코드 (query Select Box -->
-        <label for="commonCode" class="p-1">공통 코드 선택1</label>
-        <select id="commonCode" v-model="selectedCode" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900">
-          <option value="" disabled selected>Query 호출</option>
-          <option v-for="code in commonCodes" :key="code.CMMN_CD" :value="code.CMMN_CD">
-            {{ code.CMMN_CD_NM }}
-          </option>
-        </select>
+<div class="flex h-screen bg-gray-200 font-roboto">
+  <LeftMenu/>
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <Header/>
+    <!-- Main Content -->
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+      <div class="flex-1 overflow-y-auto">
+        <div class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+            <div class="bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto">
+              <label class="p-1">입력(inputBox)
+                <input @keyup.enter="search" v-model="param.deptNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900" />
+              </label>
 
-          <!-- 공통 코드 (공통기능으로 가져오는 Box -->
-          <label for="commonCode2" class="p-1">공통 코드 선택2</label>
-        <select id="commonCode2" v-model="selectedCode2" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900">
-          <option value="" disabled selected>코드호출</option>
-          <option v-for="code in commonCodes2" :key="code.CMMN_CD" :value="code.CMMN_CD">
-            {{ code.CMMN_CD_NM }}
-          </option>
-        </select>        
-
-        
-
-
-          <label class="p-1">
-            사용여부
-            <select @change="search" v-model="param.useYn" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
-              <option selected></option>
-              <option value="Y">사용</option>
-              <option value="N">미사용</option>
+              <!-- 공통 코드 (query Select Box -->
+            <label for="commonCode" class="p-1">공통 코드 선택1</label>
+            <select id="commonCode" v-model="selectedCode" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900">
+              <option value="" disabled selected>Query 호출</option>
+              <option v-for="code in commonCodes" :key="code.CMMN_CD" :value="code.CMMN_CD">
+                {{ code.CMMN_CD_NM }}
+              </option>
             </select>
-          </label>
-          <br />
+              <!-- 공통 코드 (공통기능으로 가져오는 Box -->
+              <label for="commonCode2" class="p-1">공통 코드 선택2</label>
+            <select id="commonCode2" v-model="selectedCode2" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900">
+              <option value="" disabled selected>코드호출</option>
+              <option v-for="code in commonCodes2" :key="code.CMMN_CD" :value="code.CMMN_CD">
+                {{ code.CMMN_CD_NM }}
+              </option>
+            </select>        
+              <label class="p-1">
+                사용여부
+                <select @change="search" v-model="param.useYn" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
+                  <option selected></option>
+                  <option value="Y">사용</option>
+                  <option value="N">미사용</option>
+                </select>
+              </label>
+              <label class="p-1">조직유형
+                <select @change="search" v-model="param.formaTyp" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
+                  <option selected></option>
+                  <option value="Y">사용</option>
+                  <option value="N">미사용</option>
+                </select>
+              </label>
+              <button @click="search" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
+            </div>
+          </div>
+          <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+            <h2 class="text-xl font-semibold leading-tight text-gray-700">부서코드 연계속성 정보</h2>
+            <!-- ButtonTest 버튼을 우측 상단에 배치 -->
+            <div class="absolute top-0 right-0 z-10">
+              <ButtonTest @add-row="addRowToGridMain" 
+                            @delete-item="deleteItemMain"
+                            @save-data="saveDataMain" 
+                            @download-excel="downloadExcelMain" 
+                            :saveUrl="saveUrlMain" 
+                            :dataToSave="dataToSaveMain"  
+                            :downloadUrl="downloadUrlMain" />
+            </div>
+            <ag-grid-vue
+              :columnDefs="mainColumnDefs"
+              :rowData="mainRowData"
+              :gridOptions="gridOptions"
+              @cell-clicked="onCellClicked"
+              style="height: 300px; padding-top: 40px;"
+            />
+            
+          </div>
 
-          <label class="p-1">조직유형
-            <select @change="search" v-model="param.formaTyp" class="mx-3 p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500">
-              <option selected></option>
-              <option value="Y">사용</option>
-              <option value="N">미사용</option>
-            </select>
-          </label>
-          <button @click="search" id="searchBtn" type="button" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">조회</button>
+          <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+            <!-- ButtonTest 버튼을 우측 상단에 배치 -->
+            <div class="absolute top-0 right-0 z-10">
+              <ButtonTest @add-row="addRowToGridSub" 
+                          @delete-item="deleteItemSub" 
+                          @save-data="saveDataSub" 
+                          @download-excel="downloadExcelSub" />
+            </div>
+            <ag-grid-vue
+              :columnDefs="subColumnDefs"
+              :rowData="subRowData"
+              style="height: 300px; padding-top: 40px;"
+            />
+          </div>
         </div>
       </div>
-
-      <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드 연계속성 정보</h2>
-
-      <div class="relative mb-6">
-        <!-- ButtonTest 버튼을 우측 상단에 배치 -->
-        <div class="absolute top-0 right-0 z-10">
-          <ButtonTest @add-row="addRowToGridMain" 
-                        @delete-item="deleteItemMain"
-                        @save-data="saveDataMain" 
-                        @download-excel="downloadExcelMain" 
-                        :saveUrl="saveUrlMain" 
-                        :dataToSave="dataToSaveMain"  
-                        :downloadUrl="downloadUrlMain" />
-        </div>
-        <ag-grid-vue
-          :columnDefs="mainColumnDefs"
-          :rowData="mainRowData"
-          :gridOptions="gridOptions"
-          @cell-clicked="onCellClicked"
-          style="height: 300px; padding-top: 40px;"
-        />
-      </div>
-
-      <div class="relative mb-6">
-        <!-- ButtonTest 버튼을 우측 상단에 배치 -->
-        <div class="absolute top-0 right-0 z-10">
-          <ButtonTest @add-row="addRowToGridSub" 
-                      @delete-item="deleteItemSub" 
-                      @save-data="saveDataSub" 
-                      @download-excel="downloadExcelSub" />
-        </div>
-        <ag-grid-vue
-          :columnDefs="subColumnDefs"
-          :rowData="subRowData"
-          style="height: 300px; padding-top: 40px;"
-        />
-      </div>
-    </div>
+    </main>
   </div>
 </div>  
 </template>
 
 <script setup>
 import LeftMenu from '@/components/LeftMenu.vue';
+import Header from '@/components/Header.vue'
 import axios from 'axios';
 import { ref , onMounted } from 'vue';
 import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community';

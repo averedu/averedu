@@ -117,7 +117,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
-				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
+				if (myMap.get("status")!=null && myMap.get("status").equals("N")) {
 //					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("FRST_INPUT_ID", "");
@@ -130,7 +130,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 						myMap.put("USE_YN", "0");
 					}
 					csyscdDAO.insertCommCodeMasterList(myMap);
-				} else if(myMap.get("newYn")==null||myMap.get("newYn").equals("N")){
+				} else if(myMap.get("status")==null||myMap.get("status").equals("U")){
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");
 					if(myMap.get("USE_YN").equals("Y")){
@@ -161,7 +161,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
-				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
+				if (myMap.get("status")!=null && myMap.get("status").equals("N")) {
 
 //					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
@@ -177,7 +177,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 
 					csyscdDAO.insertCommCodeDetailList(myMap);
 
-				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
+				} else if (myMap.get("status")==null||myMap.get("status").equals("U")) {
 
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");
@@ -209,7 +209,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
-				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
+				if (myMap.get("status")!=null && myMap.get("status").equals("N")) {
 
 //					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
@@ -225,7 +225,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 
 					csyscdDAO.insertGrpCodeList(myMap);
 
-				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
+				} else if (myMap.get("status")==null||myMap.get("status").equals("U")) {
 
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");
@@ -256,7 +256,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 
 			for (int i = 0; i < list.size(); i++) {
 				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
-				if (myMap.get("newYn")!=null && myMap.get("newYn").equals("Y")) {
+				if (myMap.get("status")!=null && myMap.get("status").equals("N")) {
 
 //					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
@@ -268,7 +268,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 
 					csyscdDAO.insertGrpCodeDeatilList(myMap);
 
-				} else if (myMap.get("newYn")==null||myMap.get("newYn").equals("N")) {
+				} else if (myMap.get("status")==null||myMap.get("status").equals("U")) {
 
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");

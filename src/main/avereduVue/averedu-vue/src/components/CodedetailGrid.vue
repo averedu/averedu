@@ -19,7 +19,6 @@
     :gridOptions="gridOptions"
     @grid-ready="onGridReady"
     @cell-EditingStarted="edtiEvent"
-    @grid-SizeChanged="resize"
     style="height: 300px; padding-top: 40px;">
   </ag-grid-vue>
   </div>
@@ -67,6 +66,14 @@ const onGridReady= (params) => {
 const resize = ()=>{
   gridApi.sizeColumnsToFit();
 }
+
+const addRowToGridMain = () => {
+  if(CMMN_CD.value!=""){
+    const newRow = { id: Date.now(), status: 'N' };
+    codedetaildatas.value.push(newRow);
+  }
+
+};
 const saveCodeDetail = () => {
       const selectedData = gridApi.getSelectedRows();
       console.log(selectedData);

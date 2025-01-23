@@ -7,19 +7,17 @@ import CodeGrid from '../views/CodeGrid.vue'
 import DeptCdMgmtView from '../views/DeptCdMgmtView.vue'
 import DeptCdConnAttrInfoView from '../views/DeptCdConnAttrInfoView.vue'
 import MainView from '@/views/MainView.vue'
-// import LoginView from '@/views/LoginView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    /*
     {
       path: '/',
       name: 'login',
       component: LoginView,
     },
-    */
     {
       path: '/CommonView',
       name: '공통기능관리',

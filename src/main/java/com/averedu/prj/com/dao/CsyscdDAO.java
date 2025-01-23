@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.averedu.common.vo.Csys300VO;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
 import com.averedu.prj.sys.vo.MenuVO;
@@ -247,8 +248,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @throws Exception                                                                                   		
      */                   
     // 
-    public List<Map> deptList(Map<String, Object> map) throws Exception {                   
-     	return selectList("CsyscdDAO.deptList", map);          
+    public List<Map> deptList(Csys300VO csys300VO) throws Exception {                   
+     	return selectList("CsyscdDAO.deptList", csys300VO);          
     }     
     
     /**                                                                                                      	
@@ -285,13 +286,13 @@ public class CsyscdDAO extends EgovAbstractMapper {
     }
     
     /**                                                                                                      	
-     * 부서이력목록 부서이력목록(deptHistList)                                                 
+     * 부서이력목록 (deptHistList)                                                 
      * @param input                                                                                         	
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */                   
-    public List<Map> deptHistList(Map<String, Object> map) throws Exception {                   
-     	return selectList("CsyscdDAO.deptHistList", map);          
+    public List<Map> deptHistList(Csys300VO csys300VO) throws Exception {                   
+     	return selectList("CsyscdDAO.deptHistList", csys300VO);          
     }
     
     /**                                                                                                      	
@@ -366,8 +367,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */  
-    public void deptCdConnAttrInfoIns(Map<String, Object> map){                   
-     	insert("CsyscdDAO.deptCdConnAttrInfoIns", map);          
+    public void deptCdConnAttrInfoIns(Csys310VO csys310VO){                   
+     	insert("CsyscdDAO.deptCdConnAttrInfoIns", csys310VO);          
     }
     
     /**                                                                                                      	
@@ -376,8 +377,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */  
-    public void deptCdConnAttrInfoUpd(Map<String, Object> map){                   
-     	update("CsyscdDAO.deptCdConnAttrInfoUpd", map);          
+    public void deptCdConnAttrInfoUpd(Csys310VO csys310VO){                   
+     	update("CsyscdDAO.deptCdConnAttrInfoUpd", csys310VO);          
     }
     
     /**                                                                                                      	

@@ -21,6 +21,7 @@ public class Csys310VO extends SearchVO{
 	private String lastModfMenuId;
 	private String lastModfIp;
     private String deptConnAttrNm;
+    private String rowType;
 	public int getChk() {
 		return chk;
 	}
@@ -123,9 +124,12 @@ public class Csys310VO extends SearchVO{
 	public void setDeptConnAttrNm(String deptConnAttrNm) {
 		this.deptConnAttrNm = deptConnAttrNm;
 	}
-
+	public String getRowType() {
+		return rowType;
+	}
+	public void setRowType(String rowType) {
+		this.rowType = rowType;
+	}
     
-	
-	
 	
 }

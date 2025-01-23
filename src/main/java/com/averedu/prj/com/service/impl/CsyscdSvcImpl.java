@@ -14,6 +14,7 @@
 package com.averedu.prj.com.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import com.averedu.common.util.DataUtil;
 import com.averedu.common.util.EgovWebUtil;
+import com.averedu.common.vo.Csys300VO;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.SessionVO;
@@ -462,24 +464,17 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @throws Exception
 	 */
 	@Override
-	public void deptCdMngList(Map<String, Object> inVar, Map<String, DataSetMap> inDataset, Map<String, Object> outVar,
-			Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public Map<String, Object> deptCdMngList(Csys300VO csys300VO, SessionVO sessionVO) throws Exception {
 		
-		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
-		Map<String, Object> map = (Map<String, Object>) dsMap.get(0);
-		
-		List<Map> recordsMaster = csyscdDAO.deptList(map);
-		DataSetMap dsOutMaster = new DataSetMap();
-		dsOutMaster.setRowMaps(recordsMaster);
-		
-		
-		List<Map> recordsSub = csyscdDAO.deptHistList(map);
-		DataSetMap dsOutSub = new DataSetMap();
-		dsOutSub.setRowMaps(recordsSub);
-		
-		outDataset.put("dsMaster", dsOutMaster);
-		outDataset.put("dsSub", dsOutSub);
-		return;
+		try {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("deptList", csyscdDAO.deptList(csys300VO));
+			map.put("deptHistList", csyscdDAO.deptHistList(csys300VO));
+			return map;
+		}catch(Exception e){
+			log.info("deptCdMngList.error : " + e.getMessage());
+		}
+		return null;
 		
 	}
 
@@ -664,9 +659,29 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 	 * @throws Exception
 	 */
 	@Override
-	public void deptCdConnAttrInfoSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception {
+	public boolean deptCdConnAttrInfoSave(List<Csys310VO> csys310VoList, SessionVO sessionVO) throws Exception {
 		
+		try{
+			for(int i = 0; i < csys310VoList.size(); i++){
+				if("in".equals(csys310VoList.get(i).getRowType())){
+					String deptCdKeyCode = deptCdConnAttrValKeyCode();
+					csys310VoList.get(i).setBfDeptCd(deptCdKeyCode);
+					csys310VoList.get(i).setFrstInputId(sessionVO.getUserId().toString());
+					csys310VoList.get(i).setFrstInputIp(EgovWebUtil.getUserIpAddress());
+					csyscdDAO.deptCdConnAttrInfoIns(csys310VoList.get(i));
+				}else if("up".equals(csys310VoList.get(i).getRowType())){
+					csys310VoList.get(i).setLastModfId(sessionVO.getUserId().toString());
+					csys310VoList.get(i).setLastModfIp(EgovWebUtil.getUserIpAddress());
+					csyscdDAO.deptCdConnAttrInfoUpd(csys310VoList.get(i));
+				}
+			}
+			return true;
+		}catch(Exception e){
+			log.info("deptCdConnAttrInfoSave.error : " + e.getMessage());
+			return false;
+		}
+		
+		/*
 		int rowType;
 
 		DataSetMap dsMap = (DataSetMap) inDataset.get("ds_input");
@@ -697,6 +712,7 @@ public class CsyscdSvcImpl extends EgovAbstractServiceImpl implements CsyscdSvc 
 				}
 			}  
 		}
+		*/
 
 	}
 

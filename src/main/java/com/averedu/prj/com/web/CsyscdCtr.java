@@ -31,9 +31,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springmodules.validation.bean.conf.loader.annotation.handler.RegExp;
 
 import com.averedu.common.exception.CommExceptionUtil;
 import com.averedu.common.util.SessionUtil;
+import com.averedu.common.vo.Csys300VO;
 import com.averedu.common.vo.Csys310VO;
 import com.averedu.common.vo.Csys311VO;
 import com.averedu.common.vo.SessionVO;
@@ -491,36 +493,16 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdMngList.do")
-	public ModelAndView deptCdMngList(NexacroPlatformMapDTO nxDto, Model model, HttpSession session) throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csyscdSvc.deptCdMngList(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdMngList.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> deptCdMngList(@RequestBody Csys300VO csys300vo, HttpSession session) throws Exception {
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		Map<String, Object> map = csyscdSvc.deptCdMngList(csys300vo, sessionVO);
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 
 	/**
-	 * 부서코드관리 저장/수정 (deptCdMngSave)
+	 * 부서코드관리 저장/수정 (deptCdMngSave) 
 	 * 
 	 * @param input
 	 * @return
@@ -715,34 +697,14 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrInfoSave.do")
-	public ModelAndView deptCdConnAttrInfoSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
-			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csyscdSvc.deptCdConnAttrInfoSave(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoSave.do")
+	@ResponseBody
+	public boolean deptCdConnAttrInfoSave(@RequestBody java.util.List<Csys310VO> csys310VoList , HttpSession session) throws Exception {
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		boolean saveType = csyscdSvc.deptCdConnAttrInfoSave(csys310VoList, sessionVO);
+		return saveType;
 	}
+	
 
 	/**
 	 * 부서코드연계속성정보 삭제(deptCdConnAttrInfoDel)

@@ -1,12 +1,18 @@
 <template>
-  <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">상세 공통코드
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkDetailCodeDelete()" >체크 삭제</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="detailAdd()" >추가</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="saveCodeDetail">저장</button>
-  </h2><br>
+  <div class="mt-4 bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+    <h2 class="text-xl font-semibold leading-tight text-gray-700">상세공통코드리스트</h2>
+    <div class="absolute top-0 right-0 z-10">
+      <ButtonTest @add-row="addRowToGridMain" 
+                  @delete-item="deleteItemMain"
+                  @save-data="saveDataMain" 
+                  @download-excel="downloadExcelMain" 
+                  :addUrl="addUrl" 
+                  :deleteUrl="deleteUrlMain" 
+                  :test = "gridApi"
+                  :saveUrl="saveUrlMain" 
+                  :downloadUrl="downloadUrlMain" />
+    </div>
+  
   <ag-grid-vue
     :columnDefs="codedetailColumnDefs"
     :rowData="codedetaildatas"
@@ -14,13 +20,15 @@
     @grid-ready="onGridReady"
     @cell-EditingStarted="edtiEvent"
     @grid-SizeChanged="resize"
-    style="height: 300px;">
+    style="height: 300px; padding-top: 40px;">
   </ag-grid-vue>
+  </div>
 </template>
 
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import ButtonTest from '../components/ButtonTest.vue';
 import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3' // Vue3 AgGrid Component
 ModuleRegistry.registerModules([AllCommunityModule]);

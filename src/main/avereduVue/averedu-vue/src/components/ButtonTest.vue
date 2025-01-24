@@ -27,7 +27,7 @@ const isAddRowInProgress = ref(false);
 
 const addRow = () => {
   if (isAddRowInProgress.value) return;
-  isAddRowInProgress.value = true;
+  //isAddRowInProgress.value = true;
   emit('add-row');
 };
 
@@ -92,8 +92,7 @@ const saveData = () => {
   //     });
   // });
 };
-
-
+const deleteItem =() => {}
 
 const downloadExcel = () => {
   // 엑셀 파일 다운로드 (GET 요청) test중

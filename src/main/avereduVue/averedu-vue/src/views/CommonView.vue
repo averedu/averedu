@@ -57,7 +57,9 @@
                             @download-excel="downloadExcelMain" 
                             :saveUrl="saveUrlMain" 
                             :dataToSave="dataToSaveMain"  
-                            :downloadUrl="downloadUrlMain" />
+                            :downloadUrl="downloadUrlMain" 
+                            :isAddRowInProgress="isAddRowInProgress"
+                            @update-isAddRowInProgress="updateIsAddRowInProgress" />
             </div>
             <ag-grid-vue
               :columnDefs="mainColumnDefs"
@@ -108,6 +110,9 @@ const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
 
 // 그리드에서 저장할 데이터 rowData에 맞춰 동적으로 설정
 const dataToSaveMain = ref([]);
+
+// 추가 중인 상태 확인
+const isAddRowInProgress = ref(false);
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
@@ -225,8 +230,17 @@ const subGridCall = (bfDeptCd) => {
 
 // 행 추가, 삭제, 저장, 엑셀 다운로드 메서드
 const addRowToGridMain = () => {
+  if (isAddRowInProgress.value) return; 
+  isAddRowInProgress.value = true;
+
   const newRow = { id: Date.now(), status: 'N' };
   mainRowData.value.push(newRow);
+
+  isAddRowInProgress.value = false;
+};
+// 상태 업데이트 함수
+const updateIsAddRowInProgress = (value) => {
+  isAddRowInProgress.value = value;
 };
 
 const addRowToGridSub = () => {

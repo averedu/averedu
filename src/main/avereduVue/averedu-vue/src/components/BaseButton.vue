@@ -16,8 +16,7 @@ export default defineComponent({
     },
   },
   methods: {
-    handleClick() {
-      this.$emit('click', event); // 중복되는 $emit 제거
+    handleClick() {      
     },
   },
 });

@@ -48,9 +48,8 @@ const saveData = () => {
   }
 
   // 1. status가 'D'인 행은 삭제 처리
-  const deleteRows = selectedRows.filter(row => row.status === 'D');
-  deleteRows.forEach(row => {
-    axios.delete(props.deleteUrl, { data: row }) 
+  const deleteRows = selectedRows.filter(row => row.status === 'D');  
+  axios.delete(props.deleteUrl, { data: deleteRows }) 
       .then(() => {
         console.log('삭제 완료:', row);
         emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
@@ -58,20 +57,40 @@ const saveData = () => {
       .catch(error => {
         console.error('삭제 실패:', error);
       });
-  });
+      // 사용안함--------------------------------------------------------------
+  // deleteRows.forEach(row => {
+  //   axios.delete(props.deleteUrl, { data: row }) 
+  //     .then(() => {
+  //       console.log('삭제 완료:', row);
+  //       emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
+  //     })
+  //     .catch(error => {
+  //       console.error('삭제 실패:', error);
+  //     });
+  // });
 
   // 2. status가 'U' 또는 'N'인 행은 저장 처리
   const saveRows = selectedRows.filter(row => row.status !== 'D');
-  saveRows.forEach(row => {
-    axios.put(props.saveUrl, row)  
+  console.log(saveRows);
+  axios.put(props.saveUrl, saveRows)  
       .then(() => {
-        console.log('저장 완료:', row);
+        console.log('저장 완료:', saveRows);
         emit('save-data'); // 저장 후 'save-data' 이벤트 발송
       })
       .catch(error => {
         console.error('저장 실패:', error);
       });
-  });
+   // 사용안함--------------------------------------------------------------
+  // saveRows.forEach(row => {
+  //   axios.put(props.saveUrl, row)  
+  //     .then(() => {
+  //       console.log('저장 완료:', row);
+  //       emit('save-data'); // 저장 후 'save-data' 이벤트 발송
+  //     })
+  //     .catch(error => {
+  //       console.error('저장 실패:', error);
+  //     });
+  // });
 };
 
 

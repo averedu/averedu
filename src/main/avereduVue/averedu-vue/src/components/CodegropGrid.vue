@@ -16,7 +16,7 @@
     @cell-EditingStarted="edtiGrpEvent"
     @cell-clicked="onCellClicked"
     @grid-SizeChanged="resize"
-    style="height: 300px;">
+    style="height: 300px; width: 100%;">
   </ag-grid-vue>
 </div>
 <div>
@@ -35,7 +35,7 @@
     @grid-ready="onGrpDetailGridReady"
      @cell-EditingStarted="edtiGrpDetailEvent"
     @grid-SizeChanged="resize"
-    style="height: 300px;">
+    style="height: 300px;  width: 100%;">
   </ag-grid-vue>
 </div>
 </template>
@@ -166,7 +166,7 @@ const grpCodeAdd = ()=>{
   if(CMMN_CD==null||CMMN_CD==""){
   return;
 }
-if(grpcodedatas.length>0&&grpcodedatas[grpcodedatas.length-1].newYn=='Y'){
+if(grpcodedatas.length>0&&grpcodedatas[grpcodedatas.length-1].status=='N'){
   alert('한번에 하나씩 추가 가능합니다');
   return;
 }
@@ -177,14 +177,14 @@ grpcodedatas.value.push({
   CMMN_GRP_CD_NM:"",
   ADD_ATT_VAL:"",
   REMK_WPC:"",
-  newYn:'Y'})
+  status:'N'})
 }
 const grpDetailCodeAdd = ()=>{
 
   if(CMMN_GRP_CD==null||CMMN_GRP_CD==""){
   return;
 }
-if(grpdetailcodedatas.length>0&&grpdetailcodedatas[grpdetailcodedatas.length-1].newYn=='Y'){
+if(grpdetailcodedatas.length>0&&grpdetailcodedatas[grpdetailcodedatas.length-1].status=='N'){
   alert('한번에 하나씩 추가 가능합니다');
   return;
 }
@@ -196,7 +196,7 @@ grpdetailcodedatas.value.push({
   SORT_SEQ:"",
   USE_YN:"",
   REMK_WPC:"",
-  newYn:'Y'})
+  status:'N'})
 }
 const onCellClicked = params => {
   // console.log('cell click : ', params.data);

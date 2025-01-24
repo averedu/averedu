@@ -49,7 +49,6 @@
                     :gridOptions="gridOptions"
                     @cell-clicked="onCellClicked"
                     @cell-EditingStarted="edtiEvent"
-                    @cell-doubleclicked="onCellDoubleClicked"
                     @grid-ready="onGridReady"
                     style="height: 300px;padding-top: 40px;" >
                   </ag-grid-vue >
@@ -116,7 +115,7 @@ const downloadExcelMain = () => {
 };
 
 const codeColumnDefs = [
-{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+{ field: 'status', editable: false, headerName: '상태', width: 100, cellRenderer: (params) => {
     if (params.value === 'X') {
       return '<img src="path_to_x_image.png" alt="삭제" />';
     } else if (params.value === 'U') {
@@ -133,9 +132,12 @@ const codeColumnDefs = [
       values: ['Y', 'N']
     }},
   {field: 'REMK_CTNT', headerName:'비고내역'},
-  {field: 'BF_CMMN_CD', headerName:'이전공통코드'}
+  {field: 'BF_CMMN_CD', headerName:'이전공통코드'},
+  { field: 'POPUP', editable: false, headerName: '상태', width: 100, cellRenderer: (params) => {
+    return '<button class="float-right text-white bg-blue-700 h over:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">팝업</button>'
+    }},
 ]
-
+//
 const gridOptions = {
     rowSelection: { 
         mode: 'multiRow',
@@ -177,10 +179,14 @@ const  csys100datas = ref([]);
       }
     }
     const onCellClicked = params => {
-      serachCodeDetail(params.data.CMMN_CD);
-    }
-    const onCellDoubleClicked = params => {
-        modalinfo(params.data.CMMN_CD);
+      console.log(params.colDef.field);
+      if(params.colDef.field === 'CMMN_CD'){
+        serachCodeDetail(params.data.CMMN_CD);
+      }
+      else if(params.colDef.field === 'POPUP'){
+        modalinfo(params.data.CMMN_CD)
+      }
+      
     }
     const serachCodeDetail = (CMMN_CD) => {
       // 자식 컴포넌트의 메서드를 호출하는 로직
@@ -209,7 +215,7 @@ body{
   padding:20px;
 }
 .white-bg{
-  width: 100%;
+  width: 80%;
   background: white;
   border-radius: 8px;
   padding: 20px;

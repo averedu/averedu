@@ -48,7 +48,7 @@
                     :rowData="csys100datas"
                     :gridOptions="gridOptions"
                     @cell-clicked="onCellClicked"
-                    @cell-EditingStarted="edtiEvent"
+                    @cell-EditingStarted="editEvent"
                     @grid-ready="onGridReady"
                     style="height: 300px;padding-top: 40px;" >
                   </ag-grid-vue >
@@ -99,11 +99,24 @@ let  param = ref({
 
 const addRowToGridMain = () => {
   const newRow = { id: Date.now(), status: 'N' };
-  csys100datas.value.push(newRow);
+  csys100datas.value.unshift(newRow);
 };
 
 const deleteItemMain = () => {
-  gridApi
+  const selectedRows = gridApi.getSelectedRows();
+  gridApi.startEditingCell
+
+  selectedRows.forEach((row,index) => {
+    if(row.status != 'D'&& row.status != 'N' && row.status != 'U'){
+      row.status = 'D'
+      gridApi.startEditingCell({
+          rowIndex:index,
+          colKey:'status',
+        })
+        }
+  })
+  gridApi.stopEditing();
+  
 };
 
 const saveDataMain = () => {
@@ -115,8 +128,8 @@ const downloadExcelMain = () => {
 };
 
 const codeColumnDefs = [
-{ field: 'status', editable: false, headerName: '상태', width: 100, cellRenderer: (params) => {
-    if (params.value === 'X') {
+{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'D') {
       return '<img src="path_to_x_image.png" alt="삭제" />';
     } else if (params.value === 'U') {
       return '<img src="path_to_u_image.png" alt="변경" />';
@@ -179,7 +192,6 @@ const  csys100datas = ref([]);
       }
     }
     const onCellClicked = params => {
-      console.log(params.colDef.field);
       if(params.colDef.field === 'CMMN_CD'){
         serachCodeDetail(params.data.CMMN_CD);
       }
@@ -195,8 +207,13 @@ const  csys100datas = ref([]);
     const serachGrpCode = (CMMN_CD) =>{
       grpRef.value.grpCodeList(CMMN_CD);
     }
-    const edtiEvent = params =>{
-      let index  = gridApi .getFocusedCell(); 
+    const editEvent = params =>{
+      console.log(params);
+      let index  = gridApi.getFocusedCell(); 
+      if(params.data.status != 'D'&& params.data.status != 'N' && params.data.status != 'U'){
+         params.data.status = 'U'
+      }
+     
       gridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
     }
 

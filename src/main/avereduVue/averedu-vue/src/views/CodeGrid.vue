@@ -103,18 +103,20 @@ const addRowToGridMain = () => {
 };
 
 const deleteItemMain = () => {
-  const selectedRows = gridApi.getSelectedRows();
+  const selectedRows = gridApi.getSelectedNodes();
   gridApi.startEditingCell
-
-  selectedRows.forEach((row,index) => {
-    if(row.status != 'D'&& row.status != 'N' && row.status != 'U'){
-      row.status = 'D'
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
       gridApi.startEditingCell({
-          rowIndex:index,
+          rowIndex:row.rowIndex,
           colKey:'status',
         })
-        }
+   
   })
+  console.log(gridApi.getSelectedRows())
+
   gridApi.stopEditing();
   
 };

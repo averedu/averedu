@@ -236,37 +236,37 @@ const rowdataUpdateSub = () => {
  }
 };
 
-const deleteItemMain = () => {
-  const selectedRows = grpGridApi.getSelectedNodes();
-  selectedRows.forEach(row => {
-    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-        row.data.status = 'D'
-      }
-      grpGridApi.startEditingCell({
-          rowIndex:row.rowIndex,
-          colKey:'status',
-        })
+// const deleteItemMain = () => {
+//   const selectedRows = grpGridApi.getSelectedNodes();
+//   selectedRows.forEach(row => {
+//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+//         row.data.status = 'D'
+//       }
+//       grpGridApi.startEditingCell({
+//           rowIndex:row.rowIndex,
+//           colKey:'status',
+//         })
    
-  })
-  grpGridApi.stopEditing();
+//   })
+//   grpGridApi.stopEditing();
   
-}
+// }
 
-const deleteItemSub = () => {
-  const selectedRows = grpDetailGridApi.getSelectedNodes();
-  selectedRows.forEach(row => {
-    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-        row.data.status = 'D'
-      }
-      grpDetailGridApi.startEditingCell({
-          rowIndex:row.rowIndex,
-          colKey:'status',
-        })
+// const deleteItemSub = () => {
+//   const selectedRows = grpDetailGridApi.getSelectedNodes();
+//   selectedRows.forEach(row => {
+//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+//         row.data.status = 'D'
+//       }
+//       grpDetailGridApi.startEditingCell({
+//           rowIndex:row.rowIndex,
+//           colKey:'status',
+//         })
    
-  })
-  grpDetailGridApi.stopEditing();
+//   })
+//   grpDetailGridApi.stopEditing();
   
-}
+// }
 
 const onCellClicked = params => {
   // console.log('cell click : ', params.data);

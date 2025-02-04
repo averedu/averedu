@@ -25,6 +25,7 @@ const props = defineProps({
 const emit = defineEmits();
 const isAddRowInProgress = ref(false);
 
+
 const addRow = () => {
   if (isAddRowInProgress.value) return;
   //isAddRowInProgress.value = true;
@@ -40,7 +41,6 @@ const saveData = () => {
 
     // 선택된 행들만 가져오기
     const selectedRows = props.dataToSave.getSelectedRows();
-
   // 선택된 행이 없으면 처리하지 않음
   if (selectedRows.length === 0) {
     console.error("선택된 행이 없습니다.");
@@ -51,8 +51,8 @@ const saveData = () => {
   const deleteRows = selectedRows.filter(row => row.status === 'D');  
   axios.delete(props.deleteUrl, { data: deleteRows }) 
       .then(() => {
-        console.log('삭제 완료:', row);
-        emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
+        console.log('삭제 완료:', deleteRows);
+       // emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
       })
       .catch(error => {
         console.error('삭제 실패:', error);
@@ -92,7 +92,20 @@ const saveData = () => {
   //     });
   // });
 };
-const deleteItem =() => {}
+const deleteItem =() => {
+  const selectedRows = props.dataToSave.getSelectedNodes();
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
+      props.dataToSave.startEditingCell({
+          rowIndex:row.rowIndex,
+          colKey:'status',
+        })
+   
+  })
+  props.dataToSave.stopEditing();
+}
 
 const downloadExcel = () => {
   // 엑셀 파일 다운로드 (GET 요청) test중

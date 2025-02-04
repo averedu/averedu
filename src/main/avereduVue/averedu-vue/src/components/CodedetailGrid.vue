@@ -131,21 +131,21 @@ const detailCodeList=(cmmnCd)=>{
   })
 }
 
-const deleteItemMain = () => {
-  const selectedRows = gridApi.getSelectedNodes();
-  selectedRows.forEach(row => {
-    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-        row.data.status = 'D'
-      }
-      gridApi.startEditingCell({
-          rowIndex:row.rowIndex,
-          colKey:'status',
-        })
+// const deleteItemMain = () => {
+//   const selectedRows = gridApi.getSelectedNodes();
+//   selectedRows.forEach(row => {
+//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+//         row.data.status = 'D'
+//       }
+//       gridApi.startEditingCell({
+//           rowIndex:row.rowIndex,
+//           colKey:'status',
+//         })
    
-  })
-  gridApi.stopEditing();
+//   })
+//   gridApi.stopEditing();
   
-}
+// }
 
 const editEvent = params =>{
       let index  = gridApi.getFocusedCell(); 

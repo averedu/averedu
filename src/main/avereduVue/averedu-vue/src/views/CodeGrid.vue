@@ -14,7 +14,7 @@
             </div>
           </div>
           
-    <!-- Main Content -->
+     <!-- Main Content -->
             <div class="flex-1 overflow-y-auto">
               <div class="p-6" v-show="!modalpoen">                  
                     <div class="bg-white dark:bg-[#252731] p-6 rounded-lg shadow-md md:col-span-1 whitespace-nowrap overflow-x-auto">
@@ -153,21 +153,21 @@ const rowdataUpdate = () => {
  }
 };
 
-const deleteItemMain = () => {
-  const selectedRows = gridApi.getSelectedNodes();
-  selectedRows.forEach(row => {
-    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-        row.data.status = 'D'
-      }
-      gridApi.startEditingCell({
-          rowIndex:row.rowIndex,
-          colKey:'status',
-        })
+// const deleteItemMain = () => {
+//   const selectedRows = gridApi.getSelectedNodes();
+//   selectedRows.forEach(row => {
+//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+//         row.data.status = 'D'
+//       }
+//       gridApi.startEditingCell({
+//           rowIndex:row.rowIndex,
+//           colKey:'status',
+//         })
    
-  })
-  gridApi.stopEditing();
+//   })
+//   gridApi.stopEditing();
   
-}
+// }
 
 const downloadExcelMain = () => {
   console.log('엑셀 다운로드');

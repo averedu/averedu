@@ -75,12 +75,12 @@ public interface CsysApicdSvc {
     public void saveGrpCodeList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
-     * 그룹코드 리스트 저장/수정(saveGrpCodeDeatilList)                                               
+     * 그룹코드 리스트 저장/수정(saveGrpCodeDetailList)                                               
      * @param input                                                                                              
      * @return                                                                                                   
      * @throws Exception                                                                                         
      */                                                                                                          
-    public void saveGrpCodeDeatilList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
+    public void saveGrpCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception;
     
     /**                                                                                                          
      * 그룹상세코드 리스트 저장/수정(saveCommCodeDetailList)                                               

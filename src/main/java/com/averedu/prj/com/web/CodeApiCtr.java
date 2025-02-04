@@ -169,18 +169,18 @@ public class CodeApiCtr {
 	}
 	
 	/**
-	 * 그룹 상세 코드리스트 저장/수정(actionSaveGrpCodeDeatilList)
+	 * 그룹 상세 코드리스트 저장/수정(actionSaveGrpCodeDetailList)
 	 * 
 	 * @param input
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/com/SaveGrpCodeDeatilList.do", method=RequestMethod.PUT)
+	@RequestMapping(value = "/restApi/com/SaveGrpCodeDetailList.do", method=RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<String> actionSaveGrpCodeDeatilList(@RequestBody List<Map<String, Object>> list, HttpSession session)
 			throws Exception {
 		SessionVO sessionVO = SessionUtil.getSessionVO(session);
-		csysApicdSvc.saveGrpCodeDeatilList(list, sessionVO);
+		csysApicdSvc.saveGrpCodeDetailList(list, sessionVO);
 	
 		return new ResponseEntity<String>("수정/추가 완료했습니다", HttpStatus.OK);
 	}

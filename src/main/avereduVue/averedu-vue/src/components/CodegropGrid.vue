@@ -1,13 +1,17 @@
 <template>
-  <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">그룹코드리스트
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkGrpCodeDelete()">체크 삭제</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpCodeAdd()">추가</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpCodeUpdate">저장</button>
-  </h2><br>
-  <div>
+  <div class="mt-4 bg-white p-6 rounded-lg md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+  <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">그룹코드리스트</h2>
+  <div class="absolute top-0 right-0 z-10">
+    <ButtonTest @add-row="addRowToGridMain" 
+                    @delete-item="deleteItemMain"
+                    @save-data="saveDataMain" 
+                    @download-excel="downloadExcelMain" 
+                    :addUrl="addUrl" 
+                    :deleteUrl="deleteUrlMain" 
+                    :dataToSave = "dataToSaveMain"
+                    :saveUrl="saveUrlMain" 
+                    :downloadUrl="downloadUrlMain" />
+  </div>  
     <ag-grid-vue
     :columnDefs="grpcolumnDefs"
     :rowData="grpcodedatas"
@@ -15,26 +19,30 @@
     @grid-ready="onGrpGridReady"
     @cell-EditingStarted="edtiGrpEvent"
     @cell-clicked="onCellClicked"
-    @grid-SizeChanged="resize"
+    @rowDataUpdated="rowdataUpdateMain"
     style="height: 300px; width: 100%;">
   </ag-grid-vue>
 </div>
-<div>
-  <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">그룹상세코드리스트
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="checkGrpDetailCodeDelete()">체크 삭제</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  @click="grpDetailCodeAdd()">추가</button>
-  <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-  py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="grpDetailCodeUpdate">저장</button>
-  </h2><br>
+<div class="mt-4 bg-white p-6 rounded-lg md:col-span-1 whitespace-nowrap overflow-x-auto relative">
+  <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">그룹상세코드리스트</h2>
+    <div class="absolute top-0 right-0 z-10">
+      <ButtonTest @add-row="addRowToGridSub" 
+                  @delete-item="deleteItemSub"
+                  @save-data="saveDataSub" 
+                  @download-excel="downloadExcelSub" 
+                  :addUrl="addUrl" 
+                  :deleteUrl="deleteUrlSub" 
+                  :dataToSave = "dataToSaveSub"
+                  :saveUrl="saveUrlSub" 
+                  :downloadUrl="downloadUrlSub" />
+    </div>
   <ag-grid-vue
     :columnDefs="grpdetailcolumnDefs"
     :rowData="grpdetailcodedatas"
     :gridOptions="gridOptions"
     @grid-ready="onGrpDetailGridReady"
-     @cell-EditingStarted="edtiGrpDetailEvent"
-    @grid-SizeChanged="resize"
+    @cell-EditingStarted="edtiGrpDetailEvent"
+    @rowDataUpdated="rowdataUpdateSub"
     style="height: 300px;  width: 100%;">
   </ag-grid-vue>
 </div>
@@ -45,11 +53,36 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community';
 import { AgGridVue } from 'ag-grid-vue3' // Vue3 AgGrid Component
+import ButtonTest from '../components/ButtonTest.vue';
+
 ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
 let grpcodedatas = ref([]);
 let grpdetailcodedatas = ref([]);
+
+const searchUrl = ''; // 조회 URL
+const deleteUrlMain = '/restApi/com/DeleteGrpCodeList.do'; // 삭제 URL
+const saveUrlMain = '/restApi/com/SaveGrpCodeList.do'; // 저장 URL
+const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
+
+const deleteUrlSub = '/restApi/com/DeleteGrpCodeDetailList.do'; // 삭제 URL
+const saveUrlSub = '/restApi/com/SaveGrpCodeDetailList.do'; // 저장 URL
+const downloadUrlSub = '/api/downloadExcel'; // 엑셀 다운로드 URL
+
+const dataToSaveMain = ref();
+const dataToSaveSub = ref();
+
 let grpcolumnDefs = [
+{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'D') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'U') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'N') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
   {field: 'CMMN_GRP_CD', headerName:'공통그룹코드'},
   {field: 'CMMN_GRP_CD_NM', headerName:'공통그룹코드명'},
   {field: 'ADD_ATT_VAL', headerName:'추가속성값',},
@@ -57,10 +90,28 @@ let grpcolumnDefs = [
 
 ];
 let grpdetailcolumnDefs = [
+{field: 'CMMN_GRP_CD', headerName:'공통그룹코드', hide:true},
+{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'D') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'U') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'N') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
   {field: 'CMMN_GRP_DETA_CD', headerName:'공통세부코드'},
   {field: 'ADD_ATT_VAL', headerName:'추가속성값'},
   {field: 'SORT_SEQ', headerName:'정렬순번'},
-  {field: 'USE_YN', headerName:'사용여부'},
+  {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+    if (params.value === '0') {
+      return 'N';
+    } else if (params.value === '1') {
+      return 'Y';
+    } 
+    return params.value;  // 기본 값
+  }},
   {field: 'REMK_WPC', headerName:'비고내역'}
 ];
 
@@ -71,19 +122,15 @@ let grpDetailColumnApi = null;
 const onGrpGridReady= (params) => {
   grpGridApi = params.api;
   grpColumnApi = params.columnApi;
+  dataToSaveMain.value = grpGridApi;
   }
 
 const onGrpDetailGridReady= (params) => {
   grpDetailGridApi = params.api;
   grpDetailColumnApi = params.columnApi;
+  dataToSaveSub.value = grpDetailGridApi;
 }
 
-const resize = ()=>{
-  grpGridApi.sizeColumnsToFit();
-  if(grpDetailGridApi!=null){
-    grpDetailGridApi.sizeColumnsToFit();
-  }
-  }
 const gridOptions = {
   rowSelection: { 
       mode: 'multiRow',
@@ -96,6 +143,7 @@ const gridOptions = {
 }
 let checkedGrpCd = ref([]);
 let checkedGrpDetailCd = ref([]);
+let selectData = ref([]);
 let CMMN_CD = ref("");
 let CMMN_GRP_CD = ref("");
 
@@ -121,83 +169,105 @@ const grpDetailCodeList = (cmmnGrpCd)=>{
 })
 }
 
-const grpCodeUpdate = (item)=>{
-  const selectedData = grpGridApi.getSelectedRows();
-  console.log(selectedData);
-    axios.put('/restApi/com/SaveGrpCodeList.do',selectedData).then(res =>{
-        grpCodeList(CMMN_CD.value);
-    }).catch(res=>{
-    console.log(res);
-    })
-}
-const grpDetailCodeUpdate = (item)=>{
-  const selectedData = grpDetailGridApi.getSelectedRows();
-  console.log(selectedData);
-    axios.put('/restApi/com/SaveGrpCodeDeatilList.do',selectedData).then(res =>{
-        grpDetailCodeList(CMMN_GRP_CD.value);
-    }).catch(res=>{
-    console.log(res);
-    })
+const addRowToGridMain = () => {
+  if(CMMN_CD.value!=""){
+    const newRow = { id: Date.now(),
+    CMMN_CD:CMMN_CD.value,
+    CMMN_GRP_CD:"",
+    CMMN_GRP_CD_NM:"",
+    ADD_ATT_VAL:"",
+    REMK_WPC:"",
+    status:'N'};
+    let rowData = [];
+    selectData.value = [];
+    grpGridApi.forEachNode(node => {
+      rowData.push(node.data)
+        if(node.__selected){
+          selectData.value.push(node.rowIndex+1)
+          }
+        }
+    );
+    grpcodedatas.value = rowData;
+    grpcodedatas.value.unshift(newRow);
+  }
 
-}
-const checkGrpCodeDelete = ()=>{
-  const selectedData = grpGridApi.getSelectedRows();
-  axios.delete('/restApi/com/DeleteGrpCodeList.do',{data:selectedData}).then(res =>{
-    checkedGrpCd = ref([]);
-    checkedGrpDetailCd = ref([]);
-    grpCodeList(CMMN_CD);
-    grpDetailCodeList('');
-    
-  }).catch(res=>{
-    console.log(res);
-  })
-}
-const checkGrpDetailCodeDelete = () => {
-const selectedData = grpDetailGridApi.getSelectedRows();
-  axios.delete('/restApi/com/DeleteGrpCodeDetailList.do',{data:selectedData}).then(res =>{
-    checkedGrpDetailCd = ref([]);
-    grpDetailCodeList(CMMN_GRP_CD);
-    
-  }).catch(res=>{
-    console.log(res);
-  })
-}
-const grpCodeAdd = ()=>{
-  if(CMMN_CD==null||CMMN_CD==""){
-  return;
-}
-if(grpcodedatas.length>0&&grpcodedatas[grpcodedatas.length-1].status=='N'){
-  alert('한번에 하나씩 추가 가능합니다');
-  return;
-}
-console.log(CMMN_CD.value);
-grpcodedatas.value.push({
-  CMMN_CD:CMMN_CD.value,
-  CMMN_GRP_CD:"",
-  CMMN_GRP_CD_NM:"",
-  ADD_ATT_VAL:"",
-  REMK_WPC:"",
-  status:'N'})
-}
-const grpDetailCodeAdd = ()=>{
+};
+const addRowToGridSub = () => {
+  if(CMMN_GRP_CD.value!=""){
+    const newRow = { id: Date.now(),
+    CMMN_CD:CMMN_CD.value,
+    CMMN_GRP_CD:CMMN_GRP_CD.value,
+    CMMN_GRP_DETA_CD:"",
+    ADD_ATT_VAL:"",
+    SORT_SEQ:"",
+    USE_YN:"",
+    REMK_WPC:"",
+    status:'N'  };
+    let rowData = [];
+    selectData.value = [];
+    grpDetailGridApi.forEachNode(node => {
+      rowData.push(node.data)
+        if(node.__selected){
+          selectData.value.push(node.rowIndex+1)
+          }
+        }
+    );
+    grpdetailcodedatas.value = rowData;
+    grpdetailcodedatas.value.unshift(newRow);
+  }
 
-  if(CMMN_GRP_CD==null||CMMN_GRP_CD==""){
-  return;
+};
+
+//row의 값이 업데이트될때 기존 체크값 유지
+const rowdataUpdateMain = () => {
+ if(selectData.value.length>0){
+  selectData.value.forEach(index=>{
+    grpGridApi.getDisplayedRowAtIndex(index).setSelected(true); 
+  })
+ }
+};
+
+//row의 값이 업데이트될때 기존 체크값 유지
+const rowdataUpdateSub = () => {
+ if(selectData.value.length>0){
+  selectData.value.forEach(index=>{
+    grpDetailGridApi.getDisplayedRowAtIndex(index).setSelected(true); 
+  })
+ }
+};
+
+const deleteItemMain = () => {
+  const selectedRows = grpGridApi.getSelectedNodes();
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
+      grpGridApi.startEditingCell({
+          rowIndex:row.rowIndex,
+          colKey:'status',
+        })
+   
+  })
+  grpGridApi.stopEditing();
+  
 }
-if(grpdetailcodedatas.length>0&&grpdetailcodedatas[grpdetailcodedatas.length-1].status=='N'){
-  alert('한번에 하나씩 추가 가능합니다');
-  return;
+
+const deleteItemSub = () => {
+  const selectedRows = grpDetailGridApi.getSelectedNodes();
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
+      grpDetailGridApi.startEditingCell({
+          rowIndex:row.rowIndex,
+          colKey:'status',
+        })
+   
+  })
+  grpDetailGridApi.stopEditing();
+  
 }
-grpdetailcodedatas.value.push({
-  CMMN_CD:CMMN_CD.value,
-  CMMN_GRP_CD:CMMN_GRP_CD.value,
-  CMMN_GRP_DETA_CD:"",
-  ADD_ATT_VAL:"",
-  SORT_SEQ:"",
-  USE_YN:"",
-  REMK_WPC:"",
-  status:'N'})
-}
+
 const onCellClicked = params => {
   // console.log('cell click : ', params.data);
   grpDetailCodeList(params.data.CMMN_GRP_CD);
@@ -209,10 +279,16 @@ defineExpose({
 });
 const edtiGrpEvent = params =>{
       let index  = grpGridApi .getFocusedCell(); 
+    if(params.data.status != 'D'&& params.data.status != 'N' && params.data.status != 'U'){
+        params.data.status = 'U'
+    }
       grpGridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
     }
 const edtiGrpDetailEvent = params =>{
   let index  = grpDetailGridApi .getFocusedCell(); 
+  if(params.data.status != 'D'&& params.data.status != 'N' && params.data.status != 'U'){
+         params.data.status = 'U'
+      }
   grpDetailGridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
 }
 </script>

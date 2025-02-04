@@ -275,7 +275,7 @@
         /* CsyscdDAO.insertGrpCodeList 그룹 코드 저장 */	
     </insert>
     
-    <insert id="CsyscdDAO.insertGrpCodeDeatilList" parameterType="map"> 
+    <insert id="CsyscdDAO.insertGrpCodeDetailList" parameterType="map"> 
         <![CDATA[                                                														  
             INSERT INTO COM.CSYS121                                       										  
             (                                       																	  
@@ -310,7 +310,7 @@
                                  
             )	                                                      						
         ]]>                                    											
-        /* CsyscdDAO.insertGrpCodeDeatilList 그룹 상세 코드 저장 */	
+        /* CsyscdDAO.insertGrpCodeDetailList 그룹 상세 코드 저장 */	
     </insert>                                                             					
 
     <update id="CsyscdDAO.updateCommCodeMasterList" parameterType="map"> 
@@ -388,7 +388,7 @@
         /* CsyscdDAO.updateGrpCodeList 그룹 코드 수정 */								
     </update>
     
-    <update id="CsyscdDAO.updateGrpCodeDeatilList" parameterType="map"> 
+    <update id="CsyscdDAO.updateGrpCodeDetailList" parameterType="map"> 
         <![CDATA[                                                						
             UPDATE COM.CSYS121                                			        
                SET                                                      				
@@ -406,7 +406,7 @@
                AND CMMN_GRP_CD   			= #{CMMN_GRP_CD}
                AND CMMN_GRP_DETA_CD   		= #{CMMN_GRP_DETA_CD}
         ]]>  	                                   							                            				
-        /* CsyscdDAO.updateGrpCodeDeatilList 그룹 상세 코드 수정 */								
+        /* CsyscdDAO.updateGrpCodeDetailList 그룹 상세 코드 수정 */								
     </update>	
     
     <delete id="CsyscdDAO.deleteCommCodeMasterList" parameterType="map">    

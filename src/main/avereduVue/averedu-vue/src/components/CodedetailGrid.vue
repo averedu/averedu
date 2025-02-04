@@ -6,9 +6,10 @@
                   @delete-item="deleteItemMain"
                   @save-data="saveDataMain" 
                   @download-excel="downloadExcelMain" 
+                  
                   :addUrl="addUrl" 
                   :deleteUrl="deleteUrlMain" 
-                  :test = "gridApi"
+                  :dataToSave = "dataToSaveMain"
                   :saveUrl="saveUrlMain" 
                   :downloadUrl="downloadUrlMain" />
     </div>
@@ -18,7 +19,8 @@
     :rowData="codedetaildatas"
     :gridOptions="gridOptions"
     @grid-ready="onGridReady"
-    @cell-EditingStarted="edtiEvent"
+    @cell-EditingStarted="editEvent"
+    @rowDataUpdated="rowdataUpdate"
     style="height: 300px; padding-top: 40px;">
   </ag-grid-vue>
   </div>
@@ -34,9 +36,29 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
 let codedetaildatas = ref([]);
 let CMMN_CD = ref("");
+let selectData = ref([]);
+
 let gridApi = null;
 let columnApi = null;
+
+const dataToSaveMain = ref();
+
+const searchUrl = '/restApi/com/RetrieveCommCodeDetailList.do'; // 조회 URL
+const deleteUrlMain = '/restApi/com/DeleteCommCodeDetailList.do'; // 삭제 URL
+const saveUrlMain = '/restApi/com/SaveCommCodeDetailList.do'; // 저장 URL
+const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
 let codedetailColumnDefs = [
+{field: 'CMMN_CD', headerName:'공통코드', hide:true},
+{ field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'D') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'U') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'N') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
   {field: 'CMMN_DETA_CD', headerName:'상세코드'},
   {field: 'CMMN_DETA_CD_NM', headerName:'상세코드명'},
   {field: 'CMMN_DETA_CD_ABBNM', headerName:'상세코드약명'},
@@ -44,9 +66,18 @@ let codedetailColumnDefs = [
   {field: 'LANG_FG_CD', headerName:'언어구분코드'},
   {field: 'LANG_FG_NM', headerName:'언어코드명'},
   {field: 'LANG_ABBNM', headerName:'언어코드약명'},
-  {field: 'USE_YN', headerName:'사용여부'},
+  {field: 'USE_YN', headerName:'사용여부', cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+    if (params.value === '0') {
+      return 'N';
+    } else if (params.value === '1') {
+      return 'Y';
+    } 
+    return params.value;  // 기본 값
+  }},
   {field: 'REMK_CTNT', headerName:'비고내역'}
 ];
+
+
 
 const gridOptions = {
   rowSelection: { 
@@ -62,32 +93,35 @@ const gridOptions = {
 const onGridReady= (params) => {
       gridApi = params.api;
       columnApi = params.columnApi;
+      dataToSaveMain.value = gridApi;
   }
-const resize = ()=>{
-  gridApi.sizeColumnsToFit();
-}
 
 const addRowToGridMain = () => {
   if(CMMN_CD.value!=""){
-    const newRow = { id: Date.now(), status: 'N' };
-    codedetaildatas.value.push(newRow);
+    const newRow = { id: Date.now(), status: 'N',CMMN_CD: CMMN_CD.value  };
+    let rowData = [];
+    selectData.value = [];
+    gridApi.forEachNode(node => {
+      rowData.push(node.data)
+        if(node.__selected){
+          selectData.value.push(node.rowIndex+1)
+          }
+        }
+    );
+    codedetaildatas.value = rowData;
+    codedetaildatas.value.unshift(newRow);
   }
 
 };
-const saveCodeDetail = () => {
-      const selectedData = gridApi.getSelectedRows();
-      console.log(selectedData);
-      axios.put('/restApi/com/SaveCommCodeDetailList.do',selectedData)
-      .then(res =>{
-        if(res.status == 200){
-          alert('정상적으로 수정되었습니다');
-          detailCodeList(CMMN_CD.value)
-        }
-      }).catch(res=>{
-        console.log(res);
-      })
 
-    }
+//row의 값이 업데이트될때 기존 체크값 유지
+const rowdataUpdate = () => {
+ if(selectData.value.length>0){
+  selectData.value.forEach(index=>{
+    gridApi.getDisplayedRowAtIndex(index).setSelected(true); 
+  })
+ }
+};
 const detailCodeList=(cmmnCd)=>{
   axios.post('/restApi/com/RetrieveCommCodeDetailList.do',{CMMN_CD:cmmnCd}).then(res =>{
     codedetaildatas.value = res.data;
@@ -96,32 +130,36 @@ const detailCodeList=(cmmnCd)=>{
     console.log(res);
   })
 }
-const checkDetailCodeDelete=()=>{
-  const selectedData = gridApi.getSelectedRows();
-  console.log(selectedData);
-  axios.delete('/restApi/com/DeleteCommCodeDetailList.do',{data:selectedData}).then(res =>{
-    checkedCodes = [];
-    detailCodeList(CMMN_CD.value)
-    
-  }).catch(res=>{
-    console.log(res);
+
+const deleteItemMain = () => {
+  const selectedRows = gridApi.getSelectedNodes();
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
+      gridApi.startEditingCell({
+          rowIndex:row.rowIndex,
+          colKey:'status',
+        })
+   
   })
+  gridApi.stopEditing();
+  
 }
-const detailAdd=()=>{
-console.log(CMMN_CD.value);
-  codedetaildatas.value.push({
-    CMMN_CD:CMMN_CD.value,
-    newYn:'Y'})
-}
+
+const editEvent = params =>{
+      let index  = gridApi.getFocusedCell(); 
+      if(params.data.status != 'D'&& params.data.status != 'N' && params.data.status != 'U'){
+         params.data.status = 'U'
+      }
+     
+      gridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
+    }
 
 defineExpose({
   detailCodeList
 });
 
-const edtiEvent = params =>{
-      let index  = gridApi .getFocusedCell(); 
-      gridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
-    }
 </script>
 
 <style>

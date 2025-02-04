@@ -6,8 +6,10 @@
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
           <div class="black-bg" v-show="modalpoen">
             <div class="white-bg" >
-              <button class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-                py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" @click="modalinfo()">모달창닫기</button>
+              <div class="z-50 cursor-pointer modal-close">
+                <svg @click="modalinfo()" class="text-black fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+              </div>
                 <gropComponent ref="grpRef"/>
             </div>
           </div>
@@ -36,7 +38,7 @@
                       <ButtonTest @add-row="addRowToGridMain" 
                                     @delete-item="deleteItemMain"
                                     @save-data="saveDataMain" 
-                                    @download-excel="downloadExcelMain" 
+                                    @download-excel="downloadExcelMain"
                                     :addUrl="addUrl" 
                                     :deleteUrl="deleteUrlMain" 
                                     :dataToSave = "dataToSaveMain"
@@ -50,6 +52,7 @@
                     @cell-clicked="onCellClicked"
                     @cell-EditingStarted="editEvent"
                     @grid-ready="onGridReady"
+                    @rowDataUpdated="rowdataUpdate"
                     style="height: 300px;padding-top: 40px;" >
                   </ag-grid-vue >
                 </div>
@@ -67,8 +70,6 @@
 import LeftMenu from '@/components/LeftMenu.vue';
 import ButtonTest from '../components/ButtonTest.vue';
 import Header from '@/components/Header.vue'
-
-import { RouterLink,RouterView } from 'vue-router'
 import detailComponent from '../components/CodedetailGrid.vue'
 import gropComponent from '../components/CodegropGrid.vue'
 import { ref } from 'vue';
@@ -83,51 +84,14 @@ const grpRef = ref(null);
 let gridApi = null;
 let columnApi = null;
 
+let selectData = ref([]);
+
 const dataToSaveMain = ref();
 
 const searchUrl = '/restApi/com/RetrieveCommCodeMasterList.do'; // 조회 URL
 const deleteUrlMain = '/restApi/com/DeleteCommCodeMasterList.do'; // 삭제 URL
 const saveUrlMain = '/restApi/com/SaveCommCodeMasterList.do'; // 저장 URL
 const downloadUrlMain = '/api/downloadExcel'; // 엑셀 다운로드 URL
-
-let  modalpoen = ref(false);
-let  param = ref({
-  CMMN_CD : "",
-  CMMN_CD_NM : "",
-  BF_CMMN_CD : "",USE_YN : ""        
-}); 
-
-const addRowToGridMain = () => {
-  const newRow = { id: Date.now(), status: 'N' };
-  csys100datas.value.unshift(newRow);
-};
-
-const deleteItemMain = () => {
-  const selectedRows = gridApi.getSelectedNodes();
-  gridApi.startEditingCell
-  selectedRows.forEach(row => {
-    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-        row.data.status = 'D'
-      }
-      gridApi.startEditingCell({
-          rowIndex:row.rowIndex,
-          colKey:'status',
-        })
-   
-  })
-  console.log(gridApi.getSelectedRows())
-
-  gridApi.stopEditing();
-  
-};
-
-const saveDataMain = () => {
-  gridApi
-};
-
-const downloadExcelMain = () => {
-  console.log('엑셀 다운로드');
-};
 
 const codeColumnDefs = [
 { field: 'status', headerName: '상태', width: 100, cellRenderer: (params) => {
@@ -142,16 +106,73 @@ const codeColumnDefs = [
   }},
   {field: 'CMMN_CD', headerName:'공통코드'},
   {field: 'CMMN_CD_NM', headerName:'공통코드명'},
-  {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",
-    cellEditorParams: {
-      values: ['Y', 'N']
-    }},
+  {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+    if (params.value === '0') {
+      return 'N';
+    } else if (params.value === '1') {
+      return 'Y';
+    } 
+    return params.value;  // 기본 값
+  }},
   {field: 'REMK_CTNT', headerName:'비고내역'},
   {field: 'BF_CMMN_CD', headerName:'이전공통코드'},
-  { field: 'POPUP', editable: false, headerName: '상태', width: 100, cellRenderer: (params) => {
+  { field: 'POPUP', editable: false, headerName: '', width: 100, cellRenderer: (params) => {
     return '<button class="float-right text-white bg-blue-700 h over:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">팝업</button>'
     }},
 ]
+
+let  modalpoen = ref(false);
+let  param = ref({
+  CMMN_CD : "",
+  CMMN_CD_NM : "",
+  BF_CMMN_CD : "",USE_YN : ""        
+}); 
+
+const addRowToGridMain = () => {
+  const newRow = { id: Date.now(), status: 'N' };
+  let rowData = [];
+  selectData.value = [];
+  //grid의 row값 가져오기및 선택된값의 row값 따로 저장
+  gridApi.forEachNode(node => {
+    rowData.push(node.data)
+    if(node.__selected){
+      selectData.value.push(node.rowIndex+1)
+    }
+  }
+  );
+  csys100datas.value = rowData;
+  csys100datas.value.unshift(newRow);
+
+};
+//row의 값이 업데이트될때 기존 체크값 유지
+const rowdataUpdate = () => {
+ if(selectData.value.length>0){
+  selectData.value.forEach(index=>{
+    gridApi.getDisplayedRowAtIndex(index).setSelected(true); 
+  })
+ }
+};
+
+const deleteItemMain = () => {
+  const selectedRows = gridApi.getSelectedNodes();
+  selectedRows.forEach(row => {
+    if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
+        row.data.status = 'D'
+      }
+      gridApi.startEditingCell({
+          rowIndex:row.rowIndex,
+          colKey:'status',
+        })
+   
+  })
+  gridApi.stopEditing();
+  
+}
+
+const downloadExcelMain = () => {
+  console.log('엑셀 다운로드');
+};
+
 //
 const gridOptions = {
     rowSelection: { 
@@ -174,9 +195,6 @@ const  csys100datas = ref([]);
         dataToSaveMain.value = gridApi;
     }
 
-    const resize = ()=>{
-      gridApi.sizeColumnsToFit();
-    }
     const serachCode = () =>{
       axios.post('/restApi/com/RetrieveCommCodeMasterList.do',param.value).then(res =>{
         csys100datas.value = res.data;
@@ -194,11 +212,11 @@ const  csys100datas = ref([]);
       }
     }
     const onCellClicked = params => {
-      if(params.colDef.field === 'CMMN_CD'){
-        serachCodeDetail(params.data.CMMN_CD);
-      }
-      else if(params.colDef.field === 'POPUP'){
+      if(params.colDef.field === 'POPUP'){
         modalinfo(params.data.CMMN_CD)
+      }else{
+        serachCodeDetail(params.data.CMMN_CD);
+
       }
       
     }
@@ -210,12 +228,11 @@ const  csys100datas = ref([]);
       grpRef.value.grpCodeList(CMMN_CD);
     }
     const editEvent = params =>{
-      console.log(params);
       let index  = gridApi.getFocusedCell(); 
       if(params.data.status != 'D'&& params.data.status != 'N' && params.data.status != 'U'){
          params.data.status = 'U'
       }
-     
+      console.log(gridApi.getDisplayedRowAtIndex(index.rowIndex))
       gridApi.getDisplayedRowAtIndex(index.rowIndex).setSelected(true); 
     }
 

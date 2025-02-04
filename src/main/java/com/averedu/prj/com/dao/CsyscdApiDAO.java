@@ -121,9 +121,9 @@ public class CsyscdApiDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */                                                                                                     	
-    public void insertGrpCodeDeatilList(Map<String, Object> map) throws Exception {                          
+    public void insertGrpCodeDetailList(Map<String, Object> map) throws Exception {                          
     
-     	insert("CsyscdDAO.insertGrpCodeDeatilList", map);
+     	insert("CsyscdDAO.insertGrpCodeDetailList", map);
     }
     
     /**                                                                                                      	
@@ -161,14 +161,14 @@ public class CsyscdApiDAO extends EgovAbstractMapper {
     }
     
     /**                                                                                                      	
-     * 그룹 상세 코드 리스트 수정(updateGrpCodeDeatilList)                                                 
+     * 그룹 상세 코드 리스트 수정(updateGrpCodeDetailList)                                                 
      * @param input                                                                                         	
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */                                                                                                     	
-    public void updateGrpCodeDeatilList(Map<String, Object> map) throws Exception {                          
+    public void updateGrpCodeDetailList(Map<String, Object> map) throws Exception {                          
                                                                                                              
-     	update("CsyscdDAO.updateGrpCodeDeatilList", map);             
+     	update("CsyscdDAO.updateGrpCodeDetailList", map);             
     }
     
     /**                                                                                                      	

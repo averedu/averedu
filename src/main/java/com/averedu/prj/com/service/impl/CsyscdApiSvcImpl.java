@@ -162,9 +162,6 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 				Map<String, Object> myMap = (Map<String, Object>) list.get(i);
 
 				if (myMap.get("status")!=null && myMap.get("status").equals("N")) {
-
-//					myMap.put("FRST_INPUT_ID", sessionVO.getUserId().toString());
-//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("FRST_INPUT_ID", "");
 					myMap.put("LAST_MODF_ID", "");
 					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
@@ -178,8 +175,6 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 					csyscdDAO.insertCommCodeDetailList(myMap);
 
 				} else if (myMap.get("status")==null||myMap.get("status").equals("U")) {
-
-//					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");
 					if(myMap.get("USE_YN").equals("Y")){
 						myMap.put("USE_YN", "1");
@@ -217,11 +212,6 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 					myMap.put("LAST_MODF_ID", "");
 					myMap.put("FRST_INPUT_IP", EgovWebUtil.getUserIpAddress());
 					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					if(myMap.get("USE_YN").equals("Y")){
-						myMap.put("USE_YN", "1");
-					}else{
-						myMap.put("USE_YN", "0");
-					}
 
 					csyscdDAO.insertGrpCodeList(myMap);
 
@@ -229,11 +219,6 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 
 //					myMap.put("LAST_MODF_ID", sessionVO.getUserId().toString());
 					myMap.put("LAST_MODF_ID", "");
-					if(myMap.get("USE_YN").equals("Y")){
-						myMap.put("USE_YN", "1");
-					}else{
-						myMap.put("USE_YN", "0");
-					}
 					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					csyscdDAO.updateGrpCodeList(myMap);
 
@@ -251,7 +236,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 	 * @return
 	 * @throws Exception
 	 */
-	public void saveGrpCodeDeatilList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
+	public void saveGrpCodeDetailList(List<Map<String, Object>> list, SessionVO sessionVO) throws Exception {
 		if (list.size() > 0) {
 
 			for (int i = 0; i < list.size(); i++) {
@@ -266,7 +251,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
 					
 
-					csyscdDAO.insertGrpCodeDeatilList(myMap);
+					csyscdDAO.insertGrpCodeDetailList(myMap);
 
 				} else if (myMap.get("status")==null||myMap.get("status").equals("U")) {
 
@@ -274,7 +259,7 @@ public class CsyscdApiSvcImpl extends EgovAbstractServiceImpl implements CsysApi
 					myMap.put("LAST_MODF_ID", "");
 
 					myMap.put("LAST_MODF_IP", EgovWebUtil.getUserIpAddress());
-					csyscdDAO.updateGrpCodeDeatilList(myMap);
+					csyscdDAO.updateGrpCodeDetailList(myMap);
 
 				}
 			}

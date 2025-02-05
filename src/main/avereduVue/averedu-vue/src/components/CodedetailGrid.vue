@@ -4,7 +4,7 @@
     <div class="absolute top-0 right-0 z-10">
       <ButtonTest @add-row="addRowToGridMain" 
                   @delete-item="deleteItemMain"
-                  @save-data="saveDataMain" 
+                  @save-data="detailCodeList" 
                   @download-excel="downloadExcelMain" 
                   
                   :addUrl="addUrl" 
@@ -59,14 +59,14 @@ let codedetailColumnDefs = [
     }
     return '';  // 기본 값
   }},
-  {field: 'CMMN_DETA_CD', headerName:'상세코드'},
-  {field: 'CMMN_DETA_CD_NM', headerName:'상세코드명'},
-  {field: 'CMMN_DETA_CD_ABBNM', headerName:'상세코드약명'},
-  {field: 'SORT_SEQ', headerName:'정렬순번'},
-  {field: 'LANG_FG_CD', headerName:'언어구분코드'},
-  {field: 'LANG_FG_NM', headerName:'언어코드명'},
-  {field: 'LANG_ABBNM', headerName:'언어코드약명'},
-  {field: 'USE_YN', headerName:'사용여부', cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+  {field: 'CMMN_DETA_CD',cellStyle: {textAlign: "right"}, headerName:'상세코드'},
+  {field: 'CMMN_DETA_CD_NM',cellStyle: {textAlign: "right"}, headerName:'상세코드명'},
+  {field: 'CMMN_DETA_CD_ABBNM',cellStyle: {textAlign: "right"}, headerName:'상세코드약명'},
+  {field: 'SORT_SEQ',cellStyle: {textAlign: "center"}, headerName:'정렬순번'},
+  {field: 'LANG_FG_CD',cellStyle: {textAlign: "right"}, headerName:'언어구분코드'},
+  {field: 'LANG_FG_NM',cellStyle: {textAlign: "right"}, headerName:'언어코드명'},
+  {field: 'LANG_ABBNM',cellStyle: {textAlign: "right"}, headerName:'언어코드약명'},
+  {field: 'USE_YN',cellStyle: {textAlign: "center"}, headerName:'사용여부', cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
     if (params.value === '0') {
       return 'N';
     } else if (params.value === '1') {
@@ -74,7 +74,7 @@ let codedetailColumnDefs = [
     } 
     return params.value;  // 기본 값
   }},
-  {field: 'REMK_CTNT', headerName:'비고내역'}
+  {field: 'REMK_CTNT',cellStyle: {textAlign: "right"}, headerName:'비고내역'}
 ];
 
 
@@ -123,7 +123,14 @@ const rowdataUpdate = () => {
  }
 };
 const detailCodeList=(cmmnCd)=>{
-  axios.post('/restApi/com/RetrieveCommCodeDetailList.do',{CMMN_CD:cmmnCd}).then(res =>{
+  let codeData = "";
+  if(cmmnCd != null && cmmnCd !=""){
+    codeData = cmmnCd;
+    CMMN_CD.value = cmmnCd;
+  }else{
+    codeData = CMMN_CD.value;
+  }
+  axios.post('/restApi/com/RetrieveCommCodeDetailList.do',{CMMN_CD:codeData}).then(res =>{
     codedetaildatas.value = res.data;
     CMMN_CD.value = cmmnCd;
   }).catch(res=>{

@@ -4,7 +4,7 @@
   <div class="absolute top-0 right-0 z-10">
     <ButtonTest @add-row="addRowToGridMain" 
                     @delete-item="deleteItemMain"
-                    @save-data="saveDataMain" 
+                    @save-data="grpCodeList" 
                     @download-excel="downloadExcelMain" 
                     :addUrl="addUrl" 
                     :deleteUrl="deleteUrlMain" 
@@ -28,7 +28,7 @@
     <div class="absolute top-0 right-0 z-10">
       <ButtonTest @add-row="addRowToGridSub" 
                   @delete-item="deleteItemSub"
-                  @save-data="saveDataSub" 
+                  @save-data="grpDetailCodeList" 
                   @download-excel="downloadExcelSub" 
                   :addUrl="addUrl" 
                   :deleteUrl="deleteUrlSub" 
@@ -83,10 +83,10 @@ let grpcolumnDefs = [
     }
     return '';  // 기본 값
   }},
-  {field: 'CMMN_GRP_CD', headerName:'공통그룹코드'},
-  {field: 'CMMN_GRP_CD_NM', headerName:'공통그룹코드명'},
-  {field: 'ADD_ATT_VAL', headerName:'추가속성값',},
-  {field: 'REMK_WPC', headerName:'비고내역'}
+  {field: 'CMMN_GRP_CD', cellStyle: {textAlign: "right"},  headerName:'공통그룹코드'},
+  {field: 'CMMN_GRP_CD_NM',cellStyle: {textAlign: "right"}, headerName:'공통그룹코드명'},
+  {field: 'ADD_ATT_VAL',cellStyle: {textAlign: "right"}, headerName:'추가속성값',},
+  {field: 'REMK_WPC',cellStyle: {textAlign: "right"}, headerName:'비고내역'}
 
 ];
 let grpdetailcolumnDefs = [
@@ -101,10 +101,10 @@ let grpdetailcolumnDefs = [
     }
     return '';  // 기본 값
   }},
-  {field: 'CMMN_GRP_DETA_CD', headerName:'공통세부코드'},
-  {field: 'ADD_ATT_VAL', headerName:'추가속성값'},
-  {field: 'SORT_SEQ', headerName:'정렬순번'},
-  {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+  {field: 'CMMN_GRP_DETA_CD',cellStyle: {textAlign: "right"}, headerName:'공통세부코드'},
+  {field: 'ADD_ATT_VAL',cellStyle: {textAlign: "right"}, headerName:'추가속성값'},
+  {field: 'SORT_SEQ',cellStyle: {textAlign: "center"}, headerName:'정렬순번'},
+  {field: 'USE_YN',cellStyle: {textAlign: "center"}, headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
     if (params.value === '0') {
       return 'N';
     } else if (params.value === '1') {
@@ -112,7 +112,7 @@ let grpdetailcolumnDefs = [
     } 
     return params.value;  // 기본 값
   }},
-  {field: 'REMK_WPC', headerName:'비고내역'}
+  {field: 'REMK_WPC',cellStyle: {textAlign: "right"}, headerName:'비고내역'}
 ];
 
 let grpGridApi = null;
@@ -152,18 +152,31 @@ let  param = ref({
 }); 
 
 const grpCodeList = (cmmnCd)=>{
-  param.value.CMMN_CD = cmmnCd;
+  console.log(cmmnCd)
+  if(cmmnCd != null && cmmnCd !=""){
+    param.value.CMMN_CD = cmmnCd;
+    CMMN_CD.value = cmmnCd;
+  }else{
+    param.value.CMMN_CD = CMMN_CD.value;
+  }
+  
     axios.post('/restApi/com/RetrieveGrpCodeList.do',param.value).then(res =>{
     grpcodedatas.value = res.data;
-    CMMN_CD.value = cmmnCd;
 }).catch(res=>{
   console.log(res);
 })
 }
 const grpDetailCodeList = (cmmnGrpCd)=>{
-    axios.post('/restApi/com/RetrieveGrpDetailCodeList.do',{CMMN_GRP_CD:cmmnGrpCd}).then(res =>{
-    grpdetailcodedatas.value = res.data;
+  let codeData = "";
+  if(cmmnGrpCd != null && cmmnGrpCd !=""){
+    codeData = cmmnGrpCd;
     CMMN_GRP_CD.value = cmmnGrpCd;
+  }else{
+    codeData = CMMN_GRP_CD.value;
+  }
+  console.log
+    axios.post('/restApi/com/RetrieveGrpDetailCodeList.do',{CMMN_GRP_CD:codeData}).then(res =>{
+    grpdetailcodedatas.value = res.data;
 }).catch(res=>{
   console.log(res);
 })
@@ -235,38 +248,6 @@ const rowdataUpdateSub = () => {
   })
  }
 };
-
-// const deleteItemMain = () => {
-//   const selectedRows = grpGridApi.getSelectedNodes();
-//   selectedRows.forEach(row => {
-//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-//         row.data.status = 'D'
-//       }
-//       grpGridApi.startEditingCell({
-//           rowIndex:row.rowIndex,
-//           colKey:'status',
-//         })
-   
-//   })
-//   grpGridApi.stopEditing();
-  
-// }
-
-// const deleteItemSub = () => {
-//   const selectedRows = grpDetailGridApi.getSelectedNodes();
-//   selectedRows.forEach(row => {
-//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-//         row.data.status = 'D'
-//       }
-//       grpDetailGridApi.startEditingCell({
-//           rowIndex:row.rowIndex,
-//           colKey:'status',
-//         })
-   
-//   })
-//   grpDetailGridApi.stopEditing();
-  
-// }
 
 const onCellClicked = params => {
   // console.log('cell click : ', params.data);

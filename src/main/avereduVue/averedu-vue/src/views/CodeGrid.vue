@@ -37,7 +37,7 @@
                     <div class="absolute top-0 right-0 z-10">
                       <ButtonTest @add-row="addRowToGridMain" 
                                     @delete-item="deleteItemMain"
-                                    @save-data="saveDataMain" 
+                                    @save-data="serachCode" 
                                     @download-excel="downloadExcelMain"
                                     :addUrl="addUrl" 
                                     :deleteUrl="deleteUrlMain" 
@@ -104,9 +104,9 @@ const codeColumnDefs = [
     }
     return '';  // 기본 값
   }},
-  {field: 'CMMN_CD', headerName:'공통코드'},
-  {field: 'CMMN_CD_NM', headerName:'공통코드명'},
-  {field: 'USE_YN', headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
+  {field: 'CMMN_CD', cellStyle: {textAlign: "right"},headerName:'공통코드' },
+  {field: 'CMMN_CD_NM', cellStyle: {textAlign: "right"}, headerName:'공통코드명'},
+  {field: 'USE_YN',  cellStyle: {textAlign: "center"}, headerName:'사용여부',  cellEditor: "agSelectCellEditor",cellEditorParams: {values: ['Y', 'N']}, cellRenderer: (params) => {
     if (params.value === '0') {
       return 'N';
     } else if (params.value === '1') {
@@ -114,8 +114,8 @@ const codeColumnDefs = [
     } 
     return params.value;  // 기본 값
   }},
-  {field: 'REMK_CTNT', headerName:'비고내역'},
-  {field: 'BF_CMMN_CD', headerName:'이전공통코드'},
+  {field: 'REMK_CTNT', cellStyle: {textAlign: "right"},headerName:'비고내역'},
+  {field: 'BF_CMMN_CD', cellStyle: {textAlign: "right"},headerName:'이전공통코드'},
   { field: 'POPUP', editable: false, headerName: '', width: 100, cellRenderer: (params) => {
     return '<button class="float-right text-white bg-blue-700 h over:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">팝업</button>'
     }},
@@ -152,6 +152,8 @@ const rowdataUpdate = () => {
   })
  }
 };
+
+
 
 // const deleteItemMain = () => {
 //   const selectedRows = gridApi.getSelectedNodes();
@@ -216,7 +218,6 @@ const  csys100datas = ref([]);
         modalinfo(params.data.CMMN_CD)
       }else{
         serachCodeDetail(params.data.CMMN_CD);
-
       }
       
     }
@@ -256,4 +257,5 @@ body{
   border-radius: 8px;
   padding: 20px;
 }
+
 </style>

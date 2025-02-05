@@ -52,7 +52,7 @@ const saveData = () => {
   axios.delete(props.deleteUrl, { data: deleteRows }) 
       .then(() => {
         console.log('삭제 완료:', deleteRows);
-       // emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
+        //emit('delete-item'); // 삭제 후 'delete-item' 이벤트 발송
       })
       .catch(error => {
         console.error('삭제 실패:', error);

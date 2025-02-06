@@ -228,8 +228,17 @@ public interface CsyscdSvc {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deptCdConnAttrValSave(Map<String, Object> inVar, Map<String, DataSetMap> inDataset,
-			Map<String, Object> outVar, Map<String, DataSetMap> outDataset, SessionVO sessionVO) throws Exception;
+	public boolean deptCdConnAttrValSave(List<Csys311VO> csys311VOList, SessionVO session);
+	
+	/**
+	 * 부서코드연계속성값 삭제(deptCdConnAttrValDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean deptCdConnAttrValDel(List<Csys311VO> csys311VOList);
 
+	
 	
 }

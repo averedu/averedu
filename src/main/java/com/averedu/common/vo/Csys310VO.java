@@ -3,7 +3,7 @@ package com.averedu.common.vo;
 import java.sql.Date;
 import java.util.List;
 
-public class Csys310VO extends SearchVO{
+public class Csys310VO{
 	private int chk;
 	private String bfDeptCd;
 	private String deptAttrCd;
@@ -22,6 +22,16 @@ public class Csys310VO extends SearchVO{
 	private String lastModfIp;
     private String deptConnAttrNm;
     private String rowType;
+    private String status;
+    private String deptCd;
+    
+    
+	public String getDeptCd() {
+		return deptCd;
+	}
+	public void setDeptCd(String deptCd) {
+		this.deptCd = deptCd;
+	}
 	public int getChk() {
 		return chk;
 	}
@@ -130,6 +140,14 @@ public class Csys310VO extends SearchVO{
 	public void setRowType(String rowType) {
 		this.rowType = rowType;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+    
+    
     
 	
 }

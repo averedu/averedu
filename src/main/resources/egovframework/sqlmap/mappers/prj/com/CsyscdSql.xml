@@ -864,32 +864,32 @@
 		)
 		VALUES
 		(
-			#{BF_DEPT_CD},
-			#{DEPT_CONN_ATTR_CD},
-			#{CMMN_CD_YN},
-			#{DEPT_CONN_ATTR_NM},
-			#{MNG_DEPT},
-			#{SORT_SEQ},
-			#{REMK},
-			#{FRST_INPUT_ID},
+			#{bfDeptCd},
+			#{deptConnAttrCd},
+			#{cmmnCdYn},
+			#{deptConnAttrNm},
+			#{mngDept},
+			#{sortSeq},
+			#{remk},
+			#{frstInputId},
 			SYSDATE,
-			#{FRST_INPUT_IP}
+			#{frstInputIp}
 		)
     </insert>
     
     <update id="CsyscdDAO.deptCdConnAttrInfoUpd" parameterType="com.averedu.common.vo.Csys310VO">
     	UPDATE COM.CSYS310 A
 		SET 
-		A.DEPT_CONN_ATTR_CD=#{DEPT_CONN_ATTR_CD},
-		A.CMMN_CD_YN=#{CMMN_CD_YN}, 
-		A.DEPT_CONN_ATTR_NM=#{DEPT_CONN_ATTR_NM}, 
-		A.MNG_DEPT=#{MNG_DEPT}, 
-		A.SORT_SEQ=#{SORT_SEQ},
-		A.REMK=#{REMK},
-		A.LAST_MODF_ID=#{LAST_MODF_ID},
+		A.DEPT_CONN_ATTR_CD=#{deptConnAttrCd},
+		A.CMMN_CD_YN=#{cmmnCdYn}, 
+		A.DEPT_CONN_ATTR_NM=#{deptConnAttrNm}, 
+		A.MNG_DEPT=#{mngDept}, 
+		A.SORT_SEQ=#{sortSeq},
+		A.REMK=#{remk},
+		A.LAST_MODF_ID=#{lastModfId},
 		A.LAST_MODF_DT=SYSDATE,
-		A.LAST_MODF_IP=#{LAST_MODF_IP}
-		WHERE A.BF_DEPT_CD=#{BF_DEPT_CD}
+		A.LAST_MODF_IP=#{lastModfIp}
+		WHERE A.BF_DEPT_CD=#{bfDeptCd}
     </update>
     
     <delete id="CsyscdDAO.deptCdConnAttrInfoDel" parameterType="string">
@@ -899,17 +899,45 @@
     
     <delete id="CsyscdDAO.deptCdConnAttrValDel" parameterType="string">
     	DELETE FROM COM.CSYS311 A
-    	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
+    	WHERE A.AF_DEPT_CD = #{afDeptCd}
     </delete>
     
-    <update id="CsyscdDAO.deptCdConnAttrValUpd" parameterType="com.averedu.common.vo.Csys310VO">
+    <update id="CsyscdDAO.deptCdConnAttrValIns" parameterType="com.averedu.common.vo.Csys311VO">
+    	INSERT INTO COM.CSYS311 A
+		(
+			A.BF_DEPT_CD,
+			A.DEPT_NM,
+			A.USE_YN,
+			A.SALY_ACNT,
+			A.AF_DEPT_CD,
+			A.LAST_MODF_ID,
+			A.LAST_MODF_IP,
+			A.LAST_MODF_DT
+		)
+		VALUES
+		(
+			#{bfDeptCd},
+			#{deptNm},
+			#{useYn},
+			#{salyAcnt},
+			#{afDeptCd},
+			#{lastModfId},
+			#{lastModfIp},
+			SYSDATE
+			
+		) 
+    </update>
+    
+    <update id="CsyscdDAO.deptCdConnAttrValUpd" parameterType="com.averedu.common.vo.Csys311VO">
     	UPDATE COM.CSYS311 A
     	SET
-    	A.SALY_ACNT = #{SALY_ACNT},
-    	A.LAST_MODF_ID = #{LAST_MODF_ID},
-    	A.LAST_MODF_IP = #{LAST_MODF_IP},
+    	A.DEPT_NM = #{deptNm},
+    	A.USE_YN = #{useYn},
+    	A.SALY_ACNT = #{salyAcnt},
+    	A.LAST_MODF_ID = #{lastModfId},
+    	A.LAST_MODF_IP = #{lastModfIp},
     	A.LAST_MODF_DT = SYSDATE
-    	WHERE A.BF_DEPT_CD = #{BF_DEPT_CD}
+    	WHERE A.AF_DEPT_CD = #{afDeptCd}
     </update>
     			                                                           													                                                             													   
 </mapper>

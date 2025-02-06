@@ -367,7 +367,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */  
-    public void deptCdConnAttrInfoIns(Csys310VO csys310VO){                   
+    public void deptCdConnAttrInfoIns(Csys310VO csys310VO){
+    	logger.info("dao : " + csys310VO.getBfDeptCd());
      	insert("CsyscdDAO.deptCdConnAttrInfoIns", csys310VO);          
     }
     
@@ -397,9 +398,19 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */    
-    public void deptCdConnAttrValDel(String dfDeptCd){                   
-     	delete("CsyscdDAO.deptCdConnAttrValDel", dfDeptCd);          
+    public void deptCdConnAttrValDel(String afDeptCd){                   
     }     
+    
+    
+    /**                                                                                                      	
+     * 부서코드연계속성값 등록(deptCdConnAttrValUpd)                                                 
+     * @param input                                                                                         	
+     * @return                                                                                              	
+     * @throws Exception                                                                                   		
+     */   
+    public void deptCdConnAttrValIns(Csys311VO csys311VO){
+    	insert("CsyscdDAO.deptCdConnAttrValIns", csys311VO);
+    }
     
     /**                                                                                                      	
      * 부서코드연계속성값 수정(deptCdConnAttrValUpd)                                                 
@@ -407,8 +418,8 @@ public class CsyscdDAO extends EgovAbstractMapper {
      * @return                                                                                              	
      * @throws Exception                                                                                   		
      */    
-    public void deptCdConnAttrValUpd(Map<String, Object> map){                   
-     	update("CsyscdDAO.deptCdConnAttrValUpd", map);          
+    public void deptCdConnAttrValUpd(Csys311VO csys311VO){                   
+     	update("CsyscdDAO.deptCdConnAttrValUpd", csys311VO);          
     }     
  
    

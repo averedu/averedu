@@ -697,7 +697,7 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoSave.do")
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoSave.do", method=RequestMethod.PUT)
 	@ResponseBody
 	public boolean deptCdConnAttrInfoSave(@RequestBody java.util.List<Csys310VO> csys310VoList , HttpSession session) throws Exception {
 		SessionVO sessionVO = SessionUtil.getSessionVO(session);
@@ -713,7 +713,7 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws LException
 	 */
-	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoDel.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrInfoDel.do", method=RequestMethod.DELETE)
 	@ResponseBody
 	public boolean deptCdConnAttrInfoDel(@RequestBody java.util.List<Csys310VO> csys310VO, HttpSession session){
 		SessionVO sessionVO = SessionUtil.getSessionVO(session);
@@ -746,36 +746,29 @@ public class CsyscdCtr {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/prj/com/deptCdConnAttrValSave.do")
-	public ModelAndView deptCdConnAttrValSave(NexacroPlatformMapDTO nxDto, Model model, HttpSession session)
-			throws Exception {
-		ModelAndView mav = new ModelAndView("nexacroplatformMapView");
-		try {
-			SessionVO sessionVO = SessionUtil.getSessionVO(session);
-
-			DataSetMap tranInfo = nxDto.getTranInfoMap();
-			Map<String, Object> inVar = nxDto.getInVariableMap();
-			Map<String, DataSetMap> inDataset = nxDto.getInDataSetMap();
-			Map<String, Object> outVar = nxDto.getOutVariableMap();
-			Map<String, DataSetMap> outDataset = nxDto.getOutDataSetMap();
-
-			csyscdSvc.deptCdConnAttrValSave(inVar, inDataset, outVar, outDataset, sessionVO);
-
-			mav.addObject(NexacroPlatformConstant.OUT_VARIABLES_ATT_NAME, outVar);
-			mav.addObject(NexacroPlatformConstant.OUT_DATASET_ATT_NAME, outDataset);
-
-			mav.addObject(NexacroPlatformConstant.ERROR_CODE, "0");
-			mav.addObject(NexacroPlatformConstant.ERROR_MSG, "SUCCESS");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			CommExceptionUtil.setError(e, mav);
-		}
-
-		return mav;
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrValSave.do", method=RequestMethod.PUT)
+	@ResponseBody
+	public boolean deptCdConnAttrValSave(@RequestBody java.util.List<Csys311VO>  csys311VOList, HttpSession session) {
+		SessionVO sessionVO = SessionUtil.getSessionVO(session);
+		boolean saveType = csyscdSvc.deptCdConnAttrValSave(csys311VOList, sessionVO);
+		return saveType;
+		
 	}
 	
-
+	/**
+	 * 부서코드연계속성값 삭제(deptCdConnAttrValDel)
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/restApi/prj/com/deptCdConnAttrValDel.do", method=RequestMethod.DELETE)
+	@ResponseBody
+	public boolean deptCdConnAttrValDel(@RequestBody java.util.List<Csys311VO> csys311VOList){
+		boolean delType = csyscdSvc.deptCdConnAttrValDel(csys311VOList);
+		return delType;
+	}
 	
-
+	
+	
 }

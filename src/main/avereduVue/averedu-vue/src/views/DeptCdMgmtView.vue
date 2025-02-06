@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <div class="flex-1 overflow-y-auto">
        <div class="p-6">
-           <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드</h2>
+           <h2 class="text-1xl font-semibold mb-4 text-gray-800 dark:text-white">부서코드관리</h2>
            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
              
                <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1">
@@ -48,24 +48,33 @@
               @cell-clicked="onCellClicked"
               @grid-ready="onGridReady"
               :gridOptions="gridOptions"
-              style="width: 450px; height: 600px;"
+              style="width: 72%; height: 600px;"
            ></ag-grid-vue>
            
           </div>
           <div class="bg-white dark:bg-[#252731] h-32 p-6 rounded-lg shadow-md md:col-span-1  text-1xl font-semibold mb-4 text-gray-800 dark:text-white flex-auto w-2/4
-           h-2/3 float-right relative" style="top: -640px; left: -30px; width: 60%; height: 50%;">
+           h-2/3 float-right relative" style="top: -640px; left: -2%; width: 60%; height: 50%;">
             <h1>부서정보
               <strong class="float-right">총 : {{ mainRowData.length }} 건</strong>
+                <!-- 메인 그리드 공통 버튼 시작-->
+              <div class="float-right">
+                <ButtonTest @add-row="mainGridAdd()" 
+                          @delete-item="deleteItemMain"
+                          @save-data="saveDataMain" 
+                          @download-excel="downloadExcelMain" />
+              </div>
+              <!--
               <button type="button" @click="mainGridSave()" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
               py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">저장</button>
               <button type="button" @click="mainGridDel()" id="delGridBtn" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
               py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">삭제</button>
               <button type="button" @click="mainGridAdd()" id="addGrid" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-              py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button>
-            </h1><br>
-            <label class="p-1">부서코드<input v-model="deptDetaInfo.deptCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
-            <label class="p-1">상위부서<input v-model="deptDetaInfo.upDeptCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
-            <label class="p-1">사용여부<input v-model="deptDetaInfo.useYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label><br>
+              py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button>-->
+            </h1><br><br>
+            <label class="p-1">부서코드<input v-model="deptDetaInfo.deptCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
+            <label class="p-1">상위부서<input v-model="deptDetaInfo.upDeptCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
+            <label class="p-1">사용여부<input v-model="deptDetaInfo.useYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-8"/></label><br>
+           
             <label class="p-1">기관구분<select name="" v-model="deptDetaInfo.breuFg" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32">
               <option value=""></option>
               <option value="Y">기관</option>
@@ -74,13 +83,13 @@
               <option value=""></option>
               <option value="Y">조직</option>
               <option value="N">미조직</option></select></label>
-            <label class="p-1">학사조직여부<input v-model="deptDetaInfo.shafFormaYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
+            <label class="p-1">학사조직여부<input v-model="deptDetaInfo.shafFormaYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-8"/></label><br>
             <label class="p-1">부서명<input v-model="deptDetaInfo.deptNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
             <label class="p-1">부서약어명<input v-model="deptDetaInfo.deptAbbnm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
-            <label class="p-1">가상조직여부<input v-model="deptDetaInfo.cyberFormaYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
+            <label class="p-1">가상조직여부<input v-model="deptDetaInfo.cyberFormaYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-8"/></label><br>
             <label class="p-1">부서영문명<input v-model="deptDetaInfo.deptEngNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
             <label class="p-1">부서영문약어명<input v-model="deptDetaInfo.deptEngAbbNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
-            <label class="p-1">최종조직여부<input v-model="deptDetaInfo.flDeptYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
+            <label class="p-1">최종조직여부<input v-model="deptDetaInfo.flDeptYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-8"/></label><br>
             <label class="p-1">부서중문명<input v-model="deptDetaInfo.deptChnNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
             <label class="p-1">부서중문약어명<input v-model="deptDetaInfo.deptChnAbbNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
             <label class="p-1">부서ID<input v-model="deptDetaInfo.deptId" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label><br>
@@ -94,7 +103,7 @@
             <label class="p-1">학부(팀)<input v-model="deptDetaInfo.sustTeamNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
             <label class="p-1">부서정렬순번<input v-model="deptDetaInfo.deptSortSeq" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
             <label class="p-1">폐지예정일자<input v-model="deptDetaInfo.ablnExpcDt" type="date" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32"/></label>
-            <label class="p-1">부총장조직코드<select name="" v-model="deptDetaInfo.subChancMissCd" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32">
+            <label class="p-1">부총장조직코드<select name="" v-model="deptDetaInfo.subChancMissCd" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24">
               <option value=""></option>
               <option value="Y">기관</option>
               <option value="N">미기관</option></select></label>
@@ -106,7 +115,7 @@
               <h1>부서코드 연계정보</h1><br>
             <label class="p-1">증명서부서명<input v-model="deptDetaInfo.certDeptNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
             <label class="p-1">주간학과코드<input v-model="deptDetaInfo.daytmSustCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
-            <label class="p-1">정보공시계열<select name="" v-model="deptDetaInfo.infoAnncPart" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-32">
+            <label class="p-1">정보공시계열<select name="" v-model="deptDetaInfo.infoAnncPart" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24">
               <option value=""></option>
               <option value="Y">기관</option>
               <option value="N">미기관</option></select></label><br>
@@ -143,7 +152,7 @@
               <option value="Y">분류</option>
               <option value="N">미분류</option></select></label>
             <label class="p-1">학부(과)<input v-model="deptDetaInfo.sustNm" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
-            <label class="p-1">그룹웨어부서연계여부<input v-model="deptDetaInfo.gwDeptConnYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
+            <label class="p-1">그룹웨어부서연계여부<input v-model="deptDetaInfo.gwDeptConnYn" type="checkbox" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-8"/></label>
             <label class="p-1">교원그룹웨어부서코드<input v-model="deptDetaInfo.sprfGwDeptCd" type="text" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label><br>
             <label class="p-1">직원그룹웨어부서코드<input v-model="deptDetaInfo.empGwDeptCd" type="check" class="mx-3 bg-gray-50 border border-gray-300 text-gray-900 w-24"/></label>
           </div>
@@ -152,18 +161,26 @@
               <h1>부서이력목록&nbsp;&nbsp;<b class="text-sm font-light">* 부서가 통·폐합되거나 명칭 변경 등으로 신규 부서를 등록한 경우<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 이력 관리를 위해 부서 이력 목록을 등록해주십시오.</b><br>
               <strong class="float-right">총 : {{ subRowData.length }} 건</strong>
+                <!-- 서브 그리드 공통 버튼 시작-->
+                <div class="float-right">
+                <ButtonTest @add-row="subGridAdd()" 
+                          @delete-item="deleteItemMain"
+                          @save-data="saveDataMain" 
+                          @download-excel="downloadExcelMain" />
+              </div>
+              <!--
               <button type="button" @click="subGridSave()" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
               py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">저장</button>
               <button type="button" @click="subGridDel()" id="delGridBtn" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
               py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">삭제</button>
               <button type="button" @click="subGridAdd()" id="addGrid" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5
-              py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button>
-            </h1><br><br>
+              py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">추가</button> -->
+            </h1><br><br><br>
             <ag-grid-vue
               :columnDefs="subColumnDefs"
               :rowData="subRowData"
               :gridOptions="gridOptions"
-              style="width: 700px; height: 150px;"
+              style="width: 100%; height: 150px;"
            ></ag-grid-vue>
           </div>
        </div>
@@ -177,10 +194,25 @@ import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag
 import { AgGridVue } from 'ag-grid-vue3' // Vue3 AgGrid Component
 import LeftMenu from '@/components/LeftMenu.vue';
 import { ref } from 'vue';
+import ButtonTest from '@/components/ButtonTest.vue';
 // import { TreeDataModule } from 'ag-grid-enterprise'; 
 // ModuleRegistry.registerModules([ TreeDataModule ]); 
 ModuleRegistry.registerModules([AllCommunityModule]);
 provideGlobalGridOptions();
+
+const mainGridAdd = () =>{
+  const mainAddRow = {
+     status : 'IN'
+  }
+  mainRowData.value.push(mainAddRow);
+}
+
+const subGridAdd = () =>{
+  const subAddRow = {
+    status : 'IN'
+  }
+  subRowData.value.push(subAddRow);
+}
 
 const gridOptions = {
   //treeData: true,
@@ -195,6 +227,16 @@ const gridApi = ref();
 const columnApi = ref();
 const mainRowData = ref([]);
 const mainColumnDefs = [
+{ field: 'status', editable: false, headerName: '상태', hide: true, width: 100, cellRenderer: (params) => {
+    if (params.value === 'DEL') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'UP') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'IN') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
 { field: 'gridNm', headerName: '부서이름(코드)', width: 200},
 { field: 'deptCd', headerName: '부서코드', width: 100 ,hide: true},
 { field: 'upDeptCd', headerName: '상위부서코드', width: 100 ,hide: true},
@@ -251,7 +293,16 @@ const mainColumnDefs = [
 
 const subRowData = ref([]);
 const subColumnDefs = [
-{ field: '', headerName: '상태', width: 100},
+{ field: 'status', editable: false, headerName: '상태', width: 100, cellRenderer: (params) => {
+    if (params.value === 'DEL') {
+      return '<img src="path_to_x_image.png" alt="삭제" />';
+    } else if (params.value === 'UP') {
+      return '<img src="path_to_u_image.png" alt="변경" />';
+    } else if (params.value === 'IN') {
+      return '<img src="path_to_n_image.png" alt="추가" />';
+    }
+    return '';  // 기본 값
+  }},
 { field: 'subRowNum ', headerName: '순번', valueGetter: 'node.rowIndex + 1', cellEditorParams: { min: 0, max: 100 }, cellStyle: {textAlign: "center"}, width: 100,},
 { field: 'bfDeptCd', headerName: '이전부서', width: 100},
 { field: 'afDeptCd', headerName: '이후부서', width: 100},

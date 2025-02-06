@@ -19,6 +19,16 @@ public class Csys311VO {
 	private Date lastModfDt;
 	private String lastModfMenuId;
 	private String lastModfIp;
+	private String status;
+	 
+	
+	 
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getCHK() {
 		return CHK;
 	}
@@ -115,8 +125,6 @@ public class Csys311VO {
 	public void setLastModfIp(String lastModfIp) {
 		this.lastModfIp = lastModfIp;
 	}
-	
-	
 	
 	
 }

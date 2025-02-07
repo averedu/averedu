@@ -151,25 +151,9 @@ const rowdataUpdate = () => {
     gridApi.getDisplayedRowAtIndex(index).setSelected(true); 
   })
  }
+ selectData.value = [];
 };
 
-
-
-// const deleteItemMain = () => {
-//   const selectedRows = gridApi.getSelectedNodes();
-//   selectedRows.forEach(row => {
-//     if(row.data.status != 'D'&& row.data.status != 'N' && row.data.status != 'U'){
-//         row.data.status = 'D'
-//       }
-//       gridApi.startEditingCell({
-//           rowIndex:row.rowIndex,
-//           colKey:'status',
-//         })
-   
-//   })
-//   gridApi.stopEditing();
-  
-// }
 
 const downloadExcelMain = () => {
   console.log('엑셀 다운로드');
@@ -218,6 +202,7 @@ const  csys100datas = ref([]);
         modalinfo(params.data.CMMN_CD)
       }else{
         serachCodeDetail(params.data.CMMN_CD);
+
       }
       
     }

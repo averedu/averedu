@@ -152,7 +152,6 @@ let  param = ref({
 }); 
 
 const grpCodeList = (cmmnCd)=>{
-  console.log(cmmnCd)
   if(cmmnCd != null && cmmnCd !=""){
     param.value.CMMN_CD = cmmnCd;
     CMMN_CD.value = cmmnCd;
@@ -174,8 +173,7 @@ const grpDetailCodeList = (cmmnGrpCd)=>{
   }else{
     codeData = CMMN_GRP_CD.value;
   }
-  console.log
-    axios.post('/restApi/com/RetrieveGrpDetailCodeList.do',{CMMN_GRP_CD:codeData}).then(res =>{
+    axios.post('/restApi/com/RetrieveGrpDetailCodeList.do',{CMMN_CD:CMMN_CD.value,CMMN_GRP_CD:codeData}).then(res =>{
     grpdetailcodedatas.value = res.data;
 }).catch(res=>{
   console.log(res);
@@ -217,7 +215,6 @@ const addRowToGridSub = () => {
     REMK_WPC:"",
     status:'N'  };
     let rowData = [];
-    selectData.value = [];
     grpDetailGridApi.forEachNode(node => {
       rowData.push(node.data)
         if(node.__selected){
@@ -233,20 +230,24 @@ const addRowToGridSub = () => {
 
 //row의 값이 업데이트될때 기존 체크값 유지
 const rowdataUpdateMain = () => {
+  console.log("main:"+selectData.value.length)
  if(selectData.value.length>0){
   selectData.value.forEach(index=>{
     grpGridApi.getDisplayedRowAtIndex(index).setSelected(true); 
   })
  }
+ selectData.value = [];
 };
 
 //row의 값이 업데이트될때 기존 체크값 유지
 const rowdataUpdateSub = () => {
+  console.log("Sub:"+selectData.value.length)
  if(selectData.value.length>0){
   selectData.value.forEach(index=>{
     grpDetailGridApi.getDisplayedRowAtIndex(index).setSelected(true); 
   })
  }
+ selectData.value = [];
 };
 
 const onCellClicked = params => {

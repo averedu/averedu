@@ -121,6 +121,7 @@ const rowdataUpdate = () => {
     gridApi.getDisplayedRowAtIndex(index).setSelected(true); 
   })
  }
+ selectData.value = [];
 };
 const detailCodeList=(cmmnCd)=>{
   let codeData = "";

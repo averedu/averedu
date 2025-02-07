@@ -127,7 +127,7 @@
 			, A.LAST_MODF_IP                              /*최종수정IP*/
 		FROM COM.CSYS121 A                                
 		WHERE A.CMMN_GRP_CD = #{CMMN_GRP_CD}
-		AND   A.A.CMMN_CD = #{CMMN_CD}
+		AND   A.CMMN_CD = #{CMMN_CD}
 		ORDER BY A.SORT_SEQ 
 		/*CsyscdDAO.retrieveGrpDetailCodeList 그룹 상세 코드  조회 */	 
     </select>

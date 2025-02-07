@@ -100,7 +100,6 @@ const addRowToGridMain = () => {
   if(CMMN_CD.value!=""){
     const newRow = { id: Date.now(), status: 'N',CMMN_CD: CMMN_CD.value  };
     let rowData = [];
-    selectData.value = [];
     gridApi.forEachNode(node => {
       rowData.push(node.data)
         if(node.__selected){

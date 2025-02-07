@@ -190,7 +190,6 @@ const addRowToGridMain = () => {
     REMK_WPC:"",
     status:'N'};
     let rowData = [];
-    selectData.value = [];
     grpGridApi.forEachNode(node => {
       rowData.push(node.data)
         if(node.__selected){
@@ -215,6 +214,7 @@ const addRowToGridSub = () => {
     REMK_WPC:"",
     status:'N'  };
     let rowData = [];
+    console.log(selectData.value);
     grpDetailGridApi.forEachNode(node => {
       rowData.push(node.data)
         if(node.__selected){
@@ -230,7 +230,7 @@ const addRowToGridSub = () => {
 
 //row의 값이 업데이트될때 기존 체크값 유지
 const rowdataUpdateMain = () => {
-  console.log("main:"+selectData.value.length)
+  console.log("main:"+selectData.value)
  if(selectData.value.length>0){
   selectData.value.forEach(index=>{
     grpGridApi.getDisplayedRowAtIndex(index).setSelected(true); 
@@ -241,7 +241,7 @@ const rowdataUpdateMain = () => {
 
 //row의 값이 업데이트될때 기존 체크값 유지
 const rowdataUpdateSub = () => {
-  console.log("Sub:"+selectData.value.length)
+  console.log("Sub:"+selectData.value)
  if(selectData.value.length>0){
   selectData.value.forEach(index=>{
     grpDetailGridApi.getDisplayedRowAtIndex(index).setSelected(true); 

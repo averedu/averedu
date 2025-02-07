@@ -131,7 +131,6 @@ let  param = ref({
 const addRowToGridMain = () => {
   const newRow = { id: Date.now(), status: 'N' };
   let rowData = [];
-  selectData.value = [];
   //grid의 row값 가져오기및 선택된값의 row값 따로 저장
   gridApi.forEachNode(node => {
     rowData.push(node.data)
